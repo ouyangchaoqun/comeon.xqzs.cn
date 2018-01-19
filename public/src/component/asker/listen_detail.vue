@@ -10,7 +10,7 @@
                 <!--<div>在<span>{{detail.title}}</span>方面</div>-->
                 <div v-if="detail.isAnonymous==0">{{detail.nickName}}</div>
                 <div v-if="detail.isAnonymous==1">匿名</div>
-                <div class="steal_detail_top_price">赏金￥{{detail.price}}</div>
+                <div class="steal_detail_top_price">{{detail.title}}</div>
             </div>
             <div class="steal_detail_content">{{detail.content}}</div>
         </div>
@@ -189,7 +189,7 @@
                 }
             },
             play:function (index) {
-                 let _this=this;
+                let _this=this;
                 let list = _this.detail.answerList;
                 let CT= list[index].ct? list[index].ct: list[index].length;
                 let T = list[index].length;
@@ -204,22 +204,22 @@
                 //重置其他列表内容
                 for(let i = 0;i<list.length;i++){
                     if(index!=i&&(list[i].playing||list[i].paused)){
-                       list[i].paused=false;
-                       list[i].playing=false;
+                        list[i].paused=false;
+                        list[i].playing=false;
                         _this.$set(_this.detail.answerList,i,list[i]);
                     }
                 }
                 let item= list[index];
                 if(item.paused){  //暂停中也就是已经获取到且为当前音频
-                   list[index].paused=false;
-                   list[index].playing=true;
+                    list[index].paused=false;
+                    list[index].playing=true;
                     _this.$set(_this.detail.answerList,index,list[index])
                     xqzs.voice.play();
                     _this.timeout(true,CT,index)
                 }else{
                     if(item.playing){    //播放中去做暂停操作
-                       list[index].paused=true;
-                       list[index].playing=false;
+                        list[index].paused=true;
+                        list[index].playing=false;
                         _this.$set(_this.detail.answerList,index,list[index])
                         xqzs.voice.pause();
                         _this.clearTimeOut();
@@ -228,8 +228,8 @@
                         let answerId= item.answerId;
                         xqzs.voice.getAnswerVoice(answerId,function (url) {
                             xqzs.voice.play(url);
-                           list[index].playing=true;
-                           list[index].paused=false;
+                            list[index].playing=true;
+                            list[index].paused=false;
                             _this.$set(_this.detail.answerList,index,list[index]);
                             _this.playing=true;
                             _this.clearTimeOut();
@@ -336,7 +336,6 @@
         position: relative;
     }
     .steal_detail_top .steal_detail_top_price{
-        color:#FE7301;
         position: absolute;
         right:0.88235rem;
     }
@@ -406,12 +405,12 @@
         border-bottom: 0.588235rem solid rgba(245,245,245,1);
     }
     /*.steal_answer_zan div{*/
-        /*float: right;*/
-        /*margin-right: 0;*/
+    /*float: right;*/
+    /*margin-right: 0;*/
     /*}*/
 
     /*.steal_answer_zan div:nth-of-type(2){*/
-        /*margin-right:1.235rem;*/
+    /*margin-right:1.235rem;*/
     /*}*/
     .steal_answer_zan div:nth-of-type(1) img{
         float: left;

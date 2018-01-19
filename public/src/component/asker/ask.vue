@@ -3,21 +3,21 @@
         <div v-title>提问</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="change_height">
-            <!--<div class="ask_type_new" v-if="isSelectAnswer">-->
-                <!--<div class="tab">问题类型 <span>点击选择</span></div>-->
-                <!--<div class="select_box">-->
-                    <!--<div v-for="item in types">{{item.title}}</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="ask_type" v-if="!isSelectAnswer" @click="selectType()">-->
-                <!--<div class="tab">选择问题类型：</div>-->
-                <!--<div class="select_box">{{type}}</div>-->
-                <!--<div class="clear"></div>-->
-            <!--</div>-->
+            <div class="ask_type_new" v-if="isSelectAnswer">
+                <div class="tab">问题类型 <span>点击选择</span></div>
+                <div class="select_box">
+                    <div v-for="item in types">{{item.title}}</div>
+                </div>
+            </div>
+            <div class="ask_type" v-if="!isSelectAnswer" @click="selectType()">
+                <div class="tab">选择问题类型：</div>
+                <div class="select_box">{{type}}</div>
+                <div class="clear"></div>
+            </div>
             <div class="text_area">
                 <textarea v-if="isSelectAnswer" placeholder="请详细描述您的问题，专家将第一时间帮您解答。" class="content answer_select" maxlength="200"></textarea>
-                <textarea v-if="!isSelectAnswer" placeholder="请告知您的性别，年龄，症状或具体问题，有助于提高回复的准确性。48小时内无人抢答将全额退款。" class="content" maxlength="140"></textarea>
-                <div v-if="!isSelectAnswer" class="last_word_count">{{contentLength}}/140</div>
+                <textarea v-if="!isSelectAnswer" placeholder="请详细描述你的问题，专家将尽快为你解答！" class="content" maxlength="200"></textarea>
+                <div v-if="!isSelectAnswer" class="last_word_count">{{contentLength}}/200</div>
                 <div v-if="isSelectAnswer" class="last_word_count">{{contentLength}}/{{MAX_LENGTH}}</div>
                 <div class="price" v-if="isSelectAnswer">¥{{expertDetail.price}}</div>
                 <div class="price" v-if="!isSelectAnswer">¥10.00</div>
@@ -29,8 +29,8 @@
             <div class="tip" @click="tip()">提问须知</div>
             <div class="clear"></div>
             <!--<div class="set_price" v-if="!isSelectAnswer">-->
-                <!--<div class="txt">设置赏金：</div>-->
-                <!--<input type="number" class="price" placeholder="10元起">-->
+            <!--<div class="txt">设置赏金：</div>-->
+            <!--<input type="number" class="price" placeholder="10元起">-->
             <!--</div>-->
             <div class="submit weui-btn weui-btn_primary weui-btn_disabled" v-if="!isSubFlag">提交</div>
             <div class="submit weui-btn weui-btn_primary" @click="submit()" v-if="isSubFlag">提交</div>
@@ -70,8 +70,8 @@
                     </p>
                     <p>
                         2.  你可以从解答中选出最佳解答：<br>
-                          1）  该解答将产生偷听收入；<br>
-                          2）  并且该咨询师将获得全部赏金；<br>
+                        1）  该解答将产生偷听收入；<br>
+                        2）  并且该咨询师将获得全部赏金；<br>
                     </p>
                     <p>
                         3.  若48小时内无咨询师抢答，则赏金将原路径退还；<br>
@@ -122,7 +122,7 @@
                 isSelectAnswer: false, //是否针对专家提问
                 type:'',
                 typeSelectIndex:null,
-                questionClass:1,//0
+                questionClass:0,//0(有类型)1（取消类型）
                 expertId:0,
                 expertDetail:{},
                 contentLength:0,
@@ -208,7 +208,7 @@
                 _this.$http.get(web.API_PATH + 'come/listen/question/class/list' ).then(function (data) {//es5写法
                     _this.showLoad = false
                     if (data.body.status == 1) {
-                            _this.types= data.body.data;
+                        _this.types= data.body.data;
 
                     }
                 }, function (error) {
@@ -216,7 +216,7 @@
             },
             submit:function () {
                 console.log(this.isAnonymous)
-                 if(this.questionClass==0){
+                if(this.questionClass==0){
                     xqzs.weui.tip("请选择问题类型")
                     return;
                 }
@@ -272,7 +272,7 @@
 
 
                                 xqzs.wx.pay.pay(result.order, function () {
-                                 }, function () {//success
+                                }, function () {//success
                                     xqzs.weui.tip("支付成功", function () {
                                         _this.$router.push("/asker/my/ask/list");
                                     });
@@ -456,10 +456,10 @@
         padding-top: 0.588235rem;
     }
     /*.asker_ask_box .text_area p{*/
-        /*font-size: 0.8235rem;*/
-        /*line-height: 1.4rem;*/
-        /*color:rgba(36,37,61,0.5);*/
-        /*margin-bottom: 0.294rem;*/
+    /*font-size: 0.8235rem;*/
+    /*line-height: 1.4rem;*/
+    /*color:rgba(36,37,61,0.5);*/
+    /*margin-bottom: 0.294rem;*/
     /*}*/
     .asker_ask_box .text_area .price{
         color: rgba(253,114,6,1);
@@ -524,7 +524,7 @@
     .asker_ask_box .submit:active {
         background: linear-gradient(to right, rgb(239, 143, 25), rgb(211, 105, 6));
     }
-     .dialog_select_Height{ height:19rem;}
+    .dialog_select_Height{ height:19rem;}
     .dialog_select_type  .yes{ border-top: 1px solid #eee; color:#FE7301; text-align: center; line-height: 2.588235294117647rem; position: absolute; bottom:0; left:0; width: 100% }
     .dialog_select_type  .yes:active{background: #eee}
     .dialog_select_type .tip_content{ padding:0  1rem; line-height: 1.8; font-size: 0.8235294117647059rem; color:#666; height: 13rem; overflow: auto}

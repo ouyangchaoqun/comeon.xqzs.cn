@@ -6,7 +6,7 @@
                 <!--问题类型:  <div class="race_titleColor">{{detail.title}}</div>-->
                 <img :src="user.faceUrl" alt="">
                 <div>{{user.nickName}}</div>
-                <div>赏金￥{{detail.price}}</div>
+                <div>{{detail.title}}</div> <!--赏金￥{{detail.price}}-->
             </div>
             <div class="problem_detail_content">
                 {{detail.question}}
@@ -129,11 +129,11 @@
         },
         methods: {
             formatPrice:function (v) {
-              return xqzs.string.formatPrice(v)
+                return xqzs.string.formatPrice(v)
             },
 
             play:function (index) {
-                 let _this=this;
+                let _this=this;
                 console.log(_this.detail.answers)
                 let list = _this.detail.answers;
                 xqzs.voice.onEnded=function () {
@@ -202,13 +202,13 @@
                             _this.detail.bestAnswerId=_this.selBestAnswerId;
                             _this.detail.questionStatus=1
 
-                             xqzs.weui.dialogCustom($(".success_set_best_answer_dialog").html());
-                             $(".best_dialog_fb").click(function () {
-                                 xqzs.weui.dialogClose();
+                            xqzs.weui.dialogCustom($(".success_set_best_answer_dialog").html());
+                            $(".best_dialog_fb").click(function () {
+                                xqzs.weui.dialogClose();
 
-                                 _this.isOver = false
-                             })
-                             
+                                _this.isOver = false
+                            })
+
                         }
                     });
             },
@@ -299,7 +299,7 @@
     }
     .rob_status_box>div:nth-of-type(2){
         background: rgba(245,245,245,1);
-       padding: 0.3rem 1.647rem;
+        padding: 0.3rem 1.647rem;
         line-height: 1.176rem;
     }
     .rob_status_box span{

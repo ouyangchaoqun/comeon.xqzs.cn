@@ -29,7 +29,7 @@
                         <div class="line_1"></div>
                     </div>
                     <div class="answer_countBox">
-                        <div class="counts">{{detail.evaluate}}</div>
+                        <div class="counts">{{toPercent(detail.goodPercent||0)}}</div>
                         <div class="nr">好评率</div>
                         <div class="line_1"></div>
                     </div>
@@ -41,22 +41,22 @@
                 </div>
             </div>
             <!--<div class="answer_voice">-->
-                <!--<div class="ts">{{detail.sign}}</div>-->
-                <!--<div class="voice">-->
-                    <!--<span class="hello">您好：</span>-->
-                    <!--<div class="problem_answer_yy">-->
-                        <!--<div class="audio" :class="{playing:playing2,paused:paused2}">-->
-                            <!--<div class="audio_btn" @click.stop="play()">-->
-                                <!--<span v-if="!playing2&&!paused2">点击播放</span>-->
-                                <!--<span v-if="playing2">正在播放..</span>-->
-                                <!--<span v-if="paused2">播放暂停</span>-->
-                                <!--<div class="second">{{detail.length}}”</div>-->
-                            <!--</div>-->
-                            <!--<div class="clear"></div>-->
-                        <!--</div>-->
+            <!--<div class="ts">{{detail.sign}}</div>-->
+            <!--<div class="voice">-->
+            <!--<span class="hello">您好：</span>-->
+            <!--<div class="problem_answer_yy">-->
+            <!--<div class="audio" :class="{playing:playing2,paused:paused2}">-->
+            <!--<div class="audio_btn" @click.stop="play()">-->
+            <!--<span v-if="!playing2&&!paused2">点击播放</span>-->
+            <!--<span v-if="playing2">正在播放..</span>-->
+            <!--<span v-if="paused2">播放暂停</span>-->
+            <!--<div class="second">{{detail.length}}”</div>-->
+            <!--</div>-->
+            <!--<div class="clear"></div>-->
+            <!--</div>-->
 
-                    <!--</div>-->
-                <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
             <!--</div>-->
             <div class="answer_detail">
                 <div class="answer_title">详细介绍</div>
@@ -73,9 +73,9 @@
                 <div class="btn_sq" @click="btn_sq()"><span v-if="!Hflag">收起</span><span v-if="Hflag">展开全部</span></div>
             </div>
             <div class="answer_comments">
-                    <div class="answer_title">最新评价({{detail.evaluateCount}})
-                        <i @click="moreComment()">查看更多></i>
-                    </div>
+                <div class="answer_title">最新评价({{detail.evaluateCount}})
+                    <i @click="moreComment()">查看更多></i>
+                </div>
                 <div v-if="detail.evaluateCount>0">
                     <div class="list">
                         <div class="item" v-for="(item,index) in commentList" :class="{addBorder_bottom:commentList.length>1}">
@@ -125,7 +125,7 @@
                                 <div class="word">
                                     {{item.content}}
                                 </div>
-                                <div class="price">￥{{item.price}}</div>
+                                <!--<div class="price">￥{{item.price}}</div>-->
                             </div>
                             <div class="clear"></div>
                         </div>
@@ -173,16 +173,16 @@
         </v-scroll>
         <!--{{detail.expertUserId}}-->
         <div class="ask_bottom">
-        <div class="ask_bottom" >
-            <div class="listen"  @click="follow()">
+            <div class="ask_bottom" >
+                <div class="listen"  @click="follow()">
 
                 <span v-if="detail.followed===1">
                     <img v-if="detail.followed===1" src="../../images/followed_new.png" alt="">已收听
                 </span>
-                <span v-if="detail.followed===0" class="followedColor">+收听</span>
+                    <span v-if="detail.followed===0" class="followedColor">+收听</span>
+                </div>
+                <div class="pay_ask" @click="ask()">￥{{detail.price}} 提问</div>
             </div>
-            <div class="pay_ask" @click="ask()">￥{{detail.price}} 提问</div>
-        </div>
         </div>
     </div>
 </template>
@@ -252,6 +252,9 @@
             })
         },
         methods:{
+            toPercent:function (p) {
+                return (p*100).toFixed(2)+'%';
+            },
             showPicker:function () {
                 let _this = this;
                 _this.showPic = !_this.showPic;
@@ -386,7 +389,7 @@
             },
 
             formatTime:function (time) {
-              return xqzs.dateTime.formatDate(time)
+                return xqzs.dateTime.formatDate(time)
             },
 
             getUser:function () {
@@ -410,7 +413,7 @@
                 _this.Hflag = !this.Hflag
             },
             play:function () {
-                 let _this=this;
+                let _this=this;
                 xqzs.voice.onEnded=function () {
                     _this.paused2=false;
                     _this.playing2=false;
@@ -429,7 +432,7 @@
                         console.log( _this.playing2)
                         console.log("2")
                     }else{     //重新打开播放
-                       xqzs.voice.getExpertVoice(_this.detail.expertId,function (url) {
+                        xqzs.voice.getExpertVoice(_this.detail.expertId,function (url) {
                             xqzs.voice.play(url);
                             _this.playing2=true;
                             _this.paused2=false;
@@ -484,7 +487,7 @@
 //            },
             moreComment:function () {
                 if( this.detail.evaluateCount>0)
-                this.$router.push("/answer/comment?expertId="+this.id );
+                    this.$router.push("/answer/comment?expertId="+this.id );
             },
             ask:function () {
                 if(this.detail.expertUserId==null||this.user.id==null){
@@ -524,7 +527,7 @@
                     _this.showLoad=false;
                     if (data.body.status == 1) {
 //                        _this.answerList= data.body.data;
-                          _this.isLoading = false;
+                        _this.isLoading = false;
 //                        console.log(response)
 
                         if( data.body.status!=1&&_this.page==1){
@@ -634,7 +637,7 @@
         text-align: center;
     }
     .answer_detail_box  .answer_ability{
-      display: inline-block;
+        display: inline-block;
     }
     .answer_detail_box  .answer_ability span{
         display: block;
@@ -668,7 +671,7 @@
         padding-bottom: 0.9rem;
     }
     .answer_detail_box .counts{
-        font-size:1.05rem;
+        font-size:0.94rem;
         line-height: 1;
         color:rgba(36,37,61,0.8);
         margin-bottom: 0.5rem;
@@ -756,14 +759,14 @@
         margin-top: 0.41176471rem;
         padding-bottom: 0.88rem;
     }
-   .answer_detail_box  .list .item{ background: #fff; padding: 0.8823529411764706rem 0;margin:0 0.88235rem;margin-bottom: 0.41176471rem;position: relative ; }
+    .answer_detail_box  .list .item{ background: #fff; padding: 0.8823529411764706rem 0;margin:0 0.88235rem;margin-bottom: 0.41176471rem;position: relative ; }
     .answer_detail_box  .list .addBorder_bottom{border-bottom: 1px solid #E0E0E1;}
     .answer_detail_box .list .star span{ background: url(../../images/star_no.png); width: 0.7647058823529412rem; height: 0.7647058823529412rem;  background-size: 0.7647058823529412rem; display: inline-block; margin-right: 0.3rem; }
     .answer_detail_box  .list .star span.on{background: url(../../images/star.png);background-size: 0.7647058823529412rem; }
 
     .answer_detail_box  .list .item .img{ width: 2rem;height: 2rem; float:left; }
     .answer_detail_box  .list .item .img img{ width: 100%; height: 100%; border-radius: 50%;}
-    .answer_detail_box  .list .info{ float:left; margin-left:0.8823529411764706rem;  width: 83%}
+    .answer_detail_box  .list .info{ float:left; margin-left:0.8823529411764706rem;  width: 83%;line-height: 2rem;}
     .answer_detail_box  .list .info .name{ font-size: 0.7058823529411765rem; color:rgba(36,37,61,0.5); margin-bottom: 0.2rem; width: 14.11764705882353rem;line-height: 1}
     .answer_detail_box  .list .info .star{line-height: 1;margin-bottom: 0.35rem}
     .answer_detail_box  .list .word{ font-size:0.8235rem;  color:rgba(36,37,61,1); margin-bottom: 0.4rem; overflow: hidden;word-wrap:break-word;}
@@ -816,13 +819,13 @@
     }
     .listen img{display: inline-block;width:0.5294rem;margin-right: 0.294rem;}
     .answer_detail_box .listen span{color: rgba(36,37,61,0.5);font-size: 0.8235rem;display: block;height:100%;line-height: 2.588rem;}
-   .answer_detail_box .icon1{
-       margin-top: 0.588rem;
-       background: url("../../images/asker/listenin1.png") no-repeat;
-       background-size: 0.936rem;
-       padding-left: 0.8rem;
-       background-position: 0.9rem 0.294rem;
-   }
+    .answer_detail_box .icon1{
+        margin-top: 0.588rem;
+        background: url("../../images/asker/listenin1.png") no-repeat;
+        background-size: 0.936rem;
+        padding-left: 0.8rem;
+        background-position: 0.9rem 0.294rem;
+    }
     .answer_detail_box .care_img_{
         float: right;
         padding-left:1.1rem;
@@ -832,8 +835,8 @@
     .friestP{overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 4;line-height:1.176rem;-webkit-box-orient: vertical;}
     .addopen{margin-top:1.76rem;height:auto;}
     .addstop{margin-top:0;height:0;overflow: hidden;}
-     .item .others{ color:rgba(36,37,61,0.5); position: relative; font-size: 0.7058823529411765rem; padding-left: 2.88235rem;}
-     .item .others .listen_count{ float: left;margin-right: 0.588235rem}
+    .item .others{ color:rgba(36,37,61,0.5); position: relative; font-size: 0.7058823529411765rem; padding-left: 2.88235rem;}
+    .item .others .listen_count{ float: left;margin-right: 0.588235rem}
     .item .others_right{position: absolute;right:0;top:0}
     .ask_answer .new ul{
         position: absolute;

@@ -4,13 +4,13 @@
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="my_problem_detail">
             <!--<div class="problem_detail_header">-->
-                <!--问题类型:  <div class="titleColor">{{detail.title}}</div>-->
-                <!--&lt;!&ndash;&ndash;&gt;-->
+            <!--问题类型:  <div class="titleColor">{{detail.title}}</div>-->
+            <!--&lt;!&ndash;&ndash;&gt;-->
             <!--</div>-->
             <div class="add_askerInfo">
                 <img :src="user.faceUrl" alt="">
                 <span>{{user.nickName}}</span>
-                <div>￥{{formatPrice(detail.price)}}</div>
+                <div>{{detail.title}}</div>  <!--￥{{formatPrice(detail.price)}}-->
             </div>
             <div class="problem_detail_content">
                 {{detail.question}}
@@ -155,7 +155,7 @@
                     });
             },
             formatPrice:function (v) {
-               return xqzs.string.formatPrice(v)
+                return xqzs.string.formatPrice(v)
             },
 
             play:function (index) {
@@ -245,7 +245,7 @@
                 return xqzs.dateTime.getTimeFormatText(time)
             },
             formatTimeLastText:function (time) {
-               return xqzs.dateTime.getTimeFormatLastText(time)
+                return xqzs.dateTime.getTimeFormatLastText(time)
             },
             contentChange:function(){
                 let content = $("#content").val();
@@ -391,7 +391,7 @@
         color:rgba(51,51,51,0.5);
     }
     .ask_detailBox .my_problem_detail .add_askerInfo div{
-        color:rgba(253,87,57,1);
+        color:rgba(51,51,51,0.5);
         position: absolute;
         right:0.88235rem;
     }
@@ -466,7 +466,7 @@
         text-align: left;
     }
     .problem_assess_input{
-       padding: 0 0.88235rem 1.6471rem 0.88235rem;
+        padding: 0 0.88235rem 1.6471rem 0.88235rem;
     }
     .problem_assess_item textarea{
         height:4.1176471rem;
