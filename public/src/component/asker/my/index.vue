@@ -20,7 +20,7 @@
                 <router-link to="../my/dotbean" class="income"><i></i>我的点币
                     <div class="price">3<span style="font-size: 0.70rem;color: black ">点</span></div>
                 </router-link>
-                <router-link to="../my/income" clas s="income"><i></i>优惠卡券
+                <router-link to="../my/coupon" clas s="income"><i></i>优惠卡券
                     <div class="price">3<span style="font-size: 0.70rem;color: black ">张</span></div>
                 </router-link>
                 </div>

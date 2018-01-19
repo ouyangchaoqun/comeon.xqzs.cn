@@ -19,6 +19,7 @@ let routers =
                 require('./routes/asker/my/cash'),
                 require('./routes/asker/my/answer_list'),
                 require('./routes/asker/my/comment_list'),
+                require('./routes/asker/my/coupon'),
                 require('./routes/asker/listen'),
                 require('./routes/asker/listen_detail'),
                 require('./routes/asker/my/ask_list'),
