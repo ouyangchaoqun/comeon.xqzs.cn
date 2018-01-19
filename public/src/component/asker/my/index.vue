@@ -12,16 +12,18 @@
                     <div class="clear"></div>
 
                 </div>
-                <router-link to="../my/income" class="income"><i></i>我的现金
-                    <div class="price">￥{{formatPrice(user.balance)}}</div>
+                <div class="income_margin">
+                <router-link to="../my/cash" class="income"><i></i>我的现金
+                    <div class="price">{{formatPrice(user.balance)}}<span style="font-size: 0.70rem;color: black ">元</span></div>
                 </router-link>
 
-                <router-link to="../my/income" class="income"><i></i>我的点币
-                    <div class="price">￥{{formatPrice(user.balance)}}</div>
+                <router-link to="../my/dotbean" class="income"><i></i>我的点币
+                    <div class="price">3<span style="font-size: 0.70rem;color: black ">点</span></div>
                 </router-link>
-                <router-link to="../my/income" class="income"><i></i>优惠卡券
-                    <div class="price">￥{{formatPrice(user.balance)}}</div>
+                <router-link to="../my/income" clas s="income"><i></i>优惠卡券
+                    <div class="price">3<span style="font-size: 0.70rem;color: black ">张</span></div>
                 </router-link>
+                </div>
                 <router-link to="../my/listen/list" class="listen"><i></i>我的偷听</router-link>
                 <router-link to="../my/answer/list" class="answer"><i></i>我的收听</router-link>
                 <router-link to="../my/comment/list" class="comment"><i></i>我的评价</router-link>
@@ -163,9 +165,7 @@
         padding-left: 2.66rem;
     }
 
-    .asker_my_index_box .main a:nth-child(2) {
-        margin-top: 0.41176471rem;
-    }
+
 
     .asker_my_index_box .main a:after {
         background: url(../../../images/arrow.png);
@@ -185,7 +185,7 @@
         display: block;
         position: absolute;
         bottom: 0;
-        left: 0.9411764705882353rem;
+        left: 2.82rem;
         width: 100%
     }
 
@@ -236,5 +236,7 @@
         font-size: 0.8823529411764706rem;
         color: rgba(36, 37, 61, 1);
     }
-
+    .income_margin{
+        margin: 0.6rem 0;
+    }
 </style>

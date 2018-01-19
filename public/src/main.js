@@ -15,6 +15,8 @@ let routers =
                 require('./routes/asker/my/income'),
                 require('./routes/asker/my/income_list'),
                 require('./routes/asker/my/listen_list'),
+                require('./routes/asker/my/dotbean'),
+                require('./routes/asker/my/cash'),
                 require('./routes/asker/my/answer_list'),
                 require('./routes/asker/my/comment_list'),
                 require('./routes/asker/listen'),
