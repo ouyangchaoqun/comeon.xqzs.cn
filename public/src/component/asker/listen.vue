@@ -248,7 +248,7 @@
                 let _this = this;
                 let coupTitle='使用偷听卡免费听';
                 let payTitle = '确认偷听此问题';
-                let msg = '使用：<span>1</span>点豆&nbsp&nbsp&nbsp剩余：<span>8</span>点豆'
+                let msg = '使用：<span class="colorStyle">1</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">8</span>点豆'
                 xqzs.weui.dialog(payTitle,msg,function(){},function () {
                   console.log('去支付'+index)
                     _this.pay(index)
@@ -447,15 +447,7 @@
 </script>
 
 <style>
-    .weui-dialog .weui-dialog__hd{
-        color:rgba(74,74,74,1);
-        font-size: 1.0588rem;
-    }
-    .weui-dialog .weui-dialog__bd{
-        color:rgba(109,108,110,1);
-        font-size: 0.8235rem;
-    }
-    .weui-dialog .weui-dialog__bd span{
+    .weui-dialog .weui-dialog__bd .colorStyle{
         color:rgba(251,100,10,1);
     }
     .asker_listen_box{background: #fff;}

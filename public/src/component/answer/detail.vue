@@ -492,7 +492,7 @@
             typeDialog:function () {
                 let _this = this;
                 let payTitle = '确认向专家提问';
-                let msg = '使用：<span>10</span>点豆&nbsp&nbsp&nbsp剩余：<span>8</span>点豆'
+                let msg = '使用：<span class="colorStyle">10</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">8</span>点豆'
                 xqzs.weui.dialog(payTitle,msg,function(){},function () {
                     _this.ask()
                 })
@@ -598,6 +598,9 @@
     }
 </script>
 <style>
+    .weui-dialog .weui-dialog__bd .colorStyle{
+        color:rgba(251,100,10,1);
+    }
     .comment_btn{
         width: 5.235rem;
         height: 1.3235rem;
