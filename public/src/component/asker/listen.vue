@@ -48,7 +48,7 @@
                                         </span>
 
                                                         <!--付费听-->
-                                                        <div class="problem_answer_yy" @click.stop="pay(index)"
+                                                        <div class="problem_answer_yy" @click.stop="typeDialog(index)"
                                                              v-if="item.answerType==2||item.answerType==4">
                                                             <div class="audio">
                                                                 <div class="audio_btn pay">偷听
@@ -244,6 +244,16 @@
                     clearTimeout(_this.timeOut);
                 }
             },
+            typeDialog:function (index) {
+                let _this = this;
+                let coupTitle='使用偷听卡免费听';
+                let payTitle = '确认偷听此问题';
+                let msg = '使用：<span>1</span>点豆&nbsp&nbsp&nbsp剩余：<span>8</span>点豆'
+                xqzs.weui.dialog(payTitle,msg,function(){},function () {
+                  console.log('去支付'+index)
+                    _this.pay(index)
+              })
+            },
             pay:function (index) {
                 let  item = this.navLists[this.typeIndex].list[index];
                 console.log(item)
@@ -435,7 +445,19 @@
 
 
 </script>
+
 <style>
+    .weui-dialog .weui-dialog__hd{
+        color:rgba(74,74,74,1);
+        font-size: 1.0588rem;
+    }
+    .weui-dialog .weui-dialog__bd{
+        color:rgba(109,108,110,1);
+        font-size: 0.8235rem;
+    }
+    .weui-dialog .weui-dialog__bd span{
+        color:rgba(251,100,10,1);
+    }
     .asker_listen_box{background: #fff;}
     .con_swiper_c .swiper-slide{ overflow-y: scroll}
     .asker_listen_box .audio .audio_btn{ width: 52%}

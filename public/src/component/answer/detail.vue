@@ -181,7 +181,7 @@
                 </span>
                     <span v-if="detail.followed===0" class="followedColor">+收听</span>
                 </div>
-                <div class="pay_ask" @click="ask()">￥{{detail.price}} 提问</div>
+                <div class="pay_ask" @click="typeDialog()">￥{{detail.price}} 提问</div>
             </div>
         </div>
     </div>
@@ -488,6 +488,14 @@
             moreComment:function () {
                 if( this.detail.evaluateCount>0)
                     this.$router.push("/answer/comment?expertId="+this.id );
+            },
+            typeDialog:function () {
+                let _this = this;
+                let payTitle = '确认向专家提问';
+                let msg = '使用：<span>10</span>点豆&nbsp&nbsp&nbsp剩余：<span>8</span>点豆'
+                xqzs.weui.dialog(payTitle,msg,function(){},function () {
+                    _this.ask()
+                })
             },
             ask:function () {
                 if(this.detail.expertUserId==null||this.user.id==null){
