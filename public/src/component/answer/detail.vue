@@ -133,9 +133,9 @@
                             <div class="img"><img :src="item.expertUrl">
                             </div>
                             <div class="info audio">
-                                <div class="reply" v-if="item.needPay" @click.stop="pay(index)">
+                                <div class="reply" v-if="item.needPay" @click.stop="payDialog(item.questionId,item.answerId,index )">
                                     <div class="audio_btn pay">
-                                        1元偷听
+                                        偷听
                                         <div class="second">{{item.length}}”</div>
                                     </div>
                                 </div>
@@ -225,7 +225,9 @@
                 user:{id:null},
                 scrollHeightBottom:0,
                 showPic:false,
-                timeOut:null
+                timeOut:null,
+                couponList:[],
+                couponNum:0
             }
         },
         props:{
@@ -244,6 +246,7 @@
             this.getUser();
             this.getComment();
             this.getAnswer();
+            this.getCoupon();
             xqzs.wx.setConfig(this);
 
         },
@@ -257,6 +260,84 @@
             })
         },
         methods:{
+            getCoupon:function () {
+                let _this = this;
+                _this.$http.get(web.API_PATH + 'come/user/get/coupon/_userId_/1/10/0').then(function (data) {
+                    _this.couponList = data.data.data;
+                    _this.couponNum = data.data.data.length;
+                })
+            },
+           payDialog:function (questionId ,answerId ,index) {
+                let _this = this;
+                let useCoupon = false;
+                let useCoin = false;
+                let recharge = false;
+                let payTitle,msg,subHtml;
+                console.log(questionId,answerId,index)
+                if(_this.couponNum!=0){
+                    payTitle = '使用偷听卡免费听';
+                    msg='';
+                    subHtml='';
+                    useCoupon = true;
+                }else{
+                    payTitle = '确认偷听此问题';
+                    subHtml='';
+                    msg = '使用：<span class="colorStyle">1</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span>点豆';
+                    if(Number(_this.user.dianCoin)>=1){
+                        useCoin = true;
+                    }else{
+                        recharge = true;
+                        subHtml='去充值';
+                    }
+                }
+                xqzs.weui.dialog(payTitle,msg,subHtml,function(){},function () {
+                    switch(true)
+                    {
+                        case useCoupon:
+                            console.log('使用偷听券支付');
+                            let data = {
+                                code:_this.couponList[0].code,
+                                questionId:questionId,
+                                answerId:answerId
+                            };
+                            _this.showLoad=true;
+                            $.ajax({
+                                url: web.API_PATH + "come/listen/put/coupon/_userId_",
+                                data:data,
+                                type: 'PUT',
+                                success: function( bt ) {
+                                    _this.setPayed(index);
+                                    xqzs.weui.tip("支付成功", function () {
+
+                                    });
+                                    _this.showLoad=false;
+                                }
+                            });
+                            break;
+                        case useCoin:
+                            console.log('使用点豆支付');
+                            _this.showLoad=true;
+                            $.ajax({
+                                url: web.API_PATH + "come/listen/put/coin/_userId_/"+questionId+'/'+answerId+'/1',
+                                data:data,
+                                type: 'PUT',
+                                success: function( bt ) {
+                                    _this.setPayed(index);
+                                    xqzs.weui.tip("支付成功", function () {
+
+                                    });
+                                    _this.showLoad=false;
+                                }
+                            });
+                            break;
+                        case recharge:
+                            _this.$router.push("/asker/my/recharge");
+                            break;
+                    }
+
+//                    _this.pay(index)
+                })
+            },
             toPercent:function (p) {
                 return (p*100).toFixed(2)+'%';
             },
@@ -570,7 +651,9 @@
                         }
                         Bus.$emit("scrollMoreTextInit", _this.isShowMoreText);
 
-
+                        if(_this.couponNum!=0){
+                            _this.getCoupon();
+                        }
 
                         if (_this.page == 1) {
                             _this.answerList = arr;
