@@ -40,6 +40,7 @@
                 pay: 0,
                 income: 0,
                 isUseIncome: true,
+                backUrl:''
             }
         },
         props: {
@@ -109,7 +110,7 @@
                                 let result = bt.data.data;
                                 if (result.resultCode == 1) {
                                     xqzs.weui.tip("支付成功", function () {
-                                        _this.$router.go(-1);
+                                        _this.$router.push(_this.backUrl);
                                     });
 
                                 }else{
@@ -117,7 +118,7 @@
 
                                     }, function () {//success
                                         xqzs.weui.tip("充值成功", function () {
-                                            _this.$router.go(-1);
+                                            _this.$router.push(_this.backUrl);
                                         });
                                     }, function () {//error
 

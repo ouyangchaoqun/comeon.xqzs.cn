@@ -7,7 +7,7 @@
             <div class="value">{{user.dianCoin}}<span style="font-size: 1.41rem">点豆</span></div>
 
         </div>
-        <router-link to="../my/recharge">
+        <router-link to="../my/recharge?back_url=/asker/my/dotbean">
             <div class="btn">
                 <div class="left">充值</div>
                 <div class="rightIcon"></div>

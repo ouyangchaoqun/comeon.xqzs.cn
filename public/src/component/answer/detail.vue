@@ -187,7 +187,7 @@
     </div>
 </template>
 
-<script type="es6">
+<script  >
 
     import showLoad from '../include/showLoad.vue';
     import scroll from '../include/scroll.vue';
@@ -331,7 +331,7 @@
                             });
                             break;
                         case recharge:
-                            _this.$router.push("/asker/my/recharge");
+                            _this.$router.push("/asker/my/recharge?back_url="+ encodeURIComponent("/answer/detail?id="+ _this.$route.query.id));
                             break;
                     }
 
