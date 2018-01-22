@@ -3,7 +3,7 @@
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div v-title>优惠券</div>
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
-                  :bottomHeight="50"
+                  :bottomHeight="0"
                   :isShowMoreText="isShowMoreText">
         <div class="coupon_type">
             <div :class="{type_active:isUsed==0}" @click="changeType(0)">待使用</div>
