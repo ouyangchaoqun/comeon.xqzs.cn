@@ -11,11 +11,12 @@
                 <div class="right"></div>
             </div>
         </router-link>
-        <div class="btn">
-            <div class="left">明细</div>
-            <div class="right"></div>
-        </div>
-
+        <router-link to="./income/list">
+            <div class="btn">
+                <div class="left">明细</div>
+                <div class="right"></div>
+            </div>
+        </router-link>
     </div>
 </template>
 
