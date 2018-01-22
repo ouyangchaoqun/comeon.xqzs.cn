@@ -3,10 +3,18 @@
         <div v-title>我的现金</div>
         <div class="banner">
             <div class="title">我的余额（元）</div>
-            <div class="value">{{user.balance}}</div>
+            <div class="value">{{formatPrice(user.balance)||0.00}}</div>
         </div>
-        <router-link to="../my/income"><div class="btn"><div class="left">提现</div><div class="right"></div></div></router-link>
-        <div class="btn"><div class="left">明细</div><div class="right"></div></div>
+        <router-link to="../my/income">
+            <div class="btn">
+                <div class="left">提现</div>
+                <div class="right"></div>
+            </div>
+        </router-link>
+        <div class="btn">
+            <div class="left">明细</div>
+            <div class="right"></div>
+        </div>
 
     </div>
 </template>
@@ -29,7 +37,9 @@
 
         },
         methods: {
-
+            formatPrice:function (v) {
+                return xqzs.string.formatPrice(v)
+            },
         },
       
 

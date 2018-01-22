@@ -186,7 +186,9 @@
                                 data:data,
                                 type: 'PUT',
                                 success: function( bt ) {
+                                    xqzs.weui.tip("支付成功", function () {
 
+                                    });
                                     _this.setPayed(index);
                                     _this.showLoad=false;
                                 }
@@ -196,10 +198,13 @@
                             console.log('使用点豆支付');
                             _this.showLoad=true;
                             $.ajax({
-                                url: web.API_PATH + "come/listen/put/coin/_userId_/"+'+questionId+'/'+answerId+'/1,
+                                url: web.API_PATH + "come/listen/put/coin/_userId_/"+questionId+'/'+answerId+'/1',
                                 data:data,
                                 type: 'PUT',
                                 success: function( bt ) {
+                                    xqzs.weui.tip("支付成功", function () {
+
+                                    });
                                     _this.setPayed(index);
                                     _this.showLoad=false;
                                 }
