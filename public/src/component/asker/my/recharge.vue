@@ -11,7 +11,7 @@
             </div>
         </div>
 
-        <div class="cash" >现金余额可使用<span style="color: #FB640A">{{income}}</span>元</div>
+        <div class="cash" >现金余额可使用<span style="color: #FB640A">{{user.balance}}</span>元</div>
         <div class="btn">立即支付（{{pay}}元）</div>
         <div class="question" @click="showTips">常见问题</div>
         <div class="mask" v-if="isTips"></div>
@@ -33,7 +33,7 @@
         data() {
             return {
                 checkIndex:0,
-               items:[],
+                items:[],
                 isTips:false,
                 pay:0,
                 income:0,
@@ -46,17 +46,16 @@
         },
         mounted: function () {
             this.getRechargeConfig();
-            this.getIncome();
+
         },
         methods: {
             select:function (index,item) {
                 this.checkIndex=item.id;
                 console.log(0.6500004.toFixed(2));
-                if(Number(this.income)>=Number(item.money)){
+                if(Number(this.user.balance)>=Number(item.money)){
                     this.pay=0;
                 }else{
-
-                        this.pay=(Number(item.money)-Number(this.income)).toFixed(2)
+                        this.pay=(Number(item.money)-Number(this.user.balance)).toFixed(2)
                 }
             },
             showTips:function () {
@@ -75,17 +74,6 @@
                     }
                 }, function (error) {
                 });
-            },
-            getIncome:function () {
-
-                let _this= this;
-                _this.$http.get(web.API_PATH + 'come/user/query/income/_userId_' ).then(function (data) {//es5写法
-                    if (data.body.status == 1) {
-                        _this.income= data.body.data.inCome
-                    }
-                }, function (error) {
-                });
-
             },
         },
 
