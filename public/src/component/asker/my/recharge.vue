@@ -1,5 +1,6 @@
 <template>
     <div class="recharge_box">
+        <v-showLoad v-if="showLoad"></v-showLoad>
        <div class="title">
            请选择充值金额
        </div>
@@ -37,6 +38,7 @@
                 isTips:false,
                 pay:0,
                 income:0,
+                showLoad: false,
             }
         },
         props:{
@@ -44,9 +46,11 @@
                 type:Object
             }
         },
+        components: {
+            'v-showLoad': showLoad
+        },
         mounted: function () {
             this.getRechargeConfig();
-
         },
         methods: {
             select:function (index,item) {
@@ -66,11 +70,12 @@
                 this.isTips=false;
             },
             getRechargeConfig:function () {
-                console.log("sss")
                 let _this=this;
+                _this.showLoad = true
                 _this.$http.get(web.API_PATH + 'come/user/query/recharge/config' ).then(function (data) {//es5写法
                     if (data.body.status == 1) {
                       _this.items=data.body.data;
+                        _this.showLoad = false;
                     }
                 }, function (error) {
                 });
