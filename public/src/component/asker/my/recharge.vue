@@ -117,6 +117,7 @@
 
                                     }, function () {//success
                                         xqzs.weui.tip("充值成功", function () {
+                                            _this.$router.go(-1);
                                         });
                                     }, function () {//error
 
@@ -130,12 +131,7 @@
             doPay: function () {
                 let _this = this;
                 if (this.isUseIncome) {
-                    xqzs.weui.dialog("提示", "是否使用余额支付", '', function () {
-
-                    }, function () {
                         _this._doPay(1)
-
-                    })
                 }else{
                     _this._doPay(0)
                 }
