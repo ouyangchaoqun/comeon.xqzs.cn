@@ -51,9 +51,25 @@
         mounted: function () {
             this.backUrl=this.$route.query.back_url;
             this.getRechargeConfig();
-
+            this.getUserInfo();
         },
         methods: {
+            getUserInfo:function(){
+                let _this=this;
+                _this.showLoad = true;
+                _this.$http({
+                    method: 'GET',
+                    type: "json",
+                    url: web.API_PATH + 'user/find/by/user/Id/_userId_',
+                }).then(function (data) {//es5写法
+                    _this.showLoad = false;
+                    if (data.data.data !== null) {
+                        _this.user = eval(data.data.data);
+                    }
+                }, function (error) {
+                    //error
+                });
+            },
             select: function (index) {
                 this.checkIndex = index;
                 let item = this.items[index];
@@ -110,15 +126,15 @@
                                 let result = bt.data.data;
                                 if (result.resultCode == 1) {
                                     xqzs.weui.tip("支付成功", function () {
-                                        _this.$router.push(_this.backUrl);
+                                        _this.$router.replace(_this.backUrl);
                                     });
 
                                 }else{
                                     xqzs.wx.pay.pay(result, function () {
 
                                     }, function () {//success
-                                        xqzs.weui.tip("充值成功", function () {
-                                            _this.$router.push(_this.backUrl);
+                                        xqzs.weui.tip("支付成功", function () {
+                                            _this.$router.replace(_this.backUrl);
                                         });
                                     }, function () {//error
 
