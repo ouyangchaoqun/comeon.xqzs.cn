@@ -4,28 +4,25 @@
            请选择充值金额
        </div>
         <div class="items_box">
-            <div class="items" v-for="(item,index) in items" @click="select(index,item)"  :class="{selected:index==checkIndex}">
-                <div class="price" :class="{nogift:item.gift==0}">{{item.price}}元</div>
-                <div class="dou" :class="{nogift:item.gift==0}">{{item.dou}}点豆</div>
-                <div class="gift"v-if="item.gift!=0">赠送{{item.gift}}张偷听卡</div>
+            <div class="items" v-for="(item,index) in items" @click="select(index,item)"  :class="{selected:item.id==checkIndex}">
+                <div class="price" :class="{nogift:item.couponCount==0}">{{item.money}}元</div>
+                <div class="dou" :class="{nogift:item.couponCount==0}">{{item.dianCoin}}点豆</div>
+                <div class="gift"v-if="item.couponCount!=0">赠送{{item.couponCount}}张偷听卡</div>
             </div>
         </div>
 
-        <div class="cash" >现金余额可使用<span style="color: #FB640A">8</span>元</div>
-        <div class="btn">立即支付（2元）</div>
+        <div class="cash" >现金余额可使用<span style="color: #FB640A">{{income}}</span>元</div>
+        <div class="btn">立即支付（{{pay}}元）</div>
         <div class="question" @click="showTips">常见问题</div>
         <div class="mask" v-if="isTips"></div>
          <div class="tips" v-if="isTips">
              <div class="close" @click="closeTips">X</div>
             <div class="tip_title">常见问题</div>
             <div class="content">
-                <p>1.免费偷听问答不扣点豆，已支付 <br>
-                    问题可重复免费听；</p>
-                <p>2.点豆仅限平台内偷听、向专家提 <br>
-                    问，充值后不可提现；</p>
+                <p>1.免费偷听问答不扣点豆，已支付问题可重复免费听；</p>
+                <p>2.点豆仅限平台内偷听、向专家提问，充值后不可提现；</p>
                 <p>3.请在有效期内使用偷听卡；</p>
-                <p>4.如有疑问，请在微信对话窗口反<br>
-                    馈。</p>
+                <p>4.如有疑问，请在微信对话窗口反馈。</p>
             </div>
             <div class="bottom"></div>
         </div>
@@ -36,39 +33,10 @@
         data() {
             return {
                 checkIndex:0,
-               items:[
-                   {
-                       price:5,
-                       dou:5,
-                       gift:0,
-                   },
-                   {
-                       price:10,
-                       dou:10,
-                       gift:0,
-                   },
-                   {
-                       price:18,
-                       dou:18,
-                       gift:1,
-                   },
-                   {
-                       price:28,
-                       dou:28,
-                       gift:2,
-                   },
-                   {
-                       price:58,
-                       dou:58,
-                       gift:5,
-                   },
-                   {
-                       price:98,
-                       dou:98,
-                       gift:10,
-                   },
-               ],
+               items:[],
                 isTips:false,
+                pay:0,
+                income:0,
             }
         },
         props:{
@@ -77,12 +45,19 @@
             }
         },
         mounted: function () {
-
+            this.getRechargeConfig();
+            this.getIncome();
         },
         methods: {
             select:function (index,item) {
-                this.checkIndex=index;
-                console.log(item)
+                this.checkIndex=item.id;
+                console.log(0.6500004.toFixed(2));
+                if(Number(this.income)>=Number(item.money)){
+                    this.pay=0;
+                }else{
+
+                        this.pay=(Number(item.money)-Number(this.income)).toFixed(2)
+                }
             },
             showTips:function () {
                 this.isTips=true;
@@ -90,8 +65,30 @@
             closeTips:function () {
                 console.log("sssss")
                 this.isTips=false;
-            }
-        }
+            },
+            getRechargeConfig:function () {
+                console.log("sss")
+                let _this=this;
+                _this.$http.get(web.API_PATH + 'come/user/query/recharge/config' ).then(function (data) {//es5写法
+                    if (data.body.status == 1) {
+                      _this.items=data.body.data;
+                    }
+                }, function (error) {
+                });
+            },
+            getIncome:function () {
+
+                let _this= this;
+                _this.$http.get(web.API_PATH + 'come/user/query/income/_userId_' ).then(function (data) {//es5写法
+                    if (data.body.status == 1) {
+                        _this.income= data.body.data.inCome
+                    }
+                }, function (error) {
+                });
+
+            },
+        },
+
 
 
     }

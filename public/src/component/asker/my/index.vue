@@ -18,10 +18,10 @@
                 </router-link>
 
                 <router-link to="../my/dotbean" class="income dotCoin"><i></i>我的点币
-                    <div class="price">3<span style="font-size: 0.70rem;color: black ">点</span></div>
+                    <div class="price">{{user.dianCoin}}<span style="font-size: 0.70rem;color: black ">点</span></div>
                 </router-link>
                 <router-link to="../my/coupon" class="income yhcard "><i></i>优惠卡券
-                    <div class="price">3<span style="font-size: 0.70rem;color: black ">张</span></div>
+                    <div class="price">{{couponNum}}<span style="font-size: 0.70rem;color: black ">张</span></div>
                 </router-link>
                 </div>
                 <router-link to="../my/listen/list" class="listen"><i></i>我的偷听</router-link>
@@ -34,7 +34,7 @@
     </div>
 </template>
 
-<script type="es6">
+<script type="">
 
     import askerBottom from "../include/bottom.vue";
     import showLoad from '../../include/showLoad.vue';
@@ -43,6 +43,7 @@
             return {
                 income:0,
                 showLoad:false,
+                couponNum:0,
             }
         },
         props:{
@@ -92,6 +93,7 @@
                 this.$router.push("/answer/join/join_remind");
             },
             getIncome:function () {
+
                 let _this= this;
                 _this.$http.get(web.API_PATH + 'come/user/query/income/_userId_' ).then(function (data) {//es5写法
                     if (data.body.status == 1) {
@@ -100,6 +102,16 @@
                 }, function (error) {
                 });
 
+            },
+            getCoupon:function () {
+                let _this=this;
+                _this.$http.get(web.API_PATH + 'come/user/query/coupon/_userId_' ).then(function (data) {//es5写法
+                    if (data.body.status == 1) {
+                       _this.couponNum=data.body.data.couponCount;
+                    }
+                }, function (error) {
+                    console.log("shibai")
+                });
             }
 
         },
@@ -114,7 +126,6 @@
                 _this.showLoad = false;
                 if (data.data.data !== null) {
                     _this.user = eval(data.data.data);
-                    console.log(_this.user)
                 }
             }, function (error) {
                 //error
@@ -123,8 +134,8 @@
             var obj = $(".asker_my_index_box .main a ,.join")
             xqzs.weui.active(obj);
             this.getIncome();
+            this.getCoupon();
             xqzs.wx.setConfig(this);
-
         }
 
 
