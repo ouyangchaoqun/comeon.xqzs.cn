@@ -4,7 +4,7 @@
         <div class="banner">
             <div class="title">我的点豆</div>
 
-           <div class="value">58<span style="font-size: 1.41rem">点豆</span></div>
+           <div class="value">{{user.dianCoin}}<span style="font-size: 1.41rem">点豆</span></div>
         </div>
         <router-link to="../my/recharge"> <div class="btn"><div class="left">充值</div><div class="right"></div></div></router-link>
         <div class="btn"><div class="left">明细</div><div class="right"></div></div>

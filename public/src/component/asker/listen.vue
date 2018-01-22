@@ -291,7 +291,7 @@
                                 answerId:answerId
                             };
                             _this.showLoad=true;
-                            $.ajax({
+                            ({
                                 url: web.API_PATH + "come/listen/put/coupon/_userId_",
                                 data:data,
                                 type: 'PUT',

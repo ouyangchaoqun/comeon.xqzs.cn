@@ -12,7 +12,7 @@
         </div>
 
         <div class="cash" >现金余额可使用<span style="color: #FB640A">{{user.balance}}</span>元</div>
-        <div class="btn">立即支付（{{pay}}元）</div>
+        <div class="btn" @click="pay()">立即支付（{{pay}}元）</div>
         <div class="question" @click="showTips">常见问题</div>
         <div class="mask" v-if="isTips"></div>
          <div class="tips" v-if="isTips">
@@ -75,6 +75,29 @@
                 }, function (error) {
                 });
             },
+            pay:function () {
+                let _this=this;
+                let msg = {
+                    userId:_this.user.id,
+                    configId:_this.checkIndex,
+                    isUseBalance:1,
+                    amount:_this.pay,
+                }
+                _this.$http.put(web.API_PATH + "come/user/create/recharge",msg)
+                        .then(function (bt) {
+                            if (bt.data && bt.data.status == 1) {
+                                let result = bt.data.data;
+                                xqzs.wx.pay.pay(result.order, function () {
+
+                                }, function () {//success
+                                    xqzs.weui.tip("充值成功", function () {
+                                    });
+                                }, function () {//error
+
+                                })
+                            }
+                        });
+            }
         },
 
 
