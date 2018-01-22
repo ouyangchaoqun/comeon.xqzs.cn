@@ -11,7 +11,7 @@
             </div>
         </div>
 
-        <div class="cash">现金余额可使用<span style="color: #FB640A">{{user.balance}}</span>元
+        <div class="cash">现金余额可使用<span style="color: #FB640A">{{user.balance||0.00}}</span>元
             <div class="cash_right" :class={no:!isUseIncome} @click="useIncome()"></div>
         </div>
         <div class="btn" @click="doPay()">立即支付（{{pay}}元）</div>
@@ -95,41 +95,49 @@
                 }, function (error) {
                 });
             },
+            _doPay:function (isUseBalance) {
+                let _this = this;
+                let msg = {
+                    userId: _this.user.id,
+                    configId: _this.items[_this.checkIndex].id,
+                    isUseBalance: isUseBalance,
+                    amount: _this.pay,
+                }
+                _this.$http.put(web.API_PATH + "come/user/create/recharge", msg)
+                        .then(function (bt) {
+                            if (bt.data && bt.data.status == 1) {
+                                let result = bt.data.data;
+                                if (result.resultCode == 1) {
+                                    xqzs.weui.tip("支付成功", function () {
+                                        _this.$router.go(-1);
+                                    });
+
+                                }else{
+                                    xqzs.wx.pay.pay(result, function () {
+
+                                    }, function () {//success
+                                        xqzs.weui.tip("充值成功", function () {
+                                        });
+                                    }, function () {//error
+
+                                    })
+                                }
+
+                            }
+                        });
+
+            },
             doPay: function () {
                 let _this = this;
                 if (this.isUseIncome) {
-                    xqzs.weui.dialog("提示", "是否使用余额支付" + _this.items[_this.checkIndex].money + "元", '', function () {
+                    xqzs.weui.dialog("提示", "是否使用余额支付", '', function () {
 
                     }, function () {
-
-                        let msg = {
-                            userId: _this.user.id,
-                            configId: _this.items[_this.checkIndex].id,
-                            isUseBalance: 1,
-                            amount: _this.pay,
-                        }
-                        _this.$http.put(web.API_PATH + "come/user/create/recharge", msg)
-                                .then(function (bt) {
-                                    if (bt.data && bt.data.status == 1) {
-                                        let result = bt.data.data;
-                                        if (result.resultCode == 1) {
-                                            xqzs.weui.tip("支付成功", function () {
-                                                _this.$router.go(-1);
-                                            });
-
-                                        }
-                                        xqzs.wx.pay.pay(result.order, function () {
-
-                                        }, function () {//success
-                                            xqzs.weui.tip("充值成功", function () {
-                                            });
-                                        }, function () {//error
-
-                                        })
-                                    }
-                                });
+                        _this._doPay(1)
 
                     })
+                }else{
+                    _this._doPay(0)
                 }
 
 
@@ -163,7 +171,7 @@
 
     .recharge_box .items_box .items {
         margin-top: 0.70rem;
-        width: 47.5%;
+        width: 46.5%;
         height: 4.82rem;
         background: #F7F7F7;
         border-radius: 10px;
@@ -288,7 +296,7 @@
     .recharge_box .cash_right {
         margin-top: 0.88rem;
         float: right;
-        margin-right: 1.5rem;
+        margin-right: 0.82rem;
         width: 1.294rem;
         height: 1.294rem;
         background: url("../../../images/asker/user_income_on.png");
