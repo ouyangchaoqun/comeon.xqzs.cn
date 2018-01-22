@@ -4,7 +4,7 @@
            请选择充值金额
        </div>
         <div class="items_box">
-            <div class="items" v-for="(item,index) in items" @click="select(index)"  :class="{selected:index==checkIndex}">
+            <div class="items" v-for="(item,index) in items" @click="select(index,item)"  :class="{selected:index==checkIndex}">
                 <div class="price" :class="{nogift:item.gift==0}">{{item.price}}元</div>
                 <div class="dou" :class="{nogift:item.gift==0}">{{item.dou}}点豆</div>
                 <div class="gift"v-if="item.gift!=0">赠送{{item.gift}}张偷听卡</div>
@@ -80,8 +80,9 @@
 
         },
         methods: {
-            select:function (index) {
+            select:function (index,item) {
                 this.checkIndex=index;
+                console.log(item)
             },
             showTips:function () {
                 this.isTips=true;
