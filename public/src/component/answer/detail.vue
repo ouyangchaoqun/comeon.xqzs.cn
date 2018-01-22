@@ -228,6 +228,11 @@
                 timeOut:null
             }
         },
+        props:{
+            user:{
+                type:Object
+            }
+        },
         components: {
             'v-showLoad': showLoad,
             'v-scroll': scroll
@@ -492,9 +497,24 @@
             typeDialog:function () {
                 let _this = this;
                 let payTitle = '确认向专家提问';
-                let msg = '使用：<span class="colorStyle">10</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">8</span>点豆'
-                xqzs.weui.dialog(payTitle,msg,"",function(){},function () {
-                    _this.ask()
+                let subHtml;
+                let isEnough = false;
+                let recharge = false;
+                if(Number(_this.user.dianCoin)>=Number(_this.detail.price)){
+                    subHtml="";
+                    isEnough = true;
+                }else{
+                    subHtml="去充值"
+                    recharge = true;
+                }
+                let msg = '使用：<span class="colorStyle">'+_this.detail.price+'</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span>点豆'
+                xqzs.weui.dialog(payTitle,msg,subHtml,function(){},function () {
+                    if(isEnough){
+                        _this.ask()
+                    }else{
+                        _this.$router.push("/asker/my/recharge");
+                    }
+
                 })
             },
             ask:function () {
