@@ -8,13 +8,13 @@
         <router-link to="../my/income">
             <div class="btn">
                 <div class="left">提现</div>
-                <div class="right"></div>
+                <div class="rightIcon"></div>
             </div>
         </router-link>
         <router-link to="./income/list">
             <div class="btn">
                 <div class="left">明细</div>
-                <div class="right"></div>
+                <div class="rightIcon"></div>
             </div>
         </router-link>
     </div>
@@ -49,14 +49,12 @@
 
 </script>
 <style>
-    .dotcoin_box {
-        background: #F4F4F8 ;
-    }
+    .dotcoin_box {background: #F4F4F8 ;}
     .dotcoin_box .banner{ background: #FE7A03 ;height: 9.94rem; overflow:hidden}
     .dotcoin_box .title{ margin-left: 0.94rem ;margin-top: 1.41rem; line-height: 1.24rem;color: #fff;}
     .dotcoin_box .value{font-size: 4rem; margin-top: 0.65rem; margin-left: 0.94rem;line-height: 5.88rem; color: #fff; }
     .dotcoin_box .btn{ height: 2.94rem; background: #fff; border-bottom: 1px solid #eee;position: relative}
     .dotcoin_box .btn .left{ margin-left: 0.88rem;margin-top: 0.94rem; float: left; font-size: 0.88rem; line-height: 1.23rem;color: #4A4A4A;}
-    .dotcoin_box .btn .right{background: url(../../../images/arrow.png) no-repeat;width: 0.9411764705882353rem; height: 0.9411764705882353rem;background-size: 0.9411764705882353rem;position: absolute;right:0.88235rem;top:50%;margin-top:-0.47rem;}
+    .dotcoin_box .btn .rightIcon{background: url(../../../images/arrow.png) no-repeat;width: 0.94rem; height: 0.94rem;background-size: 0.94rem;position: absolute;right:0.88235rem;top:50%;margin-top:-0.47rem;}
 
 </style>
