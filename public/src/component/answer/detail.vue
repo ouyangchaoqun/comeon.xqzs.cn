@@ -181,7 +181,7 @@
                 </span>
                     <span v-if="detail.followed===0" class="followedColor">+收听</span>
                 </div>
-                <div class="pay_ask" @click="ask()">￥{{detail.price}} 提问</div>
+                <div class="pay_ask" @click="typeDialog()">￥{{detail.price}} 提问</div>
             </div>
         </div>
     </div>
@@ -226,6 +226,11 @@
                 scrollHeightBottom:0,
                 showPic:false,
                 timeOut:null
+            }
+        },
+        props:{
+            user:{
+                type:Object
             }
         },
         components: {
@@ -489,6 +494,29 @@
                 if( this.detail.evaluateCount>0)
                     this.$router.push("/answer/comment?expertId="+this.id );
             },
+            typeDialog:function () {
+                let _this = this;
+                let payTitle = '确认向专家提问';
+                let subHtml;
+                let isEnough = false;
+                let recharge = false;
+                if(Number(_this.user.dianCoin)>=Number(_this.detail.price)){
+                    subHtml="";
+                    isEnough = true;
+                }else{
+                    subHtml="去充值"
+                    recharge = true;
+                }
+                let msg = '使用：<span class="colorStyle">'+_this.detail.price+'</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span>点豆'
+                xqzs.weui.dialog(payTitle,msg,subHtml,function(){},function () {
+                    if(isEnough){
+                        _this.ask()
+                    }else{
+                        _this.$router.push("/asker/my/recharge");
+                    }
+
+                })
+            },
             ask:function () {
                 if(this.detail.expertUserId==null||this.user.id==null){
                     xqzs.weui.tip('加载中，请稍后重试')
@@ -590,6 +618,9 @@
     }
 </script>
 <style>
+    .weui-dialog .weui-dialog__bd .colorStyle{
+        color:rgba(251,100,10,1);
+    }
     .comment_btn{
         width: 5.235rem;
         height: 1.3235rem;

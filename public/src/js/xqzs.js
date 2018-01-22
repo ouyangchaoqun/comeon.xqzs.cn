@@ -91,11 +91,12 @@ var xqzs = {
             $("body").append(html);
             return $('#' + id);
         },
-        dialog: function (title, msg, cancelFun, submitFun) {
+        dialog: function (title, msg,subHtml, cancelFun, submitFun) {
             if (arguments.length == 1 && typeof arguments[0] == 'object') {
                 return this._dialog(arguments[0]);
             }
             if (title === "") title = "提示";
+            if (subHtml === "") subHtml = "确定";
             var html = "";
             html += '<div class="js_dialog"  >';
             html += '   <div class="weui-mask weui-animate-fade-in"></div>';
@@ -104,7 +105,7 @@ var xqzs = {
             html += '   <div class="weui-dialog__bd">' + msg + '</div>';
             html += ' <div class="weui-dialog__ft">';
             html += '    <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default cancel">取消</a>';
-            html += '   <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary submit" style="color:#FE7301">确定</a>';
+            html += '   <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary submit" style="color:#FE7301">'+subHtml+'</a>';
             html += '   </div>';
             html += '   </div>';
             html += '   </div>';
