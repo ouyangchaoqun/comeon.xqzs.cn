@@ -4,7 +4,7 @@
         <div class="banner">
             <div class="title">我的点豆</div>
 
-           <div class="value">{{user.dianCoin}}<span style="font-size: 1.41rem">点豆</span></div>
+            <div class="value">{{user.dianCoin}}<span style="font-size: 1.41rem">点豆</span></div>
         </div>
         <router-link to="../my/recharge"> <div class="btn"><div class="left">充值</div><div class="right"></div></div></router-link>
         <div class="btn"><div class="left">明细</div><div class="right"></div></div>
@@ -30,22 +30,22 @@
             this.getUserInfo();
         },
         methods: {
-        getUserInfo:function(){
-            let _this=this;
-            _this.showLoad = true;
-            _this.$http({
-                method: 'GET',
-                type: "json",
-                url: web.API_PATH + 'user/find/by/user/Id/_userId_',
-            }).then(function (data) {//es5写法
-                _this.showLoad = false;
-                if (data.data.data !== null) {
-                    _this.user = eval(data.data.data);
-                }
-            }, function (error) {
-                //error
-            });
-        }
+            getUserInfo:function(){
+                let _this=this;
+                _this.showLoad = true;
+                _this.$http({
+                    method: 'GET',
+                    type: "json",
+                    url: web.API_PATH + 'user/find/by/user/Id/_userId_',
+                }).then(function (data) {//es5写法
+                    _this.showLoad = false;
+                    if (data.data.data !== null) {
+                        _this.user = eval(data.data.data);
+                    }
+                }, function (error) {
+                    //error
+                });
+            }
 
         },
     }
