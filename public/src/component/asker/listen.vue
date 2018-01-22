@@ -48,7 +48,7 @@
                                         </span>
 
                                                         <!--付费听-->
-                                                        <div class="problem_answer_yy" @click.stop="typeDialog(item.questionId,item.answerId )"
+                                                        <div class="problem_answer_yy" @click.stop="typeDialog(item.questionId,item.answerId,index )"
                                                              v-if="item.answerType==2||item.answerType==4">
                                                             <div class="audio">
                                                                 <div class="audio_btn pay">偷听
@@ -258,7 +258,7 @@
                     _this.couponNum = data.data.data.length;
                 })
             },
-            typeDialog:function (questionId ,answerId ) {
+            typeDialog:function (questionId ,answerId ,index) {
                 let _this = this;
                 let useCoupon = false;
                 let useCoin = false;
@@ -298,6 +298,8 @@
                                 data:data,
                                 type: 'PUT',
                                 success: function( bt ) {
+
+                                    _this.setPayed(index);
                                     _this.showLoad=false;
                                 }
                             });
@@ -310,6 +312,8 @@
                                 data:data,
                                 type: 'PUT',
                                 success: function( bt ) {
+
+                                    _this.setPayed(index);
                                     _this.showLoad=false;
                                 }
                             });

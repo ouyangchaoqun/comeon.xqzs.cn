@@ -49,7 +49,7 @@
 
                         <!--付费听-->
                         <template  v-if="detail.needPay==1">
-                            <div @click="typeDialog(item.questionId,item.answerId)">
+                            <div @click="typeDialog(item.questionId,item.answerId,index)">
                                 <div class="audio"><div class="audio_btn pay" >偷听</div></div>
                             </div>
                         </template>
@@ -145,7 +145,7 @@
                     _this.couponNum = data.data.data.length;
                 })
             },
-            typeDialog:function (questionId ,answerId ) {
+            typeDialog:function (questionId ,answerId ,index) {
                 let _this = this;
                 let useCoupon = false;
                 let useCoin = false;
@@ -186,6 +186,8 @@
                                 data:data,
                                 type: 'PUT',
                                 success: function( bt ) {
+
+                                    _this.setPayed(index);
                                     _this.showLoad=false;
                                 }
                             });
@@ -198,6 +200,7 @@
                                 data:data,
                                 type: 'PUT',
                                 success: function( bt ) {
+                                    _this.setPayed(index);
                                     _this.showLoad=false;
                                 }
                             });
