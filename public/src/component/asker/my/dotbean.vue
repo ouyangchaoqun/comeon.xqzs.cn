@@ -1,10 +1,11 @@
 <template>
     <div class="dotcoin_box">
         <div v-title>我的点币</div>
-        <div class="banner">
+        <div class="banner banner_bg">
             <div class="title">我的点豆</div>
 
             <div class="value">{{user.dianCoin}}<span style="font-size: 1.41rem">点豆</span></div>
+
         </div>
         <router-link to="../my/recharge">
             <div class="btn">
@@ -65,6 +66,7 @@
         background: #F4F4F8 ;
     }
     .dotcoin_box .banner{ background: #FE7A03 ;height: 9.94rem; overflow:hidden}
+    .dotcoin_box .banner.banner_bg{ background: url(../../../images/asker/dianCoin.png) bottom right #FE7A03 no-repeat; background-size:6.235294117647059rem;}
     .dotcoin_box .title{ margin-left: 0.94rem ;margin-top: 1.41rem; line-height: 1.24rem;color: #fff;}
     .dotcoin_box .value{font-size: 4.23rem; margin-top: 0.65rem; margin-left: 0.94rem;line-height: 5.88rem; color: #fff; }
     .dotcoin_box .btn{ height: 2.94rem; background: #fff; border-bottom: 1px solid #eee;position: relative}

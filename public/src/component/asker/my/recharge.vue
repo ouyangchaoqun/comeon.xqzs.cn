@@ -18,7 +18,7 @@
         <div class="question" @click="showTips">常见问题</div>
         <div class="mask" v-if="isTips"></div>
         <div class="tips" v-if="isTips">
-            <div class="close" @click="closeTips">X</div>
+            <div class="close" @click="closeTips"></div>
             <div class="tip_title">常见问题</div>
             <div class="content">
                 <p>1.免费偷听问答不扣点豆，已支付问题可重复免费听；</p>
@@ -229,7 +229,7 @@
     }
 
     .recharge_box .question {
-        margin-top: 4.823rem;
+        margin-top: 4.5rem;
         font-size: 0.88rem;
         color: #9B9B9B;
         text-align: center
@@ -266,6 +266,8 @@
         width: 2rem;
         height: 2rem;
         text-align: center;
+        background:url("../../../images/asker/user_close.png") no-repeat;
+        background-size: 60% 60%;
     }
 
     .recharge_box .tips .tip_title {

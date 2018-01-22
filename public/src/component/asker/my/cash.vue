@@ -1,7 +1,7 @@
 <template>
     <div class="dotcoin_box">
         <div v-title>我的现金</div>
-        <div class="banner">
+        <div class="banner banner_cash_bg">
             <div class="title">我的余额（元）</div>
             <div class="value">{{formatPrice(user.balance)||0.00}}</div>
         </div>
@@ -52,6 +52,7 @@
     .dotcoin_box {background: #F4F4F8 ;}
     .dotcoin_box .banner{ background: #FE7A03 ;height: 9.94rem; overflow:hidden}
     .dotcoin_box .title{ margin-left: 0.94rem ;margin-top: 1.41rem; line-height: 1.24rem;color: #fff;}
+    .dotcoin_box .banner.banner_cash_bg{ background: url(../../../images/asker/user_bg_money.png) bottom right #FE7A03 no-repeat; background-size:6.235294117647059rem;}
     .dotcoin_box .value{font-size: 4rem; margin-top: 0.65rem; margin-left: 0.94rem;line-height: 5.88rem; color: #fff; }
     .dotcoin_box .btn{ height: 2.94rem; background: #fff; border-bottom: 1px solid #eee;position: relative}
     .dotcoin_box .btn .left{ margin-left: 0.88rem;margin-top: 0.94rem; float: left; font-size: 0.88rem; line-height: 1.23rem;color: #4A4A4A;}
