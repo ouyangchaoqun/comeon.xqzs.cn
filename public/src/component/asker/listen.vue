@@ -48,7 +48,7 @@
                                         </span>
 
                                                         <!--付费听-->
-                                                        <div class="problem_answer_yy" @click.stop="typeDialog(index)"
+                                                        <div class="problem_answer_yy" @click.stop="typeDialog(item.questionId,item.answerId )"
                                                              v-if="item.answerType==2||item.answerType==4">
                                                             <div class="audio">
                                                                 <div class="audio_btn pay">偷听
@@ -129,17 +129,23 @@
                 ],
                 typeIndex:0,
                 page: 1,
-                row: 10,
+                row: 5,
                 isPageEnd: false,
                 isShowMoreText:false,
                 showLoad:false,
                 type:0,
                 timeOut:null,
                 playing:false,
-                list:[]
+                list:[],
+                couponNum:0,
+                couponList:[]
             }
         },
-
+        props:{
+            user:{
+                type:Object
+            }
+        },
 
         components: {
             'v-showLoad': showLoad,
@@ -147,9 +153,9 @@
             "v-asker-bottom": askerBottom
         },
         mounted: function () {
-            console.log("bbbb")
+            console.log(this.user)
             this.getClassList();
-
+            this.getCoupon();
             xqzs.voice.audio=null;
             xqzs.wx.setConfig(this);
         },
@@ -244,14 +250,74 @@
                     clearTimeout(_this.timeOut);
                 }
             },
-            typeDialog:function (index) {
+            //获取是否有偷听卡
+            getCoupon:function () {
                 let _this = this;
-                let coupTitle='使用偷听卡免费听';
-                let payTitle = '确认偷听此问题';
-                let msg = '使用：<span class="colorStyle">1</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">8</span>点豆'
-                xqzs.weui.dialog(payTitle,msg,function(){},function () {
-                  console.log('去支付'+index)
-                    _this.pay(index)
+                _this.$http.get(web.API_PATH + 'come/user/get/coupon/_userId_/1/5/0').then(function (data) {
+                    _this.couponList = data.data.data;
+                    _this.couponNum = data.data.data.length;
+                })
+            },
+            typeDialog:function (questionId ,answerId ) {
+                let _this = this;
+                let useCoupon = false;
+                let useCoin = false;
+                let recharge = false;
+                let payTitle,msg,subHtml;
+                if(_this.couponNum!=0){
+                    payTitle = '使用偷听卡免费听';
+                    msg='';
+                    subHtml='';
+                    useCoupon = true;
+                }else{
+                    payTitle = '确认偷听此问题';
+                    subHtml='';
+                    msg = '使用：<span class="colorStyle">1</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span>点豆';
+                    if(_this.user.dianCoin>1){
+                        useCoin = true;
+                        console.log(_this.user.dianCoin)
+                    }else{
+                        recharge = true;
+                        console.log(_this.user.dianCoin)
+                        subHtml='去充值';
+                    }
+                }
+                xqzs.weui.dialog(payTitle,msg,subHtml,function(){},function () {
+                    switch(true)
+                    {
+                        case useCoupon:
+                            let data = {
+                                code:_this.couponList[0].code,
+                                questionId:questionId,
+                                answerId:answerId
+                            };
+                            _this.showLoad=true;
+                            $.ajax({
+                                url: web.API_PATH + "come/listen/put/coupon/_userId_",
+                                data:data,
+                                type: 'PUT',
+                                success: function( bt ) {
+                                    _this.showLoad=false;
+                                }
+                            });
+                            break;
+                        case useCoin:
+                            _this.showLoad=true;
+                            $.ajax({
+                                url: web.API_PATH + "come/listen/put/coin/_userId_/"+'+questionId+'/'+answerId+'/1,
+                                data:data,
+                                type: 'PUT',
+                                success: function( bt ) {
+                                    _this.showLoad=false;
+                                }
+                            });
+                            break;
+                        case recharge:
+                            _this.$router.push("/asker/my/recharge");
+                            break;
+                    }
+
+//                    _this.pay(index)
               })
             },
             pay:function (index) {
@@ -384,6 +450,10 @@
                     vm.showLoad = true;
                 }
                 item.isLoading = true;
+                if(vm.couponNum!=0){
+                    vm.getCoupon();
+                }
+
                 vm.$http.get(vm.rankUrl).then((response) => {
                     if(done&&typeof(done)==='function'){
                         done()

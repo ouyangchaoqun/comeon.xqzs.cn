@@ -493,7 +493,7 @@
                 let _this = this;
                 let payTitle = '确认向专家提问';
                 let msg = '使用：<span class="colorStyle">10</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">8</span>点豆'
-                xqzs.weui.dialog(payTitle,msg,function(){},function () {
+                xqzs.weui.dialog(payTitle,msg,"",function(){},function () {
                     _this.ask()
                 })
             },

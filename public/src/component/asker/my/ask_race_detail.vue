@@ -215,7 +215,7 @@
             selectBestAnswerId:function (answer) {
                 let _this=this;
                 if( this.selBestAnswerId==answer.answerId){
-                    xqzs.weui.dialog("","确定不选择中" + answer.expertNickName+"了？",function () {
+                    xqzs.weui.dialog("","确定不选择中" + answer.expertNickName+"了？","",function () {
                     },function () {
                         _this.selBestAnswerId=0;
                     })

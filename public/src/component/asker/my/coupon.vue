@@ -2,83 +2,58 @@
     <div class="coupon_box">
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div v-title>优惠券</div>
+        <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
+                  :bottomHeight="50"
+                  :isShowMoreText="isShowMoreText">
         <div class="coupon_type">
             <div :class="{type_active:type==1}" @click="changeType(1)">待使用</div>
-            <div :class="{type_active:type==2}" @click="changeType(2)">已失效</div>
+            <div :class="{type_active:type==0}" @click="changeType(0)">已失效</div>
         </div>
         <div class="coupon_list">
             <ul v-if="type==1">
-                <li>
+                <li v-for="item in list">
                     <div class="item_left">
-                        <div>偷听卡</div>
-                        <div>有效期：2018-1-10至2018-2-10</div>
+                        <div>{{item.name}}</div>
+                        <div>有效期：{{formatDate(item.addTime)}}至{{formatDate(item.expiredTime)}}</div>
                     </div>
-                    <div class="item_right">
-                        去使用
-                    </div>
-                </li>
-                <li>
-                    <div class="item_left">
-                        <div>偷听卡</div>
-                        <div>有效期：2018-1-10至2018-2-10</div>
-                    </div>
-                    <div class="item_right">
-                        去使用
-                    </div>
-                </li>
-                <li>
-                    <div class="item_left">
-                        <div>偷听卡</div>
-                        <div>有效期：2018-1-10至2018-2-10</div>
-                    </div>
-                    <div class="item_right">
+                    <div class="item_right" @click="goListen()">
                         去使用
                     </div>
                 </li>
             </ul>
-            <ul v-if="type==2" :class="{overTime:type==2}">
-                <li>
+            <ul v-if="type==0" :class="{overTime:type==0}">
+                <li v-for="item in list">
                     <div class="item_left">
-                        <div>偷听卡</div>
-                        <div>有效期：2018-1-10至2018-2-10</div>
+                        <div>{{item.name}}</div>
+                        <div>有效期：{{formatDate(item.addTime)}}至{{formatDate(item.expiredTime)}}</div>
                     </div>
                     <div class="item_right">
-                        去使用
-                    </div>
-                </li>
-                <li>
-                    <div class="item_left">
-                        <div>偷听卡</div>
-                        <div>有效期：2018-1-10至2018-2-10</div>
-                    </div>
-                    <div class="item_right">
-                        去使用
-                    </div>
-                </li>
-                <li>
-                    <div class="item_left">
-                        <div>偷听卡</div>
-                        <div>有效期：2018-1-10至2018-2-10</div>
-                    </div>
-                    <div class="item_right">
-                        去使用
+                        <template v-if="item.isUsed==1">已使用</template>
+                        <template v-if="item.isUsed==0">已过期</template>
                     </div>
                 </li>
             </ul>
         </div>
-        <div class="noCoupon" v-if="false">
-            <div>暂时没有可用的优惠券</div>
-        </div>
+            <div class="noCoupon" v-if="list.length==0">
+                <img src="../../../images/asker/noCoupon.png" alt="">
+                <div>暂时没有可用的优惠券</div>
+            </div>
+        </v-scroll>
+
     </div>
 </template>
 
 <script type="es6">
     import showLoad from '../../include/showLoad.vue';
-
+    import scroll from '../../include/scroll.vue';
+    import Bus from '../../../js/bus.js';
     export default {
         data() {
             return {
-
+                page: 1,
+                row: 10,
+                isPageEnd: false,
+                isShowMoreText: false,
                 showLoad: false,
                 list: [],
                 type: 1,
@@ -93,15 +68,87 @@
 
         components: {
             'v-showLoad': showLoad,
+            'v-scroll': scroll,
         },
         mounted: function () {
-
+            this.getList();
         },
         methods: {
+            formatDate: function (time) {
+                return xqzs.dateTime.formatDate(time)
+            },
             changeType:function (v) {
                 let _this = this;
                 _this.type=v;
+                _this.page = 1;
+                _this.list = [];
+                _this.isPageEnd = false;
+                _this.isShowMoreText = false;
+                _this.getList();
+            },
+            getList: function (done) {
+
+                let vm = this;
+                let url = web.API_PATH + 'come/user/get/coupon/_userId_/' + vm.page + '/' + vm.row +'/'+vm.type;
+                this.rankUrl = url + "?";
+                if (web.guest) {
+                    this.rankUrl = this.rankUrl + "guest=true"
+                }
+                if (vm.isLoading || vm.isPageEnd) {
+                    return;
+                }
+                if (vm.page == 1) {
+                    vm.showLoad = true;
+                }
+                vm.isLoading = true;
+                vm.$http.get(vm.rankUrl).then((response) => {
+                    if(done&&typeof(done)==='function'){
+                        done()
+                    }
+                    vm.showLoad = false;
+                    vm.isLoading = false;
+                    console.log(response.data.data)
+                    if (response.data.status != 1 && vm.page == 1) {
+                        vm.list = [];
+                        vm.isPageEnd = true;
+                        vm.isShowMoreText = false;
+                        Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
+                        return;
+                    }
+                    let arr = response.data.data;
+
+                    if (arr.length < vm.row) {
+                        vm.isPageEnd = true;
+                        vm.isShowMoreText = false
+                    }else{
+                        vm.isShowMoreText = true;
+                    }
+                    Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
+
+
+                    if (vm.page == 1) {
+                        vm.list = arr;
+                    } else {
+                        vm.list = vm.list.concat(arr);
+                    }
+                    console.log(vm.list)
+                    if (arr.length == 0) return;
+                    vm.page = vm.page + 1;
+
+                }, (response) => {
+                    vm.isLoading = false;
+                    vm.showLoad = false;
+                });
+
+            },
+            onInfinite(done) {
+                this.getList(done);
+
+            },
+            goListen:function () {
+                this.$router.push("/asker/listen");
             }
+
         }
 
 
@@ -144,13 +191,15 @@
     .coupon_list li{
         height:4.8235rem;
         line-height: 4.8235rem;
-        background: rgba(251,156,0,1);
+        background: url("../../../images/asker/coupon_bg.png") no-repeat;
+        background-size: 100% 100%;
         margin-bottom: 0.588235rem;
         color:rgba(255,255,255,1);
         font-size: 0.9411rem;
     }
     .coupon_list .overTime li{
-        background: rgba(207,204,201,1);
+        background: url("../../../images/asker/coupon_used.png") no-repeat;
+        background-size: 100% 100%;
     }
     .coupon_list li .item_left{
         float: left;
@@ -179,5 +228,9 @@
         padding-top: 5rem;
         color:rgba(155,155,155,1);
         font-size: 0.88235rem;
+    }
+    .noCoupon img{
+        width:32%;
+        margin-bottom: 0.71rem;
     }
 </style>

@@ -190,7 +190,7 @@
             },
             reStart:function () {
                 let _this=this;
-                xqzs.weui.dialog("重新录制将会删除此条录音","确定要重新录制嘛",function () {
+                xqzs.weui.dialog("重新录制将会删除此条录音","确定要重新录制嘛","",function () {
                     
                 },function () {
                     //重新开始录制
@@ -214,7 +214,7 @@
                     return ;
                 }
 
-                xqzs.weui.dialog("心情加油站温馨提醒","为防止误点，请确认录音满意后再发送",function () {
+                xqzs.weui.dialog("心情加油站温馨提醒","为防止误点，请确认录音满意后再发送","",function () {
 
                 },function () {
                     if(_this.playing)xqzs.wx.voice.pausePlay( _this.localId);
