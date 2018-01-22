@@ -130,7 +130,7 @@
             }, function (error) {
                 //error
             });
-            $(".weui-tab__panel").height($(window).height() - 100);
+            $(".weui-tab__panel").height($(window).height() - 50);
             var obj = $(".asker_my_index_box .main a ,.join")
             xqzs.weui.active(obj);
             this.getIncome();
