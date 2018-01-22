@@ -129,7 +129,7 @@
                 ],
                 typeIndex:0,
                 page: 1,
-                row: 5,
+                row: 10,
                 isPageEnd: false,
                 isShowMoreText:false,
                 showLoad:false,
@@ -253,7 +253,7 @@
             //获取是否有偷听卡
             getCoupon:function () {
                 let _this = this;
-                _this.$http.get(web.API_PATH + 'come/user/get/coupon/_userId_/1/5/0').then(function (data) {
+                _this.$http.get(web.API_PATH + 'come/user/get/coupon/_userId_/1/10/0').then(function (data) {
                     _this.couponList = data.data.data;
                     _this.couponNum = data.data.data.length;
                 })
