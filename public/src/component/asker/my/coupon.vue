@@ -6,11 +6,11 @@
                   :bottomHeight="50"
                   :isShowMoreText="isShowMoreText">
         <div class="coupon_type">
-            <div :class="{type_active:type==1}" @click="changeType(1)">待使用</div>
-            <div :class="{type_active:type==0}" @click="changeType(0)">已失效</div>
+            <div :class="{type_active:isUsed==0}" @click="changeType(0)">待使用</div>
+            <div :class="{type_active:isUsed==1}" @click="changeType(1)">已失效</div>
         </div>
         <div class="coupon_list">
-            <ul v-if="type==1">
+            <ul v-if="isUsed==0">
                 <li v-for="item in list">
                     <div class="item_left">
                         <div>{{item.name}}</div>
@@ -21,7 +21,7 @@
                     </div>
                 </li>
             </ul>
-            <ul v-if="type==0" :class="{overTime:type==0}">
+            <ul v-if="isUsed==1" :class="{overTime:isUsed==1}">
                 <li v-for="item in list">
                     <div class="item_left">
                         <div>{{item.name}}</div>
@@ -56,7 +56,7 @@
                 isShowMoreText: false,
                 showLoad: false,
                 list: [],
-                type: 1,
+                isUsed : 0,
                 active:true,
             }
         },
@@ -79,7 +79,7 @@
             },
             changeType:function (v) {
                 let _this = this;
-                _this.type=v;
+                _this.isUsed=v;
                 _this.page = 1;
                 _this.list = [];
                 _this.isPageEnd = false;
@@ -89,7 +89,7 @@
             getList: function (done) {
 
                 let vm = this;
-                let url = web.API_PATH + 'come/user/get/coupon/_userId_/' + vm.page + '/' + vm.row +'/'+vm.type;
+                let url = web.API_PATH + 'come/user/get/coupon/_userId_/' + vm.page + '/' + vm.row +'/'+vm.isUsed;
                 this.rankUrl = url + "?";
                 if (web.guest) {
                     this.rankUrl = this.rankUrl + "guest=true"
