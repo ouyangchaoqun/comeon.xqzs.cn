@@ -30,6 +30,7 @@
     </div>
 </template>
 <script type="">
+    import showLoad from '../../include/showLoad.vue';
     export default {
         data() {
             return {
