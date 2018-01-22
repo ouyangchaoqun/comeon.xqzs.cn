@@ -286,6 +286,7 @@
                     switch(true)
                     {
                         case useCoupon:
+                            console.log('使用偷听券支付');
                             let data = {
                                 code:_this.couponList[0].code,
                                 questionId:questionId,
@@ -302,6 +303,7 @@
                             });
                             break;
                         case useCoin:
+                            console.log('使用点豆支付');
                             _this.showLoad=true;
                             $.ajax({
                                 url: web.API_PATH + "come/listen/put/coin/_userId_/"+'+questionId+'/'+answerId+'/1,
