@@ -13,6 +13,6 @@ var cookie = {
         return v ? v[2] : null;
     },
     delete: function (name) {
-        this.set(COOKIE_BASE_NAME+name, '', -1);
+        this.set(name, '', -1);
     }
 };

@@ -15,12 +15,12 @@
                 <div class="clear"></div>
             </div>
             <div class="text_area">
-                <textarea v-if="isSelectAnswer" placeholder="请详细描述您的问题，专家将第一时间帮您解答。" class="content answer_select" maxlength="200"></textarea>
-                <textarea v-if="!isSelectAnswer" placeholder="请详细描述你的问题，专家将尽快为你解答！" class="content" maxlength="200"></textarea>
+                <textarea v-model="experContent" v-if="isSelectAnswer" placeholder="请详细描述您的问题，专家将第一时间帮您解答。" class="content answer_select" maxlength="200" @input="valChange()"></textarea>
+                <textarea @input="valChange()" v-model="fastAskContent" v-if="!isSelectAnswer" placeholder="请详细描述你的问题，专家将尽快为你解答！" class="content" maxlength="200"></textarea>
                 <div v-if="!isSelectAnswer" class="last_word_count">{{contentLength}}/200</div>
                 <div v-if="isSelectAnswer" class="last_word_count">{{contentLength}}/{{MAX_LENGTH}}</div>
-                <div class="price" v-if="isSelectAnswer">¥{{expertDetail.price}}</div>
-                <div class="price" v-if="!isSelectAnswer">10.00</div>
+                <div class="price" v-if="isSelectAnswer">{{parseInt(expertDetail.price)}}</div>
+                <div class="price" v-if="!isSelectAnswer">10</div>
             </div>
             <div class="addAnonymous">
                 <span>匿名 </span>
@@ -32,8 +32,7 @@
             <!--<div class="txt">设置赏金：</div>-->
             <!--<input type="number" class="price" placeholder="10元起">-->
             <!--</div>-->
-            <div class="submit weui-btn weui-btn_primary weui-btn_disabled" v-if="!isSubFlag">提交</div>
-            <div class="submit weui-btn weui-btn_primary" @click="typeDialog()" v-if="isSubFlag">提交</div>
+            <div class="submit weui-btn weui-btn_primary" @click="typeDialog()">提交</div>
         </div>
 
         <v-asker-bottom v-if="!isSelectAnswer" tabOnIndex="2"></v-asker-bottom>
@@ -125,12 +124,13 @@
                 expertDetail:{},
                 contentLength:0,
                 MAX_LENGTH:200,
-                isSubFlag:false,
                 checked:false,
                 isAnonymous:0,
                 is_checked:false,
                 couponList:[],
-                couponNum:0
+                couponNum:0,
+                experContent:'',
+                fastAskContent:''
             }
         },
         props:{
@@ -148,8 +148,10 @@
             if( this.expertId&& this.expertId!=''){
                 this.isSelectAnswer=true;
                 this.getExpert();
+                this.experContent =cookie.get('experContent')||'';
             }else{
                 this.getClassList()
+                this.fastAskContent =cookie.get('fastAskContent')||'';
             }
             //数字变化
             let _this=this;
@@ -160,11 +162,7 @@
                 });
                 $(".content").keyup(function () {
                     let content  =  $(this).val();
-                    if(content.length>0){
-                        _this.isSubFlag=true
-                    }else{
-                        _this.isSubFlag=false
-                    }
+
                     if(content.length>_this.MAX_LENGTH){
                         $(this).val(content.substr(0,_this.MAX_LENGTH));
                         _this.contentLength=_this.MAX_LENGTH;
@@ -172,10 +170,18 @@
                         _this.contentLength= content.length;
                     }
                 })
+
             });
             xqzs.wx.setConfig(this);
         },
         methods: {
+            valChange:function () {
+                if(this.isSelectAnswer){
+                    cookie.set('experContent',this.experContent,1)
+                }else{
+                    cookie.set('fastAskContent',this.fastAskContent,1)
+                }
+            },
             getUserInfo:function(){
                 let _this=this;
                 xqzs.user.getUserInfo(function (user) {
@@ -241,17 +247,34 @@
                     if (data.body.status == 1) {
                         _this.expertDetail=data.body.data;
                         _this.types= data.body.data.domain
+                        _this.typeSelectIndex = cookie.get('typeSelIndex')||null;
+                        if(_this.typeSelectIndex!=null){
+                            _this.questionClass=_this.types[_this.typeSelectIndex].id;
+                            if( _this.questionClass==undefined){
+                                _this.questionClass=_this.types[_this.typeSelectIndex].classId;
+                            }
+                        }
+
                     }
                 }, function (error) {
                 });
             },
             getClassList:function () {
+                console.log('快问类型选择')
                 let _this=this;
                 _this.showLoad = true;
                 _this.$http.get(web.API_PATH + 'come/listen/question/class/list' ).then(function (data) {//es5写法
                     _this.showLoad = false
                     if (data.body.status == 1) {
                         _this.types= data.body.data;
+                        _this.typeSelectIndex = cookie.get('fastAsk_selIndex')||null;
+                        if(_this.typeSelectIndex!=null){
+                            _this.type= _this.types[_this.typeSelectIndex].title||'';
+                            _this.questionClass=_this.types[_this.typeSelectIndex].id;
+                            if( _this.questionClass==undefined){
+                                _this.questionClass=_this.types[_this.typeSelectIndex].classId;
+                            }
+                        }
 
                     }
                 }, function (error) {
@@ -264,7 +287,7 @@
                 }
                 let content= $(".content").val();
                 if(content==''){
-                    xqzs.weui.tip("请选择填写问题内容");
+                    xqzs.weui.tip("请填写问题内容");
                     return;
                 }
                 let _this = this;
@@ -272,6 +295,8 @@
                     this.$http.post(web.API_PATH + "come/expert/post/expert/question", {userId:"_userId_",content:content, questionClass: _this.questionClass,expertId:this.expertId,isAnonymous:this.isAnonymous})
                         .then(function (bt) {
                             if (bt.data && bt.data.status == 1) {
+                                cookie.delete('typeSelIndex');
+                                cookie.delete('experContent');
                                 xqzs.weui.tip("支付成功", function () {
                                     _this.$router.push("/asker/listen");
                                 });
@@ -281,20 +306,14 @@
                     this.$http.post(web.API_PATH + "come/user/post/grab/question", {userId:"_userId_",content:content, questionClass: this.questionClass,price:10,isAnonymous:this.isAnonymous})
                         .then(function (bt) {
                             if (bt.data && bt.data.status == 1) {
+                                cookie.delete('fastAsk_selIndex');
+                                cookie.delete('fastAskContent');
                                 xqzs.weui.tip("支付成功", function () {
                                     _this.$router.push("/asker/listen");
                                 });
                             }
                         });
                 }
-            },
-            select:function (index) {
-
-                for(let i=0;i<this.types.length;i++){
-                    this.types[i].isSelect=false;
-                }
-                this.types[index].isSelect=true
-
             },
             tip: function () {
                 this.showTip=true;
@@ -308,10 +327,8 @@
                 let _this=this;
                 this.showTypes=true;
                 xqzs.weui.dialogCustom($("#select_type").html());
-
                 if(_this.typeSelectIndex!=null){
                     $(".js_dialog .select_types .item").each(function (i) {
-
                         if(i==_this.typeSelectIndex){
                             $(this).addClass("on")
                         }
@@ -321,17 +338,16 @@
                     $(".select_types .item").removeClass("on");
                     $(this).addClass("on");
                     let index=  parseInt($(this).attr("index"));
+                    console.log(index)
                     _this.typeSelectIndex=index;
                 });
                 $(".dialog_select_type .select_yes .sure_click").click(function () {
-
-
                     if(_this.typeSelectIndex==null){
                         xqzs.weui.tip("请选择类型");
                     }else{
+                        cookie.set("fastAsk_selIndex",_this.typeSelectIndex,1)
                         _this.type= _this.types[_this.typeSelectIndex].title;
                         _this.questionClass=_this.types[_this.typeSelectIndex].id;
-                        console.log(_this.questionClass)
                         if( _this.questionClass==undefined){
                             _this.questionClass=_this.types[_this.typeSelectIndex].classId;
                         }
@@ -347,15 +363,25 @@
         },
         updated:function () {
             let _this = this;
+            if(_this.typeSelectIndex!=null){
+                $('.select_box div').each(function (i) {
+
+                    if(i==_this.typeSelectIndex){
+                        $(this).addClass("on_new")
+                    }
+                })
+            }
             $('.select_box div').on('click',function () {
                 $('.select_box div').removeClass('on_new')
                 $(this).addClass('on_new')
                 let index=  $(this).index();
                 _this.typeSelectIndex=index;
+                cookie.set("typeSelIndex",index,1)
                 _this.questionClass=_this.types[_this.typeSelectIndex].id;
                 if( _this.questionClass==undefined){
                     _this.questionClass=_this.types[_this.typeSelectIndex].classId;
                 }
+                console.log(_this.questionClass)
             })
 
         }
@@ -461,12 +487,12 @@
     /*margin-bottom: 0.294rem;*/
     /*}*/
     .asker_ask_box .text_area .price{
-        width: 3.5rem;
+        width: 2rem;
         color: rgba(253,114,6,1);
         position: absolute;
         left: 0.6rem;
         bottom: 0.6rem;
-        text-align: right;
+        padding-left: 1.5rem;
         background: url(../../images/asker/asker_left_dotCoin.png) no-repeat;
         background-size: 30% 80%;
     }
