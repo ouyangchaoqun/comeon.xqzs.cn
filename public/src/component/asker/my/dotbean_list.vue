@@ -16,6 +16,7 @@
                         <span v-if="item.status==0">审核中</span>
                         <template v-if=" item.dianCoin>0">+</template><template v-if=" item.dianCoin<0">-</template>{{Math.abs(item.dianCoin)}}
                     </div>
+                    <div class="dianCoinbg"></div>
                 </li>
             </ul>
         </v-scroll>
@@ -146,6 +147,14 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+    }
+    .dianCoinbg{
+        background: url("../../../images/asker/asker_left_dotCoin.png") no-repeat;
+        background-size: 100% 100%;
+        margin-top: 0.88rem;
+        margin-left: 0.5rem;
+        width: 1rem;
+        height: 1rem;
     }
     .moneyOut_color{
         color:rgba(36,37,61,0.5);
