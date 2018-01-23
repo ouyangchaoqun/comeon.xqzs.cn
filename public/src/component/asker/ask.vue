@@ -269,7 +269,6 @@
                 }
                 let _this = this;
                 if( this.expertId&& this.expertId!=''){
-                    _this.showLoad=true;
                     this.$http.post(web.API_PATH + "come/expert/post/expert/question", {userId:"_userId_",content:content, questionClass: _this.questionClass,expertId:this.expertId,isAnonymous:this.isAnonymous})
                         .then(function (bt) {
                             if (bt.data && bt.data.status == 1) {
@@ -279,47 +278,16 @@
                             }
                         });
                 }else{
-//                    let price= $(".price").val();
-//                    if(price==''){
-//                        xqzs.weui.tip("请输入金额");
-//                        return;
-//                    }
-//                    if(!xqzs.string.checkPrice(price)){
-//                        xqzs.weui.tip("请输入正确的金额");
-//                        return;
-//                    }
-//                    if(parseFloat(price)>xqzs.price.MAX_ASK_PRICE||parseFloat(price)<xqzs.price.MIN_ASK_PRICE){
-//                        xqzs.weui.tip("金额需在 "+xqzs.price.MIN_ASK_PRICE+"-"+xqzs.price.MAX_ASK_PRICE+" 之间！");
-//                        return;
-//                    }
-                    _this.showLoad=true;
-
                     this.$http.post(web.API_PATH + "come/user/post/grab/question", {userId:"_userId_",content:content, questionClass: this.questionClass,price:10,isAnonymous:this.isAnonymous})
                         .then(function (bt) {
                             if (bt.data && bt.data.status == 1) {
-                                let result = bt.data.data;
-                                let config =result.config;
-                                _this.showLoad=false;
-
-
-                                xqzs.wx.pay.pay(result.order, function () {
-                                }, function () {//success
-                                    xqzs.weui.tip("支付成功", function () {
-                                        _this.$router.push("/asker/my/ask/list");
-                                    });
-                                }, function () {//error
-
-                                },web.BASE_PATH+"asker/my/ask/list")
-
-
+                                xqzs.weui.tip("支付成功", function () {
+                                    _this.$router.push("/asker/listen");
+                                });
                             }
                         });
-
                 }
             },
-
-
-
             select:function (index) {
 
                 for(let i=0;i<this.types.length;i++){
