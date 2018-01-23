@@ -211,7 +211,7 @@
                             });
                             break;
                         case recharge:
-                            _this.$router.push("/asker/my/recharge?back_url="+ encodeURIComponent("/asker/listen/detail?questionId="+_this.$route.query.questionId));
+                            _this.$router.push("/asker/my/recharge?money=5.00&&back_url="+ encodeURIComponent("/asker/listen/detail?questionId="+_this.$route.query.questionId));
                             break;
                     }
 

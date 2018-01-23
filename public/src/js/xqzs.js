@@ -14,7 +14,21 @@ var xqzs = {
         PIC_SMALL: '?x-oss-process=image/resize,h_640,w_640/quality,q_100',
         PIC_MIDDLE: '?x-oss-process=image/resize,h_750,w_750/quality,q_100'
     },
+    user:{
+        getUserInfo:function (fun) {
+            $.ajax({
+                url:web.API_PATH + "user/find/by/user/Id/_userId_",
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    if(typeof fun ==='function'){
 
+                        fun(data.data)
+                    }
+                }
+            })
+        }
+    },
     weui: {
         weuiMaskClose: function () {
             $(".weui-mask").removeClass("weui-animate-fade-in").addClass("weui-animate-fade-out");

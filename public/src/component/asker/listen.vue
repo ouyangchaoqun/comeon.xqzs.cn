@@ -321,7 +321,7 @@
                             });
                             break;
                         case recharge:
-                            _this.$router.push("/asker/my/recharge?back_url=/asker/listen");
+                            _this.$router.push("/asker/my/recharge?back_url=/asker/listen&&money=5.00");
                             break;
                     }
 

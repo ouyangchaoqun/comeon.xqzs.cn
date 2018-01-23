@@ -49,26 +49,33 @@
             }
         },
         mounted: function () {
-            this.backUrl=this.$route.query.back_url;
-            this.getRechargeConfig();
-            this.getUserInfo();
+            let _this=this;
+            _this.getUserInfo();
+            _this.backUrl=_this.$route.query.back_url;
+            _this.$nextTick(function () {
+                _this.getRechargeConfig(function () {
+                    var needMoney=Number(_this.$route.query.money);
+                    var havedianCoin=_this.user.dianCoin;
+                    var x=needMoney-havedianCoin;
+                    for(var i=0;i<_this.items.length;i++){
+                        console.log(i)
+                        if(Number(_this.items[i].money)>=x){
+                            _this.select(i)
+                            break;
+                        }
+                    }
+                });
+            })
+
+
+
         },
         methods: {
             getUserInfo:function(){
                 let _this=this;
-                _this.showLoad = true;
-                _this.$http({
-                    method: 'GET',
-                    type: "json",
-                    url: web.API_PATH + 'user/find/by/user/Id/_userId_',
-                }).then(function (data) {//es5写法
-                    _this.showLoad = false;
-                    if (data.data.data !== null) {
-                        _this.user = eval(data.data.data);
-                    }
-                }, function (error) {
-                    //error
-                });
+                xqzs.user.getUserInfo(function (user) {
+                    _this.user =user;
+                })
             },
             select: function (index) {
                 this.checkIndex = index;
@@ -102,12 +109,13 @@
                 this.isUseIncome = !this.isUseIncome;
                 this.select(this.checkIndex)
             },
-            getRechargeConfig: function () {
+            getRechargeConfig: function (callback) {
                 console.log("sss")
                 let _this = this;
                 _this.$http.get(web.API_PATH + 'come/user/query/recharge/config').then(function (data) {//es5写法
                     if (data.body.status == 1) {
                         _this.items = data.body.data;
+                        callback();
                     }
                 }, function (error) {
                 });

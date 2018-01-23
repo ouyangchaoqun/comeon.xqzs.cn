@@ -107,7 +107,7 @@
     </div>
 </template>
 
-<script type="es6">
+<script type="">
     import showLoad from '../include/showLoad.vue';
     import askerBottom from "./include/bottom.vue";
     export default {
@@ -195,7 +195,7 @@
                 }else{
                     //快问
                     payTitle = '确认发布快问';
-                    consumePrice = 10;
+                    consumePrice = 10.00;
                 }
                 if(Number(_this.user.dianCoin)>=Number(consumePrice)){
                     subHtml="";
@@ -205,11 +205,11 @@
                 }
                 let msg = '使用：<span class="colorStyle">'+consumePrice+'</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span>点豆'
                 xqzs.weui.dialog(payTitle,msg,subHtml,function(){},function () {
-                    if(!isEnough){
+                    if(isEnough){
                         console.log('支付');
                         _this.submit()
                     }else{
-                        _this.$router.push("/asker/my/recharge?price="+consumePrice);
+                        _this.$router.push("/asker/my/recharge?money="+consumePrice);
                     }
 
                 })
