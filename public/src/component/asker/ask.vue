@@ -273,19 +273,9 @@
                     this.$http.post(web.API_PATH + "come/expert/post/expert/question", {userId:"_userId_",content:content, questionClass: _this.questionClass,expertId:this.expertId,isAnonymous:this.isAnonymous})
                         .then(function (bt) {
                             if (bt.data && bt.data.status == 1) {
-                                let result = bt.data.data;
-                                let config =result.config;
-                                _this.showLoad=false;
-
-                                xqzs.wx.pay.pay(result.order, function () {
-
-                                }, function () {//success
-                                    xqzs.weui.tip("支付成功", function () {
-                                        _this.$router.push("/asker/my/ask/list");
-                                    });
-                                }, function () {//error
-
-                                },web.BASE_PATH+"asker/my/ask/list")
+                                xqzs.weui.tip("支付成功", function () {
+                                    _this.$router.push("/asker/listen");
+                                });
                             }
                         });
                 }else{
