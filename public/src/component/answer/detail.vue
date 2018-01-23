@@ -181,7 +181,7 @@
                 </span>
                     <span v-if="detail.followed===0" class="followedColor">+收听</span>
                 </div>
-                <div class="pay_ask" @click="ask()">￥{{detail.price}} 提问</div>
+                <div class="pay_ask" @click="ask()"><span class="ask_dianCoinbg"></span>{{detail.price}} 提问</div>
             </div>
         </div>
     </div>
@@ -840,6 +840,7 @@
         padding-bottom: 0.88rem;
     }
     .answer_detail_box  .list .item{ background: #fff; padding: 0.8823529411764706rem 0;margin:0 0.88235rem;margin-bottom: 0.41176471rem;position: relative ; }
+
     .answer_detail_box  .list .addBorder_bottom{border-bottom: 1px solid #E0E0E1;}
     .answer_detail_box .list .star span{ background: url(../../images/star_no.png); width: 0.7647058823529412rem; height: 0.7647058823529412rem;  background-size: 0.7647058823529412rem; display: inline-block; margin-right: 0.3rem; }
     .answer_detail_box  .list .star span.on{background: url(../../images/star.png);background-size: 0.7647058823529412rem; }
@@ -911,7 +912,13 @@
         padding-left:1.1rem;
         margin-left: 0.6rem;
     }
-    .answer_detail_box .pay_ask{width: 70%;float: right; background: linear-gradient(to right, rgba(255,158,25,1), rgba(254,115,1,1));color: white;line-height: 2.588rem;height: 2.588rem}
+    .answer_detail_box .pay_ask{width: 70%;float: right; background: linear-gradient(to right, rgba(255,158,25,1), rgba(254,115,1,1));color: white;line-height: 2.588rem;height: 2.588rem;}
+    .answer_detail_box .pay_ask .ask_dianCoinbg{ background: url("../../images/asker/user_dianCoin_white.png")no-repeat; width: 1rem;
+        height: 1rem;
+        background-size: 100% 100%;
+       display: inline-block;
+        margin-right: 0.5rem;
+       }
     .friestP{overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 4;line-height:1.176rem;-webkit-box-orient: vertical;}
     .addopen{margin-top:1.76rem;height:auto;}
     .addstop{margin-top:0;height:0;overflow: hidden;}

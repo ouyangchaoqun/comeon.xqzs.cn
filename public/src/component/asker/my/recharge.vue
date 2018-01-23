@@ -286,14 +286,16 @@
     }
 
     .recharge_box .tips .close {
+        background:url("../../../images/asker/user_close.png") no-repeat;
         position: absolute;
-        right: 1.823rem;
-        top: 1.223rem;
+        right: 0.88rem;
+        top: 0.88rem;
         width: 2rem;
         height: 2rem;
         text-align: center;
-        background:url("../../../images/asker/user_close.png") no-repeat;
-        background-size: 60% 60%;
+        background-size: 50% 50%;
+        background-position-x: 50%;
+        background-position-y: 50%;
     }
 
     .recharge_box .tips .tip_title {
