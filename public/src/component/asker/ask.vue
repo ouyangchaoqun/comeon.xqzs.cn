@@ -33,7 +33,7 @@
             <!--<input type="number" class="price" placeholder="10元起">-->
             <!--</div>-->
             <div class="submit weui-btn weui-btn_primary weui-btn_disabled" v-if="!isSubFlag">提交</div>
-            <div class="submit weui-btn weui-btn_primary" @click="submit()" v-if="isSubFlag">提交</div>
+            <div class="submit weui-btn weui-btn_primary" @click="typeDialog()" v-if="isSubFlag">提交</div>
         </div>
 
         <v-asker-bottom v-if="!isSelectAnswer" tabOnIndex="2"></v-asker-bottom>
@@ -108,8 +108,6 @@
 </template>
 
 <script type="es6">
-
-
     import showLoad from '../include/showLoad.vue';
     import askerBottom from "./include/bottom.vue";
     export default {
@@ -131,7 +129,13 @@
                 checked:false,
                 isAnonymous:0,
                 is_checked:false,
-
+                couponList:[],
+                couponNum:0
+            }
+        },
+        props:{
+            user:{
+                type:Object
             }
         },
         components: {
@@ -146,17 +150,14 @@
             }else{
                 this.getClassList()
             }
-
             //数字变化
             let _this=this;
-
+            this.getCoupon();
             _this.$nextTick(function () {
-
                 $(document).resize(function() {
                     $(".asker_ask_box .change_height").height($(document).height()-50)
                 });
                 $(".content").keyup(function () {
-
                     let content  =  $(this).val();
                     if(content.length>0){
                         _this.isSubFlag=true
@@ -169,15 +170,50 @@
                     }else{
                         _this.contentLength= content.length;
                     }
-
-
                 })
             });
             xqzs.wx.setConfig(this);
-
-
         },
         methods: {
+            getCoupon:function () {
+                let _this = this;
+                _this.$http.get(web.API_PATH + 'come/user/get/coupon/_userId_/1/10/0').then(function (data) {
+                    _this.couponList = data.data.data;
+                    _this.couponNum = data.data.data.length;
+                })
+            },
+            typeDialog:function () {
+                let _this = this;
+                let payTitle;
+                let subHtml;
+                let isEnough = false;
+                let consumePrice;
+                if(_this.isSelectAnswer){
+                    //向专家提问
+                    payTitle = '确认向专家提问';
+                    consumePrice = _this.expertDetail.price;
+                }else{
+                    //快问
+                    payTitle = '确认发布快问';
+                    consumePrice = 10;
+                }
+                if(Number(_this.user.dianCoin)>=Number(consumePrice)){
+                    subHtml="";
+                    isEnough = true;
+                }else{
+                    subHtml="去充值"
+                }
+                let msg = '使用：<span class="colorStyle">'+consumePrice+'</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span>点豆'
+                xqzs.weui.dialog(payTitle,msg,subHtml,function(){},function () {
+                    if(!isEnough){
+                        console.log('支付');
+                        _this.submit()
+                    }else{
+                        _this.$router.push("/asker/my/recharge?price="+consumePrice);
+                    }
+
+                })
+            },
             getChecked:function () {
                 var checkedVal = $('.weui-switch').prop('checked');
                 this.checked = checkedVal;
@@ -215,7 +251,6 @@
                 });
             },
             submit:function () {
-                console.log(this.isAnonymous)
                 if(this.questionClass==0){
                     xqzs.weui.tip("请选择问题类型")
                     return;
@@ -233,7 +268,6 @@
                             if (bt.data && bt.data.status == 1) {
                                 let result = bt.data.data;
                                 let config =result.config;
-                                console.log(config)
                                 _this.showLoad=false;
 
                                 xqzs.wx.pay.pay(result.order, function () {
