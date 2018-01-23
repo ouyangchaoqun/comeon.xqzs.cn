@@ -172,7 +172,8 @@
 <style>
     .recharge_box {
         background: #fff;
-        height: 100%
+        height: 100%;
+        position: absolute;
     }
 
     .recharge_box .title {

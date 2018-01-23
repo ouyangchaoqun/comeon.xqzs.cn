@@ -20,7 +20,7 @@
                 <div v-if="!isSelectAnswer" class="last_word_count">{{contentLength}}/200</div>
                 <div v-if="isSelectAnswer" class="last_word_count">{{contentLength}}/{{MAX_LENGTH}}</div>
                 <div class="price" v-if="isSelectAnswer">¥{{expertDetail.price}}</div>
-                <div class="price" v-if="!isSelectAnswer">¥10.00</div>
+                <div class="price" v-if="!isSelectAnswer">10.00</div>
             </div>
             <div class="addAnonymous">
                 <span>匿名 </span>
@@ -493,10 +493,14 @@
     /*margin-bottom: 0.294rem;*/
     /*}*/
     .asker_ask_box .text_area .price{
+        width: 3.5rem;
         color: rgba(253,114,6,1);
         position: absolute;
         left: 0.6rem;
         bottom: 0.6rem;
+        text-align: right;
+        background: url(../../images/asker/asker_left_dotCoin.png) no-repeat;
+        background-size: 30% 80%;
     }
     .asker_ask_box  .text_area textarea {
         border: none;
@@ -544,6 +548,7 @@
         height:1.5294rem;
         border: none;
         border-bottom: 1px solid #ccc;
+
     }
     ::-webkit-input-placeholder {
         color: #ff9900;}

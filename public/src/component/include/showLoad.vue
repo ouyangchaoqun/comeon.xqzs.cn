@@ -1,4 +1,4 @@
-<template id="showLoad">
+<template>
     <div>
         <div class="weui-mask_transparent"></div>
         <div class="weui-toast">
@@ -8,9 +8,7 @@
     </div>
 </template>
 <script>
-    var showLoad={
-        template:'#showLoad'
-    };
+    
     export default {
         data() {
             return {
