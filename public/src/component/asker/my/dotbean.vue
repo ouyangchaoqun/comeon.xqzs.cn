@@ -1,6 +1,7 @@
 <template>
     <div class="dotcoin_box">
         <div v-title>我的点币</div>
+        <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="banner banner_bg">
             <div class="title">我的点豆</div>
 
@@ -13,7 +14,7 @@
                 <div class="rightIcon"></div>
             </div>
         </router-link>
-        <router-link to="./income/list">
+        <router-link to="./dotbean/list">
             <div class="btn">
                 <div class="left">明细</div>
                 <div class="rightIcon"></div>
@@ -23,21 +24,20 @@
 </template>
 
 <script type="">
-
+    import showLoad from '../../include/showLoad.vue';
 
     export default {
         data() {
             return {
-
-            }
-        },
-        props:{
-            user:{
-                type:Object
+                user:{},
+                showLoad:false
             }
         },
         mounted: function () {
             this.getUserInfo();
+        },
+        components: {
+            'v-showLoad': showLoad,
         },
         methods: {
             getUserInfo:function(){

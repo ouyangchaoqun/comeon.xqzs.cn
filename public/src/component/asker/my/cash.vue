@@ -1,6 +1,7 @@
 <template>
     <div class="dotcoin_box">
         <div v-title>我的现金</div>
+        <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="banner banner_cash_bg">
             <div class="title">我的余额（元）</div>
             <div class="value">{{formatPrice(user.balance)||0.00}}</div>
@@ -21,32 +22,41 @@
 </template>
 
 <script type="es6">
-
+    import showLoad from '../../include/showLoad.vue';
 
     export default {
         data() {
             return {
-
-            }
-        },
-        props:{
-            user:{
-                type:Object
+                user:{},
+                showLoad:false
             }
         },
         mounted: function () {
-                 this.getUserInfo();
+             this.getUserInfo();
+        },
+        components: {
+            'v-showLoad': showLoad,
         },
         methods: {
             formatPrice:function (v) {
                 return xqzs.string.formatPrice(v)
             },
-             getUserInfo:function(){
+            getUserInfo:function(){
                 let _this=this;
-                xqzs.user.getUserInfo(function (user) {
-                    _this.user =user;
-                })
-            },
+                _this.showLoad = true;
+                _this.$http({
+                    method: 'GET',
+                    type: "json",
+                    url: web.API_PATH + 'user/find/by/user/Id/_userId_',
+                }).then(function (data) {//es5写法
+                    _this.showLoad = false;
+                    if (data.data.data !== null) {
+                        _this.user = eval(data.data.data);
+                    }
+                }, function (error) {
+                    //error
+                });
+            }
 
         },
       

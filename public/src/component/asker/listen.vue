@@ -155,11 +155,18 @@
         mounted: function () {
             console.log(this.user)
             this.getClassList();
+            this.getUserInfo()
             this.getCoupon();
             xqzs.voice.audio=null;
             xqzs.wx.setConfig(this);
         },
         methods:{
+            getUserInfo:function(){
+                let _this=this;
+                xqzs.user.getUserInfo(function (user) {
+                    _this.user =user;
+                })
+            },
             initView:function () {
                 let _this=this;
                 var minHeight = $(window).height()-$('nav').height()-100;

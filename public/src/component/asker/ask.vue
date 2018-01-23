@@ -144,6 +144,7 @@
         },
         mounted: function () {
             this.expertId=this.$route.query.expertId;
+            this.getUserInfo();
             if( this.expertId&& this.expertId!=''){
                 this.isSelectAnswer=true;
                 this.getExpert();
@@ -175,6 +176,12 @@
             xqzs.wx.setConfig(this);
         },
         methods: {
+            getUserInfo:function(){
+                let _this=this;
+                xqzs.user.getUserInfo(function (user) {
+                    _this.user =user;
+                })
+            },
             getCoupon:function () {
                 let _this = this;
                 _this.$http.get(web.API_PATH + 'come/user/get/coupon/_userId_/1/10/0').then(function (data) {

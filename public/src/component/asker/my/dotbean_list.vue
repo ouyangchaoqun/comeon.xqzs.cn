@@ -1,7 +1,7 @@
 <template >
     <div style="height: 100%" class="ask_my_income_list wbg">
 
-        <div v-title>余额明细</div>
+        <div v-title>点豆明细</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :bottomHeight="0"
@@ -12,9 +12,9 @@
                         <span>{{getDateTime(item.addTime)}}</span>
                     </div>
                     <div class="item_type">{{item.type}}</div>
-                    <div class="item_right" :class="{moneyOut_color:item.amount<0}">
+                    <div class="item_right" :class="{moneyOut_color:item.dianCoin<0}">
                         <span v-if="item.status==0">审核中</span>
-                        <template v-if=" item.amount>0">+￥</template><template v-if=" item.amount<0">-￥</template>{{Math.abs(item.amount)}}
+                        <template v-if=" item.dianCoin>0">+</template><template v-if=" item.dianCoin<0">-</template>{{Math.abs(item.dianCoin)}}
                     </div>
                 </li>
             </ul>
@@ -62,7 +62,7 @@
 
                 let vm= this;
                // let url =web.API_PATH + 'come/user/query/income/page/_userId_/'+vm.page+'/'+vm.row;
-                let url = web.API_PATH + 'user/withdraw/detail' + '/_userId_/' + vm.row+ '/' + vm.page;
+                let url = web.API_PATH + 'come/user/query/dian/detail' + '/_userId_/' + vm.page+ '/' + vm.row;
                 this.rankUrl = url + "?";
                 if (web.guest) {
                     this.rankUrl = this.rankUrl + "guest=true"

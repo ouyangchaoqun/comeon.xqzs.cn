@@ -17,7 +17,7 @@
                     <div class="price">{{formatPrice(user.balance)}}<span style="font-size: 0.70rem;color: black ">元</span></div>
                 </router-link>
 
-                <router-link to="../my/dotbean" class="income dotCoin"><i></i>我的点币
+                <router-link to="../my/dotbean" class="income dotCoin"><i></i>我的点豆
                     <div class="price">{{user.dianCoin}}<span style="font-size: 0.70rem;color: black ">点</span></div>
                 </router-link>
                 <router-link to="../my/coupon" class="income yhcard "><i></i>优惠卡券
@@ -41,14 +41,9 @@
     export default {
         data() {
             return {
-                income:0,
                 showLoad:false,
                 couponNum:0,
-            }
-        },
-        props:{
-            user:{
-                type:Object
+                user:{}
             }
         },
         components: {
@@ -56,9 +51,26 @@
             'v-showLoad':showLoad
         },
         methods: {
+            getUserInfo:function(){
+                let _this=this;
+                _this.showLoad = true;
+                _this.$http({
+                    method: 'GET',
+                    type: "json",
+                    url: web.API_PATH + 'user/find/by/user/Id/_userId_',
+                }).then(function (data) {//es5写法
+                    _this.showLoad = false;
+                    if (data.data.data !== null) {
+                        _this.user = eval(data.data.data);
+                    }
+                }, function (error) {
+                    //error
+                });
+            },
             formatPrice:function (v) {
               return xqzs.string.formatPrice(v)
             },
+
             join: function () {
                 let _this= this;
                 this.$http.get(web.API_PATH + 'come/expert/query/detail/by/userId/_userId_' ).then(function (data) {//es5写法
@@ -92,17 +104,6 @@
                 this.showLoad = true;
                 this.$router.push("/answer/join/join_remind");
             },
-            getIncome:function () {
-
-                let _this= this;
-                _this.$http.get(web.API_PATH + 'come/user/query/income/_userId_' ).then(function (data) {//es5写法
-                    if (data.body.status == 1) {
-                        _this.income= data.body.data.inCome
-                    }
-                }, function (error) {
-                });
-
-            },
             getCoupon:function () {
                 let _this=this;
                 _this.$http.get(web.API_PATH + 'come/user/query/coupon/_userId_' ).then(function (data) {//es5写法
@@ -110,30 +111,16 @@
                        _this.couponNum=data.body.data.couponCount;
                     }
                 }, function (error) {
-                    console.log("shibai")
+
                 });
             }
 
         },
         mounted: function () {
-            let _this=this;
-            _this.showLoad = true;
-            _this.$http({
-                method: 'GET',
-                type: "json",
-                url: web.API_PATH + 'user/find/by/user/Id/_userId_',
-            }).then(function (data) {//es5写法
-                _this.showLoad = false;
-                if (data.data.data !== null) {
-                    _this.user = eval(data.data.data);
-                }
-            }, function (error) {
-                //error
-            });
             $(".weui-tab__panel").height($(window).height() - 50);
             var obj = $(".asker_my_index_box .main a ,.join")
             xqzs.weui.active(obj);
-            this.getIncome();
+            this.getUserInfo();
             this.getCoupon();
             xqzs.wx.setConfig(this);
         }
