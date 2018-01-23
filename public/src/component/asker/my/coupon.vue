@@ -34,7 +34,7 @@
                 </li>
             </ul>
         </div>
-            <div class="noCoupon" v-if="list.length==0">
+            <div class="noCoupon" v-if="noCoupon">
                 <img src="../../../images/asker/noCoupon.png" alt="">
                 <div>暂时没有可用的优惠券</div>
             </div>
@@ -58,11 +58,7 @@
                 list: [],
                 isUsed : 0,
                 active:true,
-            }
-        },
-        props:{
-            user:{
-                type:Object
+                noCoupon:false,
             }
         },
 
@@ -80,6 +76,7 @@
             changeType:function (v) {
                 let _this = this;
                 _this.isUsed=v;
+                _this.noCoupon = false
                 _this.page = 1;
                 _this.list = [];
                 _this.isPageEnd = false;
@@ -107,7 +104,6 @@
                     }
                     vm.showLoad = false;
                     vm.isLoading = false;
-                    console.log(response.data.data)
                     if (response.data.status != 1 && vm.page == 1) {
                         vm.list = [];
                         vm.isPageEnd = true;
@@ -116,7 +112,6 @@
                         return;
                     }
                     let arr = response.data.data;
-
                     if (arr.length < vm.row) {
                         vm.isPageEnd = true;
                         vm.isShowMoreText = false
@@ -124,14 +119,16 @@
                         vm.isShowMoreText = true;
                     }
                     Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
-
-
                     if (vm.page == 1) {
                         vm.list = arr;
                     } else {
                         vm.list = vm.list.concat(arr);
                     }
-                    console.log(vm.list)
+                    if(vm.list.length==0){
+                        vm.noCoupon = true
+                    }else {
+                        vm.noCoupon = false
+                    }
                     if (arr.length == 0) return;
                     vm.page = vm.page + 1;
 
