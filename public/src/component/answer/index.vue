@@ -291,7 +291,7 @@
         right: 0;
         padding-left: 1rem;
         background: url(../../images/asker/asker_left_dotCoin.png)no-repeat;
-        background-size: 0.85rem 0.85rem;}
+        background-size: 0.85rem 0.8rem;}
    .answer_index  .class_list{  padding:0.47rem 0;background: #fff;}
 
    .answer_index  .class_list .class_item{  float:left ; width: 20%; text-align: center;color:#999;font-size: 0.6176471rem;padding: 6px 0 ; }
