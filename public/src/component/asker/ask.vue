@@ -21,8 +21,8 @@
                 </div>
             </div>
             <div class="text_area">
-                <textarea v-model="experContent" v-if="isSelectAnswer" placeholder="请详细描述您的问题，专家将第一时间帮您解答。" class="content answer_select" maxlength="200" @input="valChange()"></textarea>
-                <textarea @input="valChange()" v-model="fastAskContent" v-if="!isSelectAnswer" placeholder="请详细描述你的问题，专家将尽快为你解答！" class="content" maxlength="200"></textarea>
+                <textarea v-model="expertextContent" v-if="isSelectAnswer" placeholder="请详细描述您的问题，专家将第一时间帮您解答。" class="content answer_select" maxlength="200" @input="valChange()"></textarea>
+                <textarea @input="valChange()" v-model="fastAsktextContent" v-if="!isSelectAnswer" placeholder="请详细描述你的问题，专家将尽快为你解答！" class="content" maxlength="200"></textarea>
                 <div v-if="!isSelectAnswer" class="last_word_count">{{contentLength}}/200</div>
                 <div v-if="isSelectAnswer" class="last_word_count">{{contentLength}}/{{MAX_LENGTH}}</div>
                 <div class="price" v-if="isSelectAnswer">{{parseInt(expertDetail.price)}}</div>
@@ -58,13 +58,13 @@
 
             </div>
         </div>
-        <div class="weui-mask weui-animate-fade-in" v-if="is_checked">
-            <div class="addAnonymous_dialog">
-                <div class="addAnonymous_title">匿名开启</div>
-                <div class="addAnonymous_content">匿名后您的个人信息将保密</div>
-                <div class="addAnonymous_btn" @click="hideAddAnonymous()">我知道了</div>
-            </div>
-        </div>
+        <!--<div class="weui-mask weui-animate-fade-in" v-if="is_checked">-->
+            <!--<div class="addAnonymous_dialog">-->
+                <!--<div class="addAnonymous_title">匿名开启</div>-->
+                <!--<div class="addAnonymous_content">匿名后您的个人信息将保密</div>-->
+                <!--<div class="addAnonymous_btn" @click="hideAddAnonymous()">我知道了</div>-->
+            <!--</div>-->
+        <!--</div>-->
 
         <div id="tip" style="display: none">
             <div class="dialog_select_type dialog_select_Height">
@@ -135,8 +135,8 @@
                 is_checked:false,
                 couponList:[],
                 couponNum:0,
-                experContent:'',
-                fastAskContent:''
+                expertextContent:'',
+                fastAsktextContent:''
             }
         },
         props:{
@@ -154,12 +154,10 @@
             if( this.expertId&& this.expertId!=''){
                 this.isSelectAnswer=true;
                 this.getExpert();
-                this.experContent =cookie.get('experContent')||'';
-                console.log(this.experContent)
+                this.expertextContent =cookie.get('expertextContent')||'';
             }else{
                 this.getClassList()
-                this.fastAskContent =cookie.get('fastAskContent')||'';
-                console.log(this.fastAskContent)
+                this.fastAsktextContent =cookie.get('fastAsktextContent')||'';
             }
             //数字变化
             let _this=this;
@@ -184,10 +182,12 @@
         },
         methods: {
             valChange:function () {
+                console.log('执行input事件')
+                let content= $(".content").val();
                 if(this.isSelectAnswer){
-                    cookie.set('experContent',this.experContent,1)
+                    cookie.set('expertextContent',content,1)
                 }else{
-                    cookie.set('fastAskContent',this.fastAskContent,1)
+                    cookie.set('fastAsktextContent',content,1)
                 }
             },
             getUserInfo:function(){
@@ -253,15 +253,15 @@
                 var checkedVal = $('.weui-switch').prop('checked');
                 this.checked = checkedVal;
                 if(checkedVal){
-                    this.is_checked = true;
+                    this.isAnonymous = 1;
                 }else{
                     this.isAnonymous = 0
                 }
             },
-            hideAddAnonymous:function () {
-                this.is_checked = false;
-                this.isAnonymous = 1;
-            },
+//            hideAddAnonymous:function () {
+//                this.is_checked = false;
+//                this.isAnonymous = 1;
+//            },
             getExpert:function () {
                 //专家擅长领域
                 let _this= this;
@@ -270,16 +270,6 @@
                     if (data.body.status == 1) {
                         _this.expertDetail=data.body.data;
                         _this.types= data.body.data.domain;
-                        console.log(_this.types)
-                        _this.typeSelectIndex = cookie.get('typeSelIndex')||null;
-                        console.log(_this.typeSelectIndex)
-                        if(_this.typeSelectIndex!=null){
-                            _this.questionClass=_this.types[_this.typeSelectIndex].id;
-                            if( _this.questionClass==undefined){
-                                _this.questionClass=_this.types[_this.typeSelectIndex].classId;
-                            }
-                            console.log(_this.questionClass)
-                        }
 
                     }
                 }, function (error) {
@@ -293,17 +283,6 @@
                     _this.showLoad = false
                     if (data.body.status == 1) {
                         _this.types= data.body.data;
-                        console.log(_this.types)
-                        _this.typeSelectIndex = cookie.get('fastAsk_selIndex')||null;
-                        console.log(_this.typeSelectIndex)
-                        if(_this.typeSelectIndex!=null){
-                            _this.type= _this.types[_this.typeSelectIndex].title||'';
-                            _this.questionClass=_this.types[_this.typeSelectIndex].id;
-                            if( _this.questionClass==undefined){
-                                _this.questionClass=_this.types[_this.typeSelectIndex].classId;
-                            }
-                            console.log(_this.questionClass)
-                        }
 
                     }
                 }, function (error) {
@@ -313,7 +292,7 @@
                 let _this = this;
                 let content= $(".content").val();
                 if( this.expertId&& this.expertId!=''){
-                    this.$http.post(web.API_PATH + "come/expert/post/expert/question", {userId:"_userId_",content:content, questionClass: _this.questionClass,expertId:this.expertId,isAnonymous:this.isAnonymous})
+                        this.$http.post(web.API_PATH + "come/expert/post/expert/question", {userId:"_userId_",content:content, questionClass: _this.questionClass,expertId:this.expertId,isAnonymous:this.isAnonymous})
                         .then(function (bt) {
                             if (bt.data && bt.data.status == 1) {
                                 cookie.delete('typeSelIndex');
@@ -397,11 +376,6 @@
                 $(this).addClass('on_new')
                 let index=  $(this).index();
                 _this.typeSelectIndex=index;
-                if(_this.isSelectAnswer){
-                    cookie.set("typeSelIndex",index,1)
-                }else {
-                    cookie.set("fastAsk_selIndex",index,1)
-                }
                 _this.questionClass=_this.types[_this.typeSelectIndex].id;
                 if( _this.questionClass==undefined){
                     _this.questionClass=_this.types[_this.typeSelectIndex].classId;

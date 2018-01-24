@@ -36,7 +36,7 @@
         </div>
             <div class="noCoupon" v-if="noCoupon">
                 <img src="../../../images/asker/noCoupon.png" alt="">
-                <div>暂时没有可用的优惠券</div>
+                <div>暂无此类优惠券</div>
             </div>
         </v-scroll>
 
