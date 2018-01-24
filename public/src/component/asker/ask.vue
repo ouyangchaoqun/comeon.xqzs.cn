@@ -9,10 +9,16 @@
                     <div v-for="item in types">{{item.title}}</div>
                 </div>
             </div>
-            <div class="ask_type" v-if="!isSelectAnswer" @click="selectType()">
-                <div class="tab">选择问题类型：</div>
-                <div class="select_box">{{type}}</div>
-                <div class="clear"></div>
+            <!--<div class="ask_type" v-if="!isSelectAnswer" @click="selectType()">-->
+                <!--<div class="tab">选择问题类型：</div>-->
+                <!--<div class="select_box">{{type}}</div>-->
+                <!--<div class="clear"></div>-->
+            <!--</div>-->
+            <div class="ask_type_new" v-if="!isSelectAnswer">
+                <div class="tab">问题类型 <span>点击选择</span></div>
+                <div class="select_box">
+                    <div v-for="item in types">{{item.title}}</div>
+                </div>
             </div>
             <div class="text_area">
                 <textarea v-model="experContent" v-if="isSelectAnswer" placeholder="请详细描述您的问题，专家将第一时间帮您解答。" class="content answer_select" maxlength="200" @input="valChange()"></textarea>
@@ -149,9 +155,11 @@
                 this.isSelectAnswer=true;
                 this.getExpert();
                 this.experContent =cookie.get('experContent')||'';
+                console.log(this.experContent)
             }else{
                 this.getClassList()
                 this.fastAskContent =cookie.get('fastAskContent')||'';
+                console.log(this.fastAskContent)
             }
             //数字变化
             let _this=this;
@@ -250,18 +258,22 @@
                 this.isAnonymous = 1;
             },
             getExpert:function () {
+                //专家擅长领域
                 let _this= this;
                 let id=  this.expertId;
                 _this.$http.get(web.API_PATH + 'come/expert/show/to/user/'+id+'/_userId_' ).then(function (data) {//es5写法
                     if (data.body.status == 1) {
                         _this.expertDetail=data.body.data;
-                        _this.types= data.body.data.domain
+                        _this.types= data.body.data.domain;
+                        console.log(_this.types)
                         _this.typeSelectIndex = cookie.get('typeSelIndex')||null;
+                        console.log(_this.typeSelectIndex)
                         if(_this.typeSelectIndex!=null){
                             _this.questionClass=_this.types[_this.typeSelectIndex].id;
                             if( _this.questionClass==undefined){
                                 _this.questionClass=_this.types[_this.typeSelectIndex].classId;
                             }
+                            console.log(_this.questionClass)
                         }
 
                     }
@@ -276,13 +288,16 @@
                     _this.showLoad = false
                     if (data.body.status == 1) {
                         _this.types= data.body.data;
+                        console.log(_this.types)
                         _this.typeSelectIndex = cookie.get('fastAsk_selIndex')||null;
+                        console.log(_this.typeSelectIndex)
                         if(_this.typeSelectIndex!=null){
                             _this.type= _this.types[_this.typeSelectIndex].title||'';
                             _this.questionClass=_this.types[_this.typeSelectIndex].id;
                             if( _this.questionClass==undefined){
                                 _this.questionClass=_this.types[_this.typeSelectIndex].classId;
                             }
+                            console.log(_this.questionClass)
                         }
 
                     }
@@ -324,39 +339,40 @@
                     _this.closeDialog()
                 })
             },
-            selectType: function () {
-                let _this=this;
-                this.showTypes=true;
-                xqzs.weui.dialogCustom($("#select_type").html());
-                if(_this.typeSelectIndex!=null){
-                    $(".js_dialog .select_types .item").each(function (i) {
-                        if(i==_this.typeSelectIndex){
-                            $(this).addClass("on")
-                        }
-                    })
-                }
-                $(".select_types .item").click(function () {
-                    $(".select_types .item").removeClass("on");
-                    $(this).addClass("on");
-                    let index=  parseInt($(this).attr("index"));
-                    console.log(index)
-                    _this.typeSelectIndex=index;
-                });
-                $(".dialog_select_type .select_yes .sure_click").click(function () {
-                    if(_this.typeSelectIndex==null){
-                        xqzs.weui.tip("请选择类型");
-                    }else{
-                        cookie.set("fastAsk_selIndex",_this.typeSelectIndex,1)
-                        _this.type= _this.types[_this.typeSelectIndex].title;
-                        _this.questionClass=_this.types[_this.typeSelectIndex].id;
-                        if( _this.questionClass==undefined){
-                            _this.questionClass=_this.types[_this.typeSelectIndex].classId;
-                        }
-                        xqzs.weui.dialogClose();
-
-                    }
-                })
-            },
+            //九种类型选择
+//            selectType: function () {
+//                let _this=this;
+//                this.showTypes=true;
+//                xqzs.weui.dialogCustom($("#select_type").html());
+//                if(_this.typeSelectIndex!=null){
+//                    $(".js_dialog .select_types .item").each(function (i) {
+//                        if(i==_this.typeSelectIndex){
+//                            $(this).addClass("on")
+//                        }
+//                    })
+//                }
+//                $(".select_types .item").click(function () {
+//                    $(".select_types .item").removeClass("on");
+//                    $(this).addClass("on");
+//                    let index=  parseInt($(this).attr("index"));
+//                    console.log(index)
+//                    _this.typeSelectIndex=index;
+//                });
+//                $(".dialog_select_type .select_yes .sure_click").click(function () {
+//                    if(_this.typeSelectIndex==null){
+//                        xqzs.weui.tip("请选择类型");
+//                    }else{
+//                        cookie.set("fastAsk_selIndex",_this.typeSelectIndex,1)
+//                        _this.type= _this.types[_this.typeSelectIndex].title;
+//                        _this.questionClass=_this.types[_this.typeSelectIndex].id;
+//                        if( _this.questionClass==undefined){
+//                            _this.questionClass=_this.types[_this.typeSelectIndex].classId;
+//                        }
+//                        xqzs.weui.dialogClose();
+//
+//                    }
+//                })
+//            },
             closeDialog:function () {
                 xqzs.weui.dialogClose()
             }
@@ -366,7 +382,6 @@
             let _this = this;
             if(_this.typeSelectIndex!=null){
                 $('.select_box div').each(function (i) {
-
                     if(i==_this.typeSelectIndex){
                         $(this).addClass("on_new")
                     }
@@ -377,12 +392,15 @@
                 $(this).addClass('on_new')
                 let index=  $(this).index();
                 _this.typeSelectIndex=index;
-                cookie.set("typeSelIndex",index,1)
+                if(_this.isSelectAnswer){
+                    cookie.set("typeSelIndex",index,1)
+                }else {
+                    cookie.set("fastAsk_selIndex",index,1)
+                }
                 _this.questionClass=_this.types[_this.typeSelectIndex].id;
                 if( _this.questionClass==undefined){
                     _this.questionClass=_this.types[_this.typeSelectIndex].classId;
                 }
-                console.log(_this.questionClass)
             })
 
         }
