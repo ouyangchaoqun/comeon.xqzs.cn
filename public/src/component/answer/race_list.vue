@@ -19,7 +19,8 @@
                 <div class="item" v-for="item in list">
                     <div class="info">
                         <div class="img">
-                            <img :src="item.faceUrl">
+                            <img v-if="item.isAnonymous==0" :src="item.faceUrl">
+                            <img v-if="item.isAnonymous==1" src="../../images/isAnonymousImg.png" alt="">
                         </div>
                         <div class="price">赏金 <span>￥{{item.price}}</span></div>
                         <div class="type">在哪方面：{{item.questionClassName}}</div>

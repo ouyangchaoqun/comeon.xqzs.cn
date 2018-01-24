@@ -5,9 +5,16 @@
         <v-showLoad v-if="showLoad"></v-showLoad>
         <!--问题详情-->
         <div class="answer" >
-            <div class="img"><img :src="detail.faceUrl"></div>
+            <div class="img">
+                <img v-if="detail.isAnonymous==0" :src="detail.faceUrl">
+                <img v-if="detail.isAnonymous==1" src="../../images/isAnonymousImg.png" alt="">
+            </div>
             <div class="info">
-                <div class="names"><span>{{detail.nickname}}</span>  <div class="price">￥{{detail.price}}</div></div>
+                <div class="names">
+                    <span v-if="detail.isAnonymous==0">{{detail.nickname}}</span>
+                    <span v-if="detail.isAnonymous==1">匿名</span>
+                    <div class="price">￥{{detail.price}}</div>
+                </div>
                 <div class="content">{{detail.content}}</div>
                 <div class="last_time">在哪方面：{{detail.title}}</div>
                 <div class="last_time">{{getTime(detail.addTime)}}</div>

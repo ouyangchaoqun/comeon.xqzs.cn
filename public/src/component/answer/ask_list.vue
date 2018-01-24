@@ -18,10 +18,13 @@
             <div class="list  ">
                 <div class="item" v-for="item in list" @click="answer(item.id)">
                     <div class="img">
-                        <img :src="item.faceUrl">
+                        <img v-if="item.isAnonymous==0" :src="item.faceUrl">
+                        <img v-if="item.isAnonymous==1" src="../../images/isAnonymousImg.png" alt="">
                     </div>
                     <div class="info">
-                        <div class="names"><span>{{item.nickName}}</span>
+                        <div class="names">
+                            <span v-if="item.isAnonymous==0">{{item.nickName}}</span>
+                            <span v-if="item.isAnonymous==1">匿名</span>
                             <div class="price">酬金￥{{item.price}}</div>
                         </div>
                         <div class="content">{{item.content}}
