@@ -25,7 +25,6 @@
                                 </div>
                                 {{item.length}}''
                             </div>
-
                         </div>
                         <div class="itemDetail">
                             <div class="img"><img :src="item.faceUrl"></div>
