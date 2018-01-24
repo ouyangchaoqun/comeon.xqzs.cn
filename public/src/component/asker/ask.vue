@@ -239,7 +239,12 @@
                         console.log('支付');
                         _this.submit()
                     }else{
-                        _this.$router.push("/asker/my/recharge?money="+consumePrice);
+                        if(_this.isSelectAnswer){
+                            _this.$router.push("/asker/my/recharge?back_url=/asker/ask/?expertId="+_this.expertId+"&&money="+consumePrice);
+                        }else{
+                            _this.$router.push("/asker/my/recharge?back_url=/asker/ask&&money="+consumePrice);
+                        }
+
                     }
 
                 })
