@@ -155,10 +155,13 @@
                 this.isSelectAnswer=true;
                 this.getExpert();
                 this.expertextContent =xqzs.localdb.get('expertextContent')||'';
+
             }else{
                 this.getClassList()
                 this.fastAsktextContent =xqzs.localdb.get('fastAsktextContent')||'';
             }
+            console.log(this.expertextContent)
+            console.log(this.fastAsktextContent)
             //数字变化
             let _this=this;
             this.getCoupon();
