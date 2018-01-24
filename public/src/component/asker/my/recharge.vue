@@ -276,7 +276,7 @@
         position: absolute;
         z-index: 10;
         background: #fff;
-        top: 25%;
+        top: 20%;
         left: 50%;
         margin-left: -8.235rem;
         border-radius: 0.588rem
