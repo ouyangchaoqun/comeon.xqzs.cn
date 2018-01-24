@@ -215,12 +215,12 @@
     }
     .asker_my_index_box .main a.income.yhcard i{
         background: url(../../../images/asker/asker_left_card.png) no-repeat;
-        background-size:70% 54% ;
+        background-size:65% 50% ;
         background-position: 40% 40%;
     }
     .asker_my_index_box .main a.income.dotCoin i{
         background: url(../../../images/asker/asker_left_dotCoin.png) no-repeat;
-        background-size:70% 70% ;
+        background-size:65% 65% ;
         background-position: 40% 40%;
     }
     .asker_my_index_box .main a.listen i {

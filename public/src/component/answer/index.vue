@@ -281,15 +281,13 @@
         -webkit-animation: addPlaying 1.5s infinite;
     }
     .answer_list .headerImg img{width:0.88235rem;height:0.76471rem;display: inline-block;margin-left: 0.3rem;}
-    .answer_list .class_s .price{color:#FE7301;position: relative}
+    .answer_list .class_s .price{color:#FE7301;}
     .answer_list .class_s .price b{color:rgba(36,37,61,0.5);font-style: normal;font-weight: normal; text-align: left}
     .answer_list .class_s .price a{    text-align: right;
-        position: absolute;
         right: 0;
-        width: 65%;
-        line-height: 1rem;
+        padding-left: 0.80rem;
         background: url(../../images/asker/asker_left_dotCoin.png)no-repeat;
-        background-size: 30% 80%;}
+        background-size: 0.74rem 0.74rem;}
    .answer_index  .class_list{  padding:0.47rem 0;background: #fff;}
 
    .answer_index  .class_list .class_item{  float:left ; width: 20%; text-align: center;color:#999;font-size: 0.6176471rem;padding: 6px 0 ; }
