@@ -160,8 +160,6 @@
                 this.getClassList()
                 this.fastAsktextContent =xqzs.localdb.get('fastAsktextContent')||'';
             }
-            console.log(this.expertextContent)
-            console.log(this.fastAsktextContent)
             //数字变化
             let _this=this;
             this.getCoupon();
@@ -185,7 +183,6 @@
         },
         methods: {
             valChange:function () {
-                console.log('执行input事件')
                 let content= $(".content").val();
                 if(this.isSelectAnswer){
                     xqzs.localdb.set('expertextContent',content)
