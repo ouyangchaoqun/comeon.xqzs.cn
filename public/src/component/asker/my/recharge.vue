@@ -255,7 +255,7 @@
     }
 
     .recharge_box .question {
-        margin-top: 4.5rem;
+        margin-top: 3.5rem;
         font-size: 0.88rem;
         color: #9B9B9B;
         text-align: center
@@ -276,8 +276,9 @@
         position: absolute;
         z-index: 10;
         background: #fff;
-        top: 8.117rem;
-        left: 2.823rem;
+        top: 25%;
+        left: 50%;
+        margin-left: -8.235rem;
         border-radius: 0.588rem
     }
 
