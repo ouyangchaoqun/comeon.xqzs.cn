@@ -197,6 +197,15 @@
             },
             typeDialog:function () {
                 let _this = this;
+                if(this.questionClass==0){
+                    xqzs.weui.tip("请选择问题类型")
+                    return;
+                }
+                let content= $(".content").val();
+                if(content==''){
+                    xqzs.weui.tip("请填写问题内容");
+                    return;
+                }
                 let payTitle;
                 let subHtml;
                 let isEnough = false;
@@ -281,16 +290,8 @@
                 });
             },
             submit:function () {
-                if(this.questionClass==0){
-                    xqzs.weui.tip("请选择问题类型")
-                    return;
-                }
-                let content= $(".content").val();
-                if(content==''){
-                    xqzs.weui.tip("请填写问题内容");
-                    return;
-                }
                 let _this = this;
+                let content= $(".content").val();
                 if( this.expertId&& this.expertId!=''){
                     this.$http.post(web.API_PATH + "come/expert/post/expert/question", {userId:"_userId_",content:content, questionClass: _this.questionClass,expertId:this.expertId,isAnonymous:this.isAnonymous})
                         .then(function (bt) {
