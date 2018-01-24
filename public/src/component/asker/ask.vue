@@ -154,10 +154,10 @@
             if( this.expertId&& this.expertId!=''){
                 this.isSelectAnswer=true;
                 this.getExpert();
-                this.expertextContent =cookie.get('expertextContent')||'';
+                this.expertextContent =xqzs.localdb.get('expertextContent')||'';
             }else{
                 this.getClassList()
-                this.fastAsktextContent =cookie.get('fastAsktextContent')||'';
+                this.fastAsktextContent =xqzs.localdb.get('fastAsktextContent')||'';
             }
             //数字变化
             let _this=this;
@@ -185,9 +185,9 @@
                 console.log('执行input事件')
                 let content= $(".content").val();
                 if(this.isSelectAnswer){
-                    cookie.set('expertextContent',content,1)
+                    xqzs.localdb.set('expertextContent',content)
                 }else{
-                    cookie.set('fastAsktextContent',content,1)
+                    xqzs.localdb.set('fastAsktextContent',content)
                 }
             },
             getUserInfo:function(){
@@ -295,8 +295,7 @@
                         this.$http.post(web.API_PATH + "come/expert/post/expert/question", {userId:"_userId_",content:content, questionClass: _this.questionClass,expertId:this.expertId,isAnonymous:this.isAnonymous})
                         .then(function (bt) {
                             if (bt.data && bt.data.status == 1) {
-                                cookie.delete('typeSelIndex');
-                                cookie.delete('experContent');
+                                xqzs.localdb.remove('expertextContent');
                                 xqzs.weui.tip("支付成功", function () {
                                     _this.$router.push("/asker/listen");
                                 });
@@ -306,8 +305,7 @@
                     this.$http.post(web.API_PATH + "come/user/post/grab/question", {userId:"_userId_",content:content, questionClass: this.questionClass,price:10,isAnonymous:this.isAnonymous})
                         .then(function (bt) {
                             if (bt.data && bt.data.status == 1) {
-                                cookie.delete('fastAsk_selIndex');
-                                cookie.delete('fastAskContent');
+                                xqzs.localdb.remove('fastAsktextContent');
                                 xqzs.weui.tip("支付成功", function () {
                                     _this.$router.push("/asker/listen");
                                 });
