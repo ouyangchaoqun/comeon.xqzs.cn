@@ -81,14 +81,14 @@
             </li>
 
         </ul>
-
+        <v-recharge :rechargeMoney="rechargeMoney"></v-recharge>
     </div>
 
 </template>
 <script>
 
     import showLoad from '../include/showLoad.vue';
-
+    import Recharge from '../asker/my/recharge.vue' ;
     export default {
         data() {
             return {
@@ -100,6 +100,7 @@
                 list:[],
                 couponList:[],
                 couponNum:0,
+                num:0
             }
         },
         mounted: function () {
@@ -115,7 +116,8 @@
             }
         },
         components: {
-            'v-showLoad': showLoad
+            'v-showLoad': showLoad,
+            'v-recharge':Recharge,
         },
         methods:{
             like:function (index) {
@@ -211,7 +213,7 @@
                             });
                             break;
                         case recharge:
-                            _this.$router.push("/asker/my/recharge?money=5.00&&back_url="+ encodeURIComponent("/asker/listen/detail?questionId="+_this.$route.query.questionId));
+                            $('.recharge_box').show();
                             break;
                     }
 

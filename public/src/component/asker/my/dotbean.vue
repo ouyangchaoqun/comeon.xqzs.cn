@@ -4,33 +4,32 @@
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="banner banner_bg">
             <div class="title">我的点豆</div>
-
             <div class="value">{{user.dianCoin}}<span style="font-size: 1.41rem">点豆</span></div>
-
         </div>
-        <router-link to="../my/recharge?back_url=/asker/my/dotbean">
-            <div class="btn">
+        <div class="btn" @click="recharge()">
                 <div class="left">充值</div>
                 <div class="rightIcon"></div>
-            </div>
-        </router-link>
+        </div>
         <router-link to="./dotbean/list">
             <div class="btn">
                 <div class="left">明细</div>
                 <div class="rightIcon"></div>
             </div>
         </router-link>
+        <v-recharge :rechargeMoney="rechargeMoney"></v-recharge>
     </div>
+
 </template>
 
 <script type="">
     import showLoad from '../../include/showLoad.vue';
-
+    import Recharge from '../../asker/my/recharge.vue';
     export default {
         data() {
             return {
                 user:{},
-                showLoad:false
+                showLoad:false,
+                rechargeMoney:0,
             }
         },
         mounted: function () {
@@ -38,8 +37,13 @@
         },
         components: {
             'v-showLoad': showLoad,
+            'v-recharge':Recharge,
         },
         methods: {
+            recharge:function () {
+                console.log(this.rechargeMoney)
+                $('.recharge_box').show()
+            },
             getUserInfo:function(){
                 let _this=this;
                 _this.showLoad = true;

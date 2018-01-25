@@ -1,5 +1,5 @@
 <template>
-    <div class="recharge_box">
+    <div class="recharge_box" style="display: none;">
         <div class="title">
             请选择充值金额
         </div>
@@ -10,7 +10,6 @@
                 <div class="gift" v-if="item.couponCount!=0">赠送{{item.couponCount}}张偷听卡</div>
             </div>
         </div>
-
         <div class="cash">现金余额可使用<span style="color: #FB640A">{{user.balance||0.00}}</span>元
             <div class="cash_right" :class={no:!isUseIncome} @click="useIncome()"></div>
         </div>
@@ -27,6 +26,7 @@
                 <p>4.如有疑问，请在微信对话窗口反馈。</p>
             </div>
             <div class="bottom"></div>
+
         </div>
     </div>
 </template>
@@ -40,33 +40,20 @@
                 pay: 0,
                 income: 0,
                 isUseIncome: true,
-                backUrl:''
+                backUrl:'',
+                user:''
             }
+
         },
-        props: {
-            user: {
-                type: Object
-            }
-        },
+        props:[
+            'rechargeMoney'
+        ],
         mounted: function () {
             let _this=this;
             _this.getUserInfo();
-            _this.backUrl=_this.$route.query.back_url;
-            _this.$nextTick(function () {
-                _this.getRechargeConfig(function () {
-                    var needMoney=Number(_this.$route.query.money);
-                    var havedianCoin=_this.user.dianCoin;
-                    var x=needMoney-havedianCoin;
-                    for(var i=0;i<_this.items.length;i++){
-                        console.log(i)
-                        if(Number(_this.items[i].money)>=x){
-                            _this.select(i)
-                            break;
-                        }
-                    }
-                });
-            })
-
+            setTimeout(function () {
+                _this.getRechargeConfig();
+            },1000)
 
 
         },
@@ -78,6 +65,7 @@
                 })
             },
             select: function (index) {
+                console.log('************455535')
                 this.checkIndex = index;
                 let item = this.items[index];
                 for (var i = 0; i < this.items.length; i++) {
@@ -89,33 +77,59 @@
                 if (this.isUseIncome == true) {
 
                     if (Number(this.user.balance) >= Number(item.money)) {
+
                         this.pay = 0;
                     } else {
+                        console.log('isUseIncomeisUseIncomeisUseIncomeisUseIncome')
+                        console.log(item.money)
+                        console.log(this.user.balance)
                         this.pay = (Number(item.money) - Number(this.user.balance)).toFixed(2)
                     }
                 }
                 else {
                     this.pay = item.money;
                 }
+
+            },
+            initSelect:function () {
+                let _this=this;
+                var needMoney=Number(_this.rechargeMoney);
+                console.log(needMoney)
+                console.log(_this.items)
+                var havedianCoin=_this.user.dianCoin;//有的豆
+                var x=needMoney-havedianCoin;//差值
+
+                for(var i=0;i<_this.items.length;i++){
+                    if(Number(_this.items[i].dianCoin)>=x){
+                        _this.select(i)
+                        break;
+                    }
+                }
+                if(_this.rechargeMoney==0){
+                    console.log("sss")
+                    _this.select(0)
+                }
+
+
             },
             showTips: function () {
                 this.isTips = true;
             },
             closeTips: function () {
-                console.log("sssss")
                 this.isTips = false;
             },
             useIncome: function () {
                 this.isUseIncome = !this.isUseIncome;
                 this.select(this.checkIndex)
             },
-            getRechargeConfig: function (callback) {
-                console.log("sss")
+            getRechargeConfig: function () {
                 let _this = this;
                 _this.$http.get(web.API_PATH + 'come/user/query/recharge/config').then(function (data) {//es5写法
                     if (data.body.status == 1) {
                         _this.items = data.body.data;
-                        callback();
+                        if( _this.items!=''|| _this.items!=[]){
+                            _this.initSelect()
+                        }
                     }
                 }, function (error) {
                 });
@@ -134,7 +148,7 @@
                                 let result = bt.data.data;
                                 if (result.resultCode == 1) {
                                     xqzs.weui.tip("支付成功", function () {
-                                        _this.$router.replace(_this.backUrl);
+                                        $('.recharge_box').hide()
                                     });
 
                                 }else{
@@ -142,7 +156,7 @@
 
                                     }, function () {//success
                                         xqzs.weui.tip("支付成功", function () {
-                                            _this.$router.replace(_this.backUrl);
+                                          $('.recharge_box').hide()
                                         });
                                     }, function () {//error
 
@@ -163,9 +177,7 @@
 
 
             }
-        },
-
-
+        }
     }
 
 </script>
@@ -174,6 +186,9 @@
         background: #fff;
         height: 100%;
         position: absolute;
+        top:0;
+        width: 100%;
+        z-index: 55;
     }
 
     .recharge_box .title {

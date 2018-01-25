@@ -98,7 +98,7 @@
         </div>
 
         <v-asker-bottom tabOnIndex="0"></v-asker-bottom>
-
+        <v-recharge :rechargeMoney="rechargeMoney"></v-recharge>
 
 
     </div>
@@ -109,6 +109,7 @@
     import scroll from '../include/scroll.vue';
     import Bus from '../../js/bus.js';
     import askerBottom from "./include/bottom.vue";
+    import Recharge from '../asker/my/recharge.vue' ;
     var stealListen_index = {
         template: '#stealListen_index'
     };
@@ -138,7 +139,8 @@
                 playing:false,
                 list:[],
                 couponNum:0,
-                couponList:[]
+                couponList:[],
+                rechargeMoney:5,
             }
         },
         props:{
@@ -150,7 +152,8 @@
         components: {
             'v-showLoad': showLoad,
             'v-scroll': scroll,
-            "v-asker-bottom": askerBottom
+            "v-asker-bottom": askerBottom,
+            'v-recharge':Recharge,
         },
         mounted: function () {
             console.log(this.user)
@@ -328,7 +331,7 @@
                             });
                             break;
                         case recharge:
-                            _this.$router.push("/asker/my/recharge?back_url=/asker/listen&&money=5.00");
+                            $('.recharge_box').show()
                             break;
                     }
 

@@ -2,6 +2,7 @@
     <div style="height: 100%" class="asker_ask_box">
         <div v-title>提问</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
+        <v-recharge :rechargeMoney="rechargeMoney"></v-recharge>
         <div class="change_height">
             <div class="ask_type_new" v-if="isSelectAnswer">
                 <div class="tab">问题类型 <span>点击选择</span></div>
@@ -115,6 +116,7 @@
 <script type="">
     import showLoad from '../include/showLoad.vue';
     import askerBottom from "./include/bottom.vue";
+    import Recharge from '../asker/my/recharge.vue' ;
     export default {
         data() {
             return {
@@ -136,7 +138,8 @@
                 couponList:[],
                 couponNum:0,
                 expertextContent:'',
-                fastAsktextContent:''
+                fastAsktextContent:'',
+                rechargeMoney:0,
             }
         },
         props:{
@@ -146,7 +149,8 @@
         },
         components: {
             'v-showLoad': showLoad,
-            "v-asker-bottom": askerBottom
+            "v-asker-bottom": askerBottom,
+            'v-recharge':Recharge,
         },
         mounted: function () {
             this.expertId=this.$route.query.expertId;
@@ -217,34 +221,26 @@
                 let payTitle;
                 let subHtml;
                 let isEnough = false;
-                let consumePrice;
                 if(_this.isSelectAnswer){
                     //向专家提问
                     payTitle = '确认向专家提问';
-                    consumePrice = _this.expertDetail.price;
                 }else{
                     //快问
                     payTitle = '确认发布快问';
-                    consumePrice = 10.00;
                 }
-                if(Number(_this.user.dianCoin)>=Number(consumePrice)){
-                    subHtml="";
+                console.log( _this.rechargeMoney+'***********')
+                if(Number(_this.user.dianCoin)>=Number(_this.rechargeMoney)){
                     isEnough = true;
                 }else{
                     subHtml="去充值"
                 }
-                let msg = '使用：<span class="colorStyle">'+consumePrice+'</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span>点豆'
+                let msg = '使用：<span class="colorStyle">'+_this.rechargeMoney+'</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span>点豆'
                 xqzs.weui.dialog(payTitle,msg,subHtml,function(){},function () {
                     if(isEnough){
                         console.log('支付');
                         _this.submit()
                     }else{
-                        if(_this.isSelectAnswer){
-                            _this.$router.push("/asker/my/recharge?back_url=/asker/ask/?expertId="+_this.expertId+"&&money="+consumePrice);
-                        }else{
-                            _this.$router.push("/asker/my/recharge?back_url=/asker/ask&&money="+consumePrice);
-                        }
-
+                        $('.recharge_box').show()
                     }
 
                 })
@@ -269,8 +265,9 @@
                 _this.$http.get(web.API_PATH + 'come/expert/show/to/user/'+id+'/_userId_' ).then(function (data) {//es5写法
                     if (data.body.status == 1) {
                         _this.expertDetail=data.body.data;
+                        _this.rechargeMoney = _this.expertDetail.price;
+                        console.log( _this.rechargeMoney)
                         _this.types= data.body.data.domain;
-
                     }
                 }, function (error) {
                 });
@@ -283,6 +280,8 @@
                     _this.showLoad = false
                     if (data.body.status == 1) {
                         _this.types= data.body.data;
+                        _this.rechargeMoney = 10.00;
+                        console.log( _this.rechargeMoney)
 
                     }
                 }, function (error) {
