@@ -328,10 +328,16 @@
                                 data:data,
                                 type: 'PUT',
                                 success: function( bt ) {
-                                    _this.setPayed(index);
-                                    xqzs.weui.tip("支付成功", function () {
+                                    if(bt.data.status==1){
+                                        _this.setPayed(index);
+                                        xqzs.weui.tip("支付成功", function () {
 
-                                    });
+                                        });
+                                    }else{
+                                        xqzs.weui.tip("支付失败", function () {
+
+                                        });
+                                    }
                                     _this.showLoad=false;
                                 }
                             });
