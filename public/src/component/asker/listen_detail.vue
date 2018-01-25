@@ -217,7 +217,7 @@
                             });
                             break;
                         case recharge:
-                            $('.recharge_box').show();
+                            _this.rechargeFlag = true
                             break;
                     }
 
