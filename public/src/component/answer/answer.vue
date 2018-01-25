@@ -200,6 +200,7 @@
                     
                 },function () {
                     //重新开始录制
+                    console.log('重新开始录制')
                     _this.answerTime="00";
                     _this.voiceLength=0;
 //                this.preAnswer=false;
@@ -266,12 +267,12 @@
                 xqzs.wx.voice.stopRecord();
                 //暂停
                 if(this.localId)xqzs.wx.voice.pausePlay( this.localId);
+                console.log('暂停');
                 this.clearTimeOut();
                 xqzs.wx.voice.startRecord();
                 console.log("开始录制")
                 this.answering=true;
                 this.timeout()
-                console.log("startRecordtimeout")
                 xqzs.wx.voice.onRecordEnd(function (localId) {
                     console.log("onRecordEnd" +localId);
                     if(localId){

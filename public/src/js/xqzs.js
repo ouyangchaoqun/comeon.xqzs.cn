@@ -1591,6 +1591,7 @@ document.addEventListener("visibilitychange", function () {
         },
         initStart:function(){
             // chongzhi
+            console.log('初始化')
             this.currentnum = 0;
             this.maxnum = 360;
             clearInterval (this.timer)
