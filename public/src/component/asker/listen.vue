@@ -98,7 +98,7 @@
         </div>
 
         <v-asker-bottom tabOnIndex="0"></v-asker-bottom>
-        <v-recharge :rechargeMoney="rechargeMoney"></v-recharge>
+        <v-recharge :rechargeMoney="rechargeMoney" v-show="rechargeFlag" v-on:rechargeFlag="getFlagVal"></v-recharge>
 
 
     </div>
@@ -141,6 +141,7 @@
                 couponNum:0,
                 couponList:[],
                 rechargeMoney:5,
+                rechargeFlag:false
             }
         },
         props:{
@@ -164,6 +165,9 @@
             xqzs.wx.setConfig(this);
         },
         methods:{
+            getFlagVal:function (val) {
+                this.rechargeFlag  = val;
+            },
             getUserInfo:function(){
                 let _this=this;
                 xqzs.user.getUserInfo(function (user) {
@@ -331,7 +335,7 @@
                             });
                             break;
                         case recharge:
-                            $('.recharge_box').show()
+                            _this.rechargeFlag = true;
                             break;
                     }
 

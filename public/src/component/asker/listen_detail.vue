@@ -81,7 +81,7 @@
             </li>
 
         </ul>
-        <v-recharge :rechargeMoney="rechargeMoney"></v-recharge>
+        <v-recharge :rechargeMoney="rechargeMoney" v-show="rechargeFlag" v-on:rechargeFlag="getFlagVal"></v-recharge>
     </div>
 
 </template>
@@ -100,7 +100,8 @@
                 list:[],
                 couponList:[],
                 couponNum:0,
-                num:0
+                num:0,
+                rechargeMoney:0,
             }
         },
         mounted: function () {
@@ -120,6 +121,9 @@
             'v-recharge':Recharge,
         },
         methods:{
+            getFlagVal:function (val) {
+                this.rechargeFlag  = val;
+            },
             like:function (index) {
                 let  item = this.detail.answerList[index];
                 if(item.isCared){

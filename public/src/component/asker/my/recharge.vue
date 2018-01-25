@@ -1,5 +1,5 @@
 <template>
-    <div class="recharge_box" style="display: none;">
+    <div class="recharge_box" >
         <div class="title">
             请选择充值金额
         </div>
@@ -41,12 +41,13 @@
                 income: 0,
                 isUseIncome: true,
                 backUrl:'',
-                user:''
+                user:'',
             }
 
         },
         props:[
-            'rechargeMoney'
+            'rechargeMoney',
+            'rechargeFlag'
         ],
         mounted: function () {
             let _this=this;
@@ -58,6 +59,9 @@
 
         },
         methods: {
+            sendTo:function () {
+
+            },
             getUserInfo:function(){
                 let _this=this;
                 xqzs.user.getUserInfo(function (user) {
@@ -65,7 +69,6 @@
                 })
             },
             select: function (index) {
-                console.log('************455535')
                 this.checkIndex = index;
                 let item = this.items[index];
                 for (var i = 0; i < this.items.length; i++) {
@@ -81,8 +84,6 @@
                         this.pay = 0;
                     } else {
                         console.log('isUseIncomeisUseIncomeisUseIncomeisUseIncome')
-                        console.log(item.money)
-                        console.log(this.user.balance)
                         this.pay = (Number(item.money) - Number(this.user.balance)).toFixed(2)
                     }
                 }
@@ -94,11 +95,8 @@
             initSelect:function () {
                 let _this=this;
                 var needMoney=Number(_this.rechargeMoney);
-                console.log(needMoney)
-                console.log(_this.items)
                 var havedianCoin=_this.user.dianCoin;//有的豆
                 var x=needMoney-havedianCoin;//差值
-
                 for(var i=0;i<_this.items.length;i++){
                     if(Number(_this.items[i].dianCoin)>=x){
                         _this.select(i)
@@ -148,7 +146,7 @@
                                 let result = bt.data.data;
                                 if (result.resultCode == 1) {
                                     xqzs.weui.tip("支付成功", function () {
-                                        $('.recharge_box').hide()
+                                        _this.$emit('rechargeFlag',false)
                                     });
 
                                 }else{
@@ -156,7 +154,7 @@
 
                                     }, function () {//success
                                         xqzs.weui.tip("支付成功", function () {
-                                          $('.recharge_box').hide()
+                                            _this.$emit('rechargeFlag',false)
                                         });
                                     }, function () {//error
 

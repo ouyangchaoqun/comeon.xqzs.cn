@@ -2,7 +2,7 @@
     <div style="height: 100%" class="asker_ask_box">
         <div v-title>提问</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
-        <v-recharge :rechargeMoney="rechargeMoney"></v-recharge>
+        <v-recharge :rechargeMoney="rechargeMoney" v-show="rechargeFlag" v-on:rechargeFlag="getFlagVal"></v-recharge>
         <div class="change_height">
             <div class="ask_type_new" v-if="isSelectAnswer">
                 <div class="tab">问题类型 <span>点击选择</span></div>
@@ -140,6 +140,7 @@
                 expertextContent:'',
                 fastAsktextContent:'',
                 rechargeMoney:0,
+                rechargeFlag:false
             }
         },
         props:{
@@ -186,6 +187,11 @@
             xqzs.wx.setConfig(this);
         },
         methods: {
+            getFlagVal:function (val) {
+                console.log(val)
+                this.rechargeFlag  = val;
+                console.log(this.rechargeFlag)
+            },
             valChange:function () {
                 let content= $(".content").val();
                 if(this.isSelectAnswer){
@@ -228,9 +234,9 @@
                     //快问
                     payTitle = '确认发布快问';
                 }
-                console.log( _this.rechargeMoney+'***********')
                 if(Number(_this.user.dianCoin)>=Number(_this.rechargeMoney)){
                     isEnough = true;
+                    subHtml=""
                 }else{
                     subHtml="去充值"
                 }
@@ -240,7 +246,8 @@
                         console.log('支付');
                         _this.submit()
                     }else{
-                        $('.recharge_box').show()
+                        console.log("**************充值")
+                        _this.rechargeFlag = true
                     }
 
                 })
