@@ -327,6 +327,6 @@
     }
     .wait_style{color:rgba(36,37,61,1)}
     .nop_style{color:rgba(36,37,61,0.5)}
-    .over_style{color:rgba(36,37,61,0.5)}
+    .over_style{color:#09bb07}
     .headerStyle{margin-bottom: 0}
 </style>
