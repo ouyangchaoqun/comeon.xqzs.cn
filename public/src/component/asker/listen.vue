@@ -142,7 +142,6 @@
                 couponList:[],
                 rechargeMoney:0,
                 rechargeFlag:false,
-                addMoneyVal:0,
             }
         },
         props:{
@@ -168,7 +167,7 @@
         methods:{
             getFlagVal:function (val) {
                 this.rechargeFlag  = val.rechargeFlag;
-                this.addMoneyVal = val.addMoneyVal;
+                this.getUserInfo()
             },
             getUserInfo:function(){
                 console.log('获取user')
@@ -289,7 +288,7 @@
                 }else{
                     payTitle = '确认偷听此问题';
                     subHtml='';
-                    msg = '使用：<span class="colorStyle">1</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+(Number(_this.user.dianCoin)+Number(_this.addMoneyVal))+'</span>点豆';
+                    msg = '使用：<span class="colorStyle">1</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span>点豆';
                     if(Number(_this.user.dianCoin)>=1){
                         useCoin = true;
                     }else{
@@ -315,8 +314,8 @@
                                 dataType:'JSON',
                                 success: function( bt ) {
                                     if(bt.status==1){
-                                        _this.setPayed(index);
                                         xqzs.weui.tip("支付成功", function () {
+                                            _this.setPayed(index);
                                         });
                                     }else{
                                         xqzs.weui.tip("支付失败", function () {
@@ -338,8 +337,8 @@
                                 dataType:'JSON',
                                 success: function( bt ) {
                                     if(bt.status==1){
-                                        _this.setPayed(index);
                                         xqzs.weui.tip("支付成功", function () {
+                                            _this.setPayed(index);
                                         });
                                     }else{
                                         xqzs.weui.tip("支付失败", function () {

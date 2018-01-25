@@ -101,13 +101,14 @@
                 couponList:[],
                 couponNum:0,
                 rechargeMoney:0,
-                addMoneyVal:0,
+                user:{}
             }
         },
         mounted: function () {
             this.questionId=this.$route.query.questionId;
             this.getDetail();
-            this.getCoupon()
+            this.getCoupon();
+            this.getUserInfo();
             xqzs.wx.setConfig(this);
 
         },
@@ -121,9 +122,15 @@
             'v-recharge':Recharge,
         },
         methods:{
+            getUserInfo:function(){
+                let _this=this;
+                xqzs.user.getUserInfo(function (user) {
+                    _this.user =user;
+                })
+            },
             getFlagVal:function (val) {
                 this.rechargeFlag  = val.rechargeFlag;
-                this.addMoneyVal = val.addMoneyVal;
+                this.getUserInfo()
             },
             like:function (index) {
                 let  item = this.detail.answerList[index];
@@ -167,7 +174,7 @@
                 }else{
                     payTitle = '确认偷听此问题';
                     subHtml='';
-                    msg = '使用：<span class="colorStyle">1</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+(Number(_this.user.dianCoin)+Number(_this.addMoneyVal))+'</span>点豆';
+                    msg = '使用：<span class="colorStyle">1</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span>点豆';
                     if(_this.user.dianCoin>1){
                         useCoin = true;
                         console.log(_this.user.dianCoin)
@@ -192,11 +199,18 @@
                                 url: web.API_PATH + "come/listen/put/coupon/_userId_",
                                 data:data,
                                 type: 'PUT',
+                                dataType:'JSON',
                                 success: function( bt ) {
-                                    xqzs.weui.tip("支付成功", function () {
+                                    if(bt.status==1){
+                                        xqzs.weui.tip("支付成功", function () {
+                                            _this.setPayed(index);
+                                        });
+                                    }else{
+                                        xqzs.weui.tip("支付失败", function () {
 
-                                    });
-                                    _this.setPayed(index);
+                                        });
+                                    }
+                                    _this.getCoupon();
                                     _this.showLoad=false;
                                 }
                             });
@@ -208,11 +222,18 @@
                                 url: web.API_PATH + "come/listen/put/coin/_userId_/"+questionId+'/'+answerId+'/1',
                                 data:data,
                                 type: 'PUT',
+                                dataType:'JSON',
                                 success: function( bt ) {
-                                    xqzs.weui.tip("支付成功", function () {
+                                    if(bt.status==1){
+                                        xqzs.weui.tip("支付成功", function () {
+                                            _this.setPayed(index);
+                                        });
+                                    }else{
+                                        xqzs.weui.tip("支付失败", function () {
 
-                                    });
-                                    _this.setPayed(index);
+                                        });
+                                    }
+                                    _this.getUserInfo();
                                     _this.showLoad=false;
                                 }
                             });

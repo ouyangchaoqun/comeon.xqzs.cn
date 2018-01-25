@@ -230,7 +230,8 @@
                 timeOut:null,
                 rechargeMoney:0,
                 rechargeFlag :false,
-                addMoneyVal:0
+                couponNum:0,
+                couponList:[],
             }
         },
         props:{
@@ -248,6 +249,7 @@
             this.id = this.$route.query.id;
             this.getDetail();
             this.getUser();
+            this.getCoupon();
             this.getComment();
             this.getAnswer();
             xqzs.wx.setConfig(this);
@@ -264,10 +266,16 @@
         },
         methods:{
             getFlagVal:function (val) {
-                console.log(val)
                 this.rechargeFlag  = val.rechargeFlag;
-                this.addMoneyVal = val.addMoneyVal;
-                console.log(this.rechargeFlag)
+                this.getUser();
+            },
+            //获取是否有偷听卡
+            getCoupon:function () {
+                let _this = this;
+                _this.$http.get(web.API_PATH + 'come/user/get/coupon/_userId_/1/10/0').then(function (data) {
+                    _this.couponList = data.data.data;
+                    _this.couponNum = data.data.data.length;
+                })
             },
            payDialog:function (questionId ,answerId ,index) {
                 let _this = this;
@@ -284,7 +292,7 @@
                 }else{
                     payTitle = '确认偷听此问题';
                     subHtml='';
-                    msg = '使用：<span class="colorStyle">1</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+(Number(_this.user.dianCoin)+Number(_this.addMoneyVal))+'</span>点豆';
+                    msg = '使用：<span class="colorStyle">1</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span>点豆';
                     if(Number(_this.user.dianCoin)>=1){
                         useCoin = true;
                     }else{
@@ -307,11 +315,18 @@
                                 url: web.API_PATH + "come/listen/put/coupon/_userId_",
                                 data:data,
                                 type: 'PUT',
+                                dataType:'JSON',
                                 success: function( bt ) {
-                                    _this.setPayed(index);
-                                    xqzs.weui.tip("支付成功", function () {
+                                    if(bt.status==1){
+                                        xqzs.weui.tip("支付成功", function () {
+                                            _this.setPayed(index);
+                                        });
+                                    }else{
+                                        xqzs.weui.tip("支付失败", function () {
 
-                                    });
+                                        });
+                                    }
+                                    _this.getCoupon();
                                     _this.showLoad=false;
                                 }
                             });
@@ -323,11 +338,18 @@
                                 url: web.API_PATH + "come/listen/put/coin/_userId_/"+questionId+'/'+answerId+'/1',
                                 data:data,
                                 type: 'PUT',
+                                dataType:'JSON',
                                 success: function( bt ) {
-                                    _this.setPayed(index);
-                                    xqzs.weui.tip("支付成功", function () {
+                                    if(bt.status==1){
+                                        xqzs.weui.tip("支付成功", function () {
+                                            _this.setPayed(index);
+                                        });
+                                    }else{
+                                        xqzs.weui.tip("支付失败", function () {
 
-                                    });
+                                        });
+                                    }
+                                    _this.getUser();
                                     _this.showLoad=false;
                                 }
                             });
