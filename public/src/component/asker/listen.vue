@@ -140,7 +140,7 @@
                 list:[],
                 couponNum:0,
                 couponList:[],
-                rechargeMoney:5,
+                rechargeMoney:0,
                 rechargeFlag:false
             }
         },
@@ -335,7 +335,7 @@
                             });
                             break;
                         case recharge:
-                            _this.rechargeFlag = true;
+                            $('.recharge_box').show()
                             break;
                     }
 

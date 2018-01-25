@@ -41,7 +41,7 @@
                 income: 0,
                 isUseIncome: true,
                 backUrl:'',
-                user:'',
+                user:''
             }
 
         },
@@ -59,9 +59,6 @@
 
         },
         methods: {
-            sendTo:function () {
-
-            },
             getUserInfo:function(){
                 let _this=this;
                 xqzs.user.getUserInfo(function (user) {
@@ -83,7 +80,6 @@
 
                         this.pay = 0;
                     } else {
-                        console.log('isUseIncomeisUseIncomeisUseIncomeisUseIncome')
                         this.pay = (Number(item.money) - Number(this.user.balance)).toFixed(2)
                     }
                 }
@@ -95,8 +91,11 @@
             initSelect:function () {
                 let _this=this;
                 var needMoney=Number(_this.rechargeMoney);
+                console.log(needMoney)
+                console.log(_this.items)
                 var havedianCoin=_this.user.dianCoin;//有的豆
                 var x=needMoney-havedianCoin;//差值
+
                 for(var i=0;i<_this.items.length;i++){
                     if(Number(_this.items[i].dianCoin)>=x){
                         _this.select(i)
@@ -146,7 +145,12 @@
                                 let result = bt.data.data;
                                 if (result.resultCode == 1) {
                                     xqzs.weui.tip("支付成功", function () {
-                                        _this.$emit('rechargeFlag',false)
+                                        _this.$emit(
+                                                'childMessage',{
+                                                    rechargeFlag:false,
+                                                    addMoneyVal: _this.items[_this.checkIndex].dianCoin,
+                                                }
+                                        )
                                     });
 
                                 }else{
@@ -154,7 +158,12 @@
 
                                     }, function () {//success
                                         xqzs.weui.tip("支付成功", function () {
-                                            _this.$emit('rechargeFlag',false)
+                                            _this.$emit(
+                                                    'childMessage',{
+                                                rechargeFlag:false,
+                                                 addMoneyVal: _this.items[_this.checkIndex].dianCoin,
+                                                }
+                                            )
                                         });
                                     }, function () {//error
 

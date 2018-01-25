@@ -100,8 +100,7 @@
                 list:[],
                 couponList:[],
                 couponNum:0,
-                num:0,
-                rechargeMoney:0,
+                rechargeMoney:0
             }
         },
         mounted: function () {
