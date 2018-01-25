@@ -328,14 +328,11 @@
                                 url: web.API_PATH + "come/listen/put/coin/_userId_/"+questionId+'/'+answerId+'/1',
                                 data:data,
                                 type: 'PUT',
+                                dataType:'JSON',
                                 success: function( bt ) {
-                                    console.log(bt)
-                                    console.log(bt.status)
-                                    console.log(bt.status==1)
                                     if(bt.status==1){
                                         _this.setPayed(index);
                                         xqzs.weui.tip("支付成功", function () {
-
                                         });
                                     }else{
                                         xqzs.weui.tip("支付失败", function () {
