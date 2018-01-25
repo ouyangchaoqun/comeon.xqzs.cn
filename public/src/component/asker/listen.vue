@@ -328,7 +328,8 @@
                                 data:data,
                                 type: 'PUT',
                                 success: function( bt ) {
-                                    if(bt.data.status==1){
+                                    console.log(bt)
+                                    if(bt.status==1){
                                         _this.setPayed(index);
                                         xqzs.weui.tip("支付成功", function () {
 
