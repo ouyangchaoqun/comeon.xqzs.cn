@@ -162,6 +162,7 @@
                                                     'childMessage',{
                                                 rechargeFlag:false,
                                                  addMoneyVal: _this.items[_this.checkIndex].dianCoin,
+
                                                 }
                                             )
                                         });

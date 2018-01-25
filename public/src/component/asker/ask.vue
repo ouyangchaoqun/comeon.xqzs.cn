@@ -186,11 +186,9 @@
         },
         methods: {
             getFlagVal:function (val) {
-                console.log(val)
                 this.rechargeFlag  = val.rechargeFlag;
-                this.addMoneyVal = val.addMoneyVal;
-                console.log(this.rechargeFlag)
-
+                //this.addMoneyVal = val.addMoneyVal;
+                this.getUserInfo();
             },
             valChange:function () {
                 let content= $(".content").val();

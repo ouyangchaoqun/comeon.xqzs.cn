@@ -14,7 +14,6 @@
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :bottomHeight="50"
                   :isShowMoreText="isShowMoreText">
-            <div v-title>待答</div>
             <div class="list  ">
                 <div class="item" v-for="item in list" @click="answer(item.id)">
                     <div class="img">
