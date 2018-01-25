@@ -131,6 +131,7 @@
         },
         mounted: function () {
             let _this=this;
+            myVideo.initStart();
             this.questionId = this.$route.query.askId
             this.$http.get(web.API_PATH + 'come/expert/question/detail/'+this.questionId).then(function (data) {//es5写法
                 if (data.body.status == 1) {
@@ -211,6 +212,8 @@
                     _this.clearTimeOut();
                     myVideo.config({obj:$('.circle')}).init(_this.start,_this.stop,_this.play,_this.play);
                     myVideo.initStart();
+                    $('.record_voice_box .tip').html('点击录音(至少录制45秒)')
+
                    // myVideo.obj.click();
                 })
 
@@ -267,7 +270,6 @@
                 xqzs.wx.voice.stopRecord();
                 //暂停
                 if(this.localId)xqzs.wx.voice.pausePlay( this.localId);
-                console.log('暂停');
                 this.clearTimeOut();
                 xqzs.wx.voice.startRecord();
                 console.log("开始录制")
