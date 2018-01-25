@@ -13,7 +13,7 @@
         <div class="cash">现金余额可使用<span style="color: #FB640A">{{user.balance||0.00}}</span>元
             <div class="cash_right" :class={no:!isUseIncome} @click="useIncome()"></div>
         </div>
-        <div class="btn" @click="doPay()">立即支付（{{pay}}元）</div>
+        <div class="rechar_btn" @click="doPay()">立即支付（{{pay}}元）</div>
         <div class="question" @click="showTips">常见问题</div>
         <div class="mask" v-if="isTips"></div>
         <div class="tips" v-if="isTips">
@@ -263,7 +263,7 @@
         padding-left: 0.88rem;
     }
 
-    .recharge_box .btn {
+    .recharge_box .rechar_btn {
         width: 15.294rem;
         height: 2.588rem;
         background: #FE7A03;
