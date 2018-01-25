@@ -142,14 +142,9 @@
                 couponList:[],
                 rechargeMoney:0,
                 rechargeFlag:false,
+                user:{}
             }
         },
-        props:{
-            user:{
-                type:Object
-            }
-        },
-
         components: {
             'v-showLoad': showLoad,
             'v-scroll': scroll,
