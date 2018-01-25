@@ -1587,6 +1587,7 @@ document.addEventListener("visibilitychange", function () {
             this.obj = config.obj;
             this.bth = $('.record_voice_box .tip');
             this.maski= $('.record_voice_box .mask i');
+            this.maski.attr("class","start")
             return this;
         },
         initStart:function(){
@@ -1600,6 +1601,7 @@ document.addEventListener("visibilitychange", function () {
             $('.left').css('transform', "rotate(0)");
             $(".pie_left_play ,.pie_right_play").hide();
             $(".pie_left ,.pie_right").css({opacity:1});
+
         },
         clearTimer:function(){
             if(this.timer){
