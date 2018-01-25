@@ -190,7 +190,6 @@
 
             clearTimeOut:function () {
                 let _this=this;
-                console.log(_this.timeOut)
                 if(_this.timeOut!==null){
                     clearTimeout(_this.timeOut);
                 }
@@ -211,7 +210,7 @@
                     _this.clearTimeOut();
                     myVideo.config({obj:$('.circle')}).init(_this.start,_this.stop,_this.play,_this.play);
                     myVideo.initStart();
-                    myVideo.obj.click();
+                   // myVideo.obj.click();
                 })
 
             },
@@ -265,10 +264,11 @@
 //                开始录制
                 let _this=this;
                 xqzs.wx.voice.stopRecord();
-                console.log("stopRecord")
+                //暂停
                 if(this.localId)xqzs.wx.voice.pausePlay( this.localId);
                 this.clearTimeOut();
                 xqzs.wx.voice.startRecord();
+                console.log("开始录制")
                 this.answering=true;
                 this.timeout()
                 console.log("startRecordtimeout")
