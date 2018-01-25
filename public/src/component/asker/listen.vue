@@ -171,6 +171,7 @@
                 this.addMoneyVal = val.addMoneyVal;
             },
             getUserInfo:function(){
+                console.log('获取user')
                 let _this=this;
                 xqzs.user.getUserInfo(function (user) {
                     _this.user =user;
@@ -311,12 +312,18 @@
                                 url: web.API_PATH + "come/listen/put/coupon/_userId_",
                                 data:data,
                                 type: 'PUT',
+                                dataType:'JSON',
                                 success: function( bt ) {
-                                    console.log(bt)
-                                    _this.setPayed(index);
-                                    xqzs.weui.tip("支付成功", function () {
+                                    if(bt.status==1){
+                                        _this.setPayed(index);
+                                        xqzs.weui.tip("支付成功", function () {
+                                        });
+                                    }else{
+                                        xqzs.weui.tip("支付失败", function () {
 
-                                    });
+                                        });
+                                    }
+                                    _this.getCoupon();
                                     _this.showLoad=false;
                                 }
                             });
@@ -339,6 +346,7 @@
 
                                         });
                                     }
+                                    _this.getUserInfo();
                                     _this.showLoad=false;
                                 }
                             });
