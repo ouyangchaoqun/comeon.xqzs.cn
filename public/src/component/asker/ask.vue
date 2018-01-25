@@ -190,6 +190,7 @@
                 this.rechargeFlag  = val.rechargeFlag;
                 this.addMoneyVal = val.addMoneyVal;
                 console.log(this.rechargeFlag)
+
             },
             valChange:function () {
                 let content= $(".content").val();

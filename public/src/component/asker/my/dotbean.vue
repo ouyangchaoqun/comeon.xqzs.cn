@@ -2,6 +2,7 @@
     <div class="dotcoin_box">
         <div v-title>我的点币</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
+        <v-recharge :rechargeMoney="rechargeMoney" v-show="rechargeFlag" v-on:childMessage="getFlagVal"></v-recharge>
         <div class="banner banner_bg">
             <div class="title">我的点豆</div>
             <div class="value">{{user.dianCoin}}<span style="font-size: 1.41rem">点豆</span></div>
@@ -16,7 +17,6 @@
                 <div class="rightIcon"></div>
             </div>
         </router-link>
-        <v-recharge :rechargeMoney="rechargeMoney"></v-recharge>
     </div>
 
 </template>
@@ -30,6 +30,8 @@
                 user:{},
                 showLoad:false,
                 rechargeMoney:0,
+                rechargeFlag :false,
+                addMoneyVal:0
             }
         },
         mounted: function () {
@@ -42,7 +44,13 @@
         methods: {
             recharge:function () {
                 console.log(this.rechargeMoney)
-                $('.recharge_box').show()
+                this.rechargeFlag = true
+            },
+            getFlagVal:function (val) {
+                console.log(val)
+                this.addMoneyVal = val.addMoneyVal;
+                this.user.dianCoin=this.user.dianCoin+this.addMoneyVal;
+                this.rechargeFlag  = val.rechargeFlag;
             },
             getUserInfo:function(){
                 let _this=this;
