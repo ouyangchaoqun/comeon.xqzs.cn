@@ -1600,7 +1600,6 @@ document.addEventListener("visibilitychange", function () {
             $('.left').css('transform', "rotate(0)");
             $(".pie_left_play ,.pie_right_play").hide();
             $(".pie_left ,.pie_right").css({opacity:1});
-            this.maski.attr("class","pause")
         },
         clearTimer:function(){
             if(this.timer){
