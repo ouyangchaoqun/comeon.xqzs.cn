@@ -2,6 +2,7 @@
     <div style="height: 100%" class="answer_detail_box">
         <div v-title>专家详情</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
+        <v-recharge :rechargeMoney="rechargeMoney" v-show="rechargeFlag" v-on:childMessage="getFlagVal"></v-recharge>
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :bottomHeight="50"
                   :isShowMoreText="isShowMoreText" >
@@ -192,6 +193,7 @@
     import showLoad from '../include/showLoad.vue';
     import scroll from '../include/scroll.vue';
     import Bus from '../../js/bus.js';
+    import  Recharge from '../asker/my/recharge.vue';
 
     export default {
         data() {
@@ -226,7 +228,9 @@
                 scrollHeightBottom:0,
                 showPic:false,
                 timeOut:null,
-
+                rechargeMoney:0,
+                rechargeFlag :false,
+                addMoneyVal:0
             }
         },
         props:{
@@ -236,7 +240,8 @@
         },
         components: {
             'v-showLoad': showLoad,
-            'v-scroll': scroll
+            'v-scroll': scroll,
+            'v-recharge':Recharge,
         },
         mounted: function () {
 
@@ -258,7 +263,12 @@
             })
         },
         methods:{
-
+            getFlagVal:function (val) {
+                console.log(val)
+                this.rechargeFlag  = val.rechargeFlag;
+                this.addMoneyVal = val.addMoneyVal;
+                console.log(this.rechargeFlag)
+            },
            payDialog:function (questionId ,answerId ,index) {
                 let _this = this;
                 let useCoupon = false;
@@ -274,7 +284,7 @@
                 }else{
                     payTitle = '确认偷听此问题';
                     subHtml='';
-                    msg = '使用：<span class="colorStyle">1</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span>点豆';
+                    msg = '使用：<span class="colorStyle">1</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+(Number(_this.user.dianCoin)+Number(_this.addMoneyVal))+'</span>点豆';
                     if(Number(_this.user.dianCoin)>=1){
                         useCoin = true;
                     }else{
@@ -323,7 +333,8 @@
                             });
                             break;
                         case recharge:
-                            _this.$router.push("/asker/my/recharge?back_url="+ encodeURIComponent("/answer/detail?id="+ _this.$route.query.id));
+                           //充值弹窗
+                            _this.rechargeFlag = true;
                             break;
                     }
 

@@ -98,7 +98,7 @@
         </div>
 
         <v-asker-bottom tabOnIndex="0"></v-asker-bottom>
-        <v-recharge :rechargeMoney="rechargeMoney" v-show="rechargeFlag" v-on:rechargeFlag="getFlagVal"></v-recharge>
+        <v-recharge :rechargeMoney="rechargeMoney" v-show="rechargeFlag" v-on:childMessage="getFlagVal"></v-recharge>
 
 
     </div>
@@ -141,7 +141,8 @@
                 couponNum:0,
                 couponList:[],
                 rechargeMoney:0,
-                rechargeFlag:false
+                rechargeFlag:false,
+                addMoneyVal:0,
             }
         },
         props:{
@@ -166,7 +167,8 @@
         },
         methods:{
             getFlagVal:function (val) {
-                this.rechargeFlag  = val;
+                this.rechargeFlag  = val.rechargeFlag;
+                this.addMoneyVal = val.addMoneyVal;
             },
             getUserInfo:function(){
                 let _this=this;
@@ -286,7 +288,7 @@
                 }else{
                     payTitle = '确认偷听此问题';
                     subHtml='';
-                    msg = '使用：<span class="colorStyle">1</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span>点豆';
+                    msg = '使用：<span class="colorStyle">1</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+(Number(_this.user.dianCoin)+Number(_this.addMoneyVal))+'</span>点豆';
                     if(Number(_this.user.dianCoin)>=1){
                         useCoin = true;
                     }else{
@@ -335,7 +337,7 @@
                             });
                             break;
                         case recharge:
-                            $('.recharge_box').show()
+                            _this.rechargeFlag = true
                             break;
                     }
 
