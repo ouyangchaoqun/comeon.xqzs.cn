@@ -147,8 +147,7 @@
                                     xqzs.weui.tip("支付成功", function () {
                                         _this.$emit(
                                                 'childMessage',{
-                                                    rechargeFlag:false,
-                                                    addMoneyVal: _this.items[_this.checkIndex].dianCoin,
+                                                    rechargeFlag:false
                                                 }
                                         )
                                     });
@@ -159,10 +158,8 @@
                                     }, function () {//success
                                         xqzs.weui.tip("支付成功", function () {
                                             _this.$emit(
-                                                    'childMessage',{
-                                                rechargeFlag:false,
-                                                 addMoneyVal: _this.items[_this.checkIndex].dianCoin,
-
+                                                'childMessage',{
+                                                    rechargeFlag:false,
                                                 }
                                             )
                                         });

@@ -20,9 +20,9 @@
                 <router-link to="../my/dotbean" class="income dotCoin"><i></i>我的点豆
                     <div class="price">{{user.dianCoin}}<span style="font-size: 0.70rem;color: black ">点</span></div>
                 </router-link>
-                <router-link to="../my/coupon" class="income yhcard "><i></i>优惠卡券
-                    <div class="price">{{couponNum}}<span style="font-size: 0.70rem;color: black ">张</span></div>
-                </router-link>
+                <!--<router-link to="../my/coupon" class="income yhcard "><i></i>优惠卡券-->
+                    <!--<div class="price">{{couponNum}}<span style="font-size: 0.70rem;color: black ">张</span></div>-->
+                <!--</router-link>-->
                 </div>
                 <router-link to="../my/listen/list" class="listen"><i></i>我的偷听</router-link>
                 <router-link to="../my/answer/list" class="answer"><i></i>我的收听</router-link>
