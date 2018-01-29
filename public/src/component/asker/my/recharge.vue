@@ -14,7 +14,9 @@
             <div class="cash_right" :class={no:!isUseIncome} @click="useIncome()"></div>
         </div>
         <div class="rechar_btn" @click="doPay()">立即支付（{{pay}}元）</div>
-        <div class="question" @click="showTips">充值须知</div>
+        <div class="question" >
+            <span @click="showTips">充值须知</span>
+        </div>
         <div class="mask" v-if="isTips"></div>
         <div class="tips" v-if="isTips">
             <div class="close" @click="closeTips"></div>
@@ -280,7 +282,10 @@
         color: #9B9B9B;
         text-align: center
     }
-
+    .recharge_box .question span{
+        border-bottom: 1px solid rgba(228, 227, 227, 0.5);
+        padding: 0.294rem;
+    }
     .mask {
         position: absolute;
         height: 100%;
@@ -291,14 +296,14 @@
     }
 
     .recharge_box .tips {
-        width: 16.47rem;
-        height: 21.176rem;
+        width: 16rem;
+        height: 19rem;
         position: absolute;
         z-index: 10;
         background: #fff;
-        top: 20%;
+        top: 24%;
         left: 50%;
-        margin-left: -8.235rem;
+        margin-left: -8rem;
         border-radius: 0.588rem
     }
 
@@ -333,11 +338,11 @@
         padding: 0 1.647rem;
         top: 5.176rem;
         font-size: 0.88rem;
-        line-height: 1.235rem;
     }
 
     .recharge_box .tips .content p {
-        margin-top: 0.88rem;
+        line-height: 1.4rem;
+        margin-bottom: 1rem;
     }
 
     .recharge_box .cash_right {
