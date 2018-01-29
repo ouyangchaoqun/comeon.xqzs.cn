@@ -14,16 +14,16 @@
             <div class="cash_right" :class={no:!isUseIncome} @click="useIncome()"></div>
         </div>
         <div class="rechar_btn" @click="doPay()">立即支付（{{pay}}元）</div>
-        <div class="question" @click="showTips">常见问题</div>
+        <div class="question" @click="showTips">充值须知</div>
         <div class="mask" v-if="isTips"></div>
         <div class="tips" v-if="isTips">
             <div class="close" @click="closeTips"></div>
-            <div class="tip_title">常见问题</div>
+            <div class="tip_title">充值须知</div>
             <div class="content">
-                <p>1.免费偷听问答不扣点豆，已支付问题可重复免费听；</p>
-                <p>2.点豆仅限平台内偷听、向专家提问，充值后不可提现；</p>
-                <p>3.请在有效期内使用偷听卡；</p>
-                <p>4.如有疑问，请在微信对话窗口反馈。</p>
+                <p>1、免费偷听问答不扣点豆，已支付问题可重复免费听；</p>
+                <p>2、点豆仅限平台内偷听、向专家提问，充值后不可提现；</p>
+                <!--<p>3.请在有效期内使用偷听卡；</p>-->
+                <p>3、如有疑问，请在微信对话窗口反馈。</p>
             </div>
             <div class="bottom"></div>
 
