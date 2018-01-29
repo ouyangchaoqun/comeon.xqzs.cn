@@ -1,6 +1,6 @@
 <template>
     <div class="dotcoin_box">
-        <div v-title>我的点币</div>
+        <div v-title>我的点豆</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <v-recharge :rechargeMoney="rechargeMoney" v-show="rechargeFlag" v-on:childMessage="getFlagVal"></v-recharge>
         <div class="banner banner_bg">
