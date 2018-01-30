@@ -26,13 +26,12 @@
                                             <li v-for="(item,index) in navList.list">
                                                 <a @click="goDetail(item.questionId)">
                                                     <div class="index_li_header">
-                                                        <img :src="item.expertFaceUrl" alt="">
-                                                        <div>{{item.expertName}} <span>回答了</span></div>
+                                                        <div><template v-if="item.askerNickName!=''">{{item.askerNickName}}</template><template v-if="item.askerNickName==''">匿名用户</template> <span>咨询了</span></div>
                                                         <div class="header_className">{{item.title}}</div>
                                                     </div>
                                                     <div class="index_li_content">{{item.content}}</div>
                                                     <div class="index_li_bottom">
-
+                                                        <img :src="item.expertFaceUrl" alt="">
                                                         <!--免费听-->
                                                         <span class="problem_answer_yy" v-if="item.answerType==1">
                                             <div class="audio" :class="{playing:item.playing,paused:item.paused}">
@@ -637,8 +636,9 @@
         margin-bottom: 0.88235rem;
     }
     .index_li_bottom{
-        position: relative;
+        position: relative; padding-left: 2.8rem;
     }
+    .index_li_bottom img{  position: absolute; left:0; width: 2.4rem;height: 2.4rem; border-radius: 50%}
     .index_li_voice{
         position: relative;
         font-size: 0.88235rem;

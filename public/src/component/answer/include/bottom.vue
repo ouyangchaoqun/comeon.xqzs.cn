@@ -1,5 +1,8 @@
 <template >
     <div  class="answer_bottom_box">
+        <router-link to='/' >
+            <span class="icon race"></span>咨询入口
+        </router-link>
         <router-link to='/answer/race/list' replace :class="{on:tabOnIndex==0}">
             <span class="icon race"></span>抢答
         </router-link>

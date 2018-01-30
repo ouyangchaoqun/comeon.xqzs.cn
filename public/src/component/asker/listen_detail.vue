@@ -9,7 +9,7 @@
                 <img v-if="detail.isAnonymous==1" src="../../images/isAnonymousImg.png" alt="">
                 <!--<div>在<span>{{detail.title}}</span>方面</div>-->
                 <div v-if="detail.isAnonymous==0">{{detail.nickName}}</div>
-                <div v-if="detail.isAnonymous==1">匿名</div>
+                <div v-if="detail.isAnonymous==1">匿名用户</div>
                 <div class="steal_detail_top_price">{{detail.title}}</div>
             </div>
             <div class="steal_detail_content">{{detail.content}}</div>
