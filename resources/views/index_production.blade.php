@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
       <meta name="x5-orientation" content="portrait">
-      <title>加加油</title>
+      <title>心理咨询</title>
   <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css"/>
   <link rel="stylesheet" type="text/css" href="<?=env("BASE_PATH")?>/src/css/common.css?v=<?=STATIC_XQZS_VERSION?>"/>
   <link rel="stylesheet" href="https://cdn.staticfile.org/Swiper/3.4.2/css/swiper.min.css">

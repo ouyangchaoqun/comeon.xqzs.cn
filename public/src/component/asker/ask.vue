@@ -229,7 +229,7 @@
                     payTitle = '确认向专家提问';
                 }else{
                     //快问
-                    payTitle = '确认发布快问';
+                    payTitle = '确认发布问题';
                 }
                 if(Number(_this.user.dianCoin)>=Number(_this.rechargeMoney)){
                     isEnough = true;
