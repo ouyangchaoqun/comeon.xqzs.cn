@@ -1,12 +1,12 @@
 <template>
     <div class="recharge_box" >
         <div class="recharge_title">
-            请选择充值金额
+            请选择充值点豆
         </div>
         <div class="items_box">
             <div class="items" v-for="(item,index) in items" @click="select(index)" :class="{selected:item.c==1}">
-                <div class="price" :class="{nogift:item.couponCount==0}">{{item.money}}元</div>
-                <div class="dou" :class="{nogift:item.couponCount==0}">{{item.dianCoin}}点豆</div>
+                <div class="price" :class="{nogift:item.couponCount==0}">{{item.dianCoin}}点豆</div>
+                <div class="dou" :class="{nogift:item.couponCount==0}">{{parseInt(item.money)}}元</div>
                 <div class="gift" v-if="item.couponCount!=0">赠送{{item.couponCount}}张偷听卡</div>
             </div>
         </div>
@@ -15,6 +15,7 @@
         </div>
         <div class="rechar_btn" @click="doPay()">立即支付（{{pay}}元）</div>
         <div class="question" >
+            <img src="../../../images/asker/question_icon.png" alt="">
             <span @click="showTips">充值须知</span>
         </div>
         <div class="mask" v-if="isTips"></div>
@@ -41,7 +42,7 @@
                 isTips: false,
                 pay: 0,
                 income: 0,
-                isUseIncome: true,
+                isUseIncome: false,
                 backUrl:'',
                 user:'',
                 havedianCoin:0,
@@ -278,6 +279,10 @@
         font-size: 0.88rem;
         color: #9B9B9B;
         text-align: center
+    }
+    .recharge_box .question img{
+        width:0.88235rem;
+        vertical-align: middle;
     }
     .recharge_box .question span{
         border-bottom: 1px solid rgba(228, 227, 227, 0.5);
