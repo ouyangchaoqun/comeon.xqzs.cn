@@ -5,7 +5,7 @@
         <v-recharge :rechargeMoney="rechargeMoney" v-show="rechargeFlag" v-on:childMessage="getFlagVal"></v-recharge>
         <div class="banner banner_bg">
             <div class="title">我的点豆</div>
-            <div class="value">{{user.dianCoin}}<span style="font-size: 1.41rem">点豆</span></div>
+            <div class="value">{{user.dianCoin||0}}<span style="font-size: 1.41rem">点豆</span></div>
         </div>
         <div class="btn" @click="recharge()">
                 <div class="left">充值</div>
@@ -43,14 +43,13 @@
         },
         methods: {
             recharge:function () {
-                console.log(this.rechargeMoney)
-                this.rechargeFlag = true
+                this.rechargeFlag = true;
             },
             getFlagVal:function (val) {
-                console.log(val)
                 this.addMoneyVal = val.addMoneyVal;
                 this.user.dianCoin=this.user.dianCoin+this.addMoneyVal;
                 this.rechargeFlag  = val.rechargeFlag;
+                this.getUserInfo();
             },
             getUserInfo:function(){
                 let _this=this;
