@@ -43,7 +43,8 @@
                 income: 0,
                 isUseIncome: true,
                 backUrl:'',
-                user:''
+                user:'',
+                havedianCoin:0,
             }
 
         },
@@ -54,13 +55,21 @@
         mounted: function () {
             let _this=this;
             _this.getUserInfo();
-            _this.getRechargeConfig();
+            _this.$nextTick(function () {
+                _this.getRechargeConfig();
+            })
+
         },
         methods: {
             getUserInfo:function(){
                 let _this=this;
                 xqzs.user.getUserInfo(function (user) {
                     _this.user =user;
+                    if( _this.user!=''|| _this.user!=undefined){
+
+                        _this.havedianCoin = _this.user.dianCoin;
+                    }
+
                 })
             },
             select: function (index) {
@@ -89,11 +98,10 @@
             initSelect:function () {
                 let _this=this;
                 var needMoney=Number(_this.rechargeMoney);
+                console.log('获取差值')
                 console.log(needMoney)
-                console.log(_this.items)
-                var havedianCoin=_this.user.dianCoin;//有的豆
-                var x=needMoney-havedianCoin;//差值
-
+                console.log(_this.havedianCoin)
+                var x=needMoney-(_this.havedianCoin);//差值
                 for(var i=0;i<_this.items.length;i++){
                     if(Number(_this.items[i].dianCoin)>=x){
                         _this.select(i)
@@ -101,7 +109,6 @@
                     }
                 }
                 if(_this.rechargeMoney==0){
-                    console.log("sss")
                     _this.select(0)
                 }
 
@@ -119,6 +126,7 @@
             },
             getRechargeConfig: function () {
                 let _this = this;
+                console.log('获取充值信息')
                 _this.$http.get(web.API_PATH + 'come/user/query/recharge/config').then(function (data) {//es5写法
                     if (data.body.status == 1) {
                         _this.items = data.body.data;
