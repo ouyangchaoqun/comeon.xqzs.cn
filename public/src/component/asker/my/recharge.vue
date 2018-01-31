@@ -54,11 +54,7 @@
         mounted: function () {
             let _this=this;
             _this.getUserInfo();
-            setTimeout(function () {
-                _this.getRechargeConfig();
-            },1000)
-
-
+            _this.getRechargeConfig();
         },
         methods: {
             getUserInfo:function(){
