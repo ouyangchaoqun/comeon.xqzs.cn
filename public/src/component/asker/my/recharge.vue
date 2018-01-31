@@ -286,7 +286,7 @@
     }
     .recharge_box .question span{
         border-bottom: 1px solid rgba(228, 227, 227, 0.5);
-        padding: 0.294rem;
+        padding: 0 0 0.1rem 0.2rem;
     }
     .mask {
         position: absolute;
