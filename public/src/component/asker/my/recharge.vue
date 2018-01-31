@@ -144,7 +144,7 @@
                             if (bt.data && bt.data.status == 1) {
                                 let result = bt.data.data;
                                 if (result.resultCode == 1) {
-                                    xqzs.weui.tip("支付成功", function () {
+                                    xqzs.weui.toast("success","支付成功", function () {
                                         _this.$emit(
                                                 'childMessage',{
                                                     rechargeFlag:false
@@ -156,7 +156,7 @@
                                     xqzs.wx.pay.pay(result, function () {
 
                                     }, function () {//success
-                                        xqzs.weui.tip("支付成功", function () {
+                                        xqzs.weui.toast("success","支付成功", function () {
                                             _this.$emit(
                                                 'childMessage',{
                                                     rechargeFlag:false,

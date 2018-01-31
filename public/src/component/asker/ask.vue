@@ -240,7 +240,6 @@
                 let msg = '使用：<span class="colorStyle">'+_this.rechargeMoney+'</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span>点豆'
                 xqzs.weui.dialog(payTitle,msg,subHtml,function(){},function () {
                     if(isEnough){
-                        console.log('支付');
                         _this.submit()
                     }else{
 
@@ -299,7 +298,7 @@
                         .then(function (bt) {
                             if (bt.data && bt.data.status == 1) {
                                 xqzs.localdb.remove('expertextContent');
-                                xqzs.weui.tip("支付成功", function () {
+                                xqzs.weui.toast("success","支付成功", function () {
                                     _this.$router.push("/asker/listen");
                                 });
                             }
@@ -309,7 +308,7 @@
                         .then(function (bt) {
                             if (bt.data && bt.data.status == 1) {
                                 xqzs.localdb.remove('fastAsktextContent');
-                                xqzs.weui.tip("支付成功", function () {
+                                xqzs.weui.toast("success","支付成功", function () {
                                     _this.$router.push("/asker/listen");
                                 });
                             }

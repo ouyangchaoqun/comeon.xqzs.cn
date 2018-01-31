@@ -308,7 +308,7 @@
                                 dataType:'JSON',
                                 success: function( bt ) {
                                     if(bt.status==1){
-                                        xqzs.weui.tip("支付成功", function () {
+                                        xqzs.weui.toast("success","支付成功", function () {
                                             _this.setPayed(index);
                                         });
                                     }else{
@@ -331,7 +331,7 @@
                                 dataType:'JSON',
                                 success: function( bt ) {
                                     if(bt.status==1){
-                                        xqzs.weui.tip("支付成功", function () {
+                                        xqzs.weui.toast("success","支付成功", function () {
                                             _this.setPayed(index);
                                         });
                                     }else{
@@ -367,7 +367,7 @@
                             xqzs.wx.pay.pay(result.order, function () {
 
                             }, function () {//success
-                                xqzs.weui.tip("支付成功", function () {
+                                xqzs.weui.toast("success","支付成功", function () {
                                     _this.setPayed(index);
                                 });
                             }, function () {//error
