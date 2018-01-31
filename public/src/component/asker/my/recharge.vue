@@ -1,6 +1,6 @@
 <template>
     <div class="recharge_box" >
-        <div class="title">
+        <div class="recharge_title">
             请选择充值金额
         </div>
         <div class="items_box">
@@ -45,6 +45,7 @@
                 backUrl:'',
                 user:'',
                 havedianCoin:0,
+                balance:0,
             }
 
         },
@@ -66,7 +67,7 @@
                 xqzs.user.getUserInfo(function (user) {
                     _this.user =user;
                     if( _this.user!=''|| _this.user!=undefined){
-
+                        _this.balance = _this.user.balance
                         _this.havedianCoin = _this.user.dianCoin;
                     }
 
@@ -81,26 +82,20 @@
                 }
                 item.c = 1;
                 this.$set(this.items, index, item)
-                if (this.isUseIncome == true) {
-
-                    if (Number(this.user.balance) >= Number(item.money)) {
-
+                if (this.isUseIncome) {
+                    if (Number(this.balance) >= Number(item.money)) {
                         this.pay = 0;
                     } else {
-                        this.pay = (Number(item.money) - Number(this.user.balance)).toFixed(2)
+                        this.pay = (Number(item.money) - Number(this.balance)).toFixed(2)
                     }
                 }
                 else {
                     this.pay = item.money;
                 }
-
             },
             initSelect:function () {
                 let _this=this;
                 var needMoney=Number(_this.rechargeMoney);
-                console.log('获取差值')
-                console.log(needMoney)
-                console.log(_this.havedianCoin)
                 var x=needMoney-(_this.havedianCoin);//差值
                 for(var i=0;i<_this.items.length;i++){
                     if(Number(_this.items[i].dianCoin)>=x){
@@ -111,8 +106,6 @@
                 if(_this.rechargeMoney==0){
                     _this.select(0)
                 }
-
-
             },
             showTips: function () {
                 this.isTips = true;
@@ -202,7 +195,7 @@
         z-index: 55;
     }
 
-    .recharge_box .title {
+    .recharge_box .recharge_title {
         margin-top: 1.24rem;
         margin-left: 0.94rem;
         font-size: 0.88rem;
