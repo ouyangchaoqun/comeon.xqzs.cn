@@ -3,70 +3,54 @@
         <v-mobile class="mobile_box" style="display: none"></v-mobile>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div v-title>入驻心理咨询师</div>
-        <header>填写基本信息</header>
+        <header>
+            <img src="../../../images/joinHeaderImg.png" alt="">
+            <div class="li_right">
+                <input type="text" class="nickName" @input="changeNickName()" placeholder="请上传头像" :value="nickName">
+                <i></i>
+            </div>
+            <div style="clear: both"></div>
+        </header>
         <div class="step_detailBox">
             <ul>
                 <li>
-                    <span class="li_left">*</span>真实姓名
+                    资质证书
                     <div class="li_right">
-                        <input type="text" class="realName" @input="changeRealName()" placeholder="还未填写（如张三）" :value="realName">
+                        <input type="text" placeholder="请选择资质">
                         <i></i>
                     </div>
                 </li>
+
                 <li>
-                    <span class="li_left"></span>咨询师昵称
+                    咨询师昵称
                     <div class="li_right">
-                        <input type="text" class="nickName" @input="changeNickName()" placeholder="还未填写（如张三）" :value="nickName">
+                        <input type="text" class="nickName" @input="changeNickName()" placeholder="请填写昵称" :value="nickName">
                         <i></i>
                     </div>
                 </li>
+
+                <li>
+                    手机号码
+                    <div class="li_right" @click="goMobile()">
+                        <!--<div class="mobile">{{mobileVal}}</div>-->
+                        <input type="text" class="mobile" placeholder="请输入手机号" :value="mobileVal">
+                        <i></i>
+                    </div>
+                </li>
+
                 <li @click="getSexPicker()">
-                    <span class="li_left">*</span>性别
+                    性别
                     <div class="li_right">
                         <div>{{sex}}</div>
                         <i></i>
                     </div>
                 </li>
-                <li @click="showDate()" v-if="false">
-                    <span class="li_left">*</span>生日
-                    <div class="lut_box">
-                        <span class="lut" :class="{on:!isLunar}" @click.stop="lutSelect(0)">阳历</span>
-                        <span class="lut" :class="{on:isLunar}"  @click.stop="lutSelect(1)">阴历</span>
-                    </div>
-                    <div class="li_right" style="width:40%" >
-                        <div v-if="birthday">
-                            <template v-if="!isLunar">
-                                <span>{{year}}年 </span>
-                                <span>{{month}}月 </span>
-                                <span>{{day}}日 </span>
-                            </template>
-                            <template v-if="isLunar">
-                                <span>{{year}}年 </span>
-                                <span>{{month}}月 </span>
-                                <span>{{day}}日 </span>
-                            </template>
-                        </div>
-                        <i></i>
-                    </div>
-                </li>
-                <li>
-                    <span class="li_left">*</span>手机号码
-                    <div class="li_right" @click="goMobile()">
-                        <div class="mobile">{{mobileVal}}</div>
-                        <i></i>
-                    </div>
-                </li>
-                <li>
-                    <span class="li_left"></span>邮 箱
-                    <div class="li_right">
-                        <input type="email" class="email" :value="email" @blur="fouceOut()">
-                        <i></i>
-                    </div>
-                </li>
+
                 <li @click="areaPicker()">
-                    <span class="li_left">*</span>常驻城市
+                    所在城市
                     <div class="li_right">
                         <div>
+                            <span v-if="!provinceName||!cityName||!areaName">{{initCityValue}}</span>
                             <span v-if="provinceName">{{provinceName}}</span>
                             <span v-if="cityName">{{cityName}}</span>
                             <span v-if="areaName">{{areaName}}</span>
@@ -74,25 +58,117 @@
                         <i></i>
                     </div>
                 </li>
+
                 <li>
-                    <span class="li_left">*</span>身份证号
+                   一句话签名
                     <div class="li_right">
-                        <input type="text" class="identityNo"  @input="idcardChange()" :value="identityNo" pattern="[0-9a-zA-Z]*"   @blur="checkId()">
+                        <input type="text" placeholder="请填写个人签名">
                         <i></i>
                     </div>
                 </li>
+
+                <li>
+                    个人简介
+                    <div class="li_right">
+                        <input type="text" placeholder="请填写个人简介">
+                        <i></i>
+                    </div>
+                </li>
+
+                <li>
+                    擅长领域
+                    <div class="li_right">
+                        <input type="text" placeholder="选择自己擅长的领域">
+                        <i></i>
+                    </div>
+                </li>
+
+                <li>
+                    专业培训经历
+                    <div class="li_right">
+                        <input type="text" placeholder="请填写培训经历">
+                        <i></i>
+                    </div>
+                </li>
+
+                <li>
+                    提问酬金
+                    <div class="li_right">
+                        <input type="text" placeholder="请设置提问酬金">
+                        <i></i>
+                    </div>
+                </li>
+
+                <li>
+                    限时免费偷听时间
+                    <div class="li_right">
+                        <input type="text" placeholder="请设置免费偷听时间">
+                        <i></i>
+                    </div>
+                </li>
+
+                <!--<li>-->
+                    <!--真实姓名-->
+                    <!--<div class="li_right">-->
+                        <!--<input type="text" class="realName" @input="changeRealName()" placeholder="还未填写（如张三）" :value="realName">-->
+                        <!--<i></i>-->
+                    <!--</div>-->
+                <!--</li>-->
+
+
+                <!--<li @click="showDate()" v-if="false">-->
+                    <!--生日-->
+                    <!--<div class="lut_box">-->
+                        <!--<span class="lut" :class="{on:!isLunar}" @click.stop="lutSelect(0)">阳历</span>-->
+                        <!--<span class="lut" :class="{on:isLunar}"  @click.stop="lutSelect(1)">阴历</span>-->
+                    <!--</div>-->
+                    <!--<div class="li_right" style="width:40%" >-->
+                        <!--<div v-if="birthday">-->
+                            <!--<template v-if="!isLunar">-->
+                                <!--<span>{{year}}年 </span>-->
+                                <!--<span>{{month}}月 </span>-->
+                                <!--<span>{{day}}日 </span>-->
+                            <!--</template>-->
+                            <!--<template v-if="isLunar">-->
+                                <!--<span>{{year}}年 </span>-->
+                                <!--<span>{{month}}月 </span>-->
+                                <!--<span>{{day}}日 </span>-->
+                            <!--</template>-->
+                        <!--</div>-->
+                        <!--<i></i>-->
+                    <!--</div>-->
+                <!--</li>-->
+
+                <!--<li>-->
+                    <!--邮 箱-->
+                    <!--<div class="li_right">-->
+                        <!--<input type="email" class="email" :value="email" @blur="fouceOut()">-->
+                        <!--<i></i>-->
+                    <!--</div>-->
+                <!--</li>-->
+
+                <!--<li>-->
+                    <!--身份证号-->
+                    <!--<div class="li_right">-->
+                        <!--<input type="text" class="identityNo"  @input="idcardChange()" :value="identityNo" pattern="[0-9a-zA-Z]*"   @blur="checkId()">-->
+                        <!--<i></i>-->
+                    <!--</div>-->
+                <!--</li>-->
             </ul>
-            <div class="imgBox"  >
-                <template v-if="!isEdit">
-                <img v-if="identityFile1!=''"  :src="identityFile1" alt="" @click="upload(1)">
-                <img v-else="" src="../../../images/positive.png" alt="" @click="upload(1)">
-                <img v-if="identityFile2!=''" :src="identityFile2" alt="" @click="upload(2)">
-                <img v-else="" src="../../../images/negative.png" alt="" @click="upload(2)">
-                </template>
-            </div>
+            <!--<div class="imgBox"  >-->
+                <!--<template v-if="!isEdit">-->
+                <!--<img v-if="identityFile1!=''"  :src="identityFile1" alt="" @click="upload(1)">-->
+                <!--<img v-else="" src="../../../images/positive.png" alt="" @click="upload(1)">-->
+                <!--<img v-if="identityFile2!=''" :src="identityFile2" alt="" @click="upload(2)">-->
+                <!--<img v-else="" src="../../../images/negative.png" alt="" @click="upload(2)">-->
+                <!--</template>-->
+            <!--</div>-->
+        </div>
+        <div class="join_agre">
+            提交审核，即表示您同意遵守 <span>《好一点专家入驻协议》</span>我们会尽快 对您的资质进行审核，审核通过后将以好一点客服消息通知您
         </div>
 
-        <div class="joinStep_nor_btn" :class="{joinStep_per_btn:check_step(false)}"   @click="msgSubmit()">下一步</div>
+        <!--<div class="joinStep_nor_btn" :class="{joinStep_per_btn:check_step(false)}"   @click="msgSubmit()">下一步</div>-->
 
     </div>
 </template>
@@ -104,7 +180,8 @@
         data() {
             return {
                 showLoad:false,
-                sex:'',
+                sex:'请选择性别',
+                initCityValue:'请选择所在城市',
                 sexIndex:'',
                 defaultCity: '[330000, 330100, 330102]',
                 provinceName: '',
@@ -543,16 +620,16 @@
 </script>
 <style>
     .join_stepBox{background: #fff;}
-    .join_stepBox input{color:rgba(36,37,61,0.5)}
-    .join_stepBox header{color:rgba(36,37,61,1);font-size: 1rem;text-align: center;line-height: 2.7rem;border-bottom: 1px solid rgba(224,224,225,1)}
-    .join_stepBox .step_detailBox{padding-left:  0.88235rem;}
-    .join_stepBox .step_detailBox li{height: 2.471rem;line-height:2.5rem;color:rgba(36,37,61,1);border-bottom: 1px solid rgba(224,224,225,1);padding-right: 0.88235rem;
-        font-size: 0.8235rem;position: relative;
-    }
-    .join_stepBox .li_left{color:rgba(255,0,0,1);margin-right: 0.588235rem;}
-    .join_stepBox .step_detailBox li .li_right{float: right;color:rgba(36,37,61,0.6);padding-right:1.5rem;font-size: 0.76471rem;height:2.471rem; width:65%;overflow: hidden;text-align: right}
+    .join_stepBox .li_right{float: right;padding-right: 1.5rem;}
+    .join_stepBox header{padding:0.88235rem;border-bottom: 0.588235rem solid rgba(69, 75, 84, 0.09);line-height: 3.52rem;position: relative}
+    .join_stepBox header img{width:3.52rem;height:3.52rem;float: left}
+    .join_stepBox .step_detailBox li{height: 2.94rem;line-height:2.94rem;color:rgba(69, 75, 84, 1);border-bottom: 1px solid rgba(224,224,225,1);padding:0 0.88235rem;font-size: 0.8235rem;position: relative;}
+    .join_stepBox .step_detailBox li .li_right{float: right;color:rgba(69, 75, 84, 0.7);padding-right:1.5rem;font-size: 0.76471rem; width:50%;overflow: hidden;text-align: right;text-overflow: ellipsis;white-space: nowrap;}
     .li_right input{border:0;outline: none;text-align: right;height:80%;}
-    .join_stepBox .step_detailBox li .li_right i{background: url('../../../images/arrow.png');width: 0.9411764705882353rem;  height: 0.9411764705882353rem;  background-size: 0.9411764705882353rem;  position: absolute;  right: 0.88235rem;  top: 50%;margin-top: -0.5rem;  }
+    .join_stepBox .li_right i{background: url('../../../images/arrow.png');width: 0.94rem;  height: 0.94rem;  background-size: 0.94rem;  position: absolute;  right: 0.88235rem;  top: 50%;margin-top: -0.47rem;  }
+    .step_detailBox{margin-bottom: 1.76471rem;}
+    .join_agre{color:rgba(53, 58, 66, 1);font-size: 0.70588rem;line-height: 1rem;padding:0 0.7647rem;}
+    .join_agre span{color:rgba(255, 99, 0, 1)}
     .join_stepBox .lut_box{position: absolute;top:0;left:5rem}
     .join_stepBox .lut{float: left;background: #ececec;color: rgba(36,37,61,1);height: 1.76471rem;line-height: 1.76471rem;padding: 0 0.588235rem;margin-top: 0.35294rem;font-size: 0.8235rem;}
     .join_stepBox .lut.on{float: left;background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1));color: #fff;}
