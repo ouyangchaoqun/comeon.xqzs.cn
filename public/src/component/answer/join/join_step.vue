@@ -164,9 +164,32 @@
                 <!--</template>-->
             <!--</div>-->
         </div>
-        <div class="join_agre">
-            提交审核，即表示您同意遵守 <span>《好一点专家入驻协议》</span>我们会尽快 对您的资质进行审核，审核通过后将以好一点客服消息通知您
+        <div class="joinStep_bottom">
+            <div class="join_agre">
+                提交审核，即表示您同意遵守<span>《好一点专家入驻协议》</span>我们会尽快对您的资质进行审核，审核通过后将以好一点客服消息通知您
+            </div>
+            <div class="join_sub">
+                提交审核
+            </div>
         </div>
+
+        <!--协议-->
+        <div class="weui-mask" @touchmove.prevent>
+            <div class="agre_box">
+                <h2>好一点专家入驻协议</h2>
+                <div class="agre_content">
+                    <p>
+                        尊敬的心理咨询师、精神科医生、心理治疗师（以 下简称“专家”），欢迎您入驻杭州蓝江网络科技有 限公司（以下简称“本公司”）开发与运营的“好一点 ”心理咨询平台（包含但不限于微信公众号、微信小 程序，以下简称“本平台”或“平台”）。您在入驻或 使用本平台服务前，请仔细阅读本协议。您使用本 公司任何服务，均意味着本协议已经生效，您已经 认可本协议的全部条款，将自愿遵守本协议的规定， 并接受本公司的统一管理。
+                    </p>
+                    <h3>一、定义</h3>
+                    <p>1、服务平台：指本公司开发和运营的“好一点”心 理咨询服务平台，即“本平台”。</p>
+                    <p>2、专家：指同意并遵守本协议规定，通过本平台 向平台用户提供心理咨询解答服务的具有相应资质 的心理咨询师、精神科医生、心理治疗师、催眠师、 婚姻家庭指导师等专业人士。</p>
+                    <p> 3、服务：指专家通过本平台向平台用户提供的心理</p>
+                </div>
+                <div class="agre_btn">我知道了</div>
+            </div>
+        </div>
+
 
         <!--<div class="joinStep_nor_btn" :class="{joinStep_per_btn:check_step(false)}"   @click="msgSubmit()">下一步</div>-->
 
@@ -627,9 +650,14 @@
     .join_stepBox .step_detailBox li .li_right{float: right;color:rgba(69, 75, 84, 0.7);padding-right:1.5rem;font-size: 0.76471rem; width:50%;overflow: hidden;text-align: right;text-overflow: ellipsis;white-space: nowrap;}
     .li_right input{border:0;outline: none;text-align: right;height:80%;}
     .join_stepBox .li_right i{background: url('../../../images/arrow.png');width: 0.94rem;  height: 0.94rem;  background-size: 0.94rem;  position: absolute;  right: 0.88235rem;  top: 50%;margin-top: -0.47rem;  }
-    .step_detailBox{margin-bottom: 1.76471rem;}
-    .join_agre{color:rgba(53, 58, 66, 1);font-size: 0.70588rem;line-height: 1rem;padding:0 0.7647rem;}
+    .joinStep_bottom{padding:1.76471rem 0.88235rem;}
+    .join_agre{color:rgba(53, 58, 66, 1);font-size: 0.70588rem;line-height: 1rem;margin-bottom: 1.8rem;}
     .join_agre span{color:rgba(255, 99, 0, 1)}
+    .join_sub{height:2.94rem;line-height: 2.94rem;color:rgba(255, 255, 255, 1);background: rgba(254, 122, 3, 1);font-size: 1.0588rem;border-radius:6.17rem;text-align: center }
+    .agre_box{width:86%;position: absolute;top:20%;left:50%;margin-left: -46%;background: #fff;padding:0.88235rem 3%;}
+    .agre_box h2{color:RGBA(69, 75, 84, 1);font-size: 1.0588rem;line-height: 1.47rem;text-align: center;margin-bottom: 0.88235rem;}
+    .agre_box .agre_content{color:RGBA(69, 75, 84, 1);font-size: 0.76471rem;line-height: 1.176471rem;background: RGBA(69, 75, 84, 0.05)}
+
     .join_stepBox .lut_box{position: absolute;top:0;left:5rem}
     .join_stepBox .lut{float: left;background: #ececec;color: rgba(36,37,61,1);height: 1.76471rem;line-height: 1.76471rem;padding: 0 0.588235rem;margin-top: 0.35294rem;font-size: 0.8235rem;}
     .join_stepBox .lut.on{float: left;background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1));color: #fff;}
