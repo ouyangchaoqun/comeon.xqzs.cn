@@ -1,5 +1,7 @@
 <template id="rob_problem">
+
     <div class="rob_problem">
+        <v-showLoad v-if="showLoad"></v-showLoad>
         <div v-title>问题详情</div>
         <div class="my_problem_detail">
             <div class="problem_detail_header">
@@ -36,11 +38,14 @@
             </div>
             <ul class="rob_lists">
                 <li v-for="(item,index) in detail.answers">
+                    <div class="comment_btn"  @click="showCommentBox()"  v-if="detail.bestAnswerId!=0&&detail.questionStatus!=0&&detail.bestAnswerId==item.answerId&&!detail.evaluate_ed">
+                            去评价
+                    </div>
                     <div class="rob_box_top">
                         <img :src="item.expertFaceUrl" alt="">
                         <div class="expertInfo">
                             <span>{{item.expertNickName}}</span>
-                            <div>心理健康、情绪管理、个人成长</div>
+                            <div><template v-for="(d,i) in item.domain">{{d.title}}<template v-if="i<item.domain.length-1">、</template></template></div>
                         </div>
                     </div>
                     <div class="rob_answer">
@@ -80,25 +85,26 @@
                 </li>
             </ul>
         </div>
-        <div class="submit_best_answer" v-if="selBestAnswerId!=0&&isOver">
-            已选择最佳答案，确定加入偷偷听分成
-            <div class="submit_btn" @click="setBestAnswerId()">完成快问</div>
-        </div>
-        <!--弹出层-->
-        <div class="success_set_best_answer_dialog" style="display: none;" >
-            <div class="best_dialog">
-                <div class="best_dialog_header">
-                    <img src="../../../images/asker/bestan.png" alt="">
-                    <div v-if="selBestAnswer">{{selBestAnswer.expertNickName}}</div>
+
+        <div id="comment_box" style="display: none;">
+            <div class="comment_box2">
+                <ul class="stars">
+                    <li  v-for="(item,index) in comments"  :v="item.v" :class="{on:item.v<=commentValue}" >
+                        <div class="star"></div>
+                        <div class="text">{{item.t}}</div>
+                    </li>
+                </ul>
+                <div class="textarea">
+                    <textarea placeholder="您的反馈将影响咨询师" id="textarea_comment" ></textarea>
                 </div>
-                <div class="best_dialog_html">被选为最佳回答并获得奖金。并且与Ta一起参与偷听分成哦</div>
-                <div class="best_dialog_fb" >知道了</div>
             </div>
         </div>
     </div>
 </template>
 
 <script type="es6">
+
+    import showLoad from '../../include/showLoad.vue';
     var rob_problem = {
         template: '#rob_problem'
     };
@@ -106,12 +112,14 @@
     export default {
         data() {
             return {
-
+                comments:[{v:1,t:'极差'},{v:2,t:'不满意'},{v:3,t:'一般'},{v:4,t:'满意'},{v:5,t:'非常满意'}],
+                commentValue:5,
                 detail:{},
                 selBestAnswerId:0,
                 selBestAnswer:null,
                 bestAnswer:{},
-                isOver:true
+                isOver:true,
+                showLoad:false
 
 
             }
@@ -128,6 +136,68 @@
             xqzs.wx.setConfig(this);
         },
         methods: {
+
+
+            submitComment:function () {
+                let that=this;
+                that.showLoad = true;
+
+                let content = $(".weui-dialog #textarea_comment").val();
+                that.contentOver = content;
+
+                console.log(content);
+                if(content.length==0){
+                    xqzs.weui.toast('fail',"请输入评论内容",function () {
+
+                    })
+                    return;
+                }
+                this.showLoad=true
+                that.$http.put(web.API_PATH + "come/user/evaluate/answer", {userId:"_userId_",answerId:this.detail.bestAnswerId, point:this.commentValue,content:content})
+                    .then(function (bt) {
+                        that.showLoad=false;
+                        if (bt.data && bt.data.status == 1) {
+
+                            xqzs.weui.toast("success","评论成功",function () {
+                                that.showLoad = false;
+                                that.getDetail();
+                            })
+                        }
+                    });
+            },
+
+            showCommentBox:function () {
+                let _this=this;
+
+                xqzs.weui.dialog("评价",$("#comment_box").html(),"",function () {
+
+                },function () {
+                    _this.submitComment();
+                });
+
+                $(".comment_box2 .stars li ").click(function () {
+                    let v= parseInt($(this).attr("v"))
+                    _this.setCommentValue(v)
+                })
+
+
+
+
+            },
+
+
+            setCommentValue:function (v) {
+                let _this=this;
+                _this.commentValue=v;
+                $(".comment_box2 .stars li ").each(function () {
+                    let v= parseInt($(this).attr("v"))
+                    if( _this.commentValue>=v){
+                        $(this).addClass("on")
+                    }else{
+                        $(this).removeClass("on")
+                    }
+                })
+            },
             formatPrice:function (v) {
                 return xqzs.string.formatPrice(v)
             },
@@ -202,26 +272,27 @@
                             _this.detail.bestAnswerId=_this.selBestAnswerId;
                             _this.detail.questionStatus=1
 
-                            xqzs.weui.dialogCustom($(".success_set_best_answer_dialog").html());
-                            $(".best_dialog_fb").click(function () {
-                                xqzs.weui.dialogClose();
 
-                                _this.isOver = false
-                            })
 
                         }
                     });
             },
             selectBestAnswerId:function (answer) {
                 let _this=this;
-                if( this.selBestAnswerId==answer.answerId){
-                    xqzs.weui.dialog("","确定不选择中" + answer.expertNickName+"了？","",function () {
-                    },function () {
-                        _this.selBestAnswerId=0;
-                    })
-                }
-                this.selBestAnswer=answer;
-                this.selBestAnswerId=answer.answerId;
+                _this.selBestAnswerId=answer.answerId;
+                xqzs.weui.dialog("最佳答案","选择" + answer.expertNickName+"的回答为最佳答案，并且与TA一起参与偷听分成","",function () {
+                    _this.selBestAnswerId=0;
+                },function () {
+                    _this.selBestAnswer=answer;
+                    _this.selBestAnswerId=answer.answerId;
+
+
+                    _this.setBestAnswerId();
+
+                })
+
+
+
             },
             formatDateText:function (time) {
                 return xqzs.dateTime.getTimeFormatText(time)
@@ -235,6 +306,7 @@
                     if (data.body.status == 1) {
                         console.log(data.body.data.data)
                         _this.detail= data.body.data.data;
+                        _this.detail.evaluate_ed=data.body.data.evaluate_ed
                         for(let i=0;i<_this.detail.answers.length;i++){
                             if(_this.detail.answers[i].isBestAnswer){
                                 _this.bestAnswer=_this.detail.answers[i];
@@ -262,6 +334,20 @@
     }
 </script>
 <style>
+     .comment_box2 .stars{ display: flex}
+     .comment_box2 .stars li{ flex:1;}
+     .comment_box2 .stars li .star{ background: url(../../../images/asker/ask_rack_comment_star.png) center no-repeat ; background-size:  1.4rem;;height:1.4rem; width: 1.4rem; color:#999; width: 100%; margin-bottom: 0.3rem; }
+     .comment_box2 .stars li .text{color:#999 ; font-size: 0.7088235rem; text-align: center}
+     .comment_box2 .stars li.on .star{background: url(../../../images/asker/ask_rack_comment_star_on.png) center no-repeat ; background-size:  1.4rem;}
+     .comment_box2 .stars li.on .text{ color:#ffaa00}
+
+     .comment_box2 .textarea{ width: 100%; margin-top: 1.1rem; padding-bottom: 0.3rem;}
+     .comment_box2 .textarea  textarea{ background: #f1f1f1; border-radius: 0.2rem; border: none; width: 92% ; padding: 0.88235rem 4% ; font-size: 0.88235rem; line-height: 1.2rem; height: 4rem;}
+
+
+    .rob_problem .rob_lists li{ position: relative}
+    .rob_problem  .rob_lists li .comment_btn{ position: absolute; right:0.88235rem; top:0.88235rem; color:#FD7502; border: 0.05882352rem solid #FD7502; line-height:1.4rem; height: 1.4rem; padding: 0 0.8rem; border-radius: 0.2rem; font-size: 0.70588rem;  }
+    .rob_problem  .rob_lists li .comment_btn:active{ color:#e36b02; border: 0.05882352rem solid #e36b02; }
     .rob_problem .addBest_text{
         color:rgba(153,153,153,1);
         font-size: 0.70588rem;
