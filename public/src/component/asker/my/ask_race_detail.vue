@@ -113,7 +113,7 @@
         data() {
             return {
                 comments:[{v:1,t:'极差'},{v:2,t:'不满意'},{v:3,t:'一般'},{v:4,t:'满意'},{v:5,t:'非常满意'}],
-                commentValue:5,
+                commentValue:0,
                 detail:{},
                 selBestAnswerId:0,
                 selBestAnswer:null,
@@ -144,8 +144,13 @@
 
                 let content = $(".weui-dialog #textarea_comment").val();
                 that.contentOver = content;
+                if(that.commentValue==0){
+                    xqzs.weui.toast('fail',"请选择评分",function () {
 
-                console.log(content);
+                    })
+                    return;
+                }
+
                 if(content.length==0){
                     xqzs.weui.toast('fail',"请输入评论内容",function () {
 

@@ -34,7 +34,7 @@
                             <span v-if="item.isAnonymous==0">{{item.askUserNickName}}</span>
                             <span v-if="item.isAnonymous==1">匿名</span>
                             <div class="problem_item_right" v-if="item.wageType!=0">
-                                <template v-if="item.wageType==4">赏金<i>￥{{formatPrice(item.wage)}}</i></template>
+                                <template v-if="item.wageType==4"><i> 全部赏金 ￥{{formatPrice(item.wage)}}</i></template>
                                 <template v-if="item.wageType==5">平分<i>￥{{formatPrice(item.wage)}}</i></template>
                             </div>
                         </div>
@@ -53,8 +53,8 @@
                                     <div class="clear"></div>
                                 </div>
 
-                                <span class="problem_bestAns" v-if="item.isBestAnswer==1">最佳回答</span>
-                                <span class="problem_bestAns" v-if="item.isBestAnswer!=1">非最佳回答</span>
+                                <span class="problem_bestAns" v-if="item.isBestAnswer==1&&item.bestAnswerId">最佳回答</span>
+                                <span class="problem_bestAns" v-if="item.isBestAnswer!=1&&item.bestAnswerId">非最佳回答</span>
                             </div>
                         </div>
                         <!--回答后底部显示详情-->
