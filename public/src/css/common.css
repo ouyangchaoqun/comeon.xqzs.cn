@@ -771,3 +771,33 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
     color:rgba(36,37,61,0.5)
 }
 .select_yes div:active{background: #eee}
+
+/*设置入驻资料公共样式*/
+.joinSet_top{
+    height:3.5294rem;
+    background: RGBA(69, 75, 84, 0.05);
+    position: relative;
+}
+.joinSet_top div{
+    width:3.5294rem;
+    height:1.764rem;
+    line-height: 1.8rem;
+    border-radius: 0.1764rem;
+    color:RGBA(53, 53, 53, 1);
+    background: RGBA(248, 248, 248, 1);
+    font-size: 0.764rem;
+    text-align: center;
+    border:1px solid RGBA(5, 5, 5, 0.1);
+    position: absolute;
+    top:50%;
+    margin-top: -0.882rem;
+}
+.joinSet_top .joinSet_cancel{
+    left:1.764rem;
+}
+.joinSet_top .joinSet_sure{
+    background: RGBA(254, 122, 3, 1);
+    color:RGBA(255, 255, 255, 1);
+    border:1px solid RGBA(5, 5, 5, 0.08);
+    right:1.1764rem;
+}

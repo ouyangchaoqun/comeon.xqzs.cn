@@ -1,25 +1,18 @@
 <template >
-    <div style="height: 100%" class="wbg answer_join_price_box">
-
+    <div class="price_box">
+        <v-showLoad v-show="showLoad"></v-showLoad>
         <div v-title>入驻心理咨询师</div>
-        <div class="stepStyle">10/10</div>
-        <div class="joinStep_title">设置咨询者向我提问需要支付的酬金</div>
-        <v-showLoad v-if="showLoad"></v-showLoad>
-        <v-answer-top-step step="10"  preUrl="./voice" nextUrl="" title="设置咨询者向我提问需要支付的酬金"></v-answer-top-step>
-
-        <div class="set_price">
-            <div class="til">设置提问酬金：</div>
-            <div class="select" ><input type="" class="priceInput"   @input="changePrice()" :value="'￥'+price"></div>
-            <div class="clear"></div>
+        <div class="joinSet_top">
+            <div class="joinSet_cancel" @click="backStep()">取消</div>
+            <div class="joinSet_sure" @click="setPrice()">确定</div>
         </div>
-        <!--<div class="set_price mt" @click="selectFreeTime()" >-->
-            <!--<div class="til">设置限时免费：</div>-->
-            <!--<div class="select" ><input type="" readonly  :value="freeTimeText"></div>-->
-            <!--<div class="clear"></div>-->
-        <!--</div>-->
-
-
-         <!--<div class="submit" @click="submit()">提交审核</div>-->
+        <div class="set_price">
+            <input class="priceInput"  @input="changePrice()" :value="'￥'+price" placeholder="设置提问价格（元）例如：¥10" >
+        </div>
+        <div class="price_bottom">
+            <div>至少10元</div>
+            <div>解答须知</div>
+        </div>
     </div>
 </template>
 
@@ -61,22 +54,8 @@
         },
 
         mounted: function () {
-            let freeTime = cookie.get("freeTime");
-            if(freeTime&&freeTime!=''){
-                for(let i =0;i<this.times.length;i++){
-                    if(this.times[i].value== parseInt(freeTime)){
-                        this.freeTimeText= this.times[i].label;
-                    }
-                }
-            }
             let price = cookie.get("price");
-            console.log(price)
             if(price)this.price= price;
-
-            let _this =this;
-            $('#subBtn').click(function () {
-                _this.submit();
-            })
             xqzs.wx.setConfig(this);
 
         } ,
@@ -87,38 +66,11 @@
                 this.price=price;
 
             },
-//            selectFreeTime:function () {
-//                let  data= this.times;
-//                let _this=this;
-//                weui.picker(  data, {
-//                    id:"id"+Math.random(),
-//                    onChange: function (result) {
-//                        console.log(result);
-//                    },
-//                    onConfirm: function (result) {
-//                        _this.freeTime = result[0].value;
-//                        cookie.set("freeTime", _this.freeTime );
-//                        _this.freeTimeText= result[0].label;
-//                    },
-//                });
-//            },
-            select:function () {
-                let _this= this;
-                let data = [];
-                for(let i =  0 ; i<this.prices.length;i++){
-                    data.push({label:"￥ "+this.prices[i]+"",value:this.prices[i]})
-                }
-                weui.picker(  data, {
-                    id:"id"+Math.random(),
-                    onChange: function (result) {
-                        console.log(result);
-                    },
-                    onConfirm: function (result) {
-                        _this.price = result[0].value;
-
-
-                    },
-                });
+            backStep:function () {
+                this.$router.go(-1)
+            },
+            setPrice:function () {
+                this.$router.go(-1)
             },
             submit:function () {
                 let _this=this;
@@ -188,19 +140,37 @@
         },
         components: {
             'v-showLoad': showLoad,
-            "v-answer-top-step": answerTopStep
         }
 
 
     }
 </script>
 <style>
-    .mt{ margin-top: 15px!important;}
-    .set_price{ width: 66%; margin: 0rem auto; margin-top: 48% }
-    .set_price .til,  .set_price .select{ float:left; line-height: 2rem; text-align: center; color:#333; font-size: 0.88235rem;}
-    .set_price .select input{ width: 6rem;font-size: 1.2rem; line-height: 2rem;;color: #ffaa00; text-align: center}
-    .set_price .select{ margin-left: 0.6rem; width:50%;color: #ffaa00; font-size: 1.2rem; line-height: 2rem;; border-radius: 0.3rem; border: 1px solid #B3B3B3
+    .price_box{
+        background: RGBA(69, 75, 84, 0.03);
     }
-    .answer_join_price_box .submit{ position: absolute; top:0; right:0.88235rem;    line-height: 2.647058823529412rem;
-        font-size: 0.9rem;}
+    .set_price{
+        padding:0.88235rem;
+        background: #fff;
+        font-size: 0.8235rem;
+        margin-bottom: 0.35rem;
+    }
+    .set_price input{
+        width:100%;
+        height:1.176rem;
+    }
+    .price_bottom{
+        padding: 0 0.88235rem;
+        line-height: 1.176rem;
+    }
+    .price_bottom div:nth-of-type(1){
+        float: left;
+        font-size: 0.8235rem;
+        color:RGBA(69, 75, 84, 0.6);
+    }
+    .price_bottom div:nth-of-type(2){
+        float: right;
+        font-size: 0.70588rem;
+        color:RGBA(69, 75, 84,0.55)
+    }
 </style>

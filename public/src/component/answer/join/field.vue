@@ -38,6 +38,7 @@
                         if(questionClassId&&questionClassId!=''){
                             _this.canGoNext=true;
                            let ids=  questionClassId.split(",")
+                            console.log(ids)
                             for(let i=0;i<_this.types.length;i++){
                                 for(let j =0;j<ids.length;j++){
                                     if(_this.types[i].id==ids[j]){

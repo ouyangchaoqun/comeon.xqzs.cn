@@ -1,0 +1,222 @@
+<template >
+    <div class="setLevel_Box">
+        <v-showLoad v-if="showLoad"></v-showLoad>
+        <div class="joinSet_top">
+            <div class="joinSet_cancel" @click="backStep()">取消</div>
+            <div class="joinSet_sure" @click="subLevel()">确定</div>
+        </div>
+        <div class="level_types">
+            <div class="level_type" :class="{checked_type:item.name==jobTitle}" v-for="(item,index) in level" @click="getItemClass(index)"  :index="index" >{{item.name}}</div>
+            <div style="clear: both"></div>
+        </div>
+        <div class="level_detail">
+            <div class="level_number">
+                <span>证书编号：</span>
+                <input type="text" placeholder="请填写" :value="certificateNo" @input="changeCertificateNo()"
+                       pattern="[0-9a-zA-Z]*"/>
+            </div>
+            <div class="level_photo">
+                <span>资质证书：</span>
+                <div class="photo_box">
+                    <template v-if="certificateFile1==''" >
+                        <img class="addIcon"  src="../../../images/joinAddImg.png" alt="" @click="upload()">
+                        <p>请上传有姓名编号的一页，确保内容清晰可进见</p>
+                    </template>
+                    <img v-if="certificateFile1!=''" :src="certificateFile1" />
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script type="es6">
+    import showLoad from '../../include/showLoad.vue';
+    export default {
+        data() {
+            return {
+                level:[
+                    {name:'国家二级咨询师'},
+                    {name:'国家三级咨询师'},
+                    {name:'注册系统咨询师'},
+                    {name:'注册系统督导师'},
+                    {name:'其它'}
+                ],
+                jobTitle:'',
+                certificateFile1:'',
+                certificateNo:'',
+                uploadpicinfo:null,
+                alioss:null,
+            }
+        },
+        mounted: function () {
+            this.getExpertByUserId();
+            this.initOss();
+        },
+        methods: {
+            getExpertByUserId:function () {
+                let _this=this;
+                _this.expertId = cookie.get('expertId');
+                _this.showLoad = true;
+                _this.$http.get(web.API_PATH + 'come/expert/query/detail/for/edit/'+ _this.expertId+'/_userId_' ).then(function (data) {//es5写法
+                    _this.showLoad = false;
+                    _this.expertInfo=data.data.data;
+                    if(_this.expertInfo!=null){
+                        _this.certificateFile1= _this.expertInfo.certificateFile1;
+                        _this.certificateNo= _this.expertInfo.certificateNo;
+                        _this.jobTitle= _this.expertInfo.jobTitle;
+                    }
+                }, function (error) {
+                });
+            },
+            getItemClass:function (index) {
+                let _this = this;
+                let v = _this.level[index].name
+                this.jobTitle=v;
+            },
+            changeCertificateNo:function (v) {
+                this.certificateNo =  $(".certificateNo").val()
+            },
+            initOss:function () {
+                this.uploadpicinfo = {
+                    token: xqzs.string.guid(),
+                    smallpic: xqzs.constant.PIC_SMALL,
+                    middlepic: xqzs.constant.PIC_MIDDLE,
+                    removepicurl: web.BASE_PATH + 'api/removepicture',
+                    uploadbase64url: web.BASE_PATH + 'api/upfilebase64',
+                    aliossgeturl: web.BASE_PATH + 'api/aliyunapi/oss_getsetting'
+                };
+                this.alioss = new aliyunoss({
+                    url:this.uploadpicinfo.aliossgeturl,
+                    token:this.uploadpicinfo.token
+                });
+            },
+            upload:function () {
+                let _this=this;
+                xqzs.wx.takePhotos(['camera','album'],1,_this.uploadpicinfo,_this.alioss,function (filecount) {
+                    _this.showLoad=true;
+
+                },function (json,ix) {
+                    _this.showLoad=false;
+                    _this.certificateFile1 = json.data.path;
+                },function (e) {
+                })
+            },
+            backStep:function () {
+                this.$router.go(-1)
+            },
+            check_step:function (showTip) {
+                let _this = this;
+                let re= true;
+                let tip = '';
+                if(_this.jobTitle==''){
+                    re=false;
+                    tip="请选择资质";
+                }else if(_this.certificateNo==''){
+                    re=false;
+                    tip="请填写证件编号";
+                }else if(_this.certificateFile1==''){
+                    re=false;
+                    tip="请上传证件照";
+                }
+                if(showTip&&!re){
+                    xqzs.weui.tip(tip);
+                }
+                return re;
+            },
+
+            subLevel:function () {
+                let _this = this;
+                if(!_this.check_step(true)){
+                    return;
+                }
+                let data={
+                    userId:"_userId_",
+                    expertId:cookie.get("expertId"),
+                    jobTitle:_this.jobTitle,
+                    certificateNo:_this.certificateNo,
+                    certificateFile:[_this.certificateFile1]
+
+                };
+                _this.$http.post(web.API_PATH + 'come/expert/modify/certificate', data)
+                    .then(
+                        (response) => {
+                            _this.$router.go(-1)
+                        }
+                    );
+
+            }
+        },
+        components:{
+            'v-showLoad': showLoad,
+        },
+
+
+    }
+</script>
+<style>
+    .setLevel_Box{
+        background: #fff;
+    }
+    .setLevel_Box .level_types{
+        padding:1.47rem 0.0066% 0.529rem 0.0066%;
+    }
+    .level_types .level_type{
+        width:42.4%;
+        height:2.35rem;
+        line-height: 2.4rem;
+        color:  RGBA(74, 74, 74, 0.5);
+        font-size: 0.88235rem;
+        border:1px solid RGBA(69, 75, 84, 0.1);
+        border-radius: 0.294rem;
+        text-align: center;
+        float: left;
+        margin:0 3.33% 1.1764rem 3.33%;
+    }
+    .level_types .checked_type{
+        color:RGBA(254, 122, 3, 1);
+        border-color: RGBA(254, 122, 3, 1);
+    }
+    .level_detail{padding: 0 0.88235rem;}
+    .level_detail>div{
+        line-height: 1.235rem;
+    }
+    .level_detail span{
+        color:RGBA(69, 75, 84, 1);
+        font-size: 0.88235rem;
+    }
+    .level_number{
+        border-bottom:1px solid RGBA(69, 75, 84, 0.09);
+        margin-bottom: 0.70588rem;
+        padding-bottom:0.70588rem;
+    }
+    .level_number input{
+        text-align: center;
+        width:70%;
+        height:1.235rem;
+    }
+    .level_photo span{
+        display: block;
+        padding-bottom:0.70588rem;
+    }
+    .level_photo .photo_box{
+        height:8rem;
+        border:1px solid RGBA(69, 75, 84, 0.09);
+        margin:0 auto;
+        position: relative;
+    }
+    .photo_box p{
+        color:RGBA(69, 75, 84, 0.5);
+        font-size: 0.70588rem;
+        text-align: center;
+        position: absolute;
+        width:100%;
+        top:60%;
+    }
+    .photo_box .addIcon{
+        width:4rem;
+        position: absolute;
+        left:50%;
+        margin-left: -2rem;
+        top:10%;
+    }
+</style>

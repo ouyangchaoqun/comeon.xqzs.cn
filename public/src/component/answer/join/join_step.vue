@@ -6,7 +6,7 @@
         <header>
             <img src="../../../images/joinHeaderImg.png" alt="">
             <div class="li_right">
-                <input type="text" class="nickName" @input="changeNickName()" placeholder="请上传头像" :value="nickName">
+                <input type="text"  placeholder="请上传头像">
                 <i></i>
             </div>
             <div style="clear: both"></div>
@@ -15,16 +15,16 @@
             <ul>
                 <li>
                     资质证书
-                    <div class="li_right">
-                        <input type="text" placeholder="请选择资质">
+                    <div class="li_right" @click="setLevel()">
+                        <div>{{level}}</div>
                         <i></i>
                     </div>
                 </li>
 
                 <li>
                     咨询师昵称
-                    <div class="li_right">
-                        <input type="text" class="nickName" @input="changeNickName()" placeholder="请填写昵称" :value="nickName">
+                    <div class="li_right" @click="setNickname()">
+                        <div>{{nickName}}</div>
                         <i></i>
                     </div>
                 </li>
@@ -50,7 +50,7 @@
                     所在城市
                     <div class="li_right">
                         <div>
-                            <span v-if="!provinceName||!cityName||!areaName">{{initCityValue}}</span>
+                            <span v-if="!(provinceName&&cityName&&areaName)">{{initCityValue}}</span>
                             <span v-if="provinceName">{{provinceName}}</span>
                             <span v-if="cityName">{{cityName}}</span>
                             <span v-if="areaName">{{areaName}}</span>
@@ -61,48 +61,56 @@
 
                 <li>
                    一句话签名
-                    <div class="li_right">
-                        <input type="text" placeholder="请填写个人签名">
+                    <div class="li_right" @click="setSign()">
+                        <div>{{sign}}</div>
                         <i></i>
                     </div>
                 </li>
 
                 <li>
                     个人简介
-                    <div class="li_right">
-                        <input type="text" placeholder="请填写个人简介">
+                    <div class="li_right" @click="setPerson()">
+                        <div>{{personal}}</div>
                         <i></i>
                     </div>
                 </li>
 
                 <li>
                     擅长领域
-                    <div class="li_right">
-                        <input type="text" placeholder="选择自己擅长的领域">
+                    <div class="li_right" @click="setGoodat()">
+                        <div>{{goodAt}}</div>
+                        <i></i>
+                    </div>
+                </li>
+
+                <li>
+                    擅长领域描述
+                    <div class="li_right" @click="goGoodatDetail()">
+                        <div>{{goodatDetail}}</div>
                         <i></i>
                     </div>
                 </li>
 
                 <li>
                     专业培训经历
-                    <div class="li_right">
-                        <input type="text" placeholder="请填写培训经历">
+                    <div class="li_right" @click="setExperience()">
+                        <div>{{experience}}</div>
                         <i></i>
                     </div>
                 </li>
 
                 <li>
                     提问酬金
-                    <div class="li_right">
-                        <input type="text" placeholder="请设置提问酬金">
+                    <div class="li_right" @click="goPrice()">
+                        <div>{{askPrice}}</div>
                         <i></i>
                     </div>
                 </li>
 
                 <li>
                     限时免费偷听时间
-                    <div class="li_right">
-                        <input type="text" placeholder="请设置免费偷听时间">
+                    <div class="li_right" @click="goFreeTime()">
+                        <div>{{freeTime}}</div>
                         <i></i>
                     </div>
                 </li>
@@ -166,7 +174,7 @@
         </div>
         <div class="joinStep_bottom">
             <div class="join_agre">
-                提交审核，即表示您同意遵守<span>《好一点专家入驻协议》</span>我们会尽快对您的资质进行审核，审核通过后将以好一点客服消息通知您
+                提交审核，即表示您同意遵守<span @click="showAgre()">《好一点专家入驻协议》</span>我们会尽快对您的资质进行审核，审核通过后将以好一点客服消息通知您
             </div>
             <div class="join_sub">
                 提交审核
@@ -174,7 +182,7 @@
         </div>
 
         <!--协议-->
-        <div class="weui-mask" @touchmove.prevent>
+        <div class="weui-mask" @touchmove.prevent v-if="agreFlag">
             <div class="agre_box">
                 <h2>好一点专家入驻协议</h2>
                 <div class="agre_content">
@@ -186,7 +194,7 @@
                     <p>2、专家：指同意并遵守本协议规定，通过本平台 向平台用户提供心理咨询解答服务的具有相应资质 的心理咨询师、精神科医生、心理治疗师、催眠师、 婚姻家庭指导师等专业人士。</p>
                     <p> 3、服务：指专家通过本平台向平台用户提供的心理</p>
                 </div>
-                <div class="agre_btn">我知道了</div>
+                <div class="agre_btn" @click="hideAgre()">我知道了</div>
             </div>
         </div>
 
@@ -228,14 +236,22 @@
                 identityFile1:'',
                 identityFile2:'',
                 email:'',
-                mobileVal:'123',
+                mobileVal:'',
                 realName:'',
-                nickName:'',
+                level:'请选择资质',
+                nickName:'请填写昵称',
+                sign:'请填写个人签名',
+                personal:'请填写个人简介',
+                goodAt:'选择自己擅长的领域',
+                goodatDetail:'请描述自己擅长的领域',
+                experience:'请填写培训经历',
+                askPrice:'请设置提问酬金',
+                freeTime:'请设置免费偷听时间',
                 mobileBox:false,
                 idcard:'',
                 ema : /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/,
-                isEdit:false
-
+                isEdit:false,
+                agreFlag:false
 
             }
         },
@@ -275,6 +291,39 @@
             this.solarDateDate= xqzs.dateTime.getSolarData(1949,2017);
         },
         methods: {
+            showAgre:function () {
+                this.agreFlag = true
+            },
+            hideAgre:function () {
+                this.agreFlag = false
+            },
+            setLevel:function () {
+              this.$router.push('./level')
+            },
+            setNickname:function () {
+                this.$router.push('./nickname')
+            },
+            setSign:function () {
+                this.$router.push('./sign')
+            },
+            setPerson:function () {
+                this.$router.push('./personal')
+            },
+            setGoodat:function () {
+                this.$router.push('./good/at')
+            },
+            goGoodatDetail:function () {
+                this.$router.push('./good/detail')
+            },
+            setExperience:function () {
+                this.$router.push('./experience')
+            },
+            goPrice:function () {
+                this.$router.push('./price')
+            },
+            goFreeTime:function () {
+                this.$router.push('./freetime')
+            },
             checkId:function () {
                 let identityNo= $(".identityNo").val();
                 return xqzs.string.isCardID(identityNo)
@@ -343,10 +392,7 @@
                 let realNameVal = $('.realName').val()
                 this.realName = realNameVal
             },
-            changeNickName:function () {
-                let nickName = $('.nickName').val()
-                this.nickName = nickName
-            },
+
             fouceOut:function () {
                 console.log('shiqushiqu');
                 let _this = this;
@@ -654,10 +700,11 @@
     .join_agre{color:rgba(53, 58, 66, 1);font-size: 0.70588rem;line-height: 1rem;margin-bottom: 1.8rem;}
     .join_agre span{color:rgba(255, 99, 0, 1)}
     .join_sub{height:2.94rem;line-height: 2.94rem;color:rgba(255, 255, 255, 1);background: rgba(254, 122, 3, 1);font-size: 1.0588rem;border-radius:6.17rem;text-align: center }
-    .agre_box{width:86%;position: absolute;top:20%;left:50%;margin-left: -46%;background: #fff;padding:0.88235rem 3%;}
+    .agre_box{width:86%;position: absolute;top:10%;left:50%;margin-left: -46%;background: #fff;padding:0.88235rem 3%;border-radius: 0.588235rem;}
     .agre_box h2{color:RGBA(69, 75, 84, 1);font-size: 1.0588rem;line-height: 1.47rem;text-align: center;margin-bottom: 0.88235rem;}
-    .agre_box .agre_content{color:RGBA(69, 75, 84, 1);font-size: 0.76471rem;line-height: 1.176471rem;background: RGBA(69, 75, 84, 0.05)}
-
+    .agre_box .agre_content{color:RGBA(69, 75, 84, 1);font-size: 0.76471rem;line-height: 1.176471rem;background: RGBA(69, 75, 84, 0.05);padding:1.4rem 0.764rem 0.294rem 0.764rem;margin-bottom: 1.176rem;}
+    .agre_content h3{padding-top: 1.176rem}
+    .agre_btn{width:60%;height:2.058rem;line-height: 2.1rem;background: RGBA(254, 122, 3, 1);border-radius: 1.323rem;color:RGBA(255, 255, 255, 1);text-align: center;font-size: 0.88235rem;margin:0 auto;margin-bottom: 0.294rem;}
     .join_stepBox .lut_box{position: absolute;top:0;left:5rem}
     .join_stepBox .lut{float: left;background: #ececec;color: rgba(36,37,61,1);height: 1.76471rem;line-height: 1.76471rem;padding: 0 0.588235rem;margin-top: 0.35294rem;font-size: 0.8235rem;}
     .join_stepBox .lut.on{float: left;background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1));color: #fff;}
