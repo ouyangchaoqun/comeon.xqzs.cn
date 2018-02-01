@@ -112,7 +112,7 @@
     export default {
         data() {
             return {
-                comments:[{v:1,t:'极差'},{v:2,t:'不满意'},{v:3,t:'一般'},{v:4,t:'满意'},{v:5,t:'非常满意'}],
+                comments:[{v:1,t:'极差'},{v:2,t:'不满意'},{v:3,t:'一般'},{v:4,t:'满意'},{v:5,t:'极满意'}],
                 commentValue:0,
                 detail:{},
                 selBestAnswerId:0,
