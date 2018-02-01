@@ -21,7 +21,7 @@
                 <div class="steal_expert_info">
                     <img :src="item.expertUrl" alt="" @click="goDetail(item.expertId)">
                     <div>
-                        <span class="steal_expert_name" @click="goDetail(item.expertId)">{{item.expertName}}</span><span class="steal_expert_fans">{{item.followCount}}人收听</span>
+                        <span class="steal_expert_name" @click="goDetail(item.expertId)">{{item.expertName}}</span><span class="steal_expert_fans">{{item.followCount}} 人收听</span>
                     </div>
                     <div class="steal_expert_des">{{item.sign}}</div>
                     <div class="followed_box" v-if="item.isFollowed==0" @click="follow(index)"> 收听</div>
@@ -174,7 +174,7 @@
                 }else{
                     payTitle = '确认偷听此问题';
                     subHtml='';
-                    msg = '使用：<span class="colorStyle">1</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span> 点豆';
+                    msg = '使用：<span class="colorStyle">1</span> 点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span> 点豆';
                     if(_this.user.dianCoin>1){
                         useCoin = true;
                         console.log(_this.user.dianCoin)
