@@ -95,7 +95,7 @@
                     </li>
                 </ul>
                 <div class="textarea">
-                    <textarea placeholder="您的反馈将影响咨询师" id="textarea_comment" ></textarea>
+                    <textarea placeholder="分享您的咨询感受" id="textarea_comment" ></textarea>
                 </div>
             </div>
         </div>
