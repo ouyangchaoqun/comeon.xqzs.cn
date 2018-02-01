@@ -1,96 +1,62 @@
 <template >
     <div class="sign_box">
         <div v-title>入驻心理咨询师</div>
-        <div class="text_area">
-            <textarea name="" maxlength="25"   class="sign" @input="changeSign()"  placeholder="限25个字符。
-
-方向1:可以写您对咨询的理解（价值观）
-示例：有阴影的地方就有阳光。
-
-方向2：可以写您想对来访者说的话。
-示例：星洲易渡，心河难逾，与你共觅心河之舟。
-
-方向3：可以写您擅长的领域问题。
-示例：恋爱技巧、挽回情感、遭遇婚外情、告别前任。" id="" cols="30" rows="10">{{sign}}</textarea>
-            <div class="count" >{{inputLength}}/{{MAX_INPUT_LENGTH}}</div>
+        <div class="joinSet_top">
+            <div class="joinSet_cancel" @click="backStep()">取消</div>
+            <div class="joinSet_sure" @click="setSign()">确定</div>
         </div>
-        <div class="over_nor_btn" v-if="!sign" @click="check_step()">保存</div>
-        <div class="over_nor_btn over_per_btn" v-if="sign" @click="goJoinmore()">保存</div>
+        <div class="text_area">
+            <textarea v-model="sign" maxlength="25" @input="changeSign()"  placeholder="请输入一句话签名，展示给用户，不超过30个字
+例如：
+有阴影的地方就会有阳光
+或：星洲易渡，心河难逾，与你共觅心河止舟
+或：恋爱技巧，挽回感情，遭遇婚外情，告别前任
+" id="" cols="30" rows="6">{{sign}}</textarea>
+        </div>
     </div>
 </template>
 
 <script type="es6">
-
-    import answerTopStep from "./include/top_step.vue";
-
     export default {
         data() {
             return {
-                MAX_INPUT_LENGTH:25,
-                inputLength:0,
                 sign:'',
-                canGoNext:false
             }
         },
         mounted: function () {
-            let _this=this;
-            _this.expertId = cookie.get('expertId');
-            _this.getExpertByUserId();
+
             xqzs.wx.setConfig(this);
         },
         methods: {
-            getExpertByUserId:function () {
-                let _this=this;
-                _this.showLoad = true;
-                _this.$http.get(web.API_PATH + 'come/expert/query/detail/for/edit/'+ _this.expertId+'/_userId_' ).then(function (data) {//es5写法
-                    _this.showLoad = false;
-                    _this.expertInfo=data.data.data;
-                    _this.sign=    _this.expertInfo.sign;
-                    _this.inputLength =   _this.expertInfo.sign.length;
-
-                }, function (error) {
-                });
+            changeSign: function () {
+                console.log(this.sign)
             },
-
-            changeSign: function (v) {
-                let sign = $(".sign").val();
-                this.sign = sign;
-                if (sign.length > this.MAX_INPUT_LENGTH) {
-                    xqzs.weui.tip("限25个字符")
-                    sign = sign.substr(0, this.MAX_INPUT_LENGTH)
-                }
-                this.inputLength =sign.length;
-                cookie.set("sign",escape(sign));
+            backStep:function () {
+                this.$router.go(-1)
             },
-            goJoinmore:function () {
+            setSign:function () {
                 let _this = this;
-                let data={
-                    userId:"_userId_",
-                    expertId:cookie.get("expertId"),
-                    sign:unescape(cookie.get("sign")),
+                if(_this.sign==''){
+                    xqzs.weui.tip("请填写个人签名");
+                    return
+                }
+                let msg={
+                    sign:_this.sign
                 };
-                _this.$http.post(web.API_PATH + 'come/expert/modify', data)
+                _this.$http.post(web.API_PATH + 'come/expert/register', msg)
                     .then(
                         (response) => {
                             _this.$router.go(-1)
-
                         }
                     );
 
-            },
-            check_step:function () {
-                let _this = this;
-                console.log('check-------------')
-                if(_this.sign==''){
-                    xqzs.weui.tip("请填写个人签名")
-                }
             },
         }
 
     }
 </script>
 <style>
-    .sign_box{background: #fff;}
-    .sign_box .text_area{background: rgba(245,245,245,1);margin:0;border:0;}
-    .sign_box .text_area textarea{background: rgba(245,245,245,1)}
+    .sign_box{background: RGBA(69, 75, 84, 0.03);}
+    .sign_box .text_area{background: #fff;padding:0.47rem 0.88235rem;}
+    .sign_box .text_area textarea{border:0;font-size: 0.8235rem;line-height: 1.176rem;width:100%;height:100%;}
 </style>

@@ -8,13 +8,11 @@
             <div class="joinSet_sure" @click="setPersonal()">确定</div>
         </div>
         <div class="text_area">
-            <textarea @input="changeIntroduction()" placeholder="请采用精简的语言介绍自己，以便用户快速地了解您！
+            <textarea placeholder="请对自己擅长的领域进行描述，不超过200个字
 例如：
-国家二级心理咨询师。专注婚恋情感咨询。擅长解
-决恋爱婚姻中的情感创伤疗愈及应对，解决各种情感心理
-纠葛。失恋安抚、恋人挽回、婚姻破裂挽回、婆媳关系处
-理、婚外情等情感问题。幸福并不难，相信我，把问题交
-给我、我们一起敲开幸福的大门。" rows="10" v-model="introduction">{{introduction}}</textarea>
+#家庭关系：婚姻挽救、情感修复、外遇分离、家暴危 机、婆媳关系、复婚帮助、离婚纠纷
+#恋爱关系：失恋帮助、性格不合、沟通障碍、经常吵 架、父母反对、异地恋问题
+#性心理：同性恋、恋母情结、偷窥幻想女性、性取向 问题" rows="10" ></textarea>
         </div>
     </div>
 </template>
@@ -25,7 +23,7 @@
     export default {
         data() {
             return {
-                introduction:'',
+
             }
         },
 
@@ -40,32 +38,19 @@
             getExpertByUserId:function () {
                 let _this=this;
                 _this.expertId = cookie.get('expertId');
-                _this.showLoad = true;
                 _this.$http.get(web.API_PATH + 'come/expert/query/detail/for/edit/'+ _this.expertId+'/_userId_' ).then(function (data) {//es5写法
-                    _this.showLoad = false;
                     _this.expertInfo=data.data.data;
-                    _this.introduction= _this.expertInfo.introduction;
+                    console.log(_this.expertInfo)
                 }, function (error) {
                 });
             },
-            changeIntroduction:function () {
 
-            },
             backStep:function () {
                 this.$router.go(-1)
             },
             setPersonal:function () {
-                let _this = this;
-                let msg={
-                    introduction:this.introduction
-                };
-                _this.$http.post(web.API_PATH + 'come/expert/register', msg)
-                    .then(
-                        (response) => {
-                            _this.$router.go(-1)
-                        }
-                    );
 
+                this.$router.go(-1)
             }
 
         }
