@@ -237,7 +237,7 @@
                 }else{
                     subHtml="去充值"
                 }
-                let msg = '使用：<span class="colorStyle">'+_this.rechargeMoney+'</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span>点豆'
+                let msg = '使用：<span class="colorStyle">'+_this.rechargeMoney+'</span> 点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span>点豆'
                 xqzs.weui.dialog(payTitle,msg,subHtml,function(){},function () {
                     if(isEnough){
                         _this.submit()

@@ -35,7 +35,7 @@
                 <img :src="detail.expert.faceUrl" alt="" @click="goDetail(detail.expertId)">
                 <div>
                     <span class="steal_expert_name" @click="goDetail(detail.expertId)">{{detail.expert.nickName}}</span><span
-                        class="steal_expert_fans">{{followCount}}人收听</span>
+                        class="steal_expert_fans">{{followCount}} 人收听</span>
                 </div>
                 <div class="steal_expert_des">{{detail.expert.sign}}</div>
                 <div class="followed_box" v-if="!detail.expert.isFollow" @click="follow(detail.expertId)">收听</div>
@@ -61,7 +61,7 @@
                 <div class="problem_answer_bottom" v-if="detail.answerCount>0">
                     <div class="problem_answer_time">{{formatDateText(item.addTime)}}</div>
                     <div class="problem_answer_zan">
-                        <div><span>听过</span><span>{{item.ListenTimes}}</span></div>
+                        <div><span>听过</span> <span>{{item.ListenTimes}}</span></div>
                         <div><span>收入分成￥</span><span>{{formatPrice(detail.inCome)}}</span></div>
                         <div @click="like(index)" class="good_care" :class="{good_cared:item.isLiked}"><span>{{item.likeTimes}}</span></div>
                     </div>

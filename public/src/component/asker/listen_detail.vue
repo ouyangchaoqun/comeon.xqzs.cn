@@ -72,7 +72,7 @@
                     <div class="problem_answer_zan">
                         <div>
                             <span>听过</span>
-                            <span>{{item.listenTimes}}</span>
+                            <span> {{item.listenTimes}}</span>
                         </div>
                         <div @click="like(index)" class="good_care" :class="{good_cared:item.isCared}"><span>{{item.likeTimes}}</span></div>
                     </div>
@@ -174,7 +174,7 @@
                 }else{
                     payTitle = '确认偷听此问题';
                     subHtml='';
-                    msg = '使用：<span class="colorStyle">1</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span>点豆';
+                    msg = '使用：<span class="colorStyle">1</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span> 点豆';
                     if(_this.user.dianCoin>1){
                         useCoin = true;
                         console.log(_this.user.dianCoin)

@@ -26,17 +26,17 @@
                     </div>
                     <div class="answer_countBox">
                         <div class="counts" v-if="detail.listenCount!=null">{{detail.listenCount}}</div>
-                        <div class="nr">次偷听</div>
+                        <div class="nr"> 次偷听</div>
                         <div class="line_1"></div>
                     </div>
                     <div class="answer_countBox">
                         <div class="counts">{{toPercent(detail.goodPercent||0)}}</div>
-                        <div class="nr">好评率</div>
+                        <div class="nr"> 好评率</div>
                         <div class="line_1"></div>
                     </div>
                     <div class="answer_countBox">
                         <div class="counts">{{detail.followCount}}</div>
-                        <div class="nr">人收听</div>
+                        <div class="nr"> 人收听</div>
                     </div>
 
                 </div>
@@ -292,7 +292,7 @@
                 }else{
                     payTitle = '确认偷听此问题';
                     subHtml='';
-                    msg = '使用：<span class="colorStyle">1</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span>点豆';
+                    msg = '使用：<span class="colorStyle">1</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span> 点豆';
                     if(Number(_this.user.dianCoin)>=1){
                         useCoin = true;
                     }else{

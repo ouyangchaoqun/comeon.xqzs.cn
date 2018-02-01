@@ -21,7 +21,7 @@
             </div>
             <div class="pointDetail_bottom">
                 <span>满分5分</span>
-                <span>{{allCount}}个评价</span>
+                <span>{{allCount}} 个评价</span>
             </div>
             <div class="list_top"  @click="changeType()" >
                 <span class="img" :class="{not_on:viewType==0}"></span><span>只看有内容的评价</span>

@@ -5,15 +5,15 @@
         </div>
         <div class="items_box">
             <div class="items" v-for="(item,index) in items" @click="select(index)" :class="{selected:item.c==1}">
-                <div class="price" :class="{nogift:item.couponCount==0}">{{item.dianCoin}}点豆</div>
-                <div class="dou" :class="{nogift:item.couponCount==0}">{{parseInt(item.money)}}元</div>
+                <div class="price" :class="{nogift:item.couponCount==0}">{{item.dianCoin}} 点豆</div>
+                <div class="dou" :class="{nogift:item.couponCount==0}">{{parseInt(item.money)}} 元</div>
                 <div class="gift" v-if="item.couponCount!=0">赠送{{item.couponCount}}张偷听卡</div>
             </div>
         </div>
-        <div class="cash">现金余额可使用<span style="color: #FB640A">{{user.balance||0.00}}</span>元
+        <div class="cash">现金余额可使用<span style="color: #FB640A">{{user.balance||0.00}} </span>元
             <div class="cash_right" :class={no:!isUseIncome} @click="useIncome()"></div>
         </div>
-        <div class="rechar_btn" @click="doPay()">立即支付（{{pay}}元）</div>
+        <div class="rechar_btn" @click="doPay()">立即支付（{{pay}} 元）</div>
         <div class="question" >
             <img src="../../../images/asker/question_icon.png" alt="">
             <span @click="showTips">充值须知</span>

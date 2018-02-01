@@ -14,11 +14,11 @@
                 </div>
                 <div class="income_margin">
                 <router-link to="../my/cash" class="income"><i></i>我的现金
-                    <div class="price">{{formatPrice(user.balance)}}<span style="font-size: 0.70rem;color: black ">元</span></div>
+                    <div class="price">{{formatPrice(user.balance)}}<span style="font-size: 0.70rem;color: black "> 元</span></div>
                 </router-link>
 
                 <router-link to="../my/dotbean" class="income dotCoin"><i></i>我的点豆
-                    <div class="price">{{user.dianCoin}}<span style="font-size: 0.70rem;color: black ">点</span></div>
+                    <div class="price">{{user.dianCoin}}<span style="font-size: 0.70rem;color: black "> 点</span></div>
                 </router-link>
                 <!--<router-link to="../my/coupon" class="income yhcard "><i></i>优惠卡券-->
                     <!--<div class="price">{{couponNum}}<span style="font-size: 0.70rem;color: black ">张</span></div>-->

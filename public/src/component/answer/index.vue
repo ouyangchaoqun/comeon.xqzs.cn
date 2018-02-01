@@ -35,8 +35,8 @@
                                 </div>
                                 <div class="class_s other">
                                     <span class="price" ><b>问价</b>  <a>{{item.price}}</a></span>
-                                    <span class="textAlign" v-if="item.answerCount!=null">{{item.answerCount}}个回答</span>
-                                    <span class="textAlign" v-if="item.listenCount!=null">{{item.listenCount}}次被偷听</span>
+                                    <span class="textAlign" v-if="item.answerCount!=null">{{item.answerCount}} 个回答</span>
+                                    <span class="textAlign" v-if="item.listenCount!=null">{{item.listenCount}} 次被偷听</span>
                                 </div>
                             </div>
                         </div>

@@ -5,7 +5,7 @@
         <v-recharge :rechargeMoney="rechargeMoney" v-show="rechargeFlag" v-on:childMessage="getFlagVal"></v-recharge>
         <div class="banner banner_bg">
             <div class="title">我的点豆</div>
-            <div class="value">{{user.dianCoin||0}}<span style="font-size: 1.41rem">点豆</span></div>
+            <div class="value">{{user.dianCoin||0}}<span style="font-size: 1.41rem"> 点豆</span></div>
         </div>
         <div class="btn" @click="recharge()">
                 <div class="left">充值</div>

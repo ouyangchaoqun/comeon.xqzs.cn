@@ -77,7 +77,7 @@
                     <div class="problem_answer_bottom rob_answer_bottom">
                         <div class="problem_answer_time">{{formatDateText(item.addTime)}}</div>
                         <div class="problem_answer_zan">
-                            <div><span>听过</span><span>{{item.ListenTimes}}</span></div>
+                            <div><span>听过</span> <span>{{item.ListenTimes}}</span></div>
                             <div v-if="detail.bestAnswerId==item.answerId"><span>收入分成</span><span>￥{{formatPrice(item.inCome)}}</span></div>
                             <div @click="like(index)" class="good_care" :class="{good_cared:item.isLiked}"><span> {{item.likeTimes}}</span></div>
                         </div>
