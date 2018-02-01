@@ -1338,6 +1338,25 @@ var xqzs = {
 
         }
 
+    },
+    equipment:{
+        isIphoneX:function () {
+            return /iphone/gi.test(navigator.userAgent) && (screen.height == 812 && screen.width == 375)
+        },
+        tabHeight:function () {
+            if(xqzs.equipment.isIphoneX()){
+                return 4;
+            }else{
+                return 2.882352 ;
+            }
+        },
+        getRem:function () {
+
+            var width =  document.documentElement.getBoundingClientRect().width;
+            var  maxWidth =  768;
+            width>maxWidth && (width=maxWidth);
+            return    width * 100 / 750;
+        }
     }
 };
 

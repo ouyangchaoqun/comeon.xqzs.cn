@@ -1,5 +1,5 @@
 <template >
-    <div  class="answer_bottom_box">
+    <div  class="answer_bottom_box" :style="'height:'+height+'rem'">
         <router-link to='/asker/listen' >
             <span class="icon home"></span>咨询入口
         </router-link>
@@ -50,6 +50,15 @@
     export default {
         props: {
             tabOnIndex: 0
+        },
+        data() {
+            return {
+                height: xqzs.equipment.tabHeight()
+            }
         }
     }
+
+
+
+
 </script>
