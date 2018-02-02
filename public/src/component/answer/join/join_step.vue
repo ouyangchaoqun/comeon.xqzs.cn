@@ -392,17 +392,19 @@
                 if (_this.nickName == '') {
                     re = false;
                     tip = "请填写昵称";
-                } else if (_this.faceUrl == '') {
-                    re = false;
-                    tip = "请设置个人头像";
-                }else if (_this.sign == '') {
+                }
+//                else if (_this.faceUrl == '') {
+//                    re = false;
+//                    tip = "请设置个人头像";
+//                }
+                else if (_this.sign == '') {
                     re = false;
                     tip = "请填写个人签名";
                 }
-                else if (_this.mobileVal == '') {
-                    re = false;
-                    tip = "请填写手机号码";
-                }
+//                else if (_this.mobileVal == '') {
+//                    re = false;
+//                    tip = "请填写手机号码";
+//                }
                 else if (_this.personal == '') {
                     re = false;
                     tip = "请填写个人简介";
@@ -418,10 +420,12 @@
                 } else if (_this.askPrice == '') {
                     re = false;
                     tip = "请设置提问酬金";
-                } else if (_this.freeTime == '') {
-                    re = false;
-                    tip = "请设置免费偷听时间";
-                }else if (_this.provinceName == '') {
+                }
+//                else if (_this.freeTime == '') {
+//                    re = false;
+//                    tip = "请设置免费偷听时间";
+//                }
+                else if (_this.provinceName == '') {
                     re = false;
                     tip = "请选择常驻城市";
                 }
