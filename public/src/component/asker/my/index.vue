@@ -29,6 +29,9 @@
                 <router-link to="../my/comment/list" class="comment"><i></i>我的评价</router-link>
             </div>
             <div class="join" @click="join()">入驻咨询师</div>
+            <router-link to="../../answer/join/joinstep" class="income dotCoin" style="opacity: 0"><i></i>
+                测试
+            </router-link>
         </div>
         <v-asker-bottom tabOnIndex="4"></v-asker-bottom>
     </div>
