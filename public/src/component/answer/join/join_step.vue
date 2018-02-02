@@ -12,9 +12,9 @@
             </div>
             <div style="clear: both"></div>
         </header>
-        <div class="step_detailBox">
+        <div class="step_detailBox" :class="{detailBox_bottom:edit}">
             <ul>
-                <li>
+                <li v-if="!edit">
                     资质证书
                     <div class="li_right" @click="setLevel()">
                         <input disabled placeholder="请选择资质">
@@ -121,11 +121,11 @@
                 </li>
             </ul>
         </div>
-        <div class="joinStep_bottom">
+        <div class="joinStep_bottom" v-if="!edit">
             <div class="join_agre">
                 提交审核，即表示您同意遵守<span @click="showAgre()">《好一点专家入驻协议》</span>我们会尽快对您的资质进行审核，审核通过后将以好一点客服消息通知您
             </div>
-            <div class="join_sub" @click="msgSubmit()">
+            <div class="join_sub" v-if="!edit" @click="msgSubmit()">
                 提交审核
             </div>
         </div>
@@ -187,20 +187,19 @@
                 mobileBox:false,
                 idcard:'',
                 ema : /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/,
-                isEdit:false,
                 agreFlag:false,
                 showType:[],
                 faceUrl:'',
-                isSubNum1:true,
-                questionClassId:[]
+                questionClassId:[],
+                edit:false
             }
         },
 
         mounted: function () {
-            let edit = this.$route.query.edit;
-            if(edit=='revise'){
+            this.edit = this.$route.query.edit;
+            console.log(this.edit)
+            if(this.edit){
                 console.log('修改')
-                this.isSubNum1 = false;
             }else{
                 console.log('入驻')
                 this.registerInfo()
@@ -461,7 +460,7 @@
                     "faceUrl":_this.faceUrl,
                 };
                 let url = "come/expert/register";
-                if(!this.isSubNum1){
+                if(_this.edit){
                     msg.expertId=cookie.get('expertId');
                     msg.userId= _this.user.id;
                     url = "come/expert/modify";
@@ -493,6 +492,7 @@
     .join_stepBox .li_right{float: right;padding-right: 1.5rem;}
     .join_stepBox header{padding:0.88235rem;border-bottom: 0.588235rem solid rgba(69, 75, 84, 0.09);line-height: 3.52rem;position: relative}
     .join_stepBox header img{width:3.52rem;height:3.52rem;float: left}
+    .detailBox_bottom{margin-bottom: 2rem}
     .join_stepBox .step_detailBox li{height: 2.94rem;line-height:2.94rem;color:rgba(69, 75, 84, 1);border-bottom: 1px solid rgba(224,224,225,1);padding:0 0.88235rem;font-size: 0.8235rem;position: relative;}
     .join_stepBox .step_detailBox li .li_right{float: right;padding-right:1.5rem;width:55%;}
     .li_right>div{

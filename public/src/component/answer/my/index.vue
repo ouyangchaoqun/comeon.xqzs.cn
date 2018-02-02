@@ -9,7 +9,7 @@
                         <div class="name">
                             {{expert.nickName}}
                         </div>
-                        <div class="perfect" >更新资质</div>
+                        <div class="perfect">完善资料</div>
                         <div class="clear"></div>
                 </div>
                 <div class="main_lists">
@@ -117,9 +117,9 @@
 
             },
             goJoin:function () {
-                //this.$router.push("/answer/join/joinstep?edit=true");
                 this.showLoad = true;
-                this.$router.push("/answer/join/join_update");
+                this.$router.push("/answer/join/joinstep?edit=true");
+                //this.$router.push("/answer/join/join_update");
             },
             getIncome:function () {
 
