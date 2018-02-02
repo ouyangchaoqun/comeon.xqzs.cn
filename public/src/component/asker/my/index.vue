@@ -84,7 +84,7 @@
 //                            const AUTHENTICATING = -1;//提交中
                             if(status==2||status==-1){
                                 //修改
-                                _this.goJoin(true)
+                                _this.goJoin(1)
                             }
                             if(status==1){
                                 //已认证
@@ -92,7 +92,7 @@
                             }
                         }else{
                             //入驻
-                            _this.goJoin(false)
+                            _this.goJoin(0)
                         }
                     }
                 }, function (error) {

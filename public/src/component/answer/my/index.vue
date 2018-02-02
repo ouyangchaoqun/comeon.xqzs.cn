@@ -87,38 +87,9 @@
             goPerfect:function () {
                 this.$router.push("./perfect")
             },
-            join: function () {
-                let _this= this;
-                this.$http.get(web.API_PATH + 'come/expert/query/detail/by/userId/_userId_' ).then(function (data) {//es5写法
-                    if (data.body.status == 1) {
-                        if(data.data.data!=null){
-                            let status = data.data.data.status;
-//                            const NOT_AUTHENTICATED=0;//未认证
-//                            const AUTHENTICATED = 1 ;//已认证
-//                            const AUTHENTICATING = 2;//认证中
-//                            const AUTHENTICATING = -1;//提交中
-                            if(status==0||status==-1){
-                                _this.goJoin()
-
-                            }else{
-                                if(status==1){
-                                    xqzs.weui.tip("您已成功入驻咨询师，请从公众号移步到咨询师。")
-                                }else{
-                                    _this.$router.push("/answer/join/reviewing");
-                                }
-                            }
-                        }else{
-                            _this.goJoin()
-                        }
-                    }
-                }, function (error) {
-                });
-
-
-            },
             goJoin:function () {
                 this.showLoad = true;
-                this.$router.push("/answer/join/joinstep?edit=true");
+                this.$router.push("/answer/join/joinstep?edit=1");
                 //this.$router.push("/answer/join/join_update");
             },
             getIncome:function () {

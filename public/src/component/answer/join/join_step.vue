@@ -191,7 +191,7 @@
                 showType:[],
                 faceUrl:'',
                 questionClassId:[],
-                edit:false
+                edit:null,
             }
         },
 
