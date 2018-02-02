@@ -467,13 +467,13 @@
                     url = "come/expert/modify";
                 }
                 console.log(msg);
-                _this.$router.go(-1);
-                return;
+                console.log(url)
                 _this.$http.post(web.API_PATH + url, msg)
                     .then(
                         (response) => {
                             console.log(response)
                             _this.showLoad= false;
+                           // _this.$router.go(-1);
 
                         }
                     );
