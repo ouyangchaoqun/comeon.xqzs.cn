@@ -9,7 +9,7 @@
         <div class="time_type">
             <div class="time_typeTitle"></div>
             <ul>
-                <li v-for="(item,index) in times" :class="{free_checked:index==checkedIndex}" @click="freeTimeChecked(index)">{{item.label}}</li>
+                <li v-for="(item,index) in times" :class="{free_checked:item.isSelect}" @click="freeTimeChecked(index)">{{item.label}}</li>
             </ul>
             <div style="clear: both"></div>
         </div>
@@ -18,57 +18,81 @@
 </template>
 
 <script type="es6">
-
-    import answerTopStep from "./include/top_step.vue";
-
     import showLoad from '../../include/showLoad.vue';
     export default {
         data() {
             return {
                 times:[{
                     label: '不免费',
-                    value: 0
+                    value: 0,
+                    isSelect:false
                 }, {
                     label: '30分钟',
-                    value: 1
+                    value: 1,
+                    isSelect:false
                 }, {
                     label: '1小时',
-                    value: 2
+                    value: 2,
+                    isSelect:false
                 },{
                     label: '2小时',
                     disabled: true,
-                    value: 3
+                    value: 3,
+                    isSelect:false
                 }, {
                     label: '3小时',
-                    value: 4
+                    value: 4,
+                    isSelect:false
                 },{
                     label: '6小时',
-                    value: 5
+                    value: 5,
+                    isSelect:false
                 },{
                     label: '12小时',
-                    value: 6
+                    value: 6,
+                    isSelect:false
                 },{
                     label: '24小时',
-                    value: 7
+                    value: 7,
+                    isSelect:false
                 }],
-                checkedIndex:''
+                checkedIndex:'',
+                freeTime:''
             }
         },
 
         mounted: function () {
-
-
+            let checkedIndex = cookie.get("register_checkedIndex")||'';
+            this.$nextTick(function () {
+                if(checkedIndex){
+                    this.freeTimeChecked(checkedIndex);
+                }
+            })
         } ,
+
         methods:  {
             freeTimeChecked:function (v) {
-              console.log(v)
+                let times=this.times;
+                for(var i = 0;i<times.length;i++){
+                    times[i].isSelect=false;
+                }
+                times[v].isSelect=true;
                 this.checkedIndex = v;
+                this.$set(this.times,v,times[v]);
             },
             backStep:function () {
                 this.$router.go(-1)
             },
             setFreeTime:function () {
-                this.$router.go(-1)
+                let _this = this;
+                if(_this.checkedIndex==''){
+                        xqzs.weui.tip("请设置免费偷听时间",function () {});
+                }else {
+                    _this.freeTime = this.times[_this.checkedIndex].label;
+                    cookie.set('register_checkedIndex',_this.checkedIndex,1)
+                    cookie.set('register_freeTime',_this.freeTime,1)
+                    _this.$router.go(-1)
+                }
             },
         },
         components: {

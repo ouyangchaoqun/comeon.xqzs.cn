@@ -4,9 +4,10 @@
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div v-title>入驻心理咨询师</div>
         <header>
-            <img src="../../../images/joinHeaderImg.png" alt="">
-            <div class="li_right">
-                <input type="text"  placeholder="请上传头像">
+            <img v-if="faceUrl==''" src="../../../images/joinHeaderImg.png" alt="">
+            <img v-if="faceUrl!=''" :src="faceUrl" alt="">
+            <div class="li_right" @click="changeHeadpic()">
+                <div>请上传头像</div>
                 <i></i>
             </div>
             <div style="clear: both"></div>
@@ -181,14 +182,15 @@
                 goodAt:'选择自己擅长的领域',
                 goodatDetail:'',
                 experience:'请填写培训经历',
-                askPrice:'请设置提问酬金',
+                askPrice:'',
                 freeTime:'请设置免费偷听时间',
                 mobileBox:false,
                 idcard:'',
                 ema : /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/,
                 isEdit:false,
                 agreFlag:false,
-                showType:[]
+                showType:[],
+                faceUrl:''
             }
         },
         mounted: function () {
@@ -203,6 +205,47 @@
                 this.personal = cookie.get('register_personal')||'请填写个人简介';
                 this.goodatDetail = cookie.get('register_goodatDetail')||'请描述自己擅长的领域';
                 this.experience = cookie.get('register_experience')||'请填写培训经历';
+                this.askPrice = '￥'+cookie.get('register_askPrice')||'请设置提问酬金';
+                this.freeTime = cookie.get('register_freeTime')||'请设置免费偷听时间';
+                this.faceUrl = cookie.get('register_faceUrl')||'';
+            },
+            changeHeadpic:function () {
+                let _this=this;
+                xqzs.image.showClip(this.uploadpicinfo,this.alioss,function(){
+                    _this.showLoad=true;
+                },function (json,ix) {
+                    _this.showLoad=false;
+                    _this.faceUrl=json.data.path;
+                    cookie.set('register_faceUrl',_this.faceUrl,1)
+//
+//                    let data ={
+//
+//                        faceUrl: _this.faceUrl,
+//                        expertId:cookie.get("expertId"),
+//                        userId:"_userId_"
+//                    }
+//                    _this.$http.post(web.API_PATH + "come/expert/modify", data)
+//                        .then(function (bt) {
+//                            if (bt.data && bt.data.status == 1) {
+//
+//                            }
+//                        });
+                    xqzs.image.hideClip()
+                });
+            },
+            initOss:function () {
+                this.uploadpicinfo = {
+                    token: xqzs.string.guid(),
+                    smallpic: xqzs.constant.PIC_SMALL,
+                    middlepic: xqzs.constant.PIC_MIDDLE,
+                    removepicurl: web.BASE_PATH + 'api/removepicture',
+                    uploadbase64url: web.BASE_PATH + 'api/upfilebase64',
+                    aliossgeturl: web.BASE_PATH + 'api/aliyunapi/oss_getsetting'
+                };
+                this.alioss = new aliyunoss({
+                    url:this.uploadpicinfo.aliossgeturl,
+                    token:this.uploadpicinfo.token
+                });
             },
             showAgre:function () {
                 this.agreFlag = true
@@ -409,9 +452,10 @@
     .join_stepBox header{padding:0.88235rem;border-bottom: 0.588235rem solid rgba(69, 75, 84, 0.09);line-height: 3.52rem;position: relative}
     .join_stepBox header img{width:3.52rem;height:3.52rem;float: left}
     .join_stepBox .step_detailBox li{height: 2.94rem;line-height:2.94rem;color:rgba(69, 75, 84, 1);border-bottom: 1px solid rgba(224,224,225,1);padding:0 0.88235rem;font-size: 0.8235rem;position: relative;}
-    .join_stepBox .step_detailBox li .li_right{float: right;color:rgba(69, 75, 84, 0.7);padding-right:1.5rem;font-size: 0.76471rem; width:60%;}
+    .join_stepBox .step_detailBox li .li_right{float: right;padding-right:1.5rem;width:60%;}
     .li_right>div{
-        width:100%;overflow: hidden;text-align: right;text-overflow: ellipsis;white-space: nowrap;
+        width:100%;overflow: hidden;text-align: right;text-overflow: ellipsis;white-space: nowrap;font-size: 0.76471rem;
+        color: rgba(69, 75, 84, 0.7);
     }
     .li_right input{border:0;outline: none;text-align: right;height:80%;}
     .join_stepBox .li_right i{background: url('../../../images/arrow.png');width: 0.94rem;  height: 0.94rem;  background-size: 0.94rem;  position: absolute;  right: 0.88235rem;  top: 50%;margin-top: -0.47rem;  }

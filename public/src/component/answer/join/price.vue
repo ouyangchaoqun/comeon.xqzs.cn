@@ -7,7 +7,7 @@
             <div class="joinSet_sure" @click="setPrice()">确定</div>
         </div>
         <div class="set_price">
-            <input class="priceInput"  @input="changePrice()" :value="'￥'+price" placeholder="设置提问价格（元）例如：¥10" >
+            <input type="number" class="priceInput" v-model="askPrice"  :value="askPrice" placeholder="设置提问价格（元）例如：¥10">
         </div>
         <div class="price_bottom">
             <div>至少10元</div>
@@ -17,60 +17,36 @@
 </template>
 
 <script type="es6">
-
-    import answerTopStep from "./include/top_step.vue";
-
     import showLoad from '../../include/showLoad.vue';
     export default {
         data() {
             return {
-                prices:["1.00","2.00","3.00","5.00","10.00","15.00","20.00","30.00","50.00"],
-                price:"10.00",
+                askPrice:"",
                 showLoad:false,
-                freeTime:null,
-                freeTimeText:'',
-                isSubmitting:false,
-                times:[{
-                    label: '不免费',
-                    value: 0
-                }, {
-                    label: '30分钟',
-                    value: 1
-                }, {
-                    label: '1小时',
-                    value: 2
-                },{
-                    label: '2小时',
-                    disabled: true,
-                    value: 3
-                }, {
-                    label: '3小时',
-                    value: 4
-                },{
-                    label: '4小时',
-                    value: 5
-                }]
             }
         },
 
         mounted: function () {
-            let price = cookie.get("price");
-            if(price)this.price= price;
-            xqzs.wx.setConfig(this);
+            this.getCookie()
 
         } ,
         methods:  {
-            changePrice:function () {
-                let price= $(".priceInput").val()
-                price=  price.replace('￥','');
-                this.price=price;
-
+            getCookie:function () {
+                this.askPrice = cookie.get('register_askPrice')||'';
             },
             backStep:function () {
                 this.$router.go(-1)
             },
             setPrice:function () {
-                this.$router.go(-1)
+                let _this = this;
+                if(_this.askPrice==''){
+                    xqzs.weui.tip("请设置提问价格",function () {});
+                }else if(Number(_this.askPrice)<10){
+                    xqzs.weui.tip("请设置正确的价格",function () {});
+                }else {
+                    cookie.set('register_askPrice',_this.askPrice,1)
+                    _this.$router.go(-1)
+                }
             },
             submit:function () {
                 let _this=this;
