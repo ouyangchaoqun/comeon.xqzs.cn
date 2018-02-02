@@ -12,7 +12,7 @@
 例如：
 #家庭关系：婚姻挽救、情感修复、外遇分离、家暴危 机、婆媳关系、复婚帮助、离婚纠纷
 #恋爱关系：失恋帮助、性格不合、沟通障碍、经常吵 架、父母反对、异地恋问题
-#性心理：同性恋、恋母情结、偷窥幻想女性、性取向 问题" rows="10" ></textarea>
+#性心理：同性恋、恋母情结、偷窥幻想女性、性取向 问题" rows="10" v-model="goodatDetail">{{goodatDetail}}</textarea>
         </div>
     </div>
 </template>
@@ -23,34 +23,31 @@
     export default {
         data() {
             return {
-
+                goodatDetail:''
             }
         },
-
-
         mounted: function () {
-            let _this= this;
-            _this.getExpertByUserId();
-            xqzs.wx.setConfig(this);
+
         },
         methods: {
-
-            getExpertByUserId:function () {
-                let _this=this;
-                _this.expertId = cookie.get('expertId');
-                _this.$http.get(web.API_PATH + 'come/expert/query/detail/for/edit/'+ _this.expertId+'/_userId_' ).then(function (data) {//es5写法
-                    _this.expertInfo=data.data.data;
-                    console.log(_this.expertInfo)
-                }, function (error) {
-                });
+            getCookie:function () {
+                this.goodatDetail = cookie.get('register_goodatDetail')||'';
             },
 
             backStep:function () {
                 this.$router.go(-1)
             },
             setPersonal:function () {
+                let _this = this;
+                if(_this.goodatDetail==''){
+                    xqzs.weui.tip('请描述自己擅长的领域',function () {
 
-                this.$router.go(-1)
+                    })
+                }else{
+                    cookie.set('register_goodatDetail',_this.goodatDetail,1)
+                    _this.$router.go(-1)
+                }
+
             }
 
         }

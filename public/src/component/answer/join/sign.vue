@@ -6,7 +6,7 @@
             <div class="joinSet_sure" @click="setSign()">确定</div>
         </div>
         <div class="text_area">
-            <textarea v-model="sign" maxlength="25" @input="changeSign()"  placeholder="请输入一句话签名，展示给用户，不超过30个字
+            <textarea v-model="sign" maxlength="25" placeholder="请输入一句话签名，展示给用户，不超过30个字
 例如：
 有阴影的地方就会有阳光
 或：星洲易渡，心河难逾，与你共觅心河止舟
@@ -24,12 +24,11 @@
             }
         },
         mounted: function () {
-
-            xqzs.wx.setConfig(this);
+            this.getCookie();
         },
         methods: {
-            changeSign: function () {
-                console.log(this.sign)
+            getCookie:function () {
+                this.sign = cookie.get('register_sign')||'';
             },
             backStep:function () {
                 this.$router.go(-1)
@@ -37,18 +36,11 @@
             setSign:function () {
                 let _this = this;
                 if(_this.sign==''){
-                    xqzs.weui.tip("请填写个人签名");
-                    return
+                    xqzs.weui.tip("请填写个人签名",function () {});
+                }else {
+                    cookie.set('register_sign',_this.sign,1)
+                    _this.$router.go(-1)
                 }
-                let msg={
-                    sign:_this.sign
-                };
-                _this.$http.post(web.API_PATH + 'come/expert/register', msg)
-                    .then(
-                        (response) => {
-                            _this.$router.go(-1)
-                        }
-                    );
 
             },
         }

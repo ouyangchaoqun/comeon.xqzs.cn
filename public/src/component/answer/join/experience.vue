@@ -14,7 +14,7 @@
 2012年，获得国家二级心理咨询师证书
 2013年，参加NLP生命教练技术、NLP心理咨询培训
 2014年，学习家庭系统排列
-2016年，林昆辉危机干预技术、家庭心理学、SR非事件 心理治疗培训" rows="10" ></textarea>
+2016年，林昆辉危机干预技术、家庭心理学、SR非事件 心理治疗培训" rows="10" v-model="experience">{{experience}}</textarea>
         </div>
     </div>
 </template>
@@ -25,36 +25,29 @@
     export default {
         data() {
             return {
-
+                experience:''
             }
         },
 
 
         mounted: function () {
-            let _this= this;
-            _this.getExpertByUserId();
-            xqzs.wx.setConfig(this);
+            this.getCookie()
         },
         methods: {
-
-            getExpertByUserId:function () {
-                let _this=this;
-                _this.expertId = cookie.get('expertId');
-
-                _this.$http.get(web.API_PATH + 'come/expert/query/detail/for/edit/'+ _this.expertId+'/_userId_' ).then(function (data) {//es5写法
-
-                    _this.expertInfo=data.data.data;
-                }, function (error) {
-                });
-            },
-            changeIntroduction:function () {
-
+            getCookie:function () {
+                this.experience = cookie.get('register_experience')||'';
             },
             backStep:function () {
                 this.$router.go(-1)
             },
             setExpe:function () {
-                this.$router.go(-1)
+                let _this = this;
+                if(_this.experience==''){
+                    xqzs.weui.tip("请填写培训经历",function () {});
+                }else {
+                    cookie.set('register_experience',_this.experience,1)
+                    _this.$router.go(-1)
+                }
             }
 
         }

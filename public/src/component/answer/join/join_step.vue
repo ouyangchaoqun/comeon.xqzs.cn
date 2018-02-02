@@ -32,8 +32,7 @@
                 <li>
                     手机号码
                     <div class="li_right" @click="goMobile()">
-                        <!--<div class="mobile">{{mobileVal}}</div>-->
-                        <input type="text" class="mobile" placeholder="请输入手机号" :value="mobileVal">
+                        <div>{{mobileVal}}</div>
                         <i></i>
                     </div>
                 </li>
@@ -78,7 +77,12 @@
                 <li>
                     擅长领域
                     <div class="li_right" @click="setGoodat()">
-                        <div>{{goodAt}}</div>
+                        <div>
+                            <template v-if="showType.length==0">{{goodAt}}</template>
+                            <template v-if="showType.length!=0">
+                                <span v-for="item in showType" style="margin-left: 0.294rem">{{item}}</span>
+                            </template>
+                        </div>
                         <i></i>
                     </div>
                 </li>
@@ -114,63 +118,7 @@
                         <i></i>
                     </div>
                 </li>
-
-                <!--<li>-->
-                    <!--真实姓名-->
-                    <!--<div class="li_right">-->
-                        <!--<input type="text" class="realName" @input="changeRealName()" placeholder="还未填写（如张三）" :value="realName">-->
-                        <!--<i></i>-->
-                    <!--</div>-->
-                <!--</li>-->
-
-
-                <!--<li @click="showDate()" v-if="false">-->
-                    <!--生日-->
-                    <!--<div class="lut_box">-->
-                        <!--<span class="lut" :class="{on:!isLunar}" @click.stop="lutSelect(0)">阳历</span>-->
-                        <!--<span class="lut" :class="{on:isLunar}"  @click.stop="lutSelect(1)">阴历</span>-->
-                    <!--</div>-->
-                    <!--<div class="li_right" style="width:40%" >-->
-                        <!--<div v-if="birthday">-->
-                            <!--<template v-if="!isLunar">-->
-                                <!--<span>{{year}}年 </span>-->
-                                <!--<span>{{month}}月 </span>-->
-                                <!--<span>{{day}}日 </span>-->
-                            <!--</template>-->
-                            <!--<template v-if="isLunar">-->
-                                <!--<span>{{year}}年 </span>-->
-                                <!--<span>{{month}}月 </span>-->
-                                <!--<span>{{day}}日 </span>-->
-                            <!--</template>-->
-                        <!--</div>-->
-                        <!--<i></i>-->
-                    <!--</div>-->
-                <!--</li>-->
-
-                <!--<li>-->
-                    <!--邮 箱-->
-                    <!--<div class="li_right">-->
-                        <!--<input type="email" class="email" :value="email" @blur="fouceOut()">-->
-                        <!--<i></i>-->
-                    <!--</div>-->
-                <!--</li>-->
-
-                <!--<li>-->
-                    <!--身份证号-->
-                    <!--<div class="li_right">-->
-                        <!--<input type="text" class="identityNo"  @input="idcardChange()" :value="identityNo" pattern="[0-9a-zA-Z]*"   @blur="checkId()">-->
-                        <!--<i></i>-->
-                    <!--</div>-->
-                <!--</li>-->
             </ul>
-            <!--<div class="imgBox"  >-->
-                <!--<template v-if="!isEdit">-->
-                <!--<img v-if="identityFile1!=''"  :src="identityFile1" alt="" @click="upload(1)">-->
-                <!--<img v-else="" src="../../../images/positive.png" alt="" @click="upload(1)">-->
-                <!--<img v-if="identityFile2!=''" :src="identityFile2" alt="" @click="upload(2)">-->
-                <!--<img v-else="" src="../../../images/negative.png" alt="" @click="upload(2)">-->
-                <!--</template>-->
-            <!--</div>-->
         </div>
         <div class="joinStep_bottom">
             <div class="join_agre">
@@ -198,9 +146,6 @@
             </div>
         </div>
 
-
-        <!--<div class="joinStep_nor_btn" :class="{joinStep_per_btn:check_step(false)}"   @click="msgSubmit()">下一步</div>-->
-
     </div>
 </template>
 
@@ -211,39 +156,30 @@
         data() {
             return {
                 showLoad:false,
-                sex:'请选择性别',
-                initCityValue:'请选择所在城市',
                 sexIndex:'',
                 defaultCity: '[330000, 330100, 330102]',
                 provinceName: '',
                 cityName: '',
                 areaName: '',
-                isLunar: 0,
-                year: '',
-                month: '',
-                day: '',
                 provinceId: '',
                 cityId: '',
                 areaId: '',
-                lunarDateData:[],
-                solarDateDate:[],
-                isLeapMonth:false,
-                birthday:'',
                 user:'',
                 alioss:null,
                 uploadpicinfo:null,
-                identityNo:'',
                 identityFile1:'',
                 identityFile2:'',
                 email:'',
                 mobileVal:'',
                 realName:'',
+                sex:'请选择性别',
+                initCityValue:'请选择所在城市',
                 level:'请选择资质',
-                nickName:'请填写昵称',
-                sign:'请填写个人签名',
-                personal:'请填写个人简介',
+                nickName:'',
+                sign:'',
+                personal:'',
                 goodAt:'选择自己擅长的领域',
-                goodatDetail:'请描述自己擅长的领域',
+                goodatDetail:'',
                 experience:'请填写培训经历',
                 askPrice:'请设置提问酬金',
                 freeTime:'请设置免费偷听时间',
@@ -251,46 +187,23 @@
                 idcard:'',
                 ema : /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/,
                 isEdit:false,
-                agreFlag:false
-
+                agreFlag:false,
+                showType:[]
             }
         },
         mounted: function () {
-            this.isEdit=this.$route.query.edit;
-            if(this.$route.query.edit){
-                this.isEdit=true;
-            }else{
-                this.isEdit=false;
-            }
-
-             xqzs.wx.setConfig(this);
-            let realNameVal = $('.realName').val()
-            this.realName = realNameVal
-            this.uploadpicinfo = {
-                token: xqzs.string.guid(),
-                smallpic: xqzs.constant.PIC_SMALL,
-                middlepic: xqzs.constant.PIC_MIDDLE,
-                removepicurl: web.BASE_PATH + 'api/removepicture',
-                uploadbase64url: web.BASE_PATH + 'api/upfilebase64',
-                aliossgeturl: web.BASE_PATH + 'api/aliyunapi/oss_getsetting'
-            };
-            this.alioss = new aliyunoss({
-                url:this.uploadpicinfo.aliossgeturl,
-                token:this.uploadpicinfo.token
-            });
-
-
-
-            xqzs.wx.setConfig(this);
-            let _this = this;
-
-            xqzs.wx.setConfig(_this);
-            this.getUserInfo();
-
-            this.lunarDateData=xqzs.dateTime.getLunarData(1949,2017);
-            this.solarDateDate= xqzs.dateTime.getSolarData(1949,2017);
+            this.registerInfo()
+            this.getClassList()
         },
         methods: {
+            registerInfo:function () {
+                this.nickName = cookie.get('register_nickname')||'请填写昵称';
+                this.sign = cookie.get('register_sign')||'请填写个人签名';
+                this.mobileVal = cookie.get('register_mobile')||'请输入手机号';
+                this.personal = cookie.get('register_personal')||'请填写个人简介';
+                this.goodatDetail = cookie.get('register_goodatDetail')||'请描述自己擅长的领域';
+                this.experience = cookie.get('register_experience')||'请填写培训经历';
+            },
             showAgre:function () {
                 this.agreFlag = true
             },
@@ -315,6 +228,28 @@
             goGoodatDetail:function () {
                 this.$router.push('./good/detail')
             },
+            getClassList:function () {
+                let _this=this;
+                _this.$http.get(web.API_PATH + 'come/listen/question/class/list' ).then(function (data) {//es5写法
+                    if (data.body.status == 1) {
+                        _this.types= data.body.data;
+                        let questionClassId = cookie.get("questionClassId")
+                        if(questionClassId&&questionClassId!=''){
+                            let ids=  questionClassId.split(",");
+                            for(let i=0;i<_this.types.length;i++){
+                                for(let j =0;j<ids.length;j++){
+                                    if(_this.types[i].id==ids[j]){
+                                        _this.showType.push(_this.types[i].title);
+                                    }
+                                }
+                            }
+                            console.log(_this.showType)
+                        }else{
+                        }
+                    }
+                }, function (error) {
+                });
+            },
             setExperience:function () {
                 this.$router.push('./experience')
             },
@@ -323,86 +258,6 @@
             },
             goFreeTime:function () {
                 this.$router.push('./freetime')
-            },
-            checkId:function () {
-                let identityNo= $(".identityNo").val();
-                return xqzs.string.isCardID(identityNo)
-            },
-            getUserInfo:function () {
-                let _this = this;
-                //用户信息
-                _this.showLoad = true;
-                this.$http({
-                    method: 'GET',
-                    type: "json",
-                    url: web.API_PATH + 'user/find/by/user/Id/_userId_',
-                }).then(function (data) {//es5写法
-                    _this.showLoad = false;
-                    if (data.data.data !== null) {
-                        _this.user = eval(data.data.data);
-                        _this.realName =  _this.user.realName;
-                        _this.identityNo = _this.user.idcard ;
-                        _this.sex=_this.user.sex==1?'男':'女';
-                        _this.cardType=_this.user.cardType;
-                        _this.email = _this.user.email;
-                        _this.mobileVal = _this.user.mobile;
-                        _this.birthday = _this.user.birthday;
-
-                        if (_this.birthday) {
-                            let date = _this.birthday.split(',');
-                            _this.year = date[0];
-                            _this.month = date[1];
-                            _this.day = date[2];
-                            if( _this.user.isLunar==1||_this.user.isLunar==2){
-                                _this.isLunar=true;
-                                _this.yearN = date[0]+'年';
-                                _this.monthN =  calendar.toChinaMonth(date[1]);
-                                if(_this.user.isLunar==2) {
-                                    _this.isLeapMonth=true;
-                                    _this.monthN= "闰"+ _this.monthN;
-                                }
-                                _this.dayN = calendar.toChinaDay(date[2]);
-                            }
-
-                        }
-                        _this.provinceName = _this.user.provinceName;
-                        _this.cityName = _this.user.cityName;
-                        _this.areaName = _this.user.areaName;
-                        _this.provinceId = _this.user.provinceId;
-                        _this.cityId = _this.user.cityId;
-                        _this.areaId = _this.user.areaId;
-                        _this.defaultCity = [_this.provinceId, _this.cityId, _this.areaId];
-                        this.getExpertByUserId();
-                    }
-                }, function (error) {
-                    //error
-                });
-            },
-            getExpertByUserId:function () {
-                let _this=this;
-                this.$http.get(web.API_PATH + 'come/expert/query/detail/by/userId/_userId_' ).then(function (data) {//es5写法
-                    if (data.body.status == 1&&data.body.data!=null) {
-                        _this.faceUrl = data.data.data.faceUrl;
-                        if( data.data.data.nickName&& data.data.data.nickName!='') _this.nickName = data.data.data.nickName;
-                    }
-                }, function (error) {
-                });
-            },
-            changeRealName:function () {
-                let realNameVal = $('.realName').val()
-                this.realName = realNameVal
-            },
-
-            fouceOut:function () {
-                console.log('shiqushiqu');
-                let _this = this;
-                let emailVal = $('.email').val()
-                if (!_this.ema.test(emailVal)){
-                    xqzs.weui.tip("请填写正确的邮箱");
-                }else {
-                    _this.email = emailVal
-                }
-                console.log(_this.email)
             },
             getSexPicker:function () {
                 let _this = this;
@@ -456,140 +311,6 @@
                 });
 
             },
-            lutSelect:function (v) {
-                let _this= this;
-                if(v==0){
-                    if( !this.isLunar) return ;
-
-                    if(this.birthday&&this.birthday!=''){
-                        let date = this.birthday.split(',');
-                        let solar=  calendar.lunar2solar(parseInt(date[0]),parseInt(date[1]),parseInt(date[2]),_this.isLeapMonth); //阳历
-                        this.birthday= solar.cYear+","+solar.cMonth+"," +solar.cDay ; //阳历
-                        console.log(solar)
-                        _this.year = solar.cYear;
-                        _this.month = solar.cMonth;
-                        _this.day = solar.cDay;
-                    }
-                    this.isLunar=false;
-
-                }else if(v==1){
-                    if( this.isLunar) return ;
-                    this.isLunar=true;
-                    if(this.birthday&&this.birthday!=''){
-                        let date = this.birthday.split(',');
-                        let lunar=  calendar.solar2lunar(date[0],date[1],date[2]); //农历
-                        console.log(lunar)
-                        this.birthday= lunar.lYear+","+lunar.lMonth+"," +lunar.lDay  //农历
-                        _this.isLeapMonth=lunar.isLeap;
-                        _this.yearN =  lunar.lYear+"年";
-                        _this.monthN = lunar.IMonthCn;
-                        _this.dayN =lunar.IDayCn;
-                        _this.year = lunar.lYear;
-                        _this.month = lunar.lMonth;
-                        _this.day = lunar.lDay;
-                        if(lunar.isLeap){
-                            _this.month = lunar.lMonth+"_1";
-                        }
-                    }
-
-
-                }
-            },
-            showDate: function () {
-                let _this = this;
-                let defaultValue = [1988, 1, 1];
-                if (this.year != '' && this.month != '' && this.day != '') {
-                    defaultValue = [this.year, this.month, this.day]
-                }
-
-                console.log(defaultValue)
-
-                if (this.isLunar) {
-
-                    weui.picker(  this.lunarDateData, {
-                        depth: 3,
-                        defaultValue: defaultValue,
-                        id:"id"+Math.random(),
-                        onChange: function (result) {
-                            console.log(result);
-                        },
-                        onConfirm: function (result) {
-                            _this.yearN = result[0].label;
-                            _this.monthN = result[1].label;
-                            _this.dayN = result[2].label;
-                            //闰月
-                            let monthValue =  result[1].value;
-                            if(typeof(monthValue)=="string"&&monthValue.indexOf("_")){
-                                _this.isLeapMonth=true;
-                                monthValue=result[1].value.split("_")[0];
-                            }else{
-                                _this.isLeapMonth=false;
-                            }
-                            _this.year = result[0].value;
-                            _this.month = result[1].value;
-                            _this.day = result[2].value;
-                            _this.birthday = result[0].value + ',' +monthValue + ',' + result[2].value;
-
-                        },
-                    });
-
-                } else {
-
-                    weui.picker(  this.solarDateDate, {
-                        depth: 3,
-                        defaultValue: defaultValue,
-                        id:"id"+Math.random(),
-                        onChange: function (result) {
-                            console.log(result);
-                        },
-                        onConfirm: function (result) {
-                            _this.year = result[0].value;
-                            _this.month = result[1].value;
-                            _this.day = result[2].value;
-                            _this.birthday = result[0].value + ',' + result[1].value + ',' + result[2].value;
-
-                        },
-                    });
-
-
-                }
-            },
-            upload:function (v) {
-                let _this=this;
-                xqzs.wx.takePhotos(['camera','album'],1,_this.uploadpicinfo,_this.alioss,function (filecount) {
-                    _this.showLoad=true;
-
-                },function (json,ix) {
-                    _this.showLoad=false;
-                    if(v==1){
-                        _this.identityFile1 = json.data.path;
-                    }else{
-                        _this.identityFile2 = json.data.path;
-                    }
-
-
-                },function (e) {
-                    console.info(e);
-                })
-            },
-            idcardChange:function (v) {
-                let _this = this;
-                let identityNo = $(".identityNo").val();
-                console.log( _this.identityNo )
-                cookie.set('identityNo',identityNo)
-                _this.identityNo = identityNo
-            },
-//            emailChange:function () {
-//                let _this = this;
-//                let ema = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
-//                let emailVal = $('.email').val()
-//                if (!ema.test(emailVal)){
-//                    xqzs.weui.tip("请填写正确的邮箱");
-//                }else {
-//                    _this.email = emailVal
-//                }
-//
-//            },
             goMobile:function () {
                 $('.mobile_box').show()
             },
@@ -606,9 +327,6 @@
                 } else if (_this.provinceName == '') {
                     re = false;
                     tip = "请选择常驻城市";
-                } else if (_this.identityNo == '') {
-                    re = false;
-                    tip = "请填写身份证号";
                 } else if (!_this.checkId()) {
                     re = false;
                     tip = "请填写正确的身份证号码";
@@ -646,12 +364,10 @@
                     "nickName": nickName,
                     "sex": _this.sexIndex,
                     "countryId": 0,
-                    'identityNo':_this.identityNo,
                     'cardImage':[unescape(cookie.get("identityFile1")),unescape(cookie.get("identityFile2"))],
                     "provinceId": _this.provinceId,
                     "cityId": _this.cityId,
                     "areaId": _this.areaId,
-                    "isLunar":_this.isLunar?_this.isLeapMonth?2:1:0,
                     'mobile':mobileVal,
                     'email':_this.email
                 };
@@ -693,7 +409,10 @@
     .join_stepBox header{padding:0.88235rem;border-bottom: 0.588235rem solid rgba(69, 75, 84, 0.09);line-height: 3.52rem;position: relative}
     .join_stepBox header img{width:3.52rem;height:3.52rem;float: left}
     .join_stepBox .step_detailBox li{height: 2.94rem;line-height:2.94rem;color:rgba(69, 75, 84, 1);border-bottom: 1px solid rgba(224,224,225,1);padding:0 0.88235rem;font-size: 0.8235rem;position: relative;}
-    .join_stepBox .step_detailBox li .li_right{float: right;color:rgba(69, 75, 84, 0.7);padding-right:1.5rem;font-size: 0.76471rem; width:50%;overflow: hidden;text-align: right;text-overflow: ellipsis;white-space: nowrap;}
+    .join_stepBox .step_detailBox li .li_right{float: right;color:rgba(69, 75, 84, 0.7);padding-right:1.5rem;font-size: 0.76471rem; width:60%;}
+    .li_right>div{
+        width:100%;overflow: hidden;text-align: right;text-overflow: ellipsis;white-space: nowrap;
+    }
     .li_right input{border:0;outline: none;text-align: right;height:80%;}
     .join_stepBox .li_right i{background: url('../../../images/arrow.png');width: 0.94rem;  height: 0.94rem;  background-size: 0.94rem;  position: absolute;  right: 0.88235rem;  top: 50%;margin-top: -0.47rem;  }
     .joinStep_bottom{padding:1.76471rem 0.88235rem;}

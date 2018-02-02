@@ -27,6 +27,7 @@
             return {
                 types:[],
                 MAX_COUNT:3,
+                canGoNext:false
             }
         },
         mounted: function () {
@@ -38,6 +39,20 @@
                 _this.$http.get(web.API_PATH + 'come/listen/question/class/list' ).then(function (data) {//es5写法
                     if (data.body.status == 1) {
                         _this.types= data.body.data;
+                        let questionClassId = cookie.get("questionClassId")
+                        if(questionClassId&&questionClassId!=''){
+                            _this.canGoNext=true;
+                            let ids=  questionClassId.split(",")
+                            for(let i=0;i<_this.types.length;i++){
+                                for(let j =0;j<ids.length;j++){
+                                    if(_this.types[i].id==ids[j]){
+                                        _this.types[i].isSelect=true;
+                                    }
+                                }
+                            }
+                        }else{
+                            _this.canGoNext=false;
+                        }
                     }
                 }, function (error) {
                 });
@@ -45,7 +60,6 @@
             select:function (index) {
                 let count=0;
                 let types=this.types;
-                console.log(types)
                 if(types[index].isSelect){
                     types[index].isSelect=false
                 }else{
@@ -55,18 +69,38 @@
                         }
                     }
                     if( count>=this.MAX_COUNT){
-
                     }else{
                         types[index].isSelect=true
                     }
                 }
                 this.$set(this.types,index,types[index]);
+                let ids= '';
+                for(let i=0;i<types.length;i++){
+                    if(types[i].isSelect){
+                        ids+=types[i].id+",";
+                    }
+                }
+
+                if(ids.length>0){
+                    ids=ids.substr(0,ids.length-1);
+                    this.canGoNext=true;
+                }else{
+                    this.canGoNext=false;
+                }
+                cookie.set("questionClassId",ids);
             },
             backStep:function () {
                 this.$router.go(-1)
             },
             setGoodAt:function () {
-                this.$router.go(-1)
+                if(this.canGoNext){
+                    this.$router.go(-1)
+                }else {
+                    xqzs.weui.tip('请选择擅长的领域',function () {
+                        
+                    })
+                }
+
             }
 
         },

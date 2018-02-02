@@ -25,26 +25,21 @@
         },
         methods: {
             changeNickName:function () {
-
+                console.log(this.nickName)
             },
             backStep:function () {
                 this.$router.go(-1)
             },
-
             setNickName:function () {
                 let _this = this;
-                _this.showLoad= true;
-                let msg = {
-                    "nickName": this.nickName,
+                if(_this.nickName==''){
+                    xqzs.weui.tip('请填写昵称');
+                    return
+                }else{
+                    cookie.set('register_nickname',_this.nickName,1)
+                    _this.$router.go(-1)
                 }
-                _this.$http.post(web.API_PATH + 'come/expert/register', msg)
-                    .then(
-                        (response) => {
-                            console.log(response)
-                            _this.showLoad= false;
-                            _this.$router.go(-1)
-                        }
-                    );
+
             }
         },
         components:{
