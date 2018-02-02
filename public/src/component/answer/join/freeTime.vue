@@ -1,18 +1,21 @@
 <template >
     <div class="freeTime_box">
+        <div class="joinstep_background">
+            <div v-title>入驻心理咨询师</div>
+            <div class="joinSet_top">
+                <div class="joinSet_cancel" @click="backStep()">取消</div>
+                <div class="joinSet_sure" @click="setFreeTime()">确定</div>
+            </div>
+            <div class="time_type">
+                <div class="time_typeTitle"></div>
+                <ul>
+                    <li v-for="(item,index) in times" :class="{free_checked:item.isSelect}" @click="freeTimeChecked(index)">{{item.label}}</li>
+                </ul>
+                <div style="clear: both"></div>
+            </div>
+        </div>
         <v-showLoad v-show="showLoad"></v-showLoad>
-        <div v-title>入驻心理咨询师</div>
-        <div class="joinSet_top">
-            <div class="joinSet_cancel" @click="backStep()">取消</div>
-            <div class="joinSet_sure" @click="setFreeTime()">确定</div>
-        </div>
-        <div class="time_type">
-            <div class="time_typeTitle"></div>
-            <ul>
-                <li v-for="(item,index) in times" :class="{free_checked:item.isSelect}" @click="freeTimeChecked(index)">{{item.label}}</li>
-            </ul>
-            <div style="clear: both"></div>
-        </div>
+
 
     </div>
 </template>
@@ -104,10 +107,11 @@
 </script>
 <style>
     .freeTime_box{
-        background: RGBA(69, 75, 84, 0.03);
+        background: #fff;
     }
     .time_type{
         padding:0.88235rem 0 0.64rem 0;
+        background: #fff;
     }
     .time_typeTitle{
         color:RGBA(69, 75, 84, 0.7);

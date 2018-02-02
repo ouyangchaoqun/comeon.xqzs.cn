@@ -1,18 +1,21 @@
 <template >
     <div class="price_box">
+        <div class="joinstep_background">
+            <div v-title>入驻心理咨询师</div>
+            <div class="joinSet_top">
+                <div class="joinSet_cancel" @click="backStep()">取消</div>
+                <div class="joinSet_sure" @click="setPrice()">确定</div>
+            </div>
+            <div class="set_price">
+                <input type="number" class="priceInput" v-model="askPrice"  :value="askPrice" placeholder="设置提问价格（元）例如：¥10">
+            </div>
+            <div class="price_bottom">
+                <div>至少10元</div>
+                <div>解答须知</div>
+            </div>
+        </div>
         <v-showLoad v-show="showLoad"></v-showLoad>
-        <div v-title>入驻心理咨询师</div>
-        <div class="joinSet_top">
-            <div class="joinSet_cancel" @click="backStep()">取消</div>
-            <div class="joinSet_sure" @click="setPrice()">确定</div>
-        </div>
-        <div class="set_price">
-            <input type="number" class="priceInput" v-model="askPrice"  :value="askPrice" placeholder="设置提问价格（元）例如：¥10">
-        </div>
-        <div class="price_bottom">
-            <div>至少10元</div>
-            <div>解答须知</div>
-        </div>
+
     </div>
 </template>
 
@@ -123,7 +126,7 @@
 </script>
 <style>
     .price_box{
-        background: RGBA(69, 75, 84, 0.03);
+        background: #fff;
     }
     .set_price{
         padding:0.88235rem;

@@ -17,7 +17,7 @@
                 <li>
                     资质证书
                     <div class="li_right" @click="setLevel()">
-                        <div>{{level}}</div>
+                        <input disabled placeholder="请选择资质">
                         <i></i>
                     </div>
                 </li>
@@ -25,7 +25,7 @@
                 <li>
                     咨询师昵称
                     <div class="li_right" @click="setNickname()">
-                        <div>{{nickName}}</div>
+                        <input disabled placeholder="请填写昵称" :value="nickName">
                         <i></i>
                     </div>
                 </li>
@@ -33,7 +33,7 @@
                 <li>
                     手机号码
                     <div class="li_right" @click="goMobile()">
-                        <div>{{mobileVal}}</div>
+                        <input disabled placeholder="请输入手机号" :value="mobileVal">
                         <i></i>
                     </div>
                 </li>
@@ -41,7 +41,7 @@
                 <li @click="getSexPicker()">
                     性别
                     <div class="li_right">
-                        <div>{{sex}}</div>
+                        <input disabled placeholder="请选择性别" :value="sex">
                         <i></i>
                     </div>
                 </li>
@@ -62,7 +62,7 @@
                 <li>
                    一句话签名
                     <div class="li_right" @click="setSign()">
-                        <div>{{sign}}</div>
+                        <input disabled placeholder="请填写个人签名" :value="sign">
                         <i></i>
                     </div>
                 </li>
@@ -70,7 +70,7 @@
                 <li>
                     个人简介
                     <div class="li_right" @click="setPerson()">
-                        <div>{{personal}}</div>
+                        <input disabled placeholder="请填写个人简介" :value="personal">
                         <i></i>
                     </div>
                 </li>
@@ -91,7 +91,7 @@
                 <li>
                     擅长领域描述
                     <div class="li_right" @click="goGoodatDetail()">
-                        <div>{{goodatDetail}}</div>
+                        <input disabled placeholder="请描述自己擅长的领域" :value="goodatDetail">
                         <i></i>
                     </div>
                 </li>
@@ -99,7 +99,7 @@
                 <li>
                     专业培训经历
                     <div class="li_right" @click="setExperience()">
-                        <div>{{experience}}</div>
+                        <input disabled placeholder="请填写培训经历" :value="experience">
                         <i></i>
                     </div>
                 </li>
@@ -107,7 +107,7 @@
                 <li>
                     提问酬金
                     <div class="li_right" @click="goPrice()">
-                        <div>{{askPrice}}</div>
+                        <input disabled placeholder="请设置提问酬金" :value="askPrice">
                         <i></i>
                     </div>
                 </li>
@@ -115,7 +115,7 @@
                 <li>
                     限时免费偷听时间
                     <div class="li_right" @click="goFreeTime()">
-                        <div>{{freeTime}}</div>
+                        <input disabled placeholder="请设置免费偷听时间" :value="freeTime">
                         <i></i>
                     </div>
                 </li>
@@ -125,7 +125,7 @@
             <div class="join_agre">
                 提交审核，即表示您同意遵守<span @click="showAgre()">《好一点专家入驻协议》</span>我们会尽快对您的资质进行审核，审核通过后将以好一点客服消息通知您
             </div>
-            <div class="join_sub">
+            <div class="join_sub" @click="msgSubmit()">
                 提交审核
             </div>
         </div>
@@ -190,23 +190,52 @@
                 isEdit:false,
                 agreFlag:false,
                 showType:[],
-                faceUrl:''
+                faceUrl:'',
+                isSubNum1:true,
+                questionClassId:[]
             }
         },
+
         mounted: function () {
-            this.registerInfo()
+            let edit = this.$route.query.edit;
+            if(edit=='revise'){
+                console.log('修改')
+                this.isSubNum1 = false;
+            }else{
+                console.log('入驻')
+                this.registerInfo()
+            }
+
+            this.getUserInfo()
             this.getClassList()
         },
         methods: {
+            getUserInfo:function(){
+                let _this=this;
+                _this.showLoad = true;
+                _this.$http({
+                    method: 'GET',
+                    type: "json",
+                    url: web.API_PATH + 'user/find/by/user/Id/_userId_',
+                }).then(function (data) {//es5写法
+                    _this.showLoad = false;
+                    if (data.data.data !== null) {
+                        _this.user = eval(data.data.data);
+                        console.log(_this.user)
+                    }
+                }, function (error) {
+                    //error
+                });
+            },
             registerInfo:function () {
-                this.nickName = cookie.get('register_nickname')||'请填写昵称';
-                this.sign = cookie.get('register_sign')||'请填写个人签名';
-                this.mobileVal = cookie.get('register_mobile')||'请输入手机号';
-                this.personal = cookie.get('register_personal')||'请填写个人简介';
-                this.goodatDetail = cookie.get('register_goodatDetail')||'请描述自己擅长的领域';
-                this.experience = cookie.get('register_experience')||'请填写培训经历';
-                this.askPrice = '￥'+cookie.get('register_askPrice')||'请设置提问酬金';
-                this.freeTime = cookie.get('register_freeTime')||'请设置免费偷听时间';
+                this.nickName = cookie.get('register_nickname')||'';
+                this.sign = cookie.get('register_sign')||'';
+                this.mobileVal = cookie.get('register_mobile')||'';
+                this.personal = cookie.get('register_personal')||'';
+                this.goodatDetail = cookie.get('register_goodatDetail')||'';
+                this.experience = cookie.get('register_experience')||'';
+                this.askPrice = cookie.get('register_askPrice')||'';
+                this.freeTime = cookie.get('register_freeTime')||'';
                 this.faceUrl = cookie.get('register_faceUrl')||'';
             },
             changeHeadpic:function () {
@@ -279,6 +308,7 @@
                         let questionClassId = cookie.get("questionClassId")
                         if(questionClassId&&questionClassId!=''){
                             let ids=  questionClassId.split(",");
+                            _this.questionClassId = ids;
                             for(let i=0;i<_this.types.length;i++){
                                 for(let j =0;j<ids.length;j++){
                                     if(_this.types[i].id==ids[j]){
@@ -286,7 +316,6 @@
                                     }
                                 }
                             }
-                            console.log(_this.showType)
                         }else{
                         }
                     }
@@ -318,7 +347,6 @@
                         console.log(result)
                         _this.sex=result[0].label
                         _this.sexIndex = result[0].value
-                        console.log(_this.sex)
                     }
                 });
             },
@@ -361,29 +389,42 @@
                 let _this = this;
                 let re=true;
                 let tip = '';
-                if (_this.realName == '') {
+                if (_this.nickName == '') {
                     re = false;
-                    tip = "请填写真实姓名";
-                } else if (_this.mobileVal == '') {
+                    tip = "请填写昵称";
+                } else if (_this.faceUrl == '') {
+                    re = false;
+                    tip = "请设置个人头像";
+                }else if (_this.sign == '') {
+                    re = false;
+                    tip = "请填写个人签名";
+                }
+                else if (_this.mobileVal == '') {
                     re = false;
                     tip = "请填写手机号码";
-                } else if (_this.provinceName == '') {
+                }
+                else if (_this.personal == '') {
+                    re = false;
+                    tip = "请填写个人简介";
+                } else if (_this.showType.length == 0) {
+                    re = false;
+                    tip = "请选择自己擅长的领域";
+                } else if (_this.goodatDetail== '') {
+                    re = false;
+                    tip = "请描述自己擅长的领域";
+                } else if (_this.experience == '') {
+                    re = false;
+                    tip = "请填写培训经历";
+                } else if (_this.askPrice == '') {
+                    re = false;
+                    tip = "请设置提问酬金";
+                } else if (_this.freeTime == '') {
+                    re = false;
+                    tip = "请设置免费偷听时间";
+                }else if (_this.provinceName == '') {
                     re = false;
                     tip = "请选择常驻城市";
-                } else if (!_this.checkId()) {
-                    re = false;
-                    tip = "请填写正确的身份证号码";
-                }else  if(!_this.isEdit){
-                    if (_this.identityFile1 == '') {
-                        re = false;
-                        tip = "请上传身份证正面照";
-                    } else if (_this.identityFile2 == '') {
-                        re = false;
-                        tip = "请上传身份证反面照";
-                    }
                 }
-
-                console.log(showTip)
                 if (showTip && !re) {
                     console.log(showTip)
                     xqzs.weui.tip(tip)
@@ -397,42 +438,39 @@
                     return;
                 }
                 _this.showLoad= true;
-                let mobileVal = $('.li_right .mobile').text();
-                let nickName = _this.nickName;
-
-
                 let msg = {
                     "id": _this.user.id,
-                    "realName": _this.realName,
-                    "nickName": nickName,
-                    "sex": _this.sexIndex,
                     "countryId": 0,
-                    'cardImage':[unescape(cookie.get("identityFile1")),unescape(cookie.get("identityFile2"))],
                     "provinceId": _this.provinceId,
                     "cityId": _this.cityId,
                     "areaId": _this.areaId,
-                    'mobile':mobileVal,
-                    'email':_this.email
+                    "sex": _this.sexIndex,
+                    'mobile':_this.mobileVal,
+                    "nickName": _this.nickName,
+                    "price":_this.askPrice,
+                    "freeTime":_this.freeTime,
+                    "sign":_this.sign,
+                    "questionClassId":_this.questionClassId,
+                    "introduction":_this.personal,
+                    "experience":_this.experience,
+                    "goodat":_this.goodatDetail,
+                    "faceUrl":_this.faceUrl,
                 };
                 let url = "come/expert/register";
-                if(_this.isEdit){
+                if(!this.isSubNum1){
                     msg.expertId=cookie.get('expertId');
                     msg.userId= _this.user.id;
                     url = "come/expert/modify";
                 }
                 console.log(msg);
-
-
+                _this.$router.go(-1);
+                return;
                 _this.$http.post(web.API_PATH + url, msg)
                     .then(
                         (response) => {
                             console.log(response)
                             _this.showLoad= false;
-                            let gourl =  "/answer/join/joinmore";
-                            if(_this.isEdit){
-                                gourl +="?edit=true"
-                            }
-                            _this.$router.replace(gourl)
+
                         }
                     );
             },
@@ -452,12 +490,12 @@
     .join_stepBox header{padding:0.88235rem;border-bottom: 0.588235rem solid rgba(69, 75, 84, 0.09);line-height: 3.52rem;position: relative}
     .join_stepBox header img{width:3.52rem;height:3.52rem;float: left}
     .join_stepBox .step_detailBox li{height: 2.94rem;line-height:2.94rem;color:rgba(69, 75, 84, 1);border-bottom: 1px solid rgba(224,224,225,1);padding:0 0.88235rem;font-size: 0.8235rem;position: relative;}
-    .join_stepBox .step_detailBox li .li_right{float: right;padding-right:1.5rem;width:60%;}
+    .join_stepBox .step_detailBox li .li_right{float: right;padding-right:1.5rem;width:55%;}
     .li_right>div{
         width:100%;overflow: hidden;text-align: right;text-overflow: ellipsis;white-space: nowrap;font-size: 0.76471rem;
         color: rgba(69, 75, 84, 0.7);
     }
-    .li_right input{border:0;outline: none;text-align: right;height:80%;}
+    .li_right input{border:0;outline: none;text-align: right;background: none;width:100%;}
     .join_stepBox .li_right i{background: url('../../../images/arrow.png');width: 0.94rem;  height: 0.94rem;  background-size: 0.94rem;  position: absolute;  right: 0.88235rem;  top: 50%;margin-top: -0.47rem;  }
     .joinStep_bottom{padding:1.76471rem 0.88235rem;}
     .join_agre{color:rgba(53, 58, 66, 1);font-size: 0.70588rem;line-height: 1rem;margin-bottom: 1.8rem;}

@@ -1,19 +1,22 @@
 <template >
     <div class="goodAt_box">
-        <div v-title>入驻心理咨询师</div>
-        <div class="joinSet_top">
-            <div class="joinSet_cancel" @click="backStep()">取消</div>
-            <div class="joinSet_sure" @click="setGoodAt()">确定</div>
+        <div class="joinstep_background">
+            <div v-title>入驻心理咨询师</div>
+            <div class="joinSet_top">
+                <div class="joinSet_cancel" @click="backStep()">取消</div>
+                <div class="joinSet_sure" @click="setGoodAt()">确定</div>
+            </div>
+            <div class="goodat_types">
+                <div class="goodat_title">请选择您最擅长的3个领域</div>
+                <ul>
+                    <li v-for="(item,index) in types" @click="select(index)" :class="{'item_checked':item.isSelect}">
+                        {{item.title}}
+                    </li>
+                </ul>
+                <div style="clear: both"></div>
+            </div>
         </div>
-        <div class="goodat_types">
-            <div class="goodat_title">请选择您最擅长的3个领域</div>
-            <ul>
-                <li v-for="(item,index) in types" @click="select(index)" :class="{'item_checked':item.isSelect}">
-                    {{item.title}}
-                </li>
-            </ul>
-            <div style="clear: both"></div>
-        </div>
+
 
     </div>
 </template>
@@ -113,7 +116,7 @@
 </script>
 <style>
     .goodAt_box{
-        background: RGBA(69, 75, 84, 0.03);
+        background: #fff;
     }
     .goodat_types{background: #fff;padding:1.0588rem 0 0.294rem 0;}
     .goodat_title{color:RGBA(69, 75, 84, 0.7);font-size: 0.8235rem;line-height: 1.176rem;padding-left: 0.88235rem;margin-bottom: 1.0588rem;}

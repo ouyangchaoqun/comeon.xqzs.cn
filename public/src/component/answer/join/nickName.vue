@@ -1,13 +1,15 @@
 <template >
     <div class="setNickName_Box">
-        <v-showLoad v-if="showLoad"></v-showLoad>
-        <div class="joinSet_top">
-            <div class="joinSet_cancel" @click="backStep()">取消</div>
-            <div class="joinSet_sure" @click="setNickName()">确定</div>
-        </div>
-        <div class="nickName_text">
-            <textarea placeholder="请输入咨询师昵称，展示给用户，不超过6个字
-例如：紫嫣姐姐" @input="changeNickName()" v-model="nickName" maxlength="6"></textarea>
+        <div class="joinstep_background">
+            <v-showLoad v-if="showLoad"></v-showLoad>
+            <div class="joinSet_top">
+                <div class="joinSet_cancel" @click="backStep()">取消</div>
+                <div class="joinSet_sure" @click="setNickName()">确定</div>
+            </div>
+            <div class="nickName_text">
+                <textarea placeholder="请输入咨询师昵称，展示给用户，不超过6个字
+    例如：紫嫣姐姐" v-model="nickName" maxlength="6">{{nickName}}</textarea>
+            </div>
         </div>
     </div>
 </template>
@@ -21,11 +23,11 @@
             }
         },
         mounted: function () {
-
+            this.getCookie()
         },
         methods: {
-            changeNickName:function () {
-                console.log(this.nickName)
+            getCookie:function () {
+                this.nickName = cookie.get('register_nickname')||'';
             },
             backStep:function () {
                 this.$router.go(-1)
@@ -51,8 +53,9 @@
 </script>
 <style>
     .setNickName_Box{
-        background: RGBA(69, 75, 84, 0.03);
+        background: #fff;
     }
+
     .nickName_text{
         padding:0.88235rem;
         background: #fff;
