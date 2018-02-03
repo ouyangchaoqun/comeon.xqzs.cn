@@ -87,7 +87,7 @@
                     _this.showLoad=false;
                     let fileWidth = parseInt($('.photo_box').width());
                     let fileHeight = parseInt($('.photo_box').height());
-                    _this.certificateFile1 = json.data.path+'?x-oss-process=image/resize,m_lfit,,h_'+fileHeight+',w_'+fileWidth+'/quality,q_100';
+                    _this.certificateFile1 = json.data.path+'?x-oss-process=image/resize,m_lfit,,h_'+fileHeight+',w_'+fileWidth;
                 },function (e) {
                 })
             },
@@ -124,7 +124,7 @@
                     userId:this.user.id,
                     jobTitle:_this.jobTitle,
                     certificateNo:_this.certificateNo,
-                    certificateFile:[_this.certificateFile1],
+                    certificateFile:_this.certificateFile1,
                     id:this.user.id
                 };
                 if(_this.edit==1){
@@ -197,7 +197,7 @@
         padding-bottom:0.70588rem;
     }
     .level_photo .photo_box{
-        height:8rem;
+        min-height:8rem;
         border:1px solid RGBA(69, 75, 84, 0.09);
         margin:0 auto;
         position: relative;
