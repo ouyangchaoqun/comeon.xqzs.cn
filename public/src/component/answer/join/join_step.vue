@@ -82,8 +82,8 @@
                     擅长领域
                     <div class="li_right" @click="setGoodat()">
                         <div>
-                            <template v-if="!isShowInfo.domains" >{{goodAt}}</template>
-                            <template v-if="isShowInfo.domains">
+                            <template v-show="!isShowInfo.domains" >选择自己擅长的领域</template>
+                            <template v-show="isShowInfo.domains">
                                 <span v-for="item in isShowInfo.domains" style="margin-left: 0.294rem">{{item.title}}</span>
                             </template>
                         </div>
@@ -173,7 +173,7 @@
                 uploadpicinfo:null,
                 identityFile1:'',
                 initCityValue:'请选择所在城市',
-                goodAt:'选择自己擅长的领域',
+                goodAt:'',
                 mobileBox:false,
                 agreFlag:false,
                 faceUrl:'',
@@ -349,7 +349,7 @@
                         let msg = {
                             sex: _this.sexIndex,
                             userId:_this.user.id,
-                            id:this.user.id
+                            id:_this.user.id
                         };
                         if(_this.isModify){
                             //修改
