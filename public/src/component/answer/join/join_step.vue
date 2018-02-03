@@ -82,8 +82,8 @@
                     擅长领域
                     <div class="li_right" @click="setGoodat()">
                         <div>
-                            <template v-show="!isShowInfo.domains" >选择自己擅长的领域</template>
-                            <template v-show="isShowInfo.domains">
+                            <template v-if="!isShowInfo.domains" >选择自己擅长的领域</template>
+                            <template v-if="isShowInfo.domains">
                                 <span v-for="item in isShowInfo.domains" style="margin-left: 0.294rem">{{item.title}}</span>
                             </template>
                         </div>
@@ -399,7 +399,7 @@
                                 provinceId:_this.provinceId,
                                 cityId:_this.cityId,
                                 areaId:_this.areaId,
-                                id:this.user.id
+                                id:_this.user.id
 
                             };
                             if(_this.isModify){
@@ -523,7 +523,7 @@
         width:100%;text-align: right;font-size: 0.76471rem;
         color: rgba(69, 75, 84, 0.7);
     }
-    .li_right input{border:0;outline: none;text-align: right;background: none;width:100%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+    .li_right input{border:0;outline: none;text-align: right;background: none;width:100%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-size: 0.8235rem;}
     .join_stepBox .li_right i{background: url('../../../images/arrow.png');width: 0.94rem;  height: 0.94rem;  background-size: 0.94rem;  position: absolute;  right: 0.88235rem;  top: 50%;margin-top: -0.47rem;  }
     .joinStep_bottom{padding:1.76471rem 0.88235rem;}
     .join_agre{color:rgba(53, 58, 66, 1);font-size: 0.70588rem;line-height: 1rem;margin-bottom: 1.8rem;}

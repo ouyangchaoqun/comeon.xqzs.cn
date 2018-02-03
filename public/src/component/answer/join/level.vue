@@ -21,7 +21,7 @@
                         <img class="addIcon"  src="../../../images/joinAddImg.png" alt="" @click="upload()">
                         <p>请上传有姓名编号的一页，确保内容清晰可进见</p>
                     </template>
-                    <img class="imgFile" v-if="certificateFile1!=''" :src="certificateFile1" />
+                    <img class="imgFile" v-if="certificateFile1!=''" :src="certificateFile1Show" />
                 </div>
             </div>
         </div>
@@ -42,6 +42,7 @@
                 ],
                 jobTitle:'',
                 certificateFile1:'',
+                certificateFile1Show:'',
                 certificateNo:'',
                 uploadpicinfo:null,
                 alioss:null,
@@ -87,7 +88,8 @@
                     _this.showLoad=false;
                     let fileWidth = parseInt($('.photo_box').width());
                     let fileHeight = parseInt($('.photo_box').height());
-                    _this.certificateFile1 = json.data.path+'?x-oss-process=image/resize,m_lfit,,h_'+fileHeight+',w_'+fileWidth;
+                    _this.certificateFile1 = json.data.path
+                    _this.certificateFile1Show = json.data.path+'?x-oss-process=image/resize,m_lfit,,h_'+fileHeight+',w_'+fileWidth;
                 },function (e) {
                 })
             },

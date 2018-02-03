@@ -35,7 +35,7 @@
                 expertId:'',
                 expertInfo:{},
                 edit:'',
-                showLoad:false
+                showLoad:false,
             }
         },
         props: {
@@ -54,6 +54,7 @@
                     if (data.body.status == 1) {
                         _this.types= data.body.data;
                         let questionClassId = cookie.get("questionClassId")
+
                         if(questionClassId&&questionClassId!=''){
                             _this.canGoNext=true;
                             let ids=  questionClassId.split(",")
@@ -105,6 +106,7 @@
                     })
                 }
                 cookie.set("questionClassId",ids);
+                console.log(cookie.get("questionClassId").split(","))
             },
             backStep:function () {
                 this.$router.go(-1)
@@ -113,7 +115,7 @@
                 if(this.canGoNext){
                     let url = "come/expert/register";
                     let msg = {
-                        questionClassId: cookie.get("questionClassId"),
+                        questionClassId: cookie.get("questionClassId").split(","),
                         userId:this.user.id,
                         id:this.user.id
                     };
