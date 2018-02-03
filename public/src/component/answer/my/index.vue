@@ -22,7 +22,7 @@
                     <router-link to = "/answer/my/fans" class="fans" ><i></i>我的粉丝</router-link>
                     <router-link to = "/answer/my/comment/list" class="comment_list" ><i></i>收到的评价</router-link>
                     <!--<router-link to = "/answer/my/message" class="message" ><i></i>60”语音寄语</router-link>-->
-                    <!--<router-link to = "/answer/my/set/qualification" class="qualification" ><i></i>入驻资质</router-link>-->
+                    <router-link to = "/answer/join/level?edit=1" class="qualification" ><i></i>更新资质</router-link>
                 </div>
             </div>
         </div>
