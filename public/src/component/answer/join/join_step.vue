@@ -12,9 +12,9 @@
             </div>
             <div style="clear: both"></div>
         </header>
-        <div class="step_detailBox" :class="{detailBox_bottom:edit}">
+        <div class="step_detailBox" :class="{detailBox_bottom:isModify}">
             <ul>
-                <li v-if="!edit">
+                <li v-show="!isModify">
                     资质证书
                     <div class="li_right" @click="setLevel()">
                         <input disabled placeholder="请选择资质">
@@ -25,7 +25,7 @@
                 <li>
                     咨询师昵称
                     <div class="li_right" @click="setNickname()">
-                        <input disabled placeholder="请填写昵称" :value="nickName">
+                        <input disabled placeholder="请填写昵称" :value="isShowInfo.nickName">
                         <i></i>
                     </div>
                 </li>
@@ -33,7 +33,7 @@
                 <li>
                     手机号码
                     <div class="li_right" @click="goMobile()">
-                        <input disabled placeholder="请输入手机号" :value="mobileVal">
+                        <input disabled placeholder="请输入手机号" :value="user.mobile">
                         <i></i>
                     </div>
                 </li>
@@ -41,7 +41,7 @@
                 <li @click="getSexPicker()">
                     性别
                     <div class="li_right">
-                        <input disabled placeholder="请选择性别" :value="sex">
+                        <input disabled placeholder="请选择性别" :value="user.sex=='2'?'女':'男'">
                         <i></i>
                     </div>
                 </li>
@@ -50,10 +50,10 @@
                     所在城市
                     <div class="li_right">
                         <div>
-                            <span v-if="!(provinceName&&cityName&&areaName)">{{initCityValue}}</span>
-                            <span v-if="provinceName">{{provinceName}}</span>
-                            <span v-if="cityName">{{cityName}}</span>
-                            <span v-if="areaName">{{areaName}}</span>
+                            <span v-show="!(user.provinceName&&user.cityName&&user.areaName)">{{initCityValue}}</span>
+                            <span v-show="user.provinceName">{{user.provinceName}}</span>
+                            <span v-show="user.cityName">{{user.cityName}}</span>
+                            <span v-show="user.areaName">{{user.areaName}}</span>
                         </div>
                         <i></i>
                     </div>
@@ -62,7 +62,7 @@
                 <li>
                    一句话签名
                     <div class="li_right" @click="setSign()">
-                        <input disabled placeholder="请填写个人签名" :value="sign">
+                        <input disabled placeholder="请填写个人签名" :value="isShowInfo.sign">
                         <i></i>
                     </div>
                 </li>
@@ -70,7 +70,7 @@
                 <li>
                     个人简介
                     <div class="li_right" @click="setPerson()">
-                        <input disabled placeholder="请填写个人简介" :value="personal">
+                        <input disabled placeholder="请填写个人简介" :value="isShowInfo.introduction">
                         <i></i>
                     </div>
                 </li>
@@ -79,9 +79,9 @@
                     擅长领域
                     <div class="li_right" @click="setGoodat()">
                         <div>
-                            <template v-if="showType.length==0">{{goodAt}}</template>
-                            <template v-if="showType.length!=0">
-                                <span v-for="item in showType" style="margin-left: 0.294rem">{{item}}</span>
+                            <template v-if="!isShowInfo.domains" >{{goodAt}}</template>
+                            <template v-if="isShowInfo.domains">
+                                <span v-for="item in isShowInfo.domains" style="margin-left: 0.294rem">{{item.title}}</span>
                             </template>
                         </div>
                         <i></i>
@@ -91,7 +91,7 @@
                 <li>
                     擅长领域描述
                     <div class="li_right" @click="goGoodatDetail()">
-                        <input disabled placeholder="请描述自己擅长的领域" :value="goodatDetail">
+                        <input disabled placeholder="请描述自己擅长的领域" :value="isShowInfo.goodat">
                         <i></i>
                     </div>
                 </li>
@@ -99,7 +99,7 @@
                 <li>
                     专业培训经历
                     <div class="li_right" @click="setExperience()">
-                        <input disabled placeholder="请填写培训经历" :value="experience">
+                        <input disabled placeholder="请填写培训经历" :value="isShowInfo.experience">
                         <i></i>
                     </div>
                 </li>
@@ -107,7 +107,7 @@
                 <li>
                     提问酬金
                     <div class="li_right" @click="goPrice()">
-                        <input disabled placeholder="请设置提问酬金" :value="askPrice">
+                        <input disabled placeholder="请设置提问酬金" :value="isShowInfo.price">
                         <i></i>
                     </div>
                 </li>
@@ -115,23 +115,23 @@
                 <li>
                     限时免费偷听时间
                     <div class="li_right" @click="goFreeTime()">
-                        <input disabled placeholder="请设置免费偷听时间" :value="freeTime">
+                        <input disabled placeholder="请设置免费偷听时间" :value="changeTime(isShowInfo.freeTime)">
                         <i></i>
                     </div>
                 </li>
             </ul>
         </div>
-        <div class="joinStep_bottom" v-if="!edit">
+        <div class="joinStep_bottom" v-show="!isModify">
             <div class="join_agre">
                 提交审核，即表示您同意遵守<span @click="showAgre()">《好一点专家入驻协议》</span>我们会尽快对您的资质进行审核，审核通过后将以好一点客服消息通知您
             </div>
-            <div class="join_sub" v-if="!edit" @click="msgSubmit()">
+            <div class="join_sub" v-show="!isModify" @click="msgSubmit()">
                 提交审核
             </div>
         </div>
 
         <!--协议-->
-        <div class="weui-mask" @touchmove.prevent v-if="agreFlag">
+        <div class="weui-mask" @touchmove.prevent v-show="agreFlag">
             <div class="agre_box">
                 <h2>好一点专家入驻协议</h2>
                 <div class="agre_content">
@@ -169,46 +169,60 @@
                 alioss:null,
                 uploadpicinfo:null,
                 identityFile1:'',
-                identityFile2:'',
-                email:'',
-                mobileVal:'',
-                realName:'',
-                sex:'请选择性别',
                 initCityValue:'请选择所在城市',
-                level:'请选择资质',
-                nickName:'',
-                sign:'',
-                personal:'',
                 goodAt:'选择自己擅长的领域',
-                goodatDetail:'',
-                experience:'请填写培训经历',
-                askPrice:'',
-                freeTime:'请设置免费偷听时间',
                 mobileBox:false,
-                idcard:'',
-                ema : /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/,
                 agreFlag:false,
-                showType:[],
                 faceUrl:'',
                 questionClassId:[],
-                edit:null,
+                isModify:0,
+                isShowInfo:{}
+            }
+        },
+        props: {
+            user:{
+                type:Object
             }
         },
 
         mounted: function () {
-            this.edit = this.$route.query.edit;
-            console.log(this.edit)
-            if(this.edit){
-                console.log('修改')
-            }else{
-                console.log('入驻')
-                this.registerInfo()
-            }
+            this.isJoin();
 
-            this.getUserInfo()
-            this.getClassList()
+            this.getUserInfo();
+            this.getClassList();
         },
         methods: {
+
+            //判断是否入驻，获取入驻信息
+            isJoin:function () {
+                this.$http.get(web.API_PATH + 'come/expert/query/detail/by/userId/_userId_' ).then(function (data) {
+                    if (data.body.status == 1) {
+                        if(data.data.data!=null){
+                            //已经注册过
+                            let expertId = data.data.data.id;
+                            this.getExpertInfo(expertId);
+                            this.isModify = 1;
+                            console.log('已经注册过,修改');
+                        }else{
+                            //修改
+                            this.isModify = 0;
+                            console.log('首次注册');
+                        }
+                    }
+                }, function (error) {
+                });
+            },
+            //获取最新资料信息
+            getExpertInfo:function (expertId) {
+
+                this.$http.get(web.API_PATH + 'come/expert/query/detail/for/edit/'+expertId+'/_userId_').then(function (data) {
+                    if (data.body.status == 1) {
+                                    this.isShowInfo = data.data.data;
+                        console.log(this.isShowInfo)
+                    }
+                }, function (error) {
+                });
+            },
             getUserInfo:function(){
                 let _this=this;
                 _this.showLoad = true;
@@ -225,17 +239,6 @@
                 }, function (error) {
                     //error
                 });
-            },
-            registerInfo:function () {
-                this.nickName = cookie.get('register_nickname')||'';
-                this.sign = cookie.get('register_sign')||'';
-                this.mobileVal = cookie.get('register_mobile')||'';
-                this.personal = cookie.get('register_personal')||'';
-                this.goodatDetail = cookie.get('register_goodatDetail')||'';
-                this.experience = cookie.get('register_experience')||'';
-                this.askPrice = cookie.get('register_askPrice')||'';
-                this.freeTime = cookie.get('register_freeTime')||'';
-                this.faceUrl = cookie.get('register_faceUrl')||'';
             },
             changeHeadpic:function () {
                 let _this=this;
@@ -282,53 +285,48 @@
                 this.agreFlag = false
             },
             setLevel:function () {
-              this.$router.push('./level')
+              this.$router.push('./level?edit='+this.isModify)
             },
             setNickname:function () {
-                this.$router.push('./nickname')
+                this.$router.push('./nickname?edit='+this.isModify)
             },
             setSign:function () {
-                this.$router.push('./sign')
+                this.$router.push('./sign?edit='+this.isModify)
             },
             setPerson:function () {
-                this.$router.push('./personal')
+                this.$router.push('./personal?edit='+this.isModify)
             },
             setGoodat:function () {
-                this.$router.push('./good/at')
+                this.$router.push('./good/at?edit='+this.isModify)
             },
             goGoodatDetail:function () {
-                this.$router.push('./good/detail')
+                this.$router.push('./good/detail?edit='+this.isModify)
             },
             getClassList:function () {
                 let _this=this;
                 _this.$http.get(web.API_PATH + 'come/listen/question/class/list' ).then(function (data) {//es5写法
                     if (data.body.status == 1) {
                         _this.types= data.body.data;
-                        let questionClassId = cookie.get("questionClassId")
-                        if(questionClassId&&questionClassId!=''){
-                            let ids=  questionClassId.split(",");
-                            _this.questionClassId = ids;
-                            for(let i=0;i<_this.types.length;i++){
-                                for(let j =0;j<ids.length;j++){
-                                    if(_this.types[i].id==ids[j]){
-                                        _this.showType.push(_this.types[i].title);
-                                    }
-                                }
-                            }
-                        }else{
-                        }
                     }
                 }, function (error) {
                 });
             },
             setExperience:function () {
-                this.$router.push('./experience')
+                this.$router.push('./experience?edit='+this.isModify)
             },
             goPrice:function () {
-                this.$router.push('./price')
+                this.$router.push('./price?edit='+this.isModify)
             },
             goFreeTime:function () {
-                this.$router.push('./freetime')
+                this.$router.push('./freetime?edit='+ this.isModify)
+            },
+            changeTime:function (v) {
+                if(Number(v)<=30){
+                    return v + '分钟'
+                }else{
+                    return v/60 + '小时'
+                }
+
             },
             getSexPicker:function () {
                 let _this = this;
@@ -344,8 +342,26 @@
                     },
                     onConfirm: function (result) {
                         console.log(result)
-                        _this.sex=result[0].label
-                        _this.sexIndex = result[0].value
+                        _this.sexIndex = result[0].value;
+                        let url = "come/expert/register";
+                        let msg = {
+                            sex: _this.sexIndex,
+                            userId:_this.user.id
+                        };
+                        if(_this.isModify){
+                            //修改
+                            console.log('修改')
+                            url = "come/expert/modify";
+                            msg.expertId=cookie.get('expertId');
+                        }
+                        //入驻
+                        _this.$http.post(web.API_PATH + url, msg)
+                            .then(
+                                (response) => {
+                                    _this.user.sex =  _this.sexIndex
+                                }
+                            );
+
                     }
                 });
             },
@@ -374,6 +390,30 @@
                                 _this.areaId = '';
                                 _this.areaName = '';
                             }
+                            let url = "come/expert/register";
+                            let msg = {
+                                userId:_this.user.id,
+                                provinceId:_this.provinceId,
+                                cityId:_this.cityId,
+                                areaId:_this.areaId
+
+                            };
+                            if(_this.isModify){
+                                //修改
+                                console.log('修改')
+                                url = "come/expert/modify";
+                                msg.expertId=cookie.get('expertId');
+                            }
+                            //入驻
+                            _this.$http.post(web.API_PATH + url, msg)
+                                .then(
+                                    (response) => {
+                                        _this.user.provinceName = _this.provinceName
+                                        _this.user.cityName = _this.cityName
+                                        _this.user.areaName =_this.areaName
+                                    }
+                                );
+
 
                         },
                         id: 'cascadePicker'
@@ -388,7 +428,7 @@
                 let _this = this;
                 let re=true;
                 let tip = '';
-                if (_this.nickName == '') {
+                if (_this.isShowInfo.nickName == '') {
                     re = false;
                     tip = "请填写昵称";
                 }
@@ -396,35 +436,35 @@
 //                    re = false;
 //                    tip = "请设置个人头像";
 //                }
-                else if (_this.sign == '') {
+                else if (_this.isShowInfo.sign == '') {
                     re = false;
                     tip = "请填写个人签名";
                 }
-//                else if (_this.mobileVal == '') {
+//                else if (_this.user.mobile == '') {
 //                    re = false;
 //                    tip = "请填写手机号码";
 //                }
-                else if (_this.personal == '') {
+                else if (_this.isShowInfo.introduction == '') {
                     re = false;
                     tip = "请填写个人简介";
-                } else if (_this.showType.length == 0) {
+                } else if (_this.isShowInfo.domains.length == 0) {
                     re = false;
                     tip = "请选择自己擅长的领域";
-                } else if (_this.goodatDetail== '') {
+                } else if (_this.isShowInfo.goodat== '') {
                     re = false;
                     tip = "请描述自己擅长的领域";
-                } else if (_this.experience == '') {
+                } else if (_this.isShowInfo.experience == '') {
                     re = false;
                     tip = "请填写培训经历";
-                } else if (_this.askPrice == '') {
+                } else if (_this.isShowInfo.price == '') {
                     re = false;
                     tip = "请设置提问酬金";
                 }
-//                else if (_this.freeTime == '') {
-//                    re = false;
-//                    tip = "请设置免费偷听时间";
-//                }
-                else if (_this.provinceName == '') {
+                else if (_this.isShowInfo.freeTime == '') {
+                    re = false;
+                    tip = "请设置免费偷听时间";
+                }
+                else if (_this.user.provinceName == '') {
                     re = false;
                     tip = "请选择常驻城市";
                 }
@@ -441,41 +481,7 @@
                     return;
                 }
                 _this.showLoad= true;
-                let msg = {
-                    "id": _this.user.id,
-                    "countryId": 0,
-                    "provinceId": _this.provinceId,
-                    "cityId": _this.cityId,
-                    "areaId": _this.areaId,
-                    "sex": _this.sexIndex,
-                    'mobile':_this.mobileVal,
-                    "nickName": _this.nickName,
-                    "price":_this.askPrice,
-                    "freeTime":_this.freeTime,
-                    "sign":_this.sign,
-                    "questionClassId":_this.questionClassId,
-                    "introduction":_this.personal,
-                    "experience":_this.experience,
-                    "goodat":_this.goodatDetail,
-                    "faceUrl":_this.faceUrl,
-                };
-                let url = "come/expert/register";
-                if(_this.edit){
-                    msg.expertId=cookie.get('expertId');
-                    msg.userId= _this.user.id;
-                    url = "come/expert/modify";
-                }
-                console.log(msg);
-                console.log(url)
-                _this.$http.post(web.API_PATH + url, msg)
-                    .then(
-                        (response) => {
-                            console.log(response)
-                            _this.showLoad= false;
-                           // _this.$router.go(-1);
-
-                        }
-                    );
+                _this.$router.go(-1);
             },
 
         },
@@ -496,10 +502,10 @@
     .join_stepBox .step_detailBox li{height: 2.94rem;line-height:2.94rem;color:rgba(69, 75, 84, 1);border-bottom: 1px solid rgba(224,224,225,1);padding:0 0.88235rem;font-size: 0.8235rem;position: relative;}
     .join_stepBox .step_detailBox li .li_right{float: right;padding-right:1.5rem;width:55%;}
     .li_right>div{
-        width:100%;overflow: hidden;text-align: right;text-overflow: ellipsis;white-space: nowrap;font-size: 0.76471rem;
+        width:100%;text-align: right;font-size: 0.76471rem;
         color: rgba(69, 75, 84, 0.7);
     }
-    .li_right input{border:0;outline: none;text-align: right;background: none;width:100%;}
+    .li_right input{border:0;outline: none;text-align: right;background: none;width:100%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
     .join_stepBox .li_right i{background: url('../../../images/arrow.png');width: 0.94rem;  height: 0.94rem;  background-size: 0.94rem;  position: absolute;  right: 0.88235rem;  top: 50%;margin-top: -0.47rem;  }
     .joinStep_bottom{padding:1.76471rem 0.88235rem;}
     .join_agre{color:rgba(53, 58, 66, 1);font-size: 0.70588rem;line-height: 1rem;margin-bottom: 1.8rem;}

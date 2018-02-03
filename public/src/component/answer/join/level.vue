@@ -12,8 +12,7 @@
         <div class="level_detail">
             <div class="level_number">
                 <span>证书编号：</span>
-                <input type="text" placeholder="请填写" :value="certificateNo" @input="changeCertificateNo()"
-                       pattern="[0-9a-zA-Z]*"/>
+                <input type="text" placeholder="请填写" :value="certificateNo" v-model="certificateNo"/>
             </div>
             <div class="level_photo">
                 <span>资质证书：</span>
@@ -46,35 +45,19 @@
                 certificateNo:'',
                 uploadpicinfo:null,
                 alioss:null,
+                edit:'',
+                showLoad:false
             }
         },
         mounted: function () {
-            this.getExpertByUserId();
+            this.edit= this.$route.query.edit;
             this.initOss();
         },
         methods: {
-            getExpertByUserId:function () {
-                let _this=this;
-                _this.expertId = cookie.get('expertId');
-                _this.showLoad = true;
-                _this.$http.get(web.API_PATH + 'come/expert/query/detail/for/edit/'+ _this.expertId+'/_userId_' ).then(function (data) {//es5写法
-                    _this.showLoad = false;
-                    _this.expertInfo=data.data.data;
-                    if(_this.expertInfo!=null){
-                        _this.certificateFile1= _this.expertInfo.certificateFile1;
-                        _this.certificateNo= _this.expertInfo.certificateNo;
-                        _this.jobTitle= _this.expertInfo.jobTitle;
-                    }
-                }, function (error) {
-                });
-            },
             getItemClass:function (index) {
                 let _this = this;
                 let v = _this.level[index].name
                 this.jobTitle=v;
-            },
-            changeCertificateNo:function (v) {
-                this.certificateNo =  $(".certificateNo").val()
             },
             initOss:function () {
                 this.uploadpicinfo = {
@@ -129,20 +112,27 @@
                 if(!_this.check_step(true)){
                     return;
                 }
-                let data={
-                    userId:"_userId_",
-                    expertId:cookie.get("expertId"),
+                let url = "come/expert/register";
+                let msg = {
+                    userId:this.user.id,
                     jobTitle:_this.jobTitle,
                     certificateNo:_this.certificateNo,
                     certificateFile:[_this.certificateFile1]
-
                 };
-                _this.$http.post(web.API_PATH + 'come/expert/modify/certificate', data)
+                if(_this.edit){
+                    //修改
+                    console.log('修改')
+                    url = "come/expert/modify";
+                    msg.expertId=cookie.get('expertId');
+                }
+                _this.$http.post(web.API_PATH + url, msg)
                     .then(
                         (response) => {
-                            _this.$router.go(-1)
+                            this.showLoad= true;
+                            this.$router.go(-1);
                         }
                     );
+
 
             }
         },

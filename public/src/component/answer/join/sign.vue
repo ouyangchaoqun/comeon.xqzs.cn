@@ -24,26 +24,51 @@
         data() {
             return {
                 sign:'',
+                edit:'',
+
+            }
+        },
+        props: {
+            user:{
+                type:Object
             }
         },
         mounted: function () {
-            this.getCookie();
+            this.edit= this.$route.query.edit;
         },
         methods: {
-            getCookie:function () {
-                this.sign = cookie.get('register_sign')||'';
-            },
             backStep:function () {
                 this.$router.go(-1)
             },
             setSign:function () {
-                let _this = this;
-                if(_this.sign==''){
-                    xqzs.weui.tip("请填写个人签名",function () {});
-                }else {
-                    cookie.set('register_sign',_this.sign,1)
-                    _this.$router.go(-1)
+                if(this.sign==''){
+                    xqzs.weui.tip('请填写签名',function () {
+
+                    })
+                }else{
+                    let url = "come/expert/register";
+                    let msg = {
+                        sign: this.sign,
+                        userId:this.user.id
+                    };
+                    //判断是否入驻
+                    if(this.edit){
+                        //修改
+                        console.log('修改')
+                        url = "come/expert/modify";
+                        msg.expertId=cookie.get('expertId');
+                        msg.userId= this.user.id;
+                    }
+                    //入驻
+                    this.$http.post(web.API_PATH + url, msg)
+                        .then(
+                            (response) => {
+                                console.log(response)
+                                this.$router.go(-1);
+                            }
+                        );
                 }
+
 
             },
         }

@@ -25,52 +25,52 @@
     export default {
         data() {
             return {
+                edit:'',
                 times:[{
                     label: '不免费',
                     value: 0,
                     isSelect:false
                 }, {
                     label: '30分钟',
-                    value: 1,
+                    value: 30,
                     isSelect:false
                 }, {
                     label: '1小时',
-                    value: 2,
+                    value: 60,
                     isSelect:false
                 },{
                     label: '2小时',
-                    disabled: true,
-                    value: 3,
+                    value: 120,
                     isSelect:false
                 }, {
                     label: '3小时',
-                    value: 4,
+                    value: 180,
                     isSelect:false
                 },{
                     label: '6小时',
-                    value: 5,
+                    value: 360,
                     isSelect:false
                 },{
                     label: '12小时',
-                    value: 6,
+                    value: 720,
                     isSelect:false
                 },{
                     label: '24小时',
-                    value: 7,
+                    value: 1440,
                     isSelect:false
                 }],
                 checkedIndex:'',
                 freeTime:''
             }
         },
+        props: {
+            user:{
+                type:Object
+            }
+        },
 
         mounted: function () {
-            let checkedIndex = cookie.get("register_checkedIndex")||'';
-            this.$nextTick(function () {
-                if(checkedIndex){
-                    this.freeTimeChecked(checkedIndex);
-                }
-            })
+            this.edit= this.$route.query.edit;
         } ,
 
         methods:  {
@@ -81,20 +81,44 @@
                 }
                 times[v].isSelect=true;
                 this.checkedIndex = v;
+                this.freeTime = this.times[v].value;
+                console.log(this.freeTime)
                 this.$set(this.times,v,times[v]);
             },
+
             backStep:function () {
                 this.$router.go(-1)
             },
+            changeTime:function (time) {
+
+            },
             setFreeTime:function () {
+                let url = "come/expert/register";
+                let msg = {
+                    freeTime: this.freeTime,
+                    userId:this.user.id
+                };
                 let _this = this;
+                console.log(_this.checkedIndex)
                 if(_this.checkedIndex==''){
                         xqzs.weui.tip("请设置免费偷听时间",function () {});
                 }else {
-                    _this.freeTime = this.times[_this.checkedIndex].label;
-                    cookie.set('register_checkedIndex',_this.checkedIndex,1)
-                    cookie.set('register_freeTime',_this.freeTime,1)
-                    _this.$router.go(-1)
+
+                    if(this.edit){
+                        //修改
+                        console.log('修改')
+                        url = "come/expert/modify";
+                        msg.expertId=cookie.get('expertId');
+                    }
+                    //入驻
+                    this.$http.post(web.API_PATH + url, msg)
+                        .then(
+                            (response) => {
+                                console.log(response)
+                                this.showLoad= false;
+                                this.$router.go(-1);
+                            }
+                        );
                 }
             },
         },

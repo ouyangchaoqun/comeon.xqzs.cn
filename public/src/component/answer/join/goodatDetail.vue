@@ -12,7 +12,7 @@
 例如：
 #家庭关系：婚姻挽救、情感修复、外遇分离、家暴危 机、婆媳关系、复婚帮助、离婚纠纷
 #恋爱关系：失恋帮助、性格不合、沟通障碍、经常吵 架、父母反对、异地恋问题
-#性心理：同性恋、恋母情结、偷窥幻想女性、性取向 问题" rows="10" v-model="goodatDetail">{{goodatDetail}}</textarea>
+#性心理：同性恋、恋母情结、偷窥幻想女性、性取向 问题" rows="10" v-model="goodat">{{goodat}}</textarea>
             </div>
         </div>
 
@@ -25,32 +25,52 @@
     export default {
         data() {
             return {
-                goodatDetail:''
+                goodat:'',
+                edit:''
+            }
+        },
+        props: {
+            user:{
+                type:Object
             }
         },
         mounted: function () {
-
+            this.edit= this.$route.query.edit;
         },
         methods: {
-            getCookie:function () {
-                this.goodatDetail = cookie.get('register_goodatDetail')||'';
-            },
-
             backStep:function () {
                 this.$router.go(-1)
             },
             setPersonal:function () {
-                let _this = this;
-                if(_this.goodatDetail==''){
+                let url = "come/expert/register";
+                let msg = {
+                    goodat: this.goodat,
+                    userId:this.user.id
+                };
+                if(this.goodat==''){
                     xqzs.weui.tip('请描述自己擅长的领域',function () {
-
                     })
                 }else{
-                    cookie.set('register_goodatDetail',_this.goodatDetail,1)
-                    _this.$router.go(-1)
+                    if(this.edit){
+                        //修改
+                        console.log('修改')
+                        url = "come/expert/modify";
+                        msg.expertId=cookie.get('expertId');
+                    }
+                    //入驻
+                    this.$http.post(web.API_PATH + url, msg)
+                        .then(
+                            (response) => {
+                                console.log(response)
+                                this.showLoad= false;
+                                this.$router.go(-1);
+                            }
+                        );
+
                 }
 
-            }
+
+            },
 
         }
 

@@ -27,28 +27,48 @@
     export default {
         data() {
             return {
-                experience:''
+                experience:'',
+                edit:''
+            }
+        },
+        props: {
+            user:{
+                type:Object
             }
         },
 
-
         mounted: function () {
-            this.getCookie()
+            this.edit= this.$route.query.edit;
         },
         methods: {
-            getCookie:function () {
-                this.experience = cookie.get('register_experience')||'';
-            },
+
             backStep:function () {
                 this.$router.go(-1)
             },
             setExpe:function () {
+                let url = "come/expert/register";
+                let msg = {
+                    experience: this.experience,
+                    userId:this.user.id
+                };
                 let _this = this;
                 if(_this.experience==''){
                     xqzs.weui.tip("请填写培训经历",function () {});
                 }else {
-                    cookie.set('register_experience',_this.experience,1)
-                    _this.$router.go(-1)
+                    if(_this.edit){
+                        //修改
+                        console.log('修改')
+                        url = "come/expert/modify";
+                        msg.expertId=cookie.get('expertId');
+                    }
+                    _this.$http.post(web.API_PATH + url, msg)
+                        .then(
+                            (response) => {
+                                console.log(response)
+                                this.showLoad= false;
+                                this.$router.go(-1);
+                            }
+                        );
                 }
             }
 

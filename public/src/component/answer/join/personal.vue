@@ -14,7 +14,7 @@
 决恋爱婚姻中的情感创伤疗愈及应对，解决各种情感心理
 纠葛。失恋安抚、恋人挽回、婚姻破裂挽回、婆媳关系处
 理、婚外情等情感问题。幸福并不难，相信我，把问题交
-给我、我们一起敲开幸福的大门。" rows="10" v-model="personal">{{personal}}</textarea>
+给我、我们一起敲开幸福的大门。" rows="10" v-model="introduction">{{introduction}}</textarea>
             </div>
         </div>
 
@@ -27,28 +27,48 @@
     export default {
         data() {
             return {
-                personal:'',
+                introduction:'',
+                edit:'',
+            }
+        },
+        props: {
+            user:{
+                type:Object
             }
         },
 
-
         mounted: function () {
-
+            this.edit= this.$route.query.edit;
         },
         methods: {
-            getCookie:function () {
-                this.personal = cookie.get('register_personal')||'';
-            },
             backStep:function () {
                 this.$router.go(-1)
             },
             setPersonal:function () {
-                let _this = this;
-                if(_this.personal == ''){
-                    xqzs.weui.tip('请填写个人简介',function () {})
-                }else{
-                    cookie.set('register_personal',_this.personal,1)
-                    _this.$router.go(-1)
+                if(this.introduction==''){
+                    xqzs.weui.tip('请填写个人介绍',function () {
+
+                    })
+                }else {
+                    let url = "come/expert/register";
+                    let msg = {
+                        introduction: this.introduction,
+                        userId:this.user.id
+                    };
+                    if(this.edit){
+                        //修改
+                        console.log('修改')
+                        url = "come/expert/modify";
+                        msg.expertId=cookie.get('expertId');
+                    }
+                    this.$http.post(web.API_PATH + url, msg)
+                        .then(
+                            (response) => {
+                                console.log(response)
+                                this.showLoad= false;
+                                this.$router.go(-1);
+                            }
+                        );
                 }
 
             }

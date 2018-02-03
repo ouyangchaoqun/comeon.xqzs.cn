@@ -7,7 +7,7 @@
                 <div class="joinSet_sure" @click="setPrice()">确定</div>
             </div>
             <div class="set_price">
-                <input type="number" class="priceInput" v-model="askPrice"  :value="askPrice" placeholder="设置提问价格（元）例如：¥10">
+                <input type="number" class="priceInput" v-model="price"  :value="price" placeholder="设置提问价格（元）例如：¥10">
             </div>
             <div class="price_bottom">
                 <div>至少10元</div>
@@ -24,98 +24,54 @@
     export default {
         data() {
             return {
-                askPrice:"",
+                price:"",
                 showLoad:false,
+                edit:''
             }
         },
-
+        props: {
+            user:{
+                type:Object
+            }
+        },
         mounted: function () {
-            this.getCookie()
-
+            this.edit= this.$route.query.edit;
         } ,
         methods:  {
-            getCookie:function () {
-                this.askPrice = cookie.get('register_askPrice')||'';
-            },
+
             backStep:function () {
                 this.$router.go(-1)
             },
             setPrice:function () {
+                let url = "come/expert/register";
+                let msg = {
+                    price: this.price,
+                    userId:this.user.id
+                };
                 let _this = this;
-                if(_this.askPrice==''){
+                if(_this.price==''){
                     xqzs.weui.tip("请设置提问价格",function () {});
-                }else if(Number(_this.askPrice)<10){
+                }else if(Number(_this.price)<10){
                     xqzs.weui.tip("请设置正确的价格",function () {});
                 }else {
-                    cookie.set('register_askPrice',_this.askPrice,1)
-                    _this.$router.go(-1)
+                    if(_this.edit){
+                        //修改
+                        console.log('修改')
+                        url = "come/expert/modify";
+                        msg.expertId=cookie.get('expertId');
+                    }
+                    //入驻
+                    _this.$http.post(web.API_PATH + url, msg)
+                        .then(
+                            (response) => {
+                                console.log(response)
+                                this.showLoad= false;
+                                this.$router.go(-1);
+                            }
+                        );
                 }
             },
-            submit:function () {
-                let _this=this;
-                console.log(_this.isSubmitting)
-                if(_this.isSubmitting){
-                    return;
-                }
 
-                console.log('sub');
-
-                if(!xqzs.string.checkPrice(_this.price)){
-                    xqzs.weui.tip("请输入正确的金额！");
-                    return ;
-                }
-                if(parseFloat(_this.price)>xqzs.price.MAX_ANSWER_SET_PRICE||parseFloat(_this.price)<xqzs.price.MIN_ANSWER_SET_PRICE){
-                    xqzs.weui.tip("金额需在 "+xqzs.price.MIN_ANSWER_SET_PRICE+"-"+xqzs.price.MAX_ANSWER_SET_PRICE+" 之间！");
-                    return;
-                }
-
-                _this.isSubmitting=true;
-                _this.showLoad=true;
-                let questionClassId= cookie.get("questionClassId");
-                let  questionClassIds=[];
-                if(questionClassId&&questionClassId!=''){
-                    questionClassIds=questionClassId.split(',')
-                }
-                console.log("questionClassIds:"+questionClassIds)
-                let data={
-                    userId:"_userId_",
-                    price:_this.price,
-//                    freeTime:cookie.get("freeTime"),
-                    sign:unescape(cookie.get("sign")),
-                    mediaId:cookie.get("mediaId"),
-                    voiceLength:cookie.get("voiceLength"),
-                    questionClassId:questionClassIds,
-                    jobTitle:unescape(cookie.get("jobTitle")),
-                    certificateNo:unescape(cookie.get("certificateNo")),
-                    certificateFile:[unescape(cookie.get("certificateFile1")),unescape(cookie.get("certificateFile2"))],
-                    introduction:unescape(cookie.get("introduction")),
-                    experience:unescape(cookie.get("experience")),
-                    goodat:unescape(cookie.get("goodAt")),
-                    identityNo:unescape(cookie.get("identityNo")),
-                    cardImage:[unescape(cookie.get("identityFile1")),unescape(cookie.get("identityFile2"))]
-
-                };
-                $.ajax({
-                    url: web.API_PATH + "come/expert/register",
-                    data:data,
-                    type: 'PUT',
-                    success: function( bt ) {
-                        _this.showLoad=false;
-                        _this.isSubmitting=false;
-                        let result = JSON.parse(bt)
-                        if(result.status==9000006){
-                            xqzs.weui.tip("您已经提交过审核",function () {
-                                window.history.go(-1);
-                            })
-                        }else if(result.status==1){
-                            _this.$router.replace("./reviewing")
-                        }
-
-
-                    }
-                });
-
-            }
         },
         components: {
             'v-showLoad': showLoad,

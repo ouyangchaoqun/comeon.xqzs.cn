@@ -30,10 +30,20 @@
             return {
                 types:[],
                 MAX_COUNT:3,
-                canGoNext:false
+                canGoNext:false,
+                questionClassId:[],
+                expertId:'',
+                expertInfo:{},
+                edit:'',
+            }
+        },
+        props: {
+            user:{
+                type:Object
             }
         },
         mounted: function () {
+            this.edit= this.$route.query.edit;
             this.getClassList();
         },
         methods: {
@@ -89,6 +99,9 @@
                     this.canGoNext=true;
                 }else{
                     this.canGoNext=false;
+                    xqzs.weui.tip('请选择您最擅长的领域',function () {
+
+                    })
                 }
                 cookie.set("questionClassId",ids);
             },
@@ -97,7 +110,27 @@
             },
             setGoodAt:function () {
                 if(this.canGoNext){
-                    this.$router.go(-1)
+                    let url = "come/expert/register";
+                    let msg = {
+                        questionClassId: cookie.get("questionClassId"),
+                        userId:this.user.id
+                    };
+                    //判断是否入驻
+                    if(this.edit){
+                        //修改
+                        console.log('修改')
+                        url = "come/expert/modify";
+                        msg.expertId=this.expertId;
+                    }
+                    //入驻
+                    this.$http.post(web.API_PATH + url, msg)
+                        .then(
+                            (response) => {
+                                console.log(response)
+                                this.showLoad= false;
+                                this.$router.go(-1);
+                            }
+                        );
                 }else {
                     xqzs.weui.tip('请选择擅长的领域',function () {
                         

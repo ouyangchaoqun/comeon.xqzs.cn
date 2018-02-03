@@ -19,29 +19,55 @@
     export default {
         data() {
             return {
-                nickName:''
+                nickName:'',
+                edit:'',
+            }
+        },
+        props: {
+            user:{
+                type:Object
             }
         },
         mounted: function () {
-            this.getCookie()
+            this.edit= this.$route.query.edit;
         },
         methods: {
-            getCookie:function () {
-                this.nickName = cookie.get('register_nickname')||'';
-            },
+
             backStep:function () {
                 this.$router.go(-1)
             },
-            setNickName:function () {
-                let _this = this;
-                if(_this.nickName==''){
-                    xqzs.weui.tip('请填写昵称');
-                    return
-                }else{
-                    cookie.set('register_nickname',_this.nickName,1)
-                    _this.$router.go(-1)
-                }
+            //判断是否入驻
+            isJoin:function () {
 
+            },
+            setNickName:function () {
+                if(this.nickName==''){
+                    xqzs.weui.tip('请填写昵称',function () {
+
+                    })
+                }else{
+                    let url = "come/expert/register";
+                    let msg = {
+                        nickName: this.nickName,
+                        userId:this.user.id
+                    };
+                    //判断是否入驻
+                    if(this.edit){
+                        //修改
+                        console.log('修改')
+                        url = "come/expert/modify";
+                        msg.expertId=cookie.get('expertId');
+                    }
+                    //入驻
+                    this.$http.post(web.API_PATH + url, msg)
+                        .then(
+                            (response) => {
+                                console.log(response)
+                                this.showLoad= false;
+                                this.$router.go(-1);
+                            }
+                        );
+                }
             }
         },
         components:{

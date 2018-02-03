@@ -89,7 +89,7 @@
             },
             goJoin:function () {
                 this.showLoad = true;
-                this.$router.push("/answer/join/joinstep?edit=1");
+                this.$router.push("/answer/join/joinstep");
                 //this.$router.push("/answer/join/join_update");
             },
             getIncome:function () {
