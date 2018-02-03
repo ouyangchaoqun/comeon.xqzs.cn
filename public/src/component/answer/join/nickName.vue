@@ -30,6 +30,7 @@
         },
         mounted: function () {
             this.edit= this.$route.query.edit;
+            console.log(this.edit)
         },
         methods: {
 
@@ -49,10 +50,13 @@
                     let url = "come/expert/register";
                     let msg = {
                         nickName: this.nickName,
-                        userId:this.user.id
+                        userId:this.user.id,
+                        id:this.user.id
                     };
                     //判断是否入驻
-                    if(this.edit){
+                    console.log(this.edit)
+                    if(this.edit==1){
+                        console.log(this.edit+'ssssssssssss')
                         //修改
                         console.log('修改')
                         url = "come/expert/modify";

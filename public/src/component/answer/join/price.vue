@@ -46,7 +46,8 @@
                 let url = "come/expert/register";
                 let msg = {
                     price: this.price,
-                    userId:this.user.id
+                    userId:this.user.id,
+                    id:this.user.id
                 };
                 let _this = this;
                 if(_this.price==''){
@@ -54,7 +55,7 @@
                 }else if(Number(_this.price)<10){
                     xqzs.weui.tip("请设置正确的价格",function () {});
                 }else {
-                    if(_this.edit){
+                    if(_this.edit==1){
                         //修改
                         console.log('修改')
                         url = "come/expert/modify";
@@ -64,8 +65,7 @@
                     _this.$http.post(web.API_PATH + url, msg)
                         .then(
                             (response) => {
-                                console.log(response)
-                                this.showLoad= false;
+                                this.showLoad = true
                                 this.$router.go(-1);
                             }
                         );

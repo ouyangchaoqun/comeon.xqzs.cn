@@ -60,7 +60,8 @@
                     isSelect:false
                 }],
                 checkedIndex:'',
-                freeTime:''
+                freeTime:'',
+                showLoad:false
             }
         },
         props: {
@@ -96,7 +97,8 @@
                 let url = "come/expert/register";
                 let msg = {
                     freeTime: this.freeTime,
-                    userId:this.user.id
+                    userId:this.user.id,
+                    id:this.user.id
                 };
                 let _this = this;
                 console.log(_this.checkedIndex)
@@ -104,7 +106,7 @@
                         xqzs.weui.tip("请设置免费偷听时间",function () {});
                 }else {
 
-                    if(this.edit){
+                    if(this.edit==1){
                         //修改
                         console.log('修改')
                         url = "come/expert/modify";
@@ -114,8 +116,7 @@
                     this.$http.post(web.API_PATH + url, msg)
                         .then(
                             (response) => {
-                                console.log(response)
-                                this.showLoad= false;
+                                this.showLoad = true;
                                 this.$router.go(-1);
                             }
                         );

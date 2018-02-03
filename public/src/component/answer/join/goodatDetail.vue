@@ -1,5 +1,6 @@
 <template >
     <div class="personal_box">
+        <v-showLoad v-show="showLoad"></v-showLoad>
         <div class="joinstep_background">
             <div v-title>入驻心理咨询师</div>
 
@@ -21,12 +22,13 @@
 
 <script type="es6">
 
-
+    import showLoad from '../../include/showLoad.vue';
     export default {
         data() {
             return {
                 goodat:'',
-                edit:''
+                edit:'',
+                showLoad:false
             }
         },
         props: {
@@ -45,13 +47,14 @@
                 let url = "come/expert/register";
                 let msg = {
                     goodat: this.goodat,
-                    userId:this.user.id
+                    userId:this.user.id,
+                    id:this.user.id
                 };
                 if(this.goodat==''){
                     xqzs.weui.tip('请描述自己擅长的领域',function () {
                     })
                 }else{
-                    if(this.edit){
+                    if(this.edit==1){
                         //修改
                         console.log('修改')
                         url = "come/expert/modify";
@@ -61,8 +64,7 @@
                     this.$http.post(web.API_PATH + url, msg)
                         .then(
                             (response) => {
-                                console.log(response)
-                                this.showLoad= false;
+                                this.showLoad = true
                                 this.$router.go(-1);
                             }
                         );
@@ -72,6 +74,9 @@
 
             },
 
+        },
+        components: {
+            'v-showLoad': showLoad,
         }
 
 

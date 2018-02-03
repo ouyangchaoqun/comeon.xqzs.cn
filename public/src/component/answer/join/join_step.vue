@@ -4,10 +4,13 @@
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div v-title>入驻心理咨询师</div>
         <header>
-            <img v-if="faceUrl==''" src="../../../images/joinHeaderImg.png" alt="">
-            <img v-if="faceUrl!=''" :src="faceUrl" alt="">
+            <img v-if="!isShowInfo.faceUrl" src="../../../images/joinHeaderImg.png" alt="">
+            <img v-if="isShowInfo.faceUrl" :src="isShowInfo.faceUrl" alt="">
             <div class="li_right" @click="changeHeadpic()">
-                <div>请上传头像</div>
+                <div>
+                    <template v-if="!isModify">请上传头像</template>
+                    <template v-if="isModify">更换头像</template>
+                </div>
                 <i></i>
             </div>
             <div style="clear: both"></div>
@@ -125,7 +128,7 @@
             <div class="join_agre">
                 提交审核，即表示您同意遵守<span @click="showAgre()">《好一点专家入驻协议》</span>我们会尽快对您的资质进行审核，审核通过后将以好一点客服消息通知您
             </div>
-            <div class="join_sub" v-show="!isModify" @click="msgSubmit()">
+            <div class="join_sub" @click="msgSubmit()" v-show="!isModify">
                 提交审核
             </div>
         </div>
@@ -187,7 +190,7 @@
 
         mounted: function () {
             this.isJoin();
-
+            this.initOss();
             this.getUserInfo();
             this.getClassList();
         },
@@ -217,7 +220,7 @@
 
                 this.$http.get(web.API_PATH + 'come/expert/query/detail/for/edit/'+expertId+'/_userId_').then(function (data) {
                     if (data.body.status == 1) {
-                                    this.isShowInfo = data.data.data;
+                        this.isShowInfo = data.data.data||{};
                         console.log(this.isShowInfo)
                     }
                 }, function (error) {
@@ -246,8 +249,7 @@
                     _this.showLoad=true;
                 },function (json,ix) {
                     _this.showLoad=false;
-                    _this.faceUrl=json.data.path;
-                    cookie.set('register_faceUrl',_this.faceUrl,1)
+                    _this.isShowInfo.faceUrl=json.data.path;
 //
 //                    let data ={
 //
@@ -346,7 +348,8 @@
                         let url = "come/expert/register";
                         let msg = {
                             sex: _this.sexIndex,
-                            userId:_this.user.id
+                            userId:_this.user.id,
+                            id:this.user.id
                         };
                         if(_this.isModify){
                             //修改
@@ -395,7 +398,8 @@
                                 userId:_this.user.id,
                                 provinceId:_this.provinceId,
                                 cityId:_this.cityId,
-                                areaId:_this.areaId
+                                areaId:_this.areaId,
+                                id:this.user.id
 
                             };
                             if(_this.isModify){
@@ -428,7 +432,7 @@
                 let _this = this;
                 let re=true;
                 let tip = '';
-                if (_this.isShowInfo.nickName == '') {
+                if (!_this.isShowInfo.nickName) {
                     re = false;
                     tip = "请填写昵称";
                 }
@@ -436,7 +440,7 @@
 //                    re = false;
 //                    tip = "请设置个人头像";
 //                }
-                else if (_this.isShowInfo.sign == '') {
+                else if (!_this.isShowInfo.sign) {
                     re = false;
                     tip = "请填写个人签名";
                 }
@@ -444,10 +448,10 @@
 //                    re = false;
 //                    tip = "请填写手机号码";
 //                }
-                else if (_this.isShowInfo.introduction == '') {
+                else if (!_this.isShowInfo.introduction) {
                     re = false;
                     tip = "请填写个人简介";
-                } else if (_this.isShowInfo.domains.length == 0) {
+                } else if (_this.isShowInfo.domains=='') {
                     re = false;
                     tip = "请选择自己擅长的领域";
                 } else if (_this.isShowInfo.goodat== '') {
@@ -480,8 +484,22 @@
                 if(!_this.check_step(true)){
                     return;
                 }
-                _this.showLoad= true;
-                _this.$router.go(-1);
+                let url = "come/expert/register";
+                let msg = {
+                    userId:_this.user.id,
+                    id:_this.user.id,
+                    finish:1
+
+                };
+                _this.$http.post(web.API_PATH + url, msg)
+                    .then(
+                        (response) => {
+                            _this.showLoad= true;
+                            _this.$router.go(-1);
+                        }
+                    );
+
+
             },
 
         },
@@ -511,7 +529,7 @@
     .join_agre{color:rgba(53, 58, 66, 1);font-size: 0.70588rem;line-height: 1rem;margin-bottom: 1.8rem;}
     .join_agre span{color:rgba(255, 99, 0, 1)}
     .join_sub{height:2.94rem;line-height: 2.94rem;color:rgba(255, 255, 255, 1);background: rgba(254, 122, 3, 1);font-size: 1.0588rem;border-radius:6.17rem;text-align: center }
-    .agre_box{width:86%;position: absolute;top:10%;left:50%;margin-left: -46%;background: #fff;padding:0.88235rem 3%;border-radius: 0.588235rem;}
+    .agre_box{width:86%;position: absolute;top:5%;left:50%;margin-left: -46%;background: #fff;padding:0.88235rem 3%;border-radius: 0.588235rem;}
     .agre_box h2{color:RGBA(69, 75, 84, 1);font-size: 1.0588rem;line-height: 1.47rem;text-align: center;margin-bottom: 0.88235rem;}
     .agre_box .agre_content{color:RGBA(69, 75, 84, 1);font-size: 0.76471rem;line-height: 1.176471rem;background: RGBA(69, 75, 84, 0.05);padding:1.4rem 0.764rem 0.294rem 0.764rem;margin-bottom: 1.176rem;}
     .agre_content h3{padding-top: 1.176rem}

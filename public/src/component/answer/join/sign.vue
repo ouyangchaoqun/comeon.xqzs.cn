@@ -1,5 +1,6 @@
 <template >
     <div class="sign_box">
+        <v-showLoad v-show="showLoad"></v-showLoad>
         <div class="joinstep_background">
             <div v-title>入驻心理咨询师</div>
             <div class="joinSet_top">
@@ -15,16 +16,17 @@
 " id="" cols="30" rows="6">{{sign}}</textarea>
             </div>
         </div>
-
     </div>
 </template>
 
 <script type="es6">
+    import showLoad from '../../include/showLoad.vue';
     export default {
         data() {
             return {
                 sign:'',
                 edit:'',
+                showLoad:false
 
             }
         },
@@ -49,10 +51,11 @@
                     let url = "come/expert/register";
                     let msg = {
                         sign: this.sign,
-                        userId:this.user.id
+                        userId:this.user.id,
+                        id:this.user.id
                     };
                     //判断是否入驻
-                    if(this.edit){
+                    if(this.edit==1){
                         //修改
                         console.log('修改')
                         url = "come/expert/modify";
@@ -63,14 +66,15 @@
                     this.$http.post(web.API_PATH + url, msg)
                         .then(
                             (response) => {
-                                console.log(response)
+                                this.showLoad = true;
                                 this.$router.go(-1);
                             }
                         );
                 }
-
-
-            },
+            }
+        },
+        components: {
+            'v-showLoad': showLoad,
         }
 
     }

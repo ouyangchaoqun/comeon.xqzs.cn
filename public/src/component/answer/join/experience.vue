@@ -49,13 +49,14 @@
                 let url = "come/expert/register";
                 let msg = {
                     experience: this.experience,
-                    userId:this.user.id
+                    userId:this.user.id,
+                    id:this.user.id
                 };
                 let _this = this;
                 if(_this.experience==''){
                     xqzs.weui.tip("请填写培训经历",function () {});
                 }else {
-                    if(_this.edit){
+                    if(_this.edit==1){
                         //修改
                         console.log('修改')
                         url = "come/expert/modify";

@@ -117,9 +117,10 @@
                     userId:this.user.id,
                     jobTitle:_this.jobTitle,
                     certificateNo:_this.certificateNo,
-                    certificateFile:[_this.certificateFile1]
+                    certificateFile:[_this.certificateFile1],
+                    id:this.user.id
                 };
-                if(_this.edit){
+                if(_this.edit==1){
                     //修改
                     console.log('修改')
                     url = "come/expert/modify";

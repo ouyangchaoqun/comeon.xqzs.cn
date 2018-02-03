@@ -100,9 +100,9 @@
 
 
             },
-            goJoin:function (p) {
+            goJoin:function () {
                 this.showLoad = true;
-                this.$router.push("/answer/join/joinstep?edit="+p);
+                this.$router.push("/answer/join/joinstep");
             },
             getCoupon:function () {
                 let _this=this;
