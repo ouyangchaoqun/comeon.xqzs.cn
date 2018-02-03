@@ -85,7 +85,9 @@
 
                 },function (json,ix) {
                     _this.showLoad=false;
-                    _this.certificateFile1 = json.data.path;
+                    let fileWidth = parseInt($(body).width()*0.92);
+                    let fileHeight = parseInt(fileWidth*0.52);
+                    _this.certificateFile1 = json.data.path+'?x-oss-process=image/resize,h_'+fileHeight+',w_'+fileWidth+'/quality,q_100';
                 },function (e) {
                 })
             },
