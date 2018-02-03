@@ -21,7 +21,7 @@
                         <img class="addIcon"  src="../../../images/joinAddImg.png" alt="" @click="upload()">
                         <p>请上传有姓名编号的一页，确保内容清晰可进见</p>
                     </template>
-                    <img v-if="certificateFile1!=''" :src="certificateFile1" />
+                    <img class="imgFile" v-if="certificateFile1!=''" :src="certificateFile1" />
                 </div>
             </div>
         </div>
@@ -47,6 +47,11 @@
                 alioss:null,
                 edit:'',
                 showLoad:false
+            }
+        },
+        props: {
+            user:{
+                type:Object
             }
         },
         mounted: function () {
@@ -209,5 +214,10 @@
         left:50%;
         margin-left: -2rem;
         top:10%;
+    }
+    .photo_box .imgFile{
+        display: block;
+        max-width: 100%;
+        margin:0 auto;
     }
 </style>
