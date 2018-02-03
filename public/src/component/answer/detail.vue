@@ -254,6 +254,10 @@
             this.getAnswer();
             xqzs.wx.setConfig(this);
 
+
+            this.isInteger(1.00000);
+            this.isInteger(1.00001);
+            this.isInteger(1);
         },
         updated:function () {
             let _this = this;
@@ -363,8 +367,19 @@
 //                    _this.pay(index)
                 })
             },
+
+            isInteger: function (obj) {
+                console.log("rrrrrrr"+obj )
+                console.log(obj % 1 === 0);
+                return obj % 1 === 0
+            },
             toPercent:function (p) {
-                return (p*100).toFixed(2)+'%';
+                if(this.isInteger(p*100)){
+                    return parseInt(p*100)+'%';
+                }else{
+                    return (p*100).toFixed(1)+'%';
+                }
+
             },
             showPicker:function () {
                 let _this = this;
