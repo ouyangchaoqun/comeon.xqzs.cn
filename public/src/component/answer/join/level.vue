@@ -87,7 +87,7 @@
                     _this.showLoad=false;
                     let fileWidth = parseInt($('.photo_box').width());
                     let fileHeight = parseInt($('.photo_box').height());
-                    _this.certificateFile1 = json.data.path+'?x-oss-process=image/resize,m_mfit,h_'+fileHeight+',w_'+fileWidth+'/quality,q_100';
+                    _this.certificateFile1 = json.data.path+'?x-oss-process=image/resize,m_lfit,,h_'+fileHeight+',w_'+fileWidth+'/quality,q_100';
                 },function (e) {
                 })
             },
