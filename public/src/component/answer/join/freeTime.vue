@@ -102,7 +102,7 @@
                 };
                 let _this = this;
                 console.log(_this.checkedIndex)
-                if(_this.checkedIndex==''){
+                if(_this.checkedIndex<0){
                         xqzs.weui.tip("请设置免费偷听时间",function () {});
                 }else {
 

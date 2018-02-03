@@ -17,7 +17,7 @@
         </header>
         <div class="step_detailBox" :class="{detailBox_bottom:isModify}">
             <ul>
-                <li v-show="!isModify">
+                <li v-show="btnFlag">
                     资质证书
                     <div class="li_right" @click="setLevel()">
                         <input disabled placeholder="请选择资质">
@@ -118,17 +118,17 @@
                 <li>
                     限时免费偷听时间
                     <div class="li_right" @click="goFreeTime()">
-                        <input disabled placeholder="请设置免费偷听时间" :value="changeTime(isShowInfo.freeTime)">
+                        <input disabled placeholder="请设置免费偷听时间" :value="changeTime(isShowInfo.freeTime)||''">
                         <i></i>
                     </div>
                 </li>
             </ul>
         </div>
-        <div class="joinStep_bottom" v-show="!isModify">
+        <div class="joinStep_bottom" v-show="btnFlag">
             <div class="join_agre">
                 提交审核，即表示您同意遵守<span @click="showAgre()">《好一点专家入驻协议》</span>我们会尽快对您的资质进行审核，审核通过后将以好一点客服消息通知您
             </div>
-            <div class="join_sub" @click="msgSubmit()" v-show="!isModify">
+            <div class="join_sub" @click="msgSubmit()" v-show="btnFlag">
                 提交审核
             </div>
         </div>
@@ -179,7 +179,10 @@
                 faceUrl:'',
                 questionClassId:[],
                 isModify:0,
-                isShowInfo:{}
+                isShowInfo:{
+                    freeTime:''
+                },
+                btnFlag:true
             }
         },
         props: {
@@ -200,14 +203,17 @@
             isJoin:function () {
                 this.$http.get(web.API_PATH + 'come/expert/query/detail/by/userId/_userId_' ).then(function (data) {
                     if (data.body.status == 1) {
-                        if(data.data.data!=null){
+                        if(data.data.data){
+                            if(data.data.data.status!=-1){
+                                //
+                                this.btnFlag = false
+                            }
                             //已经注册过
                             let expertId = data.data.data.id;
                             this.getExpertInfo(expertId);
                             this.isModify = 1;
                             console.log('已经注册过,修改');
                         }else{
-                            //修改
                             this.isModify = 0;
                             console.log('首次注册');
                         }
@@ -323,6 +329,10 @@
                 this.$router.push('./freetime?edit='+ this.isModify)
             },
             changeTime:function (v) {
+                console.log(v)
+                if(v==0){
+                    return '不免费'
+                }
                 if(Number(v)<=30){
                     return v + '分钟'
                 }else{
