@@ -1,5 +1,5 @@
 <template>
-    <div class="answer_join_mobile_box">
+    <div class="answer_join_mobile_box" @touchmove.prevent >
         <div v-title>入驻心理咨询师</div>
         <div class="validate_box">
             <div class="mobile__box">
@@ -203,11 +203,11 @@
         position: absolute;
         top:0;
         z-index: 100;
+        background: #fff;
     }
     .answer_join_mobile_box .validate_box {
         padding: 20px 15px;
         background: #fff;
-        height: 100%;
     }
 
     .answer_join_mobile_box .validate_top {
