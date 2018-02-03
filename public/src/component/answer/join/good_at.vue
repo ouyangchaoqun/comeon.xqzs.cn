@@ -122,7 +122,7 @@
                         //修改
                         console.log('修改')
                         url = "come/expert/modify";
-                        msg.expertId=this.expertId;
+                        msg.expertId=cookie.get('expertId');
                     }
                     //入驻
                     this.$http.post(web.API_PATH + url, msg)
