@@ -29,8 +29,12 @@
                 <li>
                     咨询师昵称
                     <div class="li_right" @click="setNickname()">
-                        <input v-if="isModify==0" disabled placeholder="请填写昵称" :value="reg_nickName">
-                        <input v-if="isModify==1" disabled placeholder="请填写昵称" :value="isShowInfo.nickName">
+                        <div>
+                            {{reg_nickName==''}}
+                            <template v-if="isModify==0&&reg_nickName==''">请填写昵称</template>
+                            <template v-if="isModify==0">{{reg_nickName}}</template>
+                            <template v-if="isModify==1">{{isShowInfo.nickName}}</template>
+                        </div>
                         <i></i>
                     </div>
                 </li>
@@ -181,15 +185,15 @@
                 showLoad:false,
                 sexIndex:'',
                 defaultCity: '[330000, 330100, 330102]',
-                provinceName:unescape(cookie.get('reg_provinceName'))?unescape(cookie.get('reg_provinceName')):'',
-                cityName: unescape(cookie.get('reg_cityName'))?unescape(cookie.get('reg_cityName')):'',
-                areaName: unescape(cookie.get('reg_areaName'))?unescape(cookie.get('reg_areaName')):'',
+                provinceName:cookie.get('reg_provinceName')?unescape(cookie.get('reg_provinceName')):'',
+                cityName: cookie.get('reg_cityName')?unescape(cookie.get('reg_cityName')):'',
+                areaName: cookie.get('reg_areaName')?unescape(cookie.get('reg_areaName')):'',
                 provinceId: cookie.get('reg_provinceId')?cookie.get('reg_provinceId'):'',
                 cityId: cookie.get('reg_cityId')?cookie.get('reg_cityId'):'',
                 areaId: cookie.get('reg_areaId')?cookie.get('reg_areaId'):'',
                 user:'',
-                reg_sign:unescape(cookie.get('reg_sign'))?unescape(cookie.get('reg_sign')):'',
-                reg_nickName:unescape(cookie.get('reg_nickName'))?unescape(cookie.get('reg_nickName')):'',
+                reg_sign:cookie.get('reg_sign')?unescape(cookie.get('reg_sign')):'',
+                reg_nickName:'',
                 alioss:null,
                 uploadpicinfo:null,
                 identityFile1:'',
@@ -199,13 +203,14 @@
                 agreFlag:false,
                 faceUrl:cookie.get('reg_faceUrl')?cookie.get('reg_faceUrl'):'',
                 questionClassId:[],
+                reg_nickName:cookie.get('reg_nickName')?unescape(cookie.get('reg_nickName')):'',
                 isModify:0,
                 isShowInfo:{
                     freeTime:''
                 },
                 btnFlag:true,
                 regNickName:'',
-                sex:unescape(cookie.get('reg_sex'))?unescape(cookie.get('reg_sex')):'',
+                sex:cookie.get('reg_sex')?unescape(cookie.get('reg_sex')):'',
                 types:'',
                 showTypes:[]
             }
