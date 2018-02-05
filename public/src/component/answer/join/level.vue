@@ -18,7 +18,7 @@
                 <span>资质证书：</span>
                 <div class="photo_box" @click="upload()">
                     <template v-if="certificateFile1==''" >
-                        <img class="addIcon"  src="../../../images/joinAddImg.png" alt="">
+                        <img class="addIcon"  src="../../../images/level_addIBtnIcon.png" alt="">
                         <p>请上传有姓名编号的一页，确保内容清晰可进见</p>
                     </template>
                     <img class="imgFile" v-if="certificateFile1!=''" :src="certificateFile1Show" />
@@ -196,6 +196,8 @@
         text-align: center;
         width:70%;
         height:1.235rem;
+        font-size: 0.88235rem;
+        color:RGBA(69, 75, 84, 0.7) !important;;
     }
     .level_photo span{
         display: block;
@@ -216,11 +218,11 @@
         top:60%;
     }
     .photo_box .addIcon{
-        width:4rem;
+        width:2.52rem;
         position: absolute;
         left:50%;
-        margin-left: -2rem;
-        top:10%;
+        margin-left: -1.26rem;
+        top:20%;
     }
     .photo_box .imgFile{
         display: block;

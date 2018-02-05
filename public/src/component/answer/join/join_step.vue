@@ -558,7 +558,7 @@
                     xqzs.weui.tip('请填写价格')
                     return
                 }else if(_this.reg_freeTime==''){
-                    xqzs.weui.tip('请选择时间')
+                    xqzs.weui.tip('请设置免费时间')
                     return
                 }else if(_this.reg_jobTitle==''){
                     xqzs.weui.tip('请选择资质')
