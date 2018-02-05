@@ -167,7 +167,6 @@
                     限时免费偷听时间
                     <div class="li_right" @click="goFreeTime()">
                         <div>
-                            <template v-if="isModify==0&&reg_freeTime==''">请设置免费偷听时间</template>
                             <template v-if="isModify==0">{{changeTime(reg_freeTime)}}</template>
                             <template v-if="isModify==1">{{isShowInfo.freeTime}}</template>
                         </div>
@@ -269,18 +268,22 @@
                 this.$http.get(web.API_PATH + 'come/expert/query/detail/by/userId/_userId_' ).then(function (data) {
                     if (data.body.status == 1) {
                         if(data.data.data){
-                            if(data.data.data.status!=-1){
-                                //
-                                this.btnFlag = false
-                            }
-                            //已经注册过
                             let expertId = data.data.data.id;
                             this.getExpertInfo(expertId);
-                            this.isModify = 1;
-                            console.log('已经注册过,修改');
+                            if(data.data.data.status==0){
+                                console.log('未认证通过，需要修改');
+                                this.btnFlag = true;
+                                this.isModify = 1;
+                            }else if(data.data.data.status!=-1){
+                                this.btnFlag = false;
+                            }else {
+                                this.isModify = 1;
+                                console.log('已经注册过,修改');
+                            }
+
                         }else{
-                            this.isModify = 0;
                             console.log('首次注册');
+                            this.isModify = 0;
                         }
                     }
                 }, function (error) {

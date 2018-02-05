@@ -77,6 +77,7 @@
                     if (data.body.status == 1) {
                         if(data.data.data!=null){
                             let status = data.data.data.status;
+                            console.log(status)
 //                            const NOT_AUTHENTICATED=0;//未认证
 //                            const AUTHENTICATED = 1 ;//已认证
 //                            const AUTHENTICATING = 2;//认证中
@@ -88,6 +89,10 @@
                             if(status==1){
                                 //已认证
                                 xqzs.weui.tip("您已成功入驻咨询师，请从公众号移步到咨询师。")
+                            }
+                            if(status==0){
+                                //未认证
+                                _this.goJoin()
                             }
                         }else{
                             //入驻
