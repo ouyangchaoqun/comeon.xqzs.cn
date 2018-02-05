@@ -75,7 +75,6 @@
                 let _this= this;
                 this.$http.get(web.API_PATH + 'come/expert/query/detail/by/userId/_userId_' ).then(function (data) {//es5写法
                     if (data.body.status == 1) {
-                        console.log(data.data.data)
                         if(data.data.data!=null){
                             let status = data.data.data.status;
 //                            const NOT_AUTHENTICATED=0;//未认证
@@ -84,7 +83,7 @@
 //                            const AUTHENTICATING = -1;//提交中
                             if(status==2||status==-1){
                                 //修改
-                                _this.goJoin()
+                                xqzs.weui.tip("资料审核中，请稍后")
                             }
                             if(status==1){
                                 //已认证
@@ -96,6 +95,7 @@
                         }
                     }
                 }, function (error) {
+
                 });
 
 

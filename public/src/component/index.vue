@@ -26,7 +26,7 @@
                 let _this=this;
                 this.$http.get(web.API_PATH + 'come/expert/query/detail/by/userId/_userId_' ).then(function (data) {//es5写法
                     if (data.body.status == 1) {
-                        if(data.data.data&&data.data.data.id){
+                        if(data.data.data&&data.data.data.id&&data.data.data.status==1){
                             let  expertId = data.data.data.id;
                             _this.expert= data.data.data;
                             cookie.set('expertId',expertId,300);
