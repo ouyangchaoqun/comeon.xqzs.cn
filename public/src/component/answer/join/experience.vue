@@ -46,12 +46,6 @@
                 this.$router.go(-1)
             },
             setExpe:function () {
-                let url = "come/expert/register";
-                let msg = {
-                    experience: this.experience,
-                    userId:this.user.id,
-                    id:this.user.id
-                };
                 let _this = this;
                 if(_this.experience==''){
                     xqzs.weui.tip("请填写培训经历",function () {});
@@ -59,17 +53,24 @@
                     if(_this.edit==1){
                         //修改
                         console.log('修改')
-                        url = "come/expert/modify";
-                        msg.expertId=cookie.get('expertId');
+                        let url = "come/expert/modify";
+                        let msg = {
+                            experience: _this.experience,
+                            userId:_this.user.id,
+                            id:_this.user.id,
+                            expertId:cookie.get('expertId')
+                        };
+                        _this.$http.post(web.API_PATH + url, msg)
+                            .then(
+                                (response) => {
+                                    console.log(response)
+                                }
+                            );
+                    }else{
+                        cookie.set('reg_experience',_this.experience,1)
                     }
-                    _this.$http.post(web.API_PATH + url, msg)
-                        .then(
-                            (response) => {
-                                console.log(response)
-                                this.showLoad= false;
-                                this.$router.go(-1);
-                            }
-                        );
+                    _this.showLoad= true;
+                    _this.$router.go(-1);
                 }
             }
 

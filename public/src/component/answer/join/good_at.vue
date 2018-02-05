@@ -106,34 +106,32 @@
                     })
                 }
                 cookie.set("questionClassId",ids);
-                console.log(cookie.get("questionClassId").split(","))
             },
             backStep:function () {
                 this.$router.go(-1)
             },
             setGoodAt:function () {
                 if(this.canGoNext){
-                    let url = "come/expert/register";
-                    let msg = {
-                        questionClassId: cookie.get("questionClassId").split(","),
-                        userId:this.user.id,
-                        id:this.user.id
-                    };
-                    //判断是否入驻
                     if(this.edit==1){
                         //修改
                         console.log('修改')
-                        url = "come/expert/modify";
-                        msg.expertId=cookie.get('expertId');
+                        let url = "come/expert/modify";
+                        let msg = {
+                            questionClassId: cookie.get("questionClassId").split(","),
+                            userId:this.user.id,
+                            id:this.user.id,
+                            expertId:cookie.get('expertId')
+                        };
+                        this.$http.post(web.API_PATH + url, msg)
+                            .then(
+                                (response) => {
+
+                                }
+                            );
                     }
-                    //入驻
-                    this.$http.post(web.API_PATH + url, msg)
-                        .then(
-                            (response) => {
-                                this.showLoad = true
-                                this.$router.go(-1);
-                            }
-                        );
+                    this.showLoad = true
+                    this.$router.go(-1);
+
                 }else {
                     xqzs.weui.tip('请选择擅长的领域',function () {
                         

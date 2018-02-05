@@ -106,10 +106,11 @@
                 }else if(_this.certificateNo==''){
                     re=false;
                     tip="请填写证件编号";
-                }else if(_this.certificateFile1==''){
-                    re=false;
-                    tip="请上传证件照";
                 }
+//                else if(_this.certificateFile1==''){
+//                    re=false;
+//                    tip="请上传证件照";
+//                }
                 if(showTip&&!re){
                     xqzs.weui.tip(tip);
                 }
@@ -121,29 +122,31 @@
                 if(!_this.check_step(true)){
                     return;
                 }
-                let url = "come/expert/register";
-                let msg = {
-                    userId:this.user.id,
-                    jobTitle:_this.jobTitle,
-                    certificateNo:_this.certificateNo,
-                    certificateFile1:_this.certificateFile1,
-                    id:this.user.id
-                };
                 if(_this.edit==1){
                     //修改
                     console.log('修改')
-                    url = "come/expert/modify";
-                    msg.expertId=cookie.get('expertId');
+                    let url = "come/expert/modify";
+                    let msg = {
+                        userId:this.user.id,
+                        jobTitle:_this.jobTitle,
+                        certificateNo:_this.certificateNo,
+                        certificateFile1:_this.certificateFile1,
+                        id:this.user.id,
+                        expertId:cookie.get('expertId')
+                    };
+                    _this.$http.post(web.API_PATH + url, msg)
+                        .then(
+                            (response) => {
+
+                            }
+                        );
+                }else{
+                    cookie.set('reg_jobTitle',_this.jobTitle,1)
+                    cookie.set('reg_certificateNo',_this.certificateNo,1)
+                    cookie.set('reg_certificateFile1',_this.certificateFile1,1)
                 }
-                _this.$http.post(web.API_PATH + url, msg)
-                    .then(
-                        (response) => {
-                            this.showLoad= true;
-                            this.$router.go(-1);
-                        }
-                    );
-
-
+                _this.showLoad= true;
+                _this.$router.go(-1);
             }
         },
         components:{

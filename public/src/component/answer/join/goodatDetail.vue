@@ -44,12 +44,6 @@
                 this.$router.go(-1)
             },
             setPersonal:function () {
-                let url = "come/expert/register";
-                let msg = {
-                    goodat: this.goodat,
-                    userId:this.user.id,
-                    id:this.user.id
-                };
                 if(this.goodat==''){
                     xqzs.weui.tip('请描述自己擅长的领域',function () {
                     })
@@ -57,17 +51,23 @@
                     if(this.edit==1){
                         //修改
                         console.log('修改')
-                        url = "come/expert/modify";
-                        msg.expertId=cookie.get('expertId');
+                        let url = "come/expert/modify";
+                        let msg = {
+                            goodat: this.goodat,
+                            userId:this.user.id,
+                            id:this.user.id,
+                            expertId:cookie.get('expertId')
+                        };
+                        this.$http.post(web.API_PATH + url, msg)
+                            .then(
+                                (response) => {
+                                }
+                            );
+                    }else{
+                        cookie.set('reg_goodat',this.goodat,1)
                     }
-                    //入驻
-                    this.$http.post(web.API_PATH + url, msg)
-                        .then(
-                            (response) => {
-                                this.showLoad = true
-                                this.$router.go(-1);
-                            }
-                        );
+                    this.showLoad = true
+                    this.$router.go(-1);
 
                 }
 

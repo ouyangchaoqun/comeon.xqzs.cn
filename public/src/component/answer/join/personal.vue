@@ -52,25 +52,27 @@
 
                     })
                 }else {
-                    let url = "come/expert/register";
-                    let msg = {
-                        introduction: this.introduction,
-                        userId:this.user.id,
-                        id:this.user.id
-                    };
                     if(this.edit==1){
                         //修改
                         console.log('修改')
-                        url = "come/expert/modify";
-                        msg.expertId=cookie.get('expertId');
+                        let url = "come/expert/modify";
+                        let msg = {
+                            introduction: this.introduction,
+                            userId:this.user.id,
+                            id:this.user.id,
+                            expertId:cookie.get('expertId')
+                        }
+                        this.$http.post(web.API_PATH + url, msg)
+                            .then(
+                                (response) => {
+
+                                }
+                            );
+                    }else {
+                        cookie.set('reg_introduction',this.introduction,1)
                     }
-                    this.$http.post(web.API_PATH + url, msg)
-                        .then(
-                            (response) => {
-                                this.showLoad = true
-                                this.$router.go(-1);
-                            }
-                        );
+                    this.showLoad = true
+                    this.$router.go(-1);
                 }
 
             }

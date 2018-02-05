@@ -44,33 +44,32 @@
             setNickName:function () {
                 if(this.nickName==''){
                     xqzs.weui.tip('请填写昵称',function () {
-
                     })
                 }else{
-                    let url = "come/expert/register";
-                    let msg = {
-                        nickName: this.nickName,
-                        userId:this.user.id,
-                        id:this.user.id
-                    };
-                    //判断是否入驻
-                    console.log(this.edit)
+                    //修改
                     if(this.edit==1){
-                        console.log(this.edit+'ssssssssssss')
-                        //修改
                         console.log('修改')
-                        url = "come/expert/modify";
-                        msg.expertId=cookie.get('expertId');
+                        let url = "come/expert/modify";
+                        let msg = {
+                            nickName: this.nickName,
+                            userId:this.user.id,
+                            id:this.user.id,
+                            expertId:cookie.get('expertId')
+                        }
+                        this.$http.post(web.API_PATH + url, msg)
+                            .then(
+                                (response) => {
+                                    console.log(response)
+                                    this.showLoad= true;
+
+                                }
+                            );
+                    }else{
+                        console.log('首次注册')
+                        cookie.set('reg_nickName',this.nickName,1)
                     }
-                    //入驻
-                    this.$http.post(web.API_PATH + url, msg)
-                        .then(
-                            (response) => {
-                                console.log(response)
-                                this.showLoad= false;
-                                this.$router.go(-1);
-                            }
-                        );
+                    this.$router.go(-1);
+
                 }
             }
         },

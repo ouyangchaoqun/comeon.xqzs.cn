@@ -38,17 +38,11 @@
             this.edit= this.$route.query.edit;
         } ,
         methods:  {
-
             backStep:function () {
                 this.$router.go(-1)
             },
             setPrice:function () {
-                let url = "come/expert/register";
-                let msg = {
-                    price: this.price,
-                    userId:this.user.id,
-                    id:this.user.id
-                };
+
                 let _this = this;
                 if(_this.price==''){
                     xqzs.weui.tip("请设置提问价格",function () {});
@@ -58,17 +52,23 @@
                     if(_this.edit==1){
                         //修改
                         console.log('修改')
-                        url = "come/expert/modify";
-                        msg.expertId=cookie.get('expertId');
+                        let url = "come/expert/modify";
+                        let msg = {
+                            price: _this.price,
+                            userId:_this.user.id,
+                            id:_this.user.id,
+                            expertId:cookie.get('expertId')
+                        };
+                        _this.$http.post(web.API_PATH + url, msg)
+                            .then(
+                                (response) => {
+                                }
+                            );
+                    }else{
+                        cookie.set('reg_price',_this.price,1)
                     }
-                    //入驻
-                    _this.$http.post(web.API_PATH + url, msg)
-                        .then(
-                            (response) => {
-                                this.showLoad = true
-                                this.$router.go(-1);
-                            }
-                        );
+                    _this.showLoad = true
+                    _this.$router.go(-1);
                 }
             },
 

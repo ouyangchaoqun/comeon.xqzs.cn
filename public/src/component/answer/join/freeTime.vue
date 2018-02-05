@@ -94,32 +94,33 @@
 
             },
             setFreeTime:function () {
-                let url = "come/expert/register";
-                let msg = {
-                    freeTime: this.freeTime,
-                    userId:this.user.id,
-                    id:this.user.id
-                };
                 let _this = this;
-                console.log(_this.checkedIndex)
                 if(_this.checkedIndex<0){
                         xqzs.weui.tip("请设置免费偷听时间",function () {});
                 }else {
 
-                    if(this.edit==1){
+                    if(_this.edit==1){
                         //修改
                         console.log('修改')
-                        url = "come/expert/modify";
-                        msg.expertId=cookie.get('expertId');
+                        let url = "come/expert/modify";
+                        let msg = {
+                            freeTime: _this.freeTime,
+                            userId:_this.user.id,
+                            id:_this.user.id,
+                            expertId:cookie.get('expertId')
+                        }
+                        _this.$http.post(web.API_PATH + url, msg)
+                            .then(
+                                (response) => {
+
+                                }
+                            );
+                    }else{
+                        cookie.set('reg_freeTime',_this.freeTime,1)
                     }
-                    //入驻
-                    this.$http.post(web.API_PATH + url, msg)
-                        .then(
-                            (response) => {
-                                this.showLoad = true;
-                                this.$router.go(-1);
-                            }
-                        );
+
+                    _this.showLoad = true;
+                    _this.$router.go(-1);
                 }
             },
         },
