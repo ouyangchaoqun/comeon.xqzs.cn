@@ -29,7 +29,7 @@
                 <li>
                     咨询师昵称
                     <div class="li_right" @click="setNickname()">
-                        <input v-if="isModify==0" disabled placeholder="请填写昵称" :value="getCookie('reg_nickName')||''">
+                        <input v-if="isModify==0" disabled placeholder="请填写昵称" :value="reg_nickName">
                         <input v-if="isModify==1" disabled placeholder="请填写昵称" :value="isShowInfo.nickName">
                         <i></i>
                     </div>
@@ -57,7 +57,7 @@
                     <div class="li_right">
                         <div>
                             <span v-if="isModify==0&&provinceName==''">{{initCityValue}}</span>
-                            <template v-if="isModify==0">
+                            <template v-if="isModify==0&&provinceName!=''">
                                 <span>{{provinceName}}</span>
                                 <span>{{cityName}}</span>
                                 <span>{{areaName}}</span>
@@ -75,7 +75,7 @@
                 <li>
                    一句话签名
                     <div class="li_right" @click="setSign()">
-                        <input v-if="isModify==0" disabled placeholder="请填写个人签名" :value="getCookie('reg_sign')||''">
+                        <input v-if="isModify==0" disabled placeholder="请填写个人签名" :value="reg_sign">
                         <input v-if="isModify==1" disabled placeholder="请填写个人签名" :value="isShowInfo.sign">
                         <i></i>
                     </div>
@@ -188,6 +188,8 @@
                 cityId: cookie.get('reg_cityId')?cookie.get('reg_cityId'):'',
                 areaId: cookie.get('reg_areaId')?cookie.get('reg_areaId'):'',
                 user:'',
+                reg_sign:unescape(cookie.get('reg_sign'))?unescape(cookie.get('reg_sign')):'',
+                reg_nickName:unescape(cookie.get('reg_nickName'))?unescape(cookie.get('reg_nickName')):'',
                 alioss:null,
                 uploadpicinfo:null,
                 identityFile1:'',
