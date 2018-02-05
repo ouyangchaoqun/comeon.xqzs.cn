@@ -313,6 +313,7 @@
                     _this.showLoad = false;
                     if (data.data.data !== null) {
                         _this.user = eval(data.data.data);
+                        console.log(_this.user)
                     }
                 }, function (error) {
                     //error
@@ -548,27 +549,55 @@
             msgSubmit: function () {
 
                 let _this = this;
-                let url;
-                url = "come/expert/register";
-                if(_this.isModify==1){
-                   url = "come/expert/modify"
-                }
-                let reg_certificateNo = cookie.get('reg_certificateNo')?cookie.get('reg_certificateNo'):'';
-                let reg_certificateFile1 = cookie.get('reg_certificateFile1')?cookie.get('reg_certificateFile1'):'';
+                let url, price ,freeTime,jobTitle,introduction,experience,goodat,faceUrl,nickName,sign,provinceId,sex,questionClassId;
                 let reg_questionClassId;
                 if(cookie.get("questionClassId")){
-                     reg_questionClassId = cookie.get("questionClassId").split(",");
+                    reg_questionClassId = cookie.get("questionClassId").split(",");
                 }else{
                     reg_questionClassId=''
                 }
+                if(_this.isModify==0){
+                    url = "come/expert/register";
+                    price = _this.reg_price;
+                    freeTime = _this.reg_freeTime;
+                    jobTitle = _this.reg_jobTitle;
+                    introduction =_this.reg_introduction;
+                    experience = _this.reg_experience;
+                    goodat = _this.reg_goodat;
+                    faceUrl = _this.reg_faceUrl;
+                    nickName = _this.reg_nickName;
+                    sign = _this.reg_sign;
+                    provinceId:_this.provinceId;
+                    sex:_this.sex;
+                    questionClassId:reg_questionClassId;
+                }
 
-                if(_this.reg_price==''){
+                if(_this.isModify==1){
+                   url = "come/expert/modify";
+                   price = _this.isShowInfo.price;
+                   freeTime =_this.isShowInfo.freeTime;
+                   jobTitle=_this.isShowInfo.jobTitle;
+                   introduction = _this.isShowInfo.introduction;
+                    experience = _this.isShowInfo.experience;
+                    goodat = _this.isShowInfo.goodat;
+                    faceUrl = _this.isShowInfo.faceUrl;
+                    nickName = _this.isShowInfo.nickName;
+                    sign = _this.isShowInfo.sign;
+                    provinceId = _this.user.provinceId;
+                    sex = _this.user.sex;
+                    questionClassId = isShowInfo.domains;
+                }
+                let reg_certificateNo = cookie.get('reg_certificateNo')?cookie.get('reg_certificateNo'):'';
+                let reg_certificateFile1 = cookie.get('reg_certificateFile1')?cookie.get('reg_certificateFile1'):'';
+
+
+                if(price==''){
                     xqzs.weui.tip('请填写价格')
                     return
-                }else if(_this.reg_freeTime==''){
+                }else if(freeTime==''){
                     xqzs.weui.tip('请设置免费时间')
                     return
-                }else if(_this.reg_jobTitle==''){
+                }else if(jobTitle==''){
                     xqzs.weui.tip('请选择资质')
                     return
                 }else if(reg_certificateNo==''){
@@ -579,33 +608,33 @@
                     xqzs.weui.tip('请上传证件照')
                     return
                 }
-                else if(_this.reg_introduction==''){
+                else if(introduction==''){
                     xqzs.weui.tip('请填写个人简介')
                     return
-                }else if(_this.reg_experience==''){
+                }else if(experience==''){
                     xqzs.weui.tip('请填写培训经历')
                     return
-                }else if(_this.reg_goodat==''){
+                }else if(goodat==''){
                     xqzs.weui.tip('请填写擅长详情')
                     return
                 }
-                else if(_this.reg_faceUrl==''){
+                else if(faceUrl==''){
                     xqzs.weui.tip('请上传头像')
                     return
                 }
-                else if(_this.reg_nickName==''){
+                else if(nickName==''){
                     xqzs.weui.tip('请填写昵称')
                     return
-                }else if(_this.reg_sign==''){
+                }else if(sign==''){
                     xqzs.weui.tip('请填写个人签名')
                     return
-                }else if(reg_questionClassId==''){
+                }else if(questionClassId==''){
                     xqzs.weui.tip('请选择擅长领域')
                     return
                 }else if(_this.provinceId==''){
                     xqzs.weui.tip('请选择城市')
                     return
-                }else if(_this.sex==''){
+                }else if(sex==''){
                     xqzs.weui.tip('请选择性别')
                     return
                 }
@@ -613,22 +642,22 @@
                     userId:_this.user.id,
                     id:_this.user.id,
                     countryId:0,
-                    provinceId:_this.provinceId,
+                    provinceId:provinceId,
                     cityId:_this.cityId,
                     areaId:_this.areaId,
                     sex:_this.sexIndex,
-                    price:_this.reg_price,
-                    freeTime:_this.reg_freeTime,
-                    sign:_this.reg_sign,
-                    questionClassId:reg_questionClassId,
-                    jobTitle:_this.reg_jobTitle,
+                    price:price,
+                    freeTime:freeTime,
+                    sign:sign,
+                    questionClassId:questionClassId,
+                    jobTitle:jobTitle,
                     certificateNo:reg_certificateNo,
                     certificateFile1:reg_certificateFile1,
-                    introduction:_this.reg_introduction,
-                    experience:_this.reg_experience,
-                    goodat:_this.reg_goodat,
-                    faceUrl:_this.faceUrl,
-                    nickName:_this.reg_nickName,
+                    introduction:introduction,
+                    experience:experience,
+                    goodat:goodat,
+                    faceUrl:faceUrl,
+                    nickName:nickName,
                     finish:1
                 };
                 console.log(msg)
