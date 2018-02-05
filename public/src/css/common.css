@@ -60,7 +60,7 @@ img[src=""],img:not([src]){opacity:0;}
 
 .active:active{ background: #eee !important}
 /*input textarea 提示颜色*/
-input,textarea::-webkit-input-placeholder{color:rgba(69, 75, 84, 0.5);}
+input,textarea::-webkit-input-placeholder{color:rgba(69, 75, 84, 0.7);}
 input,textarea{-webkit-appearance:none;outline: 0;resize: none;color:rgba(69, 75, 84, 0.7)}
 .heartUp {
     -webkit-animation: heart 0.1s linear;

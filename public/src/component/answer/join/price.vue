@@ -93,6 +93,8 @@
     .set_price input{
         width:100%;
         height:1.176rem;
+        font-size: 0.8235rem;
+        color:RGBA(69, 75, 84, 0.7) !important;;
     }
     .price_bottom{
         padding: 0 0.88235rem;

@@ -595,6 +595,12 @@
 <style>
     .join_stepBox{background: #fff;}
     .join_stepBox .li_right{float: right;padding-right: 1.5rem;}
+    .join_stepBox .li_right input{
+        color:RGBA(69, 75, 84, 0.7) !important;
+    }
+    .join_stepBox .li_right input::-webkit-input-placeholder{
+        color:RGBA(69, 75, 84, 0.7)!important;
+    }
     .join_stepBox header{padding:0.88235rem;border-bottom: 0.588235rem solid rgba(69, 75, 84, 0.09);line-height: 3.52rem;position: relative}
     .join_stepBox header img{width:3.52rem;height:3.52rem;float: left}
     .detailBox_bottom{margin-bottom: 2rem}
