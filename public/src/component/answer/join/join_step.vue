@@ -18,7 +18,7 @@
         </header>
         <div class="step_detailBox" :class="{detailBox_bottom:isModify==1}">
             <ul>
-                <li v-show="btnFlag" @click="setLevel()">
+                <li @click="setLevel()">
                     资质证书
                     <div class="li_right" >
                         <div>
@@ -270,18 +270,20 @@
                         if(data.data.data){
                             let expertId = data.data.data.id;
                             this.getExpertInfo(expertId);
+                            this.btnFlag = false;
+                            this.isModify = 1;
                             if(data.data.data.status==0){
                                 console.log('未认证通过，需要修改');
                                 this.btnFlag = true;
-                                this.isModify = 1;
                             }else if(data.data.data.status!=-1){
-                                this.btnFlag = false;
+                               this.btnFlag = false;
                             }else {
-                                this.isModify = 1;
+                                this.btnFlag = false;
                                 console.log('已经注册过,修改');
                             }
 
                         }else{
+                            this.btnFlag = true;
                             console.log('首次注册');
                             this.isModify = 0;
                         }
@@ -545,6 +547,11 @@
             },
             msgSubmit: function () {
                 let _this = this;
+                let url;
+                url = "come/expert/register";
+                if(_this.isModify==1){
+                   url = "come/expert/modify"
+                }
                 let reg_certificateNo = cookie.get('reg_certificateNo')?cookie.get('reg_certificateNo'):'';
                 let reg_certificateFile1 = cookie.get('reg_certificateFile1')?cookie.get('reg_certificateFile1'):'';
                 let reg_questionClassId;
@@ -553,7 +560,7 @@
                 }else{
                     reg_questionClassId=''
                 }
-                let url = "come/expert/register";
+
                 if(_this.reg_price==''){
                     xqzs.weui.tip('请填写价格')
                     return
