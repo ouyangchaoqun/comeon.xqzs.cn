@@ -222,7 +222,7 @@
         },
         methods: {
             getCookie:function (v) {
-                return cookie.get(v)
+                return unescape(cookie.get(v))
             },
             //判断是否入驻，获取入驻信息
             isJoin:function () {
