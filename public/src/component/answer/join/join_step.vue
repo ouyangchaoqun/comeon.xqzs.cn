@@ -528,9 +528,8 @@
             },
             msgSubmit: function () {
                 let _this = this;
-                let reg_certificateNo = cookie.get('reg_certificateNo')||'';
-                let reg_certificateFile1 = cookie.get('reg_certificateFile1')||'';
-                let reg_introduction = unescape(cookie.get('reg_introduction'))||'';
+                let reg_certificateNo = cookie.get('reg_certificateNo')?cookie.get('reg_certificateNo'):'';
+                let reg_certificateFile1 = cookie.get('reg_certificateFile1')?cookie.get('reg_certificateFile1'):'';
                 let reg_questionClassId;
                 if(cookie.get("questionClassId")){
                      reg_questionClassId = cookie.get("questionClassId").split(",");

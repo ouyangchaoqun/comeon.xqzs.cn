@@ -39,9 +39,21 @@
 
         mounted: function () {
             this.edit= this.$route.query.edit;
+            if(this.edit==1){
+                this.getExpertInfo();
+            }
         },
         methods: {
-
+            getExpertInfo:function () {
+                let expertId = cookie.get('expertId');
+                this.$http.get(web.API_PATH + 'come/expert/query/detail/for/edit/'+expertId+'/_userId_').then(function (data) {
+                    if (data.body.status == 1) {
+                        let showInfo = data.data.data;
+                        this.experience = showInfo.experience
+                    }
+                }, function (error) {
+                });
+            },
             backStep:function () {
                 this.$router.go(-1)
             },
