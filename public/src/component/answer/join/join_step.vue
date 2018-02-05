@@ -21,7 +21,11 @@
                 <li v-show="btnFlag">
                     资质证书
                     <div class="li_right" @click="setLevel()">
-                        <input disabled placeholder="请选择资质">
+                        <div>
+                            <template v-if="isModify==0&&reg_jobTitle==''">请选择资质</template>
+                            <template v-if="isModify==0">{{reg_jobTitle}}</template>
+                            <template v-if="isModify==1">{{isShowInfo.jobTitle}}</template>
+                        </div>
                         <i></i>
                     </div>
                 </li>
@@ -30,7 +34,6 @@
                     咨询师昵称
                     <div class="li_right" @click="setNickname()">
                         <div>
-                            {{reg_nickName==''}}
                             <template v-if="isModify==0&&reg_nickName==''">请填写昵称</template>
                             <template v-if="isModify==0">{{reg_nickName}}</template>
                             <template v-if="isModify==1">{{isShowInfo.nickName}}</template>
@@ -42,7 +45,11 @@
                 <li>
                     手机号码
                     <div class="li_right" @click="goMobile()">
-                        <input disabled placeholder="请输入手机号" :value="user.mobile">
+                        <div>
+                            <template v-if="isModify==0&&reg_mobile==''">请填写手机号</template>
+                            <template v-if="isModify==0">{{reg_mobile}}</template>
+                            <template v-if="isModify==1">{{user.mobile}}</template>
+                        </div>
                         <i></i>
                     </div>
                 </li>
@@ -50,8 +57,12 @@
                 <li @click="getSexPicker()">
                     性别
                     <div class="li_right">
-                        <input v-if="isModify==0" disabled placeholder="请选择性别" :value="sex">
-                        <input v-if="isModify==1" disabled placeholder="请选择性别" :value="user.sex==2?'女':'男'">
+                        <div>
+                            <template v-if="isModify==0&&sex==''">请选择性别</template>
+                            <template v-if="isModify==0">{{sex}}</template>
+                            <template v-if="isModify==1">{{user.sex==2?'女':'男'}}</template>
+                        </div>
+
                         <i></i>
                     </div>
                 </li>
@@ -60,7 +71,7 @@
                     所在城市
                     <div class="li_right">
                         <div>
-                            <span v-if="isModify==0&&provinceName==''">{{initCityValue}}</span>
+                            <span v-if="isModify==0&&provinceName==''">请选择所在城市</span>
                             <template v-if="isModify==0&&provinceName!=''">
                                 <span>{{provinceName}}</span>
                                 <span>{{cityName}}</span>
@@ -79,8 +90,11 @@
                 <li>
                    一句话签名
                     <div class="li_right" @click="setSign()">
-                        <input v-if="isModify==0" disabled placeholder="请填写个人签名" :value="reg_sign">
-                        <input v-if="isModify==1" disabled placeholder="请填写个人签名" :value="isShowInfo.sign">
+                        <div>
+                            <template v-if="isModify==0&&reg_sign==''">请填写个人签名</template>
+                            <template v-if="isModify==0">{{reg_sign}}</template>
+                            <template v-if="isModify==1">{{isShowInfo.sign}}</template>
+                        </div>
                         <i></i>
                     </div>
                 </li>
@@ -88,8 +102,11 @@
                 <li>
                     个人简介
                     <div class="li_right" @click="setPerson()">
-                        <input v-if="isModify==0" disabled placeholder="请填写个人简介" :value="getCookie('reg_introduction')||''">
-                        <input v-if="isModify==1" disabled placeholder="请填写个人简介" :value="isShowInfo.introduction">
+                        <div>
+                            <template v-if="isModify==0&&reg_introduction==''">请填写个人简介</template>
+                            <template v-if="isModify==0">{{reg_introduction}}</template>
+                            <template v-if="isModify==1">{{isShowInfo.introduction}}</template>
+                        </div>
                         <i></i>
                     </div>
                 </li>
@@ -113,8 +130,11 @@
                 <li>
                     擅长领域描述
                     <div class="li_right" @click="goGoodatDetail()">
-                        <input v-if="isModify==0" disabled placeholder="请描述自己擅长的领域" :value="getCookie('reg_goodat')||''">
-                        <input v-if="isModify==1" disabled placeholder="请描述自己擅长的领域" :value="isShowInfo.goodat">
+                        <div>
+                            <template v-if="isModify==0&&reg_goodat==''">请描述自己擅长的领域</template>
+                            <template v-if="isModify==0">{{reg_goodat}}</template>
+                            <template v-if="isModify==1">{{isShowInfo.goodat}}</template>
+                        </div>
                         <i></i>
                     </div>
                 </li>
@@ -122,8 +142,11 @@
                 <li>
                     专业培训经历
                     <div class="li_right" @click="setExperience()">
-                        <input v-if="isModify==0" disabled placeholder="请填写培训经历" :value="getCookie('reg_experience')||''">
-                        <input v-if="isModify==1" disabled placeholder="请填写培训经历" :value="isShowInfo.experience">
+                        <div>
+                            <template v-if="isModify==0&&reg_experience==''">请填写培训经历</template>
+                            <template v-if="isModify==0">{{reg_experience}}</template>
+                            <template v-if="isModify==1">{{isShowInfo.experience}}</template>
+                        </div>
                         <i></i>
                     </div>
                 </li>
@@ -131,8 +154,11 @@
                 <li>
                     提问酬金
                     <div class="li_right" @click="goPrice()">
-                        <input v-if="isModify==0" disabled placeholder="请设置提问酬金" :value="getCookie('reg_price')||''">
-                        <input v-if="isModify==1" disabled placeholder="请设置提问酬金" :value="isShowInfo.price">
+                        <div>
+                            <template v-if="isModify==0&&reg_price==''">请设置提问酬金</template>
+                            <template v-if="isModify==0">{{reg_price}}</template>
+                            <template v-if="isModify==1">{{isShowInfo.price}}</template>
+                        </div>
                         <i></i>
                     </div>
                 </li>
@@ -140,8 +166,11 @@
                 <li>
                     限时免费偷听时间
                     <div class="li_right" @click="goFreeTime()">
-                        <input v-if="isModify==0" disabled placeholder="请设置免费偷听时间" :value="changeTime(getCookie('reg_freeTime'))||''">
-                        <input v-if="isModify==1" disabled placeholder="请设置免费偷听时间" :value="changeTime(isShowInfo.freeTime)">
+                        <div>
+                            <template v-if="isModify==0&&reg_freeTime==''">请设置免费偷听时间</template>
+                            <template v-if="isModify==0">{{changeTime(reg_freeTime)}}</template>
+                            <template v-if="isModify==1">{{isShowInfo.freeTime}}</template>
+                        </div>
                         <i></i>
                     </div>
                 </li>
@@ -182,6 +211,7 @@
     export default {
         data() {
             return {
+                user:'',
                 showLoad:false,
                 sexIndex:'',
                 defaultCity: '[330000, 330100, 330102]',
@@ -191,26 +221,29 @@
                 provinceId: cookie.get('reg_provinceId')?cookie.get('reg_provinceId'):'',
                 cityId: cookie.get('reg_cityId')?cookie.get('reg_cityId'):'',
                 areaId: cookie.get('reg_areaId')?cookie.get('reg_areaId'):'',
-                user:'',
+                reg_mobile:cookie.get('reg_mobile')?cookie.get('reg_mobile'):'',
                 reg_sign:cookie.get('reg_sign')?unescape(cookie.get('reg_sign')):'',
-                reg_nickName:'',
+                reg_introduction:cookie.get('reg_introduction')?unescape(cookie.get('reg_introduction')):'',
+                reg_goodat:cookie.get('reg_goodat')?unescape(cookie.get('reg_goodat')):'',
+                reg_experience:cookie.get('reg_experience')?unescape(cookie.get('reg_experience')):'',
+                reg_price:cookie.get('reg_price')?cookie.get('reg_price'):'',
+                reg_freeTime:cookie.get('reg_freeTime')?cookie.get('reg_freeTime'):'',
+                reg_nickName:cookie.get('reg_nickName')?unescape(cookie.get('reg_nickName')):'',
+                reg_jobTitle:cookie.get('reg_jobTitle')?unescape(cookie.get('reg_jobTitle')):'',
+                faceUrl:cookie.get('reg_faceUrl')?cookie.get('reg_faceUrl'):'',
+                sex:cookie.get('reg_sex')?unescape(cookie.get('reg_sex')):'',
                 alioss:null,
                 uploadpicinfo:null,
                 identityFile1:'',
-                initCityValue:'请选择所在城市',
                 goodAt:'',
                 mobileBox:false,
                 agreFlag:false,
-                faceUrl:cookie.get('reg_faceUrl')?cookie.get('reg_faceUrl'):'',
                 questionClassId:[],
-                reg_nickName:cookie.get('reg_nickName')?unescape(cookie.get('reg_nickName')):'',
                 isModify:0,
                 isShowInfo:{
                     freeTime:''
                 },
                 btnFlag:true,
-                regNickName:'',
-                sex:cookie.get('reg_sex')?unescape(cookie.get('reg_sex')):'',
                 types:'',
                 showTypes:[]
             }
@@ -492,17 +525,9 @@
             },
             msgSubmit: function () {
                 let _this = this;
-                let reg_price = cookie.get('reg_price')||'';
-                let reg_freeTime = cookie.get('reg_freeTime')||'';
-                let reg_jobTitle = unescape(cookie.get('reg_jobTitle'))||'';
                 let reg_certificateNo = cookie.get('reg_certificateNo')||'';
                 let reg_certificateFile1 = cookie.get('reg_certificateFile1')||'';
                 let reg_introduction = unescape(cookie.get('reg_introduction'))||'';
-                let reg_experience = unescape(cookie.get('reg_experience'))||'';
-                let reg_goodat = unescape(cookie.get('reg_goodat'))||'';
-                let reg_faceUrl = cookie.get('reg_faceUrl')||'';
-                let reg_nickName = unescape(cookie.get('reg_nickName'))||'';
-                let reg_sign = unescape(cookie.get('reg_sign'))||'';
                 let reg_questionClassId;
                 if(cookie.get("questionClassId")){
                      reg_questionClassId = cookie.get("questionClassId").split(",");
@@ -510,13 +535,13 @@
                     reg_questionClassId=''
                 }
                 let url = "come/expert/register";
-                if(reg_price==''){
+                if(_this.reg_price==''){
                     xqzs.weui.tip('请填写价格')
                     return
-                }else if(reg_freeTime==''){
+                }else if(_this.reg_freeTime==''){
                     xqzs.weui.tip('请选择时间')
                     return
-                }else if(reg_jobTitle==''){
+                }else if(_this.reg_jobTitle==''){
                     xqzs.weui.tip('请选择资质')
                     return
                 }else if(reg_certificateNo==''){
@@ -527,24 +552,24 @@
                     xqzs.weui.tip('请上传证件照')
                     return
                 }
-                else if(reg_introduction==''){
+                else if(_this.reg_introduction==''){
                     xqzs.weui.tip('请填写个人简介')
                     return
-                }else if(reg_experience==''){
+                }else if(_this.reg_experience==''){
                     xqzs.weui.tip('请填写培训经历')
                     return
-                }else if(reg_goodat==''){
+                }else if(_this.reg_goodat==''){
                     xqzs.weui.tip('请填写擅长详情')
                     return
                 }
-                else if(reg_faceUrl==''){
+                else if(_this.reg_faceUrl==''){
                     xqzs.weui.tip('请上传头像')
                     return
                 }
-                else if(reg_nickName==''){
+                else if(_this.reg_nickName==''){
                     xqzs.weui.tip('请填写昵称')
                     return
-                }else if(reg_sign==''){
+                }else if(_this.reg_sign==''){
                     xqzs.weui.tip('请填写个人签名')
                     return
                 }else if(reg_questionClassId==''){
@@ -565,18 +590,18 @@
                     cityId:_this.cityId,
                     areaId:_this.areaId,
                     sex:_this.sexIndex,
-                    price:reg_price,
-                    freeTime:reg_freeTime,
-                    sign:reg_sign,
+                    price:_this.reg_price,
+                    freeTime:_this.reg_freeTime,
+                    sign:_this.reg_sign,
                     questionClassId:reg_questionClassId,
-                    jobTitle:reg_jobTitle,
+                    jobTitle:_this.reg_jobTitle,
                     certificateNo:reg_certificateNo,
                     certificateFile1:reg_certificateFile1,
-                    introduction:reg_introduction,
-                    experience:reg_experience,
-                    goodat:reg_goodat,
-                    faceUrl:reg_faceUrl,
-                    nickName:reg_nickName,
+                    introduction:_this.reg_introduction,
+                    experience:_this.reg_experience,
+                    goodat:_this.reg_goodat,
+                    faceUrl:_this.faceUrl,
+                    nickName:_this.reg_nickName,
                     finish:1
                 };
                 console.log(msg)

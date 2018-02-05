@@ -111,6 +111,7 @@
                         if (response.data.status === 1) {
                             xqzs.weui.toast("success","验证成功",function () {
                                 $('.mobile_box').hide()
+                                cookie.set('reg_mobile',_this.mobile,1)
                             })
                         } else   {
                             if(response.data.status === -2 || response.data.status === -3){
