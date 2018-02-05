@@ -585,7 +585,7 @@
                     sign = _this.isShowInfo.sign;
                     provinceId = _this.user.provinceId;
                     sex = _this.user.sex;
-                    questionClassId = isShowInfo.domains;
+                    questionClassId = _this.isShowInfo.domains;
                 }
                 let reg_certificateNo = cookie.get('reg_certificateNo')?cookie.get('reg_certificateNo'):'';
                 let reg_certificateFile1 = cookie.get('reg_certificateFile1')?cookie.get('reg_certificateFile1'):'';
