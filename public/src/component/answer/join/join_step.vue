@@ -548,8 +548,6 @@
             msgSubmit: function () {
 
                 let _this = this;
-                console.log(_this.reg_introduction)
-                return;
                 let url;
                 url = "come/expert/register";
                 if(_this.isModify==1){
