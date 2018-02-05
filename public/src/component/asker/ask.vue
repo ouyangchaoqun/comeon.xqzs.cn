@@ -10,17 +10,17 @@
                     <div v-for="item in types">{{item.title}}</div>
                 </div>
             </div>
-            <!--<div class="ask_type" v-if="!isSelectAnswer" @click="selectType()">-->
-                <!--<div class="tab">选择问题类型：</div>-->
-                <!--<div class="select_box">{{type}}</div>-->
-                <!--<div class="clear"></div>-->
-            <!--</div>-->
-            <div class="ask_type_new" v-if="!isSelectAnswer">
-                <div class="tab">问题类型 <span>点击选择</span></div>
-                <div class="select_box">
-                    <div v-for="item in types">{{item.title}}</div>
-                </div>
+            <div class="ask_type" v-if="!isSelectAnswer" @click="selectType()">
+                <div class="tab">选择问题类型：</div>
+                <div class="select_box">{{type}}</div>
+                <div class="clear"></div>
             </div>
+            <!--<div class="ask_type_new" v-if="!isSelectAnswer">-->
+                <!--<div class="tab">问题类型 <span>点击选择</span></div>-->
+                <!--<div class="select_box">-->
+                    <!--<div v-for="item in types">{{item.title}}</div>-->
+                <!--</div>-->
+            <!--</div>-->
             <div class="text_area">
                 <textarea v-model="expertextContent" v-if="isSelectAnswer" placeholder="请详细描述您的问题，专家将第一时间帮您解答。" class="content answer_select" maxlength="200" @input="valChange()"></textarea>
                 <textarea @input="valChange()" v-model="fastAsktextContent" v-if="!isSelectAnswer" placeholder="请详细描述你的问题，专家将尽快为你解答！" class="content" maxlength="200"></textarea>
@@ -284,8 +284,6 @@
                     if (data.body.status == 1) {
                         _this.types= data.body.data;
                         _this.rechargeMoney = 10.00;
-                        console.log( _this.rechargeMoney)
-
                     }
                 }, function (error) {
                 });
@@ -324,39 +322,40 @@
                 })
             },
             //九种类型选择
-//            selectType: function () {
-//                let _this=this;
-//                this.showTypes=true;
-//                xqzs.weui.dialogCustom($("#select_type").html());
-//                if(_this.typeSelectIndex!=null){
-//                    $(".js_dialog .select_types .item").each(function (i) {
-//                        if(i==_this.typeSelectIndex){
-//                            $(this).addClass("on")
-//                        }
-//                    })
-//                }
-//                $(".select_types .item").click(function () {
-//                    $(".select_types .item").removeClass("on");
-//                    $(this).addClass("on");
-//                    let index=  parseInt($(this).attr("index"));
-//                    console.log(index)
-//                    _this.typeSelectIndex=index;
-//                });
-//                $(".dialog_select_type .select_yes .sure_click").click(function () {
-//                    if(_this.typeSelectIndex==null){
-//                        xqzs.weui.tip("请选择类型");
-//                    }else{
-//                        cookie.set("fastAsk_selIndex",_this.typeSelectIndex,1)
-//                        _this.type= _this.types[_this.typeSelectIndex].title;
-//                        _this.questionClass=_this.types[_this.typeSelectIndex].id;
-//                        if( _this.questionClass==undefined){
-//                            _this.questionClass=_this.types[_this.typeSelectIndex].classId;
-//                        }
-//                        xqzs.weui.dialogClose();
-//
-//                    }
-//                })
-//            },
+            selectType: function () {
+                let _this=this;
+                this.showTypes=true;
+                xqzs.weui.dialogCustom($("#select_type").html());
+                if(_this.typeSelectIndex!=null){
+                    $(".js_dialog .select_types .item").each(function (i) {
+                        if(i==_this.typeSelectIndex){
+                            $(this).addClass("on")
+                        }
+                    })
+                }
+                $(".select_types .item").click(function () {
+                    $(".select_types .item").removeClass("on");
+                    $(this).addClass("on");
+                    let index=  parseInt($(this).attr("index"));
+                    console.log(index)
+                    _this.typeSelectIndex=index;
+                });
+                $(".dialog_select_type .select_yes .sure_click").click(function () {
+                    if(_this.typeSelectIndex==null){
+                        xqzs.weui.tip("请选择类型");
+                    }else{
+                        cookie.set("fastAsk_selIndex",_this.typeSelectIndex,1)
+                        _this.type= _this.types[_this.typeSelectIndex].title;
+                        _this.questionClass=_this.types[_this.typeSelectIndex].id;
+                        if( _this.questionClass==undefined){
+                            _this.questionClass=_this.types[_this.typeSelectIndex].classId;
+                        }
+                        console.log( _this.questionClass)
+                        xqzs.weui.dialogClose();
+
+                    }
+                })
+            },
             closeDialog:function () {
                 xqzs.weui.dialogClose()
             }

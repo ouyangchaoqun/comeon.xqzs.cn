@@ -4,9 +4,9 @@
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div v-title>入驻心理咨询师</div>
         <header>
-            <img v-if="!(getCookie('reg_faceUrl')&&isShowInfo.faceUrl)" src="../../../images/joinHeaderImg.png" alt="">
+            <img v-if="isModify==0&&faceUrl==''" src="../../../images/joinHeaderImg.png" alt="">
             <img v-if="isModify==1" :src="isShowInfo.faceUrl" alt="">
-            <img v-if="isModify==0&&getCookie('reg_faceUrl')" :src="getCookie('reg_faceUrl')" alt="">
+            <img v-if="isModify==0" :src="faceUrl" alt="">
             <div class="li_right" @click="changeHeadpic()">
                 <div>
                     <template v-if="isModify==0">请上传头像</template>
@@ -29,7 +29,8 @@
                 <li>
                     咨询师昵称
                     <div class="li_right" @click="setNickname()">
-                        <input disabled placeholder="请填写昵称" :value="getCookie('reg_nickName')||isShowInfo.nickName">
+                        <input v-if="isModify==0" disabled placeholder="请填写昵称" :value="getCookie('reg_nickName')||''">
+                        <input v-if="isModify==1" disabled placeholder="请填写昵称" :value="isShowInfo.nickName">
                         <i></i>
                     </div>
                 </li>
@@ -74,7 +75,8 @@
                 <li>
                    一句话签名
                     <div class="li_right" @click="setSign()">
-                        <input disabled placeholder="请填写个人签名" :value="getCookie('reg_sign')||isShowInfo.sign">
+                        <input v-if="isModify==0" disabled placeholder="请填写个人签名" :value="getCookie('reg_sign')||''">
+                        <input v-if="isModify==1" disabled placeholder="请填写个人签名" :value="isShowInfo.sign">
                         <i></i>
                     </div>
                 </li>
@@ -82,7 +84,8 @@
                 <li>
                     个人简介
                     <div class="li_right" @click="setPerson()">
-                        <input disabled placeholder="请填写个人简介" :value="getCookie('reg_introduction')||isShowInfo.introduction">
+                        <input v-if="isModify==0" disabled placeholder="请填写个人简介" :value="getCookie('reg_introduction')||''">
+                        <input v-if="isModify==1" disabled placeholder="请填写个人简介" :value="isShowInfo.introduction">
                         <i></i>
                     </div>
                 </li>
@@ -106,7 +109,8 @@
                 <li>
                     擅长领域描述
                     <div class="li_right" @click="goGoodatDetail()">
-                        <input disabled placeholder="请描述自己擅长的领域" :value="getCookie('reg_goodat')||isShowInfo.goodat">
+                        <input v-if="isModify==0" disabled placeholder="请描述自己擅长的领域" :value="getCookie('reg_goodat')||''">
+                        <input v-if="isModify==1" disabled placeholder="请描述自己擅长的领域" :value="isShowInfo.goodat">
                         <i></i>
                     </div>
                 </li>
@@ -114,7 +118,8 @@
                 <li>
                     专业培训经历
                     <div class="li_right" @click="setExperience()">
-                        <input disabled placeholder="请填写培训经历" :value="getCookie('reg_experience')||isShowInfo.experience">
+                        <input v-if="isModify==0" disabled placeholder="请填写培训经历" :value="getCookie('reg_experience')||''">
+                        <input v-if="isModify==1" disabled placeholder="请填写培训经历" :value="isShowInfo.experience">
                         <i></i>
                     </div>
                 </li>
@@ -122,7 +127,8 @@
                 <li>
                     提问酬金
                     <div class="li_right" @click="goPrice()">
-                        <input disabled placeholder="请设置提问酬金" :value="getCookie('reg_price')||isShowInfo.price">
+                        <input v-if="isModify==0" disabled placeholder="请设置提问酬金" :value="getCookie('reg_price')||''">
+                        <input v-if="isModify==1" disabled placeholder="请设置提问酬金" :value="isShowInfo.price">
                         <i></i>
                     </div>
                 </li>
@@ -130,7 +136,8 @@
                 <li>
                     限时免费偷听时间
                     <div class="li_right" @click="goFreeTime()">
-                        <input disabled placeholder="请设置免费偷听时间" :value="changeTime(isShowInfo.freeTime||getCookie('reg_freeTime'))||''">
+                        <input v-if="isModify==0" disabled placeholder="请设置免费偷听时间" :value="changeTime(getCookie('reg_freeTime'))||''">
+                        <input v-if="isModify==1" disabled placeholder="请设置免费偷听时间" :value="changeTime(isShowInfo.freeTime)">
                         <i></i>
                     </div>
                 </li>
@@ -188,7 +195,7 @@
                 goodAt:'',
                 mobileBox:false,
                 agreFlag:false,
-                faceUrl:'',
+                faceUrl:cookie.get('reg_faceUrl')?cookie.get('reg_faceUrl'):'',
                 questionClassId:[],
                 isModify:0,
                 isShowInfo:{
@@ -592,7 +599,7 @@
     .join_stepBox header img{width:3.52rem;height:3.52rem;float: left}
     .detailBox_bottom{margin-bottom: 2rem}
     .join_stepBox .step_detailBox li{height: 2.94rem;line-height:2.94rem;color:rgba(69, 75, 84, 1);border-bottom: 1px solid rgba(224,224,225,1);padding:0 0.88235rem;font-size: 0.8235rem;position: relative;}
-    .join_stepBox .step_detailBox li .li_right{float: right;padding-right:1.5rem;width:55%;}
+    .join_stepBox .step_detailBox li .li_right{float: right;padding-right:1.5rem;width:55%;color: rgba(69, 75, 84, 0.7) !important;}
     .li_right>div{ width:100%;text-align: right;font-size: 0.76471rem;color: rgba(69, 75, 84, 0.7); overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
     .li_right input{border:0;outline: none;text-align: right;background: none;width:100%;font-size: 0.8235rem;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
     .join_stepBox .li_right i{background: url('../../../images/arrow.png');width: 0.94rem;  height: 0.94rem;  background-size: 0.94rem;  position: absolute;  right: 0.88235rem;  top: 50%;margin-top: -0.47rem;  }
