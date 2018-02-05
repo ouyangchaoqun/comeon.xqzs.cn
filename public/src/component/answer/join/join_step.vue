@@ -181,9 +181,9 @@
                 showLoad:false,
                 sexIndex:'',
                 defaultCity: '[330000, 330100, 330102]',
-                provinceName:cookie.get('reg_provinceName')?cookie.get('reg_provinceName'):'',
-                cityName: cookie.get('reg_cityName')?cookie.get('reg_cityName'):'',
-                areaName: cookie.get('reg_areaName')?cookie.get('reg_areaName'):'',
+                provinceName:unescape(cookie.get('reg_provinceName'))?unescape(cookie.get('reg_provinceName')):'',
+                cityName: unescape(cookie.get('reg_cityName'))?unescape(cookie.get('reg_cityName')):'',
+                areaName: unescape(cookie.get('reg_areaName'))?unescape(cookie.get('reg_areaName')):'',
                 provinceId: cookie.get('reg_provinceId')?cookie.get('reg_provinceId'):'',
                 cityId: cookie.get('reg_cityId')?cookie.get('reg_cityId'):'',
                 areaId: cookie.get('reg_areaId')?cookie.get('reg_areaId'):'',
@@ -203,7 +203,7 @@
                 },
                 btnFlag:true,
                 regNickName:'',
-                sex:cookie.get('reg_sex')?cookie.get('reg_sex'):'',
+                sex:unescape(cookie.get('reg_sex'))?unescape(cookie.get('reg_sex')):'',
                 types:'',
                 showTypes:[]
             }
@@ -417,7 +417,7 @@
                                     }
                                 );
                         }else{
-                            cookie.set('reg_sex',result[0].label,1)
+                            cookie.set('reg_sex',escape(result[0].label),1)
                         }
 
 
@@ -468,9 +468,9 @@
                                         }
                                     );
                             }
-                            cookie.set('reg_provinceName',_this.provinceName,1)
-                            cookie.set('reg_cityName',_this.cityName,1)
-                            cookie.set('reg_areaName',_this.areaName,1)
+                            cookie.set('reg_provinceName',escape(_this.provinceName),1)
+                            cookie.set('reg_cityName',escape(_this.cityName),1)
+                            cookie.set('reg_areaName',escape(_this.areaName),1)
                             cookie.set('reg_provinceId',_this.provinceId,1)
                             cookie.set('reg_areaId',_this.areaId,1)
                             cookie.set('reg_cityId',_this.cityId,1)
@@ -487,15 +487,15 @@
                 let _this = this;
                 let reg_price = cookie.get('reg_price')||'';
                 let reg_freeTime = cookie.get('reg_freeTime')||'';
-                let reg_jobTitle = cookie.get('reg_jobTitle')||'';
+                let reg_jobTitle = unescape(cookie.get('reg_jobTitle'))||'';
                 let reg_certificateNo = cookie.get('reg_certificateNo')||'';
                 let reg_certificateFile1 = cookie.get('reg_certificateFile1')||'';
-                let reg_introduction = cookie.get('reg_introduction')||'';
-                let reg_experience = cookie.get('reg_experience')||'';
-                let reg_goodat = cookie.get('reg_goodat')||'';
+                let reg_introduction = unescape(cookie.get('reg_introduction'))||'';
+                let reg_experience = unescape(cookie.get('reg_experience'))||'';
+                let reg_goodat = unescape(cookie.get('reg_goodat'))||'';
                 let reg_faceUrl = cookie.get('reg_faceUrl')||'';
-                let reg_nickName = cookie.get('reg_nickName')||'';
-                let reg_sign = cookie.get('reg_sign')||'';
+                let reg_nickName = unescape(cookie.get('reg_nickName'))||'';
+                let reg_sign = unescape(cookie.get('reg_sign'))||'';
                 let reg_questionClassId;
                 if(cookie.get("questionClassId")){
                      reg_questionClassId = cookie.get("questionClassId").split(",");

@@ -64,7 +64,7 @@
                                 }
                             );
                     }else{
-                        cookie.set('reg_goodat',this.goodat,1)
+                        cookie.set('reg_goodat',escape(this.goodat),1)
                     }
                     this.showLoad = true
                     this.$router.go(-1);

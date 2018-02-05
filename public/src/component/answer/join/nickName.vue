@@ -66,7 +66,7 @@
                             );
                     }else{
                         console.log('首次注册')
-                        cookie.set('reg_nickName',this.nickName,1)
+                        cookie.set('reg_nickName',escape(this.nickName),1)
                     }
                     this.$router.go(-1);
 

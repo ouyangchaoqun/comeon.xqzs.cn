@@ -141,7 +141,7 @@
                             }
                         );
                 }else{
-                    cookie.set('reg_jobTitle',_this.jobTitle,1)
+                    cookie.set('reg_jobTitle',escape(_this.jobTitle),1)
                     cookie.set('reg_certificateNo',_this.certificateNo,1)
                     cookie.set('reg_certificateFile1',_this.certificateFile1,1)
                 }

@@ -69,7 +69,7 @@
                                 }
                             );
                     }else {
-                        cookie.set('reg_introduction',this.introduction,1)
+                        cookie.set('reg_introduction',escape(this.introduction),1)
                     }
                     this.showLoad = true
                     this.$router.go(-1);

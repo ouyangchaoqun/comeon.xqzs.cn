@@ -67,7 +67,7 @@
                                 }
                             );
                     }else{
-                        cookie.set('reg_experience',_this.experience,1)
+                        cookie.set('reg_experience',escape(_this.experience),1)
                     }
                     _this.showLoad= true;
                     _this.$router.go(-1);
