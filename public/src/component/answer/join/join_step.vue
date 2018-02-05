@@ -5,7 +5,7 @@
         <div v-title>入驻心理咨询师</div>
         <header @click="changeHeadpic()">
             <img v-if="isModify==0&&faceUrl==''" src="../../../images/joinHeaderImg.png" alt="">
-            <img v-if="isModify==1" :src="isShowInfo.faceUrl" alt="">
+            <img v-if="isModify==1" :src="faceUrl" alt="">
             <img v-if="isModify==0" :src="faceUrl" alt="">
             <div class="li_right">
                 <div>
