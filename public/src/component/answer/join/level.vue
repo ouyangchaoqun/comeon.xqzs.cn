@@ -16,9 +16,9 @@
             </div>
             <div class="level_photo">
                 <span>资质证书：</span>
-                <div class="photo_box">
+                <div class="photo_box" @click="upload()">
                     <template v-if="certificateFile1==''" >
-                        <img class="addIcon"  src="../../../images/joinAddImg.png" alt="" @click="upload()">
+                        <img class="addIcon"  src="../../../images/joinAddImg.png" alt="">
                         <p>请上传有姓名编号的一页，确保内容清晰可进见</p>
                     </template>
                     <img class="imgFile" v-if="certificateFile1!=''" :src="certificateFile1Show" />
@@ -107,10 +107,10 @@
                     re=false;
                     tip="请填写证件编号";
                 }
-//                else if(_this.certificateFile1==''){
-//                    re=false;
-//                    tip="请上传证件照";
-//                }
+                else if(_this.certificateFile1==''){
+                    re=false;
+                    tip="请上传证件照";
+                }
                 if(showTip&&!re){
                     xqzs.weui.tip(tip);
                 }

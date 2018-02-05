@@ -3,11 +3,11 @@
         <v-mobile class="mobile_box" style="display: none"></v-mobile>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div v-title>入驻心理咨询师</div>
-        <header>
+        <header @click="changeHeadpic()">
             <img v-if="isModify==0&&faceUrl==''" src="../../../images/joinHeaderImg.png" alt="">
             <img v-if="isModify==1" :src="isShowInfo.faceUrl" alt="">
             <img v-if="isModify==0" :src="faceUrl" alt="">
-            <div class="li_right" @click="changeHeadpic()">
+            <div class="li_right">
                 <div>
                     <template v-if="isModify==0">请上传头像</template>
                     <template v-if="isModify==1">更换头像</template>
@@ -18,9 +18,9 @@
         </header>
         <div class="step_detailBox" :class="{detailBox_bottom:isModify==1}">
             <ul>
-                <li v-show="btnFlag">
+                <li v-show="btnFlag" @click="setLevel()">
                     资质证书
-                    <div class="li_right" @click="setLevel()">
+                    <div class="li_right" >
                         <div>
                             <template v-if="isModify==0&&reg_jobTitle==''">请选择资质</template>
                             <template v-if="isModify==0">{{reg_jobTitle}}</template>
@@ -30,9 +30,9 @@
                     </div>
                 </li>
 
-                <li>
+                <li @click="setNickname()">
                     咨询师昵称
-                    <div class="li_right" @click="setNickname()">
+                    <div class="li_right" >
                         <div>
                             <template v-if="isModify==0&&reg_nickName==''">请填写昵称</template>
                             <template v-if="isModify==0">{{reg_nickName}}</template>
@@ -42,9 +42,9 @@
                     </div>
                 </li>
 
-                <li>
+                <li @click="goMobile()">
                     手机号码
-                    <div class="li_right" @click="goMobile()">
+                    <div class="li_right" >
                         <div>
                             <template v-if="isModify==0&&reg_mobile==''">请填写手机号</template>
                             <template v-if="isModify==0">{{reg_mobile}}</template>
@@ -87,9 +87,9 @@
                     </div>
                 </li>
 
-                <li>
+                <li @click="setSign()">
                    一句话签名
-                    <div class="li_right" @click="setSign()">
+                    <div class="li_right" >
                         <div>
                             <template v-if="isModify==0&&reg_sign==''">请填写个人签名</template>
                             <template v-if="isModify==0">{{reg_sign}}</template>
@@ -99,9 +99,9 @@
                     </div>
                 </li>
 
-                <li>
+                <li @click="setPerson()">
                     个人简介
-                    <div class="li_right" @click="setPerson()">
+                    <div class="li_right" >
                         <div>
                             <template v-if="isModify==0&&reg_introduction==''">请填写个人简介</template>
                             <template v-if="isModify==0">{{reg_introduction}}</template>
@@ -111,9 +111,9 @@
                     </div>
                 </li>
 
-                <li>
+                <li @click="setGoodat()">
                     擅长领域
-                    <div class="li_right" @click="setGoodat()">
+                    <div class="li_right" >
                         <div>
                             <template v-if="isModify==0&&showTypes.length==0">选择自己擅长的领域</template>
                             <template v-if="isModify==1&&isShowInfo.domains">
@@ -127,9 +127,9 @@
                     </div>
                 </li>
 
-                <li>
+                <li @click="goGoodatDetail()">
                     擅长领域描述
-                    <div class="li_right" @click="goGoodatDetail()">
+                    <div class="li_right" >
                         <div>
                             <template v-if="isModify==0&&reg_goodat==''">请描述自己擅长的领域</template>
                             <template v-if="isModify==0">{{reg_goodat}}</template>
@@ -139,9 +139,9 @@
                     </div>
                 </li>
 
-                <li>
+                <li @click="setExperience()">
                     专业培训经历
-                    <div class="li_right" @click="setExperience()">
+                    <div class="li_right" >
                         <div>
                             <template v-if="isModify==0&&reg_experience==''">请填写培训经历</template>
                             <template v-if="isModify==0">{{reg_experience}}</template>
@@ -151,9 +151,9 @@
                     </div>
                 </li>
 
-                <li>
+                <li @click="goPrice()">
                     提问酬金
-                    <div class="li_right" @click="goPrice()">
+                    <div class="li_right" >
                         <div>
                             <template v-if="isModify==0&&reg_price==''">请设置提问酬金</template>
                             <template v-if="isModify==0">{{reg_price}}</template>
@@ -163,9 +163,9 @@
                     </div>
                 </li>
 
-                <li>
+                <li @click="goFreeTime()">
                     限时免费偷听时间
-                    <div class="li_right" @click="goFreeTime()">
+                    <div class="li_right" >
                         <div>
                             <template v-if="isModify==0">{{changeTime(reg_freeTime)}}</template>
                             <template v-if="isModify==1">{{isShowInfo.freeTime}}</template>
@@ -323,9 +323,26 @@
                 },function (json,ix) {
                     let facePath = json.data.path
                     _this.showLoad=false;
-                    _this.isShowInfo.faceUrl=facePath;
-                    cookie.set('reg_faceUrl',facePath,1)
-                    console.log(facePath)
+                    _this.faceUrl=facePath;
+                    if(_this.isModify){
+                        //修改
+                        console.log('修改')
+                        let url = "come/expert/modify";
+                        let msg = {
+                            userId:_this.user.id,
+                            id:_this.user.id,
+                            expertId:cookie.get('expertId'),
+                            faceUrl: facePath,
+                        };
+                        _this.$http.post(web.API_PATH + url, msg)
+                            .then(
+                                (response) => {
+                                }
+                            );
+                    }else{
+                        cookie.set('reg_faceUrl',facePath,1)
+                    }
+
 //
 //                    let data ={
 //
