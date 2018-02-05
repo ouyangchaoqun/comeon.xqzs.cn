@@ -47,6 +47,7 @@
                 this.$http.get(web.API_PATH + 'come/expert/query/detail/for/edit/'+expertId+'/_userId_').then(function (data) {
                     if (data.body.status == 1) {
                         let showInfo = data.data.data;
+                        console.log(showInfo)
                         this.sign = showInfo.sign
                     }
                 }, function (error) {
