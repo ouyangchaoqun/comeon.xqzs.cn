@@ -168,7 +168,7 @@
                     <div class="li_right" >
                         <div>
                             <template v-if="isModify==0">{{changeTime(reg_freeTime)}}</template>
-                            <template v-if="isModify==1">{{isShowInfo.freeTime}}</template>
+                            <template v-if="isModify==1">{{changeTime(isShowInfo.freeTime)}}</template>
                         </div>
                         <i></i>
                     </div>
