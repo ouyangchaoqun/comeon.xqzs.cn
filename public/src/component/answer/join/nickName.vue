@@ -19,7 +19,7 @@
     export default {
         data() {
             return {
-                nickName:'',
+                nickName:cookie.get('reg_nickName')?unescape(cookie.get('reg_nickName')):'',
                 edit:'',
             }
         },
@@ -50,40 +50,30 @@
             backStep:function () {
                 this.$router.go(-1)
             },
-            //判断是否入驻
-            isJoin:function () {
-
-            },
             setNickName:function () {
-                if(this.nickName==''){
-                    xqzs.weui.tip('请填写昵称',function () {
-                    })
-                }else{
-                    //修改
-                    if(this.edit==1){
-                        console.log('修改')
-                        let url = "come/expert/modify";
-                        let msg = {
-                            nickName: this.nickName,
-                            userId:this.user.id,
-                            id:this.user.id,
-                            expertId:cookie.get('expertId')
-                        }
-                        this.$http.post(web.API_PATH + url, msg)
-                            .then(
-                                (response) => {
-                                    console.log(response)
-                                    this.showLoad= true;
-
-                                }
-                            );
-                    }else{
-                        console.log('首次注册')
-                        cookie.set('reg_nickName',escape(this.nickName),1)
+                this.showLoad = true;
+                if(this.edit==1){
+                    console.log('修改')
+                    let url = "come/expert/modify";
+                    let msg = {
+                        nickName: this.nickName,
+                        userId:this.user.id,
+                        id:this.user.id,
+                        expertId:cookie.get('expertId')
                     }
-                    this.$router.go(-1);
+                    this.$http.post(web.API_PATH + url, msg)
+                        .then(
+                            (response) => {
+                                console.log(response)
+                                this.showLoad= true;
 
+                            }
+                        );
                 }
+                cookie.set('reg_nickName',escape(this.nickName),1)
+                setTimeout(function () {
+                    this.$router.go(-1);
+                },300)
             }
         },
         components:{

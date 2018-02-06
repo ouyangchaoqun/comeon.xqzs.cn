@@ -4,7 +4,8 @@
             <div v-title>入驻心理咨询师</div>
             <div class="joinSet_top">
                 <div class="joinSet_cancel" @click="backStep()">取消</div>
-                <div class="joinSet_sure" @click="setPrice()">确定</div>
+                <div class="joinSet_sure sure_nor" v-if="price==''">确定</div>
+                <div class="joinSet_sure" @click="setPrice()" v-if="price!=''">确定</div>
             </div>
             <div class="set_price">
                 <input type="number" class="priceInput" v-model="price"  :value="price" placeholder="设置提问价格（元）例如：¥10">
@@ -24,7 +25,7 @@
     export default {
         data() {
             return {
-                price:"",
+                price:cookie.get('reg_price')?cookie.get('reg_price'):'',
                 showLoad:false,
                 edit:''
             }
@@ -36,40 +37,45 @@
         },
         mounted: function () {
             this.edit= this.$route.query.edit;
+            if(this.edit==1){
+                this.getExpertInfo();
+            }
         } ,
         methods:  {
+            getExpertInfo:function () {
+                let expertId = cookie.get('expertId');
+                this.$http.get(web.API_PATH + 'come/expert/query/detail/for/edit/'+expertId+'/_userId_').then(function (data) {
+                    if (data.body.status == 1) {
+                        let showInfo = data.data.data;
+                        this.price = showInfo.price
+                    }
+                }, function (error) {
+                });
+            },
             backStep:function () {
                 this.$router.go(-1)
             },
             setPrice:function () {
-
                 let _this = this;
-                if(_this.price==''){
-                    xqzs.weui.tip("请设置提问价格",function () {});
-                }else if(Number(_this.price)<10){
-                    xqzs.weui.tip("请设置正确的价格",function () {});
-                }else {
-                    if(_this.edit==1){
-                        //修改
-                        console.log('修改')
-                        let url = "come/expert/modify";
-                        let msg = {
-                            price: _this.price,
-                            userId:_this.user.id,
-                            id:_this.user.id,
-                            expertId:cookie.get('expertId')
-                        };
-                        _this.$http.post(web.API_PATH + url, msg)
-                            .then(
-                                (response) => {
-                                }
-                            );
-                    }else{
-                        cookie.set('reg_price',_this.price,1)
-                    }
-                    _this.showLoad = true
-                    _this.$router.go(-1);
+                if(_this.edit==1){
+                    let url = "come/expert/modify";
+                    let msg = {
+                        price: _this.price,
+                        userId:_this.user.id,
+                        id:_this.user.id,
+                        expertId:cookie.get('expertId')
+                    };
+                    _this.$http.post(web.API_PATH + url, msg)
+                        .then(
+                            (response) => {
+                            }
+                        );
                 }
+                cookie.set('reg_price',_this.price,1)
+                _this.showLoad = true;
+                setTimeout(function () {
+                    _this.$router.go(-1);
+                },300)
             },
 
         },

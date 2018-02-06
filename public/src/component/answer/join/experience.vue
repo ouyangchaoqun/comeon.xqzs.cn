@@ -5,7 +5,8 @@
 
             <div class="joinSet_top">
                 <div class="joinSet_cancel" @click="backStep()">取消</div>
-                <div class="joinSet_sure" @click="setExpe()">确定</div>
+                <div class="joinSet_sure sure_nor" v-if="experience==''">确定</div>
+                <div class="joinSet_sure" @click="setExpe()" v-if="experience!=''">确定</div>
             </div>
             <div class="text_area">
             <textarea placeholder="请输入专业培训经历，不超过200字
@@ -27,7 +28,7 @@
     export default {
         data() {
             return {
-                experience:'',
+                experience:cookie.get('reg_experience')?unescape(cookie.get('reg_experience')):'',
                 edit:''
             }
         },
@@ -59,31 +60,29 @@
             },
             setExpe:function () {
                 let _this = this;
-                if(_this.experience==''){
-                    xqzs.weui.tip("请填写培训经历",function () {});
-                }else {
-                    if(_this.edit==1){
-                        //修改
-                        console.log('修改')
-                        let url = "come/expert/modify";
-                        let msg = {
-                            experience: _this.experience,
-                            userId:_this.user.id,
-                            id:_this.user.id,
-                            expertId:cookie.get('expertId')
-                        };
-                        _this.$http.post(web.API_PATH + url, msg)
-                            .then(
-                                (response) => {
-                                    console.log(response)
-                                }
-                            );
-                    }else{
-                        cookie.set('reg_experience',escape(_this.experience),1)
-                    }
-                    _this.showLoad= true;
-                    _this.$router.go(-1);
+                _this.showLoad= true;
+                if(_this.edit==1){
+                    //修改
+                    console.log('修改')
+                    let url = "come/expert/modify";
+                    let msg = {
+                        experience: _this.experience,
+                        userId:_this.user.id,
+                        id:_this.user.id,
+                        expertId:cookie.get('expertId')
+                    };
+                    _this.$http.post(web.API_PATH + url, msg)
+                        .then(
+                            (response) => {
+                                console.log(response)
+                            }
+                        );
                 }
+                cookie.set('reg_experience',escape(_this.experience),1)
+                setTimeout(function () {
+                    _this.$router.go(-1);
+                },300)
+
             }
 
         }

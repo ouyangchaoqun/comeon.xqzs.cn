@@ -5,7 +5,8 @@
             <div v-title>入驻心理咨询师</div>
             <div class="joinSet_top">
                 <div class="joinSet_cancel" @click="backStep()">取消</div>
-                <div class="joinSet_sure" @click="setSign()">确定</div>
+                <div class="joinSet_sure sure_nor" v-if="sign==''">确定</div>
+                <div class="joinSet_sure" @click="setSign()" v-if="sign!=''">确定</div>
             </div>
             <div class="text_area">
             <textarea v-model="sign" maxlength="25" placeholder="请输入一句话签名，展示给用户，不超过30个字
@@ -24,7 +25,7 @@
     export default {
         data() {
             return {
-                sign:'',
+                sign:cookie.get('reg_sign')?unescape(cookie.get('reg_sign')):'',
                 edit:'',
                 showLoad:false
 
@@ -57,34 +58,28 @@
                 this.$router.go(-1)
             },
             setSign:function () {
-                if(this.sign==''){
-                    xqzs.weui.tip('请填写签名',function () {
+                this.showLoad = true;
+                if(this.edit==1){
+                    //修改
+                    console.log('修改')
+                    let msg = {
+                        sign: this.sign,
+                        userId:this.user.id,
+                        id:this.user.id,
+                        expertId:cookie.get('expertId')
+                    };
+                    let url = "come/expert/modify";
+                    this.$http.post(web.API_PATH + url, msg)
+                        .then(
+                            (response) => {
 
-                    })
-                }else{
-
-                    if(this.edit==1){
-                        //修改
-                        console.log('修改')
-                        let msg = {
-                            sign: this.sign,
-                            userId:this.user.id,
-                            id:this.user.id,
-                            expertId:cookie.get('expertId')
-                        };
-                        let url = "come/expert/modify";
-                        this.$http.post(web.API_PATH + url, msg)
-                            .then(
-                                (response) => {
-
-                                }
-                            );
-                    }else{
-                        cookie.set('reg_sign',escape(this.sign),1)
-                    }
-                    this.showLoad = true;
-                    this.$router.go(-1);
+                            }
+                        );
                 }
+                cookie.set('reg_sign',escape(this.sign),1)
+                setTimeout(function () {
+                    this.$router.go(-1);
+                },300)
             }
         },
         components: {

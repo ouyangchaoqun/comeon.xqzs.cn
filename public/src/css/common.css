@@ -807,3 +807,6 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
     height:100%;
     background: RGBA(69, 75, 84, 0.03);
 }
+.joinSet_top .sure_nor{
+    background: RGBA(254, 122, 3, 0.4);
+}

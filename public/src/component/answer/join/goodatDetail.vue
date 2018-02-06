@@ -6,7 +6,8 @@
 
             <div class="joinSet_top">
                 <div class="joinSet_cancel" @click="backStep()">取消</div>
-                <div class="joinSet_sure" @click="setPersonal()">确定</div>
+                <div class="joinSet_sure sure_nor" v-if="goodat==''">确定</div>
+                <div class="joinSet_sure" @click="setPersonal()" v-if="goodat!=''">确定</div>
             </div>
             <div class="text_area">
             <textarea placeholder="请对自己擅长的领域进行描述，不超过200个字
@@ -26,7 +27,7 @@
     export default {
         data() {
             return {
-                goodat:'',
+                goodat:cookie.get('reg_goodat')?unescape(cookie.get('reg_goodat')):'',
                 edit:'',
                 showLoad:false
             }
@@ -57,33 +58,27 @@
                 this.$router.go(-1)
             },
             setPersonal:function () {
-                if(this.goodat==''){
-                    xqzs.weui.tip('请描述自己擅长的领域',function () {
-                    })
-                }else{
-                    if(this.edit==1){
-                        //修改
-                        console.log('修改')
-                        let url = "come/expert/modify";
-                        let msg = {
-                            goodat: this.goodat,
-                            userId:this.user.id,
-                            id:this.user.id,
-                            expertId:cookie.get('expertId')
-                        };
-                        this.$http.post(web.API_PATH + url, msg)
-                            .then(
-                                (response) => {
-                                }
-                            );
-                    }else{
-                        cookie.set('reg_goodat',escape(this.goodat),1)
-                    }
-                    this.showLoad = true
-                    this.$router.go(-1);
-
+                this.showLoad = true
+                if(this.edit==1){
+                    //修改
+                    console.log('修改')
+                    let url = "come/expert/modify";
+                    let msg = {
+                        goodat: this.goodat,
+                        userId:this.user.id,
+                        id:this.user.id,
+                        expertId:cookie.get('expertId')
+                    };
+                    this.$http.post(web.API_PATH + url, msg)
+                        .then(
+                            (response) => {
+                            }
+                        );
                 }
-
+                cookie.set('reg_goodat',escape(this.goodat),1)
+                setTimeout(function () {
+                    this.$router.go(-1);
+                },300)
 
             },
 

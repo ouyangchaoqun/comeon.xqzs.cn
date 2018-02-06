@@ -4,7 +4,8 @@
             <div v-title>入驻心理咨询师</div>
             <div class="joinSet_top">
                 <div class="joinSet_cancel" @click="backStep()">取消</div>
-                <div class="joinSet_sure" @click="setFreeTime()">确定</div>
+                <div class="joinSet_sure sure_nor" v-if="checkedIndex==''">确定</div>
+                <div class="joinSet_sure" @click="setFreeTime()" v-if="checkedIndex!=''">确定</div>
             </div>
             <div class="time_type">
                 <div class="time_typeTitle"></div>
@@ -83,45 +84,36 @@
                 times[v].isSelect=true;
                 this.checkedIndex = v;
                 this.freeTime = this.times[v].value;
-                console.log(this.freeTime)
                 this.$set(this.times,v,times[v]);
             },
 
             backStep:function () {
                 this.$router.go(-1)
             },
-            changeTime:function (time) {
-
-            },
             setFreeTime:function () {
                 let _this = this;
-                if(_this.checkedIndex<0){
-                        xqzs.weui.tip("请设置免费偷听时间",function () {});
-                }else {
-
-                    if(_this.edit==1){
-                        //修改
-                        console.log('修改')
-                        let url = "come/expert/modify";
-                        let msg = {
-                            freeTime: _this.freeTime,
-                            userId:_this.user.id,
-                            id:_this.user.id,
-                            expertId:cookie.get('expertId')
-                        }
-                        _this.$http.post(web.API_PATH + url, msg)
-                            .then(
-                                (response) => {
-
-                                }
-                            );
-                    }else{
-                        cookie.set('reg_freeTime',_this.freeTime,1)
+                _this.showLoad = true;
+                if(_this.edit==1){
+                    //修改
+                    console.log('修改')
+                    let url = "come/expert/modify";
+                    let msg = {
+                        freeTime: _this.freeTime,
+                        userId:_this.user.id,
+                        id:_this.user.id,
+                        expertId:cookie.get('expertId')
                     }
+                    _this.$http.post(web.API_PATH + url, msg)
+                        .then(
+                            (response) => {
 
-                    _this.showLoad = true;
-                    _this.$router.go(-1);
+                            }
+                        );
                 }
+                cookie.set('reg_freeTime',_this.freeTime,1)
+                setTimeout(function () {
+                    _this.$router.go(-1);
+                },300)
             },
         },
         components: {

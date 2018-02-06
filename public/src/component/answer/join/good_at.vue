@@ -54,7 +54,6 @@
                     if (data.body.status == 1) {
                         _this.types= data.body.data;
                         let questionClassId = cookie.get("questionClassId")
-
                         if(questionClassId&&questionClassId!=''){
                             _this.canGoNext=true;
                             let ids=  questionClassId.split(",")
@@ -111,32 +110,27 @@
                 this.$router.go(-1)
             },
             setGoodAt:function () {
-                if(this.canGoNext){
-                    if(this.edit==1){
-                        //修改
-                        console.log('修改')
-                        let url = "come/expert/modify";
-                        let msg = {
-                            questionClassId: cookie.get("questionClassId").split(","),
-                            userId:this.user.id,
-                            id:this.user.id,
-                            expertId:cookie.get('expertId')
-                        };
-                        this.$http.post(web.API_PATH + url, msg)
-                            .then(
-                                (response) => {
+                this.showLoad = true
+                if(this.edit==1){
+                    //修改
+                    console.log('修改')
+                    let url = "come/expert/modify";
+                    let msg = {
+                        questionClassId: cookie.get("questionClassId").split(","),
+                        userId:this.user.id,
+                        id:this.user.id,
+                        expertId:cookie.get('expertId')
+                    };
+                    this.$http.post(web.API_PATH + url, msg)
+                        .then(
+                            (response) => {
 
-                                }
-                            );
-                    }
-                    this.showLoad = true
-                    this.$router.go(-1);
-
-                }else {
-                    xqzs.weui.tip('请选择擅长的领域',function () {
-                        
-                    })
+                            }
+                        );
                 }
+                setTimeout(function () {
+                    this.$router.go(-1);
+                },300)
 
             }
 

@@ -6,7 +6,8 @@
 
             <div class="joinSet_top">
                 <div class="joinSet_cancel" @click="backStep()">取消</div>
-                <div class="joinSet_sure" @click="setPersonal()">确定</div>
+                <div class="joinSet_sure sure_nor" v-if="introduction==''">确定</div>
+                <div class="joinSet_sure" @click="setPersonal()" v-if="introduction!=''">确定</div>
             </div>
             <div class="text_area">
             <textarea placeholder="请采用精简的语言介绍自己，以便用户快速地了解您！
@@ -28,7 +29,7 @@
     export default {
         data() {
             return {
-                introduction:'',
+                introduction:cookie.get('reg_introduction')?unescape(cookie.get('reg_introduction')):'',
                 edit:'',
                 showLoad:false
             }
@@ -60,33 +61,28 @@
                 this.$router.go(-1)
             },
             setPersonal:function () {
-                if(this.introduction==''){
-                    xqzs.weui.tip('请填写个人介绍',function () {
-
-                    })
-                }else {
-                    if(this.edit==1){
-                        //修改
-                        console.log('修改')
-                        let url = "come/expert/modify";
-                        let msg = {
-                            introduction: this.introduction,
-                            userId:this.user.id,
-                            id:this.user.id,
-                            expertId:cookie.get('expertId')
-                        }
-                        this.$http.post(web.API_PATH + url, msg)
-                            .then(
-                                (response) => {
-
-                                }
-                            );
-                    }else {
-                        cookie.set('reg_introduction',escape(this.introduction),1)
+                this.showLoad = true
+                if(this.edit==1){
+                    //修改
+                    console.log('修改')
+                    let url = "come/expert/modify";
+                    let msg = {
+                        introduction: this.introduction,
+                        userId:this.user.id,
+                        id:this.user.id,
+                        expertId:cookie.get('expertId')
                     }
-                    this.showLoad = true
-                    this.$router.go(-1);
+                    this.$http.post(web.API_PATH + url, msg)
+                        .then(
+                            (response) => {
+
+                            }
+                        );
                 }
+                cookie.set('reg_introduction',escape(this.introduction),1)
+                setTimeout(function () {
+                    this.$router.go(-1);
+                },300)
 
             }
 
