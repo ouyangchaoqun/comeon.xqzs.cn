@@ -650,8 +650,7 @@
 
             },
             goMobile:function () {
-               // $('.mobile_box').show()
-                this.$router.push('./joinmobile?edit='+this.isModify)
+                this.$router.push('./joinmobile?edit='+this.isModify);
             },
             msgSubmit: function () {
                 let _this = this;
