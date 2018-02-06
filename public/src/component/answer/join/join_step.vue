@@ -294,15 +294,6 @@
                     <p>4、含有人身攻击、侮辱的；</p>
                     <p>5、含有违背医学伦理道德的；</p>
                     <p>6、其他违反现行各项法律、法规与政策的。</p>
-
-
-
-
-
-
-
-
-
                 </div>
                 <div class="agre_btn" @click="hideAgre()">我知道了</div>
             </div>
@@ -664,6 +655,7 @@
             },
             msgSubmit: function () {
                 let _this = this;
+                console.log('提交')
                 let url, price ,freeTime,jobTitle,introduction,experience,goodat,faceUrl,nickName,sign,provinceId,sex,questionClassId,certificateNo,certificateFile1,cityId,areaId;
                 let reg_questionClassId;
                 if(cookie.get("questionClassId")){
@@ -673,9 +665,11 @@
                 }
                 let reg_certificateNo = cookie.get('reg_certificateNo')?cookie.get('reg_certificateNo'):'';
                 let reg_certificateFile1 = cookie.get('reg_certificateFile1')?cookie.get('reg_certificateFile1'):'';
-                let classId=[]
-                for(let i=0;i<_this.isShowInfo.domains.length;i++){
-                    classId.push(_this.isShowInfo.domains[i].classId)
+                let classId=[];
+                if(_this.isModify==1){
+                    for(let i=0;i<_this.isShowInfo.domains.length;i++){
+                        classId.push(_this.isShowInfo.domains[i].classId)
+                    }
                 }
                 if(_this.isModify==0){
                     url = "come/expert/register";
