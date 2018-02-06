@@ -179,7 +179,7 @@
         </div>
 
         <!--协议-->
-        <div class="weui-mask" @touchmove.prevent v-show="agreFlag">
+        <div class="weui-mask" @touchmove.prevent v-show="agreFlag" style="height: 100%;">
             <div class="agre_box">
                 <h2>好一点专家入驻协议</h2>
                 <div class="agre_content">
@@ -831,7 +831,7 @@
     .join_agre{color:rgba(53, 58, 66, 1);font-size: 0.70588rem;line-height: 1rem;margin-bottom: 1.8rem;}
     .join_agre span{color:rgba(255, 99, 0, 1)}
     .join_sub{height:2.94rem;line-height: 2.94rem;color:rgba(255, 255, 255, 1);background: rgba(254, 122, 3, 1);font-size: 1.0588rem;border-radius:6.17rem;text-align: center }
-    .agre_box{width:86%;position: absolute;top:50%;margin-top:-15rem;left:50%;margin-left: -46%;background: #fff;padding:0.88235rem 3%;border-radius: 0.588235rem;height:30rem;}
+    .agre_box{width:86%;position: absolute;top:10%;left:50%;margin-left: -46%;background: #fff;padding:0.88235rem 3%;border-radius: 0.588235rem;height:80%}
     .agre_box h2{color:RGBA(69, 75, 84, 1);font-size: 1.0588rem;line-height: 1.47rem;text-align: center;margin-bottom: 0.88235rem;}
     .agre_box .agre_content{color:RGBA(69, 75, 84, 1);font-size: 0.76471rem;background: RGBA(69, 75, 84, 0.05);padding:0.88235rem 0.764rem;margin-bottom: 1.176rem;height:75%;overflow: auto;line-height: 1.4rem}
     .agre_content h3{padding-top: 1.176rem;padding-bottom: 0.294rem;}
