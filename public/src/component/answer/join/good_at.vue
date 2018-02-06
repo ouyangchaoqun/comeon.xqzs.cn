@@ -128,8 +128,9 @@
                             }
                         );
                 }
+                let _this = this;
                 setTimeout(function () {
-                    this.$router.go(-1);
+                    _this.$router.go(-1);
                 },300)
 
             }

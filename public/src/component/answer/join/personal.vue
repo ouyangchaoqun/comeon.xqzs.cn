@@ -79,9 +79,10 @@
                             }
                         );
                 }
-                cookie.set('reg_introduction',escape(this.introduction),1)
+                cookie.set('reg_introduction',escape(this.introduction),1);
+                let _this = this;
                 setTimeout(function () {
-                    this.$router.go(-1);
+                    _this.$router.go(-1);
                 },300)
 
             }
