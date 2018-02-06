@@ -734,9 +734,6 @@
                 } else if(faceUrl==''){
                     xqzs.weui.tip('请上传头像')
                     return
-                } else if(nickName==''){
-                    xqzs.weui.tip('请填写昵称')
-                    return
                 }else if(sign==''){
                     xqzs.weui.tip('请填写个人签名')
                     return
@@ -750,6 +747,11 @@
                     xqzs.weui.tip('请选择性别')
                     return
                 }
+
+//                else if(nickName==''){
+//                    xqzs.weui.tip('请填写昵称')
+//                    return
+//                }
                 let msg = {
                     userId:_this.user.id,
                     id:_this.user.id,
