@@ -564,6 +564,10 @@
                 }
                 let reg_certificateNo = cookie.get('reg_certificateNo')?cookie.get('reg_certificateNo'):'';
                 let reg_certificateFile1 = cookie.get('reg_certificateFile1')?cookie.get('reg_certificateFile1'):'';
+                let classId=[]
+                for(let i=0;i<_this.isShowInfo.domains.length;i++){
+                    classId.push(_this.isShowInfo.domains[i].classId)
+                }
                 if(_this.isModify==0){
                     url = "come/expert/register";
                     price = _this.reg_price;
@@ -597,7 +601,7 @@
                     sign = _this.isShowInfo.sign;
                     provinceId = _this.user.provinceId;
                     sex = _this.user.sex;
-                    questionClassId = _this.isShowInfo.domains;
+                    questionClassId = classId;
                     certificateNo = _this.isShowInfo.certificateNo;
                     certificateFile1 = _this.isShowInfo.certificateFile1;
                     cityId = _this.user.cityId;
