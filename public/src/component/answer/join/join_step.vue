@@ -784,8 +784,12 @@
                 _this.$http.post(web.API_PATH + url, msg)
                     .then(
                         (response) => {
-                            _this.showLoad= true;
-                            _this.$router.go(-1);
+                            console.log(response)
+                            if(response.data.status==1){
+                                xqzs.weui.toast('提交成功',function () {
+                                    _this.$router.go(-1);
+                                })
+                            }
                         }
                     );
             },
