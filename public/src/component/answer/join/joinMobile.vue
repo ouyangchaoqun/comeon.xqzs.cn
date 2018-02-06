@@ -222,7 +222,7 @@
 </script>
 <style type="text/css">
     .code_left{
-        width:52%;
+        width:50%;
         float: left;
         background: #fff;
         border-radius: 0.294rem;
@@ -232,7 +232,7 @@
         font-size: 0.88235rem;
     }
     .code_right{
-        width: 43%;
+        width: 35%;
         float: right;
         text-align: center;
         font-size: 0.88235rem;
@@ -248,6 +248,7 @@
     }
     .joinmobile_box{
         background: RGBA(69, 75, 84, 0.03);
+        height:100%;
     }
     .joinmobile_box .validate_box {
         padding: 1.176rem 0.88235rem 0 0.88235rem;
