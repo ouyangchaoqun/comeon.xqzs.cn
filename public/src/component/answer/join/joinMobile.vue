@@ -1,39 +1,41 @@
 <template>
-    <div class="joinmobile_box">
-        <div v-title>入驻心理咨询师</div>
-        <div class="joinSet_top">
-            <div class="joinSet_cancel" @click="backStep()">取消</div>
-            <div class="joinSet_sure sure_nor" v-if="!canNext">确定</div>
-            <div class="joinSet_sure" @click="subLevel()" v-if="canNext">确定</div>
-        </div>
-        <div style="height:0.64rem;background: RGBA(69, 75, 84, 0.05)"></div>
-        <div class="validate_box">
-            <div class="mobile__box">
-                <div class="validate_div">
-                    <div class="joinmobile_input">
-                        <input class="input_phone" type="tel" oninput="if(value.length>11)value=value.slice(0,11)"
-                               placeholder="请输入您的手机号" v-model="mobile"/>
-                        <p id="errorMobile" v-if="!isMobileRight&&isShowErrorMobileMsg">手机格式错误</p>
+    <div style="background: #fff;">
+        <div class="joinmobile_box">
+            <div v-title>入驻心理咨询师</div>
+            <div class="joinSet_top">
+                <div class="joinSet_cancel" @click="backStep()">取消</div>
+                <div class="joinSet_sure sure_nor" v-if="!canNext">确定</div>
+                <div class="joinSet_sure" @click="subLevel()" v-if="canNext">确定</div>
+            </div>
+            <div style="height:0.64rem;background: RGBA(69, 75, 84, 0.05)"></div>
+            <div class="validate_box">
+                <div class="mobile__box">
+                    <div class="validate_div">
+                        <div class="joinmobile_input">
+                            <input class="input_phone" type="tel" oninput="if(value.length>11)value=value.slice(0,11)"
+                                   placeholder="请输入您的手机号" v-model="mobile"/>
+                            <p id="errorMobile" v-if="!isMobileRight&&isShowErrorMobileMsg">手机格式错误</p>
+                        </div>
                     </div>
-                </div>
-                <div class="joinmobile_code">
-                    <div class="code_left">
-                        <input class="input_code" type="tel" placeholder="请输入您收到的验证码" maxlength="4" v-model="code"/>
-                    </div>
-                    <div class="code_right" v-if="!isMobileRight||isGetingCodeIn">
-                        {{getCodeBtnText}}
-                        <!--<button href="javascript:;" id="_phonebtn" -->
-                                <!--class="weui-btn weui-btn_plain-primary "-->
-                                <!--:class="{'weui-btn_plain-disabled':!isMobileRight||isGetingCodeIn}">-->
-                        <!--</button>-->
-                    </div>
-                    <div class="code_right code_right_can" @click="getCode()" v-if="isMobileRight&&!isGetingCodeIn">
-                        {{getCodeBtnText}}
-                    </div>
+                    <div class="joinmobile_code">
+                        <div class="code_left">
+                            <input class="input_code" type="tel" placeholder="请输入您收到的验证码" maxlength="4" v-model="code"/>
+                        </div>
+                        <div class="code_right" v-if="!isMobileRight||isGetingCodeIn">
+                            {{getCodeBtnText}}
+                            <!--<button href="javascript:;" id="_phonebtn" -->
+                            <!--class="weui-btn weui-btn_plain-primary "-->
+                            <!--:class="{'weui-btn_plain-disabled':!isMobileRight||isGetingCodeIn}">-->
+                            <!--</button>-->
+                        </div>
+                        <div class="code_right code_right_can" @click="getCode()" v-if="isMobileRight&&!isGetingCodeIn">
+                            {{getCodeBtnText}}
+                        </div>
 
 
-                    <p id="errorCode" v-if="isShowErrorCodeMsg">验证码错误</p>
-                    <p id="message" v-if="isShowMessage">{{message}}</p>
+                        <p id="errorCode" v-if="isShowErrorCodeMsg">验证码错误</p>
+                        <p id="message" v-if="isShowMessage">{{message}}</p>
+                    </div>
                 </div>
             </div>
         </div>
