@@ -59,8 +59,7 @@
                     <div class="li_right">
                         <div>
                             <template v-if="isModify==0&&sex==''">请选择性别</template>
-                            <template v-if="isModify==0">{{sex}}</template>
-                            <template v-if="isModify==1">{{user.sex==2?'女':'男'}}</template>
+                            <template>{{sex}}</template>
                         </div>
 
                         <i></i>
@@ -72,15 +71,10 @@
                     <div class="li_right">
                         <div>
                             <span v-if="isModify==0&&provinceName==''">请选择所在城市</span>
-                            <template v-if="isModify==0&&provinceName!=''">
+                            <template v-if="provinceName!=''">
                                 <span>{{provinceName}}</span>
                                 <span>{{cityName}}</span>
                                 <span>{{areaName}}</span>
-                            </template>
-                            <template v-if="isModify==1">
-                                <span>{{user.provinceName}}</span>
-                                <span>{{user.cityName}}</span>
-                                <span>{{user.areaName}}</span>
                             </template>
                         </div>
                         <i></i>
@@ -325,14 +319,8 @@
             return {
                 user:'',
                 showLoad:false,
-                sexIndex:'',
+                sexIndex:1,
                 defaultCity: '[330000, 330100, 330102]',
-                provinceName:cookie.get('reg_provinceName')?unescape(cookie.get('reg_provinceName')):'',
-                cityName: cookie.get('reg_cityName')?unescape(cookie.get('reg_cityName')):'',
-                areaName: cookie.get('reg_areaName')?unescape(cookie.get('reg_areaName')):'',
-                provinceId: cookie.get('reg_provinceId')?cookie.get('reg_provinceId'):'',
-                cityId: cookie.get('reg_cityId')?cookie.get('reg_cityId'):'',
-                areaId: cookie.get('reg_areaId')?cookie.get('reg_areaId'):'',
                 reg_mobile:cookie.get('reg_mobile')?cookie.get('reg_mobile'):'',
                 reg_sign:cookie.get('reg_sign')?unescape(cookie.get('reg_sign')):'',
                 reg_introduction:cookie.get('reg_introduction')?unescape(cookie.get('reg_introduction')):'',
@@ -343,7 +331,6 @@
                 reg_nickName:cookie.get('reg_nickName')?unescape(cookie.get('reg_nickName')):'',
                 reg_jobTitle:cookie.get('reg_jobTitle')?unescape(cookie.get('reg_jobTitle')):'',
                 faceUrl:cookie.get('reg_faceUrl')?cookie.get('reg_faceUrl'):'',
-                sex:cookie.get('reg_sex')?unescape(cookie.get('reg_sex')):'',
                 alioss:null,
                 uploadpicinfo:null,
                 identityFile1:'',
@@ -358,6 +345,11 @@
                 btnFlag:true,
                 types:'',
                 showTypes:[],
+                sex:'',
+                provinceName:'',
+                cityName:'',
+                areaName:''
+
             }
         },
         props: {
@@ -406,6 +398,7 @@
                             this.btnFlag = true;
                             this.isModify = 0;
                         }
+
                     }
                 }, function (error) {
                 });
@@ -417,6 +410,23 @@
                     if (data.body.status == 1) {
                         this.isShowInfo = data.data.data||{};
                         console.log(this.isShowInfo)
+                        if(this.isModify = 1){
+                            this.sex = this.user.sex==2?'女':'男';
+                            this.provinceName = this.user.provinceName;
+                            this.cityName = this.user.cityName;
+                            this.areaName = this.user.areaName;
+                            this.provinceId = this.user.provinceId;
+                            this.cityId = this.user.cityId;
+                            this.areaId = this.user.areaId;
+                        }else {
+                            this.sex=cookie.get('reg_sex')?unescape(cookie.get('reg_sex')):'';
+                            this.provinceName=cookie.get('reg_provinceName')?unescape(cookie.get('reg_provinceName')):'';
+                            this.cityName=cookie.get('reg_cityName')?unescape(cookie.get('reg_cityName')):'';
+                            this.areaName= cookie.get('reg_areaName')?unescape(cookie.get('reg_areaName')):'';
+                            this.provinceId= cookie.get('reg_provinceId')?cookie.get('reg_provinceId'):'';
+                            this.cityId= cookie.get('reg_cityId')?cookie.get('reg_cityId'):'';
+                            this.areaId= cookie.get('reg_areaId')?cookie.get('reg_areaId'):'';
+                        }
                     }
                 }, function (error) {
                 });
@@ -581,9 +591,8 @@
                         console.log(result)
                         _this.sexIndex = result[0].value;
                         _this.sex =  result[0].label;
+                        console.log(_this.sex)
                         if(_this.isModify){
-                            _this.user.sex=_this.sexIndex
-                            _this.$set( _this.user);
                             let url = "come/expert/modify";
                             let msg = {
                                 sex: _this.sexIndex,
@@ -630,12 +639,6 @@
                                 _this.areaName = '';
                             }
                             if(_this.isModify){
-                                _this.user={
-                                    provinceName:_this.provinceName,
-                                    cityName:_this.cityName,
-                                    areaName:_this.areaName
-                                }
-                                _this.$set( _this.user);
                                 let url = "come/expert/modify";
                                 let msg = {
                                     userId:_this.user.id,
@@ -714,13 +717,13 @@
                     faceUrl = _this.isShowInfo.faceUrl;
                     nickName = _this.isShowInfo.nickName;
                     sign = _this.isShowInfo.sign;
-                    provinceId = _this.user.provinceId;
-                    sex = _this.user.sex;
+                    provinceId = _this.provinceId;
+                    sex = _this.sexIndex;
                     questionClassId = classId;
                     certificateNo = _this.isShowInfo.certificateNo;
                     certificateFile1 = _this.isShowInfo.certificateFile1;
-                    cityId = _this.user.cityId;
-                    areaId = _this.user.areaId;
+                    cityId = _this.cityId;
+                    areaId = _this.areaId;
                 }
                 if(price==''){
                     xqzs.weui.tip('请填写价格')
@@ -820,9 +823,9 @@
     .join_stepBox header{padding:0.88235rem;border-bottom: 0.588235rem solid rgba(69, 75, 84, 0.09);line-height: 3.52rem;position: relative}
     .join_stepBox header img{width:3.52rem;height:3.52rem;float: left}
     .detailBox_bottom{margin-bottom: 2rem}
-    .join_stepBox .step_detailBox li{height: 2.94rem;line-height:2.94rem;color:rgba(69, 75, 84, 1);border-bottom: 1px solid rgba(224,224,225,1);padding:0 0.88235rem;font-size: 0.8235rem;position: relative;}
-    .join_stepBox .step_detailBox li .li_right{float: right;padding-right:1.5rem;width:55%;color: rgba(69, 75, 84, 0.7) !important;}
-    .li_right>div{ width:100%;text-align: right;font-size: 0.8235rem;color: rgba(69, 75, 84, 0.7); overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+    .join_stepBox .step_detailBox li{height: 2.94rem;line-height:2.94rem;color:rgba(69, 75, 84, 0.7);border-bottom: 1px solid rgba(224,224,225,1);padding:0 0.88235rem;font-size: 0.8235rem;position: relative;}
+    .join_stepBox .step_detailBox li .li_right{float: right;padding-right:1.5rem;width:55%;color: rgba(69, 75, 84, 1) !important;}
+    .li_right>div{ width:100%;text-align: right;font-size: 0.8235rem;color: rgba(69, 75, 84, 1); overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
     .join_stepBox .li_right i{background: url('../../../images/arrow.png');width: 0.94rem;  height: 0.94rem;  background-size: 0.94rem;  position: absolute;  right: 0.88235rem;  top: 50%;margin-top: -0.47rem;  }
     .joinStep_bottom{padding:1.76471rem 0.88235rem;}
     .join_agre{color:rgba(53, 58, 66, 1);font-size: 0.70588rem;line-height: 1rem;margin-bottom: 1.8rem;}

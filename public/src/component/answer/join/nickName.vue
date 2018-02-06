@@ -107,7 +107,7 @@
         width:100%;
         height:100%;
         font-size: 0.8235rem;
-        color:RGBA(69, 75, 84, 0.6);
+        color:RGBA(69, 75, 84, 1);
         line-height: 1.176rem;
         display: block;
         border:0;

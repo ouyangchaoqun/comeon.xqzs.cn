@@ -219,7 +219,7 @@
         width:70%;
         height:1.235rem;
         font-size: 0.88235rem;
-        color:RGBA(69, 75, 84, 0.7) !important;;
+        color:RGBA(69, 75, 84, 1) !important;;
     }
     .level_photo span{
         display: block;

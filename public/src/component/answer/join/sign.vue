@@ -96,5 +96,5 @@
 <style>
     .sign_box{background: #fff;}
     .sign_box .text_area{background: #fff;padding:0.47rem 0.88235rem;}
-    .sign_box .text_area textarea{border:0;font-size: 0.8235rem;line-height: 1.176rem;width:100%;height:100%;}
+    .sign_box .text_area textarea{color:rgba(69, 75, 84, 1);border:0;font-size: 0.8235rem;line-height: 1.176rem;width:100%;height:100%;}
 </style>
