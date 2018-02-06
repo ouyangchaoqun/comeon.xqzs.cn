@@ -331,6 +331,13 @@
                 reg_nickName:cookie.get('reg_nickName')?unescape(cookie.get('reg_nickName')):'',
                 reg_jobTitle:cookie.get('reg_jobTitle')?unescape(cookie.get('reg_jobTitle')):'',
                 faceUrl:cookie.get('reg_faceUrl')?cookie.get('reg_faceUrl'):'',
+                sex:cookie.get('reg_sex')?unescape(cookie.get('reg_sex')):'',
+                provinceName:cookie.get('reg_provinceName')?unescape(cookie.get('reg_provinceName')):'',
+                cityName:cookie.get('reg_cityName')?unescape(cookie.get('reg_cityName')):'',
+                areaName:cookie.get('reg_areaName')?unescape(cookie.get('reg_areaName')):'',
+                provinceId: cookie.get('reg_provinceId')?cookie.get('reg_provinceId'):'',
+                cityId: cookie.get('reg_cityId')?cookie.get('reg_cityId'):'',
+                areaId:cookie.get('reg_areaId')?cookie.get('reg_areaId'):'',
                 alioss:null,
                 uploadpicinfo:null,
                 identityFile1:'',
@@ -345,10 +352,6 @@
                 btnFlag:true,
                 types:'',
                 showTypes:[],
-                sex:'',
-                provinceName:'',
-                cityName:'',
-                areaName:''
 
             }
         },
@@ -418,19 +421,7 @@
                             this.provinceId = this.user.provinceId;
                             this.cityId = this.user.cityId;
                             this.areaId = this.user.areaId;
-                        }else {
-                            this.sex=cookie.get('reg_sex')?unescape(cookie.get('reg_sex')):'';
-                            this.provinceName=cookie.get('reg_provinceName')?unescape(cookie.get('reg_provinceName')):'';
-                            this.cityName=cookie.get('reg_cityName')?unescape(cookie.get('reg_cityName')):'';
-                            this.areaName= cookie.get('reg_areaName')?unescape(cookie.get('reg_areaName')):'';
-                            this.provinceId= cookie.get('reg_provinceId')?cookie.get('reg_provinceId'):'';
-                            this.cityId= cookie.get('reg_cityId')?cookie.get('reg_cityId'):'';
-                            this.areaId= cookie.get('reg_areaId')?cookie.get('reg_areaId'):'';
                         }
-                        console.log(this.sex)
-                        console.log(this.provinceName)
-                        console.log(this.cityName)
-                        console.log(this.areaName)
                     }
                 }, function (error) {
                 });
@@ -672,7 +663,6 @@
                 $('.mobile_box').show()
             },
             msgSubmit: function () {
-
                 let _this = this;
                 let url, price ,freeTime,jobTitle,introduction,experience,goodat,faceUrl,nickName,sign,provinceId,sex,questionClassId,certificateNo,certificateFile1,cityId,areaId;
                 let reg_questionClassId;
