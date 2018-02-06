@@ -458,9 +458,8 @@
                                 (response) => {
                                 }
                             );
-                    }else{
-                        cookie.set('reg_faceUrl',facePath,1)
                     }
+                    cookie.set('reg_faceUrl',facePath,1)
 
 //
 //                    let data ={
