@@ -549,7 +549,7 @@
             msgSubmit: function () {
 
                 let _this = this;
-                let url, price ,freeTime,jobTitle,introduction,experience,goodat,faceUrl,nickName,sign,provinceId,sex,questionClassId,certificateNo,certificateFile1;
+                let url, price ,freeTime,jobTitle,introduction,experience,goodat,faceUrl,nickName,sign,provinceId,sex,questionClassId,certificateNo,certificateFile1,cityId,areaId;
                 let reg_questionClassId;
                 if(cookie.get("questionClassId")){
                     reg_questionClassId = cookie.get("questionClassId").split(",");
@@ -570,10 +570,12 @@
                     nickName = _this.reg_nickName;
                     sign = _this.reg_sign;
                     provinceId=_this.provinceId;
-                    sex=_this.sex;
+                    sex=_this.sexIndex;
                     questionClassId=reg_questionClassId;
                     certificateNo=reg_certificateNo;
                     certificateFile1 = reg_certificateFile1;
+                    cityId = _this.cityId;
+                    areaId=_this.areaId;
                 }
 
                 if(_this.isModify==1){
@@ -592,6 +594,8 @@
                     questionClassId = _this.isShowInfo.domains;
                     certificateNo = _this.isShowInfo.certificateNo;
                     certificateFile1 = _this.isShowInfo.certificateFile1;
+                    cityId = _this.user.cityId;
+                    areaId = _this.user.areaId;
                 }
                 if(price==''){
                     xqzs.weui.tip('请填写价格')
@@ -645,16 +649,16 @@
                     id:_this.user.id,
                     countryId:0,
                     provinceId:provinceId,
-                    cityId:_this.cityId,
-                    areaId:_this.areaId,
-                    sex:_this.sexIndex,
+                    cityId:cityId,
+                    areaId:areaId,
+                    sex:sex,
                     price:price,
                     freeTime:freeTime,
                     sign:sign,
                     questionClassId:questionClassId,
                     jobTitle:jobTitle,
-                    certificateNo:reg_certificateNo,
-                    certificateFile1:reg_certificateFile1,
+                    certificateNo:certificateNo,
+                    certificateFile1:certificateFile1,
                     introduction:introduction,
                     experience:experience,
                     goodat:goodat,
