@@ -76,6 +76,7 @@
                         let fileWidth = parseInt($('.photo_box').width());
                         let fileHeight = parseInt($('.photo_box').height());
                         this.certificateNo = showInfo.certificateNo;
+                        this.certificateFile1 = showInfo.certificateFile1;
                         this.certificateFile1Show = showInfo.certificateFile1+'?x-oss-process=image/resize,m_lfit,,h_'+fileHeight+',w_'+fileWidth;
 
                     }
