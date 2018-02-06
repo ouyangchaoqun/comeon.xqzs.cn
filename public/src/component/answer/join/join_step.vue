@@ -595,8 +595,6 @@
                     certificateFile1 = _this.isShowInfo.certificateFile1;
                 }
 
-
-
                 if(price==''){
                     xqzs.weui.tip('请填写价格')
                     return
@@ -644,8 +642,6 @@
                     xqzs.weui.tip('请选择性别')
                     return
                 }
-
-                return
                 let msg = {
                     userId:_this.user.id,
                     id:_this.user.id,
