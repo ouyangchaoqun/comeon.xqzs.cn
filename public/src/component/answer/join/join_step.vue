@@ -786,7 +786,7 @@
                         (response) => {
                             console.log(response)
                             if(response.data.status==1){
-                                xqzs.weui.toast('提交成功',function () {
+                                xqzs.weui.toast("success","提交成功", function () {
                                     _this.$router.go(-1);
                                 })
                             }
