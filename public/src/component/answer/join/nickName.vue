@@ -4,7 +4,8 @@
             <v-showLoad v-if="showLoad"></v-showLoad>
             <div class="joinSet_top">
                 <div class="joinSet_cancel" @click="backStep()">取消</div>
-                <div class="joinSet_sure" @click="setNickName()">确定</div>
+                <div class="joinSet_sure sure_nor" v-if="nickName==''">确定</div>
+                <div class="joinSet_sure" @click="setNickName()" v-if="nickName!=''">确定</div>
             </div>
             <div class="nickName_text">
                 <textarea placeholder="请输入咨询师昵称，展示给用户，不超过6个字

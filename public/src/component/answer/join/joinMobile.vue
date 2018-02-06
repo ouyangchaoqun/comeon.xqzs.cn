@@ -4,8 +4,8 @@
             <div v-title>入驻心理咨询师</div>
             <div class="joinSet_top">
                 <div class="joinSet_cancel" @click="backStep()">取消</div>
-                <div class="joinSet_sure sure_nor" v-if="!canNext">确定</div>
-                <div class="joinSet_sure" @click="subLevel()" v-if="canNext">确定</div>
+                <div class="joinSet_sure sure_nor" v-if="!isAllInput">确定</div>
+                <div class="joinSet_sure" @click="submit()" v-if="isAllInput">确定</div>
             </div>
             <div style="height:0.64rem;background: RGBA(69, 75, 84, 0.05)"></div>
             <div class="validate_box">
@@ -113,17 +113,29 @@
             backStep:function () {
                 this.$router.go(-1)
             },
-            subLevel:function () {
-                this.$router.go(-1)
-            },
             submit:function () {
                 let _this = this;
                 if(_this.isAllInput==true){
                     _this.$http.post(web.API_PATH + 'user/update/mobile/by/code/mobile/_userId_', {mobile: _this.mobile,code:_this.code}).then(response => {
                         if (response.data.status === 1) {
                             xqzs.weui.toast("success","验证成功",function () {
-                                _this.canNext = true
+                                if(_this.edit==1){
+                                    let url = "come/expert/modify";
+                                    let msg = {
+                                        userId:this.user.id,
+                                        id:this.user.id,
+                                        mobile:this.mobile,
+                                        expertId:cookie.get('expertId')
+                                    };
+                                    _this.$http.post(web.API_PATH + url, msg)
+                                        .then(
+                                            (response) => {
+
+                                            }
+                                        );
+                                }
                                 cookie.set('reg_mobile',_this.mobile,1)
+                                _this.$router.go(-1)
                             })
                         } else   {
                             if(response.data.status === -2 || response.data.status === -3){
