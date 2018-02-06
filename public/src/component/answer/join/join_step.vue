@@ -579,13 +579,11 @@
                     },
                     onConfirm: function (result) {
                         console.log(result)
-
                         _this.sexIndex = result[0].value;
                         _this.sex =  result[0].label;
-                        console.log(_this.sex)
                         if(_this.isModify){
-                            //修改
-                            console.log('修改')
+                            _this.user.sex=_this.sexIndex
+                            _this.$set( _this.user);
                             let url = "come/expert/modify";
                             let msg = {
                                 sex: _this.sexIndex,
@@ -632,8 +630,12 @@
                                 _this.areaName = '';
                             }
                             if(_this.isModify){
-                                //修改
-                                console.log('修改')
+                                _this.user={
+                                    provinceName:_this.provinceName,
+                                    cityName:_this.cityName,
+                                    areaName:_this.areaName
+                                }
+                                _this.$set( _this.user);
                                 let url = "come/expert/modify";
                                 let msg = {
                                     userId:_this.user.id,
