@@ -427,6 +427,10 @@
                             this.cityId= cookie.get('reg_cityId')?cookie.get('reg_cityId'):'';
                             this.areaId= cookie.get('reg_areaId')?cookie.get('reg_areaId'):'';
                         }
+                        console.log(this.sex)
+                        console.log(this.provinceName)
+                        console.log(this.cityName)
+                        console.log(this.areaName)
                     }
                 }, function (error) {
                 });
@@ -605,11 +609,8 @@
                                     (response) => {
                                     }
                                 );
-                        }else{
-                            cookie.set('reg_sex',escape(result[0].label),1)
                         }
-
-
+                        cookie.set('reg_sex',escape(result[0].label),1)
                     }
                 });
             },
