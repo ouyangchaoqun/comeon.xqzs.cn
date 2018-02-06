@@ -558,7 +558,6 @@
                 }
                 let reg_certificateNo = cookie.get('reg_certificateNo')?cookie.get('reg_certificateNo'):'';
                 let reg_certificateFile1 = cookie.get('reg_certificateFile1')?cookie.get('reg_certificateFile1'):'';
-
                 if(_this.isModify==0){
                     url = "come/expert/register";
                     price = _this.reg_price;
@@ -594,7 +593,6 @@
                     certificateNo = _this.isShowInfo.certificateNo;
                     certificateFile1 = _this.isShowInfo.certificateFile1;
                 }
-
                 if(price==''){
                     xqzs.weui.tip('请填写价格')
                     return
@@ -664,6 +662,9 @@
                     nickName:nickName,
                     finish:1
                 };
+                if(_this.isModify==1){
+                    msg.expertId = cookie.get('expertId')
+                }
                 console.log(msg)
 
                 _this.$http.post(web.API_PATH + url, msg)
