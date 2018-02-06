@@ -18,7 +18,7 @@
         </header>
         <div class="step_detailBox" :class="{detailBox_bottom:isModify==1}">
             <ul>
-                <li @click="setLevel()">
+                <li @click="setLevel()" v-if="btnFlag">
                     资质证书
                     <div class="li_right" >
                         <div>
@@ -244,7 +244,7 @@
                 },
                 btnFlag:true,
                 types:'',
-                showTypes:[]
+                showTypes:[],
             }
         },
         props: {
@@ -269,22 +269,28 @@
                     if (data.body.status == 1) {
                         if(data.data.data){
                             let expertId = data.data.data.id;
+                            let status = data.data.data.status;
                             this.getExpertInfo(expertId);
-                            this.btnFlag = false;
                             this.isModify = 1;
-                            if(data.data.data.status==0){
-                                console.log('未认证通过，需要修改');
-                                this.btnFlag = true;
-                            }else if(data.data.data.status!=-1){
-                               this.btnFlag = false;
-                            }else {
+                            if(status==1){
+                                //已认证
+                                console.log('已认证')
                                 this.btnFlag = false;
-                                console.log('已经注册过,修改');
+                            }
+                            if(status==2||status==-1){
+                                //认证中，提交中
+                                console.log('认证中，提交中')
+                                this.btnFlag = false;
+                            }
+                            if(status==0){
+                                //未认证通过，需要修改
+                                console.log('未认证通过，需要修改')
+                                this.btnFlag = true;
                             }
 
                         }else{
-                            this.btnFlag = true;
                             console.log('首次注册');
+                            this.btnFlag = true;
                             this.isModify = 0;
                         }
                     }
