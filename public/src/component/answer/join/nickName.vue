@@ -66,8 +66,6 @@
                         .then(
                             (response) => {
                                 console.log(response)
-                                this.showLoad= true;
-
                             }
                         );
                 }

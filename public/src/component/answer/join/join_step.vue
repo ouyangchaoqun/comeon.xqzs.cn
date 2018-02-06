@@ -35,7 +35,7 @@
                     <div class="li_right" >
                         <div>
                             <template v-if="isModify==0&&reg_nickName==''">请填写昵称</template>
-                            <template >{{reg_nickName}}</template>
+                            <span >{{reg_nickName}}</span>
                         </div>
                         <i></i>
                     </div>
@@ -400,6 +400,7 @@
                     if (data.body.status == 1) {
                         this.isShowInfo = data.data.data||{};
                         console.log(this.isShowInfo)
+
                         if(this.isModify = 1){
                             this.sex = this.user.sex==2?'女':'男';
                             this.provinceName = this.user.provinceName;
