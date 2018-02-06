@@ -433,7 +433,6 @@
                 this.$router.push('./freetime?edit='+ this.isModify)
             },
             changeTime:function (v) {
-                console.log(v)
                 if(v==''){
                     return '请设置免费偷听时间'
                 }
@@ -638,13 +637,15 @@
                 }else if(questionClassId==''){
                     xqzs.weui.tip('请选择擅长领域')
                     return
-                }else if(_this.provinceId==''){
+                }else if(provinceId==''){
                     xqzs.weui.tip('请选择城市')
                     return
-                }else if(sex==''){
+                }else if(sex==null){
                     xqzs.weui.tip('请选择性别')
                     return
                 }
+
+                return
                 let msg = {
                     userId:_this.user.id,
                     id:_this.user.id,
