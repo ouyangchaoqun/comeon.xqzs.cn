@@ -4,8 +4,8 @@
             <div v-title>入驻心理咨询师</div>
             <div class="joinSet_top">
                 <div class="joinSet_cancel" @click="backStep()">取消</div>
-                <div class="joinSet_sure sure_nor" v-if="price==''">确定</div>
-                <div class="joinSet_sure" @click="setPrice()" v-if="price!=''">确定</div>
+                <div class="joinSet_sure sure_nor" v-if="price==''||Number(price)<10">确定</div>
+                <div class="joinSet_sure" @click="setPrice()" v-if="price!=''&&Number(price)>=10">确定</div>
             </div>
             <div class="set_price">
                 <input type="number" class="priceInput" v-model="price"  :value="price" placeholder="设置提问价格（元）例如：¥10">

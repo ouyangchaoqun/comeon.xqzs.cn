@@ -35,8 +35,7 @@
                     <div class="li_right" >
                         <div>
                             <template v-if="isModify==0&&reg_nickName==''">请填写昵称</template>
-                            <template v-if="isModify==0">{{reg_nickName}}</template>
-                            <template v-if="isModify==1">{{isShowInfo.nickName}}</template>
+                            <template >{{reg_nickName}}</template>
                         </div>
                         <i></i>
                     </div>
@@ -359,9 +358,6 @@
             this.getClassList();
         },
         methods: {
-            getCookie:function (v) {
-                return unescape(cookie.get(v))
-            },
             //判断是否入驻，获取入驻信息
             isJoin:function () {
                 this.$http.get(web.API_PATH + 'come/expert/query/detail/by/userId/_userId_' ).then(function (data) {
@@ -412,6 +408,7 @@
                             this.provinceId = this.user.provinceId;
                             this.cityId = this.user.cityId;
                             this.areaId = this.user.areaId;
+                            this.reg_nickName = this.isShowInfo.nickName;
                         }
                     }
                 }, function (error) {
