@@ -3,7 +3,8 @@
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="joinSet_top">
             <div class="joinSet_cancel" @click="backStep()">取消</div>
-            <div class="joinSet_sure" @click="subLevel()">确定</div>
+            <div class="joinSet_sure sure_nor" v-if="jobTitle==''||certificateNo==''||certificateFile1==''">确定</div>
+            <div class="joinSet_sure" @click="subLevel()" v-if="jobTitle!=''&&certificateNo!=''&&certificateFile1!=''">确定</div>
         </div>
         <div class="level_types">
             <div class="level_type" :class="{checked_type:item.name==jobTitle}" v-for="(item,index) in level" @click="getItemClass(index)"  :index="index" >{{item.name}}</div>
@@ -40,10 +41,10 @@
                     {name:'注册系统督导师'},
                     {name:'其它'}
                 ],
-                jobTitle:'',
+                jobTitle:cookie.get('reg_jobTitle')?unescape(cookie.get('reg_jobTitle')):'',
                 certificateFile1:'',
                 certificateFile1Show:'',
-                certificateNo:'',
+                certificateNo:cookie.get('reg_certificateNo')?cookie.get('reg_certificateNo'):'',
                 uploadpicinfo:null,
                 alioss:null,
                 edit:'',
@@ -58,6 +59,13 @@
         mounted: function () {
             this.edit= this.$route.query.edit;
             this.initOss();
+            if(this.jobTitle!=''){
+                for (let i=0;i<this.level.length;i++){
+                    if(this.level[i].name==this.jobTitle){
+                        this.getItemClass(i)
+                    }
+                }
+            }
             if(this.edit==1){
                 this.getExpertInfo();
             }
@@ -77,7 +85,7 @@
                         let fileHeight = parseInt($('.photo_box').height());
                         this.certificateNo = showInfo.certificateNo;
                         this.certificateFile1 = showInfo.certificateFile1;
-                        this.certificateFile1Show = showInfo.certificateFile1+'?x-oss-process=image/resize,m_lfit,,h_'+fileHeight+',w_'+fileWidth;
+                        this.certificateFile1Show = cookie.get('reg_certificateFile1')?cookie.get('reg_certificateFile1')+'?x-oss-process=image/resize,m_lfit,,h_'+fileHeight+',w_'+fileWidth:'';
 
                     }
                 }, function (error) {
@@ -119,35 +127,9 @@
             backStep:function () {
                 this.$router.go(-1)
             },
-            check_step:function (showTip) {
-                let _this = this;
-                let re= true;
-                let tip = '';
-                if(_this.jobTitle==''){
-                    re=false;
-                    tip="请选择资质";
-                }else if(_this.certificateNo==''){
-                    re=false;
-                    tip="请填写证件编号";
-                }
-                else if(_this.certificateFile1==''){
-                    re=false;
-                    tip="请上传证件照";
-                }
-                if(showTip&&!re){
-                    xqzs.weui.tip(tip);
-                }
-                return re;
-            },
-
             subLevel:function () {
                 let _this = this;
-                if(!_this.check_step(true)){
-                    return;
-                }
                 if(_this.edit==1){
-                    //修改
-                    console.log('修改')
                     let url = "come/expert/modify";
                     let msg = {
                         userId:this.user.id,
@@ -168,7 +150,10 @@
                 cookie.set('reg_certificateNo',_this.certificateNo,1)
                 cookie.set('reg_certificateFile1',_this.certificateFile1,1)
                 _this.showLoad= true;
-                _this.$router.go(-1);
+                setTimeout(function () {
+                    _this.$router.go(-1);
+                },300)
+
             }
         },
         components:{

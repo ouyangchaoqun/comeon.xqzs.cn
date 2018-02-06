@@ -4,7 +4,8 @@
             <div v-title>入驻心理咨询师</div>
             <div class="joinSet_top">
                 <div class="joinSet_cancel" @click="backStep()">取消</div>
-                <div class="joinSet_sure" @click="setGoodAt()">确定</div>
+                <div class="joinSet_sure sure_nor" v-if="!canGoNext">确定</div>
+                <div class="joinSet_sure" @click="setGoodAt()" v-if="canGoNext">确定</div>
             </div>
             <div class="goodat_types">
                 <div class="goodat_title">请选择您最擅长的3个领域</div>
@@ -36,6 +37,7 @@
                 expertInfo:{},
                 edit:'',
                 showLoad:false,
+                canGoNext:false,
             }
         },
         props: {
@@ -100,9 +102,6 @@
                     this.canGoNext=true;
                 }else{
                     this.canGoNext=false;
-                    xqzs.weui.tip('请选择您最擅长的领域',function () {
-
-                    })
                 }
                 cookie.set("questionClassId",ids);
             },
@@ -112,8 +111,6 @@
             setGoodAt:function () {
                 this.showLoad = true
                 if(this.edit==1){
-                    //修改
-                    console.log('修改')
                     let url = "come/expert/modify";
                     let msg = {
                         questionClassId: cookie.get("questionClassId").split(","),
