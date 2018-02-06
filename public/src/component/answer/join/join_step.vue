@@ -719,12 +719,10 @@
                 }else if(certificateNo==''){
                     xqzs.weui.tip('请填写证书编号')
                     return
-                }
-                else if(certificateFile1==''){
+                }else if(certificateFile1==''){
                     xqzs.weui.tip('请上传证件照')
                     return
-                }
-                else if(introduction==''){
+                }else if(introduction==''){
                     xqzs.weui.tip('请填写个人简介')
                     return
                 }else if(experience==''){
@@ -733,12 +731,10 @@
                 }else if(goodat==''){
                     xqzs.weui.tip('请填写擅长详情')
                     return
-                }
-                else if(faceUrl==''){
+                } else if(faceUrl==''){
                     xqzs.weui.tip('请上传头像')
                     return
-                }
-                else if(nickName==''){
+                } else if(nickName==''){
                     xqzs.weui.tip('请填写昵称')
                     return
                 }else if(sign==''){
