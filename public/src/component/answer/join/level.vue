@@ -58,8 +58,30 @@
         mounted: function () {
             this.edit= this.$route.query.edit;
             this.initOss();
+            if(this.edit==1){
+                this.getExpertInfo();
+            }
         },
         methods: {
+            getExpertInfo:function () {
+                let expertId = cookie.get('expertId');
+                this.$http.get(web.API_PATH + 'come/expert/query/detail/for/edit/'+expertId+'/_userId_').then(function (data) {
+                    if (data.body.status == 1) {
+                        let showInfo = data.data.data;
+                        for (let i=0;i<this.level.length;i++){
+                            if(this.level[i].name==showInfo.jobTitle){
+                                this.getItemClass(i)
+                            }
+                        }
+                        let fileWidth = parseInt($('.photo_box').width());
+                        let fileHeight = parseInt($('.photo_box').height());
+                        this.certificateNo = showInfo.certificateNo;
+                        this.certificateFile1Show = showInfo.certificateFile1+'?x-oss-process=image/resize,m_lfit,,h_'+fileHeight+',w_'+fileWidth;
+
+                    }
+                }, function (error) {
+                });
+            },
             getItemClass:function (index) {
                 let _this = this;
                 let v = _this.level[index].name

@@ -148,7 +148,7 @@
     .main_lists a.fans i{ background: url("../../../images/answer/fs_icon.png") no-repeat;background-size: 100% 100%;}
     .main_lists a.comment_list i{ background: url("../../../images/answer/pj_icon.png") no-repeat;background-size: 100% 100%;}
     .main_lists a.message i{ background-position: 0 -10.23529411764706rem; }
-    .main_lists a.qualification i{ background-position: 0 -11.94117647058823rem; }
+    .main_lists a.qualification i{background: url("../../../images/answer/update_level_icon.png") no-repeat center; background-size: 1.176471rem}
     .main_lists a:active{background: #eee}
 
 
