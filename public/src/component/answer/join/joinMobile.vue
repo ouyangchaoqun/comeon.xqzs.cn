@@ -258,19 +258,13 @@
     }
 
     .joinmobile_box input {
-        height: 20px;
         outline: none;
-        line-height: 20px;
-        margin-top: 12px;
-    }
-    .joinmobile_box .input_phone {
-        font-size: 15px;
-        color: rgba(36,37,61,1);
-
+        font-size: 0.88235rem;
+        color:RGBA(69, 75, 84, 1);
     }
 
     .joinmobile_box .input_code {
-        font-size: 15px;
+        font-size: 0.88235rem;
         width: 100%;
         color: rgba(36,37,61,1);
     }
