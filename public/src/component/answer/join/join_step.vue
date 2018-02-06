@@ -5,7 +5,7 @@
         <div v-title>入驻心理咨询师</div>
         <header @click="changeHeadpic()">
             <img v-if="isModify==0&&faceUrl==''" src="../../../images/joinHeaderImg.png" alt="">
-            <img v-if="isModify==1" :src="faceUrl" alt="">
+            <img v-if="isModify==1" :src="isShowInfo.faceUrl" alt="">
             <img v-if="isModify==0" :src="faceUrl" alt="">
             <div class="li_right">
                 <div>
@@ -327,6 +327,7 @@
                     let facePath = json.data.path
                     _this.showLoad=false;
                     _this.faceUrl=facePath;
+                    _this.isShowInfo.faceUrl = facePath;
                     if(_this.isModify){
                         //修改
                         console.log('修改')
@@ -549,13 +550,16 @@
             msgSubmit: function () {
 
                 let _this = this;
-                let url, price ,freeTime,jobTitle,introduction,experience,goodat,faceUrl,nickName,sign,provinceId,sex,questionClassId;
+                let url, price ,freeTime,jobTitle,introduction,experience,goodat,faceUrl,nickName,sign,provinceId,sex,questionClassId,certificateNo,certificateFile1;
                 let reg_questionClassId;
                 if(cookie.get("questionClassId")){
                     reg_questionClassId = cookie.get("questionClassId").split(",");
                 }else{
                     reg_questionClassId=''
                 }
+                let reg_certificateNo = cookie.get('reg_certificateNo')?cookie.get('reg_certificateNo'):'';
+                let reg_certificateFile1 = cookie.get('reg_certificateFile1')?cookie.get('reg_certificateFile1'):'';
+
                 if(_this.isModify==0){
                     url = "come/expert/register";
                     price = _this.reg_price;
@@ -567,9 +571,11 @@
                     faceUrl = _this.reg_faceUrl;
                     nickName = _this.reg_nickName;
                     sign = _this.reg_sign;
-                    provinceId:_this.provinceId;
-                    sex:_this.sex;
-                    questionClassId:reg_questionClassId;
+                    provinceId=_this.provinceId;
+                    sex=_this.sex;
+                    questionClassId=reg_questionClassId;
+                    certificateNo=reg_certificateNo;
+                    certificateFile1 = reg_certificateFile1;
                 }
 
                 if(_this.isModify==1){
@@ -586,9 +592,10 @@
                     provinceId = _this.user.provinceId;
                     sex = _this.user.sex;
                     questionClassId = _this.isShowInfo.domains;
+                    certificateNo = _this.isShowInfo.certificateNo;
+                    certificateFile1 = _this.isShowInfo.certificateFile1;
                 }
-                let reg_certificateNo = cookie.get('reg_certificateNo')?cookie.get('reg_certificateNo'):'';
-                let reg_certificateFile1 = cookie.get('reg_certificateFile1')?cookie.get('reg_certificateFile1'):'';
+
 
 
                 if(price==''){
@@ -600,11 +607,11 @@
                 }else if(jobTitle==''){
                     xqzs.weui.tip('请选择资质')
                     return
-                }else if(reg_certificateNo==''){
+                }else if(certificateNo==''){
                     xqzs.weui.tip('请填写证书编号')
                     return
                 }
-                else if(reg_certificateFile1==''){
+                else if(certificateFile1==''){
                     xqzs.weui.tip('请上传证件照')
                     return
                 }
