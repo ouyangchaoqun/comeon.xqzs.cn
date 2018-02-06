@@ -38,6 +38,7 @@
                 edit:'',
                 showLoad:false,
                 canGoNext:false,
+                showTypes:''
             }
         },
         props: {
@@ -47,15 +48,36 @@
         },
         mounted: function () {
             this.edit= this.$route.query.edit;
+//            if(this.edit==1){
+//                this.getExpertInfo()
+//            }
             this.getClassList();
         },
         methods: {
+//            getExpertInfo:function () {
+//                let expertId = cookie.get('expertId');
+//                this.$http.get(web.API_PATH + 'come/expert/query/detail/for/edit/'+expertId+'/_userId_').then(function (data) {
+//                    if (data.body.status == 1) {
+//                        let showInfo = data.data.data;
+//                        for(let i =0;i<showInfo.domains.length;i++){
+//                            this.showTypes+=showInfo.domains[i].classId+','
+//                        }
+//                        console.log(this.showTypes)
+//                    }
+//                }, function (error) {
+//                });
+//            },
             getClassList:function () {
                 let _this=this;
                 _this.$http.get(web.API_PATH + 'come/listen/question/class/list' ).then(function (data) {//es5写法
                     if (data.body.status == 1) {
                         _this.types= data.body.data;
-                        let questionClassId = cookie.get("questionClassId")
+                        let questionClassId;
+                        questionClassId = cookie.get("questionClassId")?cookie.get("questionClassId"):'';
+//                        if(this.edit==1){
+//                            console.log('edit==1')
+//                            questionClassId =_this.showTypes;
+//                        }
                         if(questionClassId&&questionClassId!=''){
                             _this.canGoNext=true;
                             let ids=  questionClassId.split(",")
@@ -103,7 +125,7 @@
                 }else{
                     this.canGoNext=false;
                 }
-                cookie.set("questionClassId",ids);
+                cookie.set("questionClassId",ids,1);
             },
             backStep:function () {
                 this.$router.go(-1)
