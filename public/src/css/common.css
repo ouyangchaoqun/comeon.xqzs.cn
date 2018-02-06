@@ -775,7 +775,7 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
 /*设置入驻资料公共样式*/
 .joinSet_top{
     height:3.5294rem;
-    background: RGBA(69, 75, 84, 0.05);
+    background: RGBA(69, 75, 84, 0.03);
     position: relative;
 }
 .joinSet_top div{
