@@ -6,14 +6,14 @@
                   :bottomHeight="50"
                   :isShowMoreText="isShowMoreText">
 
-            <div class="my_problem_tabs">
-                <div>
-                    <div :class="{my_problem_active:type==2}" @click="changeType(2)">一对一咨询</div>
-                </div>
-                <div>
-                    <div  :class="{my_problem_active:type==1}"  @click="changeType(1)">抢答模式</div>
-                </div>
-            </div>
+            <!--<div class="my_problem_tabs">-->
+                <!--<div>-->
+                    <!--<div :class="{my_problem_active:type==2}" @click="changeType(2)">一对一咨询</div>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<div  :class="{my_problem_active:type==1}"  @click="changeType(1)">抢答模式</div>-->
+                <!--</div>-->
+            <!--</div>-->
 
             <div class="nothing answer" v-if="list.length==0&&!showLoad" >
                 <img src="../../../images/asker/newNoContent.png" alt="">
@@ -27,23 +27,28 @@
                 <!--一对一列表-->
                 <div class="problem_box_active">
                     <ul>
-                        <li class="my_problem_list1" v-for="item in list" v-if="type==2">
-                            <a  @click="goDetail(item.questionId)">
+                        <li class="my_problem_list1" v-for="item in list" >
+                            <a  @click="goDetail(item.questionType,item.questionId)">
                                 <div class="problem_header">
-                                    <img :src="item.faceUrl" alt="">
-                                    <div>{{item.nickName}}</div>
-                                    <div class="wait_Answer wait_style" v-if="item.questionStatus==0">待回答</div>
-                                    <div class="wait_Answer over_style" v-if="item.questionStatus==1">已回答</div>
-                                    <div class="wait_Answer over_style" v-if="item.questionStatus==2">结束</div>
-                                    <div class="wait_Answer nop_style" v-if="item.questionStatus==3">未支付</div>
+                                    <div>{{formatDateText(item.addTime)}}</div>
+                                    <div class="wait_Answer wait_style" v-if="item.questionStatus==0">正在进行</div>
+                                    <!--一对一完成-->
+                                    <div class="wait_Answer over_style" v-if="item.questionType==2&&item.questionStatus==1">已完成</div>
+                                    <!--抢答完成-->
+                                    <div class="wait_Answer over_style" v-if="(item.questionType==1&&item.questionStatus==1)||(item.questionType==1&&item.questionStatus==2&&item.answerCount>0)">已完成</div>
+                                    <!--一对一超时-->
+                                    <div class="wait_Answer over_style" v-if="item.questionType==2&&item.questionStatus==2">已超时</div>
+                                    <!--抢答超时-->
+                                    <div class="wait_Answer over_style" v-if="item.questionType==1&&item.questionStatus==2&&item.answerCount==0">已超时</div>
                                 </div>
                                 <div class="my_problem_content">
                                     {{item.question}}
                                 </div>
                                 <div class="my_problem_bottom">
-                                    <div>{{formatDateText(item.addTime)}}</div>
-                                    <div>听过 {{item.listenTimes}}</div>
-                                    <!--<div class="my_problem_money">收入分成￥{{formatPrice(item.inCome)}}</div>-->
+                                    <div v-if="item.expertFaces.length>0">
+                                        <span>已回答咨询师</span>
+                                        <img v-for="imgSrc in item.expertFaces" :src="imgSrc" alt="">
+                                    </div>
                                 </div>
                             </a>
                         </li>
@@ -51,32 +56,6 @@
                     </ul>
                 </div>
                 <!--抢答列表-->
-                <div>
-                    <ul>
-                        <li class="my_problem_list1" v-if="type==1" v-for="item in list">
-                            <a @click="goRaceDetail(item.questionId)">
-                                <div class="problem_header">
-                                    <!--问题类型：-->
-                                    <img :src="user.faceUrl" alt="">
-                                    <div>{{user.nickName}}</div>
-                                    <div class="wait_Answer wait_style" v-if="item.questionStatus==0">正在进行</div>
-                                    <div class="wait_Answer over_style" v-if="item.questionStatus==1">已回答</div>
-                                    <div class="wait_Answer over_style" v-if="item.questionStatus==2">结束</div>
-                                    <div class="wait_Answer nop_style" v-if="item.questionStatus==3">未支付</div>
-                                </div>
-                                <div class="my_problem_content">
-                                    {{item.question}}
-                                </div>
-                                <div class="my_problem_bottom">
-                                    <div>{{formatDateText(item.addTime)}}</div>
-                                    <div>{{item.answerCount}} 个回答</div>
-                                    <!--<div class="my_problem_money">￥{{formatPrice(item.price)}}</div>-->
-                                </div>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
             </div>
 
         </v-scroll>
@@ -99,7 +78,7 @@
                 isShowMoreText: false,
                 showLoad: false,
                 list: [],
-                type: 2
+                type: 0
             }
         },
         props:{
@@ -120,12 +99,7 @@
         },
         methods: {
             goAsk:function () {
-                if(this.type==2){
-                    this.$router.push("/answer/index");
-                }else{
-                    this.$router.push("/asker/ask");
-                }
-
+                this.$router.push("/asker/ask");
             },
             initActive:function () {
                 var obj =  $(".my_problem_list1")
@@ -137,20 +111,24 @@
             formatDateText: function (time) {
                 return xqzs.dateTime.getTimeFormatText(time)
             },
-            goRaceDetail: function (id) {
-                this.$router.push("/asker/my/ask/race/detail?id=" + id);
+            goDetail: function (questionType,id) {
+                if(questionType==1){
+                    //抢答详情
+                    this.$router.push("/asker/my/ask/race/detail?id=" + id);
+                }else{
+                    //一对一详情
+                    this.$router.push("/asker/my/ask/detail?id=" + id);
+                }
+
             },
-            goDetail: function (id) {
-                this.$router.push("/asker/my/ask/detail?id=" + id);
-            },
-            changeType: function (v) {
-                this.type = v;
-                this.page = 1;
-                this.list = [];
-                this.isPageEnd = false;
-                this.isShowMoreText = false;
-                this.getList();
-            },
+//            changeType: function (v) {
+//                this.type = v;
+//                this.page = 1;
+//                this.list = [];
+//                this.isPageEnd = false;
+//                this.isShowMoreText = false;
+//                this.getList();
+//            },
             getList: function (done) {
 
                 let vm = this;
@@ -167,6 +145,7 @@
                 }
                 vm.isLoading = true;
                 vm.$http.get(vm.rankUrl).then((response) => {
+                    console.log(response)
                     if(done&&typeof(done)==='function'){
                         done()
                     }
@@ -181,7 +160,7 @@
                         Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
                         return;
                     }
-                    let arr = response.data.data.rows;
+                    let arr = response.data.data;
 //
                     if (arr.length < vm.row) {
                         vm.isPageEnd = true;
@@ -305,25 +284,21 @@
     }
 
     .my_problem_bottom {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: flex;
-        position: relative;
         color: rgba(36,37,61,0.5);
         font-size: 0.701588235rem;
         line-height: 1;
+        overflow: hidden;
     }
-    .my_problem_bottom>div{
-        flex-grow: 1;
+    .my_problem_bottom span{
+        margin-right:1.088rem;
     }
-    .my_problem_bottom>div:nth-of-type(2){
-        text-align: right;
-    }
-    .my_problem_bottom .my_problem_money {
-        position: absolute;
-        right: 0;
-        color: #FE7301;
-        margin: 0;
+    .my_problem_bottom img{
+        width: 1.70588rem;
+        height:1.70588rem;
+        border-radius: 50%;
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: -0.5rem;
     }
     .wait_style{color:rgba(36,37,61,1)}
     .nop_style{color:rgba(36,37,61,0.5)}
