@@ -122,7 +122,7 @@
         position: absolute;
         left: 50%;
         margin-left: -40%;
-        top:15%;
+        top:10%;
         padding:0 3%;
     }
     .price_box_notice h2{
