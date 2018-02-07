@@ -114,9 +114,11 @@
             goDetail: function (questionType,id) {
                 if(questionType==1){
                     //抢答详情
+                    console.log('抢答详情')
                     this.$router.push("/asker/my/ask/race/detail?id=" + id);
                 }else{
                     //一对一详情
+                    console.log('一对一详情')
                     this.$router.push("/asker/my/ask/detail?id=" + id);
                 }
 
