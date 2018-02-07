@@ -10,7 +10,8 @@
             <div class="li_right">
                 <div>
                     <span v-if="faceUrl==''" class="tip_color">请上传头像</span>
-                    <template v-if="faceUrl!=''">更换头像</template>
+                    <template v-if="faceUrl!=''&&isModify==0">更换头像</template>
+                    <template v-if="isShowInfo.faceUrl!=''&&isModify==1">更换头像</template>
                 </div>
                 <i></i>
             </div>
