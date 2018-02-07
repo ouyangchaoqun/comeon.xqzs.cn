@@ -442,7 +442,6 @@
                     _this.showLoad=false;
                     _this.faceUrl=facePath;
                     _this.isShowInfo.faceUrl = facePath;
-                    console.log('照片路径')
                     console.log(facePath)
                     if(_this.isModify){
                         //修改
@@ -462,6 +461,20 @@
                             );
                     }
                     cookie.set('reg_faceUrl',facePath,1)
+
+//
+//                    let data ={
+//
+//                        faceUrl: _this.faceUrl,
+//                        expertId:cookie.get("expertId"),
+//                        userId:"_userId_"
+//                    }
+//                    _this.$http.post(web.API_PATH + "come/expert/modify", data)
+//                        .then(function (bt) {
+//                            if (bt.data && bt.data.status == 1) {
+//
+//                            }
+//                        });
                     xqzs.image.hideClip()
                 });
             },
@@ -665,7 +678,7 @@
                     introduction =_this.reg_introduction;
                     experience = _this.reg_experience;
                     goodat = _this.reg_goodat;
-                    faceUrl = _this.reg_faceUrl;
+                    faceUrl = _this.faceUrl;
                     nickName = _this.reg_nickName;
                     sign = _this.reg_sign;
                     provinceId=_this.provinceId;
