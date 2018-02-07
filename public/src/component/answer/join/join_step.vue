@@ -9,8 +9,8 @@
             <img v-if="isModify==0" :src="faceUrl" alt="">
             <div class="li_right">
                 <div>
-                    <span v-if="isModify==0" class="tip_color">请上传头像</span>
-                    <template v-if="isModify==1">更换头像</template>
+                    <span v-if="faceUrl==''" class="tip_color">请上传头像</span>
+                    <template v-if="faceUrl!=''">更换头像</template>
                 </div>
                 <i></i>
             </div>
