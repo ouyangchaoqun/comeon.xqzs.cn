@@ -1,5 +1,5 @@
 <template >
-    <div class="personal_box">
+    <div class="personal_box regcom_Style_back">
         <v-showLoad v-show="showLoad"></v-showLoad>
         <div class="joinstep_background">
             <div v-title>入驻心理咨询师</div>
@@ -9,14 +9,13 @@
                 <div class="joinSet_sure sure_nor" v-if="introduction==''">确定</div>
                 <div class="joinSet_sure" @click="setPersonal()" v-if="introduction!=''">确定</div>
             </div>
-            <div class="text_area">
-            <textarea placeholder="请采用精简的语言介绍自己，以便用户快速地了解您！
-例如：
-国家二级心理咨询师。专注婚恋情感咨询。擅长解
-决恋爱婚姻中的情感创伤疗愈及应对，解决各种情感心理
-纠葛。失恋安抚、恋人挽回、婚姻破裂挽回、婆媳关系处
-理、婚外情等情感问题。幸福并不难，相信我，把问题交
-给我、我们一起敲开幸福的大门。" rows="10" v-model="introduction">{{introduction}}</textarea>
+            <div class="text_area" @click="getFocus()">
+                <div class="placeholder" v-show="placeFlag">
+                    <p>请输入个人简介，展示给用户，不超过200个字</p>
+                    <p>例如：</p>
+                    <p>国家二级心理咨询师。专注婚恋情感咨询。擅长解决恋 爱婚姻中的情感创伤疗愈及应对，解决各种情感心理纠 葛。失恋安抚、恋人挽回、婚姻破裂挽回、婆媳关系处 理、婚外情等情感问题。幸福并不难，相信我，把问题 交给我，我们一起敲开幸福的大门。</p>
+                </div>
+            <textarea rows="10" v-model="introduction" @input="valChange()">{{introduction}}</textarea>
             </div>
         </div>
 
@@ -31,7 +30,8 @@
             return {
                 introduction:cookie.get('reg_introduction')?unescape(cookie.get('reg_introduction')):'',
                 edit:'',
-                showLoad:false
+                showLoad:false,
+                placeFlag:true
             }
         },
         props: {
@@ -45,14 +45,30 @@
             if(this.edit==1){
                 this.getExpertInfo();
             }
+            if(this.introduction==''){
+                this.placeFlag = true
+            }else{
+                this.placeFlag = false
+            }
         },
         methods: {
+            getFocus:function () {
+                $('.text_area textarea').focus()
+            },
+            valChange:function () {
+                if(this.introduction==''){
+                    this.placeFlag = true
+                }else{
+                    this.placeFlag = false
+                }
+            },
             getExpertInfo:function () {
                 let expertId = cookie.get('expertId');
                 this.$http.get(web.API_PATH + 'come/expert/query/detail/for/edit/'+expertId+'/_userId_').then(function (data) {
                     if (data.body.status == 1) {
                         let showInfo = data.data.data;
-                        this.introduction = showInfo.introduction
+                        this.introduction = showInfo.introduction;
+
                     }
                 }, function (error) {
                 });
@@ -97,8 +113,5 @@
     }
 </script>
 <style>
-    .personal_box{background: #fff;}
-    .personal_box .text_area{background: #fff;padding:0.47rem 0.88235rem;}
-    .personal_box .text_area textarea{color:rgba(69, 75, 84, 1);border:0;font-size: 0.8235rem;line-height: 1.176rem;width:100%;height:100%;}
 
 </style>

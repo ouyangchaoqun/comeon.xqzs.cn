@@ -1,5 +1,5 @@
 <template >
-    <div class="personal_box">
+    <div class="personal_box regcom_Style_back">
         <v-showLoad v-show="showLoad"></v-showLoad>
         <div class="joinstep_background">
             <div v-title>入驻心理咨询师</div>
@@ -9,12 +9,17 @@
                 <div class="joinSet_sure sure_nor" v-if="goodat==''">确定</div>
                 <div class="joinSet_sure" @click="setPersonal()" v-if="goodat!=''">确定</div>
             </div>
-            <div class="text_area">
-            <textarea placeholder="请对自己擅长的领域进行描述，不超过200个字
-例如：
-#家庭关系：婚姻挽救、情感修复、外遇分离、家暴危 机、婆媳关系、复婚帮助、离婚纠纷
-#恋爱关系：失恋帮助、性格不合、沟通障碍、经常吵 架、父母反对、异地恋问题
-#性心理：同性恋、恋母情结、偷窥幻想女性、性取向 问题" rows="10" v-model="goodat">{{goodat}}</textarea>
+            <div class="text_area" @click="getFocus()">
+                <div class="placeholder" v-show="placeFlag">
+                    <p>请对自己擅长的领域进行描述，不超过200个字</p>
+                    <p>例如：</p>
+                    <p>#家庭关系：婚姻挽救、情感修复、外遇分离、家暴危 机、婆媳关系、复婚帮助、离婚纠纷</p>
+                    <p>#恋爱关系：失恋帮助、性格不合、沟通障碍、经常吵 架、父母反对、异地恋问题</p>
+                    <p> #性心理：同性恋、恋母情结、偷窥幻想女性、性取向 问题</p>
+                </div>
+                <textarea rows="10" v-model="goodat" @input="valChange()">
+                    {{goodat}}
+                </textarea>
             </div>
         </div>
 
@@ -29,7 +34,8 @@
             return {
                 goodat:cookie.get('reg_goodat')?unescape(cookie.get('reg_goodat')):'',
                 edit:'',
-                showLoad:false
+                showLoad:false,
+                placeFlag:false
             }
         },
         props: {
@@ -42,14 +48,29 @@
             if(this.edit==1){
                 this.getExpertInfo();
             }
+            if(this.goodat==''){
+                this.placeFlag = true
+            }else{
+                this.placeFlag = false
+            }
         },
         methods: {
+            getFocus:function () {
+                $('.text_area textarea').focus()
+            },
+            valChange:function () {
+                if(this.goodat==''){
+                    this.placeFlag = true
+                }else{
+                    this.placeFlag = false
+                }
+            },
             getExpertInfo:function () {
                 let expertId = cookie.get('expertId');
                 this.$http.get(web.API_PATH + 'come/expert/query/detail/for/edit/'+expertId+'/_userId_').then(function (data) {
                     if (data.body.status == 1) {
                         let showInfo = data.data.data;
-                        this.goodat = showInfo.goodat
+                        this.goodat = showInfo.goodat;
                     }
                 }, function (error) {
                 });
@@ -93,8 +114,5 @@
     }
 </script>
 <style>
-    .personal_box{background: #fff;}
-    .personal_box .text_area{background: #fff;padding:0.47rem 0.88235rem;}
-    .personal_box .text_area textarea{color:rgba(69, 75, 84, 1);border:0;font-size: 0.8235rem;line-height: 1.176rem;width:100%;height:100%;}
 
 </style>

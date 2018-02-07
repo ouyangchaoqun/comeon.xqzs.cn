@@ -1,5 +1,5 @@
 <template >
-    <div class="personal_box">
+    <div class="personal_box regcom_Style_back">
         <div class="joinstep_background">
             <div v-title>入驻心理咨询师</div>
 
@@ -8,14 +8,17 @@
                 <div class="joinSet_sure sure_nor" v-if="experience==''">确定</div>
                 <div class="joinSet_sure" @click="setExpe()" v-if="experience!=''">确定</div>
             </div>
-            <div class="text_area">
-            <textarea placeholder="请输入专业培训经历，不超过200字
-例如：
-2007年，研究生主修心理学
-2012年，获得国家二级心理咨询师证书
-2013年，参加NLP生命教练技术、NLP心理咨询培训
-2014年，学习家庭系统排列
-2016年，林昆辉危机干预技术、家庭心理学、SR非事件 心理治疗培训" rows="10" v-model="experience">{{experience}}</textarea>
+            <div class="text_area" @click="getFocus()">
+                <div class="placeholder" v-show="placeFlag">
+                    <p>请输入专业培训经历，不超过200字</p>
+                    <p>例如：</p>
+                    <p>2007年，研究生主修心理学</p>
+                    <p>2012年，获得国家二级心理咨询师证书</p>
+                    <p>2013年，参加NLP生命教练技术、NLP心理咨询培训</p>
+                    <p>2014年，学习家庭系统排列</p>
+                    <p>2016年，林昆辉危机干预技术、家庭心理学、SR非事件 心理治疗培训</p>
+                </div>
+            <textarea rows="10" v-model="experience" @input="valChange()">{{experience}}</textarea>
             </div>
         </div>
 
@@ -29,7 +32,8 @@
         data() {
             return {
                 experience:cookie.get('reg_experience')?unescape(cookie.get('reg_experience')):'',
-                edit:''
+                edit:'',
+                placeFlag:true
             }
         },
         props: {
@@ -43,14 +47,30 @@
             if(this.edit==1){
                 this.getExpertInfo();
             }
+            if(this.experience==''){
+                this.placeFlag = true
+            }else{
+                this.placeFlag = false
+            }
         },
         methods: {
+            getFocus:function () {
+                $('.text_area textarea').focus()
+            },
+            valChange:function () {
+                if(this.experience==''){
+                    this.placeFlag = true
+                }else{
+                    this.placeFlag = false
+                }
+            },
             getExpertInfo:function () {
                 let expertId = cookie.get('expertId');
                 this.$http.get(web.API_PATH + 'come/expert/query/detail/for/edit/'+expertId+'/_userId_').then(function (data) {
                     if (data.body.status == 1) {
                         let showInfo = data.data.data;
-                        this.experience = showInfo.experience
+                        this.experience = showInfo.experience;
+
                     }
                 }, function (error) {
                 });
@@ -92,8 +112,5 @@
     }
 </script>
 <style>
-    .personal_box{background: #fff}
-    .personal_box .text_area{background: #fff;padding:0.47rem 0.88235rem;}
-    .personal_box .text_area textarea{color:rgba(69, 75, 84, 1);border:0;font-size: 0.8235rem;line-height: 1.176rem;width:100%;height:100%;}
 
 </style>

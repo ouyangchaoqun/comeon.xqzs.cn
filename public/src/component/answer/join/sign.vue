@@ -1,5 +1,5 @@
 <template >
-    <div class="sign_box">
+    <div class="sign_box regcom_Style_back">
         <v-showLoad v-show="showLoad"></v-showLoad>
         <div class="joinstep_background">
             <div v-title>入驻心理咨询师</div>
@@ -8,8 +8,8 @@
                 <div class="joinSet_sure sure_nor" v-if="sign==''">确定</div>
                 <div class="joinSet_sure" @click="setSign()" v-if="sign!=''">确定</div>
             </div>
-            <div class="text_area">
-                <div class="placeholder" @click="clickHide()" v-show="placeFlag">
+            <div class="text_area" @click="getFocus()" >
+                <div class="placeholder" v-show="placeFlag">
                     <p>请输入一句话签名，展示给用户，不超过30个字</p>
                     <p>例如：</p>
                     <p>有阴影的地方就会有阳光</p>
@@ -45,11 +45,15 @@
             if(this.edit==1){
                 this.getExpertInfo();
             }
+            if(this.sign==''){
+                this.placeFlag = true
+            }else{
+                this.placeFlag = false
+            }
         },
         methods: {
-            clickHide:function () {
-               this.placeFlag = false;
-            $('.text_area textarea').focus()
+            getFocus:function () {
+                $('.text_area textarea').focus()
             },
             getExpertInfo:function () {
                 let expertId = cookie.get('expertId');
@@ -58,11 +62,7 @@
                         let showInfo = data.data.data;
                         console.log(showInfo)
                         this.sign = showInfo.sign;
-                        if(this.sign==''){
-                            this.placeFlag = true
-                        }else{
-                            this.placeFlag = false
-                        }
+
                     }
                 }, function (error) {
                 });
@@ -110,8 +110,5 @@
     }
 </script>
 <style>
-    .sign_box{background: #fff;}
-    .sign_box .text_area{background: #fff;padding:0.47rem 0.88235rem;position: relative;overflow: hidden}
-    .sign_box .text_area .placeholder{position: absolute;color:RGBA(69, 75, 84, 0.59);font-size: 0.8235rem;width:100%;height:100%;}
-    .sign_box .text_area textarea{color:rgba(69, 75, 84, 1);border:0;font-size: 0.8235rem;line-height: 1.176rem;width:100%;height:100%;}
+
 </style>

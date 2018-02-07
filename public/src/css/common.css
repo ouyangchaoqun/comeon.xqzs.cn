@@ -810,3 +810,9 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
 .joinSet_top .sure_nor{
     background: RGBA(254, 122, 3, 0.4);
 }
+.regcom_Style_back{
+    background: #fff !important;
+}
+.regcom_Style_back .text_area{background: #fff;padding:0.47rem 0.88235rem;position: relative;overflow: hidden}
+.regcom_Style_back .text_area textarea{color:rgba(69, 75, 84, 1);border:0;font-size: 0.8235rem;line-height: 1.176rem;width:100%;height:100%;}
+.regcom_Style_back .text_area .placeholder{position: absolute;color:RGBA(69, 75, 84, 0.59);font-size: 0.8235rem;width:92%;height:100%;}
