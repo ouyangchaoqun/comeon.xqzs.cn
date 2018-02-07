@@ -811,14 +811,14 @@
     .join_stepBox header{padding:0.88235rem;border-bottom: 0.588235rem solid rgba(69, 75, 84, 0.09);line-height: 3.52rem;position: relative}
     .join_stepBox header img{width:3.52rem;height:3.52rem;float: left}
     .detailBox_bottom{margin-bottom: 2rem}
-    .join_stepBox .step_detailBox li{height: 2.94rem;line-height:2.94rem;color:rgba(69, 75, 84, 1);border-bottom: 1px solid rgba(224,224,225,1);padding:0 0.88235rem;font-size: 0.8235rem;position: relative;}
+    .join_stepBox .step_detailBox li{height: 2.88rem;line-height:2.94rem;color:rgba(69, 75, 84, 1);border-bottom: 1px solid rgba(224,224,225,1);padding:0 0.88235rem;font-size: 0.8235rem;position: relative;}
     .join_stepBox .step_detailBox li .li_right{float: right;padding-right:1.5rem;width:55%;color: rgba(69, 75, 84, 1) !important;}
     .li_right>div{ width:100%;text-align: right;font-size: 0.8235rem;color: rgba(69, 75, 84, 0.5); overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
     .join_stepBox .li_right i{background: url('../../../images/join_right_icon.png') no-repeat center;width: 0.5rem;  height: 1rem;  background-size:100%;  position: absolute;  right: 0.88235rem;  top: 50%;margin-top: -0.5rem;  }
     .joinStep_bottom{padding:1.76471rem 0.88235rem;}
     .join_agre{color:rgba(53, 58, 66, 1);font-size: 0.70588rem;line-height: 1rem;margin-bottom: 1.8rem;}
     .join_agre span{color:rgba(255, 99, 0, 1)}
-    .join_sub{height:2.94rem;line-height: 2.94rem;color:rgba(255, 255, 255, 1);background: rgba(254, 122, 3, 1);font-size: 1.0588rem;border-radius:6.17rem;text-align: center }
+    .join_sub{height:2.88rem;line-height: 2.94rem;color:rgba(255, 255, 255, 1);background: rgba(254, 122, 3, 1);font-size: 1.0588rem;border-radius:6.17rem;text-align: center }
     .agre_box{width:86%;position: absolute;top:10%;left:50%;margin-left: -46%;background: #fff;padding:0.88235rem 3%;border-radius: 0.588235rem;height:80%}
     .agre_box h2{color:RGBA(69, 75, 84, 1);font-size: 1.0588rem;line-height: 1.47rem;text-align: center;margin-bottom: 0.88235rem;}
     .agre_box .agre_content{color:RGBA(69, 75, 84, 1);font-size: 0.76471rem;background: RGBA(69, 75, 84, 0.05);padding:0.88235rem 0.764rem;margin-bottom: 1.176rem;height:75%;overflow: auto;line-height: 1.4rem}
