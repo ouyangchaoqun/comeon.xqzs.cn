@@ -18,7 +18,7 @@
                     <p>2014年，学习家庭系统排列</p>
                     <p>2016年，林昆辉危机干预技术、家庭心理学、SR非事件 心理治疗培训</p>
                 </div>
-            <textarea rows="10" v-model="experience" @input="valChange()">{{experience}}</textarea>
+            <textarea rows="10" v-model="experience" @input="valChange()" maxlength="200">{{experience}}</textarea>
             </div>
         </div>
 
