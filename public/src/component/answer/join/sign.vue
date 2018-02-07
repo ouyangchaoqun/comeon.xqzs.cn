@@ -9,7 +9,16 @@
                 <div class="joinSet_sure" @click="setSign()" v-if="sign!=''">确定</div>
             </div>
             <div class="text_area">
-            <textarea v-model="sign" maxlength="25" id="" cols="30" rows="6">{{sign}}</textarea>
+                <div class="placeholder" @click="clickHide()" v-show="placeFlag">
+                    <p>请输入一句话签名，展示给用户，不超过30个字</p>
+                    <p>例如：</p>
+                    <p>有阴影的地方就会有阳光</p>
+                    <p>或：星洲易渡，心河难逾，与你共觅心河止舟</p>
+                    <p>或：恋爱技巧，挽回感情，遭遇婚外情，告别前任</p>
+                </div>
+                <textarea v-model="sign" maxlength="25" id="" cols="30" rows="6" @input="valChange()">
+
+                </textarea>
             </div>
         </div>
     </div>
@@ -22,8 +31,8 @@
             return {
                 sign:cookie.get('reg_sign')?unescape(cookie.get('reg_sign')):'',
                 edit:'',
-                showLoad:false
-
+                showLoad:false,
+                placeFlag:true
             }
         },
         props: {
@@ -38,16 +47,32 @@
             }
         },
         methods: {
+            clickHide:function () {
+               this.placeFlag = false;
+            $('.text_area textarea').focus()
+            },
             getExpertInfo:function () {
                 let expertId = cookie.get('expertId');
                 this.$http.get(web.API_PATH + 'come/expert/query/detail/for/edit/'+expertId+'/_userId_').then(function (data) {
                     if (data.body.status == 1) {
                         let showInfo = data.data.data;
                         console.log(showInfo)
-                        this.sign = showInfo.sign
+                        this.sign = showInfo.sign;
+                        if(this.sign==''){
+                            this.placeFlag = true
+                        }else{
+                            this.placeFlag = false
+                        }
                     }
                 }, function (error) {
                 });
+            },
+            valChange:function () {
+                if(this.sign==''){
+                    this.placeFlag = true
+                }else{
+                    this.placeFlag = false
+                }
             },
             backStep:function () {
                 this.$router.go(-1)
@@ -86,10 +111,7 @@
 </script>
 <style>
     .sign_box{background: #fff;}
-    .sign_box .text_area{background: #fff;padding:0.47rem 0.88235rem;}
+    .sign_box .text_area{background: #fff;padding:0.47rem 0.88235rem;position: relative;overflow: hidden}
+    .sign_box .text_area .placeholder{position: absolute;color:RGBA(69, 75, 84, 0.59);font-size: 0.8235rem;width:100%;height:100%;}
     .sign_box .text_area textarea{color:rgba(69, 75, 84, 1);border:0;font-size: 0.8235rem;line-height: 1.176rem;width:100%;height:100%;}
-    .sign_box .text_area textarea::-webkit-input-placeholder:after{
-        content: '请输入一句话签名，展示给用户，不超过30个字\A例如：\A有阴影的地方就会有阳光\A或：星洲易渡，心河难逾，与你共觅心河止舟\A或：恋爱技巧，挽回感情，遭遇婚外情，告别前任';
-        display: block;
-    }
 </style>
