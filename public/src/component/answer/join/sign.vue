@@ -74,6 +74,9 @@
                 });
             },
             valChange:function () {
+                console.log('text改变')
+                console.log(this.sign)
+                console.log($('.placeholder').html())
                 if(this.sign==''){
                     this.placeFlag = true
                 }else{
