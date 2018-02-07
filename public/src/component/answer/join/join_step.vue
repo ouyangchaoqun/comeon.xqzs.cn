@@ -5,8 +5,8 @@
         <div v-title>入驻心理咨询师</div>
         <header @click="changeHeadpic()">
             <img v-if="isModify==0&&faceUrl==''" src="../../../images/joinHeaderImg.png" alt="">
-            <img v-if="isModify==1" :src="isShowInfo.faceUrl" alt="">
             <img v-if="isModify==0" :src="faceUrl" alt="">
+            <img v-if="isModify==1" :src="isShowInfo.faceUrl" alt="">
             <div class="li_right">
                 <div>
                     <span v-if="faceUrl==''" class="tip_color">请上传头像</span>
@@ -442,6 +442,8 @@
                     _this.showLoad=false;
                     _this.faceUrl=facePath;
                     _this.isShowInfo.faceUrl = facePath;
+                    console.log('照片路径')
+                    console.log(facePath)
                     if(_this.isModify){
                         //修改
                         console.log('修改')
@@ -452,6 +454,7 @@
                             expertId:cookie.get('expertId'),
                             faceUrl: facePath,
                         };
+                        console.log(msg)
                         _this.$http.post(web.API_PATH + url, msg)
                             .then(
                                 (response) => {
@@ -459,20 +462,6 @@
                             );
                     }
                     cookie.set('reg_faceUrl',facePath,1)
-
-//
-//                    let data ={
-//
-//                        faceUrl: _this.faceUrl,
-//                        expertId:cookie.get("expertId"),
-//                        userId:"_userId_"
-//                    }
-//                    _this.$http.post(web.API_PATH + "come/expert/modify", data)
-//                        .then(function (bt) {
-//                            if (bt.data && bt.data.status == 1) {
-//
-//                            }
-//                        });
                     xqzs.image.hideClip()
                 });
             },
