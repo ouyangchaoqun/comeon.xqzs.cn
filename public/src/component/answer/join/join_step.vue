@@ -551,7 +551,7 @@
                 if(v==null||v==''){
                     return ''
                 }
-                if (Number(v)==30){
+                if (Number(v)<30){
                     return '不免费'
                 }
                 if(Number(v)<=30){
