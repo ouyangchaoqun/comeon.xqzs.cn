@@ -223,6 +223,7 @@
 <style type="text/css">
     .code_left{
         width:50%;
+        height:100%;
         float: left;
         background: #fff;
         border-radius: 0.294rem;
@@ -274,12 +275,15 @@
         outline: none;
         font-size: 0.88235rem;
         color:RGBA(69, 75, 84, 1);
+        height:100%;
+        width:100%;
     }
 
     .joinmobile_box .input_code {
         font-size: 0.88235rem;
         width: 100%;
         color: rgba(36,37,61,1);
+        height:100%;
     }
 
     .joinmobile_box .validate_div {
