@@ -9,7 +9,7 @@
             <img v-if="isModify==0" :src="faceUrl" alt="">
             <div class="li_right">
                 <div>
-                    <template v-if="isModify==0">请上传头像</template>
+                    <span v-if="isModify==0" class="tip_color">请上传头像</span>
                     <template v-if="isModify==1">更换头像</template>
                 </div>
                 <i></i>
@@ -22,7 +22,7 @@
                     资质证书
                     <div class="li_right" >
                         <div>
-                            <template v-if="isModify==0&&reg_jobTitle==''">请选择资质</template>
+                            <span v-if="isModify==0&&reg_jobTitle==''" class="tip_color">请填写</span>
                             <template v-if="isModify==0">{{reg_jobTitle}}</template>
                             <template v-if="isModify==1">{{isShowInfo.jobTitle}}</template>
                         </div>
@@ -34,7 +34,7 @@
                     咨询师昵称
                     <div class="li_right" >
                         <div>
-                            <template v-if="isModify==0&&reg_nickName==''">请填写昵称</template>
+                            <span v-if="isModify==0&&reg_nickName==''" class="tip_color">请填写</span>
                             <template v-if="isModify==0">{{reg_nickName}}</template>
                             <template v-if="isModify==1">{{isShowInfo.nickName}}</template>
                         </div>
@@ -46,7 +46,7 @@
                     手机号码
                     <div class="li_right" >
                         <div>
-                            <template v-if="isModify==0&&reg_mobile==''">请填写手机号</template>
+                            <span v-if="isModify==0&&reg_mobile==''" class="tip_color">请填写</span>
                             <template v-if="isModify==0">{{reg_mobile}}</template>
                             <template v-if="isModify==1">{{user.mobile}}</template>
                         </div>
@@ -58,7 +58,7 @@
                     性别
                     <div class="li_right">
                         <div>
-                            <template v-if="isModify==0&&sex==''">请选择性别</template>
+                            <span v-if="isModify==0&&sex==''" class="tip_color">请填写</span>
                             <template>{{sex}}</template>
                         </div>
 
@@ -70,7 +70,7 @@
                     所在城市
                     <div class="li_right">
                         <div>
-                            <span v-if="isModify==0&&provinceName==''">请选择所在城市</span>
+                            <span v-if="isModify==0&&provinceName==''" class="tip_color">请填写</span>
                             <template v-if="provinceName!=''">
                                 <span>{{provinceName}}</span>
                                 <span>{{cityName}}</span>
@@ -85,7 +85,7 @@
                    一句话签名
                     <div class="li_right" >
                         <div>
-                            <template v-if="isModify==0&&reg_sign==''">请填写个人签名</template>
+                            <span v-if="isModify==0&&reg_sign==''" class="tip_color">请填写</span>
                             <template v-if="isModify==0">{{reg_sign}}</template>
                             <template v-if="isModify==1">{{isShowInfo.sign}}</template>
                         </div>
@@ -97,7 +97,7 @@
                     个人简介
                     <div class="li_right" >
                         <div>
-                            <template v-if="isModify==0&&reg_introduction==''">请填写个人简介</template>
+                            <span v-if="isModify==0&&reg_introduction==''" class="tip_color">请填写</span>
                             <template v-if="isModify==0">{{reg_introduction}}</template>
                             <template v-if="isModify==1">{{isShowInfo.introduction}}</template>
                         </div>
@@ -109,7 +109,7 @@
                     擅长领域
                     <div class="li_right" >
                         <div>
-                            <template v-if="isModify==0&&showTypes.length==0">选择自己擅长的领域</template>
+                            <span v-if="isModify==0&&showTypes.length==0" class="tip_color">请填写</span>
                             <template v-if="isModify==1&&isShowInfo.domains">
                                 <span v-for="item in isShowInfo.domains" style="margin-left: 0.294rem">{{item.title}}</span>
                             </template>
@@ -125,7 +125,7 @@
                     擅长领域描述
                     <div class="li_right" >
                         <div>
-                            <template v-if="isModify==0&&reg_goodat==''">请描述自己擅长的领域</template>
+                            <span v-if="isModify==0&&reg_goodat==''" class="tip_color">请填写</span>
                             <template v-if="isModify==0">{{reg_goodat}}</template>
                             <template v-if="isModify==1">{{isShowInfo.goodat}}</template>
                         </div>
@@ -137,7 +137,7 @@
                     专业培训经历
                     <div class="li_right" >
                         <div>
-                            <template v-if="isModify==0&&reg_experience==''">请填写培训经历</template>
+                            <span v-if="isModify==0&&reg_experience==''" class="tip_color">请填写</span>
                             <template v-if="isModify==0">{{reg_experience}}</template>
                             <template v-if="isModify==1">{{isShowInfo.experience}}</template>
                         </div>
@@ -149,8 +149,8 @@
                     提问酬金
                     <div class="li_right" >
                         <div>
-                            <template v-if="isModify==0&&reg_price==''">请设置提问酬金</template>
-                            <template v-if="isModify==0">{{reg_price}}</template>
+                            <span v-if="isModify==0&&reg_price==''" class="tip_color">请填写</span>
+                            <template v-if="isModify==0&&reg_price!=''">{{reg_price}}</template>
                             <template v-if="isModify==1">{{isShowInfo.price}}</template>
                         </div>
                         <i></i>
@@ -161,6 +161,7 @@
                     限时免费偷听时间
                     <div class="li_right" >
                         <div>
+                            <span class="tip_color" v-if="isModify==0&&reg_freeTime==''">请填写</span>
                             <template v-if="isModify==0">{{changeTime(reg_freeTime)}}</template>
                             <template v-if="isModify==1">{{changeTime(isShowInfo.freeTime)}}</template>
                         </div>
@@ -337,9 +338,7 @@
                 agreFlag:false,
                 questionClassId:[],
                 isModify:0,
-                isShowInfo:{
-                    freeTime:''
-                },
+                isShowInfo:{},
                 btnFlag:true,
                 types:'',
                 showTypes:[],
@@ -546,10 +545,10 @@
                 this.$router.push('./freetime?edit='+ this.isModify)
             },
             changeTime:function (v) {
-                if(v==''){
-                    return '请设置免费偷听时间'
+                if(v==null||v==''){
+                    return ''
                 }
-                if(v==0){
+                if (Number(v)==30){
                     return '不免费'
                 }
                 if(Number(v)<=30){
@@ -804,13 +803,14 @@
 </script>
 <style>
     .join_stepBox{background: #fff;}
+    .join_stepBox .li_right .tip_color{color:RGBA(254, 122, 3, 0.6)}
     .join_stepBox .li_right{float: right;padding-right: 1.5rem;}
     .join_stepBox header{padding:0.88235rem;border-bottom: 0.588235rem solid rgba(69, 75, 84, 0.09);line-height: 3.52rem;position: relative}
     .join_stepBox header img{width:3.52rem;height:3.52rem;float: left}
     .detailBox_bottom{margin-bottom: 2rem}
-    .join_stepBox .step_detailBox li{height: 2.94rem;line-height:2.94rem;color:rgba(69, 75, 84, 0.7);border-bottom: 1px solid rgba(224,224,225,1);padding:0 0.88235rem;font-size: 0.8235rem;position: relative;}
+    .join_stepBox .step_detailBox li{height: 2.94rem;line-height:2.94rem;color:rgba(69, 75, 84, 1);border-bottom: 1px solid rgba(224,224,225,1);padding:0 0.88235rem;font-size: 0.8235rem;position: relative;}
     .join_stepBox .step_detailBox li .li_right{float: right;padding-right:1.5rem;width:55%;color: rgba(69, 75, 84, 1) !important;}
-    .li_right>div{ width:100%;text-align: right;font-size: 0.8235rem;color: rgba(69, 75, 84, 1); overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+    .li_right>div{ width:100%;text-align: right;font-size: 0.8235rem;color: rgba(69, 75, 84, 0.5); overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
     .join_stepBox .li_right i{background: url('../../../images/arrow.png');width: 0.94rem;  height: 0.94rem;  background-size: 0.94rem;  position: absolute;  right: 0.88235rem;  top: 50%;margin-top: -0.47rem;  }
     .joinStep_bottom{padding:1.76471rem 0.88235rem;}
     .join_agre{color:rgba(53, 58, 66, 1);font-size: 0.70588rem;line-height: 1rem;margin-bottom: 1.8rem;}

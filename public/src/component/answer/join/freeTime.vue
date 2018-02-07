@@ -4,8 +4,8 @@
             <div v-title>入驻心理咨询师</div>
             <div class="joinSet_top">
                 <div class="joinSet_cancel" @click="backStep()">取消</div>
-                <div class="joinSet_sure sure_nor" v-if="checkedIndex==''">确定</div>
-                <div class="joinSet_sure" @click="setFreeTime()" v-if="checkedIndex!=''">确定</div>
+                <div class="joinSet_sure sure_nor" v-if="checkedIndex<0">确定</div>
+                <div class="joinSet_sure" @click="setFreeTime()" v-if="checkedIndex>=0">确定</div>
             </div>
             <div class="time_type">
                 <div class="time_typeTitle"></div>
@@ -60,7 +60,7 @@
                     value: 1440,
                     isSelect:false
                 }],
-                checkedIndex:'',
+                checkedIndex:-1,
                 freeTime:'',
                 showLoad:false
             }

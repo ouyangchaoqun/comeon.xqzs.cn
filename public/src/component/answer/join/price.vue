@@ -96,7 +96,7 @@
                             }
                         );
                 }
-                cookie.set('reg_price',_this.price,1)
+                cookie.set('reg_price',parseInt(_this.price),1)
                 _this.showLoad = true;
                 setTimeout(function () {
                     _this.$router.go(-1);
