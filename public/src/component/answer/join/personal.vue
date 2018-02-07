@@ -15,7 +15,7 @@
                     <p>例如：</p>
                     <p>国家二级心理咨询师。专注婚恋情感咨询。擅长解决恋 爱婚姻中的情感创伤疗愈及应对，解决各种情感心理纠 葛。失恋安抚、恋人挽回、婚姻破裂挽回、婆媳关系处 理、婚外情等情感问题。幸福并不难，相信我，把问题 交给我，我们一起敲开幸福的大门。</p>
                 </div>
-            <textarea rows="10" v-model="introduction" @input="valChange()">{{introduction}}</textarea>
+            <textarea rows="10" v-model="introduction" v-on:keyup="valChange()">{{introduction}}</textarea>
             </div>
         </div>
 
@@ -68,7 +68,11 @@
                     if (data.body.status == 1) {
                         let showInfo = data.data.data;
                         this.introduction = showInfo.introduction;
-
+                        if(this.introduction==''){
+                            this.placeFlag = true
+                        }else{
+                            this.placeFlag = false
+                        }
                     }
                 }, function (error) {
                 });

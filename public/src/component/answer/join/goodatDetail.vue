@@ -17,7 +17,7 @@
                     <p>#恋爱关系：失恋帮助、性格不合、沟通障碍、经常吵 架、父母反对、异地恋问题</p>
                     <p> #性心理：同性恋、恋母情结、偷窥幻想女性、性取向 问题</p>
                 </div>
-                <textarea rows="10" v-model="goodat" @input="valChange()">
+                <textarea rows="10" v-model="goodat" v-on:keyup="valChange()">
                     {{goodat}}
                 </textarea>
             </div>
@@ -71,6 +71,11 @@
                     if (data.body.status == 1) {
                         let showInfo = data.data.data;
                         this.goodat = showInfo.goodat;
+                        if(this.goodat==''){
+                            this.placeFlag = true
+                        }else{
+                            this.placeFlag = false
+                        }
                     }
                 }, function (error) {
                 });

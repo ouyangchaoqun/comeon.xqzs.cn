@@ -16,7 +16,7 @@
                     <p>或：星洲易渡，心河难逾，与你共觅心河止舟</p>
                     <p>或：恋爱技巧，挽回感情，遭遇婚外情，告别前任</p>
                 </div>
-                <textarea v-model="sign" maxlength="25" id="" cols="30" rows="6" @input="valChange()">
+                <textarea v-model="sign" maxlength="25" id="" cols="30" rows="6" v-on:keyup="valChange()">
 
                 </textarea>
             </div>
@@ -62,6 +62,12 @@
                         let showInfo = data.data.data;
                         console.log(showInfo)
                         this.sign = showInfo.sign;
+                        if(this.sign==''){
+                            this.placeFlag = true
+                        }else{
+                            this.placeFlag = false
+                        }
+
 
                     }
                 }, function (error) {
