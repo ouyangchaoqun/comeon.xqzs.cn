@@ -35,7 +35,8 @@
                     <div class="li_right" >
                         <div>
                             <template v-if="isModify==0&&reg_nickName==''">请填写昵称</template>
-                            <template>{{reg_nickName}}</template>
+                            <template v-if="isModify==0">{{reg_nickName}}</template>
+                            <template v-if="isModify==1">{{isShowInfo.nickName}}</template>
                         </div>
                         <i></i>
                     </div>
@@ -369,7 +370,7 @@
                                 this.getExpertInfo(expertId);
                             }
 
-                            this.isModify = 1;
+                            this.isModify = 1;//修改
                             if(status==1){
                                 //已认证
                                 console.log('已认证')
@@ -400,8 +401,10 @@
             getExpertInfo:function (expertId) {
                 this.$http.get(web.API_PATH + 'come/expert/query/detail/for/edit/'+expertId+'/_userId_').then(function (data) {
                     if (data.body.status == 1) {
-                        this.isShowInfo = data.data.data||{};
-                        if(this.isModify = 1){
+                        this.isShowInfo = data.data.data;
+                        console.log('获取修改信息')
+                        console.log(this.isShowInfo)
+                        if(this.isShowInfo){
                             this.sex = this.user.sex==2?'女':'男';
                             this.provinceName = this.user.provinceName;
                             this.cityName = this.user.cityName;
@@ -409,7 +412,6 @@
                             this.provinceId = this.user.provinceId;
                             this.cityId = this.user.cityId;
                             this.areaId = this.user.areaId;
-                            this.reg_nickName = this.isShowInfo.nickName;
                         }
                     }
                 }, function (error) {
