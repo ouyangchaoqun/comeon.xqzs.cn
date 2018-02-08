@@ -479,26 +479,35 @@
         text-align: left;
     }
     .problem_assess_input{
-        padding: 0 0.88235rem 1.6471rem 0.88235rem;
+        width:92%;
+        margin: 0 auto;
         position: relative;
+        height:6.6rem;
+        background: #EBEBEC;
+        border-radius: 5px;
+        overflow: hidden;
+        margin-bottom: 1.88rem;
+
     }
     .problem_assess_input .comment_anonymous{
         position: absolute;
-        bottom:2.1rem;
-        right:1.5rem;
+        bottom:0.294rem;
+        right:3%;
         color:RGBA(69, 75, 84, 0.49);
         font-size: 0.70588rem;
         line-height: 1rem;
         background: url("../../../images/asker/user_income_no.png") no-repeat left center;
-        background-size: 0.70588rem;
+        background-size: 0.8235rem;
         padding-left: 1rem;
+        height:1rem;
+        z-index: 1000;
     }
     .problem_assess_input .comment_anonymous_on{
         background: url("../../../images/asker/user_income_on.png") no-repeat left center;
-        background-size: 0.70588rem;
+        background-size: 0.8235rem;
     }
     .problem_assess_item textarea{
-        height:4.1176471rem;
+        height:4rem;
         background: #EBEBEC;
         resize: none;
         border:0;
@@ -506,8 +515,7 @@
         width:94%;
         font-size: 0.70588rem;
         color: rgba(36,37,61,1);
-        border-radius: 5px;
-        padding:5% 3%;
+        padding:3% 3%;
         line-height: 1.6;
         letter-spacing: 2px;
     }

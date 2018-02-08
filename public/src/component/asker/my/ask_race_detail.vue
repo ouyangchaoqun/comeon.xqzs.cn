@@ -351,17 +351,17 @@
     }
 </script>
 <style>
-     .comment_box2 .stars{ display: flex}
+     .comment_box2 .stars{ display: flex;margin-bottom: 1.1rem}
      .comment_box2 .stars li{ flex:1;}
      .comment_box2 .stars li .star{ background: url(../../../images/asker/ask_rack_comment_star.png) center no-repeat ; background-size:  1.4rem;;height:1.4rem; width: 1.4rem; color:#999; width: 100%; margin-bottom: 0.3rem; }
      .comment_box2 .stars li .text{color:#999 ; font-size: 0.7088235rem; text-align: center}
      .comment_box2 .stars li.on .star{background: url(../../../images/asker/ask_rack_comment_star_on.png) center no-repeat ; background-size:  1.4rem;}
      .comment_box2 .stars li.on .text{ color:#ffaa00}
 
-     .comment_box2 .textarea{ width: 100%; margin-top: 1.1rem; padding-bottom: 0.3rem;position: relative}
-     .comment_box2 .textarea .anFlag{position: absolute;right:4%;bottom:0.88235rem;color:RGBA(69, 75, 84, 0.49);font-size: 0.70588rem;background: url("../../../images/asker/user_income_no.png")no-repeat left center;background-size: 0.70588rem;padding-left: 1rem;line-height: 1rem;z-index:1000}
-     .comment_box2 .textarea .anFlag_on{background: url("../../../images/asker/user_income_on.png")no-repeat left center;background-size: 0.70588rem;}
-     .comment_box2 .textarea  textarea{ background: #f1f1f1; border-radius: 0.2rem; border: none; width: 92% ; padding: 0.88235rem 4% ; font-size: 0.88235rem; line-height: 1.2rem; height: 4rem;}
+     .comment_box2 .textarea{ width: 100%; height:7rem;position: relative;background: #f1f1f1; border-radius: 0.2rem;overflow: hidden;margin-bottom: 0.3rem; }
+     .comment_box2 .textarea .anFlag{position: absolute;right:0.294rem;bottom:0.294rem;color:RGBA(69, 75, 84, 0.49);font-size: 0.70588rem;background: url("../../../images/asker/user_income_no.png")no-repeat left center;background-size: 0.8235rem;padding-left: 1rem;line-height: 1rem;z-index:1000;height:1rem;}
+     .comment_box2 .textarea .anFlag_on{background: url("../../../images/asker/user_income_on.png") no-repeat left center;background-size: 0.8235rem;}
+     .comment_box2 .textarea  textarea{ border: none; width: 92% ;font-size: 0.88235rem; line-height: 1.2rem; height: 5rem;background: #f1f1f1;padding-top: 0.588rem;}
 
 
     .rob_problem .rob_lists li{ position: relative}
