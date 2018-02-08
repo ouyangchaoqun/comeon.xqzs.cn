@@ -72,7 +72,7 @@
 
 
         <!--匿名评价-->
-        <div class="problem_assess" v-if="detail.answers&&detail.answers.length>0&&detail.answers[0].evaluate&&detail.answers[0].evaluate.id==null"><!---->
+        <div class="problem_assess" v-if="detail.answers&&detail.answers.length>0&&detail.answers[0].evaluate&&detail.answers[0].evaluate.id==null&&!isOver"><!---->
             <h4>评价</h4>
             <div class="star">
                 <div v-for="(item,index) in comText">
@@ -87,12 +87,13 @@
                     <div class="comment_anonymous" :class="{comment_anonymous_on:anonFlag}" @click="getAnony()">
                         匿名
                     </div>
-                    <textarea v-show="!isOver" placeholder="您的反馈将影响咨询师" @input="contentChange()" id="content"></textarea>
-                    <div class="addIsOverHtml" v-show="isOver">{{contentOver}}</div>
+                    <textarea placeholder="分享你的咨询感受" id="content"></textarea>
+                    <!--<div class="addIsOverHtml" v-show="isOver">{{contentOver}}</div>-->
                 </div>
             </div>
-            <div v-show="!isOver" class="problem_assess_btn">
-                <div class="weui-btn weui-btn_disabled weui-btn_primary" @click="comment()">提交</div>
+            <div class="problem_assess_btn">
+                <div class="weui-btn weui-btn_disabled weui-btn_primary" v-if="point==0">提交</div>
+                <div class="weui-btn weui-btn_primary"  @click="comment()" v-if="point>0">提交</div>
             </div>
         </div>
     </div>
@@ -254,17 +255,8 @@
             formatTimeLastText:function (time) {
                 return xqzs.dateTime.getTimeFormatLastText(time)
             },
-            contentChange:function(){
-                let content = $("#content").val();
-                if(content.length>0){
-                    $('.problem_assess_btn .weui-btn').removeClass('weui-btn_disabled')
-                }else{
-                    $('.problem_assess_btn .weui-btn').addClass('weui-btn_disabled')
-                }
-            },
             comment:function () {
                 let that=this;
-                that.showLoad = true;
                 let content = $("#content").val();
                 let anonyVal;
                 if(this.anonFlag){
@@ -272,7 +264,7 @@
                 }else{
                     anonyVal = 0;
                 }
-                that.contentOver = content;
+                //that.contentOver = content;
                 if(this.point==0){
                     xqzs.weui.toast('fail',"请选择分数",function () {
 
@@ -298,16 +290,11 @@
 //                    return;
 //                }
 
-
-
-
-
                 that.$http.put(web.API_PATH + "come/user/evaluate/answer", {userId:"_userId_",answerId:this.detail.bestAnswerId, point:this.point,content:content,isAnonymous:anonyVal})
                     .then(function (bt) {
                         if (bt.data && bt.data.status == 1) {
                             xqzs.weui.toast("success","评论成功",function () {
                                 that.isOver = true;
-                                that.showLoad = false;
                                 console.log(that.isOver)
 //                                window.location.href=window.location.href
                             })
