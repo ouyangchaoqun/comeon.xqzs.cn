@@ -35,7 +35,7 @@
                     <div class="info">
                         <div class="name">
                             <template v-if="item.isAnonymous==0">{{item.nickName}}</template>
-                            <template v-if="item.isAnonymous==1">匿名</template>
+                            <template v-if="item.isAnonymous==1">匿名用户</template>
                             <span class="time">{{formatTime(item.addTime)}}</span>
                         </div>
                         <div class="star"><span class="on" v-for="i in item.point"></span><span   v-for="i in 5-item.point"></span>

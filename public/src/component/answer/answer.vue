@@ -12,7 +12,7 @@
             <div class="info">
                 <div class="names">
                     <span v-if="detail.isAnonymous==0">{{detail.nickname}}</span>
-                    <span v-if="detail.isAnonymous==1">匿名</span>
+                    <span v-if="detail.isAnonymous==1">匿名用户</span>
                     <div class="price">￥{{detail.price}}</div>
                 </div>
                 <div class="content">{{detail.content}}</div>

@@ -1,7 +1,6 @@
 <template >
     <div style="height: 100%" class="answer_ask_list_box"  :class="{wbg:list.length==0&&!showLoad}">
         <v-showLoad v-if="showLoad"></v-showLoad>
-        <div v-title>待答</div>
         <div class="nothing comment" v-if="list.length==0">
             <div>
                 <img src="../../images/asker/newNoContent.png" alt="">
@@ -24,7 +23,7 @@
                     <div class="info">
                         <div class="names">
                             <span v-if="item.isAnonymous==0">{{item.nickName}}</span>
-                            <span v-if="item.isAnonymous==1">匿名</span>
+                            <span v-if="item.isAnonymous==1">匿名用户</span>
                             <div class="price">酬金￥{{item.price}}</div>
                         </div>
                         <div class="content">{{item.content}}

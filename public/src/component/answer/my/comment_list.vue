@@ -28,7 +28,7 @@
                             <div class="info">
                                 <div class="name">
                                     <span v-if="item.isAnonymous==0">{{item.nickName}}</span>
-                                    <span v-if="item.isAnonymous==1">匿名</span>
+                                    <span v-if="item.isAnonymous==1">匿名用户</span>
                                     评价了我的回答</div>
                                 <div class="star"><span class="on" v-for="i in item.point"></span><span   v-for="i in 5-item.point"></span></div>
                                 <div class="content">
