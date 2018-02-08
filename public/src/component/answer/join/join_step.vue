@@ -17,7 +17,7 @@
             </div>
             <div style="clear: both"></div>
         </header>
-        <div class="step_detailBox" :class="{detailBox_bottom:isModify==1}">
+        <div class="step_detailBox">
             <ul>
                 <li @click="setLevel()" v-if="btnFlag">
                     资质证书
@@ -810,12 +810,12 @@
     .join_stepBox .li_right{float: right;padding-right: 1.5rem;}
     .join_stepBox header{padding:0.88235rem;border-bottom: 0.588235rem solid rgba(69, 75, 84, 0.09);line-height: 3.52rem;position: relative}
     .join_stepBox header img{width:3.52rem;height:3.52rem;float: left}
-    .detailBox_bottom{margin-bottom: 2rem}
+    .step_detailBox{margin-bottom: 2rem}
     .join_stepBox .step_detailBox li{height: 2.88rem;line-height:2.94rem;color:rgba(69, 75, 84, 1);border-bottom: 1px solid rgba(224,224,225,1);padding:0 0.88235rem;font-size: 0.8235rem;position: relative;}
     .join_stepBox .step_detailBox li .li_right{float: right;padding-right:1.5rem;width:55%;color: rgba(69, 75, 84, 1) !important;}
     .li_right>div{ width:100%;text-align: right;font-size: 0.8235rem;color: rgba(69, 75, 84, 0.5); overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
     .join_stepBox .li_right i{background: url('../../../images/join_right_icon.png') no-repeat center;width: 0.5rem;  height: 1rem;  background-size:100%;  position: absolute;  right: 0.88235rem;  top: 50%;margin-top: -0.5rem;  }
-    .joinStep_bottom{padding:1.76471rem 0.88235rem;}
+    .joinStep_bottom{padding:1.76471rem 0.88235rem;padding-top: 0}
     .join_agre{color:rgba(53, 58, 66, 1);font-size: 0.70588rem;line-height: 1rem;margin-bottom: 1.8rem;}
     .join_agre span{color:rgba(255, 99, 0, 1)}
     .join_sub{height:2.88rem;line-height: 2.94rem;color:rgba(255, 255, 255, 1);background: rgba(254, 122, 3, 1);font-size: 1.0588rem;border-radius:6.17rem;text-align: center }

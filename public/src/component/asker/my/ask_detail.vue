@@ -73,7 +73,7 @@
 
         <!--匿名评价-->
         <div class="problem_assess" v-if="detail.answers&&detail.answers.length>0&&detail.answers[0].evaluate&&detail.answers[0].evaluate.id==null"><!---->
-            <h4>匿名评价</h4>
+            <h4>评价</h4>
             <div class="star">
                 <div v-for="(item,index) in comText">
                     <span :class="{on:item.click<=point}" @click="clickStar(item.click)" >
