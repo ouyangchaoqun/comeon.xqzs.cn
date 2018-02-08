@@ -499,7 +499,7 @@
         background: url("../../../images/asker/user_income_no.png") no-repeat left center;
         background-size: 0.8235rem;
         padding-left: 1rem;
-        height:1rem;
+        height:0.94rem;
         z-index: 1000;
     }
     .problem_assess_input .comment_anonymous_on{
