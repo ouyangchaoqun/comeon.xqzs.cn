@@ -86,7 +86,7 @@
             </ul>
         </div>
 
-        <div id="comment_box" style="display: none;">
+        <div id="comment_box" style="display: none">
             <div class="comment_box2">
                 <ul class="stars">
                     <li  v-for="(item,index) in comments"  :v="item.v" :class="{on:item.v<=commentValue}" >
@@ -96,6 +96,9 @@
                 </ul>
                 <div class="textarea">
                     <textarea placeholder="分享您的咨询感受" id="textarea_comment" ></textarea>
+                    <div class="anFlag">
+                        匿名
+                    </div>
                 </div>
             </div>
         </div>
@@ -119,9 +122,8 @@
                 selBestAnswer:null,
                 bestAnswer:{},
                 isOver:true,
-                showLoad:false
-
-
+                showLoad:false,
+                anonyVal:0
             }
         },
         props:{
@@ -136,12 +138,9 @@
             xqzs.wx.setConfig(this);
         },
         methods: {
-
-
             submitComment:function () {
                 let that=this;
                 that.showLoad = true;
-
                 let content = $(".weui-dialog #textarea_comment").val();
                 that.contentOver = content;
                 if(that.commentValue==0){
@@ -151,14 +150,14 @@
                     return;
                 }
 
-                if(content.length==0){
-                    xqzs.weui.toast('fail',"请输入评论内容",function () {
-
-                    })
-                    return;
-                }
+//                if(content.length==0){
+//                    xqzs.weui.toast('fail',"请输入评论内容",function () {
+//
+//                    })
+//                    return;
+//                }
                 this.showLoad=true
-                that.$http.put(web.API_PATH + "come/user/evaluate/answer", {userId:"_userId_",answerId:this.detail.bestAnswerId, point:this.commentValue,content:content})
+                that.$http.put(web.API_PATH + "come/user/evaluate/answer", {userId:"_userId_",answerId:this.detail.bestAnswerId, point:this.commentValue,content:content,isAnonymous :this.anonyVal})
                     .then(function (bt) {
                         that.showLoad=false;
                         if (bt.data && bt.data.status == 1) {
@@ -173,19 +172,32 @@
 
             showCommentBox:function () {
                 let _this=this;
+                let isAnonymous = false;
 
                 xqzs.weui.dialog("评价",$("#comment_box").html(),"",function () {
 
                 },function () {
+
                     _this.submitComment();
                 });
+
+                $(".anFlag").click(function () {
+                    isAnonymous = !isAnonymous;
+                    if(isAnonymous==true){
+                        $(this).addClass('anFlag_on')
+                        _this.anonyVal = 1
+                    }else {
+                        $(this).removeClass('anFlag_on')
+                        _this.anonyVal = 0
+                    }
+                    console.log(_this.anonyVal)
+                })
+
 
                 $(".comment_box2 .stars li ").click(function () {
                     let v= parseInt($(this).attr("v"))
                     _this.setCommentValue(v)
                 })
-
-
 
 
             },
@@ -346,7 +358,9 @@
      .comment_box2 .stars li.on .star{background: url(../../../images/asker/ask_rack_comment_star_on.png) center no-repeat ; background-size:  1.4rem;}
      .comment_box2 .stars li.on .text{ color:#ffaa00}
 
-     .comment_box2 .textarea{ width: 100%; margin-top: 1.1rem; padding-bottom: 0.3rem;}
+     .comment_box2 .textarea{ width: 100%; margin-top: 1.1rem; padding-bottom: 0.3rem;position: relative}
+     .comment_box2 .textarea .anFlag{position: absolute;right:4%;bottom:0.88235rem;color:RGBA(69, 75, 84, 0.49);font-size: 0.70588rem;z-index: 100;background: url("../../../images/asker/user_income_no.png")no-repeat left center;background-size: 0.8235rem;padding-left: 1rem;line-height: 1rem;z-index:1000}
+     .comment_box2 .textarea .anFlag_on{background: url("../../../images/asker/user_income_on.png")no-repeat left center;background-size: 0.8235rem;}
      .comment_box2 .textarea  textarea{ background: #f1f1f1; border-radius: 0.2rem; border: none; width: 92% ; padding: 0.88235rem 4% ; font-size: 0.88235rem; line-height: 1.2rem; height: 4rem;}
 
 

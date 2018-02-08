@@ -84,6 +84,9 @@
             </div>
             <div class="problem_assess_item">
                 <div class="problem_assess_input">
+                    <div class="comment_anonymous" :class="{comment_anonymous_on:anonFlag}" @click="getAnony()">
+                        匿名
+                    </div>
                     <textarea v-show="!isOver" placeholder="您的反馈将影响咨询师" @input="contentChange()" id="content"></textarea>
                     <div class="addIsOverHtml" v-show="isOver">{{contentOver}}</div>
                 </div>
@@ -115,7 +118,8 @@
                 isOver:false,
                 contentOver:'',
                 showLoad: false,
-                followCount:0
+                followCount:0,
+                anonFlag:false
             }
         },
         props:{
@@ -132,6 +136,9 @@
             console.log(this.user)
         },
         methods: {
+            getAnony:function () {
+               this.anonFlag = !this.anonFlag
+            },
             goDetail:function (extId) {
                 this.$router.push('/answer/detail/?id='+extId)
             },
@@ -259,7 +266,13 @@
                 let that=this;
                 that.showLoad = true;
                 let content = $("#content").val();
-                that.contentOver = content
+                let anonyVal;
+                if(this.anonFlag){
+                    anonyVal = 1;
+                }else{
+                    anonyVal = 0;
+                }
+                that.contentOver = content;
                 if(this.point==0){
                     xqzs.weui.toast('fail',"请选择分数",function () {
 
@@ -278,18 +291,18 @@
 //                    })
 //                    return;
 //                }
-                if(content.length==0){
-                    xqzs.weui.toast('fail',"请输入评论内容",function () {
-
-                    })
-                    return;
-                }
-
-
+//                if(content.length==0){
+//                    xqzs.weui.toast('fail',"请输入评论内容",function () {
+//
+//                    })
+//                    return;
+//                }
 
 
 
-                that.$http.put(web.API_PATH + "come/user/evaluate/answer", {userId:"_userId_",answerId:this.detail.bestAnswerId, point:this.point,content:content})
+
+
+                that.$http.put(web.API_PATH + "come/user/evaluate/answer", {userId:"_userId_",answerId:this.detail.bestAnswerId, point:this.point,content:content,isAnonymous:anonyVal})
                     .then(function (bt) {
                         if (bt.data && bt.data.status == 1) {
                             xqzs.weui.toast("success","评论成功",function () {
@@ -467,6 +480,22 @@
     }
     .problem_assess_input{
         padding: 0 0.88235rem 1.6471rem 0.88235rem;
+        position: relative;
+    }
+    .problem_assess_input .comment_anonymous{
+        position: absolute;
+        bottom:2.1rem;
+        right:1.5rem;
+        color:RGBA(69, 75, 84, 0.49);
+        font-size: 0.70588rem;
+        line-height: 1rem;
+        background: url("../../../images/asker/user_income_no.png") no-repeat left center;
+        background-size: 0.8235rem;
+        padding-left: 1rem;
+    }
+    .problem_assess_input .comment_anonymous_on{
+        background: url("../../../images/asker/user_income_on.png") no-repeat left center;
+        background-size: 0.8235rem;
     }
     .problem_assess_item textarea{
         height:4.1176471rem;
@@ -478,7 +507,7 @@
         font-size: 0.70588rem;
         color: rgba(36,37,61,1);
         border-radius: 5px;
-        padding:3%;
+        padding:5% 3%;
         line-height: 1.6;
         letter-spacing: 2px;
     }
