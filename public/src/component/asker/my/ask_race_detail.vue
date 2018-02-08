@@ -20,20 +20,20 @@
             <!--const QUESTION_NOT_PAY = 3;//问题还未支付-->
             <!--超时未解答-->
             <div class="rob_status_box" v-if="detail.questionStatus==2&&detail.answerCount==0">
-                <div>未解答</div>
+                <div>未解答 <span class="race_detail_inCome">收入分成￥{{formatPrice(detail.inCome)}}</span></div>
                 <div>48小时内无人抢答，赏金已全额退还</div>
             </div>
             <!--正在进行中-->
             <div class="rob_status_box"  v-if="detail.questionStatus==0">
-                <div>还{{formatTimeLastText(detail.endTime)}}</div>
+                <div>还{{formatTimeLastText(detail.endTime)}} <span class="race_detail_inCome">收入分成￥{{formatPrice(detail.inCome)}}</span></div>
                 <div>已有<span>{{detail.answerCount}}</span>人抢答，可以选择一个最佳答案，其答主将获得全部赏金，且该回答将产生偷偷听收入</div>
             </div>
             <div class="rob_status_box" v-if="detail.questionStatus==2&&detail.answerCount!=0">
-                <div>已解答</div>
+                <div>已解答 <span class="race_detail_inCome">收入分成￥{{formatPrice(detail.inCome)}}</span></div>
                 <div>共有<span>{{detail.answerCount}}</span>人抢答，抢答者平分赏金。</div>
             </div>
             <div class="rob_status_box" v-if="detail.questionStatus==1">
-                <div>已解答</div>
+                <div>已解答 <span class="race_detail_inCome">收入分成￥{{formatPrice(detail.inCome)}}</span></div>
                 <div>共有<span>{{detail.answerCount}}</span>人抢答，{{bestAnswer.expertNickName}}的回答被选为最佳回答。</div>
             </div>
             <ul class="rob_lists">
@@ -78,7 +78,6 @@
                         <div class="problem_answer_time">{{formatDateText(item.addTime)}}</div>
                         <div class="problem_answer_zan">
                             <div><span>听过</span> <span>{{item.ListenTimes}}</span></div>
-                            <div v-if="detail.bestAnswerId==item.answerId"><span>收入分成</span><span>￥{{formatPrice(item.inCome)}}</span></div>
                             <div @click="like(index)" class="good_care" :class="{good_cared:item.isLiked}"><span> {{item.likeTimes}}</span></div>
                         </div>
                     </div>
@@ -351,6 +350,7 @@
     }
 </script>
 <style>
+    .rob_status_box .race_detail_inCome{float: right;margin-right: 0.88235rem;color:rgba(36,37,61,0.5);}
      .comment_box2 .stars{ display: flex;margin-bottom: 1.1rem}
      .comment_box2 .stars li{ flex:1;}
      .comment_box2 .stars li .star{ background: url(../../../images/asker/ask_rack_comment_star.png) center no-repeat ; background-size:  1.4rem;;height:1.4rem; width: 1.4rem; color:#999; width: 100%; margin-bottom: 0.3rem; }

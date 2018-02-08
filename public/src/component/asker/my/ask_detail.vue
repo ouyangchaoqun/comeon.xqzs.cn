@@ -28,6 +28,7 @@
                 <div v-if="detail.questionStatus==1">
                     <span>已解答</span>
                 </div>
+                <div class="problem_detail_inCome">收入分成￥{{formatPrice(detail.inCome)}}</div>
             </div>
 
 
@@ -62,7 +63,6 @@
                     <div class="problem_answer_time">{{formatDateText(item.addTime)}}</div>
                     <div class="problem_answer_zan">
                         <div><span>听过</span> <span>{{item.ListenTimes}}</span></div>
-                        <div><span>收入分成￥</span><span>{{formatPrice(detail.inCome)}}</span></div>
                         <div @click="like(index)" class="good_care" :class="{good_cared:item.isLiked}"><span>{{item.likeTimes}}</span></div>
                     </div>
                 </div>
@@ -369,6 +369,11 @@
     }
 </script>
 <style>
+    .problem_detail_inCome{
+        position: absolute;
+        right:0.88235rem;
+        top:0.88235rem;
+    }
     .ask_detailBox{
         background: #fff;
     }
@@ -418,6 +423,7 @@
         font-size: 0.70588rem;
         line-height: 1;
         padding:0.88235rem;
+        position: relative;
     }
     .problem_wait_style span{
         margin-right: 0.88235rem;
@@ -482,7 +488,7 @@
         width:92%;
         margin: 0 auto;
         position: relative;
-        height:6.6rem;
+        height:7rem;
         background: #EBEBEC;
         border-radius: 5px;
         overflow: hidden;
@@ -507,7 +513,7 @@
         background-size: 0.8235rem;
     }
     .problem_assess_item textarea{
-        height:4rem;
+        height:4.2rem;
         background: #EBEBEC;
         resize: none;
         border:0;
