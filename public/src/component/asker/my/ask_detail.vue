@@ -490,12 +490,12 @@
         font-size: 0.70588rem;
         line-height: 1rem;
         background: url("../../../images/asker/user_income_no.png") no-repeat left center;
-        background-size: 0.8235rem;
+        background-size: 0.70588rem;
         padding-left: 1rem;
     }
     .problem_assess_input .comment_anonymous_on{
         background: url("../../../images/asker/user_income_on.png") no-repeat left center;
-        background-size: 0.8235rem;
+        background-size: 0.70588rem;
     }
     .problem_assess_item textarea{
         height:4.1176471rem;
