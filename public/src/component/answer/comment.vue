@@ -21,20 +21,23 @@
             </div>
             <div class="pointDetail_bottom">
                 <span>满分5分</span>
-                <span>{{allCount}}个评价</span>
+                <span>{{allCount}} 个评价</span>
             </div>
             <div class="list_top"  @click="changeType()" >
                 <span class="img" :class="{not_on:viewType==0}"></span><span>只看有内容的评价</span>
             </div>
             <div class="list">
                     <div class="item" v-for="item in list">
-                    <div class="img"><img
-                            :src="item.faceUrl">
+                    <div class="img">
+                        <img :src="item.faceUrl" v-if="item.isAnonymous==0">
+                        <img v-if="item.isAnonymous==1" src="../../images/isAnonymousImg.png" alt="">
                     </div>
                     <div class="info">
-                        <div class="name">{{item.nickName}}
+                        <div class="name">
+                            <template v-if="item.isAnonymous==0">{{item.nickName}}</template>
+                            <template v-if="item.isAnonymous==1">匿名用户</template>
                             <span class="time">{{formatTime(item.addTime)}}</span>
-                        </div> <!--该名字-->
+                        </div>
                         <div class="star"><span class="on" v-for="i in item.point"></span><span   v-for="i in 5-item.point"></span>
                         </div>
                         <div class="word">{{item.content}}</div>

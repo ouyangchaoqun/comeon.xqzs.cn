@@ -15,7 +15,7 @@
                                 <div>{{item.nickName}}</div>
                                 <div class="bottom">
                                     <div><span>{{getFormatDate(item.followTime)}}</span><span>{{getFormatTime(item.followTime)}}</span></div>
-                                    <div><span>{{item.questionCount}}个问题</span><span>{{item.listenTimes}}次偷听</span></div>
+                                    <div><span>{{item.questionCount}} 个问题</span><span>{{item.listenTimes}} 次偷听</span></div>
                                 </div>
                             </div>
                         </li>

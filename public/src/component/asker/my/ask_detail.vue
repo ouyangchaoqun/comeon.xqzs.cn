@@ -28,6 +28,7 @@
                 <div v-if="detail.questionStatus==1">
                     <span>已解答</span>
                 </div>
+                <div class="problem_detail_inCome">收入分成￥{{formatPrice(detail.inCome)}}</div>
             </div>
 
 
@@ -35,7 +36,7 @@
                 <img :src="detail.expert.faceUrl" alt="" @click="goDetail(detail.expertId)">
                 <div>
                     <span class="steal_expert_name" @click="goDetail(detail.expertId)">{{detail.expert.nickName}}</span><span
-                        class="steal_expert_fans">{{followCount}}人收听</span>
+                        class="steal_expert_fans">{{followCount}} 人收听</span>
                 </div>
                 <div class="steal_expert_des">{{detail.expert.sign}}</div>
                 <div class="followed_box" v-if="!detail.expert.isFollow" @click="follow(detail.expertId)">收听</div>
@@ -61,8 +62,7 @@
                 <div class="problem_answer_bottom" v-if="detail.answerCount>0">
                     <div class="problem_answer_time">{{formatDateText(item.addTime)}}</div>
                     <div class="problem_answer_zan">
-                        <div><span>听过</span><span>{{item.ListenTimes}}</span></div>
-                        <div><span>收入分成￥</span><span>{{formatPrice(detail.inCome)}}</span></div>
+                        <div><span>听过</span> <span>{{item.ListenTimes}}</span></div>
                         <div @click="like(index)" class="good_care" :class="{good_cared:item.isLiked}"><span>{{item.likeTimes}}</span></div>
                     </div>
                 </div>
@@ -72,8 +72,8 @@
 
 
         <!--匿名评价-->
-        <div class="problem_assess" v-if="detail.answers&&detail.answers.length>0&&detail.answers[0].evaluate&&detail.answers[0].evaluate.id==null"><!---->
-            <h4>匿名评价</h4>
+        <div class="problem_assess" v-if="detail.answers&&detail.answers.length>0&&detail.answers[0].evaluate&&detail.answers[0].evaluate.id==null&&!isOver"><!---->
+            <h4>评价</h4>
             <div class="star">
                 <div v-for="(item,index) in comText">
                     <span :class="{on:item.click<=point}" @click="clickStar(item.click)" >
@@ -84,12 +84,16 @@
             </div>
             <div class="problem_assess_item">
                 <div class="problem_assess_input">
-                    <textarea v-show="!isOver" placeholder="您的反馈将影响咨询师" @input="contentChange()" id="content"></textarea>
-                    <div class="addIsOverHtml" v-show="isOver">{{contentOver}}</div>
+                    <div class="comment_anonymous" :class="{comment_anonymous_on:anonFlag}" @click="getAnony()">
+                        匿名
+                    </div>
+                    <textarea placeholder="分享你的咨询感受" id="content"></textarea>
+                    <!--<div class="addIsOverHtml" v-show="isOver">{{contentOver}}</div>-->
                 </div>
             </div>
-            <div v-show="!isOver" class="problem_assess_btn">
-                <div class="weui-btn weui-btn_disabled weui-btn_primary" @click="comment()">提交</div>
+            <div class="problem_assess_btn">
+                <div class="weui-btn weui-btn_disabled weui-btn_primary" v-if="point==0">提交</div>
+                <div class="weui-btn weui-btn_primary"  @click="comment()" v-if="point>0">提交</div>
             </div>
         </div>
     </div>
@@ -115,7 +119,8 @@
                 isOver:false,
                 contentOver:'',
                 showLoad: false,
-                followCount:0
+                followCount:0,
+                anonFlag:false
             }
         },
         props:{
@@ -132,6 +137,9 @@
             console.log(this.user)
         },
         methods: {
+            getAnony:function () {
+               this.anonFlag = !this.anonFlag
+            },
             goDetail:function (extId) {
                 this.$router.push('/answer/detail/?id='+extId)
             },
@@ -247,19 +255,16 @@
             formatTimeLastText:function (time) {
                 return xqzs.dateTime.getTimeFormatLastText(time)
             },
-            contentChange:function(){
-                let content = $("#content").val();
-                if(content.length>0){
-                    $('.problem_assess_btn .weui-btn').removeClass('weui-btn_disabled')
-                }else{
-                    $('.problem_assess_btn .weui-btn').addClass('weui-btn_disabled')
-                }
-            },
             comment:function () {
                 let that=this;
-                that.showLoad = true;
                 let content = $("#content").val();
-                that.contentOver = content
+                let anonyVal;
+                if(this.anonFlag){
+                    anonyVal = 1;
+                }else{
+                    anonyVal = 0;
+                }
+                //that.contentOver = content;
                 if(this.point==0){
                     xqzs.weui.toast('fail',"请选择分数",function () {
 
@@ -278,23 +283,18 @@
 //                    })
 //                    return;
 //                }
-                if(content.length==0){
-                    xqzs.weui.toast('fail',"请输入评论内容",function () {
+//                if(content.length==0){
+//                    xqzs.weui.toast('fail',"请输入评论内容",function () {
+//
+//                    })
+//                    return;
+//                }
 
-                    })
-                    return;
-                }
-
-
-
-
-
-                that.$http.put(web.API_PATH + "come/user/evaluate/answer", {userId:"_userId_",answerId:this.detail.bestAnswerId, point:this.point,content:content})
+                that.$http.put(web.API_PATH + "come/user/evaluate/answer", {userId:"_userId_",answerId:this.detail.bestAnswerId, point:this.point,content:content,isAnonymous:anonyVal})
                     .then(function (bt) {
                         if (bt.data && bt.data.status == 1) {
                             xqzs.weui.toast("success","评论成功",function () {
                                 that.isOver = true;
-                                that.showLoad = false;
                                 console.log(that.isOver)
 //                                window.location.href=window.location.href
                             })
@@ -356,6 +356,11 @@
     }
 </script>
 <style>
+    .problem_detail_inCome{
+        position: absolute;
+        right:0.88235rem;
+        top:0.88235rem;
+    }
     .ask_detailBox{
         background: #fff;
     }
@@ -405,6 +410,7 @@
         font-size: 0.70588rem;
         line-height: 1;
         padding:0.88235rem;
+        position: relative;
     }
     .problem_wait_style span{
         margin-right: 0.88235rem;
@@ -466,10 +472,35 @@
         text-align: left;
     }
     .problem_assess_input{
-        padding: 0 0.88235rem 1.6471rem 0.88235rem;
+        width:92%;
+        margin: 0 auto;
+        position: relative;
+        height:7rem;
+        background: #EBEBEC;
+        border-radius: 5px;
+        overflow: hidden;
+        margin-bottom: 1.88rem;
+
+    }
+    .problem_assess_input .comment_anonymous{
+        position: absolute;
+        bottom:0.294rem;
+        right:3%;
+        color:RGBA(69, 75, 84, 0.49);
+        font-size: 0.70588rem;
+        line-height: 1rem;
+        background: url("../../../images/asker/user_income_no.png") no-repeat left center;
+        background-size: 0.8235rem;
+        padding-left: 1rem;
+        height:0.94rem;
+        z-index: 1000;
+    }
+    .problem_assess_input .comment_anonymous_on{
+        background: url("../../../images/asker/user_income_on.png") no-repeat left center;
+        background-size: 0.8235rem;
     }
     .problem_assess_item textarea{
-        height:4.1176471rem;
+        height:4.2rem;
         background: #EBEBEC;
         resize: none;
         border:0;
@@ -477,8 +508,7 @@
         width:94%;
         font-size: 0.70588rem;
         color: rgba(36,37,61,1);
-        border-radius: 5px;
-        padding:3%;
+        padding:3% 3%;
         line-height: 1.6;
         letter-spacing: 2px;
     }

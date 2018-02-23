@@ -59,10 +59,10 @@
         mounted: function () {
             let expertId;
             let _this=this;
+
             if(cookie.get('expertId')==null){
                 this.$http.get(web.API_PATH + 'come/expert/query/detail/by/userId/_userId_' ).then(function (data) {//es5写法
                     if (data.body.status == 1) {
-                        console.log(data)
                         expertId = data.data.data.id;
                         cookie.set('expertId',expertId,300);
                         _this.expertId = expertId;
@@ -82,9 +82,24 @@
                     console.log(localId)
                 }
             });
-
+            _this.getExpert();
         },
         methods: {
+            getExpert:function () {
+                let _this=this;
+                this.$http.get(web.API_PATH + 'come/expert/query/detail/by/userId/_userId_' ).then(function (data) {//es5写法
+                    if (data.body.status == 1) {
+                        if(data.data.data&&data.data.data.id&&data.data.data.status==1){
+                            _this.$router.replace("/answer/race/list")
+                        }else{
+                            _this.$router.replace("/asker/listen")
+                        }
+                    }else{
+                        _this.$router.replace("/asker/listen")
+                    }
+                }, function (error) {
+                });
+            },
             getList: function (done) {
                 let vm= this;
                 let url =web.API_PATH + 'come/expert/query/grab/page/'+this.expertId+'/_userId_/'+vm.page+'/'+vm.row;

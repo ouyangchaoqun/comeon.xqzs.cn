@@ -1,5 +1,8 @@
 <template >
-    <div  class="answer_bottom_box">
+    <div  class="answer_bottom_box" :style="'height:'+height+'rem'">
+        <router-link to='/asker/listen' >
+            <span class="icon home"></span>咨询入口
+        </router-link>
         <router-link to='/answer/race/list' replace :class="{on:tabOnIndex==0}">
             <span class="icon race"></span>抢答
         </router-link>
@@ -30,14 +33,16 @@
         font-size: 0.588235rem;
         vertical-align: text-bottom;
     }
-    .answer_bottom_box a .icon{ display: block;  width: 1.588235294117647rem;   margin: 0.1rem auto;background: url(../../../images/answer/tab_icon.png) no-repeat; background-size: 4.764705882352941rem; height: 1.588235294117647rem  }
+    .answer_bottom_box a .icon{ display: block;  width: 1.588235294117647rem;   margin: 0.1rem auto;background: url(../../../images/answer/tab_icon.png) no-repeat; background-size: 6.3529411764705882352941176470588rem; height: 1.588235294117647rem  }
     .answer_bottom_box a .icon.race{  background-position: 0 0;}
     .answer_bottom_box a .icon.ask{background-position: -1.588235294117647rem 0;}
     .answer_bottom_box a .icon.my{  background-position: -3.176470588235294rem  0;}
+    .answer_bottom_box a .icon.home{  background-position: -4.764705882352941rem  0;}
 
     .answer_bottom_box a:active .icon.race,.answer_bottom_box a.on .icon.race{ background-position: 0 -1.588235294117647rem ;}
     .answer_bottom_box a:active .icon.ask,.answer_bottom_box a.on  .icon.ask{background-position: -1.588235294117647rem -1.588235294117647rem ;}
     .answer_bottom_box a:active .icon.my,.answer_bottom_box a.on  .icon.my{   background-position: -3.176470588235294rem  -1.588235294117647rem ;}
+    .answer_bottom_box a:active .icon.home,.answer_bottom_box a.on  .icon.home{   background-position: -4.764705882352941rem  -1.588235294117647rem ;}
 
 </style>
 <script>
@@ -45,6 +50,15 @@
     export default {
         props: {
             tabOnIndex: 0
+        },
+        data() {
+            return {
+                height: xqzs.equipment.tabHeight()
+            }
         }
     }
+
+
+
+
 </script>

@@ -21,10 +21,15 @@
                 <div class="list">
                     <div class="item" v-for="(item,index) in list">
                         <div class="comment">
-                            <div class="img"><img :src="item.userFaceUrl">
+                            <div class="img">
+                                <img v-if="item.isAnonymous==0" :src="item.userFaceUrl">
+                                <img v-if="item.isAnonymous==1" src="../../../images/isAnonymousImg.png" alt="">
                             </div>
                             <div class="info">
-                                <div class="name"><span>{{item.nickName}}</span>评价了我的回答</div>
+                                <div class="name">
+                                    <span v-if="item.isAnonymous==0">{{item.nickName}}</span>
+                                    <span v-if="item.isAnonymous==1">匿名用户</span>
+                                    评价了我的回答</div>
                                 <div class="star"><span class="on" v-for="i in item.point"></span><span   v-for="i in 5-item.point"></span></div>
                                 <div class="content">
                                    {{item.content}}

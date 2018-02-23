@@ -18,7 +18,7 @@
                                 <span v-for="good in item.goodAt">{{good.title}}</span>
                                 <div class="clear"></div>
                             </div>
-                            <div class="other">问价 <span class="price">¥{{item.price}}</span> <span class="ml" v-if="item.answerCount!=null">{{item.answerCount}}个回答</span><span class="ml" v-if="item.listenCount!=null">{{item.listenCount}}次被偷听</span></div>
+                            <div class="other">问价 <span class="price">¥{{item.price}}</span> <span class="ml" v-if="item.answerCount!=null">{{item.answerCount}}个回答</span><span class="ml" v-if="item.listenCount!=null">{{item.listenCount}} 次被偷听</span></div>
 
 
                             <div class="audio" :class="{playing:item.playing,paused:item.paused}">

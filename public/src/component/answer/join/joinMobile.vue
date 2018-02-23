@@ -1,33 +1,41 @@
 <template>
-    <div class="answer_join_mobile_box" @touchmove.prevent >
-        <div v-title>入驻心理咨询师</div>
-        <div class="validate_box">
-            <div class="mobile__box">
-                <div class="validate_top">
-                    <h1>绑定手机号</h1>
-                </div>
-                <div class="validate_div">
-                    <div class="validate_phone">
-                        <input class="input_phone" type="tel" oninput="if(value.length>11)value=value.slice(0,11)"
-                               placeholder="请输入您的手机号" v-model="mobile"/>
-                        <p id="errorMobile" v-if="!isMobileRight&&isShowErrorMobileMsg">手机格式错误</p>
+    <div style="background: #fff;">
+        <div class="joinmobile_box">
+            <div v-title>入驻心理咨询师</div>
+            <div class="joinSet_top">
+                <div class="joinSet_cancel" @click="backStep()">取消</div>
+                <div class="joinSet_sure sure_nor" v-if="!isAllInput">确定</div>
+                <div class="joinSet_sure" @click="submit()" v-if="isAllInput">确定</div>
+            </div>
+            <div style="height:0.64rem;background: RGBA(69, 75, 84, 0.05)"></div>
+            <div class="validate_box">
+                <div class="mobile__box">
+                    <div class="validate_div">
+                        <div class="joinmobile_input">
+                            <input class="input_phone" type="tel" oninput="if(value.length>11)value=value.slice(0,11)"
+                                   placeholder="请输入您的手机号" v-model="mobile"/>
+                            <p id="errorMobile" v-if="!isMobileRight&&isShowErrorMobileMsg">手机格式错误</p>
+                        </div>
                     </div>
-                    <button href="javascript:;" id="_phonebtn" @click="getCode()"
-                            class="weui-btn weui-btn_plain-primary "
-                            :class="{'weui-btn_plain-disabled':!isMobileRight||isGetingCodeIn}">{{getCodeBtnText}}
-                    </button>
-                </div>
+                    <div class="joinmobile_code">
+                        <div class="code_left">
+                            <input class="input_code" type="tel" placeholder="请输入您收到的验证码" maxlength="4" v-model="code"/>
+                        </div>
+                        <div class="code_right" v-if="!isMobileRight||isGetingCodeIn">
+                            {{getCodeBtnText}}
+                            <!--<button href="javascript:;" id="_phonebtn" -->
+                            <!--class="weui-btn weui-btn_plain-primary "-->
+                            <!--:class="{'weui-btn_plain-disabled':!isMobileRight||isGetingCodeIn}">-->
+                            <!--</button>-->
+                        </div>
+                        <div class="code_right code_right_can" @click="getCode()" v-if="isMobileRight&&!isGetingCodeIn">
+                            {{getCodeBtnText}}
+                        </div>
 
 
-                <div class="validate_code">
-                    <input class="input_code" type="tel" placeholder="请输入您收到的验证码" maxlength="4" v-model="code"/>
-                    <p id="errorCode" v-if="isShowErrorCodeMsg">验证码错误</p>
-                    <p id="message" v-if="isShowMessage">{{message}}</p>
-                </div>
-                <div>
-                    <button id="sublim" href="javascript:;" class="weui-btn  weui-btn_primary"
-                            :class="{'weui-btn_disabled':!isAllInput}" @click.stop="submit()">确定
-                    </button>
+                        <p id="errorCode" v-if="isShowErrorCodeMsg">验证码错误</p>
+                        <p id="message" v-if="isShowMessage">{{message}}</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -51,15 +59,13 @@
                 isShowErrorMobileMsg: false,
                 isShowErrorCodeMsg: false,
                 isAllInput:false,
-                codeError:false
+                codeError:false,
+                canNext:false,
 
             }
         },
         mounted: function () {
             let _this = this;
-            $('.answer_join_mobile_box').click(function () {
-                $('.answer_join_mobile_box').hide()
-            })
             $('.mobile__box').click(function (e) {
                 e.stopPropagation();
             });
@@ -104,14 +110,32 @@
             xqzs.wx.setConfig(_this);
         },
         methods: {
+            backStep:function () {
+                this.$router.go(-1)
+            },
             submit:function () {
                 let _this = this;
                 if(_this.isAllInput==true){
                     _this.$http.post(web.API_PATH + 'user/update/mobile/by/code/mobile/_userId_', {mobile: _this.mobile,code:_this.code}).then(response => {
                         if (response.data.status === 1) {
                             xqzs.weui.toast("success","验证成功",function () {
-                                $('.mobile_box').hide()
+                                if(_this.edit==1){
+                                    let url = "come/expert/modify";
+                                    let msg = {
+                                        userId:this.user.id,
+                                        id:this.user.id,
+                                        mobile:this.mobile,
+                                        expertId:cookie.get('expertId')
+                                    };
+                                    _this.$http.post(web.API_PATH + url, msg)
+                                        .then(
+                                            (response) => {
+
+                                            }
+                                        );
+                                }
                                 cookie.set('reg_mobile',_this.mobile,1)
+                                _this.$router.go(-1)
                             })
                         } else   {
                             if(response.data.status === -2 || response.data.status === -3){
@@ -197,92 +221,86 @@
     }
 </script>
 <style type="text/css">
-    .answer_join_mobile_box{
+    .code_left{
+        width:50%;
         height:100%;
-        width:100%;
-        position: absolute;
-        top:0;
-        z-index: 100;
+        float: left;
         background: #fff;
+        border-radius: 0.294rem;
+        padding-left: 0.647rem;
     }
-    .answer_join_mobile_box .validate_box {
-        padding: 20px 15px;
-        background: #fff;
+    .code_left input{
+        font-size: 0.88235rem;
+    }
+    .code_right{
+        width: 35%;
+        float: right;
+        text-align: center;
+        font-size: 0.88235rem;
+        color:RGBA(255, 255, 255, 1);
+        background: RGBA(254, 122, 3, 0.4);
+        border-radius: 0.294rem;
+    }
+    .code_right_can{
+        background: RGBA(254, 122, 3, 1);
+    }
+    .code_right button{
+        border:0;
+    }
+    .joinmobile_box{
+        background: RGBA(69, 75, 84, 0.03);
+        height:100%;
+    }
+    .joinmobile_box .validate_box {
+        padding: 1.176rem 0.88235rem 0 0.88235rem;
     }
 
-    .answer_join_mobile_box .validate_top {
+    .joinmobile_box .validate_top {
         margin-bottom: 32px;
     }
 
-    .answer_join_mobile_box .validate_top h1 {
+    .joinmobile_box .validate_top h1 {
         font-size: 18px;
         color: rgba(36,37,61,1); text-align: center;
         margin-bottom: 18px;
     }
 
-    .answer_join_mobile_box .validate_top p {
+    .joinmobile_box .validate_top p {
         font-size: 15px;
         color: #878686;
         text-align: center;
     }
 
-    .answer_join_mobile_box input {
-        height: 20px;
+    .joinmobile_box input {
         outline: none;
-        line-height: 20px;
-        margin-top: 12px;
+        font-size: 0.88235rem;
+        color:RGBA(69, 75, 84, 1);
+        height:100%;
+        width:100%;
     }
 
-    #_phonebtn {
-        width: 36%;
-        height: 46px;
-        font-size: 12px;
-        float: right;
-        padding: 0;
-        text-align: center;
-    }
-
-    .answer_join_mobile_box .input_phone {
-        font-size: 15px;
-        color: rgba(36,37,61,1);
-
-    }
-
-    .answer_join_mobile_box .input_code {
-        font-size: 15px;
+    .joinmobile_box .input_code {
+        font-size: 0.88235rem;
         width: 100%;
         color: rgba(36,37,61,1);
+        height:100%;
     }
 
-    .answer_join_mobile_box .validate_div {
-        height: 44px;
-        margin-bottom: 26px;
+    .joinmobile_box .validate_div {
+        margin-bottom: 1.2rem;
+    }
+
+    .joinmobile_box .joinmobile_input {
+        border-radius: 0.294rem;
+        background: #fff;
+        height:2.82rem;
+        line-height: 2.82rem;
+        padding-left: 0.647rem;
         position: relative;
     }
-
-    .answer_join_mobile_box .validate_phone {
-        border: 1px solid #D2D2D2;
-        height: 44px;
-        border-radius: 5px;
-        padding-left: 15px;
-        padding-right: 7px;
-        float: left;
-        width: 50%;
-        overflow: hidden;
-
-    }
-
-    #_phonebtn {
-        float: right;
-        font-size: 14px;
-    }
-
-    .answer_join_mobile_box .validate_code {
-        height: 44px;
-        border: 1px solid #d2d2d2;
-        border-radius: 5px;
-        margin-bottom: 30px;
-        padding-left: 15px;
+    .joinmobile_box .joinmobile_code {
+        height:2.82rem;
+        line-height: 2.82rem;
         position: relative;
     }
 
@@ -291,33 +309,30 @@
         color: #fc0303;
         position: absolute;
         left: 15px;
-        top: 50px;
+       bottom:-2rem;
     }
 
     #message {
         font-size: 11px;
         color: rgba(36,37,61,0.5);
         position: absolute;
-        top: 50px;
+        bottom:-3rem;
         left: 15px;
 
     }
-
-
-
-    .answer_join_mobile_box  input:-ms-input-placeholder {
+    .joinmobile_box  input:-ms-input-placeholder {
         color: rgba(0, 0, 0, 0.2);
     }
 
-    .answer_join_mobile_box input::-webkit-input-placeholder {
+    .joinmobile_box input::-webkit-input-placeholder {
         color: rgba(0, 0, 0, 0.2);
     }
 
-    .answer_join_mobile_box  input::-moz-placeholder {
+    .joinmobile_box  input::-moz-placeholder {
         color: rgba(0, 0, 0, 0.2)
     }
 
-    .answer_join_mobile_box input:-moz-placeholder {
+    .joinmobile_box input:-moz-placeholder {
         color: rgba(0, 0, 0, 0.2);
     }
 </style>

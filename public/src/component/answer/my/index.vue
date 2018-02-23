@@ -9,7 +9,7 @@
                         <div class="name">
                             {{expert.nickName}}
                         </div>
-                        <div class="perfect" >更新资质</div>
+                        <div class="perfect">完善资料</div>
                         <div class="clear"></div>
                 </div>
                 <div class="main_lists">
@@ -22,7 +22,7 @@
                     <router-link to = "/answer/my/fans" class="fans" ><i></i>我的粉丝</router-link>
                     <router-link to = "/answer/my/comment/list" class="comment_list" ><i></i>收到的评价</router-link>
                     <!--<router-link to = "/answer/my/message" class="message" ><i></i>60”语音寄语</router-link>-->
-                    <!--<router-link to = "/answer/my/set/qualification" class="qualification" ><i></i>入驻资质</router-link>-->
+                    <router-link to = "/answer/join/level?edit=1" class="qualification" ><i></i>更新资质</router-link>
                 </div>
             </div>
         </div>
@@ -87,39 +87,10 @@
             goPerfect:function () {
                 this.$router.push("./perfect")
             },
-            join: function () {
-                let _this= this;
-                this.$http.get(web.API_PATH + 'come/expert/query/detail/by/userId/_userId_' ).then(function (data) {//es5写法
-                    if (data.body.status == 1) {
-                        if(data.data.data!=null){
-                            let status = data.data.data.status;
-//                            const NOT_AUTHENTICATED=0;//未认证
-//                            const AUTHENTICATED = 1 ;//已认证
-//                            const AUTHENTICATING = 2;//认证中
-//                            const AUTHENTICATING = -1;//提交中
-                            if(status==0||status==-1){
-                                _this.goJoin()
-
-                            }else{
-                                if(status==1){
-                                    xqzs.weui.tip("您已成功入驻咨询师，请从公众号移步到咨询师。")
-                                }else{
-                                    _this.$router.push("/answer/join/reviewing");
-                                }
-                            }
-                        }else{
-                            _this.goJoin()
-                        }
-                    }
-                }, function (error) {
-                });
-
-
-            },
             goJoin:function () {
-                //this.$router.push("/answer/join/joinstep?edit=true");
                 this.showLoad = true;
-                this.$router.push("/answer/join/join_update");
+                this.$router.push("/answer/join/joinstep");
+                //this.$router.push("/answer/join/join_update");
             },
             getIncome:function () {
 
@@ -177,7 +148,7 @@
     .main_lists a.fans i{ background: url("../../../images/answer/fs_icon.png") no-repeat;background-size: 100% 100%;}
     .main_lists a.comment_list i{ background: url("../../../images/answer/pj_icon.png") no-repeat;background-size: 100% 100%;}
     .main_lists a.message i{ background-position: 0 -10.23529411764706rem; }
-    .main_lists a.qualification i{ background-position: 0 -11.94117647058823rem; }
+    .main_lists a.qualification i{background: url("../../../images/answer/update_level_icon.png") no-repeat center; background-size: 1.176471rem}
     .main_lists a:active{background: #eee}
 
 

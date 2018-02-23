@@ -9,7 +9,7 @@
                 <img v-if="detail.isAnonymous==1" src="../../images/isAnonymousImg.png" alt="">
                 <!--<div>在<span>{{detail.title}}</span>方面</div>-->
                 <div v-if="detail.isAnonymous==0">{{detail.nickName}}</div>
-                <div v-if="detail.isAnonymous==1">匿名</div>
+                <div v-if="detail.isAnonymous==1">匿名用户</div>
                 <div class="steal_detail_top_price">{{detail.title}}</div>
             </div>
             <div class="steal_detail_content">{{detail.content}}</div>
@@ -21,7 +21,7 @@
                 <div class="steal_expert_info">
                     <img :src="item.expertUrl" alt="" @click="goDetail(item.expertId)">
                     <div>
-                        <span class="steal_expert_name" @click="goDetail(item.expertId)">{{item.expertName}}</span><span class="steal_expert_fans">{{item.followCount}}人收听</span>
+                        <span class="steal_expert_name" @click="goDetail(item.expertId)">{{item.expertName}}</span><span class="steal_expert_fans">{{item.followCount}} 人收听</span>
                     </div>
                     <div class="steal_expert_des">{{item.sign}}</div>
                     <div class="followed_box" v-if="item.isFollowed==0" @click="follow(index)"> 收听</div>
@@ -72,7 +72,7 @@
                     <div class="problem_answer_zan">
                         <div>
                             <span>听过</span>
-                            <span>{{item.listenTimes}}</span>
+                            <span> {{item.listenTimes}}</span>
                         </div>
                         <div @click="like(index)" class="good_care" :class="{good_cared:item.isCared}"><span>{{item.likeTimes}}</span></div>
                     </div>
@@ -174,7 +174,7 @@
                 }else{
                     payTitle = '确认偷听此问题';
                     subHtml='';
-                    msg = '使用：<span class="colorStyle">1</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span>点豆';
+                    msg = '使用：<span class="colorStyle">1</span> 点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span> 点豆';
                     if(_this.user.dianCoin>1){
                         useCoin = true;
                         console.log(_this.user.dianCoin)
@@ -202,7 +202,7 @@
                                 dataType:'JSON',
                                 success: function( bt ) {
                                     if(bt.status==1){
-                                        xqzs.weui.tip("支付成功", function () {
+                                        xqzs.weui.toast("success","支付成功", function () {
                                             _this.setPayed(index);
                                         });
                                     }else{
@@ -225,7 +225,7 @@
                                 dataType:'JSON',
                                 success: function( bt ) {
                                     if(bt.status==1){
-                                        xqzs.weui.tip("支付成功", function () {
+                                        xqzs.weui.toast("success","支付成功", function () {
                                             _this.setPayed(index);
                                         });
                                     }else{
@@ -258,7 +258,7 @@
                             xqzs.wx.pay.pay(result.order, function () {
 
                             }, function () {//success
-                                xqzs.weui.tip("支付成功", function () {
+                                xqzs.weui.toast("success","支付成功", function () {
                                     _this.setPayed(index);
                                 });
                             }, function () {//error

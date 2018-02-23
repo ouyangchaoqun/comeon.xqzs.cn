@@ -1,29 +1,32 @@
 <template>
     <div class="recharge_box" >
-        <div class="title">
-            请选择充值金额
+        <div class="recharge_title">
+            请选择充值点豆
         </div>
         <div class="items_box">
             <div class="items" v-for="(item,index) in items" @click="select(index)" :class="{selected:item.c==1}">
-                <div class="price" :class="{nogift:item.couponCount==0}">{{item.money}}元</div>
-                <div class="dou" :class="{nogift:item.couponCount==0}">{{item.dianCoin}}点豆</div>
+                <div class="price" :class="{nogift:item.couponCount==0}">{{item.dianCoin}} 点豆</div>
+                <div class="dou" :class="{nogift:item.couponCount==0}">{{parseInt(item.money)}} 元</div>
                 <div class="gift" v-if="item.couponCount!=0">赠送{{item.couponCount}}张偷听卡</div>
             </div>
         </div>
-        <div class="cash">现金余额可使用<span style="color: #FB640A">{{user.balance||0.00}}</span>元
+        <div class="cash">现金余额可使用<span style="color: #FB640A"> {{user.balance||0.00}} </span>元
             <div class="cash_right" :class={no:!isUseIncome} @click="useIncome()"></div>
         </div>
-        <div class="rechar_btn" @click="doPay()">立即支付（{{pay}}元）</div>
-        <div class="question" @click="showTips">常见问题</div>
+        <div class="rechar_btn" @click="doPay()">立即支付（{{pay}} 元）</div>
+        <div class="question" >
+            <img src="../../../images/asker/question_icon.png" alt="">
+            <span @click="showTips">充值须知</span>
+        </div>
         <div class="mask" v-if="isTips"></div>
         <div class="tips" v-if="isTips">
             <div class="close" @click="closeTips"></div>
-            <div class="tip_title">常见问题</div>
+            <div class="tip_title">充值须知</div>
             <div class="content">
-                <p>1.免费偷听问答不扣点豆，已支付问题可重复免费听；</p>
-                <p>2.点豆仅限平台内偷听、向专家提问，充值后不可提现；</p>
-                <p>3.请在有效期内使用偷听卡；</p>
-                <p>4.如有疑问，请在微信对话窗口反馈。</p>
+                <p>1、免费偷听问答不扣点豆，已支付问题可重复免费听；</p>
+                <p>2、点豆仅限平台内偷听、向专家提问，充值后不可提现；</p>
+                <!--<p>3.请在有效期内使用偷听卡；</p>-->
+                <p>3、如有疑问，请在微信对话窗口反馈。</p>
             </div>
             <div class="bottom"></div>
 
@@ -39,9 +42,11 @@
                 isTips: false,
                 pay: 0,
                 income: 0,
-                isUseIncome: true,
+                isUseIncome: false,
                 backUrl:'',
-                user:''
+                user:'',
+                havedianCoin:0,
+                balance:0,
             }
 
         },
@@ -52,10 +57,9 @@
         mounted: function () {
             let _this=this;
             _this.getUserInfo();
-            setTimeout(function () {
+            _this.$nextTick(function () {
                 _this.getRechargeConfig();
-            },1000)
-
+            })
 
         },
         methods: {
@@ -63,6 +67,11 @@
                 let _this=this;
                 xqzs.user.getUserInfo(function (user) {
                     _this.user =user;
+                    if( _this.user!=''|| _this.user!=undefined){
+                        _this.balance = _this.user.balance
+                        _this.havedianCoin = _this.user.dianCoin;
+                    }
+
                 })
             },
             select: function (index) {
@@ -74,28 +83,21 @@
                 }
                 item.c = 1;
                 this.$set(this.items, index, item)
-                if (this.isUseIncome == true) {
-
-                    if (Number(this.user.balance) >= Number(item.money)) {
-
+                if (this.isUseIncome) {
+                    if (Number(this.balance) >= Number(item.money)) {
                         this.pay = 0;
                     } else {
-                        this.pay = (Number(item.money) - Number(this.user.balance)).toFixed(2)
+                        this.pay = (Number(item.money) - Number(this.balance)).toFixed(2)
                     }
                 }
                 else {
                     this.pay = item.money;
                 }
-
             },
             initSelect:function () {
                 let _this=this;
                 var needMoney=Number(_this.rechargeMoney);
-                console.log(needMoney)
-                console.log(_this.items)
-                var havedianCoin=_this.user.dianCoin;//有的豆
-                var x=needMoney-havedianCoin;//差值
-
+                var x=needMoney-(_this.havedianCoin);//差值
                 for(var i=0;i<_this.items.length;i++){
                     if(Number(_this.items[i].dianCoin)>=x){
                         _this.select(i)
@@ -103,11 +105,8 @@
                     }
                 }
                 if(_this.rechargeMoney==0){
-                    console.log("sss")
                     _this.select(0)
                 }
-
-
             },
             showTips: function () {
                 this.isTips = true;
@@ -121,6 +120,7 @@
             },
             getRechargeConfig: function () {
                 let _this = this;
+                console.log('获取充值信息')
                 _this.$http.get(web.API_PATH + 'come/user/query/recharge/config').then(function (data) {//es5写法
                     if (data.body.status == 1) {
                         _this.items = data.body.data;
@@ -144,11 +144,10 @@
                             if (bt.data && bt.data.status == 1) {
                                 let result = bt.data.data;
                                 if (result.resultCode == 1) {
-                                    xqzs.weui.tip("支付成功", function () {
+                                    xqzs.weui.toast("success","支付成功", function () {
                                         _this.$emit(
                                                 'childMessage',{
-                                                    rechargeFlag:false,
-                                                    addMoneyVal: _this.items[_this.checkIndex].dianCoin,
+                                                    rechargeFlag:false
                                                 }
                                         )
                                     });
@@ -157,12 +156,10 @@
                                     xqzs.wx.pay.pay(result, function () {
 
                                     }, function () {//success
-                                        xqzs.weui.tip("支付成功", function () {
+                                        xqzs.weui.toast("success","支付成功", function () {
                                             _this.$emit(
-                                                    'childMessage',{
-                                                rechargeFlag:false,
-                                                 addMoneyVal: _this.items[_this.checkIndex].dianCoin,
-
+                                                'childMessage',{
+                                                    rechargeFlag:false,
                                                 }
                                             )
                                         });
@@ -199,7 +196,7 @@
         z-index: 55;
     }
 
-    .recharge_box .title {
+    .recharge_box .recharge_title {
         margin-top: 1.24rem;
         margin-left: 0.94rem;
         font-size: 0.88rem;
@@ -243,6 +240,7 @@
         line-height: 1.176rem;
         font-size: 0.82rem;
         margin-top: 0.11rem;
+        color:#9B9B9B
     }
 
     .recharge_box .items_box .items .gift {
@@ -283,7 +281,14 @@
         color: #9B9B9B;
         text-align: center
     }
-
+    .recharge_box .question img{
+        width:0.88235rem;
+        vertical-align: middle;
+    }
+    .recharge_box .question span{
+        border-bottom: 1px solid rgba(228, 227, 227, 0.5);
+        padding: 0 0 0.1rem 0.2rem;
+    }
     .mask {
         position: absolute;
         height: 100%;
@@ -294,14 +299,14 @@
     }
 
     .recharge_box .tips {
-        width: 16.47rem;
-        height: 21.176rem;
+        width: 16rem;
+        height: 19rem;
         position: absolute;
         z-index: 10;
         background: #fff;
-        top: 20%;
+        top: 24%;
         left: 50%;
-        margin-left: -8.235rem;
+        margin-left: -8rem;
         border-radius: 0.588rem
     }
 
@@ -336,11 +341,11 @@
         padding: 0 1.647rem;
         top: 5.176rem;
         font-size: 0.88rem;
-        line-height: 1.235rem;
     }
 
     .recharge_box .tips .content p {
-        margin-top: 0.88rem;
+        line-height: 1.4rem;
+        margin-bottom: 1rem;
     }
 
     .recharge_box .cash_right {

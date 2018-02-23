@@ -11,11 +11,9 @@
                         <span>{{getDateTime(item.addTime)}}</span>
                     </div>
                     <div class="item_type">{{item.type}}</div>
-                    <div class="item_right">
+                    <div class="item_right" :class="{moneyOut_color:item.amount<0}">
                         <span v-if="item.status==0">审核中</span>
-                        <template v-if="item.type!='提现'">+</template>
-                        <template v-if="item.type=='提现'">-</template>
-                        ¥{{item.amount}}
+                        <template v-if=" item.amount>0">+</template><template v-if=" item.amount<0">-</template>￥{{Math.abs(item.amount)}}
                     </div>
                 </li>
             </ul>
@@ -148,6 +146,9 @@
         font-size: 0.76471rem;
         color:rgba(69,75,84,1);
         margin-right: 0.735rem;
+    }
+    .moneyOut_color{
+        color:rgba(36,37,61,0.5);
     }
     .item_type{
         margin: 0 auto;

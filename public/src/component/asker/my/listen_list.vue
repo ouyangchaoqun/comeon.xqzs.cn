@@ -23,7 +23,9 @@
                     <a @click="goDetail(item.questionId)">
                         <div class="question">
                             <!--<img class="img" v-bind:src="item.questionUserFaceUrl" alt="">-->
-                            <div class="img" :style="{'background':'url('+getLittleFace(item.questionUserFaceUrl)+')no-repeat','background-size':'100%'}"></div>
+                            <div class="img" v-if="item.isAnonymous==0" :style="{'background':'url('+getLittleFace(item.questionUserFaceUrl)+')no-repeat','background-size':'100%'}"></div>
+                            <div class="img" v-else="" style='background:url(/dist/isAnonymousImg.png) no-repeat;background-size: 2rem'></div>
+
                             <div class="title">{{item.question}}
                             </div>
                         </div>

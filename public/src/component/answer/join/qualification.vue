@@ -84,7 +84,6 @@
 
             this.initOss();
             let _this=this;
-            _this.expertId = cookie.get('expertId');
             _this.getExpertByUserId();
             xqzs.wx.setConfig(this);
 
@@ -92,6 +91,7 @@
         methods:{
             getExpertByUserId:function () {
                 let _this=this;
+                _this.expertId = cookie.get('expertId');
                 _this.showLoad = true;
                 _this.$http.get(web.API_PATH + 'come/expert/query/detail/for/edit/'+ _this.expertId+'/_userId_' ).then(function (data) {//es5写法
                     _this.showLoad = false;
@@ -226,7 +226,7 @@
                         }
                     );
 
-            }
+            },
             
         }
 

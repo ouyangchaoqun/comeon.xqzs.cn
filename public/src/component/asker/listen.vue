@@ -26,13 +26,12 @@
                                             <li v-for="(item,index) in navList.list">
                                                 <a @click="goDetail(item.questionId)">
                                                     <div class="index_li_header">
-                                                        <img :src="item.expertFaceUrl" alt="">
-                                                        <div>{{item.expertName}} <span>回答了</span></div>
+                                                        <div><template v-if="item.askerNickName!=''">{{item.askerNickName}}</template><template v-if="item.askerNickName==''">匿名用户</template> <span>咨询了</span></div>
                                                         <div class="header_className">{{item.title}}</div>
                                                     </div>
                                                     <div class="index_li_content">{{item.content}}</div>
                                                     <div class="index_li_bottom">
-
+                                                        <img :src="item.expertFaceUrl" alt="">
                                                         <!--免费听-->
                                                         <span class="problem_answer_yy" v-if="item.answerType==1">
                                             <div class="audio" :class="{playing:item.playing,paused:item.paused}">
@@ -71,7 +70,7 @@
                                             </div>
                                         </span>
 
-                                                        <div class="index_li_count">听过{{item.listenTimes}}</div>
+                                                        <div class="index_li_count">听过 {{item.listenTimes}}</div>
                                                     </div>
                                                 </a>
                                             </li>
@@ -283,7 +282,7 @@
                 }else{
                     payTitle = '确认偷听此问题';
                     subHtml='';
-                    msg = '使用：<span class="colorStyle">1</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span>点豆';
+                    msg = '使用：<span class="colorStyle">1</span> 点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span> 点豆';
                     if(Number(_this.user.dianCoin)>=1){
                         useCoin = true;
                     }else{
@@ -309,7 +308,7 @@
                                 dataType:'JSON',
                                 success: function( bt ) {
                                     if(bt.status==1){
-                                        xqzs.weui.tip("支付成功", function () {
+                                        xqzs.weui.toast("success","支付成功", function () {
                                             _this.setPayed(index);
                                         });
                                     }else{
@@ -332,7 +331,7 @@
                                 dataType:'JSON',
                                 success: function( bt ) {
                                     if(bt.status==1){
-                                        xqzs.weui.tip("支付成功", function () {
+                                        xqzs.weui.toast("success","支付成功", function () {
                                             _this.setPayed(index);
                                         });
                                     }else{
@@ -368,7 +367,7 @@
                             xqzs.wx.pay.pay(result.order, function () {
 
                             }, function () {//success
-                                xqzs.weui.tip("支付成功", function () {
+                                xqzs.weui.toast("success","支付成功", function () {
                                     _this.setPayed(index);
                                 });
                             }, function () {//error
@@ -637,8 +636,9 @@
         margin-bottom: 0.88235rem;
     }
     .index_li_bottom{
-        position: relative;
+        position: relative; padding-left: 2.8rem;
     }
+    .index_li_bottom img{  position: absolute; left:0; width: 2.4rem;height: 2.4rem; border-radius: 50%}
     .index_li_voice{
         position: relative;
         font-size: 0.88235rem;

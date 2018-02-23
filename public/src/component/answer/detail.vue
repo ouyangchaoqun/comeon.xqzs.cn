@@ -26,17 +26,17 @@
                     </div>
                     <div class="answer_countBox">
                         <div class="counts" v-if="detail.listenCount!=null">{{detail.listenCount}}</div>
-                        <div class="nr">次偷听</div>
+                        <div class="nr"> 次偷听</div>
                         <div class="line_1"></div>
                     </div>
                     <div class="answer_countBox">
                         <div class="counts">{{toPercent(detail.goodPercent||0)}}</div>
-                        <div class="nr">好评率</div>
+                        <div class="nr"> 好评率</div>
                         <div class="line_1"></div>
                     </div>
                     <div class="answer_countBox">
                         <div class="counts">{{detail.followCount}}</div>
-                        <div class="nr">人收听</div>
+                        <div class="nr"> 人收听</div>
                     </div>
 
                 </div>
@@ -80,11 +80,15 @@
                 <div v-if="detail.evaluateCount>0">
                     <div class="list">
                         <div class="item" v-for="(item,index) in commentList" :class="{addBorder_bottom:commentList.length>1}">
-                            <div class="img"><img
-                                    :src="item.faceUrl">
+                            <div class="img">
+                                <img :src="item.faceUrl" v-if="item.isAnonymous==0">
+                                <img v-if="item.isAnonymous==1" src="../../images/isAnonymousImg.png" alt="">
                             </div>
                             <div class="info">
-                                <div class="name">{{item.nickName}}</div> <!--该名字-->
+                                <div class="name">
+                                    <template v-if="item.isAnonymous==0">{{item.nickName}}</template>
+                                    <template v-if="item.isAnonymous==1">匿名用户</template>
+                                </div> <!--该名字-->
                                 <div class="star"><span class="on" v-for="i in item.point"></span><span   v-for="i in 5-item.point"></span>
                                     <div class="time timeRight">{{formatTime(item.addTime)}}</div>
                                 </div>
@@ -254,6 +258,10 @@
             this.getAnswer();
             xqzs.wx.setConfig(this);
 
+
+            this.isInteger(1.00000);
+            this.isInteger(1.00001);
+            this.isInteger(1);
         },
         updated:function () {
             let _this = this;
@@ -292,7 +300,7 @@
                 }else{
                     payTitle = '确认偷听此问题';
                     subHtml='';
-                    msg = '使用：<span class="colorStyle">1</span>点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span>点豆';
+                    msg = '使用：<span class="colorStyle">1</span> 点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span> 点豆';
                     if(Number(_this.user.dianCoin)>=1){
                         useCoin = true;
                     }else{
@@ -318,7 +326,7 @@
                                 dataType:'JSON',
                                 success: function( bt ) {
                                     if(bt.status==1){
-                                        xqzs.weui.tip("支付成功", function () {
+                                        xqzs.weui.toast("success","支付成功", function () {
                                             _this.setPayed(index);
                                         });
                                     }else{
@@ -341,7 +349,7 @@
                                 dataType:'JSON',
                                 success: function( bt ) {
                                     if(bt.status==1){
-                                        xqzs.weui.tip("支付成功", function () {
+                                        xqzs.weui.toast("success","支付成功", function () {
                                             _this.setPayed(index);
                                         });
                                     }else{
@@ -363,8 +371,19 @@
 //                    _this.pay(index)
                 })
             },
+
+            isInteger: function (obj) {
+                console.log("rrrrrrr"+obj )
+                console.log(obj % 1 === 0);
+                return obj % 1 === 0
+            },
             toPercent:function (p) {
-                return (p*100).toFixed(2)+'%';
+                if(this.isInteger(p*100)){
+                    return parseInt(p*100)+'%';
+                }else{
+                    return (p*100).toFixed(1)+'%';
+                }
+
             },
             showPicker:function () {
                 let _this = this;
@@ -399,7 +418,7 @@
                             xqzs.wx.pay.pay(result.order, function () {
 
                             }, function () {//success
-                                xqzs.weui.tip("支付成功", function () {
+                                xqzs.weui.toast("success","支付成功", function () {
                                     _this.setPayed(index);
                                 });
                             }, function () {//error
@@ -883,7 +902,7 @@
     .answer_detail_box  .list .info{ float:left; margin-left:0.8823529411764706rem;  width: 83%;line-height: 2rem;}
     .answer_detail_box  .list .info .name{ font-size: 0.7058823529411765rem; color:rgba(36,37,61,0.5); margin-bottom: 0.2rem; width: 14.11764705882353rem;line-height: 1}
     .answer_detail_box  .list .info .star{line-height: 1;margin-bottom: 0.35rem}
-    .answer_detail_box  .list .word{ font-size:0.8235rem;  color:rgba(36,37,61,1); margin-bottom: 0.4rem; overflow: hidden;word-wrap:break-word;}
+    .answer_detail_box  .list .word{ font-size:0.8235rem;  color:rgba(36,37,61,1); margin-bottom: 0.4rem; overflow: hidden;word-wrap:break-word; line-height: 1.4rem;}
     .answer_detail_box  .list .time{ font-size:0.7058823529411765rem; color:rgba(36,37,61,0.5);}
     .answer_detail_box .timeRight{float: right}
     .answer_detail_box  .list .info .class_s { clear: both; padding-top: 0.3rem;}

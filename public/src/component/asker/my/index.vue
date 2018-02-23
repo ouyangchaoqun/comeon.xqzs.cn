@@ -14,15 +14,15 @@
                 </div>
                 <div class="income_margin">
                 <router-link to="../my/cash" class="income"><i></i>我的现金
-                    <div class="price">{{formatPrice(user.balance)}}<span style="font-size: 0.70rem;color: black ">元</span></div>
+                    <div class="price">{{formatPrice(user.balance)}}<span style="font-size: 0.70rem;color: black "> 元</span></div>
                 </router-link>
 
                 <router-link to="../my/dotbean" class="income dotCoin"><i></i>我的点豆
-                    <div class="price">{{user.dianCoin}}<span style="font-size: 0.70rem;color: black ">点</span></div>
+                    <div class="price">{{user.dianCoin}}<span style="font-size: 0.70rem;color: black "> 点</span></div>
                 </router-link>
-                <router-link to="../my/coupon" class="income yhcard "><i></i>优惠卡券
-                    <div class="price">{{couponNum}}<span style="font-size: 0.70rem;color: black ">张</span></div>
-                </router-link>
+                <!--<router-link to="../my/coupon" class="income yhcard "><i></i>优惠卡券-->
+                    <!--<div class="price">{{couponNum}}<span style="font-size: 0.70rem;color: black ">张</span></div>-->
+                <!--</router-link>-->
                 </div>
                 <router-link to="../my/listen/list" class="listen"><i></i>我的偷听</router-link>
                 <router-link to="../my/answer/list" class="answer"><i></i>我的收听</router-link>
@@ -77,32 +77,37 @@
                     if (data.body.status == 1) {
                         if(data.data.data!=null){
                             let status = data.data.data.status;
+                            console.log(status)
 //                            const NOT_AUTHENTICATED=0;//未认证
 //                            const AUTHENTICATED = 1 ;//已认证
 //                            const AUTHENTICATING = 2;//认证中
 //                            const AUTHENTICATING = -1;//提交中
-                            if(status==0||status==-1){
+                            if(status==2||status==-1){
+                                //修改
+                                xqzs.weui.tip("资料审核中，请稍后")
+                            }
+                            if(status==1){
+                                //已认证
+                                xqzs.weui.tip("您已成功入驻咨询师，请从公众号移步到咨询师。")
+                            }
+                            if(status==0){
+                                //未认证
                                 _this.goJoin()
-
-                            }else{
-                                if(status==1){
-                                    xqzs.weui.tip("您已成功入驻咨询师，请从公众号移步到咨询师。")
-                                }else{
-                                    _this.$router.push("/answer/join/reviewing");
-                                }
                             }
                         }else{
+                            //入驻
                             _this.goJoin()
                         }
                     }
                 }, function (error) {
+
                 });
 
 
             },
             goJoin:function () {
                 this.showLoad = true;
-                this.$router.push("/answer/join/join_remind");
+                this.$router.push("/answer/join/joinstep");
             },
             getCoupon:function () {
                 let _this=this;

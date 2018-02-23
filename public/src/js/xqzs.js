@@ -470,11 +470,11 @@ var xqzs = {
             d_hours = parseInt(d / 3600);
             d_minutes = parseInt(d / 60);
             if (d_days > 0 && d_days < 4) {
-                return d_days + "天前";
+                return d_days + " 天前";
             } else if (d_days <= 0 && d_hours > 0) {
-                return d_hours + "小时前";
+                return d_hours + " 小时前";
             } else if (d_hours <= 0 && d_minutes > 0) {
-                return d_minutes + "分钟前";
+                return d_minutes + " 分钟前";
             } else {
                 var s = new Date(publishTime * 1000);
                 // s.getFullYear()+"年";
@@ -490,11 +490,11 @@ var xqzs = {
             d_hours = parseInt(d / 3600);
             d_minutes = parseInt(d / 60);
             if (d_hours > 0) {
-                return "剩" + d_hours + "小时";
+                return "剩 " + d_hours + " 小时";
             } else if (d_hours <= 0 && d_minutes > 0) {
-                return "剩" + d_minutes + "分钟";
+                return "剩 " + d_minutes + " 分钟";
             } else {
-                return "剩" + d + "秒钟";
+                return "剩 " + d + " 秒钟";
             }
         },
         getSolarData: function (beginYear, endYear) {
@@ -1338,6 +1338,25 @@ var xqzs = {
 
         }
 
+    },
+    equipment:{
+        isIphoneX:function () {
+            return /iphone/gi.test(navigator.userAgent) && (screen.height == 812 && screen.width == 375)
+        },
+        tabHeight:function () {
+            if(xqzs.equipment.isIphoneX()){
+                return 4;
+            }else{
+                return 2.882352 ;
+            }
+        },
+        getRem:function () {
+
+            var width =  document.documentElement.getBoundingClientRect().width;
+            var  maxWidth =  768;
+            width>maxWidth && (width=maxWidth);
+            return    width * 100 / 750;
+        }
     }
 };
 
@@ -1587,6 +1606,7 @@ document.addEventListener("visibilitychange", function () {
             this.obj = config.obj;
             this.bth = $('.record_voice_box .tip');
             this.maski= $('.record_voice_box .mask i');
+            this.maski.attr("class","start")
             return this;
         },
         initStart:function(){
@@ -1600,6 +1620,7 @@ document.addEventListener("visibilitychange", function () {
             $('.left').css('transform', "rotate(0)");
             $(".pie_left_play ,.pie_right_play").hide();
             $(".pie_left ,.pie_right").css({opacity:1});
+
         },
         clearTimer:function(){
             if(this.timer){
