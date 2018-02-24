@@ -20,20 +20,20 @@
             <!--const QUESTION_NOT_PAY = 3;//问题还未支付-->
             <!--超时未解答-->
             <div class="rob_status_box" v-if="detail.questionStatus==2&&detail.answerCount==0">
-                <div>未解答 <span class="race_detail_inCome">收入分成￥{{formatPrice(detail.inCome)}}</span></div>
+                <div>未解答 </div>
                 <div>48小时内无人抢答，赏金已全额退还</div>
             </div>
             <!--正在进行中-->
             <div class="rob_status_box"  v-if="detail.questionStatus==0">
-                <div>还{{formatTimeLastText(detail.endTime)}} <span class="race_detail_inCome">收入分成￥{{formatPrice(detail.inCome)}}</span></div>
+                <div>还{{formatTimeLastText(detail.endTime)}} </div>
                 <div>已有<span>{{detail.answerCount}}</span>人抢答，可以选择一个最佳答案，其答主将获得全部赏金，且该回答将产生偷偷听收入</div>
             </div>
             <div class="rob_status_box" v-if="detail.questionStatus==2&&detail.answerCount!=0">
-                <div>已解答 <span class="race_detail_inCome">收入分成￥{{formatPrice(detail.inCome)}}</span></div>
+                <div>已解答 <</div>
                 <div>共有<span>{{detail.answerCount}}</span>人抢答，抢答者平分赏金。</div>
             </div>
             <div class="rob_status_box" v-if="detail.questionStatus==1">
-                <div>已解答 <span class="race_detail_inCome">收入分成￥{{formatPrice(detail.inCome)}}</span></div>
+                <div>已解答 </div>
                 <div>共有<span>{{detail.answerCount}}</span>人抢答，{{bestAnswer.expertNickName}}的回答被选为最佳回答。</div>
             </div>
             <ul class="rob_lists">

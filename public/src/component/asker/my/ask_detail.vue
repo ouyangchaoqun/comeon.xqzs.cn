@@ -28,7 +28,6 @@
                 <div v-if="detail.questionStatus==1">
                     <span>已解答</span>
                 </div>
-                <div class="problem_detail_inCome">收入分成￥{{formatPrice(detail.inCome)}}</div>
             </div>
 
 
