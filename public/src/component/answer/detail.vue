@@ -186,7 +186,7 @@
                 </span>
                     <span v-if="detail.followed===0" class="followedColor">+收听</span>
                 </div>
-                <div class="pay_ask" @click="ask()"><span class="ask_dianCoinbg"></span>{{detail.price}} 提问</div>
+                <div class="pay_ask" @click="ask()"><span class="ask_dianCoinbg"></span>￥{{detail.price}} 提问</div>
             </div>
         </div>
     </div>
@@ -965,12 +965,13 @@
         margin-left: 0.6rem;
     }
     .answer_detail_box .pay_ask{width: 70%;float: right; background: linear-gradient(to right, rgba(255,158,25,1), rgba(254,115,1,1));color: white;line-height: 2.588rem;height: 2.588rem;}
-    .answer_detail_box .pay_ask .ask_dianCoinbg{ background: url("../../images/asker/user_dianCoin_white.png")no-repeat; width: 1rem;
-        height: 1rem;
-        background-size: 100% 100%;
-       display: inline-block;
-        margin-right: 0.5rem;
-       }
+    /*.answer_detail_box .pay_ask .ask_dianCoinbg{ */
+        /*background: url("../../images/asker/user_dianCoin_white.png")no-repeat; width: 1rem;*/
+        /*height: 1rem;*/
+        /*background-size: 100% 100%;*/
+        /*display: inline-block;*/
+        /*margin-right: 0.5rem;*/
+    /*}*/
     .friestP{overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 4;line-height:1.176rem;-webkit-box-orient: vertical;}
     .addopen{margin-top:1.76rem;height:auto;}
     .addstop{margin-top:0;height:0;overflow: hidden;}

@@ -34,7 +34,7 @@
                                     <span v-for="(good,goodIndex) in item.goodAt" class="tab_i_i">{{good.title}}</span>
                                 </div>
                                 <div class="class_s other">
-                                    <span class="price" ><b>问价</b>  <a>{{item.price}}</a></span>
+                                    <span class="price" ><b>问价</b>  <a>￥{{item.price}}</a></span>
                                     <div class="class_right">
                                         <span v-if="item.answerCount!=null">{{item.answerCount}} 个回答</span>
                                         <span v-if="item.listenCount!=null">{{item.listenCount}} 次被偷听</span>
@@ -288,11 +288,11 @@
     .answer_list .headerImg img{width:0.88235rem;height:0.76471rem;display: inline-block;margin-left: 0.3rem;}
     .answer_list .class_s .price{color:#FE7301;}
     .answer_list .class_s .price b{color:rgba(36,37,61,0.5);font-style: normal;font-weight: normal; text-align: left}
-    .answer_list .class_s .price a{
-        right: 0;
-        padding-left: 1rem;
-        background: url(../../images/asker/asker_left_dotCoin.png)no-repeat;
-        background-size: 0.85rem 0.8rem;}
+    /*.answer_list .class_s .price a{*/
+        /*right: 0;*/
+        /*padding-left: 1rem;*/
+        /*background: url(../../images/asker/asker_left_dotCoin.png)no-repeat;*/
+        /*background-size: 0.85rem 0.8rem;}*/
    .answer_index  .class_list{  padding:0.47rem 0;background: #fff;}
 
    .answer_index  .class_list .class_item{  float:left ; width: 20%; text-align: center;color:#999;font-size: 0.6176471rem;padding: 6px 0 ; }

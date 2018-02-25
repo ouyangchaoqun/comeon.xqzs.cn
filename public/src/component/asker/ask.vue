@@ -26,8 +26,8 @@
                 <textarea @input="valChange()" v-model="fastAsktextContent" v-if="!isSelectAnswer" placeholder="请详细描述你的问题，专家将尽快为你解答！" class="content" maxlength="200"></textarea>
                 <div v-if="!isSelectAnswer" class="last_word_count">{{contentLength}}/200</div>
                 <div v-if="isSelectAnswer" class="last_word_count">{{contentLength}}/{{MAX_LENGTH}}</div>
-                <div class="price" v-if="isSelectAnswer">{{parseInt(expertDetail.price)}}</div>
-                <div class="price" v-if="!isSelectAnswer">10</div>
+                <div class="price" v-if="isSelectAnswer">￥{{parseInt(expertDetail.price)}}</div>
+                <div class="price" v-if="!isSelectAnswer">￥10</div>
             </div>
             <div class="addAnonymous">
                 <span>匿名 </span>
@@ -203,7 +203,6 @@
                 })
             },
             typeDialog:function () {
-                let _this = this;
                 if(this.questionClass==0){
                     xqzs.weui.tip("请选择问题类型")
                     return;
@@ -213,32 +212,75 @@
                     xqzs.weui.tip("请填写问题内容");
                     return;
                 }
-                let payTitle;
-                let subHtml;
-                let isEnough = false;
-                if(_this.isSelectAnswer){
-                    //向专家提问
-                    payTitle = '确认向专家提问';
-                }else{
-                    //快问
-                    payTitle = '确认发布问题';
-                }
-                if(Number(_this.user.dianCoin)>=Number(_this.rechargeMoney)){
-                    isEnough = true;
-                    subHtml=""
-                }else{
-                    subHtml="去充值"
-                }
-                let msg = '使用：<span class="colorStyle">'+_this.rechargeMoney+'</span> 点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span> 点豆'
-                xqzs.weui.dialog(payTitle,msg,subHtml,function(){},function () {
-                    if(isEnough){
-                        _this.submit()
-                    }else{
+                let _this = this;
+                if( _this.expertId&& _this.expertId!=''){
+                    console.log('一对一')
+                    _this.$http.post(web.API_PATH + "come/expert/post/expert/question", {userId:"_userId_",content:content, questionClass: _this.questionClass,expertId:_this.expertId,isAnonymous:this.isAnonymous})
+                        .then(function (bt) {
+                            if (bt.data && bt.data.status == 1) {
+                                let result = bt.data.data;
+                                xqzs.localdb.remove('expertextContent');
+                                let config =result.config;
+                                xqzs.wx.pay.pay(config, function () {
 
-                       _this.rechargeFlag = true
-                    }
+                                }, function () {
+                                    xqzs.weui.toast("success","支付成功", function () {
+                                        _this.$router.push("/asker/my/ask/list");
+                                    });
+                                }, function () {
 
-                })
+                                },web.BASE_PATH+"asker/my/ask/list")
+                            }
+                        });
+                }else{
+                    console.log('快问')
+                    _this.$http.post(web.API_PATH + "come/user/post/grab/question", {userId:"_userId_",content:content, questionClass: _this.questionClass,price:10,isAnonymous:this.isAnonymous})
+                        .then(function (bt) {
+                            if (bt.data && bt.data.status == 1) {
+                                let result = bt.data.data;
+                                let config =result.config;
+                                xqzs.localdb.remove('fastAsktextContent');
+                                xqzs.wx.pay.pay(config, function () {
+
+                                }, function () {
+                                    xqzs.weui.toast("success","支付成功", function () {
+                                        _this.$router.push("/asker/my/ask/list");
+                                    });
+                                }, function () {
+
+                                },web.BASE_PATH+"asker/my/ask/list")
+
+
+                            }
+                        });
+
+                }
+//                let payTitle;
+//                let subHtml;
+//                let isEnough = false;
+//                if(_this.isSelectAnswer){
+//                    //向专家提问
+//                    payTitle = '确认向专家提问';
+//                }else{
+//                    //快问
+//                    payTitle = '确认发布问题';
+//                }
+//                if(Number(_this.user.dianCoin)>=Number(_this.rechargeMoney)){
+//                    isEnough = true;
+//                    subHtml=""
+//                }else{
+//                    subHtml="去充值"
+//                }
+//                let msg = '使用：<span class="colorStyle">'+_this.rechargeMoney+'</span> 点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span> 点豆'
+//                xqzs.weui.dialog(payTitle,msg,subHtml,function(){},function () {
+//                    if(isEnough){
+//                        _this.submit()
+//                    }else{
+//
+//                       _this.rechargeFlag = true
+//                    }
+//
+//                })
             },
             getChecked:function () {
                 var checkedVal = $('.weui-switch').prop('checked');
@@ -249,10 +291,6 @@
                     this.isAnonymous = 0
                 }
             },
-//            hideAddAnonymous:function () {
-//                this.is_checked = false;
-//                this.isAnonymous = 1;
-//            },
             getExpert:function () {
                 //专家擅长领域
                 let _this= this;
@@ -280,31 +318,31 @@
                 }, function (error) {
                 });
             },
-            submit:function () {
-                let _this = this;
-                let content= $(".content").val();
-                if( this.expertId&& this.expertId!=''){
-                        this.$http.post(web.API_PATH + "come/expert/post/expert/question", {userId:"_userId_",content:content, questionClass: _this.questionClass,expertId:this.expertId,isAnonymous:this.isAnonymous})
-                        .then(function (bt) {
-                            if (bt.data && bt.data.status == 1) {
-                                xqzs.localdb.remove('expertextContent');
-                                xqzs.weui.toast("success","支付成功", function () {
-                                    _this.$router.push("/asker/listen");
-                                });
-                            }
-                        });
-                }else{
-                    this.$http.post(web.API_PATH + "come/user/post/grab/question", {userId:"_userId_",content:content, questionClass: this.questionClass,price:10,isAnonymous:this.isAnonymous})
-                        .then(function (bt) {
-                            if (bt.data && bt.data.status == 1) {
-                                xqzs.localdb.remove('fastAsktextContent');
-                                xqzs.weui.toast("success","支付成功", function () {
-                                    _this.$router.push("/asker/listen");
-                                });
-                            }
-                        });
-                }
-            },
+//            submit:function () {
+//                let _this = this;
+//                let content= $(".content").val();
+//                if( this.expertId&& this.expertId!=''){
+//                        this.$http.post(web.API_PATH + "come/expert/post/expert/question", {userId:"_userId_",content:content, questionClass: _this.questionClass,expertId:this.expertId,isAnonymous:this.isAnonymous})
+//                        .then(function (bt) {
+//                            if (bt.data && bt.data.status == 1) {
+//                                xqzs.localdb.remove('expertextContent');
+//                                xqzs.weui.toast("success","支付成功", function () {
+//                                    _this.$router.push("/asker/listen");
+//                                });
+//                            }
+//                        });
+//                }else{
+//                    this.$http.post(web.API_PATH + "come/user/post/grab/question", {userId:"_userId_",content:content, questionClass: this.questionClass,price:10,isAnonymous:this.isAnonymous})
+//                        .then(function (bt) {
+//                            if (bt.data && bt.data.status == 1) {
+//                                xqzs.localdb.remove('fastAsktextContent');
+//                                xqzs.weui.toast("success","支付成功", function () {
+//                                    _this.$router.push("/asker/listen");
+//                                });
+//                            }
+//                        });
+//                }
+//            },
             tip: function () {
                 this.showTip=true;
                 let _this= this;
@@ -481,9 +519,6 @@
         position: absolute;
         left: 0.6rem;
         bottom: 0.6rem;
-        padding-left: 1.5rem;
-        background: url(../../images/asker/asker_left_dotCoin.png) no-repeat;
-        background-size: 30% 80%;
     }
     .asker_ask_box  .text_area textarea {
         border: none;
