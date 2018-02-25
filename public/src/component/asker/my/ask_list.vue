@@ -31,15 +31,15 @@
                             <a  @click="goDetail(item.questionType,item.questionId)">
                                 <div class="problem_header">
                                     <div>{{formatDateText(item.addTime)}}</div>
-                                    <div class="wait_Answer wait_style" v-if="item.questionStatus==0">正在进行</div>
+                                    <div class="wait_Answer" v-if="item.questionStatus==0">正在进行</div>
                                     <!--一对一完成-->
-                                    <div class="wait_Answer over_style" v-if="item.questionType==2&&item.questionStatus==1">已完成</div>
+                                    <div class="wait_Answer" v-if="item.questionType==2&&item.questionStatus==1">已完成</div>
                                     <!--抢答完成-->
-                                    <div class="wait_Answer over_style" v-if="(item.questionType==1&&item.questionStatus==1)||(item.questionType==1&&item.questionStatus==2&&item.answerCount>0)">已完成</div>
+                                    <div class="wait_Answer" v-if="(item.questionType==1&&item.questionStatus==1)||(item.questionType==1&&item.questionStatus==2&&item.answerCount>0)">已完成</div>
                                     <!--一对一超时-->
-                                    <div class="wait_Answer over_style" v-if="item.questionType==2&&item.questionStatus==2">已超时</div>
+                                    <div class="wait_Answer" v-if="item.questionType==2&&item.questionStatus==2">已超时</div>
                                     <!--抢答超时-->
-                                    <div class="wait_Answer over_style" v-if="item.questionType==1&&item.questionStatus==2&&item.answerCount==0">已超时</div>
+                                    <div class="wait_Answer " v-if="item.questionType==1&&item.questionStatus==2&&item.answerCount==0">已超时</div>
                                 </div>
                                 <div class="my_problem_content">
                                     {{item.question}}
@@ -302,8 +302,4 @@
         vertical-align: middle;
         margin-left: -0.5rem;
     }
-    .wait_style{color:rgba(36,37,61,1)}
-    .nop_style{color:rgba(36,37,61,0.5)}
-    .over_style{color:#09bb07}
-    .headerStyle{margin-bottom: 0}
 </style>
