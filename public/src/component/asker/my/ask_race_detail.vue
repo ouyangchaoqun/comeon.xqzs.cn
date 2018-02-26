@@ -102,8 +102,8 @@
                 </div>
             </div>
         </div>
-        <div class="showOk" v-if="showOk">
-            <span >+2</span><img src="../../../images/asker/asker_left_dotCoin.png"></div>
+        <!--<div class="showOk" v-if="showOk">-->
+            <!--<span >+2</span><img src="../../../images/asker/asker_left_dotCoin.png"></div>-->
     </div>
 </template>
 
@@ -127,7 +127,7 @@
                 showLoad:false,
                 anonyVal:0,
                 set_award_dian_coin:0,
-                showOk:false,
+//                showOk:false,
             }
         },
         props:{
@@ -307,10 +307,10 @@
                 },function () {
                     _this.selBestAnswer=answer;
                     _this.selBestAnswerId=answer.answerId;
-                    _this.showOk=true;
-                    setTimeout(function () {
-                        _this.showOk=false;
-                    },1000)
+//                    _this.showOk=true;
+//                    setTimeout(function () {
+//                        _this.showOk=false;
+//                    },1000)
 
                     _this.setBestAnswerId();
 
