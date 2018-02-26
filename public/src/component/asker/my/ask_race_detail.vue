@@ -104,7 +104,7 @@
     </div>
 </template>
 
-<script type="es6">
+<script type="">
 
     import showLoad from '../../include/showLoad.vue';
     var rob_problem = {
@@ -122,7 +122,8 @@
                 bestAnswer:{},
                 isOver:true,
                 showLoad:false,
-                anonyVal:0
+                anonyVal:0,
+                set_award_dian_coin:0
             }
         },
         props:{
@@ -296,7 +297,7 @@
             selectBestAnswerId:function (answer) {
                 let _this=this;
                 _this.selBestAnswerId=answer.answerId;
-                xqzs.weui.dialog("最佳答案","选择" + answer.expertNickName+"的回答为最佳答案，并且与TA一起参与偷听分成","",function () {
+                xqzs.weui.dialog("最佳答案","选择<span style='font-weight: bolder;color: black'>" + answer.expertNickName+"</span>的回答为最佳答案，领取<span style='font-weight: bolder;bolder;color: black'>"+_this.set_award_dian_coin+"</span>点豆奖励","",function () {
                     _this.selBestAnswerId=0;
                 },function () {
                     _this.selBestAnswer=answer;
@@ -322,6 +323,7 @@
                     if (data.body.status == 1) {
                         console.log(data.body.data.data)
                         _this.detail= data.body.data.data;
+                        _this.set_award_dian_coin=data.body.data.set_award_dian_coin;
                         _this.detail.evaluate_ed=data.body.data.evaluate_ed
                         for(let i=0;i<_this.detail.answers.length;i++){
                             if(_this.detail.answers[i].isBestAnswer){
