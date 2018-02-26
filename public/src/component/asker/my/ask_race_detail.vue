@@ -36,6 +36,11 @@
                 <div>已解答 </div>
                 <div>共有<span>{{detail.answerCount}}</span>人抢答，{{bestAnswer.expertNickName}}的回答被选为最佳答案,你已获得{{set_award_dian_coin}}点豆奖励。</div>
             </div>
+            <div class="rob_status_box" v-if="detail.questionStatus==2">
+                <div>已解答 </div>
+                <div>共有<span>{{detail.answerCount}}</span>人抢答，抢答者平分赏金。</div>
+            </div>
+
 
             <ul class="rob_lists">
                 <li v-for="(item,index) in detail.answers">
