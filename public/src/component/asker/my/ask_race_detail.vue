@@ -24,13 +24,13 @@
                 <div>48小时内无人抢答，赏金已全额退还</div>
             </div>
             <!--正在进行中-->
-            <div class="rob_status_box"  v-if="detail.questionStatus==0">
+            <div class="rob_status_box"  v-if="detail.questionStatus==0&&detail.answerCount==0">
                 <div>还{{formatTimeLastText(detail.endTime)}} </div>
-                <div>已有<span>{{detail.answerCount}}</span>人抢答，可以选择一个最佳答案，其答主将获得全部赏金，且该回答将产生偷偷听收入</div>
+                <div>暂无人抢答，如果48小时内没有专家回答该问题，提问酬金将原路返还</div>
             </div>
             <div class="rob_status_box" v-if="detail.questionStatus==2&&detail.answerCount!=0">
                 <div>已解答 <</div>
-                <div>共有<span>{{detail.answerCount}}</span>人抢答，抢答者平分赏金。</div>
+                <div>共有<span>{{detail.answerCount}}</span>人抢答，选择最佳答案之后可获得2点豆奖励，其答主将获得全部赏金。</div>
             </div>
             <div class="rob_status_box" v-if="detail.questionStatus==1">
                 <div>已解答 </div>
