@@ -21,20 +21,20 @@
             <!--超时未解答-->
             <div class="rob_status_box" v-if="detail.questionStatus==2&&detail.answerCount==0">
                 <div>未解答 </div>
-                <div>48小时内无人抢答，赏金已全额退还</div>
+                <div>48小时内无人抢答，赏金已全额退还。</div>
             </div>
             <!--正在进行中-->
             <div class="rob_status_box"  v-if="detail.questionStatus==0&&detail.answerCount==0">
                 <div>还{{formatTimeLastText(detail.endTime)}} </div>
-                <div>暂无人抢答，如果48小时内没有专家回答该问题，提问酬金将原路返还</div>
+                <div>暂无人抢答，如果48小时内没有专家回答该问题，提问酬金将原路返还。</div>
             </div>
             <div class="rob_status_box" v-if="detail.questionStatus==2&&detail.answerCount!=0">
                 <div>已解答 <</div>
-                <div>共有<span>{{detail.answerCount}}</span>人抢答，选择最佳答案之后可获得2点豆奖励，其答主将获得全部赏金。</div>
+                <div>共有<span>{{detail.answerCount}}</span>人抢答，选择最佳答案之后可获得{{set_award_dian_coin}}点豆奖励，其答主将获得全部赏金。</div>
             </div>
             <div class="rob_status_box" v-if="detail.questionStatus==1">
                 <div>已解答 </div>
-                <div>共有<span>{{detail.answerCount}}</span>人抢答，{{bestAnswer.expertNickName}}的回答被选为最佳回答。</div>
+                <div>共有<span>{{detail.answerCount}}</span>人抢答，{{bestAnswer.expertNickName}}的回答被选为最佳回答,你获得{{set_award_dian_coin}}点豆奖励。</div>
             </div>
             <ul class="rob_lists">
                 <li v-for="(item,index) in detail.answers">
@@ -101,6 +101,8 @@
                 </div>
             </div>
         </div>
+        <!--<div class="showOk" v-if="showOk">-->
+            <!--<span >+2</span><img src="../../../images/asker/asker_left_dotCoin.png"></div>-->
     </div>
 </template>
 
@@ -123,7 +125,8 @@
                 isOver:true,
                 showLoad:false,
                 anonyVal:0,
-                set_award_dian_coin:0
+                set_award_dian_coin:0,
+//                showOk:false,
             }
         },
         props:{
@@ -297,12 +300,16 @@
             selectBestAnswerId:function (answer) {
                 let _this=this;
                 _this.selBestAnswerId=answer.answerId;
-                xqzs.weui.dialog("最佳答案","选择<span style='font-weight: bolder;color: black'>" + answer.expertNickName+"</span>的回答为最佳答案，领取<span style='font-weight: bolder;bolder;color: black'>"+_this.set_award_dian_coin+"</span>点豆奖励","",function () {
+                xqzs.weui.dialog("最佳答案","选择<span style='color: black'>" + answer.expertNickName+"</span>的回答为最佳答案<br>领取<span style='color: black'>"+_this.set_award_dian_coin+"</span>点豆奖励","",function () {
                     _this.selBestAnswerId=0;
+
                 },function () {
                     _this.selBestAnswer=answer;
                     _this.selBestAnswerId=answer.answerId;
-
+//                    _this.showOk=true;
+//                    setTimeout(function () {
+//                        _this.showOk=false;
+//                    },1000)
 
                     _this.setBestAnswerId();
 
@@ -620,5 +627,30 @@
         display: block;
         float: left;
         margin-top:-0.41176rem;
+    }
+    .showOk{
+        font-size: 3rem;
+        position: absolute;
+        top:50%;
+        left: 30%;
+        animation: showOk linear 0.8s;
+    }
+    @keyframes showOk {
+        0%{
+            font-size: 3rem;
+            position: absolute;
+            top:50%;
+            color: #FE7A03;
+            opacity: 1;
+            left: 30%;
+        }
+        100%{
+            font-size: 3rem;
+            position: absolute;
+            top:40%;
+            color: #FE7A03;
+            opacity:0;
+            left: 30%;
+        }
     }
 </style>
