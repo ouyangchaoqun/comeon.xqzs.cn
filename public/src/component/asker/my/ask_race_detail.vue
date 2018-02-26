@@ -28,14 +28,15 @@
                 <div>还{{formatTimeLastText(detail.endTime)}} </div>
                 <div>暂无人抢答，如果48小时内没有专家回答该问题，提问酬金将原路返还。</div>
             </div>
-            <div class="rob_status_box" v-if="detail.questionStatus==2&&detail.answerCount!=0">
-                <div>已解答 <</div>
-                <div>共有<span>{{detail.answerCount}}</span>人抢答，选择最佳答案之后可获得{{set_award_dian_coin}}点豆奖励，其答主将获得全部赏金。</div>
+            <div class="rob_status_box" v-if="detail.questionStatus==0&&detail.answerCount!=0">
+                <div>已解答 </div>
+                <div>共有<span>{{detail.answerCount}}</span>人抢答，可选择一个最佳答案，其答主将获得全部赏金，并且你将获得{{set_award_dian_coin}}点豆奖励。</div>
             </div>
             <div class="rob_status_box" v-if="detail.questionStatus==1">
                 <div>已解答 </div>
-                <div>共有<span>{{detail.answerCount}}</span>人抢答，{{bestAnswer.expertNickName}}的回答被选为最佳回答,你获得{{set_award_dian_coin}}点豆奖励。</div>
+                <div>共有<span>{{detail.answerCount}}</span>人抢答，{{bestAnswer.expertNickName}}的回答被选为最佳答案,你已获得{{set_award_dian_coin}}点豆奖励。</div>
             </div>
+
             <ul class="rob_lists">
                 <li v-for="(item,index) in detail.answers">
                     <div class="comment_btn"  @click="showCommentBox()"  v-if="detail.bestAnswerId!=0&&detail.questionStatus!=0&&detail.bestAnswerId==item.answerId&&!detail.evaluate_ed">
@@ -101,8 +102,8 @@
                 </div>
             </div>
         </div>
-        <!--<div class="showOk" v-if="showOk">-->
-            <!--<span >+2</span><img src="../../../images/asker/asker_left_dotCoin.png"></div>-->
+        <div class="showOk" v-if="showOk">
+            <span >+2</span><img src="../../../images/asker/asker_left_dotCoin.png"></div>
     </div>
 </template>
 
@@ -126,7 +127,7 @@
                 showLoad:false,
                 anonyVal:0,
                 set_award_dian_coin:0,
-//                showOk:false,
+                showOk:false,
             }
         },
         props:{
@@ -306,10 +307,10 @@
                 },function () {
                     _this.selBestAnswer=answer;
                     _this.selBestAnswerId=answer.answerId;
-//                    _this.showOk=true;
-//                    setTimeout(function () {
-//                        _this.showOk=false;
-//                    },1000)
+                    _this.showOk=true;
+                    setTimeout(function () {
+                        _this.showOk=false;
+                    },1000)
 
                     _this.setBestAnswerId();
 
@@ -633,7 +634,7 @@
         position: absolute;
         top:50%;
         left: 30%;
-        animation: showOk linear 0.8s;
+        animation: showOk linear 1.5s;
     }
     @keyframes showOk {
         0%{
