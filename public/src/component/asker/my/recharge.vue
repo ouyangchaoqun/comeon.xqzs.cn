@@ -144,6 +144,7 @@
                             if (bt.data && bt.data.status == 1) {
                                 let result = bt.data.data;
                                 if (result.resultCode == 1) {
+                                    xqzs.eventLog.visit('comeon_pay_balance_success');
                                     xqzs.weui.toast("success","支付成功", function () {
                                         _this.$emit(
                                                 'childMessage',{
@@ -156,6 +157,7 @@
                                     xqzs.wx.pay.pay(result, function () {
 
                                     }, function () {//success
+                                        xqzs.eventLog.visit('comeon_pay_wxpay_success');
                                         xqzs.weui.toast("success","支付成功", function () {
                                             _this.$emit(
                                                 'childMessage',{
@@ -173,6 +175,8 @@
 
             },
             doPay: function () {
+
+                xqzs.eventLog.visit('comeon_pay')
                 let _this = this;
                 if (this.isUseIncome) {
                         _this._doPay(1)

@@ -547,7 +547,18 @@ var xqzs = {
         }
     },
 
+    eventLog:{
+        visit: function (code) {
+            var fullUrl= window.location.href;
+            $.ajax({
+                url: web.API_PATH + 'log/visit?id=' + code+"&fullUrl="+fullUrl,
+                type: 'GET',
+                success: function () {
+                }
+            });
 
+        }
+    },
     /**
      * 是否可以将base64转成blob对象
      * @param dataurl

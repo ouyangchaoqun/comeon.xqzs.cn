@@ -345,6 +345,7 @@
                             });
                             break;
                         case recharge:
+                            xqzs.eventLog.visit('comeon_listen_go_pay');
                             _this.rechargeFlag = true
                             break;
                     }
