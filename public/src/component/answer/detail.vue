@@ -714,7 +714,7 @@
                             var config = {
                                 imgUrl: _this.detail.faceUrl,
                                 title: '好一点平台特邀心理咨询师'+_this.detail.nickName+'，欢迎提问',
-                                desc:  _this.detail.introduction ,
+                                desc:  xqzs.string.removeHtml(_this.detail.introduction) ,
                                 link: web.BASE_PATH + "answer/detail/?id=" + id ,
                             };
                             console.log("weshare")

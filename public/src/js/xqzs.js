@@ -1061,6 +1061,10 @@ var xqzs = {
         return s;
     },
     string: {
+        removeHtml: function (str)
+        {
+            return str.replace(/<[^>]+>/g,"");//去掉所有的html标记
+        },
         checkPrice: function (val) {
             var re = /^[0-9.]+$/;
             return re.test(val);
