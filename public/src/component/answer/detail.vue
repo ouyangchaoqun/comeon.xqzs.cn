@@ -717,6 +717,8 @@
                                 desc:  _this.detail.introduction ,
                                 link: web.BASE_PATH + "/answer/detail/?id=" + id ,
                             };
+                            console.log("weshare")
+                            console.log(config)
                             weshare.init(wx, config)
                         });
                     }
