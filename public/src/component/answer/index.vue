@@ -14,6 +14,13 @@
                 <!--</div>-->
                 <!--<div class="clear"></div>-->
             <!--</div>-->
+            <div class="nav_select">
+                <div class="sort_rank">综合排序<span class="sanjiao"></span></div>
+                <div class="class_rank">全部分类<span class="sanjiao"></span></div>
+            </div>
+            <li v-for="item in sortList" :val="item.value" class="sort_list " :class="{selected:item.flag}">{{item.label}}</li>
+            <div class="class_select">
+            </div>
             <div class="answer_list">
                 <div class="item" v-for="(item,index) in list">
                     <div @click="goDetail(item.expertId)">
@@ -75,7 +82,7 @@
     </div>
 </template>
 
-<script type="es6">
+<script type="">
     import showLoad from '../include/showLoad.vue';
     import scroll from '../include/scroll.vue';
     import Bus from '../../js/bus.js';
@@ -92,7 +99,8 @@
                 isShowMoreText:false,
                 showLoad:false,
                 classId:0,
-                noContent:false
+                noContent:false,
+                sortList:[{label:"综合排序",value:1,flag:true},{label:"最新入驻",value:2,flag:false}],
 
             }
         },
@@ -343,5 +351,28 @@
     }
     .answer_index .itemDetail_class_s .tab_i_i{ color: #FF9966;background:rgba(204,204,204,0.3);; border-radius:0.1470588235294118rem ; padding: 0.2rem 0.3rem; margin: 0 0.3rem; }
     .answer_index .itemDetail_class_s .tab_i_i:first-child{ margin-left: 0;}
-
+    .answer_index .nav_select{ background:RGBA(69, 75, 84, 0.05) ;height: 2.82rem;width: 100%; overflow: hidden;text-align: center;line-height: 2.82rem;font-size: 0.88rem;color: RGBA(69, 75, 84, 0.5)}
+    .answer_index .sort_rank{width: 50%;height: 100%; float: left}
+    .answer_index .class_rank{width: 50%;height: 100%; float: right}
+    .answer_index .sanjiao{
+        width: 0;
+        height: 0;
+        display: inline-block;
+        border-top: 0.4rem solid RGBA(69, 75, 84, 0.2);
+        border-right: 0.4rem solid transparent;
+        border-left: 0.4rem solid transparent;
+        margin-left: 0.2rem;
+    }
+    .answer_index .sort_list{
+        width: 100% ;
+        font-size: 0.88rem;
+        height: 2.82rem;
+        text-align: center;
+        line-height: 2.82rem;
+        background: #fff;
+        border-bottom: 1px solid #eee;
+    }
+    .answer_index .sort_list.selected{
+        color: #FE7A03;
+    }
 </style>
