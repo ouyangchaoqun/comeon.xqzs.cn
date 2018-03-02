@@ -713,12 +713,10 @@
                         xqzs.wx.setConfig(this, function () {
                             var config = {
                                 imgUrl: _this.detail.faceUrl,
-                                title: '好一点平台特邀心理咨询师'+_this.detail.nickName+'，欢迎提问',
-                                desc:  xqzs.string.removeHtml(_this.detail.introduction) ,
+                                title:  xqzs.string.removeHtml(_this.detail.introduction) ,
+                                desc: '好一点平台特邀心理咨询师'+_this.detail.nickName+'，欢迎提问',
                                 link: web.BASE_PATH + "/#/answer/detail/?id=" + id ,
                             };
-                            console.log("weshare")
-                            console.log(config)
                             weshare.init(wx, config)
                         });
                     }
