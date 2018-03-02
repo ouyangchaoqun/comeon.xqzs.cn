@@ -256,7 +256,13 @@
             this.getCoupon();
             this.getComment();
             this.getAnswer();
-            xqzs.wx.setConfig(this);
+
+
+
+
+
+
+
 
 
             this.isInteger(1.00000);
@@ -702,6 +708,17 @@
                         if(_this.detail.expertUserId!=_this.user.id&&_this.detail.expertUserId!=null&&_this.user.id!=null){
                             _this.scrollHeightBottom=50;
                         }
+
+
+                        xqzs.wx.setConfig(this, function () {
+                            var config = {
+                                imgUrl: _this.detail.faceUrl,
+                                title: '好一点平台特邀心理咨询师'+_this.detail.nickName+'，欢迎提问',
+                                desc:  _this.detail.introduction ,
+                                link: web.BASE_PATH + "/answer/detail/?id=" + id ,
+                            };
+                            weshare.init(wx, config)
+                        });
                     }
                 }, function (error) {
                 });
