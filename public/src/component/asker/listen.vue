@@ -19,7 +19,7 @@
 
                         <div class="swiper-slide swiper-no-swiping" v-for="navList in navLists" >
                             <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd" :isShowMoreText="isShowMoreText" :bottomHeight="50" >
-                                <div style="height:0.88235rem;background: #f5f5f5"></div>
+                                <v-typeHeader></v-typeHeader>
                                 <div class="index_box">
                                     <div v-show="navList.list.length>0" class="index_content_active">
                                         <ul>
@@ -105,6 +105,7 @@
 </template>
 <script>
     import showLoad from '../include/showLoad.vue';
+    import typeHeader from '../include/typeHeader.vue';
     import scroll from '../include/scroll.vue';
     import Bus from '../../js/bus.js';
     import askerBottom from "./include/bottom.vue";
@@ -149,6 +150,7 @@
             'v-scroll': scroll,
             "v-asker-bottom": askerBottom,
             'v-recharge':Recharge,
+            'v-typeHeader':typeHeader
         },
         mounted: function () {
             console.log(this.user)

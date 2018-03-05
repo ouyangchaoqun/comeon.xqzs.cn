@@ -6,6 +6,7 @@
 
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :isShowMoreText="isShowMoreText" :bottomHeight="50">
+            <v-typeHeader></v-typeHeader>
             <!--<div class="class_list">-->
                 <!--<div class="class_item" v-for="(item,index) in classList" @click="goClass(item.id)"-->
                      <!--:class="{on:item.id==classId}">-->
@@ -80,7 +81,7 @@
     import scroll from '../include/scroll.vue';
     import Bus from '../../js/bus.js';
     import askerBottom from "../asker/include/bottom.vue";
-
+    import typeHeader from '../include/typeHeader.vue';
     export default {
         data() {
             return {
@@ -100,7 +101,8 @@
         components: {
             'v-showLoad': showLoad,
             'v-scroll': scroll,
-            "v-asker-bottom": askerBottom
+            "v-asker-bottom": askerBottom,
+            'v-typeHeader':typeHeader
         },
         methods: {
             initActive:function () {
