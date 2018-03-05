@@ -715,7 +715,7 @@
                                 imgUrl: _this.detail.faceUrl,
                                 title:  xqzs.string.removeHtml(_this.detail.introduction) ,
                                 desc: '好一点平台特邀心理咨询师'+_this.detail.nickName+'，欢迎提问',
-                                link: web.BASE_PATH + "wx/pub/#/answer/detail/?id=" + id ,
+                                link: "http://wx.xqzs.cn/wx/pub?reurl=" + encodeURI( "http://wx.xqzs.cn/comeon/#/answer/detail/?id=" + id ),
                             };
                             weshare.init(wx, config)
                         });
