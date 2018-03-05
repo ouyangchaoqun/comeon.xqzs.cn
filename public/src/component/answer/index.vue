@@ -6,7 +6,7 @@
 
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :isShowMoreText="isShowMoreText" :bottomHeight="50">
-            
+
             <!--<div class="class_list">-->
                 <!--<div class="class_item" v-for="(item,index) in classList" @click="goClass(item.id)"-->
                      <!--:class="{on:item.id==classId}">-->
@@ -15,13 +15,7 @@
                 <!--</div>-->
                 <!--<div class="clear"></div>-->
             <!--</div>-->
-            <div class="nav_select">
-                <div class="sort_rank">综合排序<span class="sanjiao"></span></div>
-                <div class="class_rank">全部分类<span class="sanjiao"></span></div>
-            </div>
-            <li v-for="item in sortList" :val="item.value" class="sort_list " :class="{selected:item.flag}">{{item.label}}</li>
-            <div class="class_select">
-            </div>
+            <v-typeHeader></v-typeHeader>
             <div class="answer_list">
                 <div class="item" v-for="(item,index) in list">
                     <div @click="goDetail(item.expertId)">
@@ -88,6 +82,7 @@
     import scroll from '../include/scroll.vue';
     import Bus from '../../js/bus.js';
     import askerBottom from "../asker/include/bottom.vue";
+    import typeHeader from '../include/typeHeader.vue';
 
     export default {
         data() {
@@ -101,15 +96,14 @@
                 showLoad:false,
                 classId:0,
                 noContent:false,
-                sortList:[{label:"综合排序",value:1,flag:true},{label:"最新入驻",value:2,flag:false}],
-
             }
         },
 
         components: {
             'v-showLoad': showLoad,
             'v-scroll': scroll,
-            "v-asker-bottom": askerBottom
+            "v-asker-bottom": askerBottom,
+            'v-typeHeader':typeHeader,
         },
         methods: {
             initActive:function () {
@@ -302,37 +296,13 @@
         /*padding-left: 1rem;*/
         /*background: url(../../images/asker/asker_left_dotCoin.png)no-repeat;*/
         /*background-size: 0.85rem 0.8rem;}*/
-   .answer_index  .class_list{  padding:0.47rem 0;background: #fff;}
 
-   .answer_index  .class_list .class_item{  float:left ; width: 20%; text-align: center;color:#999;font-size: 0.6176471rem;padding: 6px 0 ; }
 .itemDetail_class_s{font-size: 0.70588rem;color:rgba(36,37,61,0.5);position: absolute;bottom: 28%;}
    .answer_list .info .other{margin-bottom: 0.88235rem}
-   .addClassImg{height:2.5rem; width:2.5rem; margin:0 auto;margin-bottom: 0.3529411rem;background: url("../../images/answer/index_class_nor.png") no-repeat #f1f1f1;background-size: 11.76470588235294rem; border-radius: 1.021176470588235rem}
 
 
-    .class_list .class_item.on,  .class_list .class_item:active{ color:#333; font-weight: bold}
 
-    .class_list>div:active:nth-of-type(1) div{ background-color: #6b8be9  }
-    .class_list>div:active:nth-of-type(2) div{ background-color: #cb665c  }
-    .class_list>div:active:nth-of-type(3) div{background-color: #c87334  }
-    .class_list>div:active:nth-of-type(4) div{ background-color: #6c89e8  }
-    .class_list>div:active:nth-of-type(5) div{  background-color: #d0655b  }
-    .class_list>div:active:nth-of-type(6) div{ background-color: #ca645a  }
-    .class_list>div:active:nth-of-type(7) div{ background-color: #5bb06b  }
-    .class_list>div:active:nth-of-type(8) div{ background-color: #6c89e8  }
-    .class_list>div:active:nth-of-type(9) div{ background-color: #5bb06b  }
-    .class_list>div:active:nth-of-type(10) div{ background-color: #d37c36  }
 
-   .class_list>div:nth-of-type(1) div{background-position:0.1rem 0rem; background-color:#7198FC}
-   .class_list>div:nth-of-type(2) div{background-position:-2.3rem 0.1rem; background-color:#E0685E }
-   .class_list>div:nth-of-type(3) div{background-position:-4.65rem 0rem; background-color:#F19437 }
-   .class_list>div:nth-of-type(4) div{background-position:-4.72rem -2.352941176470588rem; background-color:#7198FC}
-   .class_list>div:nth-of-type(5) div{ background-position:-7.0rem 0rem ; background-color:#E0685E}
-   .class_list>div:nth-of-type(6) div{background-position:0.05rem -2.352941176470588rem ; background-color:#E0685E}
-   .class_list>div:nth-of-type(7) div{background-position:-2.33rem -2.352941176470588rem; background-color:#75CF85 }
-   .class_list>div:nth-of-type(8) div{background-position:-9.33rem 0.1rem; background-color:#7198FC  }
-   .class_list>div:nth-of-type(9) div{background-position:-6.98rem -2.31rem ; background-color:#75CF85}
-    .class_list>div:nth-of-type(10) div{background-position:-9.35rem -2.352941176470588rem ; background-color:#F19437}
     .answer_index .noContent_icon{background: #fff;color:rgba(36,37,61,0.5);font-size: 0.76471rem;text-align: center;}
     .answer_index .noContent_icon div{margin-top: -3.8rem;}
 
@@ -353,27 +323,5 @@
     .answer_index .itemDetail_class_s .tab_i_i{ color: #FF9966;background:rgba(204,204,204,0.3);; border-radius:0.1470588235294118rem ; padding: 0.2rem 0.3rem; margin: 0 0.3rem; }
     .answer_index .itemDetail_class_s .tab_i_i:first-child{ margin-left: 0;}
     .answer_index .nav_select{ background:RGBA(69, 75, 84, 0.05) ;height: 2.82rem;width: 100%; overflow: hidden;text-align: center;line-height: 2.82rem;font-size: 0.88rem;color: RGBA(69, 75, 84, 0.5)}
-    .answer_index .sort_rank{width: 50%;height: 100%; float: left}
-    .answer_index .class_rank{width: 50%;height: 100%; float: right}
-    .answer_index .sanjiao{
-        width: 0;
-        height: 0;
-        display: inline-block;
-        border-top: 0.4rem solid RGBA(69, 75, 84, 0.2);
-        border-right: 0.4rem solid transparent;
-        border-left: 0.4rem solid transparent;
-        margin-left: 0.2rem;
-    }
-    .answer_index .sort_list{
-        width: 100% ;
-        font-size: 0.88rem;
-        height: 2.82rem;
-        text-align: center;
-        line-height: 2.82rem;
-        background: #fff;
-        border-bottom: 1px solid #eee;
-    }
-    .answer_index .sort_list.selected{
-        color: #FE7A03;
-    }
+
 </style>
