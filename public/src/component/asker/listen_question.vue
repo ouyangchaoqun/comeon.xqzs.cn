@@ -8,71 +8,77 @@
                       :isPageEnd="isPageEnd" :isShowMoreText="isShowMoreText" :bottomHeight="50">
                 <v-downList v-on:downMessage="getQType" v-on:classMessage="getQid" :urlType="1"></v-downList>
                 <div class="index_box">
-                    <div  v-for="navList in navLists">
-                        <div v-if="navList.list.length>0">
-                            <ul>
-                                <li v-for="(item,index) in navList.list">
-                                    <a @click="goDetail(item.questionId)">
-                                        <div class="index_li_header">
-                                            <div>
-                                                <template v-if="item.askerNickName!=''">
-                                                    {{item.askerNickName}}
-                                                </template>
-                                                <template v-if="item.askerNickName==''">匿名用户</template>
-                                                <span>咨询了</span></div>
-                                            <div class="header_className">{{item.title}}</div>
-                                        </div>
-                                        <div class="index_li_content">{{item.content}}</div>
-                                        <div class="index_li_bottom">
-                                            <img :src="item.expertFaceUrl" alt="">
-                                            <!--免费听-->
-                                            <span class="problem_answer_yy" v-if="item.answerType==1">
-                                <div class="audio" :class="{playing:item.playing,paused:item.paused}">
-                                    <div class="audio_btn" @click.stop="play(index)">
-                                        <div class="radio"><span></span><i></i></div>
-                                        <template v-if="!item.playing&&!item.paused">点击播放</template>
-                                        <template v-if="item.playing">正在播放..</template>
-                                        <template v-if="item.paused">播放暂停</template>
-                                        <div class="second">{{(item.ct && item.ct!='00')?item.ct:item.length}}”</div>
+                    <div v-show="newArr.length>0">
+                        <ul>
+                            <li v-for="(item,index) in newArr">
+                                <a @click="goDetail(item.questionId)">
+                                    <div class="index_li_header">
+                                        <div>
+                                            <template v-if="item.askerNickName!=''">
+                                                {{item.askerNickName}}
+                                            </template>
+                                            <template v-if="item.askerNickName==''">匿名用户</template>
+                                            <span>咨询了</span></div>
+                                        <div class="header_className">{{item.title}}</div>
                                     </div>
-                                    <div class="clear"></div>
+                                    <div class="index_li_content">{{item.content}}</div>
+                                    <div class="index_li_bottom">
+                                        <img :src="item.expertFaceUrl" alt="">
+                                        <!--免费听-->
+                                        <span class="problem_answer_yy" v-if="item.answerType==1">
+                            <div class="audio" :class="{playing:item.playing,paused:item.paused}">
+                                <div class="audio_btn" @click.stop="play(index)">
+                                    <div class="radio"><span></span><i></i></div>
+                                    <template v-if="!item.playing&&!item.paused">点击播放</template>
+                                    <template v-if="item.playing">正在播放..</template>
+                                    <template v-if="item.paused">播放暂停</template>
+                                    <div class="second">{{(item.ct && item.ct!='00')?item.ct:item.length}}”</div>
                                 </div>
-                            </span>
+                                <div class="clear"></div>
+                            </div>
+                        </span>
 
-                                            <!--付费听-->
-                                            <div class="problem_answer_yy"
-                                                 @click.stop="typeDialog(item.questionId,item.answerId,index )"
-                                                 v-if="item.answerType==2||item.answerType==4">
-                                                <div class="audio">
-                                                    <div class="audio_btn pay">偷听
-                                                        <div class="second">{{(item.ct &&
-                                                            item.ct!='00')?item.ct:item.length}}”
-                                                        </div>
+                                        <!--付费听-->
+                                        <div class="problem_answer_yy"
+                                             @click.stop="typeDialog(item.questionId,item.answerId,index )"
+                                             v-if="item.answerType==2||item.answerType==4">
+                                            <div class="audio">
+                                                <div class="audio_btn pay">偷听
+                                                    <div class="second">{{(item.ct &&
+                                                        item.ct!='00')?item.ct:item.length}}”
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!--限时免费听-->
-                                            <span class="problem_answer_yy" v-if="item.answerType==3">
-                                <div class="audio" :class="{playing:item.playing,paused:item.paused}">
-                                    <div class="audio_btn" @click.stop="play(index)">
-                                        <template v-if="!item.playing&&!item.paused">限时免费听</template>
-                                        <template v-if="item.playing">正在播放..</template>
-                                        <template v-if="item.paused">播放暂停</template>
-                                        <div class="second">{{(item.ct && item.ct!='00')?item.ct:item.length}}”</div>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                            </span>
-
-                                            <div class="index_li_count">听过 {{item.listenTimes}}</div>
                                         </div>
-                                    </a>
-                                </li>
+                                        <!--限时免费听-->
+                                        <span class="problem_answer_yy" v-if="item.answerType==3">
+                            <div class="audio" :class="{playing:item.playing,paused:item.paused}">
+                                <div class="audio_btn" @click.stop="play(index)">
+                                    <template v-if="!item.playing&&!item.paused">限时免费听</template>
+                                    <template v-if="item.playing">正在播放..</template>
+                                    <template v-if="item.paused">播放暂停</template>
+                                    <div class="second">{{(item.ct && item.ct!='00')?item.ct:item.length}}”</div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </span>
 
-                            </ul>
+                                        <div class="index_li_count">听过 {{item.listenTimes}}</div>
+                                    </div>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div v-show="newArr.length==0&&!showLoad">
+                        <div class="index_nocontent">
+                            <div>
+                                <img src="../../images/asker/newNoContent.png" alt="">
+                                <div class="nocontent_html">暂无该方面问题</div>
+                            </div>
+
                         </div>
                     </div>
-
             </div>
             </v-scroll>
         </div>
@@ -119,7 +125,8 @@
                 rechargeMoney: 0,
                 rechargeFlag: false,
                 user: {},
-                qType:1
+                qType:1,
+                newArr:[]
             }
         },
         components: {
@@ -327,9 +334,6 @@
                 let list = _this.navLists[_this.typeIndex].list;
                 let CT = list[index].ct ? list[index].ct : list[index].length;
                 let T = list[index].length;
-                console.log(CT, T)
-                console.log(list)
-                console.log(list[index].length)
                 xqzs.voice.onEnded = function () {
                     list[index].paused = false;
                     list[index].playing = false;
@@ -443,7 +447,9 @@
                         Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
                         return;
                     }
+                    vm.newArr = [];
                     let arr = response.data.data;
+                    console.log(arr)
                     if (arr.length < vm.row) {
                         item.isPageEnd = true;
                         vm.isShowMoreText = false
@@ -462,6 +468,8 @@
 
                     item.page = item.page + 1;
                     vm.$set(vm.navLists, vm.typeIndex, item);
+                    vm.newArr = item.list
+                    console.log(vm.newArr)
                     vm.$nextTick(function () {
                         vm.initActive()
                     });
