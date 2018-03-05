@@ -147,6 +147,7 @@
             getQid:function (msg) {
                console.log(msg.classId)
                 this.type = msg.classId;
+                this.qType= msg.qType;
                 this.initGetList();
             },
             getFlagVal: function (val) {
@@ -409,8 +410,7 @@
             getList: function (done) {
                 let vm = this;
                 console.log('获取列表')
-                let item = vm.navLists[vm.typeIndex]
-                console.log(item)
+                let item = vm.navLists[vm.typeIndex];
                 let url = web.API_PATH + 'come/listen/listen/list/_userId_/' + vm.type + '/' + item.page + '/' + vm.row+'?hottestOrNewest='+vm.qType;
                 //this.rankUrl = url + "?";
                 this.rankUrl = url;

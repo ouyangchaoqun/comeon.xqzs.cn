@@ -66,13 +66,16 @@
 
             },
             selectTab:function (item,n) {
-
+                let typeVal;
                 let _this=this;
                      if(n==1){
                     _this.nowSort=item.label;
                     _this.isShowSort=false;
                     _this.bottom=true;
+                    typeVal = item.value;
+                    cookie.set('typeVal',typeVal,1)
                 }
+
                 if(n==2){
                     _this.nowClass=item.title;
                     _this.isShowClass=false;
@@ -80,12 +83,13 @@
                     _this.$emit(
                         'classMessage',{
                             classId:item.id,
+                            qType:cookie.get('typeVal')
                         }
                     )
                 }
                 _this.$emit(
                     'downMessage',{
-                        qType:item.value,
+                        qType:typeVal,
                     }
                 )
             },
