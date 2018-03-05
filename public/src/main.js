@@ -66,7 +66,8 @@ let routers =
                 require('./routes/answer/join/freeTime'),
                 require('./routes/answer/join/joinMobile'),
                 require('./routes/answer/join/identity'),
-                require('./routes/answer/join/reviewing')
+                require('./routes/answer/join/reviewing'),
+                require('./routes/join')
             ]
         }
     ];

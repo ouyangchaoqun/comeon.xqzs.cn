@@ -16,13 +16,19 @@ var xqzs = {
     },
     user:{
         getUserInfo:function (fun) {
-            $.ajax({
+
+             $.ajax({
                 url:web.API_PATH + "user/find/by/user/Id/_userId_",
                 type: 'GET',
-                dataType: 'json',
+                dataType: 'text',
                 success: function (data) {
-                    if(typeof fun ==='function'){
+                    if(data!==''){
+                        data =  JSON.parse(data)
+                    }else{
 
+                    }
+                    console.log(2112)
+                    if(typeof fun ==='function'){
                         fun(data.data)
                     }
                 }
