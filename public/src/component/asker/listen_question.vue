@@ -7,67 +7,69 @@
             <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite"
                       :isPageEnd="isPageEnd" :isShowMoreText="isShowMoreText" :bottomHeight="50">
                 <div class="index_box">
-                    <div>
-                        <ul>
-                            <li v-for="(item,index) in navList.list">
-                                <a @click="goDetail(item.questionId)">
-                                    <div class="index_li_header">
-                                        <div>
-                                            <template v-if="item.askerNickName!=''">
-                                                {{item.askerNickName}}
-                                            </template>
-                                            <template v-if="item.askerNickName==''">匿名用户</template>
-                                            <span>咨询了</span></div>
-                                        <div class="header_className">{{item.title}}</div>
+                    <div  v-for="navList in navLists">
+                        <div v-if="navList.list.length>0">
+                            <ul>
+                                <li v-for="(item,index) in navList.list">
+                                    <a @click="goDetail(item.questionId)">
+                                        <div class="index_li_header">
+                                            <div>
+                                                <template v-if="item.askerNickName!=''">
+                                                    {{item.askerNickName}}
+                                                </template>
+                                                <template v-if="item.askerNickName==''">匿名用户</template>
+                                                <span>咨询了</span></div>
+                                            <div class="header_className">{{item.title}}</div>
+                                        </div>
+                                        <div class="index_li_content">{{item.content}}</div>
+                                        <div class="index_li_bottom">
+                                            <img :src="item.expertFaceUrl" alt="">
+                                            <!--免费听-->
+                                            <span class="problem_answer_yy" v-if="item.answerType==1">
+                                <div class="audio" :class="{playing:item.playing,paused:item.paused}">
+                                    <div class="audio_btn" @click.stop="play(index)">
+                                        <div class="radio"><span></span><i></i></div>
+                                        <template v-if="!item.playing&&!item.paused">点击播放</template>
+                                        <template v-if="item.playing">正在播放..</template>
+                                        <template v-if="item.paused">播放暂停</template>
+                                        <div class="second">{{(item.ct && item.ct!='00')?item.ct:item.length}}”</div>
                                     </div>
-                                    <div class="index_li_content">{{item.content}}</div>
-                                    <div class="index_li_bottom">
-                                        <img :src="item.expertFaceUrl" alt="">
-                                        <!--免费听-->
-                                        <span class="problem_answer_yy" v-if="item.answerType==1">
-                            <div class="audio" :class="{playing:item.playing,paused:item.paused}">
-                                <div class="audio_btn" @click.stop="play(index)">
-                                    <div class="radio"><span></span><i></i></div>
-                                    <template v-if="!item.playing&&!item.paused">点击播放</template>
-                                    <template v-if="item.playing">正在播放..</template>
-                                    <template v-if="item.paused">播放暂停</template>
-                                    <div class="second">{{(item.ct && item.ct!='00')?item.ct:item.length}}”</div>
+                                    <div class="clear"></div>
                                 </div>
-                                <div class="clear"></div>
-                            </div>
-                        </span>
+                            </span>
 
-                                        <!--付费听-->
-                                        <div class="problem_answer_yy"
-                                             @click.stop="typeDialog(item.questionId,item.answerId,index )"
-                                             v-if="item.answerType==2||item.answerType==4">
-                                            <div class="audio">
-                                                <div class="audio_btn pay">偷听
-                                                    <div class="second">{{(item.ct &&
-                                                        item.ct!='00')?item.ct:item.length}}”
+                                            <!--付费听-->
+                                            <div class="problem_answer_yy"
+                                                 @click.stop="typeDialog(item.questionId,item.answerId,index )"
+                                                 v-if="item.answerType==2||item.answerType==4">
+                                                <div class="audio">
+                                                    <div class="audio_btn pay">偷听
+                                                        <div class="second">{{(item.ct &&
+                                                            item.ct!='00')?item.ct:item.length}}”
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!--限时免费听-->
-                                        <span class="problem_answer_yy" v-if="item.answerType==3">
-                            <div class="audio" :class="{playing:item.playing,paused:item.paused}">
-                                <div class="audio_btn" @click.stop="play(index)">
-                                    <template v-if="!item.playing&&!item.paused">限时免费听</template>
-                                    <template v-if="item.playing">正在播放..</template>
-                                    <template v-if="item.paused">播放暂停</template>
-                                    <div class="second">{{(item.ct && item.ct!='00')?item.ct:item.length}}”</div>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                        </span>
-
-                                        <div class="index_li_count">听过 {{item.listenTimes}}</div>
+                                            <!--限时免费听-->
+                                            <span class="problem_answer_yy" v-if="item.answerType==3">
+                                <div class="audio" :class="{playing:item.playing,paused:item.paused}">
+                                    <div class="audio_btn" @click.stop="play(index)">
+                                        <template v-if="!item.playing&&!item.paused">限时免费听</template>
+                                        <template v-if="item.playing">正在播放..</template>
+                                        <template v-if="item.paused">播放暂停</template>
+                                        <div class="second">{{(item.ct && item.ct!='00')?item.ct:item.length}}”</div>
                                     </div>
-                                </a>
-                            </li>
+                                    <div class="clear"></div>
+                                </div>
+                            </span>
 
-                        </ul>
+                                            <div class="index_li_count">听过 {{item.listenTimes}}</div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
                     </div>
 
             </div>
@@ -114,8 +116,7 @@
                 couponList: [],
                 rechargeMoney: 0,
                 rechargeFlag: false,
-                user: {},
-                navList:{}
+                user: {}
             }
         },
         components: {
@@ -126,7 +127,7 @@
             'v-typeHeader': typeHeader,
         },
         mounted: function () {
-            this.type = this.$route.query.classId;
+            this.type = this.$route.query.classId
             this.getClassList();
             this.getUserInfo()
             this.getCoupon();
@@ -411,6 +412,8 @@
                     }
                     vm.showLoad = false;
                     item.isLoading = false;
+
+
                     if (response.data.status != 1 && item.page == 1) {
                         item.list = [];
                         item.isPageEnd = true;
@@ -438,14 +441,9 @@
                     if (arr.length == 0) return;
 
                     item.page = item.page + 1;
-
                     console.log(vm.navLists)
-
-                    vm.navLists.forEach(function (item) {
-                        console.log(item)
-                        vm.navList = item
-                    })
-                    console.log(vm.navList)
+                    console.log("vm.typeIndex:" + vm.typeIndex)
+                    console.log(item)
                     vm.$set(vm.navLists, vm.typeIndex, item);
                     vm.$nextTick(function () {
                         vm.initActive()
