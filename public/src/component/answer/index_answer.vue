@@ -280,6 +280,12 @@
         animation: addPlaying 1.5s infinite;
         -webkit-animation: addPlaying 1.5s infinite;
     }
+    .answer_index .img{
+        width: 3.52rem;
+        height: 3.52rem;
+        display: inline-block;
+        overflow: hidden;
+        border-radius: 50%;}
     .answer_list .headerImg img{width:0.88235rem;height:0.76471rem;display: inline-block;margin-left: 0.3rem;}
     .answer_list .class_s .price{color:#FE7301;}
     .answer_list .class_s .price b{color:rgba(36,37,61,0.5);font-style: normal;font-weight: normal; text-align: left}
@@ -314,6 +320,5 @@
     }
     .answer_index .itemDetail_class_s .tab_i_i{ color: #FF9966;background:rgba(204,204,204,0.3);; border-radius:0.1470588235294118rem ; padding: 0.2rem 0.3rem; margin: 0 0.3rem; }
     .answer_index .itemDetail_class_s .tab_i_i:first-child{ margin-left: 0;}
-    .answer_index .nav_select{ background:RGBA(69, 75, 84, 0.05) ;height: 2.82rem;width: 100%; overflow: hidden;text-align: center;line-height: 2.82rem;font-size: 0.88rem;color: RGBA(69, 75, 84, 0.5)}
 
 </style>

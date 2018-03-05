@@ -6,6 +6,7 @@
             <!--导航栏-->
             <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite"
                       :isPageEnd="isPageEnd" :isShowMoreText="isShowMoreText" :bottomHeight="50">
+                <v-downList></v-downList>
                 <div class="index_box">
                     <div  v-for="navList in navLists">
                         <div v-if="navList.list.length>0">
@@ -87,6 +88,7 @@
     import Bus from '../../js/bus.js';
     import askerBottom from "./include/bottom.vue";
     import Recharge from '../asker/my/recharge.vue' ;
+    import downList from  "../include/downList.vue"
     export default {
         data() {
             return {
@@ -125,6 +127,7 @@
             "v-asker-bottom": askerBottom,
             'v-recharge': Recharge,
             'v-typeHeader': typeHeader,
+            'v-downList':downList,
 
         },
         mounted: function () {
