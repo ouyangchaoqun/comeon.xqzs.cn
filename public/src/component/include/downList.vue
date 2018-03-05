@@ -1,14 +1,16 @@
 <template>
     <div class="down_list">
         <div class="nav_select">
-            <div class="sort_rank">综合排序<span class="sanjiao"></span></div>
-            <div class="class_rank">全部分类<span class="sanjiao"></span></div>
+            <div class="sort_rank" @click="showSelect(1)">{{nowSort}}<span :class="{sanjiao:bottom,xsanjiao:!bottom}"></span></div>
+            <div class="class_rank"  @click="showSelect(2)">{{nowClass}}<span :class="{sanjiao:bottom1,xsanjiao:!bottom1}"></span></div>
         </div>
-        <li v-for="item in sortList" :val="item.value" class="sort_list " :class="{selected:item.flag}">{{item.label}}
+        <div  v-if="isShowSort" class="sort_list" >
+        <li v-for="item in sortList" :val="item.value" class="sort_list_item " :class="{selected:nowSort==item.label}" @click="selectTab(item,1)">{{item.label}}
         </li>
+        </div>
 
-        <div class="class_select">
-            <li v-for="item in classList" :val="item.value" class="class_list" :class="{selected:item.flag}">
+        <div v-if="isShowClass" class="class_select">
+            <li v-for="item in classList" :val="item.value" class="class_list_item" :class="{selected:nowClass==item.title}" @click="selectTab(item,2)">
                 {{item.title}}
             </li>
         </div>
@@ -20,6 +22,14 @@
             return {
                 sortList: [{label: "综合排序", value: 1, flag: true}, {label: "最新入驻", value: 2, flag: false}],
                 classList:[],
+                isShowSort:false,
+                isShowClass:false,
+                nowSort:"综合排序",
+                nowClass:"全部",
+                bottom:true,
+                bottom1:true,
+                classId:0,
+                complexOrNew:1,
             }
         },
         mounted:function () {
@@ -40,6 +50,36 @@
                 let _this =  this;
                 _this.classId  = classId;
                 console.log(_this.classId)
+            },
+            showSelect:function (n) {
+                 let _this=this;
+                console.log(n)
+                if(n==1){
+                    _this.isShowSort=!_this.isShowSort;
+                    _this.bottom=!_this.bottom;
+                    _this.bottom1=true;
+                    _this.isShowClass=false;
+                }
+                else if(n==2){
+                    _this.isShowSort=false;
+                    _this.bottom1=!_this.bottom1;
+                    _this.bottom=true;
+                    _this.isShowClass=!_this.isShowClass;
+                }
+
+            },
+            selectTab:function (item,n) {
+                let _this=this;
+                     if(n==1){
+                    _this.nowSort=item.label;
+                    _this.isShowSort=false;
+                    _this.bottom=true
+                }
+                if(n==2){
+                    _this.nowClass=item.title;
+                    _this.isShowClass=false;
+                    _this.bottom1=true
+                }
             },
         }
     }
@@ -68,8 +108,17 @@
         border-left: 0.4rem solid transparent;
         margin-left: 0.2rem;
     }
+   .xsanjiao{
+        width: 0;
+        height: 0;
+        display: inline-block;
+        border-bottom: 0.4rem solid RGBA(69, 75, 84, 0.2);
+        border-right: 0.4rem solid transparent;
+        border-left: 0.4rem solid transparent;
+        margin-left: 0.2rem;
+    }
 
-    .sort_list {
+    .sort_list_item {
         width: 100%;
         font-size: 0.88rem;
         height: 2.82rem;
@@ -78,32 +127,40 @@
         background: #fff;
         border-bottom: 1px solid #eee;
     }
-
+    .sort_list{
+        height: 9.29rem;
+        position: absolute;
+        z-index: 55;
+        width: 100%;
+    }
     .class_select {
         width: 100%;
         height: 9.29rem;
+        background: #fff;
+        position: absolute;
+        z-index: 55;
     }
 
-    .class_list {
+    .class_list_item {
         float: left;
         width: 4.588rem;
-        margin: 0rem 0.3rem;
+       margin-left: 0.65rem;
         margin-top: 0.73rem;
         font-size: 0.88rem;
         height: 1.765rem;
         text-align: center;
-        line-height: 2.82rem;
+        line-height: 1.765rem;
         color: RGBA(69, 75, 84, 0.5);
         background: #fff;
         border-radius: 0.3rem;
-        border: 1px solid #FE7A03;
+        border: 1px solid #eee;
     }
 
-    .sort_list.selected {
+    .sort_list_item.selected {
         color: #FE7A03;
     }
 
-    .class_list.selected {
+    .class_list_item.selected {
         color: #fff;
         background: #FE7A03;
     }
