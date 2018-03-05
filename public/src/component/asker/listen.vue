@@ -21,7 +21,7 @@
                         <div class="swiper-slide swiper-no-swiping" v-for="navList in navLists">
                             <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite"
                                       :isPageEnd="isPageEnd" :isShowMoreText="isShowMoreText" :bottomHeight="50">
-                                <v-typeHeader></v-typeHeader>
+                                    <v-typeHeader></v-typeHeader>
                                 <div style="height:0.88235rem;background: #f5f5f5"></div>
                                 <div class="index_box">
                                     <div class="new_question">
@@ -539,9 +539,6 @@
                     if (arr.length == 0) return;
 
                     item.page = item.page + 1;
-                    console.log(vm.navLists)
-                    console.log("vm.typeIndex:" + vm.typeIndex)
-                    console.log(item)
                     vm.$set(vm.navLists, vm.typeIndex, item);
                     vm.$nextTick(function () {
                         vm.initActive()

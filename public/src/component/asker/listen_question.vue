@@ -1,120 +1,80 @@
-<template id="stealListen_index">
-    <div class="asker_listen_box" :class="{wbg:navLists[typeIndex].list.length==0 }">
-        <!--头部导航栏-->
+<template>
+    <div class="asker_listen_box">
         <div v-title>偷听</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="weui-tab__panel main">
             <!--导航栏-->
-            <nav>
-                <div class="swiper-container navSwiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide" v-for="navList in navLists" :value="navList.id">{{navList.title}}
-                        </div>
-                    </div>
-                </div>
-            </nav>
-            <div>
-                <div class="swiper-container con_swiper_c">
-
-                    <div class="swiper-wrapper">
-
-                        <div class="swiper-slide swiper-no-swiping" v-for="navList in navLists">
-                            <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite"
-                                      :isPageEnd="isPageEnd" :isShowMoreText="isShowMoreText" :bottomHeight="50">
-                                <div style="height:0.88235rem;background: #f5f5f5"></div>
-                                <div class="index_box">
-                                    <div class="new_question">
-                                        <div class="top_left">最新问题</div>
-                                        <div class="top_right">
-                                            <div class="top text">换一批</div>
-                                            <img src="" alt="">
-                                        </div>
+            <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite"
+                      :isPageEnd="isPageEnd" :isShowMoreText="isShowMoreText" :bottomHeight="50">
+                <div class="index_box">
+                    <div>
+                        <ul>
+                            <li v-for="(item,index) in navList.list">
+                                <a @click="goDetail(item.questionId)">
+                                    <div class="index_li_header">
+                                        <div>
+                                            <template v-if="item.askerNickName!=''">
+                                                {{item.askerNickName}}
+                                            </template>
+                                            <template v-if="item.askerNickName==''">匿名用户</template>
+                                            <span>咨询了</span></div>
+                                        <div class="header_className">{{item.title}}</div>
                                     </div>
-                                    <div v-show="navList.list.length>0" class="index_content_active">
-                                        <ul>
-                                            <li v-for="(item,index) in navList.list">
-                                                <a @click="goDetail(item.questionId)">
-                                                    <div class="index_li_header">
-                                                        <div>
-                                                            <template v-if="item.askerNickName!=''">
-                                                                {{item.askerNickName}}
-                                                            </template>
-                                                            <template v-if="item.askerNickName==''">匿名用户</template>
-                                                            <span>咨询了</span></div>
-                                                        <div class="header_className">{{item.title}}</div>
-                                                    </div>
-                                                    <div class="index_li_content">{{item.content}}</div>
-                                                    <div class="index_li_bottom">
-                                                        <img :src="item.expertFaceUrl" alt="">
-                                                        <!--免费听-->
-                                                        <span class="problem_answer_yy" v-if="item.answerType==1">
-                                            <div class="audio" :class="{playing:item.playing,paused:item.paused}">
-                                                <div class="audio_btn" @click.stop="play(index)">
-                                                    <div class="radio"><span></span><i></i></div>
-                                                    <template v-if="!item.playing&&!item.paused">点击播放</template>
-                                                    <template v-if="item.playing">正在播放..</template>
-                                                    <template v-if="item.paused">播放暂停</template>
-                                                    <div class="second">{{(item.ct && item.ct!='00')?item.ct:item.length}}”</div>
-                                                </div>
-                                                <div class="clear"></div>
-                                            </div>
-                                        </span>
-
-                                                        <!--付费听-->
-                                                        <div class="problem_answer_yy"
-                                                             @click.stop="typeDialog(item.questionId,item.answerId,index )"
-                                                             v-if="item.answerType==2||item.answerType==4">
-                                                            <div class="audio">
-                                                                <div class="audio_btn pay">偷听
-                                                                    <div class="second">{{(item.ct &&
-                                                                        item.ct!='00')?item.ct:item.length}}”
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!--限时免费听-->
-                                                        <span class="problem_answer_yy" v-if="item.answerType==3">
-                                            <div class="audio" :class="{playing:item.playing,paused:item.paused}">
-                                                <div class="audio_btn" @click.stop="play(index)">
-                                                    <template v-if="!item.playing&&!item.paused">限时免费听</template>
-                                                    <template v-if="item.playing">正在播放..</template>
-                                                    <template v-if="item.paused">播放暂停</template>
-                                                    <div class="second">{{(item.ct && item.ct!='00')?item.ct:item.length}}”</div>
-                                                </div>
-                                                <div class="clear"></div>
-                                            </div>
-                                        </span>
-
-                                                        <div class="index_li_count">听过 {{item.listenTimes}}</div>
-                                                    </div>
-                                                </a>
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                    <div v-show="navList.list.length==0&&!showLoad">
-                                        <div class="index_nocontent">
-                                            <div>
-                                                <img src="../../images/asker/newNoContent.png" alt="">
-                                                <div class="nocontent_html">暂无该方面问题</div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
+                                    <div class="index_li_content">{{item.content}}</div>
+                                    <div class="index_li_bottom">
+                                        <img :src="item.expertFaceUrl" alt="">
+                                        <!--免费听-->
+                                        <span class="problem_answer_yy" v-if="item.answerType==1">
+                            <div class="audio" :class="{playing:item.playing,paused:item.paused}">
+                                <div class="audio_btn" @click.stop="play(index)">
+                                    <div class="radio"><span></span><i></i></div>
+                                    <template v-if="!item.playing&&!item.paused">点击播放</template>
+                                    <template v-if="item.playing">正在播放..</template>
+                                    <template v-if="item.paused">播放暂停</template>
+                                    <div class="second">{{(item.ct && item.ct!='00')?item.ct:item.length}}”</div>
                                 </div>
-                            </v-scroll>
-                        </div>
+                                <div class="clear"></div>
+                            </div>
+                        </span>
+
+                                        <!--付费听-->
+                                        <div class="problem_answer_yy"
+                                             @click.stop="typeDialog(item.questionId,item.answerId,index )"
+                                             v-if="item.answerType==2||item.answerType==4">
+                                            <div class="audio">
+                                                <div class="audio_btn pay">偷听
+                                                    <div class="second">{{(item.ct &&
+                                                        item.ct!='00')?item.ct:item.length}}”
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--限时免费听-->
+                                        <span class="problem_answer_yy" v-if="item.answerType==3">
+                            <div class="audio" :class="{playing:item.playing,paused:item.paused}">
+                                <div class="audio_btn" @click.stop="play(index)">
+                                    <template v-if="!item.playing&&!item.paused">限时免费听</template>
+                                    <template v-if="item.playing">正在播放..</template>
+                                    <template v-if="item.paused">播放暂停</template>
+                                    <div class="second">{{(item.ct && item.ct!='00')?item.ct:item.length}}”</div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </span>
+
+                                        <div class="index_li_count">听过 {{item.listenTimes}}</div>
+                                    </div>
+                                </a>
+                            </li>
+
+                        </ul>
                     </div>
-                </div>
+
             </div>
-
+            </v-scroll>
         </div>
-
         <v-asker-bottom tabOnIndex="0"></v-asker-bottom>
         <v-recharge :rechargeMoney="rechargeMoney" v-show="rechargeFlag" v-on:childMessage="getFlagVal"></v-recharge>
-
-
     </div>
 
 </template>
@@ -125,9 +85,6 @@
     import Bus from '../../js/bus.js';
     import askerBottom from "./include/bottom.vue";
     import Recharge from '../asker/my/recharge.vue' ;
-    var stealListen_index = {
-        template: '#stealListen_index'
-    };
     export default {
         data() {
             return {
@@ -157,7 +114,8 @@
                 couponList: [],
                 rechargeMoney: 0,
                 rechargeFlag: false,
-                user: {}
+                user: {},
+                navList:{}
             }
         },
         components: {
@@ -168,7 +126,7 @@
             'v-typeHeader': typeHeader,
         },
         mounted: function () {
-            console.log(this.user)
+            this.type = this.$route.query.classId;
             this.getClassList();
             this.getUserInfo()
             this.getCoupon();
@@ -187,64 +145,7 @@
                     _this.user = user;
                 })
             },
-            initView: function () {
-                let _this = this;
-                var minHeight = $(window).height() - $('nav').height() - 100;
-                $(".con_swiper_c .swiper-slide ").height($(document).height() - 50)
-                //$('.index_box').css('minHeight',minHeight)
-                $('.index_nocontent').css('minHeight', minHeight)
-                var navSwiper = new Swiper('.navSwiper', {
-                    freeMode: true,
-                    freeModeMomentumRatio: 0.5,
-                    slidesPerView: 'auto',
-                });
-                $('.navSwiper .swiper-slide').eq(0).addClass('nav_active');
-                var conSwiper;
-                navSwiper.on('tap', function (swiper) {
-                    //效果
-                    _this.initTopView(navSwiper, navSwiper.clickedIndex);
-                    conSwiper.slideTo(navSwiper.clickedIndex);
 
-                });
-
-                conSwiper = new Swiper('.con_swiper_c', {
-                    noSwiping: true,
-                    onSlideChangeStart: function () {
-                        _this.initTopView(navSwiper, conSwiper.activeIndex);
-
-                        _this.type = $('.navSwiper .swiper-slide').eq(conSwiper.activeIndex).attr("value");
-                        _this.typeIndex = conSwiper.activeIndex;
-                        //数据
-                        _this.navLists[_this.typeIndex].isPageEnd = false;
-                        _this.isShowMoreText = false;
-                        _this.getList();
-
-                        console.log('触发.....')
-                    }
-
-                });
-
-            },
-            initTopView: function (navSwiper, index) {
-                var swiperWidth = $('nav').width() //获取导航条宽度
-                var maxTranslate = navSwiper.maxTranslate();//移动位置
-                var maxWidth = -maxTranslate + swiperWidth / 2;
-                $('.navSwiper .swiper-slide').removeClass('nav_active')
-                $('.navSwiper .swiper-slide').eq(index).addClass('nav_active')
-                var slide = navSwiper.slides[index]
-                var slideLeft = slide.offsetLeft
-                var slideWidth = slide.clientWidth
-                var slideCenter = slideLeft + slideWidth / 2
-                navSwiper.setWrapperTransition(300)
-                if (slideCenter < swiperWidth / 2) {
-                    navSwiper.setWrapperTranslate(0)
-                } else if (slideCenter > maxWidth) {
-                    navSwiper.setWrapperTranslate(maxTranslate)
-                } else {
-                    var nowTlanslate = slideCenter - swiperWidth / 2
-                    navSwiper.setWrapperTranslate(-nowTlanslate)
-                }
-            },
             initActive: function () {
                 var obj = $(".index_box li")
                 xqzs.weui.active(obj);
@@ -375,23 +276,23 @@
                 console.log(item)
                 let _this = this;
                 this.$http.get(web.API_PATH + "come/listen/create/order/_userId_/" + item.answerId)
-                        .then(function (bt) {
-                            if (bt.data && bt.data.status == 1) {
+                    .then(function (bt) {
+                        if (bt.data && bt.data.status == 1) {
 
-                                let result = bt.data.data;
+                            let result = bt.data.data;
 
 
-                                xqzs.wx.pay.pay(result.order, function () {
+                            xqzs.wx.pay.pay(result.order, function () {
 
-                                }, function () {//success
-                                    xqzs.weui.toast("success", "支付成功", function () {
-                                        _this.setPayed(index);
-                                    });
-                                }, function () {//error
+                            }, function () {//success
+                                xqzs.weui.toast("success", "支付成功", function () {
+                                    _this.setPayed(index);
+                                });
+                            }, function () {//error
 
-                                })
-                            }
-                        });
+                            })
+                        }
+                    });
             },
             //设置dom 已经支付
             setPayed: function (index) {
@@ -465,10 +366,12 @@
             },
             getClassList: function () {
                 let _this = this;
+                console.log('getClassList')
                 _this.$http.get(web.API_PATH + 'come/listen/question/class/list').then(function (data) {//es5写法
                     if (data.body.status == 1) {
                         let arr = [{"title": "全部", id: 0, list: []}]
-                        _this.navLists = data.body.data
+                        _this.navLists = data.body.data;
+                        console.log(_this.navLists)
                         _this.navLists = arr.concat(_this.navLists);
                         for (let i = 0; i < _this.navLists.length; i++) {
                             _this.navLists[i].list = [];
@@ -476,17 +379,16 @@
                             _this.navLists[i].isPageEnd = false;
                             _this.navLists[i].isLoading = false;
                         }
-                        _this.initView();
                         _this.getList();
                     }
                 }, function (error) {
                 });
             },
             getList: function (done) {
-
                 let vm = this;
                 let item = vm.navLists[vm.typeIndex]
-
+                console.log(vm.typeIndex)
+                console.log(item)
                 let url = web.API_PATH + 'come/listen/listen/list/_userId_/' + vm.type + '/' + item.page + '/' + vm.row;
                 this.rankUrl = url + "?";
                 if (web.guest) {
@@ -509,8 +411,6 @@
                     }
                     vm.showLoad = false;
                     item.isLoading = false;
-
-
                     if (response.data.status != 1 && item.page == 1) {
                         item.list = [];
                         item.isPageEnd = true;
@@ -538,9 +438,14 @@
                     if (arr.length == 0) return;
 
                     item.page = item.page + 1;
+
                     console.log(vm.navLists)
-                    console.log("vm.typeIndex:" + vm.typeIndex)
-                    console.log(item)
+
+                    vm.navLists.forEach(function (item) {
+                        console.log(item)
+                        vm.navList = item
+                    })
+                    console.log(vm.navList)
                     vm.$set(vm.navLists, vm.typeIndex, item);
                     vm.$nextTick(function () {
                         vm.initActive()

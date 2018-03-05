@@ -11,7 +11,6 @@ let routers =
             children: [
                 require('./routes/index'),
                 require('./routes/asker/ask'),
-                require('./routes/asker/answer/index'),
                 require('./routes/asker/listen_question'),
                 require('./routes/asker/my/index'),
                 require('./routes/asker/my/income'),

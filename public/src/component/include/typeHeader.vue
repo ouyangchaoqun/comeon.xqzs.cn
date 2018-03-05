@@ -39,6 +39,9 @@
             this. getClassList()
         },
         methods:{
+            child:function () {
+              console.log('子组件方法')
+            },
             getClassList:function () {
                 let _this=this;
                 _this.$http.get(web.API_PATH + 'come/listen/question/class/list' ).then(function (data) {//es5写法
@@ -50,9 +53,8 @@
                 });
             },
             goClass:function (classId) {
-                let _this =  this;
-                _this.classId  = classId;
-                console.log(_this.classId)
+                console.log(classId)
+               this.$router.push('listen/question?classId='+classId)
             },
         }
     }
