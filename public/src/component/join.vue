@@ -190,7 +190,7 @@
     .service span{ margin-top: 1.8rem; margin-left:0.2rem;display: inline-block; width: 100%; text-align: center;color:rgba(69,75,84,1); font-size: 0.70588235294117647058823529411765rem;}
 
 
-     .ewm_box{ position: fixed; top:50%; left:5%; width: 90%;background: #fff; border-radius: 0.8rem; margin-top: -10rem; height: 20rem; z-index: 1000}
+     .ewm_box{ position: fixed; top:50%; left:10%; width: 80%;background: #fff; border-radius: 0.8rem; margin-top: -10rem; height: 20rem; z-index: 1000}
      .ewm_box .ewm{width: 14rem;
         margin: 1.5rem auto 0;
     }
