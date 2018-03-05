@@ -464,7 +464,7 @@
         height: 2.941rem;
         border-radius: 50%;
         margin: 0 auto;
-        margin-top: 0.70rem;
+        padding-top: 0.7rem;
     }
     .answer_index .hot_face img{
         width: 100%;
