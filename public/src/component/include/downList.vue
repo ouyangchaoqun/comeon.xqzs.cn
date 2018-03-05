@@ -14,7 +14,9 @@
                 {{item.title}}
             </li>
         </div>
+        <div class="downList_mask" v-if="isShowSort==true||isShowClass==true"></div>
     </div>
+
 </template>
 <script>
     export default {
@@ -163,5 +165,12 @@
     .class_list_item.selected {
         color: #fff;
         background: #FE7A03;
+    }
+    .downList_mask{
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        position: absolute;
+        z-index: 54;
     }
 </style>

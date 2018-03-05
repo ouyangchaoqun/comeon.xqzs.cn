@@ -125,6 +125,7 @@
             "v-asker-bottom": askerBottom,
             'v-recharge': Recharge,
             'v-typeHeader': typeHeader,
+
         },
         mounted: function () {
             this.type = this.$route.query.classId

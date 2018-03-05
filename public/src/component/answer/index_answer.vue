@@ -6,7 +6,7 @@
 
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :isShowMoreText="isShowMoreText" :bottomHeight="50">
-
+            <v-downList></v-downList>
             <div class="answer_list">
                 <div class="item" v-for="(item,index) in list">
                     <div @click="goDetail(item.expertId)">
