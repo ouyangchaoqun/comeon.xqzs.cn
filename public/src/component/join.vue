@@ -37,10 +37,10 @@
         <div id="ewm_box_service" style="display: none">
         <div class="ewm_box ">
             <div class="ewm">
-                <img src="http://oss.xqzs.cn/resources/psy/service_ewm.jpg" />
+                <img src="http://oss.xqzs.cn/resources/psy/service_ewm1.jpg" />
                 <div class="info">
-                    长按添加咨询师助理微信<br>
-                    微信号：hydkf0001
+                    长按添加<br>
+                    咨询师助理微信
                 </div>
             </div>
 
