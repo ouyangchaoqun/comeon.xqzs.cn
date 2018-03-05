@@ -11,7 +11,6 @@
 <style>
     .class_list{  padding:0.47rem 0;background: #fff;}
     .class_list .class_item{  float:left ; width: 20%; text-align: center;color:#999;font-size: 0.6176471rem;padding: 6px 0 ; }
-    .class_list .class_item.on,  .class_list .class_item:active{ color:#333; font-weight: bold;}
     .addClassImg{height:2.5rem; width:2.5rem; margin:0 auto;margin-bottom: 0.3529411rem;background: url("../../images/answer/index_class_new.png") no-repeat ;background-size: 17.5rem; border-radius: 50%}
 
     .class_list>div:nth-of-type(10) div{background-position:-15rem -4.75rem;}

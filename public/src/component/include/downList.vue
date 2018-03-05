@@ -37,6 +37,7 @@
         mounted:function () {
             this. getClassList()
         },
+
         methods:{
             getClassList:function () {
                 let _this=this;
@@ -48,14 +49,8 @@
                 }, function (error) {
                 });
             },
-            goClass:function (classId) {
-                let _this =  this;
-                _this.classId  = classId;
-                console.log(_this.classId)
-            },
             showSelect:function (n) {
                  let _this=this;
-                console.log(n)
                 if(n==1){
                     _this.isShowSort=!_this.isShowSort;
                     _this.bottom=!_this.bottom;
@@ -71,17 +66,28 @@
 
             },
             selectTab:function (item,n) {
+
                 let _this=this;
                      if(n==1){
                     _this.nowSort=item.label;
                     _this.isShowSort=false;
-                    _this.bottom=true
+                    _this.bottom=true;
                 }
                 if(n==2){
                     _this.nowClass=item.title;
                     _this.isShowClass=false;
-                    _this.bottom1=true
+                    _this.bottom1=true;
+                    _this.$emit(
+                        'classMessage',{
+                            classId:item.id,
+                        }
+                    )
                 }
+                _this.$emit(
+                    'downMessage',{
+                        qType:item.value,
+                    }
+                )
             },
         }
     }

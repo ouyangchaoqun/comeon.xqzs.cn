@@ -6,7 +6,7 @@
             <!--导航栏-->
             <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite"
                       :isPageEnd="isPageEnd" :isShowMoreText="isShowMoreText" :bottomHeight="50">
-                <v-downList></v-downList>
+                <v-downList v-on:downMessage="getQType" v-on:classMessage="getQid"></v-downList>
                 <div class="index_box">
                     <div  v-for="navList in navLists">
                         <div v-if="navList.list.length>0">
@@ -118,7 +118,8 @@
                 couponList: [],
                 rechargeMoney: 0,
                 rechargeFlag: false,
-                user: {}
+                user: {},
+                qType:1
             }
         },
         components: {
@@ -139,6 +140,15 @@
             xqzs.wx.setConfig(this);
         },
         methods: {
+            getQType:function (n) {
+               this.qType= n.qType;
+                this.initGetList();
+            },
+            getQid:function (msg) {
+               console.log(msg.classId)
+                this.type = msg.classId;
+                this.initGetList();
+            },
             getFlagVal: function (val) {
                 this.rechargeFlag = val.rechargeFlag;
                 this.getUserInfo()
@@ -389,19 +399,25 @@
                 }, function (error) {
                 });
             },
+            initGetList:function () {
+                this.navLists[this.typeIndex].isPageEnd = false;
+                this.isShowMoreText = false;
+                this.getList();
+            },
             getList: function (done) {
                 let vm = this;
+                console.log('获取列表')
                 let item = vm.navLists[vm.typeIndex]
-                console.log(vm.typeIndex)
-                console.log(item)
-                let url = web.API_PATH + 'come/listen/listen/list/_userId_/' + vm.type + '/' + item.page + '/' + vm.row;
-                this.rankUrl = url + "?";
-                if (web.guest) {
-                    this.rankUrl = this.rankUrl + "guest=true"
-                }
+                let url = web.API_PATH + 'come/listen/listen/list/_userId_/' + vm.type + '/' + item.page + '/' + vm.row+'?hottestOrNewest='+vm.qType;
+                //this.rankUrl = url + "?";
+                this.rankUrl = url;
+//                if (web.guest) {
+//                    this.rankUrl = this.rankUrl + "guest=true"
+//                }
                 if (item.isLoading || item.isPageEnd) {
                     return;
                 }
+
                 if (item.page == 1) {
                     vm.showLoad = true;
                 }
@@ -425,9 +441,7 @@
                         Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
                         return;
                     }
-
                     let arr = response.data.data;
-//
                     if (arr.length < vm.row) {
                         item.isPageEnd = true;
                         vm.isShowMoreText = false
@@ -445,9 +459,6 @@
                     if (arr.length == 0) return;
 
                     item.page = item.page + 1;
-                    console.log(vm.navLists)
-                    console.log("vm.typeIndex:" + vm.typeIndex)
-                    console.log(item)
                     vm.$set(vm.navLists, vm.typeIndex, item);
                     vm.$nextTick(function () {
                         vm.initActive()
