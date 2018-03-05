@@ -77,7 +77,7 @@
                         </div>
                         <!--未选择最佳平分赏金-->
                         <div class="deuce_money_box" v-if="detail.bestAnswerId==0&&detail.questionStatus==2">
-                            ￥{{detail.price/detail.answerCount}}
+                            ￥{{formatPrice(detail.price/detail.answerCount)}}
                         </div>
                     </div>
                     <div class="problem_answer_bottom rob_answer_bottom">
