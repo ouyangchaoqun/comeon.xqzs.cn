@@ -400,7 +400,9 @@
                 });
             },
             initGetList:function () {
+
                 this.navLists[this.typeIndex].isPageEnd = false;
+                this.navLists[this.typeIndex].page = 1;
                 this.isShowMoreText = false;
                 this.getList();
             },
@@ -408,6 +410,7 @@
                 let vm = this;
                 console.log('获取列表')
                 let item = vm.navLists[vm.typeIndex]
+                console.log(item)
                 let url = web.API_PATH + 'come/listen/listen/list/_userId_/' + vm.type + '/' + item.page + '/' + vm.row+'?hottestOrNewest='+vm.qType;
                 //this.rankUrl = url + "?";
                 this.rankUrl = url;
