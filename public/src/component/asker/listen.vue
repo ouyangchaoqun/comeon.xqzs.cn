@@ -21,7 +21,7 @@
                         <div class="swiper-slide swiper-no-swiping" v-for="navList in navLists">
                             <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite"
                                       :isPageEnd="isPageEnd" :isShowMoreText="isShowMoreText" :bottomHeight="50">
-                                    <v-typeHeader></v-typeHeader>
+                                    <v-typeHeader :urlType="1"></v-typeHeader>
                                 <div style="height:0.88235rem;background: #f5f5f5"></div>
                                 <div class="index_box">
                                     <div class="new_question">
@@ -158,7 +158,8 @@
                 couponList: [],
                 rechargeMoney: 0,
                 rechargeFlag: false,
-                user: {}
+                user: {},
+                urlType:1
             }
         },
         components: {

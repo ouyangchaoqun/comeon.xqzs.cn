@@ -4,7 +4,7 @@
         <v-showLoad v-if="showLoad"></v-showLoad>
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :isShowMoreText="isShowMoreText" :bottomHeight="50">
-            <v-typeHeader></v-typeHeader>
+            <v-typeHeader :urlType="2"></v-typeHeader>
             <div class="answer_list">
                 <div class="item" v-for="(item,index) in list">
                     <div @click="goDetail(item.expertId)">
@@ -85,6 +85,7 @@
                 showLoad:false,
                 classId:0,
                 noContent:false,
+                urlType:2
             }
         },
 

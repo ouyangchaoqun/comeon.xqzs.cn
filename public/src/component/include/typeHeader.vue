@@ -32,12 +32,15 @@
         data() {
             return {
                 classList:[],
-                classId:0
+                classId:0,
             }
         },
+        props: ['urlType'],
         mounted:function () {
-            this. getClassList()
+            this. getClassList();
+            console.log(this.urlType)
         },
+
         methods:{
             child:function () {
               console.log('子组件方法')
@@ -54,7 +57,15 @@
             },
             goClass:function (classId) {
                 console.log(classId)
-               this.$router.push('listen/question?classId='+classId)
+                //偷听类型
+                if(this.urlType==1){
+                    this.$router.push('listen/question?classId='+classId)
+                }
+                if(this.urlType==2){
+                    //专家类型
+                    this.$router.push('index/answer?classId='+classId)
+                }
+
             },
         }
     }
