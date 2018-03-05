@@ -5,87 +5,93 @@
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :isShowMoreText="isShowMoreText" :bottomHeight="50">
             <v-typeHeader :urlType="2"></v-typeHeader>
-            <!--<div class="hot">-->
-                <!--<div class="hot_head">热门推荐 <span class="hot_right">更多</span><img src="" alt=""></div>-->
-                <!--<div class="hot_content">-->
-                <!--<div class="swiper-container textList_box">-->
-                    <!--<div class="swiper-wrapper">-->
-                        <!--<div class="swiper-slide">-->
-                            <!--<li v-for="item in manList" class="hot_item">-->
-                                <!--<div class="hot_top">-->
-                                    <!--<div class="hot_face"><img :src="item.faceUrl"></div>-->
-                                    <!--<div class="hot_name">{{item.nickName}}</div>-->
-                                <!--</div>-->
-                                <!--<div class="hot_bottom">-->
-                                    <!--<div class="hot_text"></div>-->
-                                    <!--<div class="hot_intro"></div>-->
-                                <!--</div>-->
-                            <!--</li>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="hot_evaluate"></div>-->
-                <!--<div class="hot_num"></div>-->
-            <!--</div>-->
-    <!--</div>-->
-    <div class="answer_list">
-        <div class="item" v-for="(item,index) in list">
-            <div @click="goDetail(item.expertId)">
-                <div class="itemHeader">
-                    <div>{{item.nickName}} <span>{{item.city}}</span></div>
-                    <div class="header_addRightStyle" v-if="false ">
-                        <div class="headerImg" @click.stop="play(index)">
-                            <div :class="{addPlaying:item.playing,addPaused:item.paused}"></div>
-                        </div>
-                        {{item.length}}''
-                    </div>
-                </div>
-                <div class="itemDetail">
-                    <div class="img"><img :src="item.faceUrl"></div>
-                    <div class="itemDetail_right">
-                        <div class="title">{{item.sign}}</div>
-                        <div class="itemDetail_class_s">
-                            <span v-for="(good,goodIndex) in item.goodAt" class="tab_i_i">{{good.title}}</span>
-                        </div>
-                        <div class="class_s other">
-                            <span class="price"><b>问价</b>  <a>￥{{item.price}}</a></span>
-                            <div class="class_right">
-                                <span v-if="item.answerCount!=null">{{item.answerCount}} 个回答</span>
-                                <span v-if="item.listenCount!=null">{{item.listenCount}} 次被偷听</span>
-                            </div>
+            <div class="hot">
+                <div class="hot_head">热门推荐 <img src="../../images/arrow.png" alt=""><span class="hot_right">更多</span></div>
+                <div class="hot_content">
 
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" v-for="item in manList">
+                                <ul>
+                                    <li  class="hot_item">
+                                        <div class="hot_top">
+                                            <div class="hot_face"><img src="../../images/arrow.png" alt=""></div>
+                                            <div class="hot_name">王八蛋</div>
+                                        </div>
+                                        <div class="hot_bottom">
+                                            <div class="hot_text">
+                                                <p style="color: #FE7A03">￥10</p>
+                                                <p>820个回答</p>
+                                            </div>
+                                            <div class="hot_intro">个人简介</div>
+                                        </div>
+                                        <div class="hot_evaluate">“老师分析的很透彻...</div>
+                                        <div class="hot_num">546人评价》</div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="item" v-for="(item,index) in list" v-if="false">
-            <div @click="goDetail(item.expertId)">
-                <div class="info">
-                    <div class="problem_answer_yy">
-                        <div class="audio" :class="{playing:item.playing,paused:item.paused}">
-                            <div class="audio_btn" @click.stop="play(index)">
-                                <template v-if="!item.playing&&!item.paused">点击播放</template>
-                                <template v-if="item.playing">正在播放..</template>
-                                <template v-if="item.paused">播放暂停</template>
-                                <div class="second">{{item.length}}”</div>
+            <div class="answer_list">
+                <div class="item" v-for="(item,index) in list">
+                    <div @click="goDetail(item.expertId)">
+                        <div class="itemHeader">
+                            <div>{{item.nickName}} <span>{{item.city}}</span></div>
+                            <div class="header_addRightStyle" v-if="false ">
+                                <div class="headerImg" @click.stop="play(index)">
+                                    <div :class="{addPlaying:item.playing,addPaused:item.paused}"></div>
+                                </div>
+                                {{item.length}}''
                             </div>
-                            <div class="clear"></div>
                         </div>
+                        <div class="itemDetail">
+                            <div class="img"><img :src="item.faceUrl"></div>
+                            <div class="itemDetail_right">
+                                <div class="title">{{item.sign}}</div>
+                                <div class="itemDetail_class_s">
+                                    <span v-for="(good,goodIndex) in item.goodAt" class="tab_i_i">{{good.title}}</span>
+                                </div>
+                                <div class="class_s other">
+                                    <span class="price"><b>问价</b>  <a>￥{{item.price}}</a></span>
+                                    <div class="class_right">
+                                        <span v-if="item.answerCount!=null">{{item.answerCount}} 个回答</span>
+                                        <span v-if="item.listenCount!=null">{{item.listenCount}} 次被偷听</span>
+                                    </div>
 
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="clear"></div>
-            </div>
-        </div>
-        <div class="noContent_icon" v-if="noContent">
-            <img src="../../images/asker/newNoContent.png" alt="">
-            <div>暂无该方面问题</div>
-        </div>
-    </div>
-    </v-scroll>
+                <div class="item" v-for="(item,index) in list" v-if="false">
+                    <div @click="goDetail(item.expertId)">
+                        <div class="info">
+                            <div class="problem_answer_yy">
+                                <div class="audio" :class="{playing:item.playing,paused:item.paused}">
+                                    <div class="audio_btn" @click.stop="play(index)">
+                                        <template v-if="!item.playing&&!item.paused">点击播放</template>
+                                        <template v-if="item.playing">正在播放..</template>
+                                        <template v-if="item.paused">播放暂停</template>
+                                        <div class="second">{{item.length}}”</div>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
 
-    <v-asker-bottom tabOnIndex="1"></v-asker-bottom>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="noContent_icon" v-if="noContent">
+                    <img src="../../images/asker/newNoContent.png" alt="">
+                    <div>暂无该方面问题</div>
+                </div>
+            </div>
+        </v-scroll>
+
+        <v-asker-bottom tabOnIndex="1"></v-asker-bottom>
     </div>
 </template>
 
@@ -108,7 +114,9 @@
                 showLoad: false,
                 classId: 0,
                 noContent: false,
-                urlType: 2
+                urlType: 2,
+                manList:[1,2,3,4,5,6],
+                psychtestSwiper:null
             }
         },
 
@@ -229,7 +237,7 @@
                         Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
                         return;
                     }
-
+                    console.log(response)
                     let arr = response.data.data;
 
 //
@@ -272,6 +280,14 @@
             $(".weui-tab__panel").height($(window).height() - 50)
             this.getClassList();
             this.getList(0);
+            this.$nextTick(function () {
+                var mySwiper = new Swiper('.swiper-container',{
+                    slidesPerView :2.2,
+                    slidesPerGroup : 1,
+                    speed:500,
+                })
+            })
+
 
         },
         beforeDestroy: function () {
@@ -300,11 +316,9 @@
         white-space: nowrap;
         text-align: right
     }
-
     .class_right span:nth-of-type(1) {
         margin-right: 0.294rem;
     }
-
     .header_addRightStyle {
         position: absolute;
         right: 0;
@@ -314,7 +328,6 @@
         font-size: 0.70588rem;
         font-weight: normal
     }
-
     .answer_list .headerImg {
         width: 1.471rem;
         height: 1.471rem;
@@ -323,7 +336,6 @@
         position: relative;
         margin-right: 0.35rem;
     }
-
     .answer_list .headerImg div {
         background: url("../../images/playing3.png") no-repeat;
         content: '';
@@ -334,58 +346,48 @@
         top: 6px;
         background-size: 100%;
     }
-
     .answer_list .headerImg .addPlaying {
         animation: addPlaying 1.5s infinite;
         -webkit-animation: addPlaying 1.5s infinite;
     }
-
     .answer_list .headerImg img {
         width: 0.88235rem;
         height: 0.76471rem;
         display: inline-block;
         margin-left: 0.3rem;
     }
-
     .answer_list .class_s .price {
         color: #FE7301;
     }
-
     .answer_list .class_s .price b {
         color: rgba(36, 37, 61, 0.5);
         font-style: normal;
         font-weight: normal;
         text-align: left
     }
-
     /*.answer_list .class_s .price a{*/
     /*right: 0;*/
     /*padding-left: 1rem;*/
     /*background: url(../../images/asker/asker_left_dotCoin.png)no-repeat;*/
     /*background-size: 0.85rem 0.8rem;}*/
-
     .itemDetail_class_s {
         font-size: 0.70588rem;
         color: rgba(36, 37, 61, 0.5);
         position: absolute;
         bottom: 28%;
     }
-
     .answer_list .info .other {
         margin-bottom: 0.88235rem
     }
-
     .answer_index .noContent_icon {
         background: #fff;
         color: rgba(36, 37, 61, 0.5);
         font-size: 0.76471rem;
         text-align: center;
     }
-
     .answer_index .noContent_icon div {
         margin-top: -3.8rem;
     }
-
     @keyframes addPlaying {
         0% {
             background: url("../../images/playing1.png") no-repeat;
@@ -400,7 +402,6 @@
             background-size: 100%;
         }
     }
-
     .answer_index .itemDetail_class_s .tab_i_i {
         color: #FF9966;
         background: rgba(204, 204, 204, 0.3);;
@@ -408,11 +409,9 @@
         padding: 0.2rem 0.3rem;
         margin: 0 0.3rem;
     }
-
     .answer_index .itemDetail_class_s .tab_i_i:first-child {
         margin-left: 0;
     }
-
     .answer_index .nav_select {
         background: RGBA(69, 75, 84, 0.05);
         height: 2.82rem;
@@ -423,10 +422,99 @@
         font-size: 0.88rem;
         color: RGBA(69, 75, 84, 0.5)
     }
-
-    .hot {
+    .answer_index .hot {
         background: #fff;
-        padding:;
+        padding:1.176rem 0rem;
+        padding-left: 0.88rem;
     }
+    .answer_index .hot_head{
+        height: 1.764rem;
+        width: 100%;
+        color: #454B54;;
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+    .answer_index  .hot_right{
+        float: right;
+        color: #FE7A03;
+        font-size: 0.70rem;
+        margin-right: 0.2rem;
+    }
+    .answer_index  .hot_head img{
+        margin-top: 0.2rem;
+        float: right;
+        width: 0.6rem;
+        height:0.6rem;
+        background: url(../../images/arrow.png) no-repeat;
+        margin-right:1rem;
+    }
+    .answer_index .hot_item{
+        width: 8.529rem;
+        border: 1px solid rgba(69, 75, 84, 0.15);
+        float: left;
+        margin-right: 1rem;
+        border-radius: 0.32rem 0.32rem 0.32rem 0.32rem;
+    }
+    .answer_index .hot_top{
+        background: RGBA(255, 123, 0, 0.15);
+        height: 5.647rem;
+    }
+    .answer_index .hot_face{
+        width: 2.941rem;
+        height: 2.941rem;
+        border-radius: 50%;
+        margin: 0 auto;
+        margin-top: 0.70rem;
+    }
+    .answer_index .hot_face img{
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+    .answer_index .hot_name{
+        margin-top:0.32rem ;
+        font-size: 0.82rem;
+        font-weight: bold;
+        text-align: center;
+    }
+    .answer_index ul{
+        overflow: hidden;
+    }
+    .answer_index .hot_bottom{
+        background: #fff;
+        overflow: hidden;
+    }
+    .answer_index .hot_text{
+        margin-left: 0.5rem;
+        margin-top: 0.1rem;
+        float: left;
+        font-size: 0.70rem;
+    }
+    .answer_index .hot_intro{
+        float: right;
+        width: 3.882rem;
+        height: 1.76rem;
+        border-radius:0.94rem 0 0 0.94rem  ;
+        font-size: 0.70rem;
+        line-height: 1.76rem;
+        background: RGBA(255, 123, 0, 0.15);
+        color: #FE7A03;
+        margin-top: 0.64rem;
+        text-align: center;
+    }
+    .answer_index .hot_evaluate{
+        margin-top:0.588rem ;
+        font-size: 0.78rem;
+        color: RGBA(69, 75, 84, 0.5);
+        text-align: center;
+    }
+    .answer_index .hot_num{
+        margin-top:0.588rem ;
+        font-size: 0.78rem;
+        color: RGBA(69, 75, 84, 0.5);
+        text-align: right;
+        margin-bottom: 0.4rem;
+    }
+    .swiper-slide{ overflow: auto}
 
 </style>
