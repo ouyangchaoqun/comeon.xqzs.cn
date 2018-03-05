@@ -6,15 +6,6 @@
 
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :isShowMoreText="isShowMoreText" :bottomHeight="50">
-
-            <!--<div class="class_list">-->
-                <!--<div class="class_item" v-for="(item,index) in classList" @click="goClass(item.id)"-->
-                     <!--:class="{on:item.id==classId}">-->
-                    <!--<div class="addClassImg" ></div>-->
-                    <!--<span>{{item.title}}</span>-->
-                <!--</div>-->
-                <!--<div class="clear"></div>-->
-            <!--</div>-->
             <v-typeHeader></v-typeHeader>
             <div class="answer_list">
                 <div class="item" v-for="(item,index) in list">

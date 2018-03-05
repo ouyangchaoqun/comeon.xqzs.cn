@@ -9,7 +9,7 @@
 
         <div class="class_select">
             <li v-for="item in classList" :val="item.value" class="class_list" :class="{selected:item.flag}">
-                {{item.label}}
+                {{item.title}}
             </li>
         </div>
     </div>
@@ -19,7 +19,7 @@
         data() {
             return {
                 sortList: [{label: "综合排序", value: 1, flag: true}, {label: "最新入驻", value: 2, flag: false}],
-                ClassList:[],
+                classList:[],
             }
         },
         mounted:function () {
