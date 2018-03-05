@@ -6,7 +6,7 @@
 
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :isShowMoreText="isShowMoreText" :bottomHeight="50">
-            <v-downList></v-downList>
+            <v-downList :urlType="2" v-on:downMessage="getQType" v-on:classMessage="getQid"></v-downList>
             <div class="answer_list">
                 <div class="item" v-for="(item,index) in list">
                     <div @click="goDetail(item.expertId)">
@@ -99,6 +99,23 @@
 
         },
         methods: {
+            getQType:function (n) {
+                this.exType= n.exType;
+                this.initGetList()
+            },
+            getQid:function (msg) {
+                console.log(msg)
+                this.classId = msg.classId;
+                this.exType= msg.exType;
+                this.initGetList()
+            },
+
+            initGetList:function () {
+                this.isPageEnd = false;
+                this.page = 1;
+                this.isShowMoreText = false;
+                this.getList();
+            },
             initActive:function () {
                 var obj =  $(".answer_list .item")
                 xqzs.weui.active(obj);
@@ -184,10 +201,10 @@
 
                 let vm= this;
                 let url = web.API_PATH + "come/expert/get/by/class/"+vm.classId+"/"+vm.page+"/"+vm.row+"";
-                this.rankUrl = url + "?";
-                if (web.guest) {
-                    this.rankUrl = this.rankUrl + "guest=true"
-                }
+                this.rankUrl = url + "?complexOrNew="+vm.exType;
+//                if (web.guest) {
+//                    this.rankUrl = this.rankUrl + "guest=true"
+//                }
                 if (vm.isLoading || vm.isPageEnd) {
                     return;
                 }
@@ -251,6 +268,7 @@
         },
         mounted: function () {
             xqzs.wx.setConfig(this);
+            this.classId = this.$route.query.classId
             $(".weui-tab__panel").height($(window).height()-50)
             this.getClassList();
             this.getList(0);

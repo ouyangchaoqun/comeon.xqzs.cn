@@ -6,7 +6,7 @@
             <!--导航栏-->
             <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite"
                       :isPageEnd="isPageEnd" :isShowMoreText="isShowMoreText" :bottomHeight="50">
-                <v-downList v-on:downMessage="getQType" v-on:classMessage="getQid"></v-downList>
+                <v-downList v-on:downMessage="getQType" v-on:classMessage="getQid" :urlType="1"></v-downList>
                 <div class="index_box">
                     <div  v-for="navList in navLists">
                         <div v-if="navList.list.length>0">
@@ -409,7 +409,6 @@
             },
             getList: function (done) {
                 let vm = this;
-                console.log('获取列表')
                 let item = vm.navLists[vm.typeIndex];
                 let url = web.API_PATH + 'come/listen/listen/list/_userId_/' + vm.type + '/' + item.page + '/' + vm.row+'?hottestOrNewest='+vm.qType;
                 //this.rankUrl = url + "?";

@@ -36,8 +36,21 @@
         },
         mounted:function () {
             this. getClassList()
+            console.log(this.urlType)
+            if(this.urlType==1){
+                //偷听
+                console.log('偷听')
+                this.sortList=[{label: "最新问题", value: 1, flag: true}, {label: "最热问题", value: 2, flag: false}]
+                this.nowSort = '最新问题'
+            }
+            if(this.urlType==2){
+                //专家
+                console.log('专家')
+                this.sortList= [{label: "综合排序", value: 1, flag: true}, {label: "最新入驻", value: 2, flag: false}]
+                this.nowSort = '综合排序'
+            }
         },
-
+        props: ['urlType'],
         methods:{
             getClassList:function () {
                 let _this=this;
@@ -66,32 +79,67 @@
 
             },
             selectTab:function (item,n) {
-                let typeVal;
-                let _this=this;
-                     if(n==1){
-                    _this.nowSort=item.label;
-                    _this.isShowSort=false;
-                    _this.bottom=true;
-                    typeVal = item.value;
-                    cookie.set('typeVal',typeVal,1)
-                }
+                if(this.urlType==1){
+                    //偷听
+                    let typeVal;
+                    let _this=this;
+                    if(n==1){
+                        _this.nowSort=item.label;
+                        _this.isShowSort=false;
+                        _this.bottom=true;
+                        typeVal = item.value;
+                        cookie.set('typeVal',typeVal,1)
+                    }
 
-                if(n==2){
-                    _this.nowClass=item.title;
-                    _this.isShowClass=false;
-                    _this.bottom1=true;
+                    if(n==2){
+                        _this.nowClass=item.title;
+                        _this.isShowClass=false;
+                        _this.bottom1=true;
+                        _this.$emit(
+                            'classMessage',{
+                                classId:item.id,
+                                qType:cookie.get('typeVal')||1
+                            }
+                        )
+                    }
                     _this.$emit(
-                        'classMessage',{
-                            classId:item.id,
-                            qType:cookie.get('typeVal')
+                        'downMessage',{
+                            qType:typeVal,
                         }
                     )
                 }
-                _this.$emit(
-                    'downMessage',{
-                        qType:typeVal,
+                if(this.urlType==2){
+                    //专家
+                    let exType;
+                    let _this=this;
+                    if(n==1){
+                        _this.nowSort=item.label;
+                        _this.isShowSort=false;
+                        _this.bottom=true;
+                        exType = item.value;
+                        cookie.set('exType',exType,1)
                     }
-                )
+
+                    if(n==2){
+                        _this.nowClass=item.title;
+                        _this.isShowClass=false;
+                        _this.bottom1=true;
+                        _this.$emit(
+                            'classMessage',{
+                                classId:item.id,
+                                exType:cookie.get('exType')||1
+                            }
+                        )
+                    }
+                    _this.$emit(
+                        'downMessage',{
+                            exType:exType,
+                        }
+                    )
+
+                }
+
+
             },
         }
     }
