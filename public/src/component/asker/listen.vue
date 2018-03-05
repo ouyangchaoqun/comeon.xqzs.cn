@@ -19,16 +19,15 @@
                     <div class="swiper-wrapper">
 
                         <div class="swiper-slide swiper-no-swiping" v-for="navList in navLists">
-                            <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite"
-                                      :isPageEnd="isPageEnd" :isShowMoreText="isShowMoreText" :bottomHeight="50">
+                            <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite"  :isPageEnd="isPageEnd" :isShowMoreText="isShowMoreText" :bottomHeight="50">
                                     <v-typeHeader :urlType="1"></v-typeHeader>
                                 <div style="height:0.88235rem;background: #f5f5f5"></div>
                                 <div class="index_box">
                                     <div class="new_question">
                                             <div class="top_left">最新问题</div>
-                                            <div class="top_right">
+                                            <div class="top_right" @click="updateList()">
                                                 <div class="top text">换一批</div>
-                                                <img src="" alt="">
+                                                <!--<img src="../../images/arrow.png" alt="">-->
                                             </div>
                                     </div>
                                     <div v-show="navList.list.length>0" class="index_content_active">
@@ -146,7 +145,7 @@
                 ],
                 typeIndex: 0,
                 page: 1,
-                row: 10,
+                row: 5,
                 isPageEnd: false,
                 isShowMoreText: false,
                 showLoad: false,
@@ -181,6 +180,12 @@
             getFlagVal: function (val) {
                 this.rechargeFlag = val.rechargeFlag;
                 this.getUserInfo()
+            },
+            updateList:function () {
+                this.navLists[this.typeIndex].isPageEnd = false;
+
+                this.isShowMoreText = false;
+                this.getList(false,true)
             },
             getUserInfo: function () {
                 console.log('获取user')
@@ -484,7 +489,7 @@
                 }, function (error) {
                 });
             },
-            getList: function (done) {
+            getList: function (done,isRef) {
 
                 let vm = this;
                 let item = vm.navLists[vm.typeIndex]
@@ -535,11 +540,17 @@
                     if (item.page == 1) {
                         item.list = arr;
                     } else {
-                        item.list = item.list.concat(arr);
+                        if(isRef==true){
+                            item.list = arr;
+                        }else {
+                            item.list = item.list.concat(arr);
+                        }
+
                     }
                     if (arr.length == 0) return;
 
                     item.page = item.page + 1;
+
                     vm.$set(vm.navLists, vm.typeIndex, item);
                     vm.$nextTick(function () {
                         vm.initActive()
@@ -764,13 +775,15 @@
     .top_left{
         float: left;
         line-height: 3.235rem ;
-        font-size: 1.47rem;
+        font-size: 1.17rem;
         margin-left: 0.78rem ;
         font-weight: bold;
     }
     .top_right{
         float: right;
         margin-right: 0.82rem;
+        font-size: 0.82rem;
+        margin-top: 1.117rem;
     }
 
 </style>
