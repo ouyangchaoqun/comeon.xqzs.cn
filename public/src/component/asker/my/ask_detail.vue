@@ -1,5 +1,6 @@
 <template id="my_problem_detail">
     <div class="ask_detailBox">
+        {{formatTimeLastText(tttt)}}
         <div v-title>问题详情</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="my_problem_detail">
@@ -143,6 +144,7 @@
                     clearInterval(_this.timeInterval);
                 }
                 _this.timeInterval=   setInterval(function () {
+                    _this.detail.endTime= _this.detail.endTime + 1;
                     _this.detail.endTime= _this.detail.endTime - 1
                 },1000)
             },
