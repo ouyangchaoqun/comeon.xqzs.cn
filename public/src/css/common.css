@@ -827,4 +827,4 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
 .regcom_Style_back .text_area textarea{color:rgba(69, 75, 84, 1);border:0;font-size: 0.8235rem;line-height: 1.176rem;width:100%;height:100%;}
 .regcom_Style_back .text_area .placeholder{position: absolute;color:RGBA(69, 75, 84, 0.59);font-size: 0.8235rem;width:92%;height:100%;z-index: 1001}
 
-.last_red_color{ color:red;}
+.last_red_color{ color:red !important ;}
