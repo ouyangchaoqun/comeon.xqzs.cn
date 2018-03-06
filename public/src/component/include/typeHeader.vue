@@ -15,14 +15,14 @@
     .class_item:active .addClassImg{background-color: #eee;}
     .class_list>div:nth-of-type(10) div{background-position:-15rem -4.75rem;}
     .class_list>div:nth-of-type(1) div{background-position:0rem 0rem;  }
-    .class_list>div:nth-of-type(2) div{background-position:-7.5rem 0rem; }
-    .class_list>div:nth-of-type(3) div{background-position:-3.7rem 0rem;}
-    .class_list>div:nth-of-type(4) div{ background-position:-15rem 0rem ;}
-    .class_list>div:nth-of-type(5) div{background-position:-3.7rem -4.75rem ;}
-    .class_list>div:nth-of-type(6) div{background-position:-0rem -4.75rem;  }
+    .class_list>div:nth-of-type(9) div{background-position:-7.5rem 0rem; }
+    .class_list>div:nth-of-type(5) div{background-position:-3.7rem 0rem;}
+    .class_list>div:nth-of-type(6) div{ background-position:-15rem 0rem ;}
+    .class_list>div:nth-of-type(3) div{background-position:-3.7rem -4.75rem ;}
+    .class_list>div:nth-of-type(2) div{background-position:-0rem -4.75rem;  }
     .class_list>div:nth-of-type(7) div{background-position:-7.5rem -4.75rem;   }
-    .class_list>div:nth-of-type(8) div{background-position:-11.25rem -4.7rem ; }
-    .class_list>div:nth-of-type(9) div{background-position:-11.25rem 0rem ;}
+    .class_list>div:nth-of-type(4) div{background-position:-11.25rem -4.7rem ; }
+    .class_list>div:nth-of-type(8) div{background-position:-11.25rem 0rem ;}
 </style>
 <script>
 
