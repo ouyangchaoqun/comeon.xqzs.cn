@@ -85,7 +85,7 @@
             _this.getExpert();
         },
         methods: {
-            time:function () {
+            timeIntervalFun:function () {
                 let _this=this;
                 if(_this.timeInterval!=null){
                     clearInterval(_this.timeInterval);
@@ -160,7 +160,7 @@
                     }
                     if (arr.length == 0) return;
                     vm.page = vm.page + 1;
-                    vm.time();
+                    vm.timeIntervalFun();
 
                 }, (response) => {
                     vm.isLoading = false;

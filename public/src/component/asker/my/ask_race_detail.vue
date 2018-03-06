@@ -147,7 +147,7 @@
             xqzs.wx.setConfig(this);
         },
         methods: {
-            time:function () {
+            timeIntervalFun:function () {
                 let _this=this;
                 if(_this.timeInterval!=null){
                     clearInterval(_this.timeInterval);
@@ -352,7 +352,7 @@
                                 _this.bestAnswer=_this.detail.answers[i];
                             }
                         }
-                        _this.time()
+                        _this.timeIntervalFun()
                     }
                 }, function (error) {
                 });

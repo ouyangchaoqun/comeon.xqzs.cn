@@ -62,7 +62,7 @@
         },
 
 
-        time:function () {
+        timeIntervalFun:function () {
             let _this=this;
             if(_this.timeInterval!=null){
                 clearInterval(_this.timeInterval);
@@ -134,7 +134,7 @@
 
 
 
-                    vm.time();
+                    vm.timeIntervalFun();
 
 
 

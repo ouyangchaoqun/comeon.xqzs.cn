@@ -137,7 +137,7 @@
             console.log(this.user)
         },
         methods: {
-            time:function () {
+            timeIntervalFun:function () {
                 let _this=this;
                 if(_this.timeInterval!=null){
                     clearInterval(_this.timeInterval);
@@ -347,7 +347,7 @@
                         _this.detail= data.body.data.data;
                         _this.followCount = _this.detail.expert.followCount;
                         console.log(_this.detail);
-                        _this.time()
+                        _this.timeIntervalFun()
                     }
                 }, function (error) {
                 });
