@@ -1,5 +1,5 @@
 <template id="stealListen_index">
-    <div class="asker_listen_box" :class="{wbg:navLists[typeIndex].list.length==0 }">
+    <div class="asker_listen_box" :class="{wbg:list.length==0 }">
         <!--头部导航栏-->
         <div v-title>偷听</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
@@ -18,7 +18,7 @@
 
                     <div class="swiper-wrapper">
 
-                        <div class="swiper-slide swiper-no-swiping" v-for="navList in navLists">
+                        <div class="swiper-slide swiper-no-swiping" >
                             <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite"  :isPageEnd="isPageEnd" :isShowMoreText="isShowMoreText" :bottomHeight="50">
                                     <v-typeHeader :urlType="1"></v-typeHeader>
                                 <div style="height:0.88235rem;background: #f5f5f5"></div>
@@ -30,9 +30,9 @@
                                                 <!--<img src="../../images/arrow.png" alt="">-->
                                             </div>
                                     </div>
-                                    <div v-show="navList.list.length>0" class="index_content_active">
+                                    <div v-show="list.length>0" class="index_content_active">
                                         <ul>
-                                            <li v-for="(item,index) in navList.list">
+                                            <li v-for="(item,index) in list">
                                                 <a @click="goDetail(item.questionId)">
                                                     <div class="index_li_header">
                                                         <div>
@@ -92,7 +92,7 @@
 
                                         </ul>
                                     </div>
-                                    <div v-show="navList.list.length==0&&!showLoad">
+                                    <div v-show="list.length==0&&!showLoad">
                                         <div class="index_nocontent">
                                             <div>
                                                 <img src="../../images/asker/newNoContent.png" alt="">
@@ -131,18 +131,7 @@
     export default {
         data() {
             return {
-                navLists: [
-                    {title: '', list: [], page: 1, isPageEnd: false},
-                    {title: '', list: [], page: 1, isPageEnd: false},
-                    {title: '', list: [], page: 1, isPageEnd: false},
-                    {title: '', list: [], page: 1, isPageEnd: false},
-                    {title: '', list: [], page: 1, isPageEnd: false},
-                    {title: '', list: [], page: 1, isPageEnd: false},
-                    {title: '', list: [], page: 1, isPageEnd: false},
-                    {title: '', list: [], page: 1, isPageEnd: false},
-                    {title: '', list: [], page: 1, isPageEnd: false},
-                    {title: '', list: [], page: 1, isPageEnd: false}
-                ],
+                navLists: [],
                 typeIndex: 0,
                 page: 1,
                 row: 5,
@@ -182,8 +171,7 @@
                 this.getUserInfo()
             },
             updateList:function () {
-                this.navLists[this.typeIndex].isPageEnd = false;
-
+                this.isPageEnd = false;
                 this.isShowMoreText = false;
                 this.getList(false,true)
             },
@@ -200,58 +188,10 @@
                 $(".con_swiper_c .swiper-slide ").height($(document).height() - 50)
                 //$('.index_box').css('minHeight',minHeight)
                 $('.index_nocontent').css('minHeight', minHeight)
-                var navSwiper = new Swiper('.navSwiper', {
-                    freeMode: true,
-                    freeModeMomentumRatio: 0.5,
-                    slidesPerView: 'auto',
-                });
-                $('.navSwiper .swiper-slide').eq(0).addClass('nav_active');
-                var conSwiper;
-                navSwiper.on('tap', function (swiper) {
-                    //效果
-                    _this.initTopView(navSwiper, navSwiper.clickedIndex);
-                    conSwiper.slideTo(navSwiper.clickedIndex);
 
-                });
-
-                conSwiper = new Swiper('.con_swiper_c', {
-                    noSwiping: true,
-                    onSlideChangeStart: function () {
-                        _this.initTopView(navSwiper, conSwiper.activeIndex);
-
-                        _this.type = $('.navSwiper .swiper-slide').eq(conSwiper.activeIndex).attr("value");
-                        _this.typeIndex = conSwiper.activeIndex;
-                        //数据
-                        _this.navLists[_this.typeIndex].isPageEnd = false;
-                        _this.isShowMoreText = false;
-                        _this.getList();
-
-                        console.log('触发.....')
-                    }
-
-                });
 
             },
-            initTopView: function (navSwiper, index) {
-                var swiperWidth = $('nav').width() //获取导航条宽度
-                var maxTranslate = navSwiper.maxTranslate();//移动位置
-                var maxWidth = -maxTranslate + swiperWidth / 2;
-                $('.navSwiper .swiper-slide').removeClass('nav_active')
-                $('.navSwiper .swiper-slide').eq(index).addClass('nav_active')
-                var slide = navSwiper.slides[index]
-                var slideLeft = slide.offsetLeft
-                var slideWidth = slide.clientWidth
-                var slideCenter = slideLeft + slideWidth / 2
-                navSwiper.setWrapperTransition(300)
-                if (slideCenter < swiperWidth / 2) {
-                    navSwiper.setWrapperTranslate(0)
-                } else if (slideCenter > maxWidth) {
-                    navSwiper.setWrapperTranslate(maxTranslate)
-                } else {
-                    var nowTlanslate = slideCenter - swiperWidth / 2
-                    navSwiper.setWrapperTranslate(-nowTlanslate)
-                }
-            },
+
             initActive: function () {
                 var obj = $(".index_box li")
                 xqzs.weui.active(obj);
@@ -274,8 +214,8 @@
                     }
 
                 }, 1000);
-                _this.navLists[_this.typeIndex].list[index].ct = time;
-                _this.$set(_this.navLists[_this.typeIndex].list, index, _this.navLists[_this.typeIndex].list[index])
+                _this.list[index].ct = time;
+                _this.$set(_this.list, index, _this.list[index])
             },
 
             clearTimeOut: function () {
@@ -378,7 +318,7 @@
                 })
             },
             pay: function (index) {
-                let item = this.navLists[this.typeIndex].list[index];
+                let item = this.list[index];
                 console.log(item)
                 let _this = this;
                 this.$http.get(web.API_PATH + "come/listen/create/order/_userId_/" + item.answerId)
@@ -402,9 +342,9 @@
             },
             //设置dom 已经支付
             setPayed: function (index) {
-                let item = this.navLists[this.typeIndex].list[index];
+                let item = this.list[index];
                 item.answerType = 1;
-                this.$set(this.navLists[this.typeIndex].list, index, item);
+                this.$set(this.list, index, item);
                 this.$nextTick(function () {
                     this.initActive();
                 })
@@ -414,7 +354,7 @@
             play: function (index) {
 
                 let _this = this;
-                let list = _this.navLists[_this.typeIndex].list;
+                let list = _this.list;
                 let CT = list[index].ct ? list[index].ct : list[index].length;
                 let T = list[index].length;
                 console.log(CT, T)
@@ -423,7 +363,7 @@
                 xqzs.voice.onEnded = function () {
                     list[index].paused = false;
                     list[index].playing = false;
-                    _this.$set(_this.navLists[_this.typeIndex].list, index, list[index]);
+                    _this.$set(_this.list, index, list[index]);
                     if (_this.playing)_this.clearTimeOut();
                     _this.playing = false;
                 };
@@ -432,21 +372,21 @@
                     if (index != i && (list[i].playing || list[i].paused)) {
                         list[i].paused = false;
                         list[i].playing = false;
-                        _this.$set(_this.navLists[_this.typeIndex].list, i, list[i]);
+                        _this.$set(_this.list, i, list[i]);
                     }
                 }
-                let item = _this.navLists[_this.typeIndex].list[index];
+                let item = _this.list[index];
                 if (item.paused) {  //暂停中也就是已经获取到且为当前音频
                     list[index].paused = false;
                     list[index].playing = true;
-                    _this.$set(_this.navLists[_this.typeIndex].list, index, list[index])
+                    _this.$set(_this.list, index, list[index])
                     xqzs.voice.play();
                     _this.timeout(true, CT, index)
                 } else {
                     if (item.playing) {    //播放中去做暂停操作
                         list[index].paused = true;
                         list[index].playing = false;
-                        _this.$set(_this.navLists[_this.typeIndex].list, index, list[index])
+                        _this.$set(_this.list, index, list[index])
                         xqzs.voice.pause();
                         _this.clearTimeOut();
                         _this.playing = false;
@@ -456,7 +396,7 @@
                             xqzs.voice.play(url);
                             list[index].playing = true;
                             list[index].paused = false;
-                            _this.$set(_this.navLists[_this.typeIndex].list, index, list[index]);
+                            _this.$set(_this.list, index, list[index]);
                             _this.playing = true;
                             _this.clearTimeOut();
                             _this.timeout(true, T, index)
@@ -474,15 +414,10 @@
                 let _this = this;
                 _this.$http.get(web.API_PATH + 'come/listen/question/class/list').then(function (data) {//es5写法
                     if (data.body.status == 1) {
-                        let arr = [{"title": "全部", id: 0, list: []}]
+                        let arr = [{"title": "全部", id: 0}]
                         _this.navLists = data.body.data
                         _this.navLists = arr.concat(_this.navLists);
-                        for (let i = 0; i < _this.navLists.length; i++) {
-                            _this.navLists[i].list = [];
-                            _this.navLists[i].page = 1;
-                            _this.navLists[i].isPageEnd = false;
-                            _this.navLists[i].isLoading = false;
-                        }
+
                         _this.initView();
                         _this.getList();
                     }
@@ -492,20 +427,20 @@
             getList: function (done,isRef) {
 
                 let vm = this;
-                let item = vm.navLists[vm.typeIndex]
 
-                let url = web.API_PATH + 'come/listen/listen/list/_userId_/' + vm.type + '/' + item.page + '/' + vm.row;
+
+                let url = web.API_PATH + 'come/listen/listen/list/_userId_/' + vm.type + '/' + vm.page + '/' + vm.row;
                 this.rankUrl = url + "?";
                 if (web.guest) {
-                    this.rankUrl = this.rankUrl + "guest=true"
+                    vm.rankUrl = vm.rankUrl + "guest=true"
                 }
-                if (item.isLoading || item.isPageEnd) {
+                if (vm.isLoading || vm.isPageEnd) {
                     return;
                 }
-                if (item.page == 1) {
+                if (vm.page == 1) {
                     vm.showLoad = true;
                 }
-                item.isLoading = true;
+                vm.isLoading = true;
                 if (vm.couponNum != 0) {
                     vm.getCoupon();
                 }
@@ -515,12 +450,12 @@
                         done()
                     }
                     vm.showLoad = false;
-                    item.isLoading = false;
+                    vm.isLoading = false;
 
 
-                    if (response.data.status != 1 && item.page == 1) {
-                        item.list = [];
-                        item.isPageEnd = true;
+                    if (response.data.status != 1 && vm.page == 1) {
+                        vm.list = [];
+                        vm.isPageEnd = true;
                         vm.isShowMoreText = false;
                         Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
                         return;
@@ -529,7 +464,7 @@
                     let arr = response.data.data;
 //
                     if (arr.length < vm.row) {
-                        item.isPageEnd = true;
+                        vm.isPageEnd = true;
                         vm.isShowMoreText = false
                     } else {
 
@@ -537,27 +472,26 @@
                     }
                     Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
 
-                    if (item.page == 1) {
-                        item.list = arr;
+                    if (vm.page == 1) {
+                        vm.list = arr;
                     } else {
                         if(isRef==true){
-                            item.list = arr;
+                            vm.list = arr;
                         }else {
-                            item.list = item.list.concat(arr);
+                            vm.list = vm.list.concat(arr);
                         }
 
                     }
                     if (arr.length == 0) return;
 
-                    item.page = item.page + 1;
+                    vm.page = vm.page + 1;
 
-                    vm.$set(vm.navLists, vm.typeIndex, item);
-                    vm.$nextTick(function () {
+                     vm.$nextTick(function () {
                         vm.initActive()
                     });
 
                 }, (response) => {
-                    vm.navLists[vm.typeIndex].isLoading = false;
+                    vm.isLoading = false;
                     vm.showLoad = false;
                 });
 

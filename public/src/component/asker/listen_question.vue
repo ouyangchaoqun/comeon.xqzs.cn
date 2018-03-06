@@ -3,14 +3,15 @@
         <div v-title>偷听</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="weui-tab__panel main">
+
             <!--导航栏-->
             <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite"
-                      :isPageEnd="isPageEnd" :isShowMoreText="isShowMoreText" :bottomHeight="50">
-                <v-downList v-on:downMessage="getQType" v-on:classMessage="getQid" :urlType="1"></v-downList>
+                      :isPageEnd="isPageEnd" :isShowMoreText="isShowMoreText" :bottomHeight="50" >
+                <v-downList v-on:downMessage="getQType" v-on:classMessage="getQid" :urlType="1" :currtype="type"></v-downList>
                 <div class="index_box">
-                    <div v-show="newArr.length>0">
+                    <div v-show="list.length>0">
                         <ul>
-                            <li v-for="(item,index) in newArr">
+                            <li v-for="(item,index) in list">
                                 <a @click="goDetail(item.questionId)">
                                     <div class="index_li_header">
                                         <div>
@@ -70,7 +71,7 @@
 
                         </ul>
                     </div>
-                    <div v-show="newArr.length==0&&!showLoad">
+                    <div v-show="list.length==0&&!showLoad">
                         <div class="index_nocontent">
                             <div>
                                 <img src="../../images/asker/newNoContent.png" alt="">
@@ -99,16 +100,6 @@
         data() {
             return {
                 navLists: [
-                    {title: '', list: [], page: 1, isPageEnd: false},
-                    {title: '', list: [], page: 1, isPageEnd: false},
-                    {title: '', list: [], page: 1, isPageEnd: false},
-                    {title: '', list: [], page: 1, isPageEnd: false},
-                    {title: '', list: [], page: 1, isPageEnd: false},
-                    {title: '', list: [], page: 1, isPageEnd: false},
-                    {title: '', list: [], page: 1, isPageEnd: false},
-                    {title: '', list: [], page: 1, isPageEnd: false},
-                    {title: '', list: [], page: 1, isPageEnd: false},
-                    {title: '', list: [], page: 1, isPageEnd: false}
                 ],
                 typeIndex: 0,
                 page: 1,
@@ -126,7 +117,6 @@
                 rechargeFlag: false,
                 user: {},
                 qType:1,
-                newArr:[]
             }
         },
         components: {
@@ -191,8 +181,8 @@
                     }
 
                 }, 1000);
-                _this.navLists[_this.typeIndex].list[index].ct = time;
-                _this.$set(_this.navLists[_this.typeIndex].list, index, _this.navLists[_this.typeIndex].list[index])
+                _this.list[index].ct = time;
+                _this.$set(_this.list, index, _this.list[index])
             },
 
             clearTimeOut: function () {
@@ -295,7 +285,7 @@
                 })
             },
             pay: function (index) {
-                let item = this.navLists[this.typeIndex].list[index];
+                let item = this.list[index];
                 console.log(item)
                 let _this = this;
                 this.$http.get(web.API_PATH + "come/listen/create/order/_userId_/" + item.answerId)
@@ -319,9 +309,9 @@
             },
             //设置dom 已经支付
             setPayed: function (index) {
-                let item = this.navLists[this.typeIndex].list[index];
+                let item = this.list[index];
                 item.answerType = 1;
-                this.$set(this.navLists[this.typeIndex].list, index, item);
+                this.$set(this.list, index, item);
                 this.$nextTick(function () {
                     this.initActive();
                 })
@@ -331,13 +321,13 @@
             play: function (index) {
 
                 let _this = this;
-                let list = _this.navLists[_this.typeIndex].list;
+                let list = _this.list;
                 let CT = list[index].ct ? list[index].ct : list[index].length;
                 let T = list[index].length;
                 xqzs.voice.onEnded = function () {
                     list[index].paused = false;
                     list[index].playing = false;
-                    _this.$set(_this.navLists[_this.typeIndex].list, index, list[index]);
+                    _this.$set(_this.list, index, list[index]);
                     if (_this.playing)_this.clearTimeOut();
                     _this.playing = false;
                 };
@@ -346,21 +336,21 @@
                     if (index != i && (list[i].playing || list[i].paused)) {
                         list[i].paused = false;
                         list[i].playing = false;
-                        _this.$set(_this.navLists[_this.typeIndex].list, i, list[i]);
+                        _this.$set(_this.list, i, list[i]);
                     }
                 }
-                let item = _this.navLists[_this.typeIndex].list[index];
+                let item = _this.list[index];
                 if (item.paused) {  //暂停中也就是已经获取到且为当前音频
                     list[index].paused = false;
                     list[index].playing = true;
-                    _this.$set(_this.navLists[_this.typeIndex].list, index, list[index])
+                    _this.$set(_this.list, index, list[index])
                     xqzs.voice.play();
                     _this.timeout(true, CT, index)
                 } else {
                     if (item.playing) {    //播放中去做暂停操作
                         list[index].paused = true;
                         list[index].playing = false;
-                        _this.$set(_this.navLists[_this.typeIndex].list, index, list[index])
+                        _this.$set(_this.list, index, list[index])
                         xqzs.voice.pause();
                         _this.clearTimeOut();
                         _this.playing = false;
@@ -370,7 +360,7 @@
                             xqzs.voice.play(url);
                             list[index].playing = true;
                             list[index].paused = false;
-                            _this.$set(_this.navLists[_this.typeIndex].list, index, list[index]);
+                            _this.$set(_this.list, index, list[index]);
                             _this.playing = true;
                             _this.clearTimeOut();
                             _this.timeout(true, T, index)
@@ -393,12 +383,6 @@
                         _this.navLists = data.body.data;
                         console.log(_this.navLists)
                         _this.navLists = arr.concat(_this.navLists);
-                        for (let i = 0; i < _this.navLists.length; i++) {
-                            _this.navLists[i].list = [];
-                            _this.navLists[i].page = 1;
-                            _this.navLists[i].isPageEnd = false;
-                            _this.navLists[i].isLoading = false;
-                        }
                         _this.getList();
                     }
                 }, function (error) {
@@ -406,28 +390,22 @@
             },
             initGetList:function () {
 
-                this.navLists[this.typeIndex].isPageEnd = false;
-                this.navLists[this.typeIndex].page = 1;
+                this.isPageEnd = false;
+                this.page = 1;
                 this.isShowMoreText = false;
                 this.getList();
             },
             getList: function (done) {
                 let vm = this;
-                let item = vm.navLists[vm.typeIndex];
-                let url = web.API_PATH + 'come/listen/listen/list/_userId_/' + vm.type + '/' + item.page + '/' + vm.row+'?hottestOrNewest='+vm.qType;
-                //this.rankUrl = url + "?";
-                this.rankUrl = url;
-//                if (web.guest) {
-//                    this.rankUrl = this.rankUrl + "guest=true"
-//                }
-                if (item.isLoading || item.isPageEnd) {
+                this.rankUrl = web.API_PATH + 'come/listen/listen/list/_userId_/' + vm.type + '/' + vm.page + '/' + vm.row+'?hottestOrNewest='+vm.qType;;
+                if (vm.isLoading || vm.isPageEnd) {
                     return;
                 }
 
-                if (item.page == 1) {
+                if (vm.page == 1) {
                     vm.showLoad = true;
                 }
-                item.isLoading = true;
+                vm.isLoading = true;
                 if (vm.couponNum != 0) {
                     vm.getCoupon();
                 }
@@ -437,21 +415,20 @@
                         done()
                     }
                     vm.showLoad = false;
-                    item.isLoading = false;
+                    vm.isLoading = false;
 
 
-                    if (response.data.status != 1 && item.page == 1) {
-                        item.list = [];
-                        item.isPageEnd = true;
+                    if (response.data.status != 1 && vm.page == 1) {
+                        vm.list = [];
+                        vm.isPageEnd = true;
                         vm.isShowMoreText = false;
                         Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
                         return;
                     }
-                    vm.newArr = [];
-                    let arr = response.data.data;
+                   let arr = response.data.data;
                     console.log(arr)
                     if (arr.length < vm.row) {
-                        item.isPageEnd = true;
+                        vm.isPageEnd = true;
                         vm.isShowMoreText = false
                     } else {
 
@@ -459,23 +436,20 @@
                     }
                     Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
 
-                    if (item.page == 1) {
-                        item.list = arr;
+                    if (vm.page == 1) {
+                        vm.list = arr;
                     } else {
-                        item.list = item.list.concat(arr);
+                        vm.list = vm.list.concat(arr);
                     }
                     if (arr.length == 0) return;
 
-                    item.page = item.page + 1;
-                    vm.$set(vm.navLists, vm.typeIndex, item);
-                    vm.newArr = item.list
-                    console.log(vm.newArr)
-                    vm.$nextTick(function () {
+                    vm.page = vm.page + 1;
+                     vm.$nextTick(function () {
                         vm.initActive()
                     });
 
                 }, (response) => {
-                    vm.navLists[vm.typeIndex].isLoading = false;
+                    vm.isLoading = false;
                     vm.showLoad = false;
                 });
 

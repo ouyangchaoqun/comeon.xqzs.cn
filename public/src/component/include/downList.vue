@@ -49,8 +49,10 @@
                 this.sortList= [{label: "综合排序", value: 1, flag: true}, {label: "最新入驻", value: 2, flag: false}]
                 this.nowSort = '综合排序'
             }
+
+
         },
-        props: ['urlType'],
+        props: ['urlType',"currtype"],
         methods:{
             getClassList:function () {
                 let _this=this;
@@ -58,6 +60,15 @@
                     if (data.body.status == 1) {
                         _this.classList= data.body.data
                         _this.classList.splice(10,0,{id:0,title:'全部',code:'qb'})
+
+                        for(let i=0;i<_this.classList.length;i++){
+                            if(this.currtype==_this.classList[i].id){
+                                this.nowClass=_this.classList[i].title;
+                                break;
+                            }
+                        }
+
+
                     }
                 }, function (error) {
                 });
@@ -226,7 +237,7 @@
     }
     .downList_mask{
         width: 100%;
-        height: 100%;
+        height: 48rem;
         background: rgba(0,0,0,0.5);
         position: absolute;
         z-index: 54;
