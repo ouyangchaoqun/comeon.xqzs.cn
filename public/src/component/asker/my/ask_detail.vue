@@ -119,7 +119,8 @@
                 contentOver:'',
                 showLoad: false,
                 followCount:0,
-                anonFlag:false
+                anonFlag:false,
+                timeInterval:null
             }
         },
         props:{
@@ -136,6 +137,15 @@
             console.log(this.user)
         },
         methods: {
+            time:function () {
+                let _this=this;
+                if(_this.timeInterval!=null){
+                    clearInterval(_this.timeInterval);
+                }
+                _this.timeInterval=   setInterval(function () {
+                    _this.detail.endTime= _this.detail.endTime - 1
+                },1000)
+            },
             getAnony:function () {
                this.anonFlag = !this.anonFlag
             },
@@ -336,7 +346,8 @@
                         console.log(data.body.data.data)
                         _this.detail= data.body.data.data;
                         _this.followCount = _this.detail.expert.followCount;
-                        console.log(_this.detail)
+                        console.log(_this.detail);
+                        _this.time()
                     }
                 }, function (error) {
                 });

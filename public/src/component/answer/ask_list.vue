@@ -57,9 +57,23 @@
                 isPageEnd: false,
                 isShowMoreText:false,
                 list:[],
+                timeInterval:null
             }
         },
 
+
+        time:function () {
+            let _this=this;
+            if(_this.timeInterval!=null){
+                clearInterval(_this.timeInterval);
+            }
+           _this.timeInterval=   setInterval(function () {
+                for(let i =0;i<_this.list.length;i++){
+                    _this.list[i].endTime= _this.list[i].endTime - 1
+                    $set(_this.list,i, _this.list[i]);
+                }
+            },1000)
+        },
 
         mounted: function () {
             this.getList();
@@ -116,6 +130,13 @@
                     }
                     if (arr.length == 0) return;
                     vm.page = vm.page + 1;
+
+
+
+
+                    vm.time();
+
+
 
                 }, (response) => {
                     vm.isLoading = false;

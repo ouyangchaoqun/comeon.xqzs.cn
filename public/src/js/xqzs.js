@@ -495,13 +495,20 @@ var xqzs = {
             d = publishTime - timeNow;
             d_hours = parseInt(d / 3600);
             d_minutes = parseInt(d / 60);
-            if (d_hours > 0) {
-                return "剩 " + d_hours + " 小时";
-            } else if (d_hours <= 0 && d_minutes > 0) {
-                return "剩 " + d_minutes + " 分钟";
-            } else {
-                return "剩 " + d + " 秒钟";
-            }
+
+            if(d_hours<10)d_hours="0"+d_hours;
+            if(d_minutes<10)d_minutes="0"+d_minutes;
+            if(d<10)d="0"+d;
+            return  "剩"+d_hours+ ":" + d_minutes+":"+ d;
+
+            //
+            // if (d_hours > 0) {
+            //     return "剩 " + d_hours + " 小时";
+            // } else if (d_hours <= 0 && d_minutes > 0) {
+            //     return "剩 " + d_minutes + " 分钟";
+            // } else {
+            //     return "剩 " + d + " 秒钟";
+            // }
         },
         getSolarData: function (beginYear, endYear) {
             var data = [];

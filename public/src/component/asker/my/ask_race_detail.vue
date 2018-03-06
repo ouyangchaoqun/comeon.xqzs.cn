@@ -147,6 +147,15 @@
             xqzs.wx.setConfig(this);
         },
         methods: {
+            time:function () {
+                let _this=this;
+                if(_this.timeInterval!=null){
+                    clearInterval(_this.timeInterval);
+                }
+                _this.timeInterval=   setInterval(function () {
+                    _this.detail.endTime= _this.detail.endTime - 1
+                },1000)
+            },
             submitComment:function () {
                 let that=this;
                 that.showLoad = true;
@@ -343,6 +352,7 @@
                                 _this.bestAnswer=_this.detail.answers[i];
                             }
                         }
+                        _this.time()
                     }
                 }, function (error) {
                 });
