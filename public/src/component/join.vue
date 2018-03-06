@@ -133,7 +133,7 @@
 
             xqzs.wx.setConfig(this, function () {
                 var config = {
-                    imgUrl: 'http://oss.xqzs.cn/resources/psy/join_share_img2.jpg',
+                    imgUrl: 'http://oss.xqzs.cn/resources/psy/join_share_img3.jpg',
                     title:  '好一点心理咨询平台咨询师火热招募' ,
                     desc: '诚邀心理咨询师加入好一点，实现口碑、收益双丰收',
                     link: "http://wx.xqzs.cn/comeon/guest#/join",
@@ -154,7 +154,7 @@
     .join_box .top{ height: 25.411764705882352941176470588235rem; background: url(http://oss.xqzs.cn/resources/psy/join_top.png)  no-repeat; width: 100%; background-size: 100%}
     .join_box .detail{ background: #fff; border-radius:0.58823529411764705882352941176471rem; margin: 0  0.76470588235294117647058823529412rem; padding-bottom:2.9rem; margin-bottom: 7.29rem; }
     .join_box .center{ text-align: center}
-    .join_box .title{ font-size: 1.1764705882352941176470588235294rem; color:#454B54; display: inline-block; position: relative; margin: 2rem auto ; font-weight: bold}
+    .join_box .title{ font-size: 1.1764705882352941176470588235294rem; color:#454B54; display: inline-block; position: relative; margin: 1.76rem auto 1.17rem ; font-weight: bold}
     .join_box .title:after{width: 100%;
         height:0.58823529411764705882352941176471rem;
         background:rgba(254,122,3,0.2);
