@@ -1,6 +1,6 @@
 <template >
     <div class="class_list">
-        <div class="class_item" v-for="(item,index) in classList" @click="goClass(item.id)"
+        <div class="class_item" v-for="(item,index) in classList" @click="goClass(item.id,item.title)"
              :class="{on:item.id==classId}">
             <div class="addClassImg" ></div>
             <span>{{item.title}}</span>
@@ -51,15 +51,15 @@
                 }, function (error) {
                 });
             },
-            goClass:function (classId) {
+            goClass:function (classId,title) {
                 console.log(classId)
                 //偷听类型
                 if(this.urlType==1){
-                    this.$router.push('listen/list?classId='+classId)
+                    this.$router.push('listen/list?classId='+classId+'&&title='+title)
                 }
                 if(this.urlType==2){
                     //专家类型
-                    this.$router.push('expert/list?classId='+classId)
+                    this.$router.push('expert/list?classId='+classId+'&&title='+title)
                 }
 
             },

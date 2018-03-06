@@ -117,7 +117,8 @@
                         _this.$emit(
                             'classMessage',{
                                 classId:item.id,
-                                qType:cookie.get('typeVal')||1
+                                qType:cookie.get('typeVal')||1,
+                                title:item.title
                             }
                         )
                     }

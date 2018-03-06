@@ -1,6 +1,6 @@
 <template>
     <div class="asker_listen_box">
-        <div v-title>偷听</div>
+        <div v-title>{{titleVal}}</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="weui-tab__panel main">
 
@@ -116,6 +116,7 @@
                 rechargeFlag: false,
                 user: {},
                 qType:1,
+                titleVal:''
             }
         },
         components: {
@@ -128,7 +129,8 @@
 
         },
         mounted: function () {
-            this.type = this.$route.query.classId
+            this.type = this.$route.query.classId;
+            this.titleVal = this.$route.query.title;
             this.getClassList();
             this.getUserInfo()
             this.getCoupon();
@@ -152,6 +154,7 @@
                console.log(msg.classId)
                 this.type = msg.classId;
                 this.qType= msg.qType;
+                this.titleVal = msg.title;
                 this.initGetList();
             },
             getFlagVal: function (val) {
