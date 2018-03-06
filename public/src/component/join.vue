@@ -136,7 +136,7 @@
                     imgUrl: 'http://oss.xqzs.cn/resources/psy/join_share_img.jpg',
                     title:  '好一点心理咨询平台咨询师火热招募' ,
                     desc: '加入好一点，实现口碑、收益双丰收',
-                    link: "http://wx.xqzs.cn/wx/pub?reurl=" + encodeURI( "http://wx.xqzs.cn/comeon/guestvue_pound/join"),
+                    link: "http://wx.xqzs.cn/comeon/guest#/join",
                 };
                 weshare.init(wx, config)
             });
