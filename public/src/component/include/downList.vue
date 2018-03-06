@@ -147,6 +147,7 @@
                         _this.$emit(
                             'classMessage',{
                                 classId:item.id,
+                                title:item.title,
                                 exType:cookie.get('exType')||1
                             }
                         )
