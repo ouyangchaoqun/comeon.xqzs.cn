@@ -4,17 +4,17 @@
             <div class="sort_rank" @click="showSelect(1)">{{nowSort}}<span :class="{sanjiao:bottom,xsanjiao:!bottom}"></span></div>
             <div class="class_rank"  @click="showSelect(2)">{{nowClass}}<span :class="{sanjiao:bottom1,xsanjiao:!bottom1}"></span></div>
         </div>
-        <div  v-if="isShowSort" class="sort_list" >
+        <div  v-if="isShowSort" class="sort_list"  >
         <li v-for="item in sortList" :val="item.value" class="sort_list_item " :class="{selected:nowSort==item.label}" @click="selectTab(item,1)">{{item.label}}
         </li>
         </div>
 
-        <div v-if="isShowClass" class="class_select">
+        <div v-if="isShowClass" class="class_select" >
             <li v-for="item in classList" :val="item.value" class="class_list_item" :class="{selected:nowClass==item.title}" @click="selectTab(item,2)">
                 {{item.title}}
             </li>
         </div>
-        <div class="downList_mask" v-if="isShowSort==true||isShowClass==true"></div>
+        <div class="downList_mask" v-if="isShowSort==true||isShowClass==true" @click="closeList()"></div>
     </div>
 
 </template>
@@ -62,6 +62,12 @@
         },
 
         methods:{
+            closeList:function () {
+                    let _this=this;
+                    _this.isShowSort=false;
+                    _this.isShowClass=false;
+
+            },
             getClassList:function () {
                 let _this=this;
                 _this.$http.get(web.API_PATH + 'come/listen/question/class/list' ).then(function (data) {//es5写法
