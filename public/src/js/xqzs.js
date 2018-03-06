@@ -506,7 +506,7 @@ var xqzs = {
                 d_hours="00";
                 d_minutes="00"
             };
-            return  "剩"+d_hours+ ":" + d_minutes+":"+ d;
+            return  "<span style='color:red'>剩 "+d_hours+ ":" + d_minutes+":"+ d  + "</span>";
 
             //
             // d_hours = parseInt(d / 3600);
