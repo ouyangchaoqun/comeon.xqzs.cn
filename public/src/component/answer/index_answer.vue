@@ -5,8 +5,8 @@
 
 
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
-                  :isShowMoreText="isShowMoreText" :bottomHeight="50">
-            <v-downList :urlType="2" v-on:downMessage="getQType" v-on:classMessage="getQid"  :currtype="classId" :currordertype="exType" ></v-downList>
+                  :isShowMoreText="isShowMoreText" :bottomHeight="0">
+            <v-downList :urlType="2" v-on:downMessage="getQType" v-on:classMessage="getQid"  :currtype="classId" :ordertype="exType" ></v-downList>
             <div class="answer_list">
                 <div class="item" v-for="(item,index) in list">
                     <div @click="goDetail(item.expertId)">
@@ -64,8 +64,7 @@
             </div>
         </v-scroll>
 
-        <v-asker-bottom  tabOnIndex="1"></v-asker-bottom>
-    </div>
+     </div>
 </template>
 
 <script type="">

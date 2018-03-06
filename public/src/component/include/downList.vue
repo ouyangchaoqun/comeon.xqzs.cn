@@ -20,6 +20,7 @@
 </template>
 <script>
     export default {
+        props: ['urlType',"currtype","ordertype"],
         data() {
             return {
                 sortList: [{label: "综合排序", value: 1, flag: true}, {label: "最新入驻", value: 2, flag: false}],
@@ -35,8 +36,9 @@
             }
         },
         mounted:function () {
-            this. getClassList()
-            console.log(this.urlType)
+            let _this=this;
+            this. getClassList();
+
             if(this.urlType==1){
                 //偷听
                 console.log('偷听')
@@ -48,14 +50,17 @@
                 console.log('专家')
                 this.sortList= [{label: "综合排序", value: 1, flag: true}, {label: "最新入驻", value: 2, flag: false}]
                 this.nowSort = '综合排序';
-                if(this.currordertype==2){
-                    this.nowSort = '最新入驻';
-                }
+               setTimeout(function () {
+                   if(_this.ordertype==2){
+                       _this.nowSort = '最新入驻';
+                   }
+               },1)
+
             }
 
 
         },
-        props: ['urlType',"currtype","currordertype"],
+
         methods:{
             getClassList:function () {
                 let _this=this;

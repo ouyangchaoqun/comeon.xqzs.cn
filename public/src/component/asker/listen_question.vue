@@ -6,7 +6,7 @@
 
             <!--导航栏-->
             <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite"
-                      :isPageEnd="isPageEnd" :isShowMoreText="isShowMoreText" :bottomHeight="50" >
+                      :isPageEnd="isPageEnd" :isShowMoreText="isShowMoreText" :bottomHeight="0" >
                 <v-downList v-on:downMessage="getQType" v-on:classMessage="getQid" :urlType="1" :currtype="type"></v-downList>
                 <div class="index_box">
                     <div v-show="list.length>0">
@@ -83,7 +83,6 @@
             </div>
             </v-scroll>
         </div>
-        <v-asker-bottom tabOnIndex="0"></v-asker-bottom>
         <v-recharge :rechargeMoney="rechargeMoney" v-show="rechargeFlag" v-on:childMessage="getFlagVal"></v-recharge>
     </div>
 
