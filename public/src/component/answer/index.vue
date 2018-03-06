@@ -3,7 +3,7 @@
         <div v-title>找专家</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
-                  :isShowMoreText="isShowMoreText" :bottomHeight="68">
+                  :isShowMoreText="isShowMoreText" :bottomHeight="50">
             <v-typeHeader :urlType="2"></v-typeHeader>
             <div class="title_top">
                 <div class="hot_head">
