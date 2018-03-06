@@ -11,6 +11,7 @@
                 <div class="item" v-for="(item,index) in list">
                     <div @click="goDetail(item.expertId)">
                         <div class="itemDetail">
+                            <div class="line1"></div>
                             <div class="img"><img :src="item.faceUrl"></div>
                             <div class="itemDetail_right">
                                 <div class="itemHeader">
@@ -361,5 +362,12 @@
     .answer_index .itemDetail_class_s .tab_i_i{ color: #FF9966;background:RGBA(254, 122, 3, 0.1);; border-radius:0.1470588235294118rem ; padding: 0.2rem 0.3rem; margin: 0 0.3rem; }
     .answer_index .itemDetail_class_s .tab_i_i:first-child{ margin-left: 0;}
     .answer_index .nav_select{ background:RGBA(69, 75, 84, 0.05) ;height: 2.82rem;width: 100%; overflow: hidden;text-align: center;line-height: 2.82rem;font-size: 0.88rem;color: RGBA(69, 75, 84, 0.5)}
-
+    .answer_index .answer_list .line1{
+        position: absolute;
+        width: 16.94rem;
+        height: 1px;
+        background: #eee;
+        bottom: 2.235rem;
+        right: -0.90rem;
+    }
 </style>

@@ -21,7 +21,7 @@
                         <div class="swiper-slide swiper-no-swiping" >
                             <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite"  :isPageEnd="isPageEnd" :isShowMoreText="isShowMoreText" :bottomHeight="50">
                                     <v-typeHeader :urlType="1"></v-typeHeader>
-                                <div style="height:0.88235rem;background: #f5f5f5"></div>
+                                <div style="height:0.588235rem;background: #f5f5f5"></div>
                                 <div class="index_box">
                                     <div class="new_question">
                                             <div class="top_left">最新问题</div>
@@ -594,11 +594,14 @@
     .index_box .index_content_active {
         display: block;
     }
+    .index_content_active ul{
+        padding:0 0.88235rem;
+    }
 
     .index_box li {
         background: #fff;
-        padding: 0.88235rem 0.88235rem 1.176471rem 0.88235rem;
-        border-bottom: 0.41176471rem solid #f5f5f5;
+        padding: 0.88235rem 0 1.176471rem 0;
+        border-bottom: 1px solid RGBA(69, 75, 84, 0.15);
     }
 
     .index_li_header {
@@ -734,8 +737,16 @@
     .top_right{
         float: right;
         margin-right: 0.82rem;
-        font-size: 0.82rem;
+        font-size: 0.70588rem;
         margin-top: 1.117rem;
+        color:RGBA(69, 75, 84,0.5);
     }
-
+    .line1{
+        position: absolute;
+        width: 16.94rem;
+        height: 1px;
+        background: #eee;
+        bottom: 1.235rem;
+        right: -0.90rem;
+    }
 </style>

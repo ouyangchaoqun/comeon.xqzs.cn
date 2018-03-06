@@ -31,7 +31,7 @@
                                             <div class="hot_intro">个人简介</div>
                                         </div>
                                         <div class="hot_evaluate">"{{item.lastEvaluate}}"</div>
-                                        <div class="hot_num">{{item.evaluateCount}}人评价》</div>
+                                        <div class="hot_num">{{item.evaluateCount}}人评价>></div>
                                     </li>
                                 </ul>
                             </div>
@@ -57,7 +57,7 @@
                             <div class="img"><img :src="item.faceUrl"></div>
                             <div class="itemDetail_right">
                                 <div class="itemHeader">
-                                    <div>{{item.nickName}} <span>{{item.city}}</span><span style="float: right;color: #2EB1FF;font-size: 0.70rem">找TA咨询</span></div>
+                                    <div style="font-weight: bold">{{item.nickName}}<span>{{item.city}}</span><span style="float: right;color: #2EB1FF;font-size: 0.70rem">找TA咨询</span></div>
                                     <div class="header_addRightStyle" v-if="false ">
                                         <div class="headerImg" @click.stop="play(index)">
                                             <div :class="{addPlaying:item.playing,addPaused:item.paused}"></div>
@@ -66,6 +66,7 @@
                                     </div>
                                 </div>
                                 <div class="title">{{item.sign}}</div>
+                                <div class="line1"></div>
                                 <div class="itemDetail_class_s">
                                     <span v-for="(good,goodIndex) in item.goodAt" class="tab_i_i">{{good.title}}</span>
                                 </div>

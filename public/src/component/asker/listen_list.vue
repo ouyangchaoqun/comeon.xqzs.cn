@@ -548,7 +548,7 @@
     .index_box li {
         background: #fff;
         padding: 0.88235rem 0.88235rem 1.176471rem 0.88235rem;
-        border-bottom: 0.41176471rem solid #f5f5f5;
+        border-bottom: 0.1px solid #f5f5f5;
     }
 
     .index_li_header {
