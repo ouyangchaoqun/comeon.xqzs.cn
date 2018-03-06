@@ -6,27 +6,32 @@
                   :isShowMoreText="isShowMoreText" :bottomHeight="50">
             <v-typeHeader :urlType="2"></v-typeHeader>
             <div class="hot">
-                <div class="hot_head">热门推荐 <img src="../../images/arrow.png" alt=""><span class="hot_right">更多</span></div>
+                <div class="hot_head">
+                    热门推荐
+                       <div class="hot_hidden" @click="getMore()">
+                          更多
+                       </div>
+                  </div>
                 <div class="hot_content">
 
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide" v-for="item in manList">
                                 <ul>
-                                    <li  class="hot_item">
+                                    <li  class="hot_item" @click="goDetail(item.expertId)">
                                         <div class="hot_top">
-                                            <div class="hot_face"><img src="../../images/arrow.png" alt=""></div>
-                                            <div class="hot_name">王八蛋</div>
+                                            <div class="hot_face"><img :src="item.faceUrl" alt=""></div>
+                                            <div class="hot_name">{{item.nickName}}</div>
                                         </div>
                                         <div class="hot_bottom">
                                             <div class="hot_text">
-                                                <p style="color: #FE7A03">￥10</p>
-                                                <p>820个回答</p>
+                                                <p style="color: #FE7A03">￥{{item.price}}</p>
+                                                <p>{{item.answerCount}}个回答</p>
                                             </div>
                                             <div class="hot_intro">个人简介</div>
                                         </div>
-                                        <div class="hot_evaluate">“老师分析的很透彻...</div>
-                                        <div class="hot_num">546人评价》</div>
+                                        <div class="hot_evaluate">"{{item.lastEvaluate}}"</div>
+                                        <div class="hot_num">{{item.evaluateCount}}人评价》</div>
                                     </li>
                                 </ul>
                             </div>
@@ -37,18 +42,18 @@
             <div class="answer_list">
                 <div class="item" v-for="(item,index) in list">
                     <div @click="goDetail(item.expertId)">
-                        <div class="itemHeader">
-                            <div>{{item.nickName}} <span>{{item.city}}</span></div>
-                            <div class="header_addRightStyle" v-if="false ">
-                                <div class="headerImg" @click.stop="play(index)">
-                                    <div :class="{addPlaying:item.playing,addPaused:item.paused}"></div>
-                                </div>
-                                {{item.length}}''
-                            </div>
-                        </div>
                         <div class="itemDetail">
                             <div class="img"><img :src="item.faceUrl"></div>
                             <div class="itemDetail_right">
+                                <div class="itemHeader">
+                                    <div>{{item.nickName}} <span>{{item.city}}</span><span style="float: right;color: #2EB1FF;font-size: 0.70rem">找TA咨询</span></div>
+                                    <div class="header_addRightStyle" v-if="false ">
+                                        <div class="headerImg" @click.stop="play(index)">
+                                            <div :class="{addPlaying:item.playing,addPaused:item.paused}"></div>
+                                        </div>
+                                        {{item.length}}''
+                                    </div>
+                                </div>
                                 <div class="title">{{item.sign}}</div>
                                 <div class="itemDetail_class_s">
                                     <span v-for="(good,goodIndex) in item.goodAt" class="tab_i_i">{{good.title}}</span>
@@ -115,8 +120,9 @@
                 classId: 0,
                 noContent: false,
                 urlType: 2,
-                manList:[1,2,3,4,5,6],
-                psychtestSwiper:null
+                manList:[1,2,3,4,5],
+                psychtestSwiper:null,
+
             }
         },
 
@@ -196,6 +202,26 @@
                 _this.page = 1;
                 _this.isPageEnd = false;
                 _this.getList()
+            },
+            getMore:function () {
+                this.$router.push('index/answer?classId=0')
+            },
+            getHotList:function () {
+              let _this=this;
+                _this.$http.get(web.API_PATH+ "come/expert/get/by/class/0/1/5?complexOrNew=1").then(function (data) {
+                    if(data.body.status == 1){
+                        var List=data.body.data;
+                        console.log(List)
+                        for(var i =0;i<List.length;i++){
+                                console.log(i)
+                            if( List[i].lastEvaluate.length>7){
+                                List[i].lastEvaluate=List[i].lastEvaluate.substring(0,7)+"..."
+                            }
+                        }
+                        _this.manList=List;
+                        console.log(_this.manList)
+                    }
+                })
             },
             getClassList: function () {
                 let _this = this;
@@ -280,6 +306,7 @@
             $(".weui-tab__panel").height($(window).height() - 50)
             this.getClassList();
             this.getList(0);
+            this.getHotList();
             this.$nextTick(function () {
                 var mySwiper = new Swiper('.swiper-container',{
                     slidesPerView :2.2,
@@ -307,7 +334,7 @@
 </script>
 <style>
     .class_right {
-        position: absolute;
+        margin-top: 0.82rem;
         right: 0;
         top: 0;
         width: 70%;
@@ -372,9 +399,7 @@
     /*background-size: 0.85rem 0.8rem;}*/
     .itemDetail_class_s {
         font-size: 0.70588rem;
-        color: rgba(36, 37, 61, 0.5);
-        position: absolute;
-        bottom: 28%;
+        color: rgba(36,37,61,0.5);
     }
     .answer_list .info .other {
         margin-bottom: 0.88235rem
@@ -430,22 +455,30 @@
     .answer_index .hot_head{
         height: 1.764rem;
         width: 100%;
-        color: #454B54;;
+        color: #454B54;
         font-size: 1.1rem;
         font-weight: bold;
+        position: relative;
+    }
+    .hot_hidden{
+        position: absolute;
+        right: 0.88rem;
+        top:0;
+        font-size: 0.70588rem;
+       line-height: 1.8rem;
+        color:RGBA(254, 122, 3, 1);
+        background: url("../../images/arrow.png") no-repeat center right;
+        background-size: 0.70588rem 0.588235rem;
+        padding-right: 0.88235rem;
     }
     .answer_index  .hot_right{
-        float: right;
         color: #FE7A03;
         font-size: 0.70rem;
         margin-right: 0.2rem;
     }
     .answer_index  .hot_head img{
-        margin-top: 0.2rem;
-        float: right;
         width: 0.6rem;
         height:0.6rem;
-        background: url(../../images/arrow.png) no-repeat;
         margin-right:1rem;
     }
     .answer_index .hot_item{

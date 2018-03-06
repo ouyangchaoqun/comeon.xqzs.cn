@@ -10,9 +10,8 @@
             <div class="answer_list">
                 <div class="item" v-for="(item,index) in list">
                     <div @click="goDetail(item.expertId)">
-
                         <div class="itemDetail">
-                            <div class="answer_index face"><img :src="item.faceUrl"></div>
+                            <div class="img"><img :src="item.faceUrl"></div>
                             <div class="itemDetail_right">
                                 <div class="itemHeader">
                                     <div>{{item.nickName}} <span>{{item.city}}</span><span style="float: right;color: #2EB1FF;font-size: 0.70rem">找TA咨询</span></div>
@@ -28,7 +27,7 @@
                                     <span v-for="(good,goodIndex) in item.goodAt" class="tab_i_i">{{good.title}}</span>
                                 </div>
                                 <div class="class_s other">
-                                    <span class="price" ><b>问价</b>  <a>{{item.price}}</a><b>点豆</b></span>
+                                    <span class="price" ><b>问价</b>  <a>￥{{item.price}}</a></span>
                                     <div class="class_right">
                                         <span v-if="item.answerCount!=null">{{item.answerCount}} 个回答</span>
                                         <span v-if="item.listenCount!=null">{{item.listenCount}} 次被偷听</span>
@@ -299,13 +298,6 @@
         animation: addPlaying 1.5s infinite;
         -webkit-animation: addPlaying 1.5s infinite;
     }
-    .answer_index .other{
-        position: static;
-        margin-top: 0.529rem;
-        border-top: solid #eee 1px;
-        height: 1.88rem;
-        margin-bottom: 0;
-    }
     .answer_index .price{
         margin-top: 0.82rem;
     }
@@ -332,7 +324,6 @@
     /*background: url(../../images/asker/asker_left_dotCoin.png)no-repeat;*/
     /*background-size: 0.85rem 0.8rem;}*/
 
-    .itemDetail_class_s{font-size: 0.70588rem;color:rgba(36,37,61,0.5);position: static}
     .answer_list .info .other{margin-bottom: 0.88235rem}
 
 
@@ -354,10 +345,6 @@
             background: url("../../images/playing3.png") no-repeat;
             background-size:  100%;
         }
-    }
-    .answer_index  .itemDetail_right{
-        width: 75%;
-
     }
     .answer_index .itemDetail_class_s .tab_i_i{ color: #FF9966;background:RGBA(254, 122, 3, 0.1);; border-radius:0.1470588235294118rem ; padding: 0.2rem 0.3rem; margin: 0 0.3rem; }
     .answer_index .itemDetail_class_s .tab_i_i:first-child{ margin-left: 0;}
