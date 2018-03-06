@@ -94,7 +94,7 @@
                     for(let i =0;i<_this.list.length;i++){
                         _this.list[i].endTime= _this.list[i].endTime + 1;
                         _this.list[i].endTime= _this.list[i].endTime - 1;
-                        $set(_this.list,i, _this.list[i]);
+                        _this.$set(_this.list,i, _this.list[i]);
                     }
                 },1000)
             },
