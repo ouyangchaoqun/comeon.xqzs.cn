@@ -144,7 +144,7 @@
 
             this.id= parseInt(this.$route.query.id);
             this.getDetail();
-            xqzs.wx.setConfig(this);
+            xqzs.wx.setConfig(this, function () {weshare.init(wx)});
         },
         methods: {
             timeIntervalFun:function () {

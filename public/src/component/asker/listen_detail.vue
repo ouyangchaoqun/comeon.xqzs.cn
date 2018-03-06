@@ -109,7 +109,11 @@
             this.getDetail();
             this.getCoupon();
             this.getUserInfo();
-            xqzs.wx.setConfig(this);
+
+
+
+
+
 
         },
         props:{
@@ -362,7 +366,16 @@
                     if (data.body.status == 1) {
                         _this.detail= data.body.data
                         _this.list = _this.detail.answerList;
-                        console.log(_this.detail)
+                        console.log(_this.detail);
+                        xqzs.wx.setConfig(this, function () {
+                            var config = {
+                                imgUrl:"http://oss.xqzs.cn/resources/psy/logo.jpg",
+                                title:  "听解答：" +  _this.detail.content,
+                                desc: '价值10元的解忧语音，1点豆即可偷听！‘好一点’你的实用人生导师',
+                                link:  xqzs.wx.getPubUrl("asker/listen/detail?questionId="+ _this.questionId) ,
+                            };
+                            weshare.init(wx, config)
+                        });
                     }
                 }, function (error) {
                     _this.showLoad=false;

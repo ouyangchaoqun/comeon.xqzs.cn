@@ -1,10 +1,10 @@
 //init weixin share
 ;var weshare = {
     config: {
-        title: 'hello world',
-        desc: '心情，心情指数，日子有大有小，心情能暖共知！关注本微信公众号，心情不好的说说，随时记录、查看自己和朋友的心情！',
-        link:   'http://m.xqzs.cn/',
-        imgUrl: ''
+        title: '好一点’你的实用人生导师',
+        desc: '专家60秒语音解答你的人生小困惑',
+        link:   'http://wx.xqzs.cn/comeon/',
+        imgUrl: 'http://oss.xqzs.cn/resources/psy/logo.jpg'
     },
     init: function (wx,config, success, cancel,type) {
         this.config = $.extend(this.config,config);

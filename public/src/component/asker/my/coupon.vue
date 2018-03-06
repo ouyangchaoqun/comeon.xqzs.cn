@@ -68,6 +68,7 @@
         },
         mounted: function () {
             this.getList();
+            xqzs.wx.setConfig(this, function () {weshare.init(wx)});
         },
         methods: {
             formatDate: function (time) {

@@ -33,6 +33,7 @@
         },
         mounted: function () {
              this.getUserInfo();
+            xqzs.wx.setConfig(this, function () {weshare.init(wx)});
         },
         components: {
             'v-showLoad': showLoad,

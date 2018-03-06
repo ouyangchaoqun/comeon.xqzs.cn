@@ -134,8 +134,8 @@
             xqzs.wx.setConfig(this, function () {
                 var config = {
                     imgUrl: 'http://oss.xqzs.cn/resources/psy/join_share_img3.jpg',
-                    title:  '好一点心理咨询平台咨询师火热招募' ,
-                    desc: '诚邀心理咨询师加入好一点，实现口碑、收益双丰收',
+                    title:  '‘好一点’心理咨询平台诚邀您入驻' ,
+                    desc: '‘好一点’心理咨询师的兼职平台，诚邀您入驻，一次回答，收益不断！',
                     link: "http://wx.xqzs.cn/comeon/guest#/join",
                 };
                 weshare.init(wx, config)

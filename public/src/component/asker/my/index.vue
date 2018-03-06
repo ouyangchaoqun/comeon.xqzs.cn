@@ -128,7 +128,7 @@
             xqzs.weui.active(obj);
             this.getUserInfo();
             this.getCoupon();
-            xqzs.wx.setConfig(this);
+            xqzs.wx.setConfig(this, function () {weshare.init(wx)});
         }
 
 

@@ -133,7 +133,15 @@
             this.getUserInfo()
             this.getCoupon();
             xqzs.voice.audio = null;
-            xqzs.wx.setConfig(this);
+            xqzs.wx.setConfig(this, function () {
+                var config = {
+                    imgUrl:"http://oss.xqzs.cn/resources/psy/logo.jpg",
+                    title:  "专家详解人生小困惑" ,
+                    desc: '你的人生小困惑都在这里，专家60秒解忧语音，偷听只需1点豆',
+                    link:  xqzs.wx.getPubUrl("asker/listen") ,
+                };
+                weshare.init(wx, config)
+            });
         },
         methods: {
             getQType:function (n) {

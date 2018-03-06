@@ -173,7 +173,7 @@
                 })
 
             });
-            xqzs.wx.setConfig(this);
+            xqzs.wx.setConfig(this, function () {weshare.init(wx)});
         },
         methods: {
             getFlagVal:function (val) {

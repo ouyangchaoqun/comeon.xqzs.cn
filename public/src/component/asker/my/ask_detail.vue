@@ -133,7 +133,7 @@
             this.id= parseInt(this.$route.query.id);
             this.getDetail();
 //            this.getTags();
-            xqzs.wx.setConfig(this);
+            xqzs.wx.setConfig(this, function () {weshare.init(wx)});
             console.log(this.user)
         },
         methods: {
