@@ -138,7 +138,11 @@
                     configId: _this.items[_this.checkIndex].id,
                     isUseBalance: isUseBalance,
                     amount: _this.pay,
-                }
+                    channelOpenId:xqzs.localdb.get("channelopenid")
+                };
+
+
+
                 _this.$http.put(web.API_PATH + "come/user/create/recharge", msg)
                         .then(function (bt) {
                             if (bt.data && bt.data.status == 1) {

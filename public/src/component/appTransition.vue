@@ -23,6 +23,10 @@
             }
         },
         created: function () {
+            let channelopenid = this.$route.query.channelopenid;
+            if(channelopenid){
+                xqzs.localdb.set("channelopenid",channelopenid);
+            }
             console.log("create");
             var _this = this;
             _this.$http({
