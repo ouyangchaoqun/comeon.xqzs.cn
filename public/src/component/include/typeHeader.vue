@@ -55,11 +55,11 @@
                 console.log(classId)
                 //偷听类型
                 if(this.urlType==1){
-                    this.$router.push('listen/question?classId='+classId)
+                    this.$router.push('listen/list?classId='+classId)
                 }
                 if(this.urlType==2){
                     //专家类型
-                    this.$router.push('index/answer?classId='+classId)
+                    this.$router.push('expert/list?classId='+classId)
                 }
 
             },

@@ -115,7 +115,7 @@
     import showLoad from '../include/showLoad.vue';
     import scroll from '../include/scroll.vue';
     import Bus from '../../js/bus.js';
-    import askerBottom from "../asker/include/bottom.vue";
+    import askerBottom from "./include/bottom.vue";
     import typeHeader from '../include/typeHeader.vue';
 
     export default {
@@ -204,7 +204,7 @@
 
 
             goDetail: function (extId) {
-                this.$router.push('/answer/detail/?id=' + extId)
+                this.$router.push('/asker/expert/detail/?id=' + extId)
             },
             goClass: function (classId) {
 //                this.$router.push('./list?id='+item.id+"&name="+item.title)
@@ -215,10 +215,10 @@
                 _this.getList()
             },
             getMore:function () {
-                this.$router.push('index/answer?classId=0')
+                this.$router.push('expert/list?classId=0')
             },
             getNewMore:function () {
-                this.$router.push('index/answer?classId=0&orderType=2')
+                this.$router.push('expert/list?classId=0&orderType=2')
             },
             getHotList:function () {
               let _this=this;

@@ -4,7 +4,7 @@
         <router-link to='/asker/listen' replace :class="{on:tabOnIndex==0}" >
             <span class="icon listen"></span>偷听
         </router-link>
-        <router-link to='/answer/index' replace :class="{on:tabOnIndex==1}" >
+        <router-link to='/asker/expert' replace :class="{on:tabOnIndex==1}" >
             <span class="icon answer"></span>找专家
         </router-link>
         <router-link to='/asker/ask/' replace class="middle"  >

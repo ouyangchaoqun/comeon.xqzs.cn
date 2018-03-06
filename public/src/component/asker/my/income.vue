@@ -85,7 +85,7 @@
                 });
             },
             goAsk:function () {
-                this.$router.push("/answer/index");
+                this.$router.push("/asker/expert");
             },
             hideOut:function () {
                 this.isOut = false

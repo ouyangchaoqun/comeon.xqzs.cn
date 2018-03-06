@@ -370,7 +370,7 @@
 
             },
             goDetail:function (extId) {
-                this.$router.push('/answer/detail/?id='+extId)
+                this.$router.push('/asker/expert/detail/?id='+extId)
             },
             follow:function (index) {
 

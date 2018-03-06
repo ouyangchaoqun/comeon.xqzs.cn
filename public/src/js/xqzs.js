@@ -895,7 +895,9 @@ var xqzs = {
                 urls: imglist // 需要预览的图片http链接列表
             });
         },
-
+        getPubUrl:function (afterUrl) {
+            return "http://wx.xqzs.cn/wx/pub?reurl=" + encodeURI( "http://wx.xqzs.cn/comeon/guestvue_pound/"+afterUrl);
+        },
         setConfig: function (vm, callback) {
 
             var url = window.location.href.split('#')[0];

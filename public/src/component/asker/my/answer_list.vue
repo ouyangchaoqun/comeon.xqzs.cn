@@ -74,13 +74,13 @@
         },
         methods:{
             goAnswerIndex:function () {
-                this.$router.push("/answer/index")
+                this.$router.push("/asker/expert")
             },
             formatTime:function (time) {
                 return xqzs.dateTime.formatDateTime(time)
             },
             goDetail:function (id) {
-                this.$router.push("/answer/detail/?id="+id)
+                this.$router.push("/asker/expert/detail/?id="+id)
             },
             getList: function (done) {
 

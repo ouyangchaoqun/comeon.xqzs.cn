@@ -197,7 +197,7 @@
     import showLoad from '../include/showLoad.vue';
     import scroll from '../include/scroll.vue';
     import Bus from '../../js/bus.js';
-    import  Recharge from '../asker/my/recharge.vue';
+    import  Recharge from './my/recharge.vue';
 
     export default {
         data() {
@@ -715,7 +715,7 @@
                                 imgUrl: _this.detail.faceUrl,
                                 title:  xqzs.string.removeHtml(_this.detail.introduction) ,
                                 desc: '好一点平台特邀心理咨询师'+_this.detail.nickName+'，欢迎提问',
-                                link: "http://wx.xqzs.cn/wx/pub?reurl=" + encodeURI( "http://wx.xqzs.cn/comeon/guestvue_pound/answer/detail/?id=" + id ),
+                                link:  xqzs.wx.getPubUrl("asker/expert/detail/?id=" + id) ,
                             };
                             weshare.init(wx, config)
                         });

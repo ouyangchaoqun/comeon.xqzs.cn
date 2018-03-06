@@ -151,7 +151,7 @@
                this.anonFlag = !this.anonFlag
             },
             goDetail:function (extId) {
-                this.$router.push('/answer/detail/?id='+extId)
+                this.$router.push('/asker/expert/detail/?id='+extId)
             },
             like:function (index) {
                 let  item = this.detail.answers[index];

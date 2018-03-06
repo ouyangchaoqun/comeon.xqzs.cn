@@ -71,8 +71,8 @@
     import showLoad from '../include/showLoad.vue';
     import scroll from '../include/scroll.vue';
     import Bus from '../../js/bus.js';
-    import askerBottom from "../asker/include/bottom.vue";
-    import downList from  "../include/downList.vue"
+    import askerBottom from "./include/bottom.vue";
+    import downList from "../include/downList.vue"
 
     export default {
         data() {
@@ -175,7 +175,7 @@
 
 
             goDetail:function (extId) {
-                this.$router.push('/answer/detail/?id='+extId)
+                this.$router.push('/asker/expert/detail/?id='+extId)
             },
             goClass:function (classId) {
 //                this.$router.push('./list?id='+item.id+"&name="+item.title)
