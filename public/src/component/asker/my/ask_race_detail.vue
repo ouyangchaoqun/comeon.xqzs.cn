@@ -25,7 +25,7 @@
             </div>
             <!--正在进行中-->
             <div class="rob_status_box"  v-if="detail.questionStatus==0&&detail.answerCount==0">
-                <div>还{{formatTimeLastText(detail.endTime)}} </div>
+                <div class="last_red_color">还{{formatTimeLastText(detail.endTime)}} </div>
                 <div>暂无人抢答，如果48小时内没有专家回答该问题，提问酬金将原路返还。</div>
             </div>
             <div class="rob_status_box" v-if="detail.questionStatus==0&&detail.answerCount!=0">

@@ -18,7 +18,7 @@
             <div class="problem_wait_style">
                 <!--待回答-->
                 <div v-if="detail.questionStatus==0">
-                    <span>待回答</span><span>还{{formatTimeLastText(detail.endTime)}}</span>
+                    <span>待回答</span><span class="last_red_color">还{{formatTimeLastText(detail.endTime)}}</span>
                 </div>
                 <!--超时未回答-->
                 <div v-if="detail.questionStatus==2">

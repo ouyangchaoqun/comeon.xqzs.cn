@@ -28,7 +28,7 @@
 
                     <div class="content">
                         <div>{{item.content}}</div>
-                        <div class="last_time">还{{formatDateText(item.endTime)}}</div>
+                        <div class="last_time last_red_color">还{{formatDateText(item.endTime)}}</div>
                     </div>
                     <div class="clear"></div>
                     <div class="btn_race" @click="answer(item.id)">抢答</div>

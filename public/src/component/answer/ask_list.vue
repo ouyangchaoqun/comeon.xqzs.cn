@@ -30,7 +30,7 @@
 
                         </div>
                         <div class="last_time"> 在哪方面：{{item.questionClassName}}</div>
-                        <div class="last_time">还{{formatDateText(item.endTime)}}</div>
+                        <div class="last_time last_red_color">还{{formatDateText(item.endTime)}}</div>
 
                     </div>
                     <div class="clear"></div>
