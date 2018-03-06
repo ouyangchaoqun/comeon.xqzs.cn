@@ -72,6 +72,7 @@
             },
 
             join: function () {
+
                 let _this= this;
                 this.$http.get(web.API_PATH + 'come/expert/query/detail/by/userId/_userId_' ).then(function (data) {//es5写法
                     if (data.body.status == 1) {
@@ -107,7 +108,7 @@
             },
             goJoin:function () {
                 this.showLoad = true;
-                this.$router.push("/answer/join/joinstep");
+                this.$router.push("/join");
             },
             getCoupon:function () {
                 let _this=this;
