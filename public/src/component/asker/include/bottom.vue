@@ -2,7 +2,7 @@
     <div class="asker_bottom_box" :style="'height:'+height+'rem'">
 
         <router-link to='/asker/listen' replace :class="{on:tabOnIndex==0}" >
-            <span class="icon listen"></span>偷听
+            <span class="icon listen"></span>首页
         </router-link>
         <router-link to='/asker/expert' replace :class="{on:tabOnIndex==1}" >
             <span class="icon answer"></span>找专家

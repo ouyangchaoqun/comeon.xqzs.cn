@@ -1,6 +1,6 @@
 <template >
     <div style="height: 100%" class="answer_index">
-        <div v-title>找专家</div>
+        <div v-title>{{titleVal}}</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
 
 
@@ -86,6 +86,7 @@
                 showLoad:false,
                 classId:0,
                 noContent:false,
+                titleVal:''
             }
         },
 
@@ -102,7 +103,7 @@
                 this.initGetList()
             },
             getQid:function (msg) {
-                console.log(msg)
+                this.titleVal = msg.title;
                 this.classId = msg.classId;
                 this.exType= msg.exType;
                 this.initGetList()
@@ -268,7 +269,7 @@
 
             this.classId = this.$route.query.classId;
             this.exType = this.$route.query.orderType;
-
+            this.titleVal = this.$route.query.title;
             $(".weui-tab__panel").height($(window).height()-50)
             this.getClassList();
             this.getList(0);

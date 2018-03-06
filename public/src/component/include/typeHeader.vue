@@ -1,6 +1,6 @@
 <template >
     <div class="class_list">
-        <div class="class_item" v-for="(item,index) in classList" @click="goClass(item.id)"
+        <div class="class_item" v-for="(item,index) in classList" @click="goClass(item.id,item.title)"
              :class="{on:item.id==classId}">
             <div class="addClassImg" ></div>
             <span>{{item.title}}</span>
@@ -12,7 +12,7 @@
     .class_list{  padding:0.47rem 0;background: #fff;}
     .class_list .class_item{  float:left ; width: 20%; text-align: center;color:#999;font-size: 0.6176471rem;padding: 6px 0 ; }
     .addClassImg{height:2.5rem; width:2.5rem; margin:0 auto;margin-bottom: 0.3529411rem;background: url("../../images/answer/index_class_new.png") no-repeat ;background-size: 17.5rem; border-radius: 50%}
-
+    .class_item:active .addClassImg{background-color: #eee;}
     .class_list>div:nth-of-type(10) div{background-position:-15rem -4.75rem;}
     .class_list>div:nth-of-type(1) div{background-position:0rem 0rem;  }
     .class_list>div:nth-of-type(2) div{background-position:-7.5rem 0rem; }
@@ -51,15 +51,15 @@
                 }, function (error) {
                 });
             },
-            goClass:function (classId) {
+            goClass:function (classId,title) {
                 console.log(classId)
                 //偷听类型
                 if(this.urlType==1){
-                    this.$router.push('listen/list?classId='+classId)
+                    this.$router.push('listen/list?classId='+classId+'&&title='+title)
                 }
                 if(this.urlType==2){
                     //专家类型
-                    this.$router.push('expert/list?classId='+classId)
+                    this.$router.push('expert/list?classId='+classId+'&&title='+title)
                 }
 
             },
