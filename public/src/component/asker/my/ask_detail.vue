@@ -1,6 +1,5 @@
 <template id="my_problem_detail">
     <div class="ask_detailBox">
-        {{formatTimeLastText(tttt)}}
         <div v-title>问题详情</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="my_problem_detail">
