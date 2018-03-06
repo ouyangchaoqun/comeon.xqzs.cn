@@ -3,9 +3,9 @@
         <div v-title>找专家</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
-                  :isShowMoreText="isShowMoreText" :bottomHeight="50">
+                  :isShowMoreText="isShowMoreText" :bottomHeight="68">
             <v-typeHeader :urlType="2"></v-typeHeader>
-            <div class="hot">
+            <div class="title_top">
                 <div class="hot_head">
                     热门推荐
                        <div class="hot_hidden" @click="getMore()">
@@ -40,6 +40,17 @@
                 </div>
             </div>
             <div class="answer_list">
+
+                <div class="title_top">
+                    <div class="new_head">
+                        最新入驻
+                        <div class="hot_hidden" @click="getNewMore()">
+                            更多
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="item" v-for="(item,index) in list">
                     <div @click="goDetail(item.expertId)">
                         <div class="itemDetail">
@@ -205,6 +216,9 @@
             },
             getMore:function () {
                 this.$router.push('index/answer?classId=0')
+            },
+            getNewMore:function () {
+                this.$router.push('index/answer?classId=0&orderType=2')
             },
             getHotList:function () {
               let _this=this;
@@ -447,10 +461,11 @@
         font-size: 0.88rem;
         color: RGBA(69, 75, 84, 0.5)
     }
-    .answer_index .hot {
+    .answer_index .title_top {
         background: #fff;
         padding:1.176rem 0rem;
         padding-left: 0.88rem;
+        margin-top: 0.70rem;
     }
     .answer_index .hot_head{
         height: 1.764rem;
@@ -459,7 +474,18 @@
         font-size: 1.1rem;
         font-weight: bold;
         position: relative;
+        margin-bottom: 0.6rem;
+
     }
+    .answer_index .new_head{
+        height: 1.764rem;
+         color: #454B54;
+        font-size: 1.1rem;
+        font-weight: bold;
+        position: relative;
+        background: #fff;
+
+     }
     .hot_hidden{
         position: absolute;
         right: 0.88rem;

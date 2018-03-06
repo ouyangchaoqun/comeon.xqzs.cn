@@ -6,7 +6,7 @@
 
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :isShowMoreText="isShowMoreText" :bottomHeight="50">
-            <v-downList :urlType="2" v-on:downMessage="getQType" v-on:classMessage="getQid"  :currtype="classId" ></v-downList>
+            <v-downList :urlType="2" v-on:downMessage="getQType" v-on:classMessage="getQid"  :currtype="classId" :currordertype="exType" ></v-downList>
             <div class="answer_list">
                 <div class="item" v-for="(item,index) in list">
                     <div @click="goDetail(item.expertId)">
@@ -267,7 +267,9 @@
         },
         mounted: function () {
             xqzs.wx.setConfig(this);
-            this.classId = this.$route.query.classId
+            this.classId = this.$route.query.classId;
+            this.exType = this.$route.query.orderType;
+
             $(".weui-tab__panel").height($(window).height()-50)
             this.getClassList();
             this.getList(0);

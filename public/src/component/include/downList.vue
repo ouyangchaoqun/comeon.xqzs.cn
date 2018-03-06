@@ -47,12 +47,15 @@
                 //专家
                 console.log('专家')
                 this.sortList= [{label: "综合排序", value: 1, flag: true}, {label: "最新入驻", value: 2, flag: false}]
-                this.nowSort = '综合排序'
+                this.nowSort = '综合排序';
+                if(this.currordertype==2){
+                    this.nowSort = '最新入驻';
+                }
             }
 
 
         },
-        props: ['urlType',"currtype"],
+        props: ['urlType',"currtype","currordertype"],
         methods:{
             getClassList:function () {
                 let _this=this;
