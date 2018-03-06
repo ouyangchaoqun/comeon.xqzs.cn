@@ -355,7 +355,7 @@
         font-size: 0.70588rem;
         font-weight: normal
     }
-    .answer_list .headerImg {
+   .answer_index .answer_list .headerImg {
         width: 1.471rem;
         height: 1.471rem;
         border-radius: 50%;
@@ -363,7 +363,7 @@
         position: relative;
         margin-right: 0.35rem;
     }
-    .answer_list .headerImg div {
+    .answer_index .answer_list .headerImg div {
         background: url("../../images/playing3.png") no-repeat;
         content: '';
         width: 0.88235rem;
@@ -373,20 +373,20 @@
         top: 6px;
         background-size: 100%;
     }
-    .answer_list .headerImg .addPlaying {
+    .answer_index .answer_list .headerImg .addPlaying {
         animation: addPlaying 1.5s infinite;
         -webkit-animation: addPlaying 1.5s infinite;
     }
-    .answer_list .headerImg img {
+    .answer_index .answer_list .headerImg img {
         width: 0.88235rem;
         height: 0.76471rem;
         display: inline-block;
         margin-left: 0.3rem;
     }
-    .answer_list .class_s .price {
+    .answer_index .answer_list .class_s .price {
         color: #FE7301;
     }
-    .answer_list .class_s .price b {
+    .answer_index .answer_list .class_s .price b {
         color: rgba(36, 37, 61, 0.5);
         font-style: normal;
         font-weight: normal;
@@ -401,7 +401,7 @@
         font-size: 0.70588rem;
         color: rgba(36,37,61,0.5);
     }
-    .answer_list .info .other {
+    .answer_index .answer_list .info .other {
         margin-bottom: 0.88235rem
     }
     .answer_index .noContent_icon {

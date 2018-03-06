@@ -292,9 +292,9 @@
     .class_right{right:0;top:0;width:70%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;text-align: right}
     .class_right span:nth-of-type(1){margin-right: 0.294rem;}
     .header_addRightStyle{position: absolute;right:0;top:-1px;display: flex;color:rgba(36,37,61,0.5);font-size: 0.70588rem;font-weight:normal}
-    .answer_list .headerImg{width:1.471rem;height:1.471rem;border-radius: 50%;border:1px solid rgba(253,87,57,1);position: relative;margin-right: 0.35rem;}
-    .answer_list .headerImg div{background: url("../../images/playing3.png") no-repeat;content: '';width:0.88235rem;height:0.76471rem;position: absolute;left:5px;top:6px;background-size:100%;}
-    .answer_list .headerImg .addPlaying{
+   .answer_index .answer_list .headerImg{width:1.471rem;height:1.471rem;border-radius: 50%;border:1px solid rgba(253,87,57,1);position: relative;margin-right: 0.35rem;}
+    .answer_index .answer_list .headerImg div{background: url("../../images/playing3.png") no-repeat;content: '';width:0.88235rem;height:0.76471rem;position: absolute;left:5px;top:6px;background-size:100%;}
+    .answer_index .answer_list .headerImg .addPlaying{
         animation: addPlaying 1.5s infinite;
         -webkit-animation: addPlaying 1.5s infinite;
     }
@@ -315,16 +315,16 @@
         width:100%;
         height: 100%;
     }
-    .answer_list .headerImg img{width:0.88235rem;height:0.76471rem;display: inline-block;margin-left: 0.3rem;}
-    .answer_list .class_s .price{color:#FE7301;}
-    .answer_list .class_s .price b{color:rgba(36,37,61,0.5);font-style: normal;font-weight: normal; text-align: left}
+    .answer_index .answer_list .headerImg img{width:0.88235rem;height:0.76471rem;display: inline-block;margin-left: 0.3rem;}
+    .answer_index .answer_list .class_s .price{color:#FE7301;}
+    .answer_index .answer_list .class_s .price b{color:rgba(36,37,61,0.5);font-style: normal;font-weight: normal; text-align: left}
     /*.answer_list .class_s .price a{*/
     /*right: 0;*/
     /*padding-left: 1rem;*/
     /*background: url(../../images/asker/asker_left_dotCoin.png)no-repeat;*/
     /*background-size: 0.85rem 0.8rem;}*/
 
-    .answer_list .info .other{margin-bottom: 0.88235rem}
+    .answer_index  .answer_list .info .other{margin-bottom: 0.88235rem}
 
 
 
