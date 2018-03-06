@@ -908,8 +908,6 @@ var xqzs = {
                 response.body.debug = false;
                 response.body.jsApiList=['pauseVoice','startRecord','stopRecord','playVoice','uploadVoice','chooseImage',"onVoiceRecordEnd","onMenuShareTimeline",
                     "onMenuShareAppMessage","onMenuShareQQ", "onMenuShareWeibo", "onMenuShareQZone"];
-
-                console.log(response.body)
                 wx.config(response.body);
                 wx.ready(function () {
 
