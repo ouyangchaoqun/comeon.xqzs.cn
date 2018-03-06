@@ -494,7 +494,9 @@ var xqzs = {
             var d;
             d = publishTime - timeNow;
             d_hours = parseInt(d / 3600);
-            d_minutes = parseInt(d / 60);
+            d_minutes = parseInt((d-d_hours*3600) / 60);
+
+            d=   d-d_hours*3600 - d_minutes *60 ;
 
             if(d_hours<10)d_hours="0"+d_hours;
             if(d_minutes<10)d_minutes="0"+d_minutes;
@@ -502,6 +504,8 @@ var xqzs = {
             return  "剩"+d_hours+ ":" + d_minutes+":"+ d;
 
             //
+            // d_hours = parseInt(d / 3600);
+            // d_minutes = parseInt(d / 60);
             // if (d_hours > 0) {
             //     return "剩 " + d_hours + " 小时";
             // } else if (d_hours <= 0 && d_minutes > 0) {
