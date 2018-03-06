@@ -186,6 +186,7 @@
                 this.isPageEnd = false;
                 this.isShowMoreText = false;
                 this.getList(false,true)
+
             },
             getUserInfo: function () {
                 console.log('获取user')
@@ -437,7 +438,7 @@
                 });
             },
             getList: function (done,isRef) {
-
+                console.log("dogetList")
                 let vm = this;
 
 
@@ -485,10 +486,15 @@
                     Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
 
                     if (vm.page == 1) {
+                        console.log("dogopage1")
                         vm.list = arr;
                     } else {
                         if(isRef==true){
                             vm.list = arr;
+                            if(vm.list.length==0){
+                                vm.page=1;
+                                vm.updateList()
+                            }
                         }else {
                             vm.list = vm.list.concat(arr);
                         }
