@@ -216,10 +216,10 @@
                 _this.getList()
             },
             getMore:function () {
-                this.$router.push('expert/list?classId=0')
+                this.$router.push('expert/list?classId=0&orderType=1&title=热门推荐')
             },
             getNewMore:function () {
-                this.$router.push('expert/list?classId=0&orderType=2')
+                this.$router.push('expert/list?classId=0&orderType=2&title=最新入驻')
             },
             getHotList:function () {
               let _this=this;

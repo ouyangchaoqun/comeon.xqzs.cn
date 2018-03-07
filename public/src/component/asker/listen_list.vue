@@ -668,22 +668,6 @@
     .asker_listen_box .audio {
         margin-bottom: 0
     }
-    .new_question{
-        height: 1.10rem;
-        width: 100%;
-        border-bottom: 1px solid #eee;
-        overflow: hidden;
-    }
-    .top_left{
-        float: left;
-        line-height: 1.10rem ;
-        font-size: 0.50rem;
-        margin-left: 0.27rem ;
-        font-weight: bold;
-    }
-    .top_right{
-        float: right;
-        margin-right: 0.28rem;
-    }
+
 
 </style>

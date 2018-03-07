@@ -270,7 +270,8 @@
         mounted: function () {
 
             this.classId = this.$route.query.classId;
-            this.exType = this.$route.query.orderType;
+            this.exType =1;
+            if(this.$route.query.orderType) this.exType = this.$route.query.orderType;
             this.titleVal = this.$route.query.title;
             $(".weui-tab__panel").height($(window).height()-50)
             this.getClassList();
@@ -303,47 +304,10 @@
     }
 </script>
 <style>
-    .class_right{right:0;top:0;width:70%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;text-align: right}
-    .class_right span:nth-of-type(1){margin-right: 0.10rem;}
-    .header_addRightStyle{position: absolute;right:0;top:-1px;display: flex;color:rgba(36,37,61,0.5);font-size: 0.24rem;font-weight:normal}
-    .answer_index .answer_list .headerImg{width:0.50rem;height:0.50rem;border-radius: 50%;border:1px solid rgba(253,87,57,1);position: relative;margin-right: 0.12rem;}
-    .answer_index .answer_list .headerImg div{background: url("http://oss.xqzs.cn/resources/psy/playing3.png") no-repeat;content: '';width:0.30rem;height:0.26rem;position: absolute;left:5px;top:6px;background-size:100%;}
-    .answer_index .answer_list .headerImg .addPlaying{
-        animation: addPlaying 1.5s infinite;
-        -webkit-animation: addPlaying 1.5s infinite;
-    }
-    .answer_index .price{
-        margin-top: 0.28rem;
-    }
-    .answer_index .class_right{
-        margin-top: 0.28rem;
-        position: static;
-    }
-    .answer_index.face{
-        width: 1.20rem;
-        height: 1.20rem;
-        display: inline-block;
-        overflow: hidden;
-        border-radius: 50%;}
-    .answer_index.face img {
-        width:100%;
-        height: 100%;
-    }
-    .answer_index .answer_list .headerImg img{width:0.30rem;height:0.26rem;display: inline-block;margin-left: 0.10rem;}
+     .header_addRightStyle{position: absolute;right:0;top:-1px;display: flex;color:rgba(36,37,61,0.5);font-size: 0.24rem;font-weight:normal}
 
-    /*.answer_list .class_s .price a{*/
-    /*right: 0;*/
-    /*padding-left: 0.34rem;*/
-    /*background: url(http://oss.xqzs.cn/resources/psy/asker/asker_left_dotCoin.png)no-repeat;*/
-    /*background-size: 0.29rem 0.27rem;}*/
-
-    .answer_index  .answer_list .info .other{margin-bottom: 0.30rem}
-
-
-
-
-    .answer_index .noContent_icon{background: #fff;color:rgba(36,37,61,0.5);font-size: 0.26rem;text-align: center;}
-    .answer_index .noContent_icon div{margin-top: -1.29rem;}
+    .expert_list .noContent_icon{background: #fff;color:rgba(36,37,61,0.5);font-size: 0.26rem;text-align: center;}
+    .expert_list  .noContent_icon div{margin-top: -1.29rem;}
 
     @keyframes  addPlaying {
         0%{
@@ -359,6 +323,6 @@
             background-size:  100%;
         }
     }
-      .answer_index .nav_select{ background:RGBA(69, 75, 84, 0.05) ;height: 0.96rem;width: 100%; overflow: hidden;text-align: center;line-height: 0.96rem;font-size: 0.30rem;color: RGBA(69, 75, 84, 0.5)}
+
 
 </style>
