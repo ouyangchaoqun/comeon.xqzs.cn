@@ -35,7 +35,7 @@
             </ul>
         </div>
             <div class="noCoupon" v-if="noCoupon">
-                <img src="../../../images/asker/noCoupon.png" alt="">
+                <img src="http://oss.xqzs.cn/resources/psy/asker/noCoupon.png" alt="">
                 <div>暂无此类优惠券</div>
             </div>
         </v-scroll>
@@ -189,14 +189,14 @@
     .coupon_list li{
         height:4.8235rem;
         line-height: 4.8235rem;
-        background: url("../../../images/asker/coupon_bg.png") no-repeat;
+        background: url("http://oss.xqzs.cn/resources/psy/asker/coupon_bg.png") no-repeat;
         background-size: 100% 100%;
         margin-bottom: 0.588235rem;
         color:rgba(255,255,255,1);
         font-size: 0.9411rem;
     }
     .coupon_list .overTime li{
-        background: url("../../../images/asker/coupon_used.png") no-repeat;
+        background: url("http://oss.xqzs.cn/resources/psy/asker/coupon_used.png") no-repeat;
         background-size: 100% 100%;
     }
     .coupon_list li .item_left{

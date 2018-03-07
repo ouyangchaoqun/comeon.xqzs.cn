@@ -20,7 +20,7 @@
                     <div class="detail_input">
                         <span>￥</span>
                         <input type="number" @input="getMoney()" v-model="moneyVal">
-                        <img @click="clearMoneyVal()" src="../../../images/clear_moneyVal_img.png" alt="">
+                        <img @click="clearMoneyVal()" src="http://oss.xqzs.cn/resources/psy/clear_moneyVal_img.png" alt="">
                     </div>
                     <div class="detail_warn">
                         <span v-if="!isWarn">
@@ -155,7 +155,7 @@
 <style>
 
 
-   .answer_my_income_box .my_income .img{ background: url(../../../images/asker/income.png) no-repeat; width: 6.21rem; height: 5.941176471rem; background-size: 100% 100%; margin: 0 auto ; margin-top:3.7rem; }
+   .answer_my_income_box .my_income .img{ background: url(http://oss.xqzs.cn/resources/psy/asker/income.png) no-repeat; width: 6.21rem; height: 5.941176471rem; background-size: 100% 100%; margin: 0 auto ; margin-top:3.7rem; }
    .answer_my_income_box .my_income{ line-height: 1}
    .answer_my_income_box .my_income .my_income_txt{color:#333; width: 100%; text-align: center; margin-top: 0.76471rem;font-size: 0.8823529411764706rem; }
    .answer_my_income_box .my_income .money{color:#FE7301 ; margin-top: 0.7058823529411765rem; text-align: center; width: 100%; font-size: 2.117647058823529rem; line-height: 1}

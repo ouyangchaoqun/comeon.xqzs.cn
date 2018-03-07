@@ -3,7 +3,7 @@
         <div v-title>我的偷听</div>
         <div class="nothing listen" v-if="list.length==0&&!showLoad">
             <div>
-                <img src="../../../images/asker/newNoContent.png" alt="">
+                <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
                 <div class="nothing_bottom">
                     <p>您还没有偷听</p>
                     在偷听页面可以点击播放按钮进行偷听
@@ -24,7 +24,7 @@
                         <div class="question">
                             <!--<img class="img" v-bind:src="item.questionUserFaceUrl" alt="">-->
                             <div class="img" v-if="item.isAnonymous==0" :style="{'background':'url('+getLittleFace(item.questionUserFaceUrl)+')no-repeat','background-size':'100%'}"></div>
-                            <div class="img" v-else="" style='background:url(/dist/isAnonymousImg.png) no-repeat;background-size: 2rem'></div>
+                            <div class="img" v-else="" style='background:url(http://oss.xqzs.cn/resources/psy/isAnonymousImg.png) no-repeat;background-size: 2rem'></div>
 
                             <div class="title">{{item.question}}
                             </div>
@@ -302,8 +302,6 @@
 
     .asker_my_listen_list_box .others{ color:rgba(36,37,61,0.5); position: relative; font-size: 0.7058823529411765rem; padding: 0 0.88235rem; margin-top: 1.1rem;}
     .asker_my_listen_list_box .others .listen_count{ float:left;    margin-right: 0.588235rem;}
-
-
     .asker_my_listen_list_box .others .others_right{position: absolute;right:0.8rem;top:0}
 
 </style>

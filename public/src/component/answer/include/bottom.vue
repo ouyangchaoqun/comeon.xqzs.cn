@@ -33,7 +33,7 @@
         font-size: 0.588235rem;
         vertical-align: text-bottom;
     }
-    .answer_bottom_box a .icon{ display: block;  width: 1.588235294117647rem;   margin: 0.1rem auto;background: url(../../../images/answer/tab_icon.png) no-repeat; background-size: 6.3529411764705882352941176470588rem; height: 1.588235294117647rem  }
+    .answer_bottom_box a .icon{ display: block;  width: 1.588235294117647rem;   margin: 0.1rem auto;background: url(http://oss.xqzs.cn/resources/psy/answer/tab_icon.png) no-repeat; background-size: 6.3529411764705882352941176470588rem; height: 1.588235294117647rem  }
     .answer_bottom_box a .icon.race{  background-position: 0 0;}
     .answer_bottom_box a .icon.ask{background-position: -1.588235294117647rem 0;}
     .answer_bottom_box a .icon.my{  background-position: -3.176470588235294rem  0;}

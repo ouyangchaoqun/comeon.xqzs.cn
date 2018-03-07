@@ -17,9 +17,9 @@
                 <div class="content_list2">
 
                     <img v-if="identityFile1!=''"  :src="identityFile1" alt="" @click="upload(1)">
-                    <img v-else="" src="../../../images/positive.png" alt="" @click="upload(1)">
+                    <img v-else="" src="http://oss.xqzs.cn/resources/psy/positive.png" alt="" @click="upload(1)">
                     <img v-if="identityFile2!=''" :src="identityFile2" alt="" @click="upload(2)">
-                    <img v-else="" src="../../../images/negative.png" alt="" @click="upload(2)">
+                    <img v-else="" src="http://oss.xqzs.cn/resources/psy/negative.png" alt="" @click="upload(2)">
                 </div>
             </div>
 

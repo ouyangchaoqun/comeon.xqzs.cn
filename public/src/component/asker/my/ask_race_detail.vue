@@ -73,7 +73,7 @@
                         <!--最佳确定-->
                         <div class="best_getMoney" v-if="detail.bestAnswerId!=0&&detail.questionStatus!=0&&detail.bestAnswerId==item.answerId" >
                             <div>￥{{detail.price}}</div>
-                            <img src="../../../images/asker/getmoney.png" alt="">
+                            <img src="http://oss.xqzs.cn/resources/psy/asker/getmoney.png" alt="">
                         </div>
                         <!--未选择最佳平分赏金-->
                         <div class="deuce_money_box" v-if="detail.bestAnswerId==0&&detail.questionStatus==2">
@@ -108,7 +108,7 @@
             </div>
         </div>
         <!--<div class="showOk" v-if="showOk">-->
-            <!--<span >+2</span><img src="../../../images/asker/asker_left_dotCoin.png"></div>-->
+            <!--<span >+2</span><img src="http://oss.xqzs.cn/resources/psy/asker/asker_left_dotCoin.png"></div>-->
     </div>
 </template>
 
@@ -379,14 +379,14 @@
     .rob_status_box .race_detail_inCome{float: right;margin-right: 0.88235rem;color:rgba(36,37,61,0.5);}
      .comment_box2 .stars{ display: flex;margin-bottom: 1.1rem}
      .comment_box2 .stars li{ flex:1;}
-     .comment_box2 .stars li .star{ background: url(../../../images/asker/ask_rack_comment_star.png) center no-repeat ; background-size:  1.4rem;;height:1.4rem; width: 1.4rem; color:#999; width: 100%; margin-bottom: 0.3rem; }
+     .comment_box2 .stars li .star{ background: url(http://oss.xqzs.cn/resources/psy/asker/ask_rack_comment_star.png) center no-repeat ; background-size:  1.4rem;;height:1.4rem; width: 1.4rem; color:#999; width: 100%; margin-bottom: 0.3rem; }
      .comment_box2 .stars li .text{color:#999 ; font-size: 0.7088235rem; text-align: center}
-     .comment_box2 .stars li.on .star{background: url(../../../images/asker/ask_rack_comment_star_on.png) center no-repeat ; background-size:  1.4rem;}
+     .comment_box2 .stars li.on .star{background: url(http://oss.xqzs.cn/resources/psy/asker/ask_rack_comment_star_on.png) center no-repeat ; background-size:  1.4rem;}
      .comment_box2 .stars li.on .text{ color:#ffaa00}
 
      .comment_box2 .textarea{ width: 100%; height:7rem;position: relative;background: #f1f1f1; border-radius: 0.2rem;overflow: hidden;margin-bottom: 0.3rem; }
-     .comment_box2 .textarea .anFlag{position: absolute;right:0.294rem;bottom:0.294rem;color:RGBA(69, 75, 84, 0.49);font-size: 0.70588rem;background: url("../../../images/asker/user_income_no.png")no-repeat left center;background-size: 0.8235rem;padding-left: 1rem;line-height: 1rem;z-index:1000;height:0.94rem;}
-     .comment_box2 .textarea .anFlag_on{background: url("../../../images/asker/user_income_on.png") no-repeat left center;background-size: 0.8235rem;}
+     .comment_box2 .textarea .anFlag{position: absolute;right:0.294rem;bottom:0.294rem;color:RGBA(69, 75, 84, 0.49);font-size: 0.70588rem;background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_no.png")no-repeat left center;background-size: 0.8235rem;padding-left: 1rem;line-height: 1rem;z-index:1000;height:0.94rem;}
+     .comment_box2 .textarea .anFlag_on{background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_on.png") no-repeat left center;background-size: 0.8235rem;}
      .comment_box2 .textarea  textarea{ border: none; width: 92% ;font-size: 0.88235rem; line-height: 1.2rem; height: 5rem;background: #f1f1f1;padding-top: 0.588rem;}
 
 
@@ -520,11 +520,11 @@
         right:0;
         top: 50%;
         margin-top: -0.6470588rem;
-        background: url("../../../images/asker/imgfalse.png") no-repeat;
+        background: url("http://oss.xqzs.cn/resources/psy/asker/imgfalse.png") no-repeat;
         background-size: 100% 100%;
     }
     .best_answer_true{
-        background: url("../../../images/asker/imgtrue.png") no-repeat;
+        background: url("http://oss.xqzs.cn/resources/psy/asker/imgtrue.png") no-repeat;
         background-size: 100% 100%;
     }
     .problem_dialog{

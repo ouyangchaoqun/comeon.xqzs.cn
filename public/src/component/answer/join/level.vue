@@ -19,7 +19,7 @@
                 <span>资质证书：</span>
                 <div class="photo_box" @click="upload()">
                     <template v-if="certificateFile1==''" >
-                        <img class="addIcon"  src="../../../images/level_addIBtnIcon.png" alt="">
+                        <img class="addIcon"  src="http://oss.xqzs.cn/resources/psy/level_addIBtnIcon.png" alt="">
                         <p>请上传有姓名编号的一页，确保内容清晰可进见</p>
                     </template>
                     <img class="imgFile" v-if="certificateFile1!=''" :src="certificateFile1Show" />

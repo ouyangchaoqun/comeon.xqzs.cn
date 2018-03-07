@@ -16,7 +16,7 @@
             <!--</div>-->
 
             <div class="nothing answer" v-if="list.length==0&&!showLoad" >
-                <img src="../../../images/asker/newNoContent.png" alt="">
+                <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
                 <div class="nothing_bottom">
                     <p>您还没有任何提问</p>
                     到问页面可以进行提问

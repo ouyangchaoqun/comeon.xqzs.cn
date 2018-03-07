@@ -95,7 +95,7 @@
                                     <div v-show="list.length==0&&!showLoad">
                                         <div class="index_nocontent">
                                             <div>
-                                                <img src="../../images/asker/newNoContent.png" alt="">
+                                                <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
                                                 <div class="nocontent_html">暂无该方面问题</div>
                                             </div>
 
@@ -557,9 +557,9 @@
     nav {
         width: 100%;
         background: #FDFDFD;
-        height: 2.471rem;
-        line-height: 2.471rem;
-        font-size: 0.8235rem;
+        height: 0.84rem;
+        line-height: 0.84rem;
+        font-size: 0.28rem;
         color: rgba(36, 37, 61, 1);
         text-align: center;
         border-bottom: 1px solid #E0E0E1;
@@ -567,7 +567,7 @@
     }
 
     .navSwiper .swiper-slide {
-        width: 4rem;
+        width: 1.36rem;
     }
 
     .nav_active {
@@ -578,13 +578,13 @@
 
     .nav_active:after {
         content: '';
-        width: 0.88235rem;
+        width: 0.30rem;
         height: 2px;
         background: #FE7301;
         position: absolute;
-        bottom: 0.29rem;
+        bottom: 0.10rem;
         left: 50%;
-        margin-left: -0.41176rem;
+        margin-left: -0.14rem;
     }
 
     .index_box {
@@ -596,69 +596,69 @@
         display: block;
     }
     .index_content_active ul{
-        padding:0 0.88235rem;
+        padding:0 0.30rem;
     }
 
     .index_box li {
         background: #fff;
-        padding: 0.88235rem 0 1.176471rem 0;
+        padding: 0.30rem 0 0.40rem 0;
         border-bottom: 1px solid RGBA(69, 75, 84, 0.15);
     }
 
     .index_li_header {
-        font-size: 0.8235rem;
+        font-size: 0.28rem;
         color: rgba(36, 37, 61, 0.5);
         display: -webkit-box;
         display: -webkit-flex;
         display: flex;
-        line-height: 1.70588235rem;
-        margin-bottom: 0.5294rem;
+        line-height: 0.58rem;
+        margin-bottom: 0.18rem;
         position: relative;
     }
 
     .index_li_header .header_className {
         position: absolute;
         right: 0;
-        font-size: 0.8235rem;
+        font-size: 0.28rem;
     }
 
     .index_li_header img {
-        height: 1.70588235rem;
-        width: 1.70588235rem;
+        height: 0.58rem;
+        width: 0.58rem;
         display: block;
         border-radius: 50%;
-        margin-right: 0.470588rem;
+        margin-right: 0.16rem;
     }
 
     .index_li_content {
-        font-size: 0.88235rem;
+        font-size: 0.30rem;
         color: rgba(36, 37, 61, 1);
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
-        margin-bottom: 0.88235rem;
+        margin-bottom: 0.30rem;
     }
 
     .index_li_bottom {
         position: relative;
-        padding-left: 2.8rem;
+        padding-left: 0.95rem;
     }
 
     .index_li_bottom img {
         position: absolute;
         left: 0;
-        width: 2.4rem;
-        height: 2.4rem;
+        width: 0.82rem;
+        height: 0.82rem;
         border-radius: 50%
     }
 
     .index_li_voice {
         position: relative;
-        font-size: 0.88235rem;
+        font-size: 0.30rem;
         color: #fff;
-        width: 10.235rem;
+        width: 3.48rem;
     }
 
     .index_li_voice img {
@@ -668,37 +668,37 @@
     }
 
     .index_li_voice div {
-        width: 5.88235rem;
+        width: 2.00rem;
         position: absolute;
         top: 50%;
         left: 50%;
-        margin-left: -2.941175rem;
+        margin-left: -1.00rem;
         text-align: center;
 
     }
 
     .position_change1 {
-        margin-top: -0.176471rem;
+        margin-top: -0.06rem;
     }
 
     .position_change2 {
-        margin-top: -0.88235rem;
+        margin-top: -0.30rem;
     }
 
     .index_li_count {
         position: absolute;
         right: 0;
-        font-size: 0.76471rem;
+        font-size: 0.26rem;
         color: rgba(36, 37, 61, 0.5);
         top: 0;
-        line-height: 2.4rem;
+        line-height: 0.82rem;
     }
 
     .index_nocontent {
         background: #fff;
         margin-top: 1px;
         text-align: center;
-        font-size: 0.76471rem;
+        font-size: 0.26rem;
         color: rgba(36, 37, 61, 0.5);
         position: relative;
     }
@@ -711,53 +711,53 @@
 
     .index_nocontent > div {
         position: absolute;
-        top: 2rem;
+        top: 0.68rem;
         width: 100%;
     }
 
     .nocontent_html {
-        margin-top: -3.8rem
+        margin-top: -1.29rem
     }
 
     .asker_listen_box .audio {
         margin-bottom: 0
     }
     .new_question{
-        height: 3.235rem;
+        height: 1.10rem;
         width: 100%;
         border-bottom: 1px solid #eee;
         overflow: hidden;
     }
     .top_left{
         float: left;
-        line-height: 3.235rem ;
-        font-size: 1.17rem;
-        margin-left: 0.78rem ;
+        line-height: 1.10rem ;
+        font-size: 0.40rem;
+        margin-left: 0.27rem ;
         font-weight: bold;
     }
     .top_right{
         float: right;
-        margin-right: 0.82rem;
-        font-size: 0.70588rem;
-        margin-top: 1.117rem;
+        margin-right: 0.28rem;
+        font-size: 0.24rem;
+        margin-top: 0.38rem;
         color:RGBA(69, 75, 84,0.5);
     }
     .line1{
         position: absolute;
-        width: 16.94rem;
+        width: 5.76rem;
         height: 1px;
         background: #eee;
-        bottom: 1.235rem;
-        right: -0.90rem;
+        bottom: 0.42rem;
+        right: -0.31rem;
     }
     .index_box .new_question .top.text{
         float: left;
     }
     .index_box .new_question .refresh{
-        width: 1rem;
-        height:1rem;
-        margin-left: 0.3rem;
-        background:url("../../images/asker/asker_refresh.png") no-repeat;
+        width: 0.34rem;
+        height:0.34rem;
+        margin-left: 0.10rem;
+        background:url("http://oss.xqzs.cn/resources/psy/asker/asker_refresh.png") no-repeat;
         background-size: 100%;
         float: left;
     }

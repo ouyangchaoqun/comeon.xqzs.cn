@@ -26,7 +26,7 @@
 
         <div class="nothing comment" v-if="count==0">
             <div>
-                <img src="../../../images/asker/newNoContent.png" alt="">
+                <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
                 <div class="nothing_bottom">
                     <p>还没有粉丝</p>
                 </div>

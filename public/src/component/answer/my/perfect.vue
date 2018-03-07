@@ -6,7 +6,7 @@
         <div class="list0 perfect_header active_tab" @click="changeHeadpic()">
             头像
             <img class="headerImg" :src="resizeImg(expert.faceUrl)" alt="">
-            <img class="rightImg" src="../../../images/arrow.png" alt="">
+            <img class="rightImg" src="http://oss.xqzs.cn/resources/psy/arrow.png" alt="">
         </div>
 
         <div class="list0 ">
@@ -28,7 +28,7 @@
 
         <router-link to="/answer/join/mobile">
             <div class="list0  active_tab ">
-                <img src="../../../images/arrow.png" alt="">
+                <img src="http://oss.xqzs.cn/resources/psy/arrow.png" alt="">
                 <span>绑定手机号</span><span class="mobile">{{user.mobile}}</span>
                 <div class="line"></div>
             </div>

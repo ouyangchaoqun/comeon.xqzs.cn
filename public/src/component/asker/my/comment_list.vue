@@ -3,7 +3,7 @@
         <div v-title>我的评价</div>
         <div class="nothing comment" v-if="list.length==0&&!showLoad">
             <div>
-                <img src="../../../images/asker/newNoContent.png" alt="">
+                <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
                 <div class="nothing_bottom">
                     <p>您还没有过任何评价</p>
                     在我问的问题中可以进行评价
@@ -220,8 +220,8 @@
     .asker_my_coment_list .comment .info .tags{}
     .asker_my_coment_list .comment .info .tags span{ display: inline-block;
         border:1px solid rgba(36,37,61,0.5); color:rgba(36,37,61,0.5); text-align: center; line-height: 1.323529411764706rem; border-radius: 0.6617647058823529rem; padding: 0 0.5rem; font-size:0.7058823529411765rem; margin-right: 0.3rem;}
-    .asker_my_coment_list .comment .info .star span{ display: inline-block; background: url(../../../images/starNew_no.png) no-repeat; background-size: 0.85294rem;  height: 0.85294rem; width: 0.85294rem; margin-right: 0.4rem; }
-    .asker_my_coment_list .comment .info .star span.on{background: url(../../../images/starNew.png) no-repeat;background-size: 0.85294rem; }
+    .asker_my_coment_list .comment .info .star span{ display: inline-block; background: url(http://oss.xqzs.cn/resources/psy/starNew_no.png) no-repeat; background-size: 0.85294rem;  height: 0.85294rem; width: 0.85294rem; margin-right: 0.4rem; }
+    .asker_my_coment_list .comment .info .star span.on{background: url(http://oss.xqzs.cn/resources/psy/starNew.png) no-repeat;background-size: 0.85294rem; }
 
     .asker_my_coment_list .reply{ background: #F1F1F5;  font-size:0.7058823529411765rem; color:rgba(36,37,61,1); padding:0.5rem ; border-radius: 0.3rem; position: relative; margin-top: 0.88rem }
    .asker_my_coment_list .reply span{color:rgba(36,37,61,0.5);}

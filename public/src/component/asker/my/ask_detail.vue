@@ -431,8 +431,8 @@
     .ask_detailBox .problem_answer_bottom{padding:0;margin:0 auto;width:80%;margin-bottom: 0.8235rem;}
     .problem_assess_btn .weui-btn{border-radius: 50px;}
     .problem_assess .star>div{display: inline-block;line-height: 1;color:rgba(36,37,61,0.5);font-size: 0.6471rem;margin-bottom: 1.852rem}
-    .problem_assess .star span{ position:relative;display: inline-block;  height:1.6470588235rem; width: 1.735294rem; background: url(../../../images/starNew_no.png) no-repeat; background-size: 1.735294rem; margin: 1.176471rem  0.70588235rem 0.67647rem 0.70588235rem;  }
-    .problem_assess .star span.on{ background: url(../../../images/starNew.png) no-repeat; background-size: 1.735294rem;}
+    .problem_assess .star span{ position:relative;display: inline-block;  height:1.6470588235rem; width: 1.735294rem; background: url(http://oss.xqzs.cn/resources/psy/starNew_no.png) no-repeat; background-size: 1.735294rem; margin: 1.176471rem  0.70588235rem 0.67647rem 0.70588235rem;  }
+    .problem_assess .star span.on{ background: url(http://oss.xqzs.cn/resources/psy/starNew.png) no-repeat; background-size: 1.735294rem;}
     .problem_assess .star>div .color_on{color:rgba(253,198,10,1)}
     .ask_detailBox .problem_answer_info{
         padding:0 0.88235rem;
@@ -500,14 +500,14 @@
         color:RGBA(69, 75, 84, 0.49);
         font-size: 0.70588rem;
         line-height: 1rem;
-        background: url("../../../images/asker/user_income_no.png") no-repeat left center;
+        background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_no.png") no-repeat left center;
         background-size: 0.8235rem;
         padding-left: 1rem;
         height:0.94rem;
         z-index: 1000;
     }
     .problem_assess_input .comment_anonymous_on{
-        background: url("../../../images/asker/user_income_on.png") no-repeat left center;
+        background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_on.png") no-repeat left center;
         background-size: 0.8235rem;
     }
     .problem_assess_item textarea{

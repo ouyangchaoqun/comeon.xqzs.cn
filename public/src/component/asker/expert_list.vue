@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div class="noContent_icon" v-if="noContent">
-                    <img src="../../images/asker/newNoContent.png" alt="">
+                    <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
                     <div>暂无该方面问题</div>
                 </div>
             </div>
@@ -306,7 +306,7 @@
     .class_right span:nth-of-type(1){margin-right: 0.294rem;}
     .header_addRightStyle{position: absolute;right:0;top:-1px;display: flex;color:rgba(36,37,61,0.5);font-size: 0.70588rem;font-weight:normal}
    .answer_index .answer_list .headerImg{width:1.471rem;height:1.471rem;border-radius: 50%;border:1px solid rgba(253,87,57,1);position: relative;margin-right: 0.35rem;}
-    .answer_index .answer_list .headerImg div{background: url("../../images/playing3.png") no-repeat;content: '';width:0.88235rem;height:0.76471rem;position: absolute;left:5px;top:6px;background-size:100%;}
+    .answer_index .answer_list .headerImg div{background: url("http://oss.xqzs.cn/resources/psy/playing3.png") no-repeat;content: '';width:0.88235rem;height:0.76471rem;position: absolute;left:5px;top:6px;background-size:100%;}
     .answer_index .answer_list .headerImg .addPlaying{
         animation: addPlaying 1.5s infinite;
         -webkit-animation: addPlaying 1.5s infinite;
@@ -334,7 +334,7 @@
     /*.answer_list .class_s .price a{*/
     /*right: 0;*/
     /*padding-left: 1rem;*/
-    /*background: url(../../images/asker/asker_left_dotCoin.png)no-repeat;*/
+    /*background: url(http://oss.xqzs.cn/resources/psy/asker/asker_left_dotCoin.png)no-repeat;*/
     /*background-size: 0.85rem 0.8rem;}*/
 
     .answer_index  .answer_list .info .other{margin-bottom: 0.88235rem}
@@ -347,15 +347,15 @@
 
     @keyframes  addPlaying {
         0%{
-            background: url("../../images/playing1.png") no-repeat;
+            background: url("http://oss.xqzs.cn/resources/psy/playing1.png") no-repeat;
             background-size:  100%;
         }
         50%{
-            background: url("../../images/playing2.png") no-repeat;
+            background: url("http://oss.xqzs.cn/resources/psy/playing2.png") no-repeat;
             background-size:  100%;
         }
         100%{
-            background: url("../../images/playing3.png") no-repeat;
+            background: url("http://oss.xqzs.cn/resources/psy/playing3.png") no-repeat;
             background-size:  100%;
         }
     }

@@ -38,6 +38,7 @@
     var vueRoutesBaseUrl=""
 
 </script>
+<script src="/src/js/rem.js?v=<?=STATIC_XQZS_VERSION?>"></script>
 <script src="/src/js/cookie.js?v=<?=STATIC_XQZS_VERSION?>"></script>
 <script src="/src/js/xqzs.js?v=<?=STATIC_XQZS_VERSION?>"></script>
 <script src="/src/js/xqzs.face.js?v=<?=STATIC_XQZS_VERSION?>"></script>

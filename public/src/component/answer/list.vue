@@ -44,7 +44,7 @@
             <!--<div class="img"></div>-->
             <!--<div class="txt">暂无该方面专家</div>-->
                 <div class="no_body_box">
-                    <img src="../../images/asker/newNoContent.png" alt="">
+                    <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
                     <div class="nocontent_html">暂无该方面专家</div>
                     <div class="nocontent_bottom">我们会尽快安排该方面专家入驻</div>
                 </div>
@@ -234,6 +234,6 @@
     .no_body_box .nocontent_html{color:rgba(149,151,157,1);font-size: 0.88235rem;margin-top:-3.8rem}
     .no_body_box .nocontent_bottom{color:rgba(195,197,205,1);font-size: 0.6471rem}
     .answer_list_box .no_body{ background: #fff;  position: absolute; top:2.588235294117647rem; left:0; width: 100%}
-    .answer_list_box .no_body .img { background: url(../../images/answer/no_body.png); width: 4.852941176470588rem; ;height: 5.823529411764706rem; background-size:4.852941176470588rem; margin: 0 auto; margin-top: 5rem; }
+    .answer_list_box .no_body .img { background: url(http://oss.xqzs.cn/resources/psy/answer/no_body.png); width: 4.852941176470588rem; ;height: 5.823529411764706rem; background-size:4.852941176470588rem; margin: 0 auto; margin-top: 5rem; }
     .answer_list_box .no_body .txt{ color:#B3B3B3;font-size: 0.7647058823529412rem; text-align: center; width: 100%; margin-top: 0.8rem;}
 </style>

@@ -3,7 +3,7 @@
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="nothing comment" v-if="list.length==0">
             <div>
-                <img src="../../images/asker/newNoContent.png" alt="">
+                <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
                 <div class="nothing_bottom">
                     <p>暂无待答问题</p>
                 </div>
@@ -18,7 +18,7 @@
                 <div class="item" v-for="item in list" @click="answer(item.id)">
                     <div class="img">
                         <img v-if="item.isAnonymous==0" :src="item.faceUrl">
-                        <img v-if="item.isAnonymous==1" src="../../images/isAnonymousImg.png" alt="">
+                        <img v-if="item.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
                     </div>
                     <div class="info">
                         <div class="names">

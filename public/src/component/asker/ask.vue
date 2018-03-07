@@ -535,7 +535,7 @@
     .asker_ask_box .tip {
         display: inline-block;
         float: right;
-        background: url(../../images/asker/tip.png) no-repeat;
+        background: url(http://oss.xqzs.cn/resources/psy/asker/tip.png) no-repeat;
         background-size: 0.8235294117647059rem;
         height: 0.8235294117647059rem;
         line-height: 0.8235294117647059rem;

@@ -15,7 +15,7 @@
         </div>
         <div class="rechar_btn" @click="doPay()">立即支付（{{pay}} 元）</div>
         <div class="question" >
-            <img src="../../../images/asker/question_icon.png" alt="">
+            <img src="http://oss.xqzs.cn/resources/psy/asker/question_icon.png" alt="">
             <span @click="showTips">充值须知</span>
         </div>
         <div class="mask" v-if="isTips"></div>
@@ -323,7 +323,7 @@
     }
 
     .recharge_box .tips .close {
-        background:url("../../../images/asker/user_close.png") no-repeat;
+        background:url("http://oss.xqzs.cn/resources/psy/asker/user_close.png") no-repeat;
         position: absolute;
         right: 0.88rem;
         top: 0.88rem;
@@ -362,12 +362,12 @@
         margin-right: 0.82rem;
         width: 1.294rem;
         height: 1.294rem;
-        background: url("../../../images/asker/user_income_on.png");
+        background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_on.png");
         background-size: 100%;
     }
 
     .recharge_box .cash_right.no {
-        background: url("../../../images/asker/user_income_no.png");
+        background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_no.png");
         background-size: 100%;
     }
 </style>

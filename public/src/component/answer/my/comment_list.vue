@@ -4,7 +4,7 @@
         <div v-title>我的评价</div>
         <div class="nothing comment" v-show="list.length==0&&!showLoad" >
             <div>
-                <img src="../../../images/asker/newNoContent.png" alt="">
+                <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
                 <div class="nothing_bottom">
                     <p>您还没收到任何评价</p>
                 </div>
@@ -23,7 +23,7 @@
                         <div class="comment">
                             <div class="img">
                                 <img v-if="item.isAnonymous==0" :src="item.userFaceUrl">
-                                <img v-if="item.isAnonymous==1" src="../../../images/isAnonymousImg.png" alt="">
+                                <img v-if="item.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
                             </div>
                             <div class="info">
                                 <div class="name">
@@ -205,8 +205,8 @@
     .answer_my_coment_list .comment .info .tags{}
     .answer_my_coment_list .comment .info .tags span{ display: inline-block;
         border:1px solid #D1D1D1; color:#D1D1D1; text-align: center; line-height: 1.323529411764706rem; border-radius: 0.6617647058823529rem; padding: 0 0.5rem; font-size:0.7058823529411765rem; margin-right: 0.3rem;}
-    .answer_my_coment_list .comment .info .star span{ display: inline-block; background: url(../../../images/star_no.png) no-repeat; background-size: 0.7647058823529412rem;  height: 0.7647058823529412rem; width: 0.7647058823529412rem; margin-right: 0.4rem; }
-    .answer_my_coment_list .comment .info .star span.on{background: url(../../../images/star.png) no-repeat;background-size: 0.7647058823529412rem; }
+    .answer_my_coment_list .comment .info .star span{ display: inline-block; background: url(http://oss.xqzs.cn/resources/psy/star_no.png) no-repeat; background-size: 0.7647058823529412rem;  height: 0.7647058823529412rem; width: 0.7647058823529412rem; margin-right: 0.4rem; }
+    .answer_my_coment_list .comment .info .star span.on{background: url(http://oss.xqzs.cn/resources/psy/star.png) no-repeat;background-size: 0.7647058823529412rem; }
 
     .answer_my_coment_list .reply{ background: #F1F1F5;  font-size:0.7058823529411765rem; color:rgba(36,37,61,1); padding:0.5rem ; border-radius: 0.3rem; position: relative; margin-top: 0.88rem }
     .answer_my_coment_list .reply span{color:rgba(36,37,61,0.5);}

@@ -4,7 +4,7 @@
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="nothing comment" v-if="list.length==0&&!showLoad">
             <div>
-                <img src="../../images/asker/newNoContent.png" alt="">
+                <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
                 <div class="nothing_bottom">
                     <p>暂无抢答问题</p>
                 </div>
@@ -20,7 +20,7 @@
                     <div class="info">
                         <div class="img">
                             <img v-if="item.isAnonymous==0" :src="item.faceUrl">
-                            <img v-if="item.isAnonymous==1" src="../../images/isAnonymousImg.png" alt="">
+                            <img v-if="item.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
                         </div>
                         <div class="price">赏金 <span>￥{{item.price}}</span></div>
                         <div class="type">在哪方面：{{item.questionClassName}}</div>

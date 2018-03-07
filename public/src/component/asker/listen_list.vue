@@ -74,7 +74,7 @@
                     <div v-show="list.length==0&&!showLoad">
                         <div class="index_nocontent">
                             <div>
-                                <img src="../../images/asker/newNoContent.png" alt="">
+                                <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
                                 <div class="nocontent_html">暂无该方面问题</div>
                             </div>
 

@@ -26,7 +26,7 @@
                 <div class="headerImg" @click="changeHeadpic()">
                     <img v-if="faceUrl!=''" :src="faceUrl" style="height: 100%; width: 100%">
                 </div>
-                <img class="smallImg" src="../../../images/joinAddImg.png" alt="">
+                <img class="smallImg" src="http://oss.xqzs.cn/resources/psy/joinAddImg.png" alt="">
             </div>
             <p><span>*</span>(设置头像，请选择一个清晰，辨识度高的个人照片作为头像，以便在用户心中建立您的个人品牌。）</p>
         </header>
@@ -35,7 +35,7 @@
             擅长领域 <i>(最多可选三个)</i>
         </div>
         <div class="title_bottom" @click="selectType()">
-            <img v-if="classType.length<=0" class="addClass" src="../../../images/addClassTypeBg.png" alt="" @click="selectType()">
+            <img v-if="classType.length<=0" class="addClass" src="http://oss.xqzs.cn/resources/psy/addClassTypeBg.png" alt="" @click="selectType()">
             <span class="class_style" v-if="classType" v-for="item in classType">{{item.title}}</span>
         </div>
         <div class="title">
@@ -85,7 +85,7 @@
             <span>*</span>
             解答设置
             <div class="need_know_box" @click="showMask()">
-                <img src="../../../images/asker/need_know.png" alt="">
+                <img src="http://oss.xqzs.cn/resources/psy/asker/need_know.png" alt="">
                 解答须知
             </div>
         </div>
@@ -566,7 +566,7 @@
     .joinmore_box header span{color:rgba(255,0,0,1)}
     .joinmore_box header p{position: absolute;bottom:1.176471rem;}
     .joinmore_box header .headerImg_box{width:5.1471rem;height:5.1471rem;background: #fff;margin:0 auto;position: relative;top:1.471rem;}
-    .joinmore_box header .headerImg{width:5.1471rem;height:5.1471rem;background: url("../../../images/joinHeaderImg.png") no-repeat;background-size: 100% 100%;}
+    .joinmore_box header .headerImg{width:5.1471rem;height:5.1471rem;background: url("http://oss.xqzs.cn/resources/psy/joinHeaderImg.png") no-repeat;background-size: 100% 100%;}
     .joinmore_box header .headerImg_box .smallImg{position: absolute;right:-1rem;bottom:-0.5rem;width:2rem;height:2rem;}
     .joinmore_box .title{border-bottom:1px solid rgba(224,224,225,1);color:rgba(36,37,61,1);font-size: 0.8235rem;line-height: 2.529rem;padding-left:1.8235rem;padding-right:0.88235rem;position: relative}
     .joinmore_box .title span{color:rgba(255,0,0,1);font-size: 0.76471rem;position: absolute;left:0.88235rem;height:2rem;top:50%;margin-top:-1rem;line-height: 2.2rem;}

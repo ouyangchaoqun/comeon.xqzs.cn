@@ -15,7 +15,7 @@
             </div>
             <div class="nothing comment" v-if="list.length==0">
                 <div>
-                    <img src="../../../images/asker/newNoContent.png" alt="">
+                    <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
                     <div class="nothing_bottom">
                         <p v-if="type==1">还没有抢答</p>
                         <p v-if="type==2">还未人找你解答</p>
@@ -30,7 +30,7 @@
                     <li v-for="(item,index) in list" v-if="type==1" :class="{li_border:list.length>1}">
                         <div class="problem_item_top">
                             <img v-if="item.isAnonymous==0" :src="item.askUserFaceUrl" alt="">
-                            <img v-if="item.isAnonymous==1" src="../../../images/isAnonymousImg.png" alt="">
+                            <img v-if="item.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
                             <span v-if="item.isAnonymous==0">{{item.askUserNickName}}</span>
                             <span v-if="item.isAnonymous==1">匿名用户</span>
                             <div class="problem_item_right" v-if="item.wageType!=0">
@@ -74,7 +74,7 @@
                     <li v-if="type==2" v-for="(item,index) in list" :class="{li_border:list.length>1}">
                         <div class="problem_item_top">
                             <img v-if="item.isAnonymous==0" :src="item.askUserFaceUrl" alt="">
-                            <img v-if="item.isAnonymous==1" src="../../../images/isAnonymousImg.png" alt="">
+                            <img v-if="item.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
                             <span v-if="item.isAnonymous==0">{{item.askUserNickName}}</span>
                             <span v-if="item.isAnonymous==1">匿名用户</span>
                             <div class="problem_item_right">酬金<i>￥{{formatPrice(item.wage)}} </i></div>

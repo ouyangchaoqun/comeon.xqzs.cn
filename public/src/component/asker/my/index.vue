@@ -141,7 +141,7 @@
         line-height: 3.176471rem;
         color: #fff;
         font-size: 1.058823529411765rem;
-        background: url("../../../images/asker/topBackground.png") no-repeat;
+        background: url("http://oss.xqzs.cn/resources/psy/asker/topBackground.png") no-repeat;
         padding: 0.8823529411764706rem;
         background-size: 100% 100%;
     }
@@ -172,7 +172,7 @@
 
 
     .asker_my_index_box .main a:after {
-        background: url(../../../images/arrow.png);
+        background: url(http://oss.xqzs.cn/resources/psy/arrow.png);
         width: 0.9411764705882353rem;
         height: 0.9411764705882353rem;
         background-size: 0.9411764705882353rem;
@@ -206,7 +206,7 @@
 
     .asker_my_index_box .main a i {
         display: block;
-        background: url(../../../images/asker/asker_my_left_icon1.png) no-repeat;
+        background: url(http://oss.xqzs.cn/resources/psy/asker/asker_my_left_icon1.png) no-repeat;
         background-size: 1.705882352941176rem;
         width: 1.705882352941176rem;
         height: 1.705882352941176rem;
@@ -220,12 +220,12 @@
         background-position: 0 0
     }
     .asker_my_index_box .main a.income.yhcard i{
-        background: url(../../../images/asker/asker_left_card.png) no-repeat;
+        background: url(http://oss.xqzs.cn/resources/psy/asker/asker_left_card.png) no-repeat;
         background-size:65% 50% ;
         background-position: 40% 40%;
     }
     .asker_my_index_box .main a.income.dotCoin i{
-        background: url(../../../images/asker/asker_left_dotCoin.png) no-repeat;
+        background: url(http://oss.xqzs.cn/resources/psy/asker/asker_left_dotCoin.png) no-repeat;
         background-size:65% 65% ;
         background-position: 40% 40%;
     }

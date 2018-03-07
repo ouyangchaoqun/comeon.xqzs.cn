@@ -129,26 +129,26 @@
 <style>
     .answer_my_index_box{background: #fff}
     .answer_my_index_box .top{ height:  3.529411764705882rem; line-height:  1; font-size: 1.058823529411765rem; background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1)); padding:0.8823529411764706rem;border-bottom: 0.41176471rem solid #f4f4f8;position: relative}
-    .answer_my_index_box .top:after{background: url(../../../images/arrow.png) ;width: 0.9411764705882353rem; height: 0.9411764705882353rem; background-size: 0.9411764705882353rem;position: absolute; right:0.88235rem;top:50%;margin-top:-0.4705882355rem; content: " "}
+    .answer_my_index_box .top:after{background: url(http://oss.xqzs.cn/resources/psy/arrow.png) ;width: 0.9411764705882353rem; height: 0.9411764705882353rem; background-size: 0.9411764705882353rem;position: absolute; right:0.88235rem;top:50%;margin-top:-0.4705882355rem; content: " "}
     .answer_my_index_box .top:active{background: linear-gradient(to right, rgb(238, 148, 25), rgb(226, 92, 6));}
     .answer_my_index_box .top img{ display: block; float:left; width:3.529411764705882rem; height: 3.529411764705882rem;margin-right: 0.98rem;border-radius: 0.2941rem;}
     .answer_my_index_box .top .name{color:rgba(255,255,255,1);padding-top: 0.8235rem;margin-bottom:0.52941rem}
     .answer_my_index_box .top .perfect{color:rgba(255,255,255,1);font-size: 0.76471rem;}
     .main_lists a{ position: relative; height:3.470588235294118rem;    line-height:3.470588235294118rem;
         color:rgba(36,37,61,1); font-size: 0.8823529411764706rem; padding:  0  0.8823rem;display: block; overflow: hidden; padding-left: 2.66rem; background: #fff;  }
-    .main_lists a:after{ background: url(../../../images/arrow.png) ; width: 0.9411764705882353rem; height: 0.9411764705882353rem; background-size: 0.9411764705882353rem; position: absolute;
+    .main_lists a:after{ background: url(http://oss.xqzs.cn/resources/psy/arrow.png) ; width: 0.9411764705882353rem; height: 0.9411764705882353rem; background-size: 0.9411764705882353rem; position: absolute;
         right:0.88235rem;top:1.25rem ; content: " "}
     .main_lists a:before{ content: " "; height: 0.0588235294117647rem; background: #eee; display: block; position: absolute; bottom:0;left: 0.9411764705882353rem; width: 100%}
     .main_lists .income .price{position: absolute; right:2.2rem;top:0rem;color:#FE7301}
     .main_lists a i{ display: block;width:1.471rem; height:1.471rem;  position: absolute; left: 0.75rem; top:50% ; margin-top: -0.852941176470588rem;}
-    .main_lists a.income i{background: url("../../../images/answer/sy_icon.png") no-repeat;background-size: 100% 100%;}
+    .main_lists a.income i{background: url("http://oss.xqzs.cn/resources/psy/answer/sy_icon.png") no-repeat;background-size: 100% 100%;}
     .main_lists a.level i{ background-position: 0 -1.705882352941176rem; }
     .main_lists a.setanswer i{}
-    .main_lists a.answer_list i{ background: url("../../../images/answer/hd_icon.png") no-repeat;background-size: 100% 100%;}
-    .main_lists a.fans i{ background: url("../../../images/answer/fs_icon.png") no-repeat;background-size: 100% 100%;}
-    .main_lists a.comment_list i{ background: url("../../../images/answer/pj_icon.png") no-repeat;background-size: 100% 100%;}
+    .main_lists a.answer_list i{ background: url("http://oss.xqzs.cn/resources/psy/answer/hd_icon.png") no-repeat;background-size: 100% 100%;}
+    .main_lists a.fans i{ background: url("http://oss.xqzs.cn/resources/psy/answer/fs_icon.png") no-repeat;background-size: 100% 100%;}
+    .main_lists a.comment_list i{ background: url("http://oss.xqzs.cn/resources/psy/answer/pj_icon.png") no-repeat;background-size: 100% 100%;}
     .main_lists a.message i{ background-position: 0 -10.23529411764706rem; }
-    .main_lists a.qualification i{background: url("../../../images/answer/update_level_icon.png") no-repeat center; background-size: 1.176471rem}
+    .main_lists a.qualification i{background: url("http://oss.xqzs.cn/resources/psy/answer/update_level_icon.png") no-repeat center; background-size: 1.176471rem}
     .main_lists a:active{background: #eee}
 
 

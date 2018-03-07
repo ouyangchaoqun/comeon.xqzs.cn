@@ -102,7 +102,7 @@
                     </div>
                 </div>
                 <div class="noContent_icon" v-if="noContent">
-                    <img src="../../images/asker/newNoContent.png" alt="">
+                    <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
                     <div>暂无该方面问题</div>
                 </div>
             </div>
@@ -388,7 +388,7 @@
         margin-right: 0.35rem;
     }
     .answer_index .answer_list .headerImg div {
-        background: url("../../images/playing3.png") no-repeat;
+        background: url("http://oss.xqzs.cn/resources/psy/playing3.png") no-repeat;
         content: '';
         width: 0.88235rem;
         height: 0.76471rem;
@@ -419,7 +419,7 @@
     /*.answer_list .class_s .price a{*/
     /*right: 0;*/
     /*padding-left: 1rem;*/
-    /*background: url(../../images/asker/asker_left_dotCoin.png)no-repeat;*/
+    /*background: url(http://oss.xqzs.cn/resources/psy/asker/asker_left_dotCoin.png)no-repeat;*/
     /*background-size: 0.85rem 0.8rem;}*/
     .itemDetail_class_s {
         font-size: 0.70588rem;
@@ -439,15 +439,15 @@
     }
     @keyframes addPlaying {
         0% {
-            background: url("../../images/playing1.png") no-repeat;
+            background: url("http://oss.xqzs.cn/resources/psy/playing1.png") no-repeat;
             background-size: 100%;
         }
         50% {
-            background: url("../../images/playing2.png") no-repeat;
+            background: url("http://oss.xqzs.cn/resources/psy/playing2.png") no-repeat;
             background-size: 100%;
         }
         100% {
-            background: url("../../images/playing3.png") no-repeat;
+            background: url("http://oss.xqzs.cn/resources/psy/playing3.png") no-repeat;
             background-size: 100%;
         }
     }
@@ -503,7 +503,7 @@
         font-size: 0.70588rem;
        line-height: 1.8rem;
         color:RGBA(254, 122, 3, 1);
-        background: url("../../images/arrow.png") no-repeat center right;
+        background: url("http://oss.xqzs.cn/resources/psy/arrow.png") no-repeat center right;
         background-size: 0.70588rem 0.588235rem;
         padding-right: 0.88235rem;
     }

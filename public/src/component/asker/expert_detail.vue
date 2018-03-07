@@ -82,7 +82,7 @@
                         <div class="item" v-for="(item,index) in commentList" :class="{addBorder_bottom:commentList.length>1}">
                             <div class="img">
                                 <img :src="item.faceUrl" v-if="item.isAnonymous==0">
-                                <img v-if="item.isAnonymous==1" src="../../images/isAnonymousImg.png" alt="">
+                                <img v-if="item.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
                             </div>
                             <div class="info">
                                 <div class="name">
@@ -124,7 +124,7 @@
                         <div class="question">
                             <div class="img">
                                 <img v-if="item.isAnonymous==0" :src="item.faceUrl">
-                                <img v-if="item.isAnonymous==1" src="../../images/isAnonymousImg.png">
+                                <img v-if="item.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png">
                             </div>
                             <div class="info">
                                 <div class="word">
@@ -182,7 +182,7 @@
                 <div class="listen"  @click="follow()">
 
                 <span v-if="detail.followed===1">
-                    <img v-if="detail.followed===1" src="../../images/followed_new.png" alt="">已收听
+                    <img v-if="detail.followed===1" src="http://oss.xqzs.cn/resources/psy/followed_new.png" alt="">已收听
                 </span>
                     <span v-if="detail.followed===0" class="followedColor">+收听</span>
                 </div>
@@ -756,7 +756,7 @@
         margin-bottom: 0.294rem;
     }
     .answer_detail_box .answer_banner{
-        background: url("../../images/answer/banner.jpg") top center  no-repeat;
+        background: url("http://oss.xqzs.cn/resources/psy/answer/banner.jpg") top center  no-repeat;
         background-size: cover;
         padding-bottom:0.588235rem;
         padding-top: 0.88rem;
@@ -911,8 +911,8 @@
     .answer_detail_box  .list .item{ background: #fff; padding: 0.8823529411764706rem 0;margin:0 0.88235rem;margin-bottom: 0.41176471rem;position: relative ; }
 
     .answer_detail_box  .list .addBorder_bottom{border-bottom: 1px solid #E0E0E1;}
-    .answer_detail_box .list .star span{ background: url(../../images/star_no.png); width: 0.7647058823529412rem; height: 0.7647058823529412rem;  background-size: 0.7647058823529412rem; display: inline-block; margin-right: 0.3rem; }
-    .answer_detail_box  .list .star span.on{background: url(../../images/star.png);background-size: 0.7647058823529412rem; }
+    .answer_detail_box .list .star span{ background: url(http://oss.xqzs.cn/resources/psy/star_no.png); width: 0.7647058823529412rem; height: 0.7647058823529412rem;  background-size: 0.7647058823529412rem; display: inline-block; margin-right: 0.3rem; }
+    .answer_detail_box  .list .star span.on{background: url(http://oss.xqzs.cn/resources/psy/star.png);background-size: 0.7647058823529412rem; }
 
     .answer_detail_box  .list .item .img{ width: 2rem;height: 2rem; float:left; }
     .answer_detail_box  .list .item .img img{ width: 100%; height: 100%; border-radius: 50%;}
@@ -971,7 +971,7 @@
     .answer_detail_box .listen span{color: rgba(36,37,61,0.5);font-size: 0.8235rem;display: block;height:100%;line-height: 2.588rem;}
     .answer_detail_box .icon1{
         margin-top: 0.588rem;
-        background: url("../../images/asker/listenin1.png") no-repeat;
+        background: url("http://oss.xqzs.cn/resources/psy/asker/listenin1.png") no-repeat;
         background-size: 0.936rem;
         padding-left: 0.8rem;
         background-position: 0.9rem 0.294rem;
@@ -983,7 +983,7 @@
     }
     .answer_detail_box .pay_ask{width: 70%;float: right; background: linear-gradient(to right, rgba(255,158,25,1), rgba(254,115,1,1));color: white;line-height: 2.588rem;height: 2.588rem;}
     /*.answer_detail_box .pay_ask .ask_dianCoinbg{ */
-        /*background: url("../../images/asker/user_dianCoin_white.png")no-repeat; width: 1rem;*/
+        /*background: url("http://oss.xqzs.cn/resources/psy/asker/user_dianCoin_white.png")no-repeat; width: 1rem;*/
         /*height: 1rem;*/
         /*background-size: 100% 100%;*/
         /*display: inline-block;*/

@@ -23,7 +23,7 @@
 
             <div class="setItem_bottom" @click="showMask()">
                 <span>
-                    <img src="../../../images/asker/need_know.png" alt="">
+                    <img src="http://oss.xqzs.cn/resources/psy/asker/need_know.png" alt="">
                     解答须知
                 </span>
             </div>

@@ -182,7 +182,7 @@
         float: right;
         font-size: 0.70588rem;
         color:RGBA(69, 75, 84,0.55);
-        background: url("../../../images/asker/tip.png") no-repeat left center;
+        background: url("http://oss.xqzs.cn/resources/psy/asker/tip.png") no-repeat left center;
         background-size: 0.8235294117647059rem;
         padding-left: 0.99rem;
         line-height: 0.88235rem;
