@@ -27,7 +27,6 @@ var xqzs = {
                     }else{
 
                     }
-                    console.log(2112)
                     if(typeof fun ==='function'){
                         fun(data.data)
                     }
@@ -40,7 +39,7 @@ var xqzs = {
             $(".weui-mask").removeClass("weui-animate-fade-in").addClass("weui-animate-fade-out");
         },
         active: function (obj) {
-            console.log("active")
+            // console.log("active")
             obj.on("touchstart", function () {
                 $(this).addClass("active")
             }).on("touchend", function () {

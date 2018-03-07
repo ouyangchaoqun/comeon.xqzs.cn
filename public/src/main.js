@@ -80,7 +80,7 @@ let router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    console.log('路由全局勾子：beforeEach');
+    // console.log('路由全局勾子：beforeEach');
     xqzs.voice.pause();
     wx.stopRecord();
     let localId = xqzs.localdb.get("voice_localId");
@@ -104,7 +104,7 @@ new Vue({
 
 Vue.directive('title', {
     inserted: function (el, binding) {
-        console.log(el);
+        // console.log(el);
         document.title = el.innerText;
 
 

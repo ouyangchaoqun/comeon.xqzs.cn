@@ -112,7 +112,7 @@
                 }
             },
             touchEnd(e) {
-                console.log("innerHeight"+$(".inner").height());
+//                console.log("innerHeight"+$(".inner").height());
                 if (!this.enableRefresh) return
                 this.touching = false
                 if (this.state === 2) { // in refreshing
@@ -161,14 +161,14 @@
 
             },
             infinite() {
-                console.log("Loading")
+//                console.log("Loading")
                 this.infiniteLoading = true
                 this.onInfinite(this.infiniteDone);
             },
 
             infiniteDone() {
 
-                console.log("done")
+//                console.log("done")
                 this.infiniteLoading = false
             },
 

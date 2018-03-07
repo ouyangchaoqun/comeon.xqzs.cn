@@ -27,7 +27,7 @@
             if(channelopenid){
                 xqzs.localdb.set("channelopenid",channelopenid);
             }
-            console.log("create");
+//            console.log("create");
             var _this = this;
             _this.$http({
                 method: 'GET',

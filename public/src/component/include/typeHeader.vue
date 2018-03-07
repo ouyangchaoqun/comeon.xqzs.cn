@@ -39,7 +39,7 @@
         props: ['urlType'],
         mounted:function () {
             this. getClassList();
-            console.log(this.urlType)
+//            console.log(this.urlType)
         },
 
         methods:{

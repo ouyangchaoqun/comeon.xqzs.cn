@@ -120,7 +120,7 @@
             },
             getRechargeConfig: function () {
                 let _this = this;
-                console.log('获取充值信息')
+//                console.log('获取充值信息')
                 _this.$http.get(web.API_PATH + 'come/user/query/recharge/config').then(function (data) {//es5写法
                     if (data.body.status == 1) {
                         _this.items = data.body.data;
