@@ -27,7 +27,7 @@
                                             <div class="top_left">最新问题</div>
                                             <div class="top_right" @click="updateList()">
                                                 <div class="top text">换一批</div>
-                                                <!--<img src="../../images/arrow.png" alt="">-->
+                                                <div class="refresh" :class="{click:isAnimate==true}"></div>
                                             </div>
                                     </div>
                                     <div v-show="list.length>0" class="index_content_active">
@@ -147,7 +147,8 @@
                 rechargeMoney: 0,
                 rechargeFlag: false,
                 user: {},
-                urlType:1
+                urlType:1,
+                isAnimate:false
             }
         },
         components: {
@@ -183,10 +184,10 @@
                 this.getUserInfo()
             },
             updateList:function () {
+                this.isAnimate=true
                 this.isPageEnd = false;
                 this.isShowMoreText = false;
                 this.getList(false,true)
-
             },
             getUserInfo: function () {
                 console.log('获取user')
@@ -484,7 +485,7 @@
                         vm.isShowMoreText = true;
                     }
                     Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
-
+                    vm.isAnimate=false
                     if (vm.page == 1) {
                         console.log("dogopage1")
                         vm.list = arr;
@@ -748,5 +749,28 @@
         background: #eee;
         bottom: 1.235rem;
         right: -0.90rem;
+    }
+    .index_box .new_question .top.text{
+        float: left;
+    }
+    .index_box .new_question .refresh{
+        width: 1rem;
+        height:1rem;
+        margin-left: 0.3rem;
+        background:url("../../images/asker/asker_refresh.png") no-repeat;
+        background-size: 100%;
+        float: left;
+    }
+    .index_box .new_question .refresh.click{
+        animation:rotate 0.5s linear infinite;
+    }
+    @keyframes rotate {
+        0%{
+            transfrom:rotate(0deg);
+
+        }
+        100%{
+            transform: rotate(180deg);
+        }
     }
 </style>
