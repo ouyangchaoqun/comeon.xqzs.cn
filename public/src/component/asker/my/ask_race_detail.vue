@@ -29,7 +29,7 @@
                 <div>暂无人抢答，如果48小时内没有专家回答该问题，提问酬金将原路返还。</div>
             </div>
             <div class="rob_status_box" v-if="detail.questionStatus==0&&detail.answerCount!=0">
-                <div>已解答 </div>
+                <div>还{{formatTimeLastText(detail.endTime)}} </div>
                 <div>共有<span>{{detail.answerCount}}</span>人抢答，可选择一个最佳答案，其答主将获得全部赏金，并且你将获得{{set_award_dian_coin}}点豆奖励。</div>
             </div>
             <div class="rob_status_box" v-if="detail.questionStatus==1">
