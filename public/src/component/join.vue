@@ -151,61 +151,61 @@
     .join_box{
         background: #F8C95F;height: 100%;
     }
-    .join_box .top{ height: 25.411764705882352941176470588235rem; background: url(http://oss.xqzs.cn/resources/psy/join_top.png)  no-repeat; width: 100%; background-size: 100%}
-    .join_box .detail{ background: #fff; border-radius:0.58823529411764705882352941176471rem; margin: 0  0.76470588235294117647058823529412rem; padding-bottom:2.9rem; margin-bottom: 7.29rem; }
+    .join_box .top{  height: 8.64rem; background: url(http://oss.xqzs.cn/resources/psy/join_top.png)  no-repeat; width: 100%; background-size: 100%}
+    .join_box .detail{ background: #fff; border-radius:0.20rem; margin: 0  0.26rem; padding-bottom:0.99rem; margin-bottom: 2.48rem; }
     .join_box .center{ text-align: center}
-    .join_box .title{ font-size: 1.1764705882352941176470588235294rem; color:#454B54; display: inline-block; position: relative; margin: 1.76rem auto 1.17rem ; font-weight: bold}
+    .join_box .title{ font-size: 0.40rem; color:#454B54; display: inline-block; position: relative; margin: 0.60rem auto 0.40rem ; font-weight: bold}
     .join_box .title:after{width: 100%;
-        height:0.58823529411764705882352941176471rem;
+        height:0.20rem;
         background:rgba(254,122,3,0.2);
-        position: absolute; bottom:0.2rem; content:''; left:0
-         }
-    .join_box .detail p{ margin: 1rem 0;}
-    .join_box .content{ margin: 0 1.4705882352941176470588235294118rem; color:rgba(69,75,84,0.7); line-height: 1.5rem }
+        position: absolute; bottom:0.07rem; content:''; left:0
+    }
+    .join_box .detail p{ margin: 0.34rem 0;}
+    .join_box .content{ margin: 0 0.50rem; color:rgba(69,75,84,0.7); line-height: 0.51rem }
     .join_box .content b{ color:rgba(69,75,84,1); font-weight: bold }
-    .join_box ul.content li span{ color:#fff; width:1.2352941176470588235294117647059rem;
-        height:1.2352941176470588235294117647059rem;
+    .join_box ul.content li span{ color:#fff; width:0.42rem;
+        height:0.42rem;
         border-radius: 50%;
-        background:rgba(254,122,3,0.7);display: inline-block; text-align: center; line-height:  1.2352941176470588235294117647059rem; margin-right: 0.6rem;
-       }
-    .join_box ul.content li{ margin: 0.5rem 0}
+        background:rgba(254,122,3,0.7);display: inline-block; text-align: center; line-height:  0.42rem; margin-right: 0.20rem;
+    }
+    .join_box ul.content li{ margin: 0.17rem 0}
 
 
     .join_box .btn{
-        width:16.058823529411764705882352941176rem;
-        height:2.8823529411764705882352941176471rem;
+        width:5.46rem;
+        height:0.98rem;
         background:rgba(252,241,222,1);
-        border-radius: 0.29411764705882352941176470588235rem;
+        border-radius: 0.10rem;
         border: dashed #F5A623 1px;
-        text-align: center; line-height: 2.888823529411764705882352941176471rem;
+        text-align: center; line-height: 0.98rem;
         margin: 0 auto;
-        color:#FE7A03 ; font-size: 1.1764705882352941176470588235294rem;  font-weight: bold;
+        color:#FE7A03 ; font-size: 0.40rem;  font-weight: bold;
     }
-    .join_box .tip{color:rgba(69,75,84,0.6); font-size: 0.88235rem; text-align: center; margin: 0.4rem   auto; }
-    .join_box .down { height:0.88235rem; width:1.1176470588235294117647058823529rem ; background: url(http://oss.xqzs.cn/resources/psy/join_down.png) no-repeat; background-size: 1.1176470588235294117647058823529rem; margin: 0 auto; margin-bottom: 1.2rem;  }
-    .join_box .down.mt{ margin-top: 1.2rem;}
+    .join_box .tip{color:rgba(69,75,84,0.6); font-size: 0.30rem; text-align: center; margin: 0.14rem   auto; }
+    .join_box .down { height:0.30rem; width:0.38rem ; background: url(http://oss.xqzs.cn/resources/psy/join_down.png) no-repeat; background-size: 0.38rem; margin: 0 auto; margin-bottom: 0.41rem;  }
+    .join_box .down.mt{ margin-top: 0.41rem;}
     .join_box .join_btn{
         width: 100%;
-        height:3.2rem;
+        height:1.09rem;
         background:rgba(254,122,3,1);
-        color:#fff;font-size: 1.0588235294117647058823529411765rem;
-        line-height:3.2rem; text-align: center;  position: fixed; bottom:0;
+        color:#fff;font-size: 0.36rem;
+        line-height:1.09rem; text-align: center;  position: fixed; bottom:0;
     }
 
     .join_box .join_btn:active{   background: rgb(218, 108, 3);}
-    .service{ height: 3.2352941176470588235294117647059rem; width:4.2352941176470588235294117647059rem; background: url(http://oss.xqzs.cn/resources/psy/join_service.png) no-repeat #fff; background-size:1.7647058823529411764705882352941rem; background-position: 1.4rem 0.2rem;  border-radius:1.6176470588235294117647058823529rem; box-shadow: -4px 2px 6px #ddd; position: fixed; right:0; bottom:5rem; border-bottom-right-radius: 0; border-top-right-radius: 0; }
+    .service{ height: 1.10rem; width:1.44rem; background: url(http://oss.xqzs.cn/resources/psy/join_service.png) no-repeat #fff; background-size:0.60rem; background-position: 0.48rem 0.07rem;  border-radius:0.55rem; box-shadow: -4px 2px 6px #ddd; position: fixed; right:0; bottom:1.70rem; border-bottom-right-radius: 0; border-top-right-radius: 0; }
     .service:active{
-        background: url(http://oss.xqzs.cn/resources/psy/join_service.png) no-repeat #f1f1f1; background-size:1.7647058823529411764705882352941rem; background-position: 1.4rem 0.2rem;
+        background: url(http://oss.xqzs.cn/resources/psy/join_service.png) no-repeat #f1f1f1; background-size:0.60rem; background-position: 0.48rem 0.07rem;
     }
-    .service span{ margin-top: 1.8rem; margin-left:0.2rem;display: inline-block; width: 100%; text-align: center;color:rgba(69,75,84,1); font-size: 0.70588235294117647058823529411765rem;}
+    .service span{ margin-top: 0.61rem; margin-left:0.07rem;display: inline-block; width: 100%; text-align: center;color:rgba(69,75,84,1); font-size: 0.24rem;}
 
 
-     .ewm_box{ position: fixed; top:50%; left:10%; width: 80%;background: #fff; border-radius: 0.8rem; margin-top: -10rem; height: 20rem; z-index: 1000}
-     .ewm_box .ewm{width: 14rem;
-        margin: 1.5rem auto 0;
+    .ewm_box{ position: fixed; top:50%; left:10%; width: 80%;background: #fff; border-radius: 0.27rem; margin-top: -3.40rem; height: 6.80rem; z-index: 1000}
+    .ewm_box .ewm{width: 4.76rem;
+        margin: 0.51rem auto 0;
     }
-   .ewm_box .ewm .info{ text-align: center; color:#454B54; font-size: 0.88235rem;}
-   .ewm_box .ewm img{ width: 100%;}
+    .ewm_box .ewm .info{ text-align: center; color:#454B54; font-size: 0.30rem;}
+    .ewm_box .ewm img{ width: 100%;}
 
 
 </style>

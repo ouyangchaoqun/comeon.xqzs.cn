@@ -57,7 +57,7 @@
                             <div class="img"><img :src="item.faceUrl"></div>
                             <div class="itemDetail_right">
                                 <div class="itemHeader">
-                                    <div style="font-weight: bold">{{item.nickName}}<span>{{item.city}}</span><span style="float: right;color: #2EB1FF;font-size: 0.70rem">找TA咨询</span></div>
+                                    <div style="font-weight: bold">{{item.nickName}}<span>{{item.city}}</span><span style="float: right;color: #2EB1FF;font-size: 0.24rem">找TA咨询</span></div>
                                     <div class="header_addRightStyle" v-if="false ">
                                         <div class="headerImg" @click.stop="play(index)">
                                             <div :class="{addPlaying:item.playing,addPaused:item.paused}"></div>
@@ -72,10 +72,10 @@
                                 </div>
                                 <div class="class_s other">
                                     <span class="price"><b>问价</b>  <a>￥{{item.price}}</a></span>
-                                    <div class="class_right">
+                                    <span class="class_right">
                                         <span v-if="item.answerCount!=null">{{item.answerCount}} 个回答</span>
                                         <span v-if="item.listenCount!=null">{{item.listenCount}} 次被偷听</span>
-                                    </div>
+                                    </span>
 
                                 </div>
                             </div>
@@ -357,41 +357,29 @@
     }
 </script>
 <style>
-    .class_right {
-        margin-top: 0.82rem;
-        right: 0;
-        top: 0;
-        width: 70%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        text-align: right
-    }
-    .class_right span:nth-of-type(1) {
-        margin-right: 0.294rem;
-    }
+
     .header_addRightStyle {
         position: absolute;
         right: 0;
         top: -1px;
         display: flex;
         color: rgba(36, 37, 61, 0.5);
-        font-size: 0.70588rem;
+        font-size: 0.24rem;
         font-weight: normal
     }
-   .answer_index .answer_list .headerImg {
-        width: 1.471rem;
-        height: 1.471rem;
+    .answer_index .answer_list .headerImg {
+        width: 0.50rem;
+        height: 0.50rem;
         border-radius: 50%;
         border: 1px solid rgba(253, 87, 57, 1);
         position: relative;
-        margin-right: 0.35rem;
+        margin-right: 0.12rem;
     }
     .answer_index .answer_list .headerImg div {
         background: url("http://oss.xqzs.cn/resources/psy/playing3.png") no-repeat;
         content: '';
-        width: 0.88235rem;
-        height: 0.76471rem;
+        width: 0.30rem;
+        height: 0.26rem;
         position: absolute;
         left: 5px;
         top: 6px;
@@ -402,40 +390,24 @@
         -webkit-animation: addPlaying 1.5s infinite;
     }
     .answer_index .answer_list .headerImg img {
-        width: 0.88235rem;
-        height: 0.76471rem;
+        width: 0.30rem;
+        height: 0.26rem;
         display: inline-block;
-        margin-left: 0.3rem;
+        margin-left: 0.10rem;
     }
-    .answer_index .answer_list .class_s .price {
-        color: #FE7301;
-    }
-    .answer_index .answer_list .class_s .price b {
-        color: rgba(36, 37, 61, 0.5);
-        font-style: normal;
-        font-weight: normal;
-        text-align: left
-    }
-    /*.answer_list .class_s .price a{*/
-    /*right: 0;*/
-    /*padding-left: 1rem;*/
-    /*background: url(http://oss.xqzs.cn/resources/psy/asker/asker_left_dotCoin.png)no-repeat;*/
-    /*background-size: 0.85rem 0.8rem;}*/
-    .itemDetail_class_s {
-        font-size: 0.70588rem;
-        color: rgba(36,37,61,0.5);
-    }
+
+
     .answer_index .answer_list .info .other {
-        margin-bottom: 0.88235rem
+        margin-bottom: 0.30rem
     }
     .answer_index .noContent_icon {
         background: #fff;
         color: rgba(36, 37, 61, 0.5);
-        font-size: 0.76471rem;
+        font-size: 0.26rem;
         text-align: center;
     }
     .answer_index .noContent_icon div {
-        margin-top: -3.8rem;
+        margin-top: -1.29rem;
     }
     @keyframes addPlaying {
         0% {
@@ -451,89 +423,81 @@
             background-size: 100%;
         }
     }
-    .answer_index .itemDetail_class_s .tab_i_i {
-        color: #FF9966;
-        background: rgba(204, 204, 204, 0.3);;
-        border-radius: 0.1470588235294118rem;
-        padding: 0.2rem 0.3rem;
-        margin: 0 0.3rem;
-    }
-    .answer_index .itemDetail_class_s .tab_i_i:first-child {
-        margin-left: 0;
-    }
+
+
     .answer_index .nav_select {
         background: RGBA(69, 75, 84, 0.05);
-        height: 2.82rem;
+        height: 0.96rem;
         width: 100%;
         overflow: hidden;
         text-align: center;
-        line-height: 2.82rem;
-        font-size: 0.88rem;
+        line-height: 0.96rem;
+        font-size: 0.30rem;
         color: RGBA(69, 75, 84, 0.5)
     }
     .answer_index .title_top {
         background: #fff;
-        padding:1.176rem 0rem;
-        padding-left: 0.88rem;
-        margin-top: 0.70rem;
+        padding:0.40rem 0.00rem;
+        padding-left: 0.30rem;
+        margin-top: 0.24rem;
     }
     .answer_index .hot_head{
-        height: 1.764rem;
+        height: 0.60rem;
         width: 100%;
         color: #454B54;
-        font-size: 1.1rem;
+        font-size: 0.37rem;
         font-weight: bold;
         position: relative;
-        margin-bottom: 0.6rem;
+        margin-bottom: 0.20rem;
 
     }
     .answer_index .new_head{
-        height: 1.764rem;
-         color: #454B54;
-        font-size: 1.1rem;
+        height: 0.60rem;
+        color: #454B54;
+        font-size: 0.37rem;
         font-weight: bold;
         position: relative;
         background: #fff;
 
-     }
+    }
     .hot_hidden{
         position: absolute;
-        right: 0.88rem;
+        right: 0.30rem;
         top:0;
-        font-size: 0.70588rem;
-       line-height: 1.8rem;
+        font-size: 0.24rem;
+        line-height: 0.61rem;
         color:RGBA(254, 122, 3, 1);
         background: url("http://oss.xqzs.cn/resources/psy/arrow.png") no-repeat center right;
-        background-size: 0.70588rem 0.588235rem;
-        padding-right: 0.88235rem;
+        background-size: 0.24rem 0.20rem;
+        padding-right: 0.30rem;
     }
     .answer_index  .hot_right{
         color: #FE7A03;
-        font-size: 0.70rem;
-        margin-right: 0.2rem;
+        font-size: 0.24rem;
+        margin-right: 0.07rem;
     }
     .answer_index  .hot_head img{
-        width: 0.6rem;
-        height:0.6rem;
-        margin-right:1rem;
+        width: 0.20rem;
+        height:0.20rem;
+        margin-right:0.34rem;
     }
     .answer_index .hot_item{
-        width: 8.529rem;
+        width: 2.90rem;
         border: 1px solid rgba(69, 75, 84, 0.15);
         float: left;
-        margin-right: 1rem;
-        border-radius: 0.32rem 0.32rem 0.32rem 0.32rem;
+        margin-right: 0.34rem;
+        border-radius: 0.11rem 0.11rem 0.11rem 0.11rem;
     }
     .answer_index .hot_top{
         background: RGBA(255, 123, 0, 0.15);
-        height: 5.647rem;
+        height: 1.92rem;
     }
     .answer_index .hot_face{
-        width: 2.941rem;
-        height: 2.941rem;
+        width: 1.00rem;
+        height: 1.00rem;
         border-radius: 50%;
         margin: 0 auto;
-        padding-top: 0.7rem;
+        padding-top: 0.24rem;
     }
     .answer_index .hot_face img{
         width: 100%;
@@ -541,8 +505,8 @@
         border-radius: 50%;
     }
     .answer_index .hot_name{
-        margin-top:0.32rem ;
-        font-size: 0.82rem;
+        margin-top:0.11rem ;
+        font-size: 0.28rem;
         font-weight: bold;
         text-align: center;
     }
@@ -554,35 +518,35 @@
         overflow: hidden;
     }
     .answer_index .hot_text{
-        margin-left: 0.5rem;
-        margin-top: 0.1rem;
+        margin-left: 0.17rem;
+        margin-top: 0.03rem;
         float: left;
-        font-size: 0.70rem;
+        font-size: 0.24rem;
     }
     .answer_index .hot_intro{
         float: right;
-        width: 3.882rem;
-        height: 1.76rem;
-        border-radius:0.94rem 0 0 0.94rem  ;
-        font-size: 0.70rem;
-        line-height: 1.76rem;
+        width: 1.32rem;
+        height: 0.60rem;
+        border-radius:0.32rem 0 0 0.32rem  ;
+        font-size: 0.24rem;
+        line-height: 0.60rem;
         background: RGBA(255, 123, 0, 0.15);
         color: #FE7A03;
-        margin-top: 0.64rem;
+        margin-top: 0.22rem;
         text-align: center;
     }
     .answer_index .hot_evaluate{
-        margin-top:0.588rem ;
-        font-size: 0.78rem;
+        margin-top:0.20rem ;
+        font-size: 0.27rem;
         color: RGBA(69, 75, 84, 0.5);
         text-align: center;
     }
     .answer_index .hot_num{
-        margin-top:0.588rem ;
-        font-size: 0.78rem;
+        margin-top:0.20rem ;
+        font-size: 0.27rem;
         color: RGBA(69, 75, 84, 0.5);
         text-align: right;
-        margin-bottom: 0.4rem;
+        margin-bottom: 0.14rem;
     }
     .swiper-slide{ overflow: auto}
 

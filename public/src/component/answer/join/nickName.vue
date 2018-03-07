@@ -89,16 +89,16 @@
     }
 
     .nickName_text{
-        padding:0.88235rem;
+        padding:0.30rem;
         background: #fff;
-        height:2.94rem;
+        height:1.00rem;
     }
     .nickName_text textarea{
         width:100%;
         height:100%;
-        font-size: 0.8235rem;
+        font-size: 0.28rem;
         color:RGBA(69, 75, 84, 1);
-        line-height: 1.176rem;
+        line-height: 0.40rem;
         display: block;
         border:0;
     }

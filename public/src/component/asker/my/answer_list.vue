@@ -155,10 +155,10 @@
     .asker_my_answer_list_box .item:active{background: #f5f5f5}
     .asker_my_answer_list_box .answer_list .item{margin-top: 0}
     .asker_my_answer_list_box  .answer_list .item .class_s{ margin-bottom: 0}
-    .asker_my_answer_list_box .answer_list .item .other{bottom:0!important;padding-left: 0.294rem;}
+    .asker_my_answer_list_box .answer_list .item .other{bottom:0!important;padding-left: 0.10rem;}
     .tab_i_i{color: #FF9966;
         background: rgba(204,204,204,0.3);
-        border-radius: 0.1470588235294118rem;
-        padding: 0.2rem 0.3rem;
-        margin: 0 0.3rem;}
+        border-radius: 0.05rem;
+        padding: 0.07rem 0.10rem;
+        margin: 0 0.10rem;}
 </style>

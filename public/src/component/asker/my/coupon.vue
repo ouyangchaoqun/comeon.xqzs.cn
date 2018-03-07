@@ -157,9 +157,9 @@
         background: #fff;
     }
     .coupon_type{
-        line-height:2.588rem;
+        line-height:0.88rem;
         color:rgba(155,155,155,1);
-        font-size: 0.88235rem;
+        font-size: 0.30rem;
         display: flex;
         display: -webkit-box;
         display: -webkit-flex;
@@ -184,16 +184,16 @@
         margin-left:-19%;
     }
     .coupon_list{
-        padding:0.88235rem;
+        padding:0.30rem;
     }
     .coupon_list li{
-        height:4.8235rem;
-        line-height: 4.8235rem;
+        height:1.64rem;
+        line-height: 1.64rem;
         background: url("http://oss.xqzs.cn/resources/psy/asker/coupon_bg.png") no-repeat;
         background-size: 100% 100%;
-        margin-bottom: 0.588235rem;
+        margin-bottom: 0.20rem;
         color:rgba(255,255,255,1);
-        font-size: 0.9411rem;
+        font-size: 0.32rem;
     }
     .coupon_list .overTime li{
         background: url("http://oss.xqzs.cn/resources/psy/asker/coupon_used.png") no-repeat;
@@ -203,16 +203,16 @@
         float: left;
         width:78%;
         text-align: center;
-        padding-top: 1.1764rem;
+        padding-top: 0.40rem;
     }
     .coupon_list li .item_left div{
-        line-height: 1.294rem;
+        line-height: 0.44rem;
 
     }
     .coupon_list li .item_left div:nth-of-type(2){
-        font-size: 0.70588rem;
-        line-height: 1rem;
-        padding-top: 0.294rem;
+        font-size: 0.24rem;
+        line-height: 0.34rem;
+        padding-top: 0.10rem;
     }
     .coupon_list li .item_right{
         float: right;
@@ -223,12 +223,12 @@
     .noCoupon{
         width:100%;
         text-align: center;
-        padding-top: 5rem;
+        padding-top: 1.70rem;
         color:rgba(155,155,155,1);
-        font-size: 0.88235rem;
+        font-size: 0.30rem;
     }
     .noCoupon img{
         width:32%;
-        margin-bottom: 0.71rem;
+        margin-bottom: 0.24rem;
     }
 </style>

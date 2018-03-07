@@ -166,8 +166,8 @@
     .goodAt_box{
         background: #fff;
     }
-    .goodat_types{background: #fff;padding:1.0588rem 0 0.294rem 0;}
-    .goodat_title{color:RGBA(69, 75, 84, 0.7);font-size: 0.8235rem;line-height: 1.176rem;padding-left: 0.88235rem;margin-bottom: 1.0588rem;}
-    .goodat_types li{float: left;width:26%;margin:0 3.33%;margin-bottom: 1.176rem;text-align: center;line-height: 1.7rem;height:1.7rem;border:1px solid RGBA(69, 75, 84, 0.2);border-radius: 0.294rem;font-size: 0.8235rem;color:RGBA(69, 75, 84, 0.5)}
+    .goodat_types{background: #fff;padding:0.36rem 0 0.10rem 0;}
+    .goodat_title{color:RGBA(69, 75, 84, 0.7);font-size: 0.28rem;line-height: 0.40rem;padding-left: 0.30rem;margin-bottom: 0.36rem;}
+    .goodat_types li{float: left;width:26%;margin:0 3.33%;margin-bottom: 0.40rem;text-align: center;line-height: 0.58rem;height:0.58rem;border:1px solid RGBA(69, 75, 84, 0.2);border-radius: 0.10rem;font-size: 0.28rem;color:RGBA(69, 75, 84, 0.5)}
     .goodat_types .item_checked{border-color: RGBA(254, 122, 3, 1);color:RGBA(254, 122, 3, 1);}
 </style>

@@ -1383,17 +1383,16 @@ var xqzs = {
         },
         tabHeight:function () {
             if(xqzs.equipment.isIphoneX()){
-                return 4;
+                return 1.36 * xqzs.equipment.getRem();
             }else{
-                return 2.882352 ;
+                return 0.96 * xqzs.equipment.getRem();
             }
         },
         getRem:function () {
-
             var width =  document.documentElement.getBoundingClientRect().width;
             var  maxWidth =  768;
             width>maxWidth && (width=maxWidth);
-            return    width * 100 / 750;
+             return    width * 100 / 750;
         }
     }
 };

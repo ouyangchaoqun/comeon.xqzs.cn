@@ -141,56 +141,56 @@
         background: #fff;
     }
     .fansBox header{
-        height: 2.588235rem;
-        line-height: 2.588235rem;
+        height: 0.88rem;
+        line-height: 0.88rem;
         background: #f4f4f7;
-        font-size: 0.88235rem;
+        font-size: 0.30rem;
         color: #999;
         text-align: center;
     }
     .fansItem li{
-        height:3.6471rem;
+        height:1.24rem;
         border-bottom: 1px solid #eee;
-        padding-right:0.88235rem;
-        font-size: 0.6471rem;
+        padding-right:0.30rem;
+        font-size: 0.22rem;
         color: #999;
         position: relative;
     }
     .fansItem li img{
-        height: 2.588235rem;
-        width:2.588235rem;
+        height: 0.88rem;
+        width:0.88rem;
         border-radius: 50%;
         display: block;
         position: absolute;
-        left:0.88235rem;
+        left:0.30rem;
         top:50%;
-        margin-top:-1.2941175rem;
+        margin-top:-0.44rem;
     }
     .fansItem li .right{
-        margin-left:4rem;
+        margin-left:1.36rem;
         line-height: 1;
-        padding-top: 1rem;
+        padding-top: 0.34rem;
     }
     .fansItem li .right>div:nth-of-type(1){
         color: #333;
-        font-size: 0.88235rem;
-        margin-bottom: 0.441176471rem;
+        font-size: 0.30rem;
+        margin-bottom: 0.15rem;
     }
     .fansItem li .bottom>div:nth-of-type(1){
         float: left;
     }
     .fansItem li .bottom>div:nth-of-type(1) span:nth-of-type(1){
-        margin-right:0.588235rem;
+        margin-right:0.20rem;
     }
     .fansItem li .bottom>div:nth-of-type(2){
         float: right;
     }
     .fansItem li .bottom>div:nth-of-type(2) span:nth-of-type(1){
-        margin-right:1.0588235rem;
+        margin-right:0.36rem;
     }
     .noFansBox{
         color: #B3B3B3;
-        font-size: 0.76471rem;
+        font-size: 0.26rem;
         text-align: center;
         height:100%;
         width:100%;

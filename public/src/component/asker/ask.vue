@@ -419,12 +419,12 @@
     .addAnonymous_dialog{
         width:74%;
         background: #fff;
-        border-radius: 0.3rem;
+        border-radius: 0.10rem;
         position: absolute;
         top:40%;
         text-align: center;
-        padding-top: 1.70588rem;
-        font-size: 1.0588rem;
+        padding-top: 0.58rem;
+        font-size: 0.36rem;
         left:50%;
         margin-left: -37%;
         overflow: hidden;
@@ -437,13 +437,13 @@
     }
     .addAnonymous_content{
         color:rgba(36,37,61,0.5);
-        font-size: 0.88235rem;
-        padding:0.94rem 0;
+        font-size: 0.30rem;
+        padding:0.32rem 0;
         border-bottom: 1px solid rgba(224,224,225,1);
     }
     .addAnonymous_btn{
         color:rgba(253,87,57,1);
-        padding:0.94rem 0;
+        padding:0.32rem 0;
     }
     .addAnonymous_btn:active{
         background: #f5f5f5;
@@ -451,14 +451,14 @@
     .addAnonymous{
         color:rgba(36,37,61,0.5);
         float: left;
-        margin-top: 0.8rem;
-        margin-left: 0.88235rem;
-        font-size: 0.7058823529411765rem;
+        margin-top: 0.27rem;
+        margin-left: 0.30rem;
+        font-size: 0.24rem;
         line-height: 20px;
     }
     .addAnonymous span{
         float: left;
-        margin-right: 0.294rem;
+        margin-right: 0.10rem;
     }
     .addAnonymous .weui-switch, .weui-switch-cp__box{
         width:42px;height:22px;
@@ -474,50 +474,50 @@
         background: #fff
     }
     .asker_ask_box .ask_type {
-        margin: 1.471rem 0.8823529411764706rem 1.176471rem 0.88235rem;
+        margin: 0.50rem 0.30rem 0.40rem 0.30rem;
         background: rgba(245,245,245,1);
         border-radius: 6px;
     }
     .asker_ask_box .ask_type .tab {
-        line-height: 2.588235rem;
-        font-size: 0.8823529411764706rem;
+        line-height: 0.88rem;
+        font-size: 0.30rem;
         color: rgba(36,37,61,0.5);
-        margin-right: 0.3rem;
+        margin-right: 0.10rem;
         float: left;
-        margin-left: 0.7rem;
+        margin-left: 0.24rem;
     }
     .asker_ask_box  .ask_type .select_box {
-        width: 7.529411764705882rem;
+        width: 2.56rem;
         float: left;
         text-align: center;
-        line-height: 2.588235rem;
-        height: 2.588235rem;
+        line-height: 0.88rem;
+        height: 0.88rem;
         color: rgba(36,37,61,1);
-        font-size: 0.88235rem;
+        font-size: 0.30rem;
     }
     .asker_ask_box .text_area {
         position: relative;
-        margin: 0 0.8823529411764706rem;
+        margin: 0 0.30rem;
         background: #F1F1F5;
         border-radius: 6px;
-        font-size: 0.7647058823529412rem;
-        padding: 1rem;
-        height: 9rem;
-        margin-top: 0.8823529411764706rem;
-        padding-top: 0.588235rem;
+        font-size: 0.26rem;
+        padding: 0.34rem;
+        height: 3.06rem;
+        margin-top: 0.30rem;
+        padding-top: 0.20rem;
     }
     /*.asker_ask_box .text_area p{*/
-    /*font-size: 0.8235rem;*/
-    /*line-height: 1.4rem;*/
+    /*font-size: 0.28rem;*/
+    /*line-height: 0.48rem;*/
     /*color:rgba(36,37,61,0.5);*/
-    /*margin-bottom: 0.294rem;*/
+    /*margin-bottom: 0.10rem;*/
     /*}*/
     .asker_ask_box .text_area .price{
-        width: 2rem;
+        width: 0.68rem;
         color: rgba(253,114,6,1);
         position: absolute;
-        left: 0.6rem;
-        bottom: 0.6rem;
+        left: 0.20rem;
+        bottom: 0.20rem;
     }
     .asker_ask_box  .text_area textarea {
         border: none;
@@ -529,26 +529,26 @@
     .asker_ask_box .text_area .last_word_count {
         color: rgba(36,37,61,0.5);
         position: absolute;
-        right: 0.6rem;
-        bottom: 0.6rem;
+        right: 0.20rem;
+        bottom: 0.20rem;
     }
     .asker_ask_box .tip {
         display: inline-block;
         float: right;
         background: url(http://oss.xqzs.cn/resources/psy/asker/tip.png) no-repeat;
-        background-size: 0.8235294117647059rem;
-        height: 0.8235294117647059rem;
-        line-height: 0.8235294117647059rem;
-        padding-left: 0.99rem;
-        font-size: 0.7058823529411765rem;
-        margin-right: 0.8823529411764706rem;
-        margin-top: 0.8rem;
+        background-size: 0.28rem;
+        height: 0.28rem;
+        line-height: 0.28rem;
+        padding-left: 0.34rem;
+        font-size: 0.24rem;
+        margin-right: 0.30rem;
+        margin-top: 0.27rem;
         color:rgba(36,37,61,0.5);
     }
     .asker_ask_box .set_price {
-        margin-top: 2rem;
+        margin-top: 0.68rem;
         text-align: center;
-        line-height: 2rem;
+        line-height: 0.68rem;
     }
     .asker_ask_box .set_price .txt {
         color:rgba(36,37,61,1);
@@ -557,12 +557,12 @@
         display: inline-block
     }
     .asker_ask_box .set_price .price {
-        font-size: 1.058823529411765rem;
+        font-size: 0.36rem;
         color: #FE7301;
         color: rgba(253,114,6,1);
-        padding: 0 0.5rem;
-        width: 4rem;
-        height:1.5294rem;
+        padding: 0 0.17rem;
+        width: 1.36rem;
+        height:0.52rem;
         border: none;
         border-bottom: 1px solid #ccc;
 
@@ -571,24 +571,24 @@
         color: #ff9900;}
     .asker_ask_box .submit {
         border-radius: 50px;
-        margin: 3rem 0.88rem 5rem;
+        margin: 1.02rem 0.30rem 1.70rem;
     }
 
     .asker_ask_box .submit:active {
         background: linear-gradient(to right, rgb(239, 143, 25), rgb(211, 105, 6));
     }
-    .dialog_select_Height{ height:19rem;}
-    .dialog_select_type  .yes{ border-top: 1px solid #eee; color:#FE7301; text-align: center; line-height: 2.588235294117647rem; position: absolute; bottom:0; left:0; width: 100% }
+    .dialog_select_Height{ height:6.46rem;}
+    .dialog_select_type  .yes{ border-top: 1px solid #eee; color:#FE7301; text-align: center; line-height: 0.88rem; position: absolute; bottom:0; left:0; width: 100% }
     .dialog_select_type  .yes:active{background: #eee}
-    .dialog_select_type .tip_content{ padding:0  1rem; line-height: 1.8; font-size: 0.8235294117647059rem; color:#666; height: 13rem; overflow: auto}
-    .dialog_select_type .tip_content p{ margin-bottom: 0.6rem;}
-    .asker_ask_box .ask_type_new{padding:1.176471rem 0.88235rem;padding-bottom: 0.2941rem}
-    .asker_ask_box .ask_type_new .tab{color:rgba(36,37,61,1);font-size: 1rem;line-height: 1;margin-bottom: 1.176471rem;}
-    .asker_ask_box .ask_type_new .tab span{color:rgba(36,37,61,0.5);font-size: 0.70588rem;}
-    .asker_ask_box .ask_type_new .select_box{display: flex;text-align: center;height:2.1176471rem;line-height: 2.1176471rem;}
-    .asker_ask_box .ask_type_new .select_box div{flex:1;color:rgba(36,37,61,0.7);font-size: 0.88235rem;background: rgba(245,245,245,1);border-radius: 5px;}
-    .asker_ask_box .ask_type_new .select_box div:nth-of-type(2){margin:0 0.88235rem;}
+    .dialog_select_type .tip_content{ padding:0  0.34rem; line-height: 1.8; font-size: 0.28rem; color:#666; height: 4.42rem; overflow: auto}
+    .dialog_select_type .tip_content p{ margin-bottom: 0.20rem;}
+    .asker_ask_box .ask_type_new{padding:0.40rem 0.30rem;padding-bottom: 0.10rem}
+    .asker_ask_box .ask_type_new .tab{color:rgba(36,37,61,1);font-size: 0.34rem;line-height: 1;margin-bottom: 0.40rem;}
+    .asker_ask_box .ask_type_new .tab span{color:rgba(36,37,61,0.5);font-size: 0.24rem;}
+    .asker_ask_box .ask_type_new .select_box{display: flex;text-align: center;height:0.72rem;line-height: 0.72rem;}
+    .asker_ask_box .ask_type_new .select_box div{flex:1;color:rgba(36,37,61,0.7);font-size: 0.30rem;background: rgba(245,245,245,1);border-radius: 5px;}
+    .asker_ask_box .ask_type_new .select_box div:nth-of-type(2){margin:0 0.30rem;}
     .asker_ask_box .ask_type_new .select_box .on_new{background: rgba(253,114,6,1);color:#fff;}
-    .asker_ask_box  .text_area .content{ font-size: 0.76471rem; color:rgba(36,37,61,1); height: 90%; line-height: 1.41rem}
+    .asker_ask_box  .text_area .content{ font-size: 0.26rem; color:rgba(36,37,61,1); height: 90%; line-height: 0.48rem}
     /*.asker_ask_box  .text_area  .answer_select{ height: 90%}*/
 </style>

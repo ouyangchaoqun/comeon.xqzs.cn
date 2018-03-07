@@ -194,39 +194,39 @@
 <style>
 
 
-    .answer_my_coment_list .item{ padding: 0.88235rem; border-bottom: 0.7058823529411765rem solid #F4F4F7;}
-    .answer_my_coment_list .comment .img{ width: 2rem; height: 100%; float:left; margin-right: 0.5rem;}
-    .answer_my_coment_list .comment .img img{width: 2rem; height: 2rem; border-radius: 1rem;}
-    .answer_my_coment_list .comment .info{ width: 17rem; float:left;}
-    .answer_my_coment_list  .comment .info .name{ color:rgba(36,37,61,0.7); font-size:0.7058823529411765rem; }
-    .answer_my_coment_list  .comment .info .name span{ color:rgba(36,37,61,1); margin-right: 0.6rem;}
+    .answer_my_coment_list .item{ padding: 0.30rem; border-bottom: 0.24rem solid #F4F4F7;}
+    .answer_my_coment_list .comment .img{ width: 0.68rem; height: 100%; float:left; margin-right: 0.17rem;}
+    .answer_my_coment_list .comment .img img{width: 0.68rem; height: 0.68rem; border-radius: 0.34rem;}
+    .answer_my_coment_list .comment .info{ width: 5.78rem; float:left;}
+    .answer_my_coment_list  .comment .info .name{ color:rgba(36,37,61,0.7); font-size:0.24rem; }
+    .answer_my_coment_list  .comment .info .name span{ color:rgba(36,37,61,1); margin-right: 0.20rem;}
     .answer_my_coment_list .comment .info .times span{ font-weight: bold; color:#444}
-    .answer_my_coment_list .comment .info .content{ color:rgba(36,37,61,1); font-size: 0.8235294117647059rem; margin: 0.2rem  0}
+    .answer_my_coment_list .comment .info .content{ color:rgba(36,37,61,1); font-size: 0.28rem; margin: 0.07rem  0}
     .answer_my_coment_list .comment .info .tags{}
     .answer_my_coment_list .comment .info .tags span{ display: inline-block;
-        border:1px solid #D1D1D1; color:#D1D1D1; text-align: center; line-height: 1.323529411764706rem; border-radius: 0.6617647058823529rem; padding: 0 0.5rem; font-size:0.7058823529411765rem; margin-right: 0.3rem;}
-    .answer_my_coment_list .comment .info .star span{ display: inline-block; background: url(http://oss.xqzs.cn/resources/psy/star_no.png) no-repeat; background-size: 0.7647058823529412rem;  height: 0.7647058823529412rem; width: 0.7647058823529412rem; margin-right: 0.4rem; }
-    .answer_my_coment_list .comment .info .star span.on{background: url(http://oss.xqzs.cn/resources/psy/star.png) no-repeat;background-size: 0.7647058823529412rem; }
+        border:1px solid #D1D1D1; color:#D1D1D1; text-align: center; line-height: 0.45rem; border-radius: 0.23rem; padding: 0 0.17rem; font-size:0.24rem; margin-right: 0.10rem;}
+    .answer_my_coment_list .comment .info .star span{ display: inline-block; background: url(http://oss.xqzs.cn/resources/psy/star_no.png) no-repeat; background-size: 0.26rem;  height: 0.26rem; width: 0.26rem; margin-right: 0.14rem; }
+    .answer_my_coment_list .comment .info .star span.on{background: url(http://oss.xqzs.cn/resources/psy/star.png) no-repeat;background-size: 0.26rem; }
 
-    .answer_my_coment_list .reply{ background: #F1F1F5;  font-size:0.7058823529411765rem; color:rgba(36,37,61,1); padding:0.5rem ; border-radius: 0.3rem; position: relative; margin-top: 0.88rem }
+    .answer_my_coment_list .reply{ background: #F1F1F5;  font-size:0.24rem; color:rgba(36,37,61,1); padding:0.17rem ; border-radius: 0.10rem; position: relative; margin-top: 0.30rem }
     .answer_my_coment_list .reply span{color:rgba(36,37,61,0.5);}
-    .answer_my_coment_list .reply:before{ content:" " ; display: block; position: absolute; left:0.8rem; top:-0.6rem;  width: 0;
+    .answer_my_coment_list .reply:before{ content:" " ; display: block; position: absolute; left:0.27rem; top:-0.20rem;  width: 0;
         height: 0;
-        border-left: 0.5rem solid transparent;
-        border-right: 0.5rem solid transparent;
-        border-bottom: 0.7rem solid #F1F1F5;}
+        border-left: 0.17rem solid transparent;
+        border-right: 0.17rem solid transparent;
+        border-bottom: 0.24rem solid #F1F1F5;}
 
 
-    .answer_my_coment_list .answer .img{ width: 2rem; height: 2rem; float:left; margin-top: 0.2rem;  margin-right: 0.5rem;}
+    .answer_my_coment_list .answer .img{ width: 0.68rem; height: 0.68rem; float:left; margin-top: 0.07rem;  margin-right: 0.17rem;}
     .answer_my_coment_list .answer .img img{ width: 100%; height: 100%; border-radius: 50%;}
     .answer_my_coment_list .answer .audio{ width: 100%; margin-top: 0}
     .answer_my_coment_list .answer .audio .audio_btn{ width: 47%}
-    .answer_my_coment_list .question{ border: 0.1470588235294118rem solid #F1F1F5; border-radius: 0.4rem; padding: 0.6176470588235294rem; margin-top:0.5882352941176471rem; color:rgba(36,37,61,0.7); font-size: 0.7058823529411765rem  }
-    .answer_my_coment_list .question .content{ margin-bottom: 0.88325rem}
-    .answer_my_coment_list .item .time{ color:rgba(36,37,61,0.7); font-size: 0.78rem; margin-left: 0.01rem; margin-top: 0.3rem}
+    .answer_my_coment_list .question{ border: 0.05rem solid #F1F1F5; border-radius: 0.14rem; padding: 0.21rem; margin-top:0.20rem; color:rgba(36,37,61,0.7); font-size: 0.24rem  }
+    .answer_my_coment_list .question .content{ margin-bottom: 0.30rem}
+    .answer_my_coment_list .item .time{ color:rgba(36,37,61,0.7); font-size: 0.27rem; margin-left: 0.00rem; margin-top: 0.10rem}
     .answer_my_coment_list .item{ position: relative}
-    .answer_my_coment_list .item .reply_btn{font-size: 0.88235rem; color:rgba(254,115,1,1); position: absolute;
-        top:0.88235rem; right:0.88235rem;}
+    .answer_my_coment_list .item .reply_btn{font-size: 0.30rem; color:rgba(254,115,1,1); position: absolute;
+        top:0.30rem; right:0.30rem;}
     .answer_my_coment_list .item .reply_btn:active{ background: #09ab07;
     }
 

@@ -203,15 +203,15 @@
 <style>
     .my_problem_tabs {
         color: rgba(36,37,61,1);
-        font-size: 0.88235rem;
+        font-size: 0.30rem;
         text-align: center;
         display: -webkit-box;
         display: -webkit-flex;
         display: flex;
         background: #fff;
         border-bottom: 1px solid #eee;
-        height: 2.35294rem;
-        line-height: 2.35294rem;
+        height: 0.80rem;
+        line-height: 0.80rem;
     }
 
     .my_problem_tabs > div {
@@ -221,13 +221,13 @@
 
     .my_problem_tabs > div:nth-of-type(1)::after {
         content: '';
-        height: 1.1176rem;
+        height: 0.38rem;
         width: 1px;
         background: #E0E0E0;
         position: absolute;
         right: 0;
         top: 50%;
-        margin-top: -0.5588rem;
+        margin-top: -0.19rem;
     }
     .my_problem_tabs > div div{
         width:50%;
@@ -245,9 +245,9 @@
 
 
     .my_problem_list1 {
-        padding: 0.70588235rem 0.88235rem 0.9rem 0.88235rem;
+        padding: 0.24rem 0.30rem 0.31rem 0.30rem;
         background: #fff;
-        margin-bottom: 0.41176471rem;
+        margin-bottom: 0.14rem;
     }
 
     .problem_header {
@@ -256,9 +256,9 @@
         display: flex;
         position: relative;
         color: rgba(36,37,61,0.5);
-        font-size: 0.70588rem;
-        margin-bottom: 0.588235rem;
-        line-height:  1.70588235rem ;
+        font-size: 0.24rem;
+        margin-bottom: 0.20rem;
+        line-height:  0.58rem ;
     }
     .problem_header > div:nth-of-type(2) {
         position: absolute;
@@ -266,40 +266,40 @@
     }
 
     .problem_header img {
-        height: 1.70588235rem;
-        width: 1.70588235rem;
+        height: 0.58rem;
+        width: 0.58rem;
         display: block;
         border-radius: 50%;
-        margin-right: 0.588235rem;
+        margin-right: 0.20rem;
     }
 
     .my_problem_content {
         color: rgba(36,37,61,1);
-        font-size: 0.88235rem;
-        line-height: 1.4rem;
+        font-size: 0.30rem;
+        line-height: 0.48rem;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
-        margin-bottom: 0.88235rem;
+        margin-bottom: 0.30rem;
     }
 
     .my_problem_bottom {
         color: rgba(36,37,61,0.5);
-        font-size: 0.701588235rem;
+        font-size: 0.24rem;
         line-height: 1;
         overflow: hidden;
     }
     .my_problem_bottom span{
-        margin-right:1.088rem;
+        margin-right:0.37rem;
     }
     .my_problem_bottom img{
-        width: 1.70588rem;
-        height:1.70588rem;
+        width: 0.58rem;
+        height:0.58rem;
         border-radius: 50%;
         display: inline-block;
         vertical-align: middle;
-        margin-left: -0.5rem;
+        margin-left: -0.17rem;
     }
 </style>

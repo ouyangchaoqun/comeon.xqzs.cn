@@ -127,19 +127,19 @@
 </script>
 <style>
     .ask_my_income_list .moneyOut_item{
-        height:2.88235rem;
-        line-height: 2.88235rem;
+        height:0.98rem;
+        line-height: 0.98rem;
         border-bottom: 1px solid rgba(238,238,238,1);
-        padding:0 0.88235rem;
+        padding:0 0.30rem;
         display: flex;
     }
     .time{
         color:rgba(153,153,153,1);
-        font-size: 0.6471rem;
+        font-size: 0.22rem;
         width:40%;
     }
     .item_right{
-        font-size: 0.88235rem;
+        font-size: 0.30rem;
         color:rgba(255,157,24,1);
         width:40%;
         text-align: right;
@@ -151,9 +151,9 @@
         color:rgba(36,37,61,0.5);
     }
     .item_right span{
-        font-size: 0.76471rem;
+        font-size: 0.26rem;
         color:rgba(69,75,84,1);
-        margin-right: 0.735rem;
+        margin-right: 0.25rem;
         width:40%;
         float: left;
     }
@@ -161,7 +161,7 @@
         margin: 0 auto;
         text-align: center;
         color:rgba(36,37,61,0.5);
-        font-size: 0.76471rem;
+        font-size: 0.26rem;
         width:20%;
         overflow: hidden;
         text-overflow: ellipsis;

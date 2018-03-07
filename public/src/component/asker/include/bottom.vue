@@ -1,5 +1,5 @@
 <template >
-    <div class="asker_bottom_box" :style="'height:'+height+'rem'">
+    <div class="asker_bottom_box" :style="'height:'+height+'px'">
 
         <router-link to='/asker/listen' replace :class="{on:tabOnIndex==0}" >
             <span class="icon listen"></span>首页
@@ -21,14 +21,14 @@
 </template>
 <style>
     .asker_bottom_box {
-        height:2.782352941176471rem;
+        height:0.95rem;
         border-top: 1px solid rgba(0,0,0,0.2);
         display: -webkit-box;
         display: -webkit-flex;
         display: flex;
-        position: absolute; bottom: 0; left:0; line-height: 1; font-size: 0.9rem ; background: #fff;   color:rgba(36,37,61,1);
+        position: absolute; bottom: 0; left:0; line-height: 1; font-size: 0.31rem ; background: #fff;   color:rgba(36,37,61,1);
         width: 100%;
-        padding-top: 0.1rem;
+        padding-top: 0.03rem;
         z-index: 100;
     }
     .asker_bottom_box a:active,.asker_bottom_box a.on{ color:#FE7301;}
@@ -37,39 +37,39 @@
         -webkit-flex: 1;
         flex: 1;
         text-align: center;
-        font-size: 0.588235rem;
+        font-size: 0.20rem;
         vertical-align: text-bottom;
     }
 
     .asker_bottom_box .middle{ position: relative}
 
-    .asker_bottom_box .big_btn{width:2.617647058823529rem;
-        height:2.617647058823529rem;
+    .asker_bottom_box .big_btn{width:0.89rem;
+        height:0.89rem;
         border-radius: 50%;
         background: #cdcdcd;
         font-size: 20px;
         color: #fff;
         text-align: center;
-        line-height:2.588rem;
+        line-height:0.88rem;
         position: absolute;
         left:50%;
-        margin-left:-1.294rem;
-        top:-0.58235rem;}
+        margin-left:-0.44rem;
+        top:-0.20rem;}
     .asker_bottom_box  .big_btn.on{
         background: #ff7900;
     }
 
 
-    .asker_bottom_box a .icon{ display: block; width: 1.588235294117647rem; margin: 0.1rem auto;background: url(http://oss.xqzs.cn/resources/psy/asker/newBottom_icon.png) no-repeat; background-size: 6.352941176470588rem; height:1.588235294117647rem;  }
+    .asker_bottom_box a .icon{ display: block; width: 0.54rem; margin: 0.03rem auto;background: url(http://oss.xqzs.cn/resources/psy/asker/newBottom_icon.png) no-repeat; background-size: 2.16rem; height:0.54rem;  }
     .asker_bottom_box a .icon.listen{ background-position: 0 0;}
-    .asker_bottom_box a .icon.answer{ background-position: -1.588235294117647rem 0;}
-    .asker_bottom_box a .icon.my_ask{ background-position: -3.176470588235294rem  0;}
-    .asker_bottom_box a .icon.my{ background-position: -4.764705882352941rem 0;}
+    .asker_bottom_box a .icon.answer{ background-position: -0.54rem 0;}
+    .asker_bottom_box a .icon.my_ask{ background-position: -1.08rem  0;}
+    .asker_bottom_box a .icon.my{ background-position: -1.62rem 0;}
 
-    .asker_bottom_box a:active .icon.listen,.asker_bottom_box a.on .icon.listen{  background-position: 0  -1.588235294117647rem;}
-    .asker_bottom_box a:active .icon.answer,.asker_bottom_box a.on  .icon.answer{ background-position: -1.588235294117647rem  -1.588235294117647rem;}
-    .asker_bottom_box a:active .icon.my_ask,.asker_bottom_box a.on  .icon.my_ask{ background-position: -3.176470588235294rem   -1.588235294117647rem;}
-    .asker_bottom_box a:active .icon.my,.asker_bottom_box a.on  .icon.my{ background-position: -4.764705882352941rem  -1.588235294117647rem;}
+    .asker_bottom_box a:active .icon.listen,.asker_bottom_box a.on .icon.listen{  background-position: 0  -0.54rem;}
+    .asker_bottom_box a:active .icon.answer,.asker_bottom_box a.on  .icon.answer{ background-position: -0.54rem  -0.54rem;}
+    .asker_bottom_box a:active .icon.my_ask,.asker_bottom_box a.on  .icon.my_ask{ background-position: -1.08rem   -0.54rem;}
+    .asker_bottom_box a:active .icon.my,.asker_bottom_box a.on  .icon.my{ background-position: -1.62rem  -0.54rem;}
 
 
 

@@ -205,24 +205,24 @@
     }
 
     .recharge_box .recharge_title {
-        margin-top: 1.24rem;
-        margin-left: 0.94rem;
-        font-size: 0.88rem;
+        margin-top: 0.42rem;
+        margin-left: 0.32rem;
+        font-size: 0.30rem;
         color: #29293E;
-        line-height: 0.88rem;
+        line-height: 0.30rem;
         font-weight: bold;
     }
 
     .recharge_box .items_box {
-        margin-top: 0.29rem;
+        margin-top: 0.10rem;
         overflow: hidden;
         padding: 0 4.2%
     }
 
     .recharge_box .items_box .items {
-        margin-top: 0.70rem;
+        margin-top: 0.24rem;
         width: 46.5%;
-        height: 4.82rem;
+        height: 1.64rem;
         background: #F7F7F7;
         border-radius: 10px;
         float: left;
@@ -235,67 +235,67 @@
     }
 
     .recharge_box .items_box .items .price {
-        margin-top: 0.294rem;
-        font-size: 1.176rem;
-        line-height: 1.647rem;
+        margin-top: 0.10rem;
+        font-size: 0.40rem;
+        line-height: 0.56rem;
     }
 
     .recharge_box .items_box .items .price.nogift {
-        margin-top: 1rem
+        margin-top: 0.34rem
     }
 
     .recharge_box .items_box .items .dou {
-        line-height: 1.176rem;
-        font-size: 0.82rem;
-        margin-top: 0.11rem;
+        line-height: 0.40rem;
+        font-size: 0.28rem;
+        margin-top: 0.04rem;
         color:#9B9B9B
     }
 
     .recharge_box .items_box .items .gift {
-        line-height: 1rem;
+        line-height: 0.34rem;
         color: #FE7A03;
-        font-size: 0.70rem;
-        margin-top: 0.22rem
+        font-size: 0.24rem;
+        margin-top: 0.07rem
     }
 
     .recharge_box .cash {
-        width: 19.294rem;
-        height: 2.941rem;
+        width: 6.56rem;
+        height: 1.00rem;
         background: rgba(228, 227, 227, 0.5);
         margin: 0 auto;
-        margin-top: 1.176rem;
+        margin-top: 0.40rem;
         border-radius: 10px;
-        line-height: 2.941rem;
-        font-size: 0.88rem;
-        padding-left: 0.88rem;
+        line-height: 1.00rem;
+        font-size: 0.30rem;
+        padding-left: 0.30rem;
     }
 
     .recharge_box .rechar_btn {
-        width: 15.294rem;
-        height: 2.588rem;
+        width: 5.20rem;
+        height: 0.88rem;
         background: #FE7A03;
         color: #fff;
-        font-size: 1.0588rem;
-        line-height: 2.588rem;
-        border-radius: 6.235rem;
+        font-size: 0.36rem;
+        line-height: 0.88rem;
+        border-radius: 2.12rem;
         margin: 0 auto;
-        margin-top: 2.058rem;
+        margin-top: 0.70rem;
         text-align: center;
     }
 
     .recharge_box .question {
-        margin-top: 3.5rem;
-        font-size: 0.88rem;
+        margin-top: 1.19rem;
+        font-size: 0.30rem;
         color: #9B9B9B;
         text-align: center
     }
     .recharge_box .question img{
-        width:0.88235rem;
+        width:0.30rem;
         vertical-align: middle;
     }
     .recharge_box .question span{
         border-bottom: 1px solid rgba(228, 227, 227, 0.5);
-        padding: 0 0 0.1rem 0.2rem;
+        padding: 0 0 0.03rem 0.07rem;
     }
     .mask {
         position: absolute;
@@ -307,15 +307,15 @@
     }
 
     .recharge_box .tips {
-        width: 16rem;
-        height: 19rem;
+        width: 5.44rem;
+        height: 6.46rem;
         position: absolute;
         z-index: 10;
         background: #fff;
         top: 24%;
         left: 50%;
-        margin-left: -8rem;
-        border-radius: 0.588rem
+        margin-left: -2.72rem;
+        border-radius: 0.20rem
     }
 
     .recharge_box .items_box .items.selected {
@@ -325,10 +325,10 @@
     .recharge_box .tips .close {
         background:url("http://oss.xqzs.cn/resources/psy/asker/user_close.png") no-repeat;
         position: absolute;
-        right: 0.88rem;
-        top: 0.88rem;
-        width: 2rem;
-        height: 2rem;
+        right: 0.30rem;
+        top: 0.30rem;
+        width: 0.68rem;
+        height: 0.68rem;
         text-align: center;
         background-size: 50% 50%;
         background-position-x: 50%;
@@ -337,31 +337,31 @@
 
     .recharge_box .tips .tip_title {
         position: absolute;
-        top: 2.117rem;
+        top: 0.72rem;
         text-align: center;
         width: 100%;
-        font-size: 1.176rem;
-        line-height: 1.647rem;
+        font-size: 0.40rem;
+        line-height: 0.56rem;
     }
 
     .recharge_box .tips .content {
         position: absolute;
-        padding: 0 1.647rem;
-        top: 5.176rem;
-        font-size: 0.88rem;
+        padding: 0 0.56rem;
+        top: 1.76rem;
+        font-size: 0.30rem;
     }
 
     .recharge_box .tips .content p {
-        line-height: 1.4rem;
-        margin-bottom: 1rem;
+        line-height: 0.48rem;
+        margin-bottom: 0.34rem;
     }
 
     .recharge_box .cash_right {
-        margin-top: 0.88rem;
+        margin-top: 0.30rem;
         float: right;
-        margin-right: 0.82rem;
-        width: 1.294rem;
-        height: 1.294rem;
+        margin-right: 0.28rem;
+        width: 0.44rem;
+        height: 0.44rem;
         background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_on.png");
         background-size: 100%;
     }

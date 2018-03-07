@@ -221,19 +221,19 @@
     }
 </script>
 <style>
-    .answer_list_box .audio{margin-top: 0.8rem;}
+    .answer_list_box .audio{margin-top: 0.27rem;}
     .answer_list_box .main_title{
-        font-size: 0.8823529411764706rem;
+        font-size: 0.30rem;
         text-align: center;
         background:#F4F4F7;
-        color:#999; line-height: 2.588235294117647rem;
-         margin-bottom: -0.5882352941176471rem;
+        color:#999; line-height: 0.88rem;
+        margin-bottom: -0.20rem;
     }
     .no_body_box{text-align: center;}
     .no_body_box img{display: block;width:100%;}
-    .no_body_box .nocontent_html{color:rgba(149,151,157,1);font-size: 0.88235rem;margin-top:-3.8rem}
-    .no_body_box .nocontent_bottom{color:rgba(195,197,205,1);font-size: 0.6471rem}
-    .answer_list_box .no_body{ background: #fff;  position: absolute; top:2.588235294117647rem; left:0; width: 100%}
-    .answer_list_box .no_body .img { background: url(http://oss.xqzs.cn/resources/psy/answer/no_body.png); width: 4.852941176470588rem; ;height: 5.823529411764706rem; background-size:4.852941176470588rem; margin: 0 auto; margin-top: 5rem; }
-    .answer_list_box .no_body .txt{ color:#B3B3B3;font-size: 0.7647058823529412rem; text-align: center; width: 100%; margin-top: 0.8rem;}
+    .no_body_box .nocontent_html{color:rgba(149,151,157,1);font-size: 0.30rem;margin-top:-1.29rem}
+    .no_body_box .nocontent_bottom{color:rgba(195,197,205,1);font-size: 0.22rem}
+    .answer_list_box .no_body{ background: #fff;  position: absolute; top:0.88rem; left:0; width: 100%}
+    .answer_list_box .no_body .img { background: url(http://oss.xqzs.cn/resources/psy/answer/no_body.png); width: 1.65rem; ;height: 1.98rem; background-size:1.65rem; margin: 0 auto; margin-top: 1.70rem; }
+    .answer_list_box .no_body .txt{ color:#B3B3B3;font-size: 0.26rem; text-align: center; width: 100%; margin-top: 0.27rem;}
 </style>

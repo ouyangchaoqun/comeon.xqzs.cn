@@ -302,18 +302,18 @@
 </script>
 <style>
     .answer_join_voice{ width: 100%; overflow: hidden}
-    .answer_join_voice .tipc{  margin:1.76471rem    1.176470588235294rem; font-size: 0.7647058823529412rem; line-height: 1.5; color:rgba(36,37,61,0.5)}
-    .answer_join_voice .audio{ margin-left:  15%  !important ; margin-top: 8rem;}
-.pt3{ padding-top: 9rem !important}
+    .answer_join_voice .tipc{  margin:0.60rem    0.40rem; font-size: 0.26rem; line-height: 1.5; color:rgba(36,37,61,0.5)}
+    .answer_join_voice .audio{ margin-left:  15%  !important ; margin-top: 2.72rem;}
+    .pt3{ padding-top: 3.06rem !important}
 
 
 
-    .voice_box { position: fixed;  width: 100%; height: 100%; top:0; padding: 8.8233rem 0  }
+    .voice_box { position: fixed;  width: 100%; height: 100%; top:0; padding: 3.00rem 0  }
     .voice_box .bg{background: rgba(0,0,0,0.7); width: 100%; height: 100%; position: fixed; top:0;    z-index: -1;}
 
     /*播放*/
-    .answer_join_voice   .time_go{ position: relative;  height: 4.8rem; width: 4.8rem; margin: 0 auto; margin-top: 2rem;}
-    .answer_join_voice  .time_go .playing { height: 4.8rem; width: 4.8rem; border-radius: 50%; background: #00b9e8; position: absolute; top:0;left:0; text-align: center; color:#fff; font-size: 1.764705882352941rem; line-height: 4.8rem;}
+    .answer_join_voice   .time_go{ position: relative;  height: 1.63rem; width: 1.63rem; margin: 0 auto; margin-top: 0.68rem;}
+    .answer_join_voice  .time_go .playing { height: 1.63rem; width: 1.63rem; border-radius: 50%; background: #00b9e8; position: absolute; top:0;left:0; text-align: center; color:#fff; font-size: 0.60rem; line-height: 1.63rem;}
     .answer_join_voice   .play{
         opacity: 0.1;
         transform:scale(1.6,1.6);
@@ -363,12 +363,12 @@
 
 
 
-    .answer_join_voice  .times{ padding: 0.2rem 2.5rem; background: #fff}
-    .answer_join_voice   .times .bg{ background: #163201; height: 2.94117647058823rem;  border-radius: 1.470588235294118rem ; }
-    .answer_join_voice    .times .bg .in{ padding:  0.1470588235294118rem; }
-    .answer_join_voice    .times .bg .go{ background: #09bb07; height: 2.647058823529412rem; min-width:2.647058823529412rem;  width: 0; border-radius:1.323529411764706rem;      }
-    .answer_join_voice  .times .last_time{ text-align: center; color:#666; margin-top: 0.5rem; font-size: 1.529411764705882rem;}
-    .answer_join_voice  .action_btn{   padding: 3.529411764705882rem 1rem;
+    .answer_join_voice  .times{ padding: 0.07rem 0.85rem; background: #fff}
+    .answer_join_voice   .times .bg{ background: #163201; height: 1.00rem;  border-radius: 0.50rem ; }
+    .answer_join_voice    .times .bg .in{ padding:  0.05rem; }
+    .answer_join_voice    .times .bg .go{ background: #09bb07; height: 0.90rem; min-width:0.90rem;  width: 0; border-radius:0.45rem;      }
+    .answer_join_voice  .times .last_time{ text-align: center; color:#666; margin-top: 0.17rem; font-size: 0.52rem;}
+    .answer_join_voice  .action_btn{   padding: 1.20rem 0.34rem;
         display: -webkit-box;
         display: -webkit-flex;
         display: flex;
@@ -377,10 +377,10 @@
         -webkit-box-flex: 1;
         -webkit-flex: 1;
         flex: 1;
-        text-align: center; color:#fff; font-size: 0.7647058823529412rem;
+        text-align: center; color:#fff; font-size: 0.26rem;
     }
-    .answer_join_voice  .action_btn .item .txt{ margin-top: 0.6rem}
-    .answer_join_voice  .audio_btn_in{ background: #fff; border-radius: 50%; height: 4.117647058823529rem; width: 4.117647058823529rem;
+    .answer_join_voice  .action_btn .item .txt{ margin-top: 0.20rem}
+    .answer_join_voice  .audio_btn_in{ background: #fff; border-radius: 50%; height: 1.40rem; width: 1.40rem;
         -webkit-box-shadow:0 0 8px #09bb07;box-shadow:0 0 8px #09bb07;  position: relative; margin: 0 auto}
     .answer_join_voice .audio_btn_in:active{ background: rgba(105,186,45,0.1)
     }
@@ -390,11 +390,11 @@
 
 
     .answer_join_voice  .audio_btn_in:before{content: " " ; display: block ; position: absolute; top:50%; left:50% ;}
-    .answer_join_voice   .audio_begin:before{ background:url(http://oss.xqzs.cn/resources/psy/audio_btn_begin.png)  no-repeat; background-size:  1.352941176470588rem; width:1.352941176470588rem;; height: 1.882352941176471rem;  margin-left: -0.676470588235294rem; margin-top: -0.9411764705882355rem;  }
-    .answer_join_voice   .audio_end:before{ background:url(http://oss.xqzs.cn/resources/psy/audio_btn_end.png)  no-repeat; background-size:  1.235294117647059rem; width:1.235294117647059rem;; height: 1.235294117647059rem;  margin-left: -0.6176470588235294rem; margin-top: -0.6176470588235294rem;  ;   }
-    .answer_join_voice   .audio_play:before{ background:url(http://oss.xqzs.cn/resources/psy/audio_btn_play.png)  no-repeat; background-size: 1.323529411764706rem; width:1.323529411764706rem;; height: 1.529411764705882rem;  margin-left: -0.517647058823529rem; margin-top: -0.7647058823529412rem;  }
-    .answer_join_voice   .audio_send:before{ background:url(http://oss.xqzs.cn/resources/psy/audio_btn_send.png)  no-repeat; background-size:  1.352941176470588rem; width:1.470588235294118rem;; height:1.411764705882353rem;  margin-left: -0.7352941176470588rem; margin-top: -0.7058823529411765rem;   }
-    .answer_join_voice   .audio_cant_begin:before{ background:url(http://oss.xqzs.cn/resources/psy/audio_btn_cant_begin.png)  no-repeat; background-size:  1.352941176470588rem; width:1.352941176470588rem;; height: 1.882352941176471rem;  margin-left: -0.676470588235294rem; margin-top: -0.9411764705882355rem;  }
-    .answer_join_voice .addPlayBox{position: absolute;bottom:4rem;width:100%;}
-    .answer_join_voice  .record_voice_box{ bottom:2.5rem;}
+    .answer_join_voice   .audio_begin:before{ background:url(http://oss.xqzs.cn/resources/psy/audio_btn_begin.png)  no-repeat; background-size:  0.46rem; width:0.46rem;; height: 0.64rem;  margin-left: -0.23rem; margin-top: -0.32rem;  }
+    .answer_join_voice   .audio_end:before{ background:url(http://oss.xqzs.cn/resources/psy/audio_btn_end.png)  no-repeat; background-size:  0.42rem; width:0.42rem;; height: 0.42rem;  margin-left: -0.21rem; margin-top: -0.21rem;  ;   }
+    .answer_join_voice   .audio_play:before{ background:url(http://oss.xqzs.cn/resources/psy/audio_btn_play.png)  no-repeat; background-size: 0.45rem; width:0.45rem;; height: 0.52rem;  margin-left: -0.18rem; margin-top: -0.26rem;  }
+    .answer_join_voice   .audio_send:before{ background:url(http://oss.xqzs.cn/resources/psy/audio_btn_send.png)  no-repeat; background-size:  0.46rem; width:0.50rem;; height:0.48rem;  margin-left: -0.25rem; margin-top: -0.24rem;   }
+    .answer_join_voice   .audio_cant_begin:before{ background:url(http://oss.xqzs.cn/resources/psy/audio_btn_cant_begin.png)  no-repeat; background-size:  0.46rem; width:0.46rem;; height: 0.64rem;  margin-left: -0.23rem; margin-top: -0.32rem;  }
+    .answer_join_voice .addPlayBox{position: absolute;bottom:1.36rem;width:100%;}
+    .answer_join_voice  .record_voice_box{ bottom:0.85rem;}
 </style>

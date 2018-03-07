@@ -35,8 +35,8 @@
         <div class="weui-mask weui-animate-fade-in" v-if="myask_mask_flag" @click="hide_myask_mask()">
             <div class="myask_class myask_know_box" @click.stop>
                 <h3>解答须知</h3>
-                <ul style="overflow: auto;height: 12.35294rem;">
-                    <li><b>1.</b>提交问题，设置赏金支付后，心情指数将为您匹配专业咨询师开始抢答。<br/>（1）设置的赏金越高，匹配的咨询师等级越高，抢答的咨询师越多。<br/>（2）问题描述越清楚，咨询师的回答将精准。</li>
+                <ul style="overflow: auto;height: 4.20rem;">
+                <li><b>1.</b>提交问题，设置赏金支付后，心情指数将为您匹配专业咨询师开始抢答。<br/>（1）设置的赏金越高，匹配的咨询师等级越高，抢答的咨询师越多。<br/>（2）问题描述越清楚，咨询师的回答将精准。</li>
                     <li><b>2.</b>你可以选择做佳答案：<br/>（1）该回答将产生偷偷听收入；<br/>（2）其咨询师将获得全部赏金；</li>
                     <li><b>3.</b>48小时内无人抢答，则全额退款。</li>
 
@@ -190,7 +190,7 @@
 
     .setItem .setItem_bottom{
         text-align: center;
-        font-size: 0.70588235rem;
+        font-size: 0.24rem;
         color: rgba(36,37,61,0.7);
     }
     .setItem_bottom img{
@@ -204,17 +204,17 @@
     .setItem_bottom span{
         margin:0 auto;
         position: relative;
-        padding-left: 1.176471rem;
+        padding-left: 0.40rem;
     }
-    .set_price{ width: 66%; margin: 0rem auto; margin-top: 48% }
-    .set_price .til,  .set_price .select{ float:left; line-height: 2rem; text-align: center; color:rgba(36,37,61,1); font-size: 0.88235rem;}
-    .set_price .select input{ width: 6rem;font-size: 1.2rem; line-height: 2rem;;color: #FE7301; text-align: center}
-    .set_price .select{ margin-left: 0.6rem; width:50%;color: #ffaa00; font-size: 1.2rem; line-height: 2rem;; border-radius: 0.3rem; border: 1px solid #B3B3B3
+    .set_price{ width: 66%; margin: 0.00rem auto; margin-top: 48% }
+    .set_price .til,  .set_price .select{ float:left; line-height: 0.68rem; text-align: center; color:rgba(36,37,61,1); font-size: 0.30rem;}
+    .set_price .select input{ width: 2.04rem;font-size: 0.41rem; line-height: 0.68rem;;color: #FE7301; text-align: center}
+    .set_price .select{ margin-left: 0.20rem; width:50%;color: #ffaa00; font-size: 0.41rem; line-height: 0.68rem;; border-radius: 0.10rem; border: 1px solid #B3B3B3
     }
     .set_price.mt_mb{ margin-top: 30px; margin-bottom: 30px;}
 
-     .setAnswer_box  .btn_box{width:100%;position: relative;margin-top: 5rem;display: flex;display: -webkit-flex;text-align: center;line-height: 2.35rem}
-    .btn_box a{flex: 1;border:1px solid rgba(253,115,1,1);margin:0 0.88235rem;border-radius: 1.176471rem;color:rgba(253,115,1,1);background: #fff;}
+    .setAnswer_box  .btn_box{width:100%;position: relative;margin-top: 1.70rem;display: flex;display: -webkit-flex;text-align: center;line-height: 0.80rem}
+    .btn_box a{flex: 1;border:1px solid rgba(253,115,1,1);margin:0 0.30rem;border-radius: 0.40rem;color:rgba(253,115,1,1);background: #fff;}
     .btn_box a:last-of-type{color:#fff;background:linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1))}
     .btn_box a:active{
         color:#fff;background:linear-gradient(to right, rgb(217, 128, 25), rgb(220, 107, 6))

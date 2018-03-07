@@ -168,67 +168,67 @@
         background: #fff;
     }
     .setLevel_Box .level_types{
-        padding:1.47rem 0.0066% 0.529rem 0.0066%;
+        padding:0.50rem 0.0066% 0.18rem 0.0066%;
     }
     .level_types .level_type{
         width:42.4%;
-        height:2.35rem;
-        line-height: 2.4rem;
+        height:0.80rem;
+        line-height: 0.82rem;
         color:  RGBA(74, 74, 74, 0.5);
-        font-size: 0.88235rem;
+        font-size: 0.30rem;
         border:1px solid RGBA(69, 75, 84, 0.1);
-        border-radius: 0.294rem;
+        border-radius: 0.10rem;
         text-align: center;
         float: left;
-        margin:0 3.33% 1.1764rem 3.33%;
+        margin:0 3.33% 0.40rem 3.33%;
     }
     .level_types .checked_type{
         color:RGBA(254, 122, 3, 1);
         border-color: RGBA(254, 122, 3, 1);
     }
-    .level_detail{padding: 0 0.88235rem;}
+    .level_detail{padding: 0 0.30rem;}
     .level_detail>div{
-        line-height: 1.235rem;
+        line-height: 0.42rem;
     }
     .level_detail span{
         color:RGBA(69, 75, 84, 1);
-        font-size: 0.88235rem;
+        font-size: 0.30rem;
     }
     .level_number{
         border-bottom:1px solid RGBA(69, 75, 84, 0.09);
-        margin-bottom: 0.70588rem;
-        padding-bottom:0.70588rem;
+        margin-bottom: 0.24rem;
+        padding-bottom:0.24rem;
     }
     .level_number input{
         text-align: center;
         width:70%;
-        height:1.235rem;
-        font-size: 0.88235rem;
+        height:0.42rem;
+        font-size: 0.30rem;
         color:RGBA(69, 75, 84, 1) !important;;
     }
     .level_photo span{
         display: block;
-        padding-bottom:0.70588rem;
+        padding-bottom:0.24rem;
     }
     .level_photo .photo_box{
-        min-height:8rem;
+        min-height:2.72rem;
         border:1px solid RGBA(69, 75, 84, 0.09);
         margin:0 auto;
         position: relative;
     }
     .photo_box p{
         color:RGBA(69, 75, 84, 0.5);
-        font-size: 0.70588rem;
+        font-size: 0.24rem;
         text-align: center;
         position: absolute;
         width:100%;
         top:60%;
     }
     .photo_box .addIcon{
-        width:2.52rem;
+        width:0.86rem;
         position: absolute;
         left:50%;
-        margin-left: -1.26rem;
+        margin-left: -0.43rem;
         top:20%;
     }
     .photo_box .imgFile{

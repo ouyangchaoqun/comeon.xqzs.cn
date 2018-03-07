@@ -29,6 +29,7 @@
 
     }
 </script>
+
 <style>
-    .reviewing{ text-align: center; width: 100%; background: url(http://oss.xqzs.cn/resources/psy/answer/join_reviewing.png) no-repeat  top center ;  background-size: 7rem; font-size:0.7647058823529412rem; color: #666; padding-top: 8.5rem ; margin-top: 40%  }
+    .reviewing{ text-align: center; width: 100%; background: url(http://oss.xqzs.cn/resources/psy/answer/join_reviewing.png) no-repeat  top center ;  background-size: 2.38rem; font-size:0.26rem; color: #666; padding-top: 2.89rem ; margin-top: 40%  }
 </style>

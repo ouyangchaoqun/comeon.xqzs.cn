@@ -3,7 +3,7 @@
         <div class="select_type" v-show="myask_mask_flag"  @click="hide_myask_mask()">
             <div class="myask_class myask_know_box" @click.stop>
                 <h3>解答须知</h3>
-                <ul style="overflow: auto;height: 12.35294rem;width:100%;">
+                <ul style="overflow: auto;height: 3.48rem;;width:100%;">
                     <li><b>1.</b>提交问题，设置赏金支付后，心情指数将为您匹配专业咨询师开始抢答。
                         <p>（1）设置的赏金越高，匹配的咨询师等级越高，抢答的咨询师越多。</p>
                         <p>（2）问题描述越清楚，咨询师的回答将精准。</p>
@@ -562,75 +562,75 @@
 </script>
 <style>
     .joinmore_box{background: #fff;}
-    .joinmore_box header{background: rgba(36,37,61,0.3);height: 11.76471rem;padding: 0 0.88235rem;color:#fff;font-size: 0.76471rem;position: relative}
+    .joinmore_box header{background: rgba(36,37,61,0.3);height: 4.00rem;padding: 0 0.30rem;color:#fff;font-size: 0.26rem;position: relative}
     .joinmore_box header span{color:rgba(255,0,0,1)}
-    .joinmore_box header p{position: absolute;bottom:1.176471rem;}
-    .joinmore_box header .headerImg_box{width:5.1471rem;height:5.1471rem;background: #fff;margin:0 auto;position: relative;top:1.471rem;}
-    .joinmore_box header .headerImg{width:5.1471rem;height:5.1471rem;background: url("http://oss.xqzs.cn/resources/psy/joinHeaderImg.png") no-repeat;background-size: 100% 100%;}
-    .joinmore_box header .headerImg_box .smallImg{position: absolute;right:-1rem;bottom:-0.5rem;width:2rem;height:2rem;}
-    .joinmore_box .title{border-bottom:1px solid rgba(224,224,225,1);color:rgba(36,37,61,1);font-size: 0.8235rem;line-height: 2.529rem;padding-left:1.8235rem;padding-right:0.88235rem;position: relative}
-    .joinmore_box .title span{color:rgba(255,0,0,1);font-size: 0.76471rem;position: absolute;left:0.88235rem;height:2rem;top:50%;margin-top:-1rem;line-height: 2.2rem;}
-    .joinmore_box .title i{font-style: normal;color:rgba(36,37,61,0.5);font-size: 0.6471rem;margin-left: 0.6471rem;}
-    .joinmore_box .title_bottom{border-bottom: 0.471rem solid rgba(245,245,245,1);padding:0.588235rem 0.88235rem 0.588235rem 1.6rem;position: relative}
-    .joinmore_box .title_bottom .set_box{background: rgba(245,245,245,1);line-height: 2.35rem;color:rgba(36,37,61,0.5);font-size: 0.76471rem;padding-left: 0.588235rem;}
-    .joinmore_box .title_bottom .set_box input{margin-left:1rem;line-height:2.35rem;color:rgba(253,115,1,1);border:0;outline: none;background: none;font-size: 0.76471rem;width:50%;}
-    .joinmore_box .title_bottom .setPrice_box{margin-bottom: 0.941rem;}
-    .joinmore_box .addClass{width:5.294rem;height:2.1176471rem;display: block}
-    .joinmore_box .bottom_left{font-size: 0.76471rem;color:rgba(36,37,61,0.5);display: inline-block;width:85%;overflow: hidden;
+    .joinmore_box header p{position: absolute;bottom:0.40rem;}
+    .joinmore_box header .headerImg_box{width:1.75rem;height:1.75rem;background: #fff;margin:0 auto;position: relative;top:0.50rem;}
+    .joinmore_box header .headerImg{width:1.75rem;height:1.75rem;background: url("http://oss.xqzs.cn/resources/psy/joinHeaderImg.png") no-repeat;background-size: 100% 100%;}
+    .joinmore_box header .headerImg_box .smallImg{position: absolute;right:-0.34rem;bottom:-0.17rem;width:0.68rem;height:0.68rem;}
+    .joinmore_box .title{border-bottom:1px solid rgba(224,224,225,1);color:rgba(36,37,61,1);font-size: 0.28rem;line-height: 0.86rem;padding-left:0.62rem;padding-right:0.30rem;position: relative}
+    .joinmore_box .title span{color:rgba(255,0,0,1);font-size: 0.26rem;position: absolute;left:0.30rem;height:0.68rem;top:50%;margin-top:-0.34rem;line-height: 0.75rem;}
+    .joinmore_box .title i{font-style: normal;color:rgba(36,37,61,0.5);font-size: 0.22rem;margin-left: 0.22rem;}
+    .joinmore_box .title_bottom{border-bottom: 0.16rem solid rgba(245,245,245,1);padding:0.20rem 0.30rem 0.20rem 0.54rem;position: relative}
+    .joinmore_box .title_bottom .set_box{background: rgba(245,245,245,1);line-height: 0.80rem;color:rgba(36,37,61,0.5);font-size: 0.26rem;padding-left: 0.20rem;}
+    .joinmore_box .title_bottom .set_box input{margin-left:0.34rem;line-height:0.80rem;color:rgba(253,115,1,1);border:0;outline: none;background: none;font-size: 0.26rem;width:50%;}
+    .joinmore_box .title_bottom .setPrice_box{margin-bottom: 0.32rem;}
+    .joinmore_box .addClass{width:1.80rem;height:0.72rem;display: block}
+    .joinmore_box .bottom_left{font-size: 0.26rem;color:rgba(36,37,61,0.5);display: inline-block;width:85%;overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;}
-    .joinmore_box .bottom_right{font-size: 0.70588235rem;color:rgba(253,115,1,1);float: right;position: absolute;right:0.88235rem;top:0.588235rem;}
+    .joinmore_box .bottom_right{font-size: 0.24rem;color:rgba(253,115,1,1);float: right;position: absolute;right:0.30rem;top:0.20rem;}
 
-    .joinmore_box .title_bottom .class_style{font-size: 0.7058823529411765rem;background: rgba(253,115,1,1);color:#fff;margin-right: 0.588235rem;padding: 0.294rem 0.588235rem;border-radius: 0.294rem;}
-    .joinmore_box .subBtn_nor{background: linear-gradient(rgba(255,158,25,0.5),rgba(253,115,1,0.5)); line-height: 2.588235rem;color:rgba(255,255,255,1);font-size: 1.0588235rem;text-align: center;margin-top: 1.4rem;}
+    .joinmore_box .title_bottom .class_style{font-size: 0.24rem;background: rgba(253,115,1,1);color:#fff;margin-right: 0.20rem;padding: 0.10rem 0.20rem;border-radius: 0.10rem;}
+    .joinmore_box .subBtn_nor{background: linear-gradient(rgba(255,158,25,0.5),rgba(253,115,1,0.5)); line-height: 0.88rem;color:rgba(255,255,255,1);font-size: 0.36rem;text-align: center;margin-top: 0.48rem;}
     .joinmore_box .subBtn_per{background: linear-gradient(rgba(255,158,25,1),rgba(253,115,1,1)); }
-    .joinmore_box .need_know_box{color:rgba(36,37,61,0.5);display: inline-block;float: right;font-size: 0.70588235rem;position: relative;}
-    .joinmore_box .need_know_box img{width:0.8235rem;height:0.8235rem;position: absolute;left:-1.176471rem;top:50%;margin-top: -0.41176471rem;}
+    .joinmore_box .need_know_box{color:rgba(36,37,61,0.5);display: inline-block;float: right;font-size: 0.24rem;position: relative;}
+    .joinmore_box .need_know_box img{width:0.28rem;height:0.28rem;position: absolute;left:-0.40rem;top:50%;margin-top: -0.14rem;}
 
     .joinmore_box .myask_know_box{
-        padding-top: 1.1176471rem;
+        padding-top: 0.38rem;
         text-align: left;
         color: rgba(36,37,61,0.7);
-        font-size:0.8235rem;
-        line-height: 1.176471rem;
+        font-size:0.28rem;
+        line-height: 0.40rem;
     }
     .joinmore_box .myask_know_box li{
-        padding: 0 0.88235rem;
-        margin-bottom: 0.588235rem;
+        padding: 0 0.30rem;
+        margin-bottom: 0.20rem;
     }
     .joinmore_box .myask_know_box b{
         color: rgba(36,37,61,1);
     }
     .joinmore_box .myask_class{
-        width:16.470588rem;
+        width:12.20rem;
         text-align: left;
-        padding-top: 1.1176471rem;
+        padding-top: 0.38rem;
         background: #fff;
         color: rgba(36,37,61,0.5);
-        font-size: 0.70588rem;
+        font-size: 0.24rem;
         border-radius: 5px;
         position: absolute;
         top:20%;
         left:50%;
-        margin-left: -8.235294rem;
+        margin-left: -2.80rem;
         overflow: hidden;
         z-index: 1001;
     }
     .joinmore_box .myask_class h3{
-        font-size:1.0588235rem;
+        font-size:0.36rem;
         font-family:PingFangSC-Regular;
         color:rgba(36,37,61,1);
         line-height:1;
-        margin-bottom: 1.23588rem;
+        margin-bottom: 0.42rem;
         width:100%;
         text-align: center;
     }
     .joinmore_box .myask_class_true{
-        font-size: 1.0588235rem;
-        height:2.941176rem;
-        line-height: 2.941176rem;
+        font-size: 0.36rem;
+        height:1.00rem;
+        line-height: 1.00rem;
         color: rgba(253,114,6,1);
         text-align: center;
         border-top: 1px solid #eee;

@@ -105,11 +105,11 @@
 </script>
 <style>
     .answer_join_field_box .sub_title{
-        font-size: 0.70588235rem; color:#999;     line-height: 1; text-align: center;
+        font-size: 0.24rem; color:#999;     line-height: 1; text-align: center;
     }
 
-    .answer_join_field_box .types{ margin:5rem  0.88235rem;}
-    .answer_join_field_box .types .item{  width: 27%; margin: .8rem 3.166665% ; text-align: center ;    line-height:2.058823529411765rem; float:left;  }
-    .answer_join_field_box .types .item span{color:#666;border: 0.0588235294117647rem solid #E5E5E5 ; display: block;border-radius:1.029411764705882rem; font-size:0.8235294117647059rem; }
-    .answer_join_field_box .types .item.on span{ color:rgba(254,115,1,1);border: 0.0588235294117647rem solid rgba(254,115,1,1); }
+    .answer_join_field_box .types{ margin:1.70rem  0.30rem;}
+    .answer_join_field_box .types .item{  width: 27%; margin: 0.27rem 3.166665% ; text-align: center ;    line-height:0.70rem; float:left;  }
+    .answer_join_field_box .types .item span{color:#666;border: 0.02rem solid #E5E5E5 ; display: block;border-radius:0.35rem; font-size:0.28rem; }
+    .answer_join_field_box .types .item.on span{ color:rgba(254,115,1,1);border: 0.02rem solid rgba(254,115,1,1); }
 </style>

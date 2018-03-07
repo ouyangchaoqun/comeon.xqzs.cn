@@ -372,28 +372,28 @@
 </script>
 <style>
     .answer_answer_box{ width: 100%; overflow: hidden}
-    .answer_answer_box .answer{ background: #fff; padding:1.176471rem 0.8823529411764706rem 0.471rem 0.88235rem;  position: relative; border-bottom: 0.471rem solid #F4F4F7 }
-   .answer_answer_box .answer .img{ width: 1.70588235rem; height: 1.70588235rem; float:left; }
-   .answer_answer_box .answer .img img{ width: 100%; height: 100%; border-radius: 50%}
-   .answer_answer_box .answer .info .names{ font-size: 0.7058823529411765rem;  color:rgba(36,37,61,0.5); margin-bottom: 0.471rem; line-height: 1.70588235rem}
+    .answer_answer_box .answer{ background: #fff; padding:0.40rem 0.30rem 0.16rem 0.30rem;  position: relative; border-bottom: 0.16rem solid #F4F4F7 }
+    .answer_answer_box .answer .img{ width: 0.58rem; height: 0.58rem; float:left; }
+    .answer_answer_box .answer .img img{ width: 100%; height: 100%; border-radius: 50%}
+    .answer_answer_box .answer .info .names{ font-size: 0.24rem;  color:rgba(36,37,61,0.5); margin-bottom: 0.16rem; line-height: 0.58rem}
     .answer_answer_box .answer .info .names span{
-        margin-left: 0.588235rem;
+        margin-left: 0.20rem;
     }
-   .answer_answer_box .answer .info .content{  font-size: 0.8823529411764706rem; color:rgba(36,37,61,1); line-height:1.176470588235294rem; margin-bottom:  0.8235rem;width:98%;}
-   .answer_answer_box .answer .info .last_time{ line-height:1;font-size: 0.76471rem;color:rgba(36,37,61,0.5);margin-bottom: 0.529rem;
+    .answer_answer_box .answer .info .content{  font-size: 0.30rem; color:rgba(36,37,61,1); line-height:0.40rem; margin-bottom:  0.28rem;width:98%;}
+    .answer_answer_box .answer .info .last_time{ line-height:1;font-size: 0.26rem;color:rgba(36,37,61,0.5);margin-bottom: 0.18rem;
     }
     .answer_answer_box .answer .info .type span{ color:rgba(36,37,61,0.5);}
-   .answer_answer_box .answer .price{ font-size: 0.70588235rem;color:rgba(254,115,1,1); float: right}
-    .answer_answer_box .answer .info  .audio{ margin-top: 0.6rem;}
+    .answer_answer_box .answer .price{ font-size: 0.24rem;color:rgba(254,115,1,1); float: right}
+    .answer_answer_box .answer .info  .audio{ margin-top: 0.20rem;}
 
 
     /*播放*/
-    .answer_answer_box   .time_go{ position: relative;  height: 6.2rem; width: 6.2rem; margin: 0 auto;}
-    .answer_answer_box  .time_go .playing { height: 6.2rem; width: 6.2rem; border-radius: 50%; background: #00b9e8; position: absolute; top:0;left:0; text-align: center; color:#fff; font-size: 1.764705882352941rem; line-height: 6.2rem;}
+    .answer_answer_box   .time_go{ position: relative;  height: 2.11rem; width: 2.11rem; margin: 0 auto;}
+    .answer_answer_box  .time_go .playing { height: 2.11rem; width: 2.11rem; border-radius: 50%; background: #00b9e8; position: absolute; top:0;left:0; text-align: center; color:#fff; font-size: 0.60rem; line-height: 2.11rem;}
     .answer_answer_box   .play{
-           opacity: 0.1;
-           transform:scale(1.6,1.6);
-       }
+        opacity: 0.1;
+        transform:scale(1.6,1.6);
+    }
     .answer_answer_box   .play2{
         opacity: 0.3;
         transform:scale(1.4,1.4);
@@ -412,8 +412,8 @@
     .answer_answer_box  .play_go .play2{
         animation-delay: -0.6s;
         -webkit-animation-delay: -0.6s;
-            animation: playing 1s infinite;
-            -webkit-animation: playing 1s infinite;
+        animation: playing 1s infinite;
+        -webkit-animation: playing 1s infinite;
 
     }
     .answer_answer_box  .play_go .play3{
@@ -439,26 +439,26 @@
 
 
 
-    .answer_answer_box  .times{ padding: 0.2rem 2.5rem; background: #fff}
-    .answer_answer_box   .times .bg{ background: #163201; height: 2.94117647058823rem;  border-radius: 1.470588235294118rem ; }
-    .answer_answer_box    .times .bg .in{ padding:  0.1470588235294118rem; }
-    .answer_answer_box    .times .bg .go{ background: #09bb07; height: 2.647058823529412rem; min-width:2.647058823529412rem;  width: 0; border-radius:1.323529411764706rem;      }
-    .answer_answer_box  .times .last_time{ text-align: center; color:#666; margin-top: 0.5rem; font-size: 1.529411764705882rem;}
-    .answer_answer_box  .action_btn{ background: #fff; padding: 6.4rem 1rem 0 1rem; display: -webkit-box; display: -webkit-flex;  display: flex;}
-    .answer_answer_box  .action_btn .item{  -webkit-box-flex: 1;  -webkit-flex: 1;  flex: 1;  text-align: center; color:#666; font-size: 0.7647058823529412rem;  }
-    .answer_answer_box  .action_btn .item .txt{ margin-top: 0.6rem}
-    .answer_answer_box  .audio_btn_in{ background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1)); border-radius: 50%; height: 4.117647058823529rem; width: 4.117647058823529rem;
+    .answer_answer_box  .times{ padding: 0.07rem 0.85rem; background: #fff}
+    .answer_answer_box   .times .bg{ background: #163201; height: 1.00rem;  border-radius: 0.50rem ; }
+    .answer_answer_box    .times .bg .in{ padding:  0.05rem; }
+    .answer_answer_box    .times .bg .go{ background: #09bb07; height: 0.90rem; min-width:0.90rem;  width: 0; border-radius:0.45rem;      }
+    .answer_answer_box  .times .last_time{ text-align: center; color:#666; margin-top: 0.17rem; font-size: 0.52rem;}
+    .answer_answer_box  .action_btn{ background: #fff; padding: 2.18rem 0.34rem 0 0.34rem; display: -webkit-box; display: -webkit-flex;  display: flex;}
+    .answer_answer_box  .action_btn .item{  -webkit-box-flex: 1;  -webkit-flex: 1;  flex: 1;  text-align: center; color:#666; font-size: 0.26rem;  }
+    .answer_answer_box  .action_btn .item .txt{ margin-top: 0.20rem}
+    .answer_answer_box  .audio_btn_in{ background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1)); border-radius: 50%; height: 1.40rem; width: 1.40rem;
         -webkit-box-shadow:0 0 8px rgba(255,158,25,1);box-shadow:0 0 8px rgba(255,158,25,1);  position: relative; margin: 0 auto}
     .answer_answer_box .audio_btn_in:active{ background: rgba(253,114,6,0.6)}
     .answer_answer_box  .audio_btn_in:before{content: " " ; display: block ; position: absolute; top:50%; left:50% ;}
-    .answer_answer_box   .audio_begin:before{ background:url(http://oss.xqzs.cn/resources/psy/audio_btn_begin1.png)  no-repeat; background-size:  1.352941176470588rem; width:1.352941176470588rem;; height: 1.882352941176471rem;  margin-left: -0.676470588235294rem; margin-top: -0.9411764705882355rem;  }
-    .answer_answer_box   .audio_end:before{ background:#fff; background-size:  1.235294117647059rem; width:1.235294117647059rem;; height: 1.235294117647059rem;  margin-left: -0.6176470588235294rem; margin-top: -0.6176470588235294rem; border-radius: 5px ;   }
-    .answer_answer_box   .audio_play,.audio_send{width:2.588rem;height:2.588rem;background:#ccc;border-radius: 50%;margin:0.76471rem auto;color:#fff;font-size: 0.76471rem;line-height: 2.588rem}
-    .answer_answer_box .audio_send  img{position: absolute;left:50%;top:1.176rem;margin-left:-0.88235rem;width:1.76471rem}
-    .answer_answer_box   .audio_cant_begin:before{ background:url(http://oss.xqzs.cn/resources/psy/audio_btn_begin1.png)  no-repeat; background-size:  1.352941176470588rem; width:1.352941176470588rem;; height: 1.882352941176471rem;  margin-left: -0.676470588235294rem; margin-top: -0.9411764705882355rem;  }
+    .answer_answer_box   .audio_begin:before{ background:url(http://oss.xqzs.cn/resources/psy/audio_btn_begin1.png)  no-repeat; background-size:  0.46rem; width:0.46rem;; height: 0.64rem;  margin-left: -0.23rem; margin-top: -0.32rem;  }
+    .answer_answer_box   .audio_end:before{ background:#fff; background-size:  0.42rem; width:0.42rem;; height: 0.42rem;  margin-left: -0.21rem; margin-top: -0.21rem; border-radius: 5px ;   }
+    .answer_answer_box   .audio_play,.audio_send{width:0.88rem;height:0.88rem;background:#ccc;border-radius: 50%;margin:0.26rem auto;color:#fff;font-size: 0.26rem;line-height: 0.88rem}
+    .answer_answer_box .audio_send  img{position: absolute;left:50%;top:0.40rem;margin-left:-0.30rem;width:0.60rem}
+    .answer_answer_box   .audio_cant_begin:before{ background:url(http://oss.xqzs.cn/resources/psy/audio_btn_begin1.png)  no-repeat; background-size:  0.46rem; width:0.46rem;; height: 0.64rem;  margin-left: -0.23rem; margin-top: -0.32rem;  }
     .answer_answer_box .overStyle{background: #00B9E8;}
     .answer_answer_box .outTimeStyle{background: linear-gradient(to right, rgba(255,158,25,0.4), rgba(253,114,6,0.4))}
-    .answer_answer_box .addPlayBox{position: absolute;bottom:4.5rem;width:100%;}
+    .answer_answer_box .addPlayBox{position: absolute;bottom:1.53rem;width:100%;}
 
 
 

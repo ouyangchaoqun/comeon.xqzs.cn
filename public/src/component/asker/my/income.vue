@@ -155,29 +155,29 @@
 <style>
 
     .asker_my_income_box{position: relative}
-   .asker_my_income_box .my_income .img{ background: url(http://oss.xqzs.cn/resources/psy/asker/income.png) no-repeat; width: 6.21rem; height: 5.941176471rem; background-size:100% 100%; margin: 0 auto ; margin-top:3.7rem; }
-   .asker_my_income_box .my_income{ line-height: 1}
-   .asker_my_income_box .my_income .my_income_txt{ width: 100%; text-align: center; margin-top: 0.76471rem;font-size: 0.8823529411764706rem; color:rgba(36,37,61,1);}
-   .asker_my_income_box .my_income .money{ margin-top: 0.7058823529411765rem; text-align: center; width: 100%; font-size: 2.117647058823529rem;line-height: 1;color:#FE7301}
+    .asker_my_income_box .my_income .img{ background: url(http://oss.xqzs.cn/resources/psy/asker/income.png) no-repeat; width: 2.11rem; height: 2.02rem; background-size:100% 100%; margin: 0 auto ; margin-top:1.26rem; }
+    .asker_my_income_box .my_income{ line-height: 1}
+    .asker_my_income_box .my_income .my_income_txt{ width: 100%; text-align: center; margin-top: 0.26rem;font-size: 0.30rem; color:rgba(36,37,61,1);}
+    .asker_my_income_box .my_income .money{ margin-top: 0.24rem; text-align: center; width: 100%; font-size: 0.72rem;line-height: 1;color:#FE7301}
 
-   .asker_my_income_box  .my_income .get_money{color:rgba(255,255,255,1); margin:0 auto;line-height:2.1176471rem;text-align: center; font-size: 1.0588235rem; margin-top: 2.941176471rem;background: rgba(255,157,24,1);border: 1px solid rgba(229,135,6,0);width: 42%;border-radius: 1.0588235rem;}
+    .asker_my_income_box  .my_income .get_money{color:rgba(255,255,255,1); margin:0 auto;line-height:0.72rem;text-align: center; font-size: 0.36rem; margin-top: 1.00rem;background: rgba(255,157,24,1);border: 1px solid rgba(229,135,6,0);width: 42%;border-radius: 0.36rem;}
     .asker_my_income_box  .my_income .get_money:active{background:rgba(229,135,6,1) ;}
-   .asker_my_income_box .my_income .income_list{ position: absolute;bottom:6rem; text-align: center;  width: 100%}
-   .asker_my_income_box .my_income .income_list span{border-bottom: 1px solid rgba(36,37,61,0.5); font-size: 0.7647058823529412rem; color:rgba(36,37,61,0.5); padding-bottom: 0.35294rem;border-radius: 1px;}
+    .asker_my_income_box .my_income .income_list{ position: absolute;bottom:2.04rem; text-align: center;  width: 100%}
+    .asker_my_income_box .my_income .income_list span{border-bottom: 1px solid rgba(36,37,61,0.5); font-size: 0.26rem; color:rgba(36,37,61,0.5); padding-bottom: 0.12rem;border-radius: 1px;}
 
     .asker_my_income_box .moneyOut_box{width: 100%;height:100%;background: rgba(239,238,244,1);position: absolute;top:0; bottom:0;}
-    .asker_my_income_box .money_dialog{  margin: 1.235rem 0.88235rem;margin-bottom: 0;background: rgba(255,255,255,1)}
-    .asker_my_income_box .money_dialog_title{line-height: 3.0588rem;font-size: 0.76471rem;color:rgba(255,157,24,1);background: rgba(250,250,250,1);padding-left: 1.76471rem;}
-    .asker_my_income_box .money_dialog_detail{padding:1.35rem 1.76471rem;color:rgba(51,51,51,1);}
-    .asker_my_income_box .money_dialog_detail .detail_top{margin-bottom: 1.6471rem;font-size: 0.8235rem;}
-    .asker_my_income_box .money_dialog_detail .detail_input{margin-bottom: 1.176471rem;padding-bottom: 0.35rem;height:3.0588rem;border-bottom: 1px solid rgba(231,231,231,1);}
-    .asker_my_income_box .money_dialog_detail .detail_input span{font-size: 1.76471rem;color:rgba(51,51,51,1);line-height: 1;float: left;margin-right: 0.588235rem;}
-    .asker_my_income_box .money_dialog_detail .detail_input input{outline: none;height:100%;font-size: 2.4rem;color: rgba(255,157,24,1);text-shadow: 0px 0px 0px rgba(51,51,51,1);-webkit-text-fill-color: transparent;width:70%;float: left}
-    .asker_my_income_box .money_dialog_detail .detail_warn{color:rgba(118,118,118,1);font-size: 0.7671rem;line-height: 1; margin-bottom: 1.176471rem;}
+    .asker_my_income_box .money_dialog{  margin: 0.42rem 0.30rem;margin-bottom: 0;background: rgba(255,255,255,1)}
+    .asker_my_income_box .money_dialog_title{line-height: 1.04rem;font-size: 0.26rem;color:rgba(255,157,24,1);background: rgba(250,250,250,1);padding-left: 0.60rem;}
+    .asker_my_income_box .money_dialog_detail{padding:0.46rem 0.60rem;color:rgba(51,51,51,1);}
+    .asker_my_income_box .money_dialog_detail .detail_top{margin-bottom: 0.56rem;font-size: 0.28rem;}
+    .asker_my_income_box .money_dialog_detail .detail_input{margin-bottom: 0.40rem;padding-bottom: 0.12rem;height:1.04rem;border-bottom: 1px solid rgba(231,231,231,1);}
+    .asker_my_income_box .money_dialog_detail .detail_input span{font-size: 0.60rem;color:rgba(51,51,51,1);line-height: 1;float: left;margin-right: 0.20rem;}
+    .asker_my_income_box .money_dialog_detail .detail_input input{outline: none;height:100%;font-size: 0.82rem;color: rgba(255,157,24,1);text-shadow: 0px 0px 0px rgba(51,51,51,1);-webkit-text-fill-color: transparent;width:70%;float: left}
+    .asker_my_income_box .money_dialog_detail .detail_warn{color:rgba(118,118,118,1);font-size: 0.26rem;line-height: 1; margin-bottom: 0.40rem;}
     .asker_my_income_box .money_dialog_detail .detail_warn .warn_red{color:rgba(255,51,0,1)}
-    .asker_my_income_box .dialog_btn{background: rgba(255,157,24,1);line-height: 2.647rem;font-size: 1.0588235rem;color:rgba(255,255,255,1);border-radius: 0.294rem;text-align: center;}
-    .asker_my_income_box .disabled_btn{line-height: 2.647rem;font-size: 1.0588235rem;color:rgba(255,255,255,1);border-radius: 0.294rem;text-align: center;
+    .asker_my_income_box .dialog_btn{background: rgba(255,157,24,1);line-height: 0.90rem;font-size: 0.36rem;color:rgba(255,255,255,1);border-radius: 0.10rem;text-align: center;}
+    .asker_my_income_box .disabled_btn{line-height: 0.90rem;font-size: 0.36rem;color:rgba(255,255,255,1);border-radius: 0.10rem;text-align: center;
     }
     .asker_my_income_box .dialog_btn:active{background: rgba(229,135,6,1);}
-    .asker_my_income_box .detail_input img{width:0.88235rem;float: right;margin-top: 1rem;}
+    .asker_my_income_box .detail_input img{width:0.30rem;float: right;margin-top: 0.34rem;}
 </style>

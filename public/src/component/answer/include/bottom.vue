@@ -1,5 +1,5 @@
 <template >
-    <div  class="answer_bottom_box" :style="'height:'+height+'rem'">
+    <div  class="answer_bottom_box" :style="'height:'+height+'px'">
         <router-link to='/asker/listen' >
             <span class="icon home"></span>咨询入口
         </router-link>
@@ -16,12 +16,12 @@
 </template>
 <style>
     .answer_bottom_box {
-        height:2.882352941176471rem;
+        height:0.98rem;
         border-top: 1px solid #eee;
         display: -webkit-box;
         display: -webkit-flex;
         display: flex;
-        position: absolute; bottom: 0; left:0; line-height: 1; font-size: 0.9rem ; background: #fff;   color:rgba(36,37,61,1);
+        position: absolute; bottom: 0; left:0; line-height: 1; font-size: 0.31rem ; background: #fff;   color:rgba(36,37,61,1);
         width: 100%;
     }
     .answer_bottom_box a:active,.answer_bottom_box a.on{ color:#FE7301}
@@ -30,19 +30,19 @@
         -webkit-flex: 1;
         flex: 1;
         text-align: center;
-        font-size: 0.588235rem;
+        font-size: 0.20rem;
         vertical-align: text-bottom;
     }
-    .answer_bottom_box a .icon{ display: block;  width: 1.588235294117647rem;   margin: 0.1rem auto;background: url(http://oss.xqzs.cn/resources/psy/answer/tab_icon.png) no-repeat; background-size: 6.3529411764705882352941176470588rem; height: 1.588235294117647rem  }
+    .answer_bottom_box a .icon{ display: block;  width: 0.54rem;   margin: 0.03rem auto;background: url(http://oss.xqzs.cn/resources/psy/answer/tab_icon.png) no-repeat; background-size: 2.16rem; height: 0.54rem  }
     .answer_bottom_box a .icon.race{  background-position: 0 0;}
-    .answer_bottom_box a .icon.ask{background-position: -1.588235294117647rem 0;}
-    .answer_bottom_box a .icon.my{  background-position: -3.176470588235294rem  0;}
-    .answer_bottom_box a .icon.home{  background-position: -4.764705882352941rem  0;}
+    .answer_bottom_box a .icon.ask{background-position: -0.54rem 0;}
+    .answer_bottom_box a .icon.my{  background-position: -1.08rem  0;}
+    .answer_bottom_box a .icon.home{  background-position: -1.62rem  0;}
 
-    .answer_bottom_box a:active .icon.race,.answer_bottom_box a.on .icon.race{ background-position: 0 -1.588235294117647rem ;}
-    .answer_bottom_box a:active .icon.ask,.answer_bottom_box a.on  .icon.ask{background-position: -1.588235294117647rem -1.588235294117647rem ;}
-    .answer_bottom_box a:active .icon.my,.answer_bottom_box a.on  .icon.my{   background-position: -3.176470588235294rem  -1.588235294117647rem ;}
-    .answer_bottom_box a:active .icon.home,.answer_bottom_box a.on  .icon.home{   background-position: -4.764705882352941rem  -1.588235294117647rem ;}
+    .answer_bottom_box a:active .icon.race,.answer_bottom_box a.on .icon.race{ background-position: 0 -0.54rem ;}
+    .answer_bottom_box a:active .icon.ask,.answer_bottom_box a.on  .icon.ask{background-position: -0.54rem -0.54rem ;}
+    .answer_bottom_box a:active .icon.my,.answer_bottom_box a.on  .icon.my{   background-position: -1.08rem  -0.54rem ;}
+    .answer_bottom_box a:active .icon.home,.answer_bottom_box a.on  .icon.home{   background-position: -1.62rem  -0.54rem ;}
 
 </style>
 <script>

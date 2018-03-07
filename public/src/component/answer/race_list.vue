@@ -200,20 +200,19 @@
     }
 </script>
 <style>
-    .answer_race_list .list .item{ background: #fff; padding:0.8823529411764706rem; margin-bottom:0.41176471rem; }
-    .answer_race_list  .list .item .img{ width: 1.70588235rem; height: 1.70588235rem;margin-right: 0.588235rem }
+    .answer_race_list .list .item{ background: #fff; padding:0.30rem; margin-bottom:0.14rem; }
+    .answer_race_list  .list .item .img{ width: 0.58rem; height: 0.58rem;margin-right: 0.20rem }
     .answer_race_list  .list .item .img img{ width: 100%; height: 100%; border-radius: 50%}
-    .answer_race_list  .list .info{line-height: 1.70588235rem;display: flex;display:-webkit-flex;position: relative;margin-bottom: 2px;}
-    .answer_race_list  .list .info .type{ font-size: 0.76471rem;   color:rgba(36,37,61,0.5);}
-    .answer_race_list .item .content{ font-size: 0.8823529411764706rem;color:rgba(36,37,61,1);margin-bottom: 1.176471rem;padding-left: 2.26471rem}
-    .answer_race_list .item .content>div:nth-of-type(1){margin-bottom:0.588235rem;}
-    .answer_race_list .item .last_time{font-size: 0.70588235rem;color:rgba(36,37,61,0.5);line-height: 1}
-    .answer_race_list  .list .info .price{ position:absolute;right:0;font-size: 0.70588235rem;color:rgba(254,115,1,1);text-align: right;width: 7rem;}
+    .answer_race_list  .list .info{line-height: 0.58rem;display: flex;display:-webkit-flex;position: relative;margin-bottom: 2px;}
+    .answer_race_list  .list .info .type{ font-size: 0.26rem;   color:rgba(36,37,61,0.5);}
+    .answer_race_list .item .content{ font-size: 0.30rem;color:rgba(36,37,61,1);margin-bottom: 0.40rem;padding-left: 0.77rem}
+    .answer_race_list .item .content>div:nth-of-type(1){margin-bottom:0.20rem;}
+    .answer_race_list .item .last_time{font-size: 0.24rem;color:rgba(36,37,61,0.5);line-height: 1}
+    .answer_race_list  .list .info .price{ position:absolute;right:0;font-size: 0.24rem;color:rgba(254,115,1,1);text-align: right;width: 2.38rem;}
     .answer_race_list .list .btn_race:active{
         background: linear-gradient(to right, rgb(238, 146, 24), rgb(238, 109, 6));
     }
-    .answer_race_list .list .btn_race{ color:#fff; text-align: center; width: 5.295rem; margin: 0 auto; line-height: 1.76471rem; border-radius: 1.2rem; background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1));font-size: 0.88235rem}
-
+    .answer_race_list .list .btn_race{ color:#fff; text-align: center; width: 1.80rem; margin: 0 auto; line-height: 0.60rem; border-radius: 0.41rem; background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1));font-size: 0.30rem}
 
 
 </style>

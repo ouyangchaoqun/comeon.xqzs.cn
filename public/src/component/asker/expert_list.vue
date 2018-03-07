@@ -1,5 +1,5 @@
 <template >
-    <div style="height: 100%" class="answer_index">
+    <div style="height: 100%" class="expert_list">
         <div v-title>{{titleVal}}</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
 
@@ -15,7 +15,8 @@
                             <div class="img"><img :src="item.faceUrl"></div>
                             <div class="itemDetail_right">
                                 <div class="itemHeader">
-                                    <div>{{item.nickName}} <span>{{item.city}}</span><span style="float: right;color: #2EB1FF;font-size: 0.70rem">找TA咨询</span></div>
+                                    <div>{{item.nickName}} <span>{{item.city}}</span><span style="float: right;color: #2EB1FF;font-size: 0.24rem
+">找TA咨询</span></div>
                                     <div class="header_addRightStyle" v-if="false">
                                         <div class="headerImg" @click.stop="play(index)">
                                             <div :class="{addPlaying:item.playing,addPaused:item.paused}"></div>
@@ -29,10 +30,10 @@
                                 </div>
                                 <div class="class_s other">
                                     <span class="price" ><b>问价</b>  <a>￥{{item.price}}</a></span>
-                                    <div class="class_right">
+                                    <span  class="class_right">
                                         <span v-if="item.answerCount!=null">{{item.answerCount}} 个回答</span>
                                         <span v-if="item.listenCount!=null">{{item.listenCount}} 次被偷听</span>
-                                    </div>
+                                    </span>
 
                                 </div>
                             </div>
@@ -303,24 +304,24 @@
 </script>
 <style>
     .class_right{right:0;top:0;width:70%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;text-align: right}
-    .class_right span:nth-of-type(1){margin-right: 0.294rem;}
-    .header_addRightStyle{position: absolute;right:0;top:-1px;display: flex;color:rgba(36,37,61,0.5);font-size: 0.70588rem;font-weight:normal}
-   .answer_index .answer_list .headerImg{width:1.471rem;height:1.471rem;border-radius: 50%;border:1px solid rgba(253,87,57,1);position: relative;margin-right: 0.35rem;}
-    .answer_index .answer_list .headerImg div{background: url("http://oss.xqzs.cn/resources/psy/playing3.png") no-repeat;content: '';width:0.88235rem;height:0.76471rem;position: absolute;left:5px;top:6px;background-size:100%;}
+    .class_right span:nth-of-type(1){margin-right: 0.10rem;}
+    .header_addRightStyle{position: absolute;right:0;top:-1px;display: flex;color:rgba(36,37,61,0.5);font-size: 0.24rem;font-weight:normal}
+    .answer_index .answer_list .headerImg{width:0.50rem;height:0.50rem;border-radius: 50%;border:1px solid rgba(253,87,57,1);position: relative;margin-right: 0.12rem;}
+    .answer_index .answer_list .headerImg div{background: url("http://oss.xqzs.cn/resources/psy/playing3.png") no-repeat;content: '';width:0.30rem;height:0.26rem;position: absolute;left:5px;top:6px;background-size:100%;}
     .answer_index .answer_list .headerImg .addPlaying{
         animation: addPlaying 1.5s infinite;
         -webkit-animation: addPlaying 1.5s infinite;
     }
     .answer_index .price{
-        margin-top: 0.82rem;
+        margin-top: 0.28rem;
     }
     .answer_index .class_right{
-        margin-top: 0.82rem;
+        margin-top: 0.28rem;
         position: static;
     }
     .answer_index.face{
-        width: 3.52rem;
-        height: 3.52rem;
+        width: 1.20rem;
+        height: 1.20rem;
         display: inline-block;
         overflow: hidden;
         border-radius: 50%;}
@@ -328,22 +329,21 @@
         width:100%;
         height: 100%;
     }
-    .answer_index .answer_list .headerImg img{width:0.88235rem;height:0.76471rem;display: inline-block;margin-left: 0.3rem;}
-    .answer_index .answer_list .class_s .price{color:#FE7301;}
-    .answer_index .answer_list .class_s .price b{color:rgba(36,37,61,0.5);font-style: normal;font-weight: normal; text-align: left}
+    .answer_index .answer_list .headerImg img{width:0.30rem;height:0.26rem;display: inline-block;margin-left: 0.10rem;}
+
     /*.answer_list .class_s .price a{*/
     /*right: 0;*/
-    /*padding-left: 1rem;*/
+    /*padding-left: 0.34rem;*/
     /*background: url(http://oss.xqzs.cn/resources/psy/asker/asker_left_dotCoin.png)no-repeat;*/
-    /*background-size: 0.85rem 0.8rem;}*/
+    /*background-size: 0.29rem 0.27rem;}*/
 
-    .answer_index  .answer_list .info .other{margin-bottom: 0.88235rem}
-
-
+    .answer_index  .answer_list .info .other{margin-bottom: 0.30rem}
 
 
-    .answer_index .noContent_icon{background: #fff;color:rgba(36,37,61,0.5);font-size: 0.76471rem;text-align: center;}
-    .answer_index .noContent_icon div{margin-top: -3.8rem;}
+
+
+    .answer_index .noContent_icon{background: #fff;color:rgba(36,37,61,0.5);font-size: 0.26rem;text-align: center;}
+    .answer_index .noContent_icon div{margin-top: -1.29rem;}
 
     @keyframes  addPlaying {
         0%{
@@ -359,15 +359,6 @@
             background-size:  100%;
         }
     }
-    .answer_index .itemDetail_class_s .tab_i_i{ color: #FF9966;background:RGBA(254, 122, 3, 0.1);; border-radius:0.1470588235294118rem ; padding: 0.2rem 0.3rem; margin: 0 0.3rem; }
-    .answer_index .itemDetail_class_s .tab_i_i:first-child{ margin-left: 0;}
-    .answer_index .nav_select{ background:RGBA(69, 75, 84, 0.05) ;height: 2.82rem;width: 100%; overflow: hidden;text-align: center;line-height: 2.82rem;font-size: 0.88rem;color: RGBA(69, 75, 84, 0.5)}
-    .answer_index .answer_list .line1{
-        position: absolute;
-        width: 16.94rem;
-        height: 1px;
-        background: #eee;
-        bottom: 2.235rem;
-        right: -0.90rem;
-    }
+      .answer_index .nav_select{ background:RGBA(69, 75, 84, 0.05) ;height: 0.96rem;width: 100%; overflow: hidden;text-align: center;line-height: 0.96rem;font-size: 0.30rem;color: RGBA(69, 75, 84, 0.5)}
+
 </style>

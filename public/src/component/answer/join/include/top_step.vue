@@ -14,37 +14,37 @@
     </div>
 </template>
 <style>
-    .answer_join_top_box{width:100%;position: absolute;bottom:1.471rem;}
+    .answer_join_top_box{width:100%;position: absolute;bottom:0.50rem;}
     /*.answer_join_top_box .title{*/
-        /*color: #333; font-size: 0.9411764705882353rem;  text-align: center; line-height:2.647058823529412rem;}*/
+    /*color: #333; font-size: 0.32rem;  text-align: center; line-height:0.90rem;}*/
     /*.answer_join_top {*/
 
-        /*line-height: 2.647058823529412rem;*/
-        /*font-size: 0.7647058823529412rem;*/
-        /*background: #FEFEFE ;*/
-        /*border-bottom: 1px solid #E5E5E5;*/
-        /*color: #333;*/
-        /*width: 100%;*/
-        /*position: relative;*/
+    /*line-height: 0.90rem;*/
+    /*font-size: 0.26rem;*/
+    /*background: #FEFEFE ;*/
+    /*border-bottom: 1px solid #E5E5E5;*/
+    /*color: #333;*/
+    /*width: 100%;*/
+    /*position: relative;*/
     /*}*/
 
     /*.answer_join_top .step {*/
-        /*width: 100%;*/
-        /*text-align: center;*/
-         /*font-size: 0.8235294117647059rem;*/
+    /*width: 100%;*/
+    /*text-align: center;*/
+    /*font-size: 0.28rem;*/
     /*}*/
 
-    /*.answer_join_top .step span{ font-size:0.9411764705882353rem; }*/
-    .btn_box{display: flex;display: -webkit-flex;text-align: center;line-height: 2.35rem}
-    .btn_box a{flex: 1;border:1px solid rgba(253,115,1,1);margin:0 0.88235rem;border-radius: 1.176471rem;color:rgba(253,115,1,1);background: #fff;}
+    /*.answer_join_top .step span{ font-size:0.32rem; }*/
+    .btn_box{display: flex;display: -webkit-flex;text-align: center;line-height: 0.80rem}
+    .btn_box a{flex: 1;border:1px solid rgba(253,115,1,1);margin:0 0.30rem;border-radius: 0.40rem;color:rgba(253,115,1,1);background: #fff;}
     .btn_box a:last-of-type{color:#fff;background:linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1))}
     .btn_box a:active{
         color:#fff;background:linear-gradient(to right, rgb(217, 128, 25), rgb(220, 107, 6))
     }
-    .text_area{ margin: 0 0.88235rem; margin-top: 1.5rem; border: 1px solid #EAE7E7; border-radius: 0.3rem; overflow: hidden; background: #fff; padding: 0.5rem; position: relative }
-    .text_area textarea{ width: 100%; font-size: 0.7647058823529412rem; line-height: 1.2rem; border: none; max-height:13.23529411764706rem; }
-    .text_area .count{ color:#999; position: absolute; right:0.4rem; bottom:0.4rem; font-size: 0.77rem;}
-    .answer_join_top_box .addStyle{color:#999;height:2.117671rem;line-height: 2.1176471rem;font-size: 0.70588235rem;background: #f4f4f7}
+    .text_area{ margin: 0 0.30rem; margin-top: 0.51rem; border: 1px solid #EAE7E7; border-radius: 0.10rem; overflow: hidden; background: #fff; padding: 0.17rem; position: relative }
+    .text_area textarea{ width: 100%; font-size: 0.26rem; line-height: 0.41rem; border: none; max-height:4.50rem; }
+    .text_area .count{ color:#999; position: absolute; right:0.14rem; bottom:0.14rem; font-size: 0.26rem;}
+    .answer_join_top_box .addStyle{color:#999;height:0.72rem;line-height: 0.72rem;font-size: 0.24rem;background: #f4f4f7}
 </style>
 <script>
     export default {

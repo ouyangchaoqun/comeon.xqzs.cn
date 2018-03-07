@@ -190,39 +190,39 @@
         width: 0;
         height: 0;
         display: inline-block;
-        border-top: 0.4rem solid RGBA(69, 75, 84, 0.2);
-        border-right: 0.4rem solid transparent;
-        border-left: 0.4rem solid transparent;
-        margin-left: 0.2rem;
+        border-top: 0.14rem solid RGBA(69, 75, 84, 0.2);
+        border-right: 0.14rem solid transparent;
+        border-left: 0.14rem solid transparent;
+        margin-left: 0.07rem;
     }
-   .xsanjiao{
+    .xsanjiao{
         width: 0;
         height: 0;
         display: inline-block;
-        border-bottom: 0.4rem solid RGBA(69, 75, 84, 0.2);
-        border-right: 0.4rem solid transparent;
-        border-left: 0.4rem solid transparent;
-        margin-left: 0.2rem;
+        border-bottom: 0.14rem solid RGBA(69, 75, 84, 0.2);
+        border-right: 0.14rem solid transparent;
+        border-left: 0.14rem solid transparent;
+        margin-left: 0.07rem;
     }
 
     .sort_list_item {
         width: 100%;
-        font-size: 0.88rem;
-        height: 2.82rem;
+        font-size: 0.30rem;
+        height: 0.96rem;
         text-align: center;
-        line-height: 2.82rem;
+        line-height: 0.96rem;
         background: #fff;
         border-bottom: 1px solid #eee;
     }
     .sort_list{
-        height: 9.29rem;
+        height: 3.16rem;
         position: absolute;
         z-index: 55;
         width: 100%;
     }
     .class_select {
         width: 100%;
-        height: 9.29rem;
+        height: 3.16rem;
         background: #fff;
         position: absolute;
         z-index: 55;
@@ -230,16 +230,16 @@
 
     .class_list_item {
         float: left;
-        width: 4.588rem;
-       margin-left: 0.65rem;
-        margin-top: 0.73rem;
-        font-size: 0.88rem;
-        height: 1.765rem;
+        width: 1.56rem;
+        margin-left: 0.22rem;
+        margin-top: 0.25rem;
+        font-size: 0.30rem;
+        height: 0.60rem;
         text-align: center;
-        line-height: 1.765rem;
+        line-height: 0.60rem;
         color: RGBA(69, 75, 84, 0.5);
         background: #fff;
-        border-radius: 0.3rem;
+        border-radius: 0.10rem;
         border: 1px solid #eee;
     }
 
@@ -253,10 +253,15 @@
     }
     .downList_mask{
         width: 100%;
-        height: 48rem;
+        height: 16.32rem;
         background: rgba(0,0,0,0.5);
         position: absolute;
         z-index: 54;
     }
-    .nav_select{ background:RGBA(69, 75, 84, 0.05) ;height: 2.82rem;width: 100%; overflow: hidden;text-align: center;line-height: 2.82rem;font-size: 0.88rem;color: RGBA(69, 75, 84, 0.5)}
+    .nav_select{ background:RGBA(69, 75, 84, 0.04) ;height: 0.96rem;width: 100%; overflow: hidden;text-align: center;line-height: 0.96rem;font-size: 0.30rem;color: RGBA(69, 75, 84, 0.5)
+
+
+
+
+    }
 </style>

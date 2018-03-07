@@ -7,7 +7,7 @@
                 <div class="joinSet_sure sure_nor" v-if="!isAllInput">确定</div>
                 <div class="joinSet_sure" @click="submit()" v-if="isAllInput">确定</div>
             </div>
-            <div style="height:0.64rem;background: RGBA(69, 75, 84, 0.05)"></div>
+            <div style="height:0.22rem;background: RGBA(69, 75, 84, 0.05)"></div>
             <div class="validate_box">
                 <div class="mobile__box">
                     <div class="validate_div">
@@ -226,20 +226,20 @@
         height:100%;
         float: left;
         background: #fff;
-        border-radius: 0.294rem;
-        padding-left: 0.647rem;
+        border-radius: 0.10rem;
+        padding-left: 0.22rem;
     }
     .code_left input{
-        font-size: 0.88235rem;
+        font-size: 0.30rem;
     }
     .code_right{
         width: 35%;
         float: right;
         text-align: center;
-        font-size: 0.88235rem;
+        font-size: 0.30rem;
         color:RGBA(255, 255, 255, 1);
         background: RGBA(254, 122, 3, 0.4);
-        border-radius: 0.294rem;
+        border-radius: 0.10rem;
     }
     .code_right_can{
         background: RGBA(254, 122, 3, 1);
@@ -252,7 +252,7 @@
         height:100%;
     }
     .joinmobile_box .validate_box {
-        padding: 1.176rem 0.88235rem 0 0.88235rem;
+        padding: 0.40rem 0.30rem 0 0.30rem;
     }
 
     .joinmobile_box .validate_top {
@@ -273,34 +273,34 @@
 
     .joinmobile_box input {
         outline: none;
-        font-size: 0.88235rem;
+        font-size: 0.30rem;
         color:RGBA(69, 75, 84, 1);
         height:100%;
         width:100%;
     }
 
     .joinmobile_box .input_code {
-        font-size: 0.88235rem;
+        font-size: 0.30rem;
         width: 100%;
         color: rgba(36,37,61,1);
         height:100%;
     }
 
     .joinmobile_box .validate_div {
-        margin-bottom: 1.2rem;
+        margin-bottom: 0.41rem;
     }
 
     .joinmobile_box .joinmobile_input {
-        border-radius: 0.294rem;
+        border-radius: 0.10rem;
         background: #fff;
-        height:2.82rem;
-        line-height: 2.82rem;
-        padding-left: 0.647rem;
+        height:0.96rem;
+        line-height: 0.96rem;
+        padding-left: 0.22rem;
         position: relative;
     }
     .joinmobile_box .joinmobile_code {
-        height:2.82rem;
-        line-height: 2.82rem;
+        height:0.96rem;
+        line-height: 0.96rem;
         position: relative;
     }
 
@@ -309,14 +309,14 @@
         color: #fc0303;
         position: absolute;
         left: 15px;
-       bottom:-2rem;
+        bottom:-0.68rem;
     }
 
     #message {
         font-size: 11px;
         color: rgba(36,37,61,0.5);
         position: absolute;
-        bottom:-3rem;
+        bottom:-1.02rem;
         left: 15px;
 
     }

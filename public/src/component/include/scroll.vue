@@ -207,7 +207,7 @@
     }
     .yo-scroll .inner {
         position: absolute;
-        top: -2rem;
+        top: -0.68rem;
         width: 100%;
         transition-duration: 300ms;
     }
@@ -217,7 +217,7 @@
         left: 0;
         top: 0;
         width: 100%;
-        height: 2rem;
+        height: 0.68rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -246,7 +246,7 @@
     }
 
     .yo-scroll .load-more {
-        height: 3rem;
+        height: 1.02rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -254,7 +254,7 @@
     }
 
     .yo-scroll .load-finish {
-        height: 2rem;
+        height: 0.68rem;
         text-align: center;
     }
 

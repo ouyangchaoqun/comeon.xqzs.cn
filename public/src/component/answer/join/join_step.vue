@@ -112,10 +112,10 @@
                         <div>
                             <span v-if="isModify==0&&showTypes.length==0" class="tip_color">请填写</span>
                             <template v-if="isModify==1&&isShowInfo.domains">
-                                <span v-for="item in isShowInfo.domains" style="margin-left: 0.294rem">{{item.title}}</span>
+                                <span v-for="item in isShowInfo.domains" style="margin-left: 0.10rem">{{item.title}}</span>
                             </template>
                             <template v-if="isModify==0&&showTypes.length!=0" >
-                                <span style="margin-left: 0.294rem" v-for="item in showTypes">{{item}}</span>
+                                <span style="margin-left: 0.10rem" v-for="item in showTypes">{{item}}</span>
                             </template>
                         </div>
                         <i></i>
@@ -807,30 +807,30 @@
 <style>
     .join_stepBox{background: #fff;}
     .join_stepBox .li_right .tip_color{color:RGBA(254, 122, 3, 0.6)}
-    .join_stepBox .li_right{float: right;padding-right: 1.5rem;}
-    .join_stepBox header{padding:0.88235rem;border-bottom: 0.588235rem solid rgba(69, 75, 84, 0.09);line-height: 3.52rem;position: relative}
-    .join_stepBox header img{width:3.52rem;height:3.52rem;float: left}
-    .step_detailBox{margin-bottom: 2rem}
-    .join_stepBox .step_detailBox li{height: 2.88rem;line-height:2.94rem;color:rgba(69, 75, 84, 1);border-bottom: 1px solid rgba(224,224,225,1);padding:0 0.88235rem;font-size: 0.8235rem;position: relative;}
-    .join_stepBox .step_detailBox li .li_right{float: right;padding-right:1.5rem;width:55%;color: rgba(69, 75, 84, 1) !important;}
-    .li_right>div{ width:100%;text-align: right;font-size: 0.8235rem;color: rgba(69, 75, 84, 0.5); overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-    .join_stepBox .li_right i{background: url('http://oss.xqzs.cn/resources/psy/join_right_icon.png') no-repeat center;width: 0.5rem;  height: 1rem;  background-size:100%;  position: absolute;  right: 0.88235rem;  top: 50%;margin-top: -0.5rem;  }
-    .joinStep_bottom{padding:1.76471rem 0.88235rem;padding-top: 0}
-    .join_agre{color:rgba(53, 58, 66, 1);font-size: 0.70588rem;line-height: 1rem;margin-bottom: 1.8rem;}
+    .join_stepBox .li_right{float: right;padding-right: 0.51rem;}
+    .join_stepBox header{padding:0.30rem;border-bottom: 0.20rem solid rgba(69, 75, 84, 0.09);line-height: 1.20rem;position: relative}
+    .join_stepBox header img{width:1.20rem;height:1.20rem;float: left}
+    .step_detailBox{margin-bottom: 0.68rem}
+    .join_stepBox .step_detailBox li{height: 0.98rem;line-height:1.00rem;color:rgba(69, 75, 84, 1);border-bottom: 1px solid rgba(224,224,225,1);padding:0 0.30rem;font-size: 0.28rem;position: relative;}
+    .join_stepBox .step_detailBox li .li_right{float: right;padding-right:0.51rem;width:55%;color: rgba(69, 75, 84, 1) !important;}
+    .li_right>div{ width:100%;text-align: right;font-size: 0.28rem;color: rgba(69, 75, 84, 0.5); overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+    .join_stepBox .li_right i{background: url('http://oss.xqzs.cn/resources/psy/join_right_icon.png') no-repeat center;width: 0.17rem;  height: 0.34rem;  background-size:100%;  position: absolute;  right: 0.30rem;  top: 50%;margin-top: -0.17rem;  }
+    .joinStep_bottom{padding:0.60rem 0.30rem;padding-top: 0}
+    .join_agre{color:rgba(53, 58, 66, 1);font-size: 0.24rem;line-height: 0.34rem;margin-bottom: 0.61rem;}
     .join_agre span{color:rgba(255, 99, 0, 1)}
-    .join_sub{height:2.88rem;line-height: 2.94rem;color:rgba(255, 255, 255, 1);background: rgba(254, 122, 3, 1);font-size: 1.0588rem;border-radius:6.17rem;text-align: center }
-    .agre_box{width:86%;position: absolute;top:10%;left:50%;margin-left: -46%;background: #fff;padding:0.88235rem 3%;border-radius: 0.588235rem;height:80%}
-    .agre_box h2{color:RGBA(69, 75, 84, 1);font-size: 1.0588rem;line-height: 1.47rem;text-align: center;margin-bottom: 0.88235rem;}
-    .agre_box .agre_content{color:RGBA(69, 75, 84, 1);font-size: 0.76471rem;background: RGBA(69, 75, 84, 0.05);padding:0.88235rem 0.764rem;margin-bottom: 1.176rem;height:75%;overflow: auto;line-height: 1.4rem}
-    .agre_content h3{padding-top: 1.176rem;padding-bottom: 0.294rem;}
-    .agre_content p{margin-bottom: 0.294rem;}
-    .agre_btn{width:60%;height:2.058rem;line-height: 2.1rem;background: RGBA(254, 122, 3, 1);border-radius: 1.323rem;color:RGBA(255, 255, 255, 1);text-align: center;font-size: 0.88235rem;margin:0 auto;margin-bottom: 0.294rem;}
-    .join_stepBox .lut_box{position: absolute;top:0;left:5rem}
-    .join_stepBox .lut{float: left;background: #ececec;color: rgba(36,37,61,1);height: 1.76471rem;line-height: 1.76471rem;padding: 0 0.588235rem;margin-top: 0.35294rem;font-size: 0.8235rem;}
+    .join_sub{height:0.98rem;line-height: 1.00rem;color:rgba(255, 255, 255, 1);background: rgba(254, 122, 3, 1);font-size: 0.36rem;border-radius:2.10rem;text-align: center }
+    .agre_box{width:86%;position: absolute;top:10%;left:50%;margin-left: -46%;background: #fff;padding:0.30rem 3%;border-radius: 0.20rem;height:80%}
+    .agre_box h2{color:RGBA(69, 75, 84, 1);font-size: 0.36rem;line-height: 0.50rem;text-align: center;margin-bottom: 0.30rem;}
+    .agre_box .agre_content{color:RGBA(69, 75, 84, 1);font-size: 0.26rem;background: RGBA(69, 75, 84, 0.05);padding:0.30rem 0.26rem;margin-bottom: 0.40rem;height:75%;overflow: auto;line-height: 0.48rem}
+    .agre_content h3{padding-top: 0.40rem;padding-bottom: 0.10rem;}
+    .agre_content p{margin-bottom: 0.10rem;}
+    .agre_btn{width:60%;height:0.70rem;line-height: 0.71rem;background: RGBA(254, 122, 3, 1);border-radius: 0.45rem;color:RGBA(255, 255, 255, 1);text-align: center;font-size: 0.30rem;margin:0 auto;margin-bottom: 0.10rem;}
+    .join_stepBox .lut_box{position: absolute;top:0;left:1.70rem}
+    .join_stepBox .lut{float: left;background: #ececec;color: rgba(36,37,61,1);height: 0.60rem;line-height: 0.60rem;padding: 0 0.20rem;margin-top: 0.12rem;font-size: 0.28rem;}
     .join_stepBox .lut.on{float: left;background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1));color: #fff;}
-    .imgBox{padding-right: 0.88235rem;padding-top:2.35rem;height:6.0294rem;margin-bottom: 4rem}
-    .imgBox img{display: block;width: 9.4rem;float: left;height:6.0294rem}
+    .imgBox{padding-right: 0.30rem;padding-top:0.80rem;height:2.05rem;margin-bottom: 1.36rem}
+    .imgBox img{display: block;width: 3.20rem;float: left;height:2.05rem}
     .imgBox img:nth-of-type(2){float: right}
-    .join_stepBox .joinStep_nor_btn{width:100%;background: linear-gradient(rgba(255,158,25,0.5),rgba(253,115,1,0.5));    font-size: 1.0588235rem;text-align: center;line-height: 2.5294rem;color:rgba(255,255,255,1)}
+    .join_stepBox .joinStep_nor_btn{width:100%;background: linear-gradient(rgba(255,158,25,0.5),rgba(253,115,1,0.5));    font-size: 0.36rem;text-align: center;line-height: 0.86rem;color:rgba(255,255,255,1)}
     .join_stepBox .joinStep_per_btn{background: linear-gradient(rgba(255,158,25,1),rgba(253,115,1,1)); }
 </style>

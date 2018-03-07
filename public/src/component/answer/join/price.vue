@@ -118,7 +118,7 @@
     .price_box_notice{
         width:74%;
         background: #fff;
-        border-radius: 0.588rem;
+        border-radius: 0.20rem;
         position: absolute;
         left: 50%;
         margin-left: -40%;
@@ -126,65 +126,65 @@
         padding:0 3%;
     }
     .price_box_notice h2{
-        font-size: 1.0588rem;
+        font-size: 0.36rem;
         color:RGBA(69, 75, 84, 1);
-        line-height: 1.47rem;
-        padding:0.88235rem 0;
+        line-height: 0.50rem;
+        padding:0.30rem 0;
         text-align: center;
     }
     .notice_content{
-        font-size: 0.76471rem;
+        font-size: 0.26rem;
         color:RGBA(69, 75, 84, 1);
         background: RGBA(69, 75, 84, 0.05);
-        margin-bottom: 1.176rem;
-        padding:0.764rem 0.764rem 1.588rem 0.8235rem;
+        margin-bottom: 0.40rem;
+        padding:0.26rem 0.26rem 0.54rem 0.28rem;
     }
     .notice_content>div{
-        margin-bottom: 1.176rem;
+        margin-bottom: 0.40rem;
     }
     .notice_btn{
         width:66%;
-        height:2.0588rem;
-        line-height: 2.1rem;
-        border-radius: 1.32rem;
+        height:0.70rem;
+        line-height: 0.71rem;
+        border-radius: 0.45rem;
         background: RGBA(254, 122, 3, 1);
         color:RGBA(255, 255, 255, 1);
-        font-size: 0.88235rem;
+        font-size: 0.30rem;
         text-align: center;
         margin: 0 auto;
-        margin-bottom: 1.176rem;
+        margin-bottom: 0.40rem;
     }
     .notice_btn:active{
         background: rgba(253,114,6,1);
     }
     .set_price{
-        padding:0.88235rem;
+        padding:0.30rem;
         background: #fff;
-        font-size: 0.8235rem;
-        margin-bottom: 0.588rem;
+        font-size: 0.28rem;
+        margin-bottom: 0.20rem;
     }
     .set_price input{
         width:100%;
-        height:1.176rem;
-        font-size: 0.8235rem;
+        height:0.40rem;
+        font-size: 0.28rem;
         color:RGBA(69, 75, 84, 1) !important;;
     }
     .price_bottom{
-        padding: 0 0.88235rem;
-        line-height: 1.176rem;
+        padding: 0 0.30rem;
+        line-height: 0.40rem;
     }
     .price_bottom div:nth-of-type(1){
         float: left;
-        font-size: 0.8235rem;
+        font-size: 0.28rem;
         color:RGBA(69, 75, 84, 0.6);
     }
     .price_bottom div:nth-of-type(2){
         float: right;
-        font-size: 0.70588rem;
+        font-size: 0.24rem;
         color:RGBA(69, 75, 84,0.55);
         background: url("http://oss.xqzs.cn/resources/psy/asker/tip.png") no-repeat left center;
-        background-size: 0.8235294117647059rem;
-        padding-left: 0.99rem;
-        line-height: 0.88235rem;
+        background-size: 0.28rem;
+        padding-left: 0.34rem;
+        line-height: 0.30rem;
     }
 </style>

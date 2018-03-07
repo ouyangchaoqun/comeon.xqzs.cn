@@ -14,14 +14,14 @@
                 </div>
                 <div class="income_margin">
                 <router-link to="../my/cash" class="income"><i></i>我的现金
-                    <div class="price">{{formatPrice(user.balance)}}<span style="font-size: 0.70rem;color: black "> 元</span></div>
+                    <div class="price">{{formatPrice(user.balance)}}<span style="font-size: 0.24rem;color: black "> 元</span></div>
                 </router-link>
 
                 <router-link to="../my/dotbean" class="income dotCoin"><i></i>我的点豆
-                    <div class="price">{{user.dianCoin}}<span style="font-size: 0.70rem;color: black "> 点</span></div>
+                    <div class="price">{{user.dianCoin}}<span style="font-size: 0.24rem;color: black "> 点</span></div>
                 </router-link>
                 <!--<router-link to="../my/coupon" class="income yhcard "><i></i>优惠卡券-->
-                    <!--<div class="price">{{couponNum}}<span style="font-size: 0.70rem;color: black ">张</span></div>-->
+                    <!--<div class="price">{{couponNum}}<span style="font-size: 0.24rem;color: black ">张</span></div>-->
                 <!--</router-link>-->
                 </div>
                 <router-link to="../my/listen/list" class="listen"><i></i>我的偷听</router-link>
@@ -137,66 +137,66 @@
 </script>
 <style>
     .asker_my_index_box .top {
-        height: 3.176471rem;
-        line-height: 3.176471rem;
+        height: 1.08rem;
+        line-height: 1.08rem;
         color: #fff;
-        font-size: 1.058823529411765rem;
+        font-size: 0.36rem;
         background: url("http://oss.xqzs.cn/resources/psy/asker/topBackground.png") no-repeat;
-        padding: 0.8823529411764706rem;
+        padding: 0.30rem;
         background-size: 100% 100%;
     }
 
     .asker_my_index_box .top img {
         display: block;
         float: left;
-        width: 3.176471rem;
-        height: 3.176471rem;
+        width: 1.08rem;
+        height: 1.08rem;
         border-radius: 50%;
-        margin-right: 0.735rem;
+        margin-right: 0.25rem;
         border: 1px solid #fff
     }
 
     .asker_my_index_box .main a {
         position: relative;
-        height: 3.470588235294118rem;
-        line-height: 3.470588235294118rem;
+        height: 1.18rem;
+        line-height: 1.18rem;
         background: #fff;
         color: rgba(36, 37, 61, 1);
-        font-size: 0.8823529411764706rem;
-        padding: 0 0.8823rem;
+        font-size: 0.30rem;
+        padding: 0 0.30rem;
         display: block;
         overflow: hidden;
-        padding-left: 2.66rem;
+        padding-left: 0.90rem;
     }
 
 
 
     .asker_my_index_box .main a:after {
         background: url(http://oss.xqzs.cn/resources/psy/arrow.png);
-        width: 0.9411764705882353rem;
-        height: 0.9411764705882353rem;
-        background-size: 0.9411764705882353rem;
+        width: 0.32rem;
+        height: 0.32rem;
+        background-size: 0.32rem;
         position: absolute;
-        right: 0.88235rem;
-        top: 1.25rem;
+        right: 0.30rem;
+        top: 0.42rem;
         content: " "
     }
 
     .asker_my_index_box .main a:before {
         content: " ";
-        height: 0.0588235294117647rem;
+        height: 0.02rem;
         background: rgba(238, 238, 238, 1);
         display: block;
         position: absolute;
         bottom: 0;
-        left: 2.82rem;
+        left: 0.96rem;
         width: 100%
     }
 
     .asker_my_index_box .main a .price {
         position: absolute;
-        right: 2.2rem;
-        top: 0rem;
+        right: 0.75rem;
+        top: 0.00rem;
         color: #FE7301
     }
 
@@ -207,13 +207,13 @@
     .asker_my_index_box .main a i {
         display: block;
         background: url(http://oss.xqzs.cn/resources/psy/asker/asker_my_left_icon1.png) no-repeat;
-        background-size: 1.705882352941176rem;
-        width: 1.705882352941176rem;
-        height: 1.705882352941176rem;
+        background-size: 0.58rem;
+        width: 0.58rem;
+        height: 0.58rem;
         position: absolute;
-        left: 0.75rem;
+        left: 0.26rem;
         top: 50%;
-        margin-top: -0.852941176470588rem;
+        margin-top: -0.29rem;
     }
 
     .asker_my_index_box .main a.income i {
@@ -230,26 +230,26 @@
         background-position: 40% 40%;
     }
     .asker_my_index_box .main a.listen i {
-        background-position: 0 -1.705882352941176rem;
+        background-position: 0 -0.58rem;
     }
 
     .asker_my_index_box .main a.answer i {
-        background-position: 0 -3.411764705882352rem
+        background-position: 0 -1.16rem
     }
 
     .asker_my_index_box .main a.comment i {
-        background-position: 0 -5.117647058823528rem;
+        background-position: 0 -1.74rem;
     }
 
     .asker_my_index_box .join {
         background: #fff;
-        line-height: 3.470588235294118rem;
-        margin: 0.41176471rem 0;
+        line-height: 1.18rem;
+        margin: 0.14rem 0;
         text-align: center;
-        font-size: 0.8823529411764706rem;
+        font-size: 0.30rem;
         color: rgba(36, 37, 61, 1);
     }
     .income_margin{
-        margin: 0.6rem 0;
+        margin: 0.20rem 0;
     }
 </style>

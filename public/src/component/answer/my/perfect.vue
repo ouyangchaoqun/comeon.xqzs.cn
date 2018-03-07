@@ -458,14 +458,14 @@
         height:70px;
         line-height: 70px;
         position: relative;
-        padding:0 0.88235rem;
+        padding:0 0.30rem;
     }
     .list0.perfect_header .headerImg{
         width:49px;
         height:49px;
         border-radius: 5px;
         position: absolute;
-        right:2.1rem;
+        right:0.71rem;
         top:50%;
         margin-top:-24.5px;
     }
@@ -499,7 +499,7 @@
         overflow: hidden;
         position: absolute;
         bottom: 0;
-        left: 0.88235rem;
+        left: 0.30rem;
     }
 
 

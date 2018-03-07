@@ -8,7 +8,7 @@
             <img src="http://oss.xqzs.cn/resources/psy/remind_computerImg.png" alt="">
             <div>入驻流程</div>
         </div>
-        <p style="margin-bottom: 0.588235rem">打开电脑端网站</p>
+        <p style="margin-bottom: 0.20rem">打开电脑端网站</p>
         <p>http://psy.xqzs.cn</p>
         <img src="http://oss.xqzs.cn/resources/psy/remind_jt.png" alt="">
         <p>点击“立即申请入驻”按钮</p>
@@ -54,37 +54,37 @@
         text-align: center;
     }
     .remind_box header{
-        height:5.294rem;
-        line-height: 5.294rem;
+        height:1.80rem;
+        line-height: 1.80rem;
         color:rgba(255,255,255,1);
-        font-size: 1.0588rem;
+        font-size: 0.36rem;
         background: url("http://oss.xqzs.cn/resources/psy/asker/topBackground.png") no-repeat;
         background-size: 100% 100%;
-        margin-bottom: 1.8235rem;
+        margin-bottom: 0.62rem;
     }
     .remind_box p{
         color:rgba(36,37,61,1);
-        font-size: 0.8235rem;
+        font-size: 0.28rem;
         line-height: 1;
     }
     .remind_box .remind_com{
         position: relative;
-        margin-bottom: 1.76471rem;
+        margin-bottom: 0.60rem;
     }
     .remind_box .remind_com img{
-        width:9.71rem;
+        width:3.30rem;
         margin:0;
     }
     .remind_box .remind_com div{
-        font-size: 1.0588rem;
+        font-size: 0.36rem;
         color:rgba(254,115,1,1);
         width:100%;
         position: absolute;
         top:25%;
     }
     .remind_box img{
-        width:0.471rem;
-        margin-top: 0.88235rem;
-        margin-bottom: 0.588235rem;
+        width:0.16rem;
+        margin-top: 0.30rem;
+        margin-bottom: 0.20rem;
     }
 </style>

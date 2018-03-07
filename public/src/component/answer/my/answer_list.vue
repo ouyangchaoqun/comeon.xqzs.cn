@@ -278,15 +278,15 @@
 <style>
     .my_problem_tabs{
         color: rgba(36,37,61,1);
-        font-size: 0.88235rem;
+        font-size: 0.30rem;
         text-align: center;
         display: -webkit-box;
         display: -webkit-flex;
         display: flex;
         background: #fff;
         border-bottom: 1px solid #eee;
-        height:2.35294rem;
-        line-height: 2.35294rem;
+        height:0.80rem;
+        line-height: 0.80rem;
     }
     .my_problem_tabs>div{
         flex: 1;
@@ -298,13 +298,13 @@
     }
     .my_problem_tabs>div:nth-of-type(1)::after{
         content: '';
-        height:1.1176rem;
+        height:0.38rem;
         width:1px;
         background: #E0E0E0;
         position: absolute;
         right:0;
         top:50%;
-        margin-top:-0.5588rem;
+        margin-top:-0.19rem;
     }
     .my_problem_active{
         border-bottom: 2px solid rgba(253,114,6,1);
@@ -322,12 +322,12 @@
         display: block;
     }
     .problem_item li{
-        padding:0.88235rem 0.88235rem 0.588235rem 0.88235rem;
+        padding:0.30rem 0.30rem 0.20rem 0.30rem;
         background: #fff;
 
     }
     .problem_item .li_border{
-        border-bottom: 0.41176471rem solid #F5F5F5;
+        border-bottom: 0.14rem solid #F5F5F5;
     }
     .problem_item_top{display: -webkit-box;display: -webkit-flex;display: flex;font-size: 12px;line-height: 34px;color:#999;position: relative}
     .problem_item_top span{color:rgba(36,37,61,0.7);margin-right: 10px;}
@@ -340,23 +340,23 @@
         margin-right: 10px;
     }
     .problem_item_right{position: absolute;right:0}
-    .problem_item_del{color:rgba(36,37,61,1);font-size: 15px;line-height: 20px;padding-left:44px;margin-bottom: 1.176471rem}
+    .problem_item_del{color:rgba(36,37,61,1);font-size: 15px;line-height: 20px;padding-left:44px;margin-bottom: 0.40rem}
     .problem_answer_info{
         display: -webkit-box;
         display: -webkit-flex;
         display: flex;
-        line-height: 2.8235rem;
-        height:2.8235rem;
-        font-size: 0.8235rem;
+        line-height: 0.96rem;
+        height:0.96rem;
+        font-size: 0.28rem;
         color: rgba(36,37,61,0.5);
-        margin-bottom: 0.88235rem;
+        margin-bottom: 0.30rem;
     }
     .problem_answer_info img{
         height:44px;
         display: block;
         width:44px;
         border-radius: 50%;
-        margin-right: 0.6rem;
+        margin-right: 0.20rem;
     }
     .problem_answer_yy{
         position: relative;
@@ -364,34 +364,34 @@
     }
     .problem_answer_yy .problem_answer_ly{
         display: block;
-        width:10.235rem;
+        width:3.48rem;
         border-radius: 0;
     }
     .problem_answer_play{
         position: absolute;
         color: #fff;
-        font-size: 0.88235rem;
-        width: 5.88235rem;
+        font-size: 0.30rem;
+        width: 2.00rem;
         left: 50%;
-        margin-left: -2.941175rem;
+        margin-left: -1.00rem;
         text-align: center;
         top:50%;
         line-height: 1;
-        margin-top:-0.6471rem;
+        margin-top:-0.22rem;
     }
     .answer_play_time{
         position: absolute;
         line-height: 1;
-        height:1.176471rem;
+        height:0.40rem;
         top:50%;
-        right:-2rem;
+        right:-0.68rem;
         margin-top:-10px;
     }
     .problem_bestAns{
         color: rgba(36,37,61,1);
-        font-size: 0.70588235rem;
+        font-size: 0.24rem;
         position: absolute;
-        right:-5.6rem;
+        right:-1.90rem;
         top:0;
         line-height: 1;
         top:50%;
@@ -404,8 +404,8 @@
         position: absolute;
         width:auto;
         top:50%;
-        margin-top:-0.588235rem;
-        left:0.88235rem;
+        margin-top:-0.20rem;
+        left:0.30rem;
     }
     .problem_answer_bottom{
         padding:0;

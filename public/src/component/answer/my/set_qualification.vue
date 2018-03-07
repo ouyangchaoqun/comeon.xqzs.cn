@@ -127,7 +127,7 @@
         </div>
         <div id="select_type" style="display: none">
             <div class="dialog_select_type">
-                <div class="title" style="padding-top: 1.176471rem;padding-bottom: 0.88235rem">选择问题类型</div>
+                <div class="title" style="padding-top: 0.40rem;padding-bottom: 0.30rem">选择问题类型</div>
                 <div class="title_bottom">（最多选择三个）</div>
                 <div class="types">
                     <div class="item" v-for="(item,index) in types" :index="index"><span>{{item.title}}</span></div>
@@ -141,7 +141,7 @@
         </div>
         <div id="levle_type" style="display: none;">
             <div class="dialog_select_type">
-                <div class="title" style="padding-top: 1.294rem;padding-bottom: 1.41176471rem">从业资质</div>
+                <div class="title" style="padding-top: 0.44rem;padding-bottom: 0.48rem">从业资质</div>
                 <div class="level_types">
                     <div class="item"  v-for="(item,index) in level"   :index="index" ><div class="level_item "></div><span >{{item.name}}</span></div>
                     <div class="clear"></div>
@@ -447,43 +447,43 @@
 </script>
 <style>
     .goodat:nth-child(6){
-        margin-bottom: 1.76471rem;
+        margin-bottom: 0.60rem;
     }
     .cancel{ color:#666}
-    .setQualification_box{  background: #fff;  color: #666;  font-size: 0.8235rem;   }
-    .setQualification_box header{  padding:1.176471rem 0.88235rem 0.88235rem 0.88235rem;  border-bottom: 0.588235rem solid #F4F4F7;  }
-    .header_top{ position: relative;margin-bottom: 0.35294117rem;font-size: 0.88235rem;  color: #474747;}
-    .setQualification_box .header-right{  position: absolute;  top:0px;  right:0;  padding:0.2941176471rem 0.588235rem;  border-radius: 0.6176471rem;  line-height: 1;  color: #fff;  font-size: 0.70588235rem;  background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1));}
+    .setQualification_box{  background: #fff;  color: #666;  font-size: 0.28rem;   }
+    .setQualification_box header{  padding:0.40rem 0.30rem 0.30rem 0.30rem;  border-bottom: 0.20rem solid #F4F4F7;  }
+    .header_top{ position: relative;margin-bottom: 0.12rem;font-size: 0.30rem;  color: #474747;}
+    .setQualification_box .header-right{  position: absolute;  top:0px;  right:0;  padding:0.10rem 0.20rem;  border-radius: 0.21rem;  line-height: 1;  color: #fff;  font-size: 0.24rem;  background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1));}
     .setQualification_box .header_top .addStyle{  background: none;  color: rgba(253,114,6,1);  }
-    .setQualification_box .textarea_box{  height:2.0588235rem;  border:1.5px solid #EAE7E7; line-height: 1.176471rem;  color: #666;  font-size: 0.8235rem;  padding:0.588235rem;  border-radius: 0.29411rem;  }
+    .setQualification_box .textarea_box{  height:0.70rem;  border:1.5px solid #EAE7E7; line-height: 0.40rem;  color: #666;  font-size: 0.28rem;  padding:0.20rem;  border-radius: 0.10rem;  }
     .textarea_box textarea{  width:100%;  height:100%;  border:0;  outline: none;  resize: none;  background: none;  color: #666;  }
-    .setQualification_box .goodat{  padding:0.88235rem;  border-bottom: 0.588235rem solid #F4F4F7; }
-    .goodat .header_top{margin-bottom: 0.88235rem;}
+    .setQualification_box .goodat{  padding:0.30rem;  border-bottom: 0.20rem solid #F4F4F7; }
+    .goodat .header_top{margin-bottom: 0.30rem;}
     .goodat_class{display: -webkit-box;display: -webkit-flex;display: flex;}
-    .goodat_class div{flex: 1;text-align: center;line-height:1.941176471rem;border-radius: 1rem;border:1px solid #999;margin-right:0.88235rem;}
+    .goodat_class div{flex: 1;text-align: center;line-height:0.66rem;border-radius: 0.34rem;border:1px solid #999;margin-right:0.30rem;}
     .goodat_class div:nth-of-type(3){margin:0;}
-    .goodat .level{height:1.5294rem;line-height:1.5294rem;font-size:0.70588235rem;border:1px solid #999;border-radius: 1rem;text-align: center;padding:0 0.294rem;display: inline-block}
-    .level_box{padding-top:0.35294rem;position: relative;padding-bottom:1.29411rem;}
-    .cerpic{width:5.88235rem;height:4.1176471rem;position: absolute;left:45%;top:-1.176471rem;}
-    .goodat .textarea_box{min-height:5.88235rem;}
-    .dialog_select_type{ background: #fff; border-radius: 0.588235rem; width: 80%; height:19rem; position: fixed; top: 50%; margin-top: -9.5rem; left:50%; margin-left: -40% ;    z-index: 10001;}
-    .dialog_select_type .title{line-height: 1; text-align: center;font-size: 1.058823529411765rem;  font-weight: bold;}
-    .dialog_select_type .types{ margin: 0.9rem;}
-    .dialog_select_type .types .item{ width: 27%; float:left;text-align: center; border: 1px solid #9E9E9E ; line-height: 1.411764705882353rem; border-radius:0.7058823529411765rem; margin: 0 2%; margin-bottom: 1.8rem; font-size: 0.7058823529411765rem;color:#999; padding: 0 0.5%; }
+    .goodat .level{height:0.52rem;line-height:0.52rem;font-size:0.24rem;border:1px solid #999;border-radius: 0.34rem;text-align: center;padding:0 0.10rem;display: inline-block}
+    .level_box{padding-top:0.12rem;position: relative;padding-bottom:0.44rem;}
+    .cerpic{width:2.00rem;height:1.40rem;position: absolute;left:45%;top:-0.40rem;}
+    .goodat .textarea_box{min-height:2.00rem;}
+    .dialog_select_type{ background: #fff; border-radius: 0.20rem; width: 80%; height:6.46rem; position: fixed; top: 50%; margin-top: -3.23rem; left:50%; margin-left: -40% ;    z-index: 10001;}
+    .dialog_select_type .title{line-height: 1; text-align: center;font-size: 0.36rem;  font-weight: bold;}
+    .dialog_select_type .types{ margin: 0.31rem;}
+    .dialog_select_type .types .item{ width: 27%; float:left;text-align: center; border: 1px solid #9E9E9E ; line-height: 0.48rem; border-radius:0.24rem; margin: 0 2%; margin-bottom: 0.61rem; font-size: 0.24rem;color:#999; padding: 0 0.5%; }
     .dialog_select_type .types .item.on{  border: 1px solid rgba(253,114,6,1); color:rgba(253,114,6,1)}
-    .dialog_select_type  .yes{ border-top: 1px solid #eee; color:rgba(253,114,6,1); text-align: center; line-height: 2.588235294117647rem; position: absolute; bottom:0; left:0; width: 100% ;font-size: 1.0588235rem;display: flex}
+    .dialog_select_type  .yes{ border-top: 1px solid #eee; color:rgba(253,114,6,1); text-align: center; line-height: 0.88rem; position: absolute; bottom:0; left:0; width: 100% ;font-size: 0.36rem;display: flex}
     .dialog_select_type  .yes div{flex:1;text-align: center;position: relative}
     .dialog_select_type  .yes div:nth-of-type(1)::after{content: '';height:100%;width:1px;background:#eee;position: absolute;right:0;top:0}
-    .dialog_select_type .level_types .item{width:46%;float: left;margin:0 2%;margin-bottom: 0.88235rem;position: relative;font-size:0.70588235rem;color:#666}
-    .dialog_select_type .level_types{padding:0 0.88235rem;}
-    .dialog_select_type .level_types .item span{margin-left: 1.470588235rem;}
+    .dialog_select_type .level_types .item{width:46%;float: left;margin:0 2%;margin-bottom: 0.30rem;position: relative;font-size:0.24rem;color:#666}
+    .dialog_select_type .level_types{padding:0 0.30rem;}
+    .dialog_select_type .level_types .item span{margin-left: 0.50rem;}
     .dialog_select_type .level_item{height:14px;width:14px;position: absolute;border-radius: 50%;border:1px solid #D2D2D2;top:1.2px;left:0}
     .dialog_select_type .checked_item{border-color: rgba(253,114,6,1)}
     .dialog_select_type .checked_item::after{  content: '';  width:10px;  height: 10px;  background: rgba(253,114,6,1);  border-radius: 50%;  position: absolute;  top:50%;  margin-top:-5px;  left: 50%;  margin-left:-5px;  }
-    .dialog_select_type .levle_type_bottom{  padding:0.8235rem 0.88235rem;font-size: 0.70588235rem;  color: #666;  }
-    .dialog_select_type .levle_type_bottom>div:nth-of-type(1){  margin-bottom: 1rem;  }
-    .dialog_select_type .levle_type_bottom>div:nth-of-type(2) .input_box{  line-height: 1.8235294rem;  color: #A9A7A7;  font-size: 0.70588235rem;  text-align: center;  }
+    .dialog_select_type .levle_type_bottom{  padding:0.28rem 0.30rem;font-size: 0.24rem;  color: #666;  }
+    .dialog_select_type .levle_type_bottom>div:nth-of-type(1){  margin-bottom: 0.34rem;  }
+    .dialog_select_type .levle_type_bottom>div:nth-of-type(2) .input_box{  line-height: 0.62rem;  color: #A9A7A7;  font-size: 0.24rem;  text-align: center;  }
     .dialog_select_type .levle_type_bottom input{width:100%;height:100%;background: none;}
-    .dialog_select_type .levle_type_bottom .input_box{display:inline-block;width:10.88235rem;height:1.8235294rem;padding-left:0.588235rem;background:#F4F4F7;border-radius: 0.2941176471rem;margin-left:0.470588235rem;}
-    .title_bottom{color:#999;font-size: 0.70588235rem;text-align: center;margin-bottom:0.335rem}
+    .dialog_select_type .levle_type_bottom .input_box{display:inline-block;width: 3.52rem;height:0.62rem;padding-left:0.20rem;background:#F4F4F7;border-radius: 0.10rem;margin-left:0.16rem;}
+    .title_bottom{color:#999;font-size: 0.24rem;text-align: center;margin-bottom:0.11rem}
 </style>

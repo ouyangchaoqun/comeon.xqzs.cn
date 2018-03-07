@@ -430,104 +430,105 @@
 
 
 </script>
+
 <style>
 
     .listenDetail_box{
         background: #fff;
     }
     .steal_expert_info{
-        padding-left: 4.176rem;
-        padding-bottom: 1.5rem;
+        padding-left: 1.42rem;
+        padding-bottom: 0.51rem;
     }
     .position_change_detail{
         color:#fff;
         position: absolute;
-        top: 0.8rem;left:1.5rem; font-size: 0.88235rem;
+        top: 0.27rem;left:0.51rem; font-size: 0.30rem;
     }
-    .position_change2{ margin-top: 1rem;}
-    .pay_listen{ width: 10.35294117647059rem; height: auto}
+    .position_change2{ margin-top: 0.34rem;}
+    .pay_listen{ width: 3.52rem; height: auto}
     .steal_detail_header{
-        padding:0.70588rem 0.88235rem 1.176471rem 0.88235rem;
+        padding:0.24rem 0.30rem 0.40rem 0.30rem;
         background: #fff;
-        border-bottom: 0.588235rem solid rgba(245,245,245,1);
+        border-bottom: 0.20rem solid rgba(245,245,245,1);
     }
     .steal_detail_top{
         display: flex;
         display: -webkit-flex;
         display: -webkit-box;
         color: rgba(36,37,61,0.5);
-        font-size: 0.70588rem;
-        line-height: 2rem;
+        font-size: 0.24rem;
+        line-height: 0.68rem;
         position: relative;
     }
     .steal_detail_top .steal_detail_top_price{
         position: absolute;
-        right:0.88235rem;
+        right:0.30rem;
     }
     .steal_detail_top img{
         display: block;
-        height:2rem;
-        width:2rem;
+        height:0.68rem;
+        width:0.68rem;
         border-radius: 50%;
-        margin-right: 0.588235rem;
-        margin-bottom: 0.70588rem;
+        margin-right: 0.20rem;
+        margin-bottom: 0.24rem;
     }
     .steal_detail_top span{
         color: rgba(36,37,61,1);
     }
     .steal_detail_content{
         color: rgba(36,37,61,1);
-        font-size:0.88235rem;
-        line-height: 1.35294rem;
+        font-size:0.30rem;
+        line-height: 0.46rem;
         overflow: hidden;
         word-wrap:break-word;
     }
     .steal_detail_answer{
         background: #fff;
-        margin-bottom: 0.588235rem;
+        margin-bottom: 0.20rem;
     }
     .steal_answer_top{
         display: flex;
         display: -webkit-flex;
         display: -webkit-box;
-        height:2.8235rem;
-        line-height: 2.8235rem;
+        height:0.96rem;
+        line-height: 0.96rem;
         color: rgba(36,37,61,0.5);
-        font-size: 0.8235rem;
-        padding-bottom: 1.176rem;
-        margin-left: 2.588235rem;
-        margin-right: 1.76rem;
-        margin-bottom: 0.588235rem;
+        font-size: 0.28rem;
+        padding-bottom: 0.40rem;
+        margin-left: 0.88rem;
+        margin-right: 0.60rem;
+        margin-bottom: 0.20rem;
         border-bottom: 1px solid rgba(238,238,238,1);
     }
     .steal_answer_topimg{
         display: block;
-        height:3rem;
-        width: 3rem;
+        height:1.02rem;
+        width: 1.02rem;
         border-radius: 50%;
-        margin-right: 0.588235rem;
+        margin-right: 0.20rem;
     }
     .steal_answer_yy{
         position: relative;
-        margin-top:0.176471rem;
-        margin-right:0.41176471rem;
+        margin-top:0.06rem;
+        margin-right:0.14rem;
     }
 
     .steal_answer_ly{
         display: block;
-        height:2.6471rem;
+        height:0.90rem;
         width:auto;
         border-radius: 0;
     }
     .steal_answer_zan{
         color:rgba(36,37,61,0.5);
-        font-size: 0.70588rem;
-        height:0.941176471rem;
-        line-height: 0.941176471rem;
-        padding-bottom:0.588235rem;
-        padding-right: 1.76rem;
-        padding-left: 2.588235rem;
-        border-bottom: 0.588235rem solid rgba(245,245,245,1);
+        font-size: 0.24rem;
+        height:0.32rem;
+        line-height: 0.32rem;
+        padding-bottom:0.20rem;
+        padding-right: 0.60rem;
+        padding-left: 0.88rem;
+        border-bottom: 0.20rem solid rgba(245,245,245,1);
     }
     /*.steal_answer_zan div{*/
     /*float: right;*/
@@ -535,23 +536,23 @@
     /*}*/
 
     /*.steal_answer_zan div:nth-of-type(2){*/
-    /*margin-right:1.235rem;*/
+    /*margin-right:0.42rem;*/
     /*}*/
     .steal_answer_zan div:nth-of-type(1) img{
         float: left;
-        margin-right:0.29411rem;
+        margin-right:0.10rem;
     }
     .steal_answer_zan div:nth-of-type(1) span{
         float: left;
-        margin-top:0rem;
+        margin-top:0.00rem;
     }
     .steal_answer_sond{
         display: block;
-        margin-top:-0.6471rem;
-        height:0.941176rem;
+        margin-top:-0.22rem;
+        height:0.32rem;
         position: absolute;
         top:50%;
-        left:0.88235rem;
+        left:0.30rem;
     }
 
 

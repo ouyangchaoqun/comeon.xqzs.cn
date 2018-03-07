@@ -236,38 +236,38 @@
 <style>
 
 
-    .answer_join_quali .answer_join_top_box{position: static;margin-bottom: 1.471rem;padding-top: 3rem;}
-    .answer_join_quali .sub_title{font-size: 0.70588235rem; color:#999;line-height: 1; text-align: center;}
+    .answer_join_quali .answer_join_top_box{position: static;margin-bottom: 0.50rem;padding-top: 1.02rem;}
+    .answer_join_quali .sub_title{font-size: 0.24rem; color:#999;line-height: 1; text-align: center;}
     .answer_join_quali  .weui-cells:after, .weui-cells:before,.answer_join_quali  .weui-cell:before{ display: none}
-    .answer_join_quali  .weui-check__label{ width: 42%; float:left; font-size: 0.823rem !important}
+    .answer_join_quali  .weui-check__label{ width: 42%; float:left; font-size: 0.28rem !important}
     .answer_join_quali  .upload { text-align: center; color:#A9A7A7}
-    .answer_join_quali .upload span{ color:#09bb07; font-size: 1.4rem;line-height: 2.352941176470588rem; vertical-align: bottom
+    .answer_join_quali .upload span{ color:#09bb07; font-size: 0.48rem;line-height: 0.80rem; vertical-align: bottom
     }
-    .number{line-height:2.35rem }
-    .number>div{display: flex;padding-left:1.76471rem;position: relative}
-    .number span{color:rgba(36,37,61,1);font-size: 0.8235rem;}
+    .number{line-height:0.80rem }
+    .number>div{display: flex;padding-left:0.60rem;position: relative}
+    .number span{color:rgba(36,37,61,1);font-size: 0.28rem;}
     .weui-check__label:active{ background: none}
-    .answer_join_quali .photo_img{display: flex;display: -webkit-flex;justify-content:space-between;padding-top:1.176471rem;}
-    .answer_join_quali .photo_img .img{background:#f4f4f7;width:44%;height:6.76471rem;position: relative}
+    .answer_join_quali .photo_img{display: flex;display: -webkit-flex;justify-content:space-between;padding-top:0.40rem;}
+    .answer_join_quali .photo_img .img{background:#f4f4f7;width:44%;height:2.30rem;position: relative}
     .answer_join_quali .photo_img .img:nth-of-type(1){margin-left: 4%;}
     .answer_join_quali .photo_img .img:nth-of-type(2){margin-right: 4%;}
     .answer_join_quali .photo_img .img img{ max-height: 100%; max-width: 100%; position: absolute; top:0; left:0; z-index: 100}
     .img div{width:44px;height:44px;border-radius: 50%;background: #fff;text-align: center;line-height: 40px;position: absolute;top:25%;left:50%;margin-left:-22px;}
-    .img div b{color:rgba(253,114,6,1);font-size: 1.6rem}
-    .img p{color:#A9A7A7;font-size: 0.70588235rem;text-align: center;position: absolute;width:100%;top:75%;}
-    .checks .level_types{padding:0 0.88235rem;padding-top: 1.176471rem}
-    .checks .level_types .item{width:38%;float: left;margin:0 6%;margin-bottom: 0.88235rem;position: relative;font-size:0.8235rem;color:#666}
-    .checks .level_types .item span{margin-left: 1.470588235rem;}
-    .checks .level_item{margin:0;height:14px;width:14px;position: absolute;border-radius: 50%;border:1px solid #D2D2D2;top:0.16rem;left:0}
+    .img div b{color:rgba(253,114,6,1);font-size: 0.54rem}
+    .img p{color:#A9A7A7;font-size: 0.24rem;text-align: center;position: absolute;width:100%;top:75%;}
+    .checks .level_types{padding:0 0.30rem;padding-top: 0.40rem}
+    .checks .level_types .item{width:38%;float: left;margin:0 6%;margin-bottom: 0.30rem;position: relative;font-size:0.28rem;color:#666}
+    .checks .level_types .item span{margin-left: 0.50rem;}
+    .checks .level_item{margin:0;height:14px;width:14px;position: absolute;border-radius: 50%;border:1px solid #D2D2D2;top:0.05rem;left:0}
     .checks .checked_item{border-color: rgba(253,114,6,1)}
     .checks .checked_item::after{  content: '';  width:10px;  height: 10px;  background: rgba(253,114,6,1);  border-radius: 50%;  position: absolute;  top:50%;  margin-top:-5px;  left: 50%;  margin-left:-5px;  }
-    .photo,.number .weui-cell__hd{font-size: 0.8235rem;color:#666}
-    .quaBtn{line-height: 2.5294rem;background:linear-gradient(rgba(255,158,25,0.5),rgba(253,115,1,0.5));text-align: center;color:rgba(255,255,255,1);font-size: 1.0588235rem;position: absolute;bottom:0;width:100%; }
+    .photo,.number .weui-cell__hd{font-size: 0.28rem;color:#666}
+    .quaBtn{line-height: 0.86rem;background:linear-gradient(rgba(255,158,25,0.5),rgba(253,115,1,0.5));text-align: center;color:rgba(255,255,255,1);font-size: 0.36rem;position: absolute;bottom:0;width:100%; }
 
 
-    .certificateNo{background: rgba(245,245,245,1);height:2.35rem;width: 100%;border-radius: 0.294rem;font-size: 0.76471rem;padding-left:0.588235rem;}
-    .number .input_box{width:65%;position: absolute;left:5.88235rem;}
+    .certificateNo{background: rgba(245,245,245,1);height:0.80rem;width: 100%;border-radius: 0.10rem;font-size: 0.26rem;padding-left:0.20rem;}
+    .number .input_box{width:65%;position: absolute;left:2.00rem;}
 
     .level_types { position: relative}
-    .otherInput input{background: rgba(245,245,245,1);height:1.8rem;width: 40%;border-radius: 0.294rem;font-size: 0.76471rem;padding-left:0.588235rem;  position: absolute; bottom:0.5rem; left:5.88235rem;}
- </style>
+    .otherInput input{background: rgba(245,245,245,1);height:0.61rem;width: 40%;border-radius: 0.10rem;font-size: 0.26rem;padding-left:0.20rem;  position: absolute; bottom:0.17rem; left:2.00rem;}
+</style>
