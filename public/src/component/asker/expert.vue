@@ -51,7 +51,7 @@
                 </div>
 
 
-                <div class="item" v-for="(item,index) in list">
+                <div class="item" v-for="(item,index) in list" v-if="item.expertId!=52">
                     <div @click="goDetail(item.expertId)">
                         <div class="itemDetail">
                             <div class="img"><img :src="item.faceUrl"></div>

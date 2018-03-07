@@ -8,7 +8,7 @@
                   :isShowMoreText="isShowMoreText" :bottomHeight="0">
             <v-downList :urlType="2" v-on:downMessage="getQType" v-on:classMessage="getQid"  :currtype="classId" :ordertype="exType" ></v-downList>
             <div class="answer_list">
-                <div class="item" v-for="(item,index) in list">
+                <div class="item" v-for="(item,index) in list"  v-if="item.expertId!=52">
                     <div @click="goDetail(item.expertId)">
                         <div class="itemDetail">
                             <div class="line1"></div>
