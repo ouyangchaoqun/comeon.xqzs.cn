@@ -49,8 +49,9 @@
     var pv = 1,uv = 1;
     if (cookie.get(visitkey)!=null){
         uv = 0;
-        cookie.set(visitkey,'1',1440);
-    }
+    }else{
+         cookie.set(visitkey,'1',1440);
+     }
 
     var visiturl =web.API_PATH + 'channel/visit/track/'+channelOpenId+'?pv='+pv+'&uv='+uv;
     (new Image()).src = visiturl;
