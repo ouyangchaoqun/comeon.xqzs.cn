@@ -397,7 +397,7 @@
                             if(item.isFollowed==0){
                                 item.isFollowed==1
                                 item.followCount = item.followCount + 1
-                                xqzs.weui.toast("success","收听成功")
+                                xqzs.weui.toast("success","关注成功")
                             }else{
                                 item.isFollowed==0
                                 item.followCount = item.followCount - 1
@@ -407,15 +407,15 @@
                             that.$set(that.list,index,item);
 
                         }else if(bt.data.status ==900004){
-                            xqzs.weui.toast("success","已经收听",function () {
+                            xqzs.weui.toast("success","已经关注",function () {
 
                             })
                         }else if(bt.data.status ==9000003){
-                            xqzs.weui.toast("fail","不能收听自己",function () {
+                            xqzs.weui.toast("fail","不能关注自己",function () {
 
                             })
                         }else {
-                            xqzs.weui.toast("fail","收听失败",function () {
+                            xqzs.weui.toast("fail","关注失败",function () {
 
                             })
                         }

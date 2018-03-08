@@ -7,7 +7,7 @@
                 <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
                 <div class="nothing_bottom">
                     <p>您还没有任何关注</p>
-                    在专家详情页面可以点击收听按钮进行收听
+                    在专家详情页面可以点击关注按钮进行关注
                     <div @click="goAnswerIndex()">去关注</div>
                 </div>
             </div>
