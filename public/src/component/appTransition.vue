@@ -6,7 +6,7 @@
     </div>
 </template>
 <script>
-    import Bus from '../js/bus.js';
+    import Bus from './bus.js';
 
     export default {
         data() {

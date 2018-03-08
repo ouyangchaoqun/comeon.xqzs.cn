@@ -34,7 +34,7 @@
 </template>
 
 <script type="es6">
-    import Bus from '../../js/bus.js';
+    import Bus from '../bus.js';
 
     export default {
         props: {

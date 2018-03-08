@@ -91,7 +91,7 @@
     import showLoad from '../include/showLoad.vue';
     import typeHeader from '../include/typeHeader.vue';
     import scroll from '../include/scroll.vue';
-    import Bus from '../../js/bus.js';
+    import Bus from '../bus.js';
     import askerBottom from "./include/bottom.vue";
     import Recharge from '../asker/my/recharge.vue' ;
     import downList from  "../include/downList.vue"

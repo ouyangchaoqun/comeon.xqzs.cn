@@ -47,7 +47,7 @@
     import answerBottom from "./include/bottom.vue";
     import showLoad from '../include/showLoad.vue';
     import scroll from '../include/scroll.vue';
-    import Bus from '../../js/bus';
+    import Bus from '../bus';
     export default {
         data() {
             return {

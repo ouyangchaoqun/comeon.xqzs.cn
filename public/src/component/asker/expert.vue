@@ -115,7 +115,7 @@
 <script type="">
     import showLoad from '../include/showLoad.vue';
     import scroll from '../include/scroll.vue';
-    import Bus from '../../js/bus.js';
+    import Bus from '../bus.js';
     import askerBottom from "./include/bottom.vue";
     import typeHeader from '../include/typeHeader.vue';
 

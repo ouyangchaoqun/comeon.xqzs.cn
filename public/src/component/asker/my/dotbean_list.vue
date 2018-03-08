@@ -29,7 +29,7 @@
 
     import showLoad from '../../include/showLoad.vue';
     import scroll from '../../include/scroll.vue';
-    import Bus from '../../../js/bus.js';
+    import Bus from '../../bus.js';
 
     export default {
         data() {
