@@ -2,7 +2,7 @@
     <div class="class_list">
         <div class="class_item" v-for="(item,index) in classList" @click="goClass(item.id,item.title)"
              :class="{on:item.id==classId}">
-            <div class="addClassImg" ></div>
+            <div class="addClassImg"  :class="item.code" ></div>
             <span>{{item.title}}</span>
         </div>
         <div class="clear"></div>
@@ -16,16 +16,19 @@
     .addClassImg{height:0.88rem; width:0.88rem; margin:0 auto;margin-bottom: 0.12rem;background: url("http://oss.xqzs.cn/resources/psy/typeHeader_bg.png") no-repeat;background-size: 6.88rem; border-radius: 50%}
     .class_item:active .addClassImg{background-color: #eee;}
 
-    .class_list>div:nth-of-type(1) div{background-position:0.00rem 0.00rem;  }
-    .class_list>div:nth-of-type(2) div{background-position:-1.48rem -0rem;  }
-    .class_list>div:nth-of-type(3) div{background-position:-2.99rem -0rem ;}
-    .class_list>div:nth-of-type(4) div{background-position:-4.5rem -0rem;}
-    .class_list>div:nth-of-type(5) div{background-position:-6rem 0.00rem;}
-    .class_list>div:nth-of-type(6) div{background-position:-0rem -1.6rem ; }
-    .class_list>div:nth-of-type(8) div{background-position:-1.46rem -1.6rem ;}
-    .class_list>div:nth-of-type(7) div{background-position:-2.99rem -1.6rem;   }
-    .class_list>div:nth-of-type(9) div{background-position:-4.5rem -1.6rem; }
-    .class_list>div:nth-of-type(10) div{background-position:-6rem -1.6rem; }
+    .class_list .qb{background-position:0.00rem 0.00rem;  }
+    .class_list  .qgkh{background-position:-1.48rem -0rem;  }
+    .class_list .xxl{background-position:-2.99rem -0rem ;}
+    .class_list .rjgx{background-position:-4.5rem -0rem;}
+    .class_list .zcsy{background-position:-6rem 0.00rem;}
+    .class_list .hyjt{background-position:-0rem -1.6rem ; }
+    .class_list .grcz{background-position:-1.46rem -1.6rem ;}
+    .class_list .qxgl{background-position:-2.99rem -1.6rem;   }
+    .class_list .xljk{background-position:-4.5rem -1.6rem; }
+    .class_list .qzjy{background-position:-6rem -1.6rem; }
+
+
+
 </style>
 
 <script>
