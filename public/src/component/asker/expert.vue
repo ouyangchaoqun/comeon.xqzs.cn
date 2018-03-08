@@ -7,7 +7,7 @@
             <v-typeHeader :urlType="2"></v-typeHeader>
             <div class="title_top">
                 <div class="hot_head">
-                    热门推荐
+                    热门.推荐
                        <div class="hot_hidden" @click="getMore()">
                           更多
                        </div>
@@ -43,7 +43,7 @@
 
                 <div class="title_top">
                     <div class="new_head">
-                        最新入驻
+                        最新.入驻
                         <div class="hot_hidden" @click="getNewMore()">
                             更多
                         </div>
@@ -57,7 +57,7 @@
                             <div class="img"><img :src="item.faceUrl"></div>
                             <div class="itemDetail_right">
                                 <div class="itemHeader">
-                                    <div style="font-weight: bold">{{item.nickName}}<span>{{item.city}}</span><span style="float: right;color: #2EB1FF;font-size: 0.24rem">找TA咨询</span></div>
+                                    <div style="font-weight: bold">{{item.nickName}}<span>{{item.city}}</span></div>
                                     <div class="header_addRightStyle" v-if="false ">
                                         <div class="headerImg" @click.stop="play(index)">
                                             <div :class="{addPlaying:item.playing,addPaused:item.paused}"></div>
@@ -66,7 +66,6 @@
                                     </div>
                                 </div>
                                 <div class="title">{{item.sign}}</div>
-                                <div class="line1"></div>
                                 <div class="itemDetail_class_s">
                                     <span v-for="(good,goodIndex) in item.goodAt" class="tab_i_i">{{good.title}}</span>
                                 </div>
@@ -79,6 +78,7 @@
 
                                 </div>
                             </div>
+                            <div style="clear: both"></div>
                         </div>
                     </div>
                 </div>
@@ -445,20 +445,21 @@
         height: 0.60rem;
         width: 100%;
         color: #454B54;
-        font-size: 0.37rem;
+        font-size: 0.30rem;
         font-weight: bold;
         position: relative;
         margin-bottom: 0.20rem;
+        line-height: 0.61rem;
 
     }
     .answer_index .new_head{
         height: 0.60rem;
         color: #454B54;
-        font-size: 0.37rem;
+        font-size: 0.30rem;
         font-weight: bold;
         position: relative;
         background: #fff;
-
+        line-height: 0.61rem;
     }
     .hot_hidden{
         position: absolute;
@@ -466,7 +467,7 @@
         top:0;
         font-size: 0.24rem;
         line-height: 0.61rem;
-        color:RGBA(254, 122, 3, 1);
+        color:RGBA(69, 75, 84, 0.5);
         background: url("http://oss.xqzs.cn/resources/psy/arrow.png") no-repeat center right;
         background-size: 0.24rem 0.20rem;
         padding-right: 0.30rem;
@@ -483,10 +484,11 @@
     }
     .answer_index .hot_item{
         width: 2.90rem;
-        border: 1px solid rgba(69, 75, 84, 0.15);
+        box-shadow: 0 0.04rem 0.3rem RGBA(0, 0, 0, 0.1);
         float: left;
         margin-right: 0.34rem;
         border-radius: 0.11rem 0.11rem 0.11rem 0.11rem;
+        background: RGBA(255, 255, 255, 1);
     }
     .answer_index .hot_top{
         background: RGBA(255, 123, 0, 0.15);

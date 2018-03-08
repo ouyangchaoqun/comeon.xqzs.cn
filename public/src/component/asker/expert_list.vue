@@ -11,12 +11,10 @@
                 <div class="item" v-for="(item,index) in list"  v-if="item.expertId!=52">
                     <div @click="goDetail(item.expertId)">
                         <div class="itemDetail">
-                            <div class="line1"></div>
                             <div class="img"><img :src="item.faceUrl"></div>
                             <div class="itemDetail_right">
                                 <div class="itemHeader">
-                                    <div>{{item.nickName}} <span>{{item.city}}</span><span style="float: right;color: #2EB1FF;font-size: 0.24rem
-">找TA咨询</span></div>
+                                    <div>{{item.nickName}}<span>{{item.city}}</span></div>
                                     <div class="header_addRightStyle" v-if="false">
                                         <div class="headerImg" @click.stop="play(index)">
                                             <div :class="{addPlaying:item.playing,addPaused:item.paused}"></div>
@@ -37,6 +35,7 @@
 
                                 </div>
                             </div>
+                            <div style="clear: both"></div>
                         </div>
                     </div>
                 </div>

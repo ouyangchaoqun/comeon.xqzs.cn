@@ -18,20 +18,14 @@
                     </div>
                     <div v-show="list.length>0" class="index_content_active">
                         <ul>
-                            <li v-for="(item,index) in list">
-                                <a @click="goDetail(item.questionId)">
+                            <li v-for="(item,index) in list" @click="goDetail(item.questionId)">
+                                <img :src=item.expertFaceUrl alt="" class="expert_headerImg">
                                     <div class="index_li_header">
-                                        <div>
-                                            <template v-if="item.askerNickName!=''">
-                                                {{item.askerNickName}}
-                                            </template>
-                                            <template v-if="item.askerNickName==''">匿名用户</template>
-                                            <span>咨询了</span></div>
-                                        <div class="header_className">{{item.title}}</div>
+                                        <div>{{item.expertName}}咨询师 回答了</div>
+                                        <div>{{item.title}}</div>
                                     </div>
                                     <div class="index_li_content">{{item.content}}</div>
                                     <div class="index_li_bottom">
-                                        <img :src="item.expertFaceUrl" alt="">
                                         <!--免费听-->
                                         <span class="problem_answer_yy" v-if="item.answerType==1">
                                             <div class="audio" :class="{playing:item.playing,paused:item.paused}">
@@ -73,7 +67,6 @@
 
                                         <div class="index_li_count">听过 {{item.listenTimes}}</div>
                                     </div>
-                                </a>
                             </li>
 
                         </ul>
@@ -521,10 +514,8 @@
         background: #fff;
     }
 
-
-
     .asker_listen_box .audio .audio_btn {
-        width: 52%
+        width: 3.52rem !important;
     }
 
     .index_li_bottom .problem_answer_yy {
@@ -552,24 +543,28 @@
 
     .index_box li {
         background: #fff;
-        padding: 0.30rem 0.30rem 0.40rem 0.30rem;
+        padding: 0.30rem 0.30rem 0.36rem 0.30rem;
         border-bottom: 1px solid RGBA(69, 75, 84, 0.15);
+        position: relative;
+        padding-left: 1rem;
+    }
+    .index_box li .expert_headerImg{
+        width:0.8rem;
+        height:0.8rem;
+        border-radius: 50%;
+        position: absolute;
+        left:0;
     }
 
     .index_li_header {
-        font-size: 0.28rem;
-        color: rgba(36, 37, 61, 0.5);
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: flex;
-        line-height: 0.58rem;
+        font-size: 0.24rem;
+        color: RGBA(69, 75, 84, 0.5);
+        line-height: 0.34rem;
         margin-bottom: 0.18rem;
         position: relative;
     }
 
     .index_li_header .header_className {
-        position: absolute;
-        right: 0;
         font-size: 0.28rem;
     }
 
@@ -594,7 +589,6 @@
 
     .index_li_bottom {
         position: relative;
-        padding-left: 0.95rem;
     }
 
     .index_li_bottom img {
