@@ -16,7 +16,7 @@
 
 
             <div class="list">
-                <div class="item" v-for="item in list">
+                <div class="item" v-for="item in list"  @click="answer(item.id)">
                     <div class="info">
                         <div class="img">
                             <img v-if="item.isAnonymous==0" :src="item.faceUrl">
@@ -31,7 +31,7 @@
                         <div class="last_time last_red_color">还{{formatDateText(item.endTime)}}</div>
                     </div>
                     <div class="clear"></div>
-                    <div class="btn_race" @click="answer(item.id)">抢答</div>
+                    <div class="btn_race">抢答</div>
                 </div>
             </div>
         </v-scroll>
