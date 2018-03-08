@@ -38,8 +38,8 @@
                         class="steal_expert_fans">{{followCount}} 人收听</span>
                 </div>
                 <div class="steal_expert_des">{{detail.expert.sign}}</div>
-                <div class="followed_box" v-if="!detail.expert.isFollow" @click="follow(detail.expertId)">收听</div>
-                <div class="followed_box isfollow_style"  v-if="detail.expert.isFollow" @click="follow(detail.expertId)" >已收听</div>
+                <div class="followed_box" v-if="!detail.expert.isFollow" @click="follow(detail.expertId)">关注</div>
+                <div class="followed_box isfollow_style"  v-if="detail.expert.isFollow" @click="follow(detail.expertId)" >已关注</div>
             </div>
             <template v-for="(item,index) in detail.answers">
                 <div class="problem_answer_info" >

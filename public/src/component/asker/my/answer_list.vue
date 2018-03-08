@@ -1,14 +1,14 @@
 <template>
     <div style="height: 100%" class="asker_my_answer_list_box wbg">
 
-        <div v-title>我的收听</div>
+        <div v-title>我的关注</div>
         <div class="nothing answer" v-if="list.length==0&&!showLoad" >
             <div>
                 <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
                 <div class="nothing_bottom">
-                    <p>您还没有任何收听</p>
+                    <p>您还没有任何关注</p>
                     在专家详情页面可以点击收听按钮进行收听
-                    <div @click="goAnswerIndex()">去收听</div>
+                    <div @click="goAnswerIndex()">去关注</div>
                 </div>
             </div>
 
@@ -34,7 +34,7 @@
                                 <div class="class_s">
                                     <span v-for="(tag,tagIndex) in item.domains" class="tab_i_i" >{{tag.title}}</span>
                                 </div>
-                                <div class="class_s other"><span v-if="item.answerCount!=null">{{item.answerCount||0}} 个回答</span><span>{{item.followCount||0}} 人收听</span></div>
+                                <div class="class_s other"><span v-if="item.answerCount!=null">{{item.answerCount||0}} 个回答</span><span>{{item.followCount||0}} 人关注</span></div>
                             </div>
                         </div>
                     </div>

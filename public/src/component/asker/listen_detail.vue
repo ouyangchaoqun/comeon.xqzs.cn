@@ -21,11 +21,11 @@
                 <div class="steal_expert_info">
                     <img :src="item.expertUrl" alt="" @click="goDetail(item.expertId)">
                     <div>
-                        <span class="steal_expert_name" @click="goDetail(item.expertId)">{{item.expertName}}</span><span class="steal_expert_fans">{{item.followCount}} 人收听</span>
+                        <span class="steal_expert_name" @click="goDetail(item.expertId)">{{item.expertName}}</span><span class="steal_expert_fans">{{item.followCount}} 人关注</span>
                     </div>
                     <div class="steal_expert_des">{{item.sign}}</div>
-                    <div class="followed_box" v-if="item.isFollowed==0" @click="follow(index)"> 收听</div>
-                    <div class="followed_box isfollow_style"  v-if="item.isFollowed==1" @click="follow(index)" >已收听</div>
+                    <div class="followed_box" v-if="item.isFollowed==0" @click="follow(index)"> 关注</div>
+                    <div class="followed_box isfollow_style"  v-if="item.isFollowed==1" @click="follow(index)" >已关注</div>
                 </div>
                 <div class="steal_answer_top">
                     <!--<img class="steal_answer_topimg" :src="item.expertUrl" alt="" >-->
