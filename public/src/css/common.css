@@ -206,6 +206,8 @@ li{list-style: none}
 
 }
 
+.weui-switch:checked{border: 1px solid #ff7900; background: #ff7900}
+
 a{
     -webkit-touch-callout: none;
 }
