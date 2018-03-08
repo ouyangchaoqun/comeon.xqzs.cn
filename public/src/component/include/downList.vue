@@ -43,7 +43,7 @@
                 //偷听
                 console.log('偷听')
                 this.sortList=[{label: "最热问题", value: 1, flag: true}, {label: "最新问题", value: 2, flag: false}]
-                this.nowSort = '最热问题'
+                this.nowSort = '最新问题'
             }
             if(this.urlType==2){
                 //专家

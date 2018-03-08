@@ -115,7 +115,7 @@
                 rechargeMoney: 0,
                 rechargeFlag: false,
                 user: {},
-                qType:1,
+                qType:2,
                 titleVal:''
             }
         },
