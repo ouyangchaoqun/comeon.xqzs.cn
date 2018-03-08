@@ -681,7 +681,7 @@
     .top_left{
         float: left;
         line-height: 1.10rem ;
-        font-size: 0.40rem;
+        font-size: 0.3rem;
         margin-left: 0.27rem ;
         font-weight: bold;
     }
