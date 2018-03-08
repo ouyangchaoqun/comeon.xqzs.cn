@@ -64,7 +64,10 @@
                 </div>
             </div>
         </div>
+        <div class="tipxuzhi" @click="tip()">提问须知</div>
         <div class="record_voice_box" v-if="!isAnswered&&!outTime">
+
+
             <div class="time_in">
                 <div>{{answerTime}}"</div>
 
@@ -97,6 +100,58 @@
         </div>
 
 
+
+        <div id="tip" style="display: none">
+            <div class="dialog_select_type dialog_select_Height">
+                <div class="select_title"  v-if="detail.questionType==1">抢答须知</div>
+                <div class="select_title"  v-if="detail.questionType==2">回答须知</div>
+                <div class="tip_content" v-if="detail.questionType==1">
+                    <p>
+                        1、用户提出问题后，您可在48小时内进行抢答；
+                    </p>
+
+                    <p>
+                        2、每个问题最多可由5位咨询师抢答；
+                    </p>
+                    <p>
+                        3、用户可在48小时内选出最佳答案，最佳回答者获得100%赏金；
+                    </p>
+                    <p>
+                        4、最佳答案被其他用户偷听，其回答者将获得30%偷听费；
+                    </p>
+                    <p>
+                        5、若用户未选择最佳答案，所有回答的咨询师将平分赏金；
+                    </p>
+                    <p>
+                        备注：<br>
+                        请老师在回答录音时，控制好语调和语速，为了更好地帮助提问者，请试听无误后，再发送出去。
+                    </p>
+                </div>
+                <div class="tip_content" v-if="detail.questionType==2">
+
+                    <p>
+                        1、用户向您提出问题后，您可在48小时内进行回答；
+                    </p>
+                    <p>
+                        2、回答问题后，将获得100%提问酬金；
+                    </p>
+                    <p>
+                        3、您的回答被其他用户偷听时，将获得30%偷听费；
+                    </p>
+                    <p>
+                        4、若您48小时内未回答用户提问，提问酬金将返还给用户；
+                    </p>
+                    <p>
+                        备注：<br>
+                        请老师在回答录音时，控制好语调和语速，为了更好地帮助提问者，请试听无误后，再发送出去。
+                    </p>
+                </div>
+
+                <div class="yes know" >知道了</div>
+
+
+            </div>
+        </div>
     </div>
 </template>
 
@@ -166,6 +221,17 @@
 
         },
         methods: {
+            closeDialog:function () {
+                xqzs.weui.dialogClose()
+            },
+            tip: function () {
+                this.showTip=true;
+                let _this= this;
+                xqzs.weui.dialogCustom($("#tip").html());
+                $(".know").click(function () {
+                    _this.closeDialog()
+                })
+            },
             timeout:function (play) {
                 let _this=this;
                 _this.timeOut =    setTimeout(function () {
@@ -371,6 +437,13 @@
     }
 </script>
 <style>
+
+    .tipxuzhi{ margin-top:0.30rem; margin-right:0.30rem; text-align: right; font-size: 0.24rem; color:#999;
+        background: url(http://oss.xqzs.cn/resources/psy/asker/tip.png) no-repeat;
+        background-size: 0.28rem;
+        height: 0.28rem;
+        line-height: 0.28rem;
+        padding-left: 0.34rem; display: inline-block; float:right;}
     .answer_answer_box{ width: 100%; overflow: hidden}
     .answer_answer_box .answer{ background: #fff; padding:0.40rem 0.30rem 0.16rem 0.30rem;  position: relative; border-bottom: 0.16rem solid #F4F4F7 }
     .answer_answer_box .answer .img{ width: 0.58rem; height: 0.58rem; float:left; }
@@ -460,6 +533,18 @@
     .answer_answer_box .outTimeStyle{background: linear-gradient(to right, rgba(255,158,25,0.4), rgba(253,114,6,0.4))}
     .answer_answer_box .addPlayBox{position: absolute;bottom:1.53rem;width:100%;}
 
-
+    .dialog_select_Height{ height:6.46rem;}
+    .dialog_select_type  .yes{ border-top: 1px solid #eee; color:#FE7301; text-align: center; line-height: 0.88rem; position: absolute; bottom:0; left:0; width: 100% }
+    .dialog_select_type  .yes:active{background: #eee}
+    .dialog_select_type .tip_content{ padding:0  0.34rem; line-height: 1.8; font-size: 0.28rem; color:#666; height: 4.42rem; overflow: auto}
+    .dialog_select_type .tip_content p{ margin-bottom: 0.20rem;}
+    .asker_ask_box .ask_type_new{padding:0.40rem 0.30rem;padding-bottom: 0.10rem}
+    .asker_ask_box .ask_type_new .tab{color:rgba(36,37,61,1);font-size: 0.34rem;line-height: 1;margin-bottom: 0.40rem;}
+    .asker_ask_box .ask_type_new .tab span{color:rgba(36,37,61,0.5);font-size: 0.24rem;}
+    .asker_ask_box .ask_type_new .select_box{display: flex;text-align: center;height:0.72rem;line-height: 0.72rem;}
+    .asker_ask_box .ask_type_new .select_box div{flex:1;color:rgba(36,37,61,0.7);font-size: 0.30rem;background: rgba(245,245,245,1);border-radius: 5px;}
+    .asker_ask_box .ask_type_new .select_box div:nth-of-type(2){margin:0 0.30rem;}
+    .asker_ask_box .ask_type_new .select_box .on_new{background: rgba(253,114,6,1);color:#fff;}
+    .asker_ask_box  .text_area .content{ font-size: 0.26rem; color:rgba(36,37,61,1); height: 90%; line-height: 0.48rem}
 
 </style>
