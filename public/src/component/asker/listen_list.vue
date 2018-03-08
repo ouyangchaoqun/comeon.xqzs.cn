@@ -545,9 +545,6 @@
         width: 100%;
         height: auto;
     }
-    .asker_listen_list_box ul{
-        padding: 0 0.3rem;
-    }
 
     .asker_listen_list_box .index_content_active {
         display: block;
@@ -555,17 +552,17 @@
 
     .asker_listen_list_box li {
         background: #fff;
-        padding: 0.40rem 0rem 0.36rem 0rem;
+        padding: 0.40rem 0.3rem 0.36rem 0rem;
         border-bottom: 0.1px solid #f5f5f5;
         position: relative;
-        padding-left: 1rem;
+        padding-left: 1.3rem;
     }
     .expert_headerImg{
         width:0.8rem;
         height:0.8rem;
         border-radius: 50%;
         position: absolute;
-        left:0;
+        left:0.3rem;
     }
 
     .index_li_header {
