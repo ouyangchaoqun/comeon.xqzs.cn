@@ -31,7 +31,7 @@
                             <a  @click="goDetail(item.questionType,item.questionId)">
                                 <div class="problem_header">
                                     <div>{{formatDateText(item.addTime)}}</div>
-                                    <div class="wait_Answer" v-if="item.questionStatus==0">正在进行</div>
+                                    <div class="wait_Answer last_red_color" v-if="item.questionStatus==0">还{{formatTimeLastText(item.endTime)}}</div>
                                     <!--一对一完成-->
                                     <div class="wait_Answer" v-if="item.questionType==2&&item.questionStatus==1">已完成</div>
                                     <!--抢答完成-->
@@ -78,7 +78,8 @@
                 isShowMoreText: false,
                 showLoad: false,
                 list: [],
-                type: 0
+                type: 0,
+                timeInterval:null
             }
         },
         props:{
@@ -98,6 +99,22 @@
             xqzs.wx.setConfig(this, function () {weshare.init(wx)});
         },
         methods: {
+            timeIntervalFun:function () {
+                let _this=this;
+                if(_this.timeInterval!=null){
+                    clearInterval(_this.timeInterval);
+                }
+                _this.timeInterval=   setInterval(function () {
+                    for(let i =0;i<_this.list.length;i++){
+                        _this.list[i].endTime= _this.list[i].endTime + 1;
+                        _this.list[i].endTime= _this.list[i].endTime - 1;
+                        _this.$set(_this.list,i, _this.list[i]);
+                    }
+                },1000)
+            },
+            formatTimeLastText:function (time) {
+                return xqzs.dateTime.getTimeFormatLastText(time)
+            },
             goAsk:function () {
                 this.$router.push("/asker/ask");
             },
@@ -181,6 +198,7 @@
                     console.log(vm.list)
                     if (arr.length == 0) return;
                     vm.page = vm.page + 1;
+                    vm.timeIntervalFun();
 
                 }, (response) => {
                     vm.isLoading = false;
