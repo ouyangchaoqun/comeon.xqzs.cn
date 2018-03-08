@@ -214,7 +214,7 @@
                 let _this = this;
                 if( _this.expertId&& _this.expertId!=''){
                     console.log('一对一')
-                    _this.$http.post(web.API_PATH + "come/expert/post/expert/question", {userId:"_userId_",content:content, questionClass: _this.questionClass,expertId:_this.expertId,isAnonymous:this.isAnonymous})
+                    _this.$http.post(web.API_PATH + "come/expert/post/expert/question", {userId:"_userId_",content:content, questionClass: _this.questionClass,expertId:_this.expertId,isAnonymous:this.isAnonymous,  channelOpenId:xqzs.localdb.get("channelopenid")})
                         .then(function (bt) {
                             if (bt.data && bt.data.status == 1) {
                                 let result = bt.data.data;
@@ -233,7 +233,7 @@
                         });
                 }else{
                     console.log('快问')
-                    _this.$http.post(web.API_PATH + "come/user/post/grab/question", {userId:"_userId_",content:content, questionClass: _this.questionClass,price:10,isAnonymous:this.isAnonymous})
+                    _this.$http.post(web.API_PATH + "come/user/post/grab/question", {userId:"_userId_",content:content, questionClass: _this.questionClass,price:10,isAnonymous:this.isAnonymous,  channelOpenId:xqzs.localdb.get("channelopenid")})
                         .then(function (bt) {
                             if (bt.data && bt.data.status == 1) {
                                 let result = bt.data.data;
