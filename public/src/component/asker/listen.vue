@@ -417,8 +417,11 @@
             randContentNum:function (arr) {
 
                 for(let i =0;i<arr.length;i++){
-                    let count =30 + parseInt( Math.random()*30)
-                    arr[i].content= arr[i].content.substring(0,count) +".."
+                    let count =30 + parseInt( Math.random()*30);
+                    if(count<arr[i].content.length){
+                        arr[i].content= arr[i].content.substring(0,count) +".."
+                    }
+
                 }
                 return arr ;
             },
@@ -545,13 +548,11 @@
     .index_box .index_content_active {
         display: block;
     }
-    .index_content_active ul{
-        padding:0 0.30rem;
-    }
+
 
     .index_box li {
         background: #fff;
-        padding: 0.30rem 0 0.40rem 0;
+        padding: 0.30rem 0.30rem 0.40rem 0.30rem;
         border-bottom: 1px solid RGBA(69, 75, 84, 0.15);
     }
 
