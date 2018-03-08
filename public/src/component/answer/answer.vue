@@ -16,8 +16,7 @@
                     <div class="price">￥{{detail.price}}</div>
                 </div>
                 <div class="content">{{detail.content}}</div>
-                <div class="last_time">在哪方面：{{detail.title}}</div>
-                <div class="last_time">{{getTime(detail.addTime)}}</div>
+                 <div class="last_time last_red_color">还{{formatDateText( detail.addTime+172800)}}</div>
                 <div class="clear"></div>
 
                 <div class="audio" :class="{playing:playing,paused:paused}" v-if="isAnswered&&answerId">
@@ -190,6 +189,8 @@
             this.questionId = this.$route.query.askId
             this.$http.get(web.API_PATH + 'come/expert/question/detail/'+this.questionId).then(function (data) {//es5写法
                 if (data.body.status == 1) {
+
+                    _this.timeIntervalFun();
                     console.log(data)
                     _this.detail = data.data.data;
                     if( _this.detail.questionStatus==1){
@@ -221,6 +222,19 @@
 
         },
         methods: {
+            timeIntervalFun:function () {
+                let _this=this;
+                if(_this.timeInterval!=null){
+                    clearInterval(_this.timeInterval);
+                }
+                _this.timeInterval=   setInterval(function () {
+                    _this.detail.addTime= _this.detail.addTime + 1;
+                    _this.detail.addTime= _this.detail.addTime - 1
+                },1000)
+            },
+            formatDateText:function (time) {
+                return xqzs.dateTime.getTimeFormatLastText(time)
+            },
             closeDialog:function () {
                 xqzs.weui.dialogClose()
             },
