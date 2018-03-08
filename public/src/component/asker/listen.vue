@@ -1,7 +1,7 @@
 <template id="stealListen_index">
     <div class="asker_listen_box" :class="{wbg:list.length==0 }">
         <!--头部导航栏-->
-        <div v-title>首页</div>
+        <div v-title>心理咨询</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="weui-tab__panel main">
              <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
