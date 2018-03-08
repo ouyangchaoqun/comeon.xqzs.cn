@@ -180,8 +180,6 @@
             initView: function () {
                  var minHeight = $(window).height() - $('nav').height() - 100;
                  $('.index_nocontent').css('minHeight', minHeight)
-
-
             },
 
             initActive: function () {
@@ -416,6 +414,14 @@
                 }, function (error) {
                 });
             },
+            randContentNum:function (arr) {
+
+                for(let i =0;i<arr.length;i++){
+                    let count =30 + parseInt( Math.random()*30)
+                    arr[i].content= arr[i].content.substring(0,count) +".."
+                }
+                return arr ;
+            },
             getList: function (done,isRef) {
                 let vm = this;
                 let url = web.API_PATH + 'come/listen/listen/list/_userId_/' + vm.type + '/' + vm.page + '/' + vm.row;
@@ -451,7 +457,7 @@
                     }
 
                     let arr = response.data.data;
-//
+                    arr= vm.randContentNum(arr);
                     if (arr.length < vm.row) {
                         vm.isPageEnd = true;
                         vm.isShowMoreText = false

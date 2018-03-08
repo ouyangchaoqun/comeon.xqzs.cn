@@ -405,6 +405,16 @@
                 this.isShowMoreText = false;
                 this.getList();
             },
+
+            randContentNum:function (arr) {
+
+                for(let i =0;i<arr.length;i++){
+                    let count =30 + parseInt( Math.random()*30)
+                    arr[i].content= arr[i].content.substring(0,count) +".."
+                }
+                return arr ;
+            },
+
             getList: function (done) {
                 let vm = this;
                 this.rankUrl = web.API_PATH + 'come/listen/listen/list/_userId_/' + vm.type + '/' + vm.page + '/' + vm.row+'?hottestOrNewest='+vm.qType;;
@@ -436,7 +446,7 @@
                         return;
                     }
                    let arr = response.data.data;
-                    console.log(arr)
+                    arr= vm.randContentNum(arr);
                     if (arr.length < vm.row) {
                         vm.isPageEnd = true;
                         vm.isShowMoreText = false
