@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
       <meta name="x5-orientation" content="portrait">
-  <title>11111</title>
+  <title>心理咨询</title>
   <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css"/>
   <link rel="stylesheet" type="text/css" href="<?=OSS_BUILD_PATH?>/common.min.css?v=<?=STATIC_XQZS_VERSION?>"/>
   <link rel="stylesheet" href="https://cdn.staticfile.org/Swiper/3.4.2/css/swiper.min.css">
@@ -43,7 +43,6 @@
 <script src="<?=OSS_BUILD_PATH?>/cookie.min.js?v=<?=STATIC_XQZS_VERSION?>"></script>
 <script src="<?=OSS_BUILD_PATH?>/xqzs.min.js?v=<?=STATIC_XQZS_VERSION?>"></script>
 <script src="<?=OSS_BUILD_PATH?>/xqzs.face.min.js?v=<?=STATIC_XQZS_VERSION?>"></script>
-<script src="<?=OSS_BUILD_PATH?>/blocksit.min.min.js"></script>
 <script src="<?=OSS_BUILD_PATH?>/weshare.min.js"></script>
 <script src="<?=OSS_BUILD_PATH?>/build.js?v=<?=STATIC_XQZS_VERSION?>"></script>
 <script src="<?=OSS_BUILD_PATH?>/calendar.min.js?v=<?=STATIC_XQZS_VERSION?>"></script>

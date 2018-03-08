@@ -45,7 +45,6 @@
 <script src="<?=env("BASE_PATH")?>src/js/cookie.js?v=<?=STATIC_XQZS_VERSION?>"></script>
 <script src="<?=env("BASE_PATH")?>src/js/xqzs.js?v=<?=STATIC_XQZS_VERSION?>"></script>
 <script src="<?=env("BASE_PATH")?>src/js/xqzs.face.js?v=<?=STATIC_XQZS_VERSION?>"></script>
-<script src="<?=env("BASE_PATH")?>src/js/blocksit.min.js"></script>
 <script src="<?=env("BASE_PATH")?>src/js/weshare.js"></script>
 <script src="<?=env("BASE_PATH")?>dist/build.js?v=<?=STATIC_XQZS_VERSION?>"></script>
 <script src="<?=env("BASE_PATH")?>src/js/calendar.js?v=<?=STATIC_XQZS_VERSION?>"></script>
