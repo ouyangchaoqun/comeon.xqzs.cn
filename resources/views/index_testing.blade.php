@@ -7,7 +7,7 @@
       <meta name="x5-orientation" content="portrait">
   <title>11111</title>
   <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css"/>
-  <link rel="stylesheet" type="text/css" href="<?=env("BASE_PATH")?>/src/css/common.css?v=<?=STATIC_XQZS_VERSION?>"/>
+  <link rel="stylesheet" type="text/css" href="<?=OSS_BUILD_PATH?>/common.min.css?v=<?=STATIC_XQZS_VERSION?>"/>
   <link rel="stylesheet" href="https://cdn.staticfile.org/Swiper/3.4.2/css/swiper.min.css">
   <script  src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
   <script src="https://cdn.staticfile.org/vue/2.2.6/vue.min.js"></script>
@@ -39,20 +39,20 @@
     var vueRoutesBaseUrl=""
     var cookieVersion="<?=STATIC_XQZS_VERSION?>";
 </script>
-<script src="<?=env("BASE_PATH")?>src/js/rem.js?v=<?=STATIC_XQZS_VERSION?>"></script>
-<script src="<?=env("BASE_PATH")?>src/js/cookie.js?v=<?=STATIC_XQZS_VERSION?>"></script>
-<script src="<?=env("BASE_PATH")?>src/js/xqzs.js?v=<?=STATIC_XQZS_VERSION?>"></script>
-<script src="<?=env("BASE_PATH")?>src/js/xqzs.face.js?v=<?=STATIC_XQZS_VERSION?>"></script>
-<script src="<?=env("BASE_PATH")?>src/js/blocksit.min.js"></script>
-<script src="<?=env("BASE_PATH")?>src/js/weshare.js"></script>
-<script src="<?=env("BASE_PATH")?>dist/build.js?v=<?=STATIC_XQZS_VERSION?>"></script>
-<script src="<?=env("BASE_PATH")?>src/js/calendar.js?v=<?=STATIC_XQZS_VERSION?>"></script>
+<script src="<?=OSS_BUILD_PATH?>/rem.min.js?v=<?=STATIC_XQZS_VERSION?>"></script>
+<script src="<?=OSS_BUILD_PATH?>/cookie.min.js?v=<?=STATIC_XQZS_VERSION?>"></script>
+<script src="<?=OSS_BUILD_PATH?>/xqzs.min.js?v=<?=STATIC_XQZS_VERSION?>"></script>
+<script src="<?=OSS_BUILD_PATH?>/xqzs.face.min.js?v=<?=STATIC_XQZS_VERSION?>"></script>
+<script src="<?=OSS_BUILD_PATH?>/blocksit.min.min.js"></script>
+<script src="<?=OSS_BUILD_PATH?>/weshare.min.js"></script>
+<script src="<?=OSS_BUILD_PATH?>/build.js?v=<?=STATIC_XQZS_VERSION?>"></script>
+<script src="<?=OSS_BUILD_PATH?>/calendar.min.js?v=<?=STATIC_XQZS_VERSION?>"></script>
 <script src="https://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 
-<script src="<?=env("BASE_PATH")?>src/js/clip/iscroll-zoom.js"></script>
+<script src="<?=OSS_BUILD_PATH?>/clip/iscroll-zoom.js"></script>
 <script src="https://cdn.staticfile.org/hammer.js/2.0.4/hammer.min.js"></script>
-<script src="<?=env("BASE_PATH")?>src/js/clip/jquery.photoClip.js"></script>
-<script src="<?=env("BASE_PATH")?>src/js/clip/exif.js"></script>
+<script src="<?=OSS_BUILD_PATH?>/clip/jquery.photoClip.js"></script>
+<script src="<?=OSS_BUILD_PATH?>/clip/exif.js"></script>
 
 </body>
 </html>
