@@ -64,7 +64,8 @@
                 </div>
             </div>
         </div>
-        <div class="tipxuzhi" @click="tip()">提问须知</div>
+        <div class="tipxuzhi" @click="tip()">  <div   v-if="detail.questionType==1">抢答须知</div>
+            <div  v-if="detail.questionType==2">回答须知</div></div>
         <div class="record_voice_box" v-if="!isAnswered&&!outTime">
 
 
