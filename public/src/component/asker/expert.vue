@@ -16,22 +16,16 @@
 
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide" v-for="item in manList">
+                            <div class="swiper-slide" v-for="item in manList" style="background: #fbfbfb">
                                 <ul>
                                     <li  class="hot_item" @click="goDetail(item.expertId)">
-                                        <div class="hot_top">
-                                            <div class="hot_face"><img :src="item.faceUrl" alt=""></div>
-                                            <div class="hot_name">{{item.nickName}}</div>
-                                        </div>
-                                        <div class="hot_bottom">
-                                            <div class="hot_text">
-                                                <p style="color: #FE7A03">￥{{item.price}}</p>
-                                                <p>{{item.answerCount}}个回答</p>
-                                            </div>
-                                            <div class="hot_intro">个人简介</div>
-                                        </div>
-                                        <div class="hot_evaluate">"{{item.lastEvaluate}}"</div>
-                                        <div class="hot_num">{{item.evaluateCount}}人评价>></div>
+                                        <div class="hot_face ">
+                                        <img :src="item.faceUrl" alt=""></div>
+                                        <div class="hot_name">{{item.nickName}}</div>
+
+                                        <div class="hot_evaluate">已帮助<span class="hot_text">{{item.answerCount}}</span>人</div>
+                                        <div class="hot_num">已被<span class="hot_text">{{item.followCount}}</span>人关注</div>
+                                        <div class="hot_bottom"> 咨询TA</div>
                                     </li>
                                 </ul>
                             </div>
@@ -450,7 +444,7 @@
         position: relative;
         margin-bottom: 0.20rem;
         line-height: 0.61rem;
-
+        border-bottom: 1px solid #eee;
     }
     .answer_index .new_head{
         height: 0.60rem;
@@ -472,31 +466,26 @@
         background-size: 0.24rem 0.20rem;
         padding-right: 0.30rem;
     }
-    .answer_index  .hot_right{
-        color: #FE7A03;
-        font-size: 0.24rem;
-        margin-right: 0.07rem;
-    }
     .answer_index  .hot_head img{
         width: 0.20rem;
         height:0.20rem;
         margin-right:0.34rem;
     }
     .answer_index .hot_item{
-        width: 2.90rem;
+        width: 2.84rem;
         box-shadow: 0 0.04rem 0.3rem RGBA(0, 0, 0, 0.1);
         float: left;
-        margin-right: 0.34rem;
+        margin-right: 0.20rem;
+        margin-left: 0.2rem;
         border-radius: 0.11rem 0.11rem 0.11rem 0.11rem;
         background: RGBA(255, 255, 255, 1);
+        margin-top: 0.4rem;
+        margin-bottom: 0.4rem;
     }
-    .answer_index .hot_top{
-        background: RGBA(255, 123, 0, 0.15);
-        height: 1.92rem;
-    }
+
     .answer_index .hot_face{
-        width: 1.00rem;
-        height: 1.00rem;
+        width: 1.12rem;
+        height: 1.12rem;
         border-radius: 50%;
         margin: 0 auto;
         padding-top: 0.24rem;
@@ -507,48 +496,48 @@
         border-radius: 50%;
     }
     .answer_index .hot_name{
-        margin-top:0.11rem ;
-        font-size: 0.28rem;
+        margin-top:0.15rem ;
+        font-size: 0.30rem;
+        height: 0.30rem;
         font-weight: bold;
         text-align: center;
+        line-height:1;
     }
     .answer_index ul{
         overflow: hidden;
     }
-    .answer_index .hot_bottom{
-        background: #fff;
-        overflow: hidden;
-    }
     .answer_index .hot_text{
-        margin-left: 0.17rem;
-        margin-top: 0.03rem;
-        float: left;
-        font-size: 0.24rem;
+        color: #FE7A03;font-weight:bold;
+        margin: 0 0.06rem;
     }
-    .answer_index .hot_intro{
-        float: right;
-        width: 1.32rem;
-        height: 0.60rem;
-        border-radius:0.32rem 0 0 0.32rem  ;
-        font-size: 0.24rem;
-        line-height: 0.60rem;
-        background: RGBA(255, 123, 0, 0.15);
-        color: #FE7A03;
-        margin-top: 0.22rem;
+    .answer_index .hot_bottom{
+        margin: 0.2rem auto;
+        border:1px solid #79CFFD;
+        background: #fff;
+        width: 1.8rem;
+        overflow: hidden;
+        height: 0.5rem;
+        line-height: 0.5rem;
         text-align: center;
+        border-radius: 0.1rem;
+        color: #79CFFD;
+        font-size: 0.24rem;
     }
+
     .answer_index .hot_evaluate{
-        margin-top:0.20rem ;
+        margin-top:0.15rem ;
         font-size: 0.27rem;
         color: RGBA(69, 75, 84, 0.5);
         text-align: center;
+        line-height: 1;
     }
     .answer_index .hot_num{
-        margin-top:0.20rem ;
+        margin-top:0.15rem ;
         font-size: 0.27rem;
         color: RGBA(69, 75, 84, 0.5);
-        text-align: right;
+        text-align: center;
         margin-bottom: 0.14rem;
+        line-height: 1;
     }
     .swiper-slide{ overflow: auto}
 
