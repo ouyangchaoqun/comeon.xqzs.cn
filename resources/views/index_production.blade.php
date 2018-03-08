@@ -53,10 +53,10 @@
 
 
 
-<script src="<?=OSS_BUILD_PATH?>/clip_iscroll-zoom.js"></script>
+<script src="<?=OSS_BUILD_PATH?>/clip_iscroll-zoom.min.js"></script>
 <script src="https://cdn.staticfile.org/hammer.js/2.0.4/hammer.min.js"></script>
-<script src="<?=OSS_BUILD_PATH?>/clip_jquery.photoClip.js"></script>
-<script src="<?=OSS_BUILD_PATH?>/clip_exif.js"></script>
+<script src="<?=OSS_BUILD_PATH?>/clip_jquery.photoClip.min.js"></script>
+<script src="<?=OSS_BUILD_PATH?>/clip_exif.min.js"></script>
 
 
 </body>
