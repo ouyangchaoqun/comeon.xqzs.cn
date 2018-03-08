@@ -35,7 +35,7 @@
                 <img :src="detail.expert.faceUrl" alt="" @click="goDetail(detail.expertId)">
                 <div>
                     <span class="steal_expert_name" @click="goDetail(detail.expertId)">{{detail.expert.nickName}}</span><span
-                        class="steal_expert_fans">{{followCount}} 人收听</span>
+                        class="steal_expert_fans">{{followCount}} 人关注</span>
                 </div>
                 <div class="steal_expert_des">{{detail.expert.sign}}</div>
                 <div class="followed_box" v-if="!detail.expert.isFollow" @click="follow(detail.expertId)">关注</div>
@@ -320,7 +320,7 @@
                             if(that.detail.expert.isFollow==0){
                                 that.detail.expert.isFollow=1;
                                 that.followCount = that.followCount+1;
-                                xqzs.weui.toast("success","收听成功")
+                                xqzs.weui.toast("success","关注成功")
                             }else {
                                 that.detail.expert.isFollow=0;
                                 that.followCount = that.followCount-1;
@@ -329,11 +329,11 @@
 
 
                         }else if(bt.data.status ==900004){
-                            xqzs.weui.tip("已经收听")
+                            xqzs.weui.tip("已经关注")
                         }else if(bt.data.status ==9000003){
-                            xqzs.weui.tip("不能收听自己")
+                            xqzs.weui.tip("不能关注自己")
                         }else {
-                            xqzs.weui.tip("收听失败")
+                            xqzs.weui.tip("关注失败")
                         }
                     });
             },

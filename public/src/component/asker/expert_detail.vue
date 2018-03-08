@@ -595,14 +595,14 @@
                             }else{
                                 that.detail.followed=1;
                                 that.detail.followCount=that.detail.followCount+1;
-                                xqzs.weui.toast("success","收听成功")
+                                xqzs.weui.toast("success","关注成功")
                             }
 
 
                         }else if(bt.data.status ==9000003){
-                            xqzs.weui.toast("fail","不能收听自己")
+                            xqzs.weui.toast("fail","不能关注自己")
                         }else {
-                            xqzs.weui.toast("fail","收听失败")
+                            xqzs.weui.toast("fail","关注失败")
                         }
                     });
             },
