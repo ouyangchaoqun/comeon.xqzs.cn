@@ -20,22 +20,29 @@
                   :isShowMoreText="isShowMoreText"  v-if="list.length>0">
 
             <div class="top_tip">共{{total}}位咨询师</div>
-
             <div class="answer_list">
-                <div class="item" v-for="(item,index) in list">
+                <div class="item" v-for="(item,index) in list"  v-if="item.expertId!=52">
                     <div @click="goDetail(item.expertId)">
-                        <div class="itemHeader">
-                            <div>{{item.nickName}} <span>{{item.cityName}}</span></div>
-                        </div>
                         <div class="itemDetail">
                             <div class="img"><img :src="item.faceUrl"></div>
                             <div class="itemDetail_right">
-                                <div class="title">{{item.sign}}</div>
-                                <div class="class_s">
-                                    <span v-for="(tag,tagIndex) in item.domains" class="tab_i_i" >{{tag.title}}</span>
+                                <div class="itemHeader">
+                                    <div>{{item.nickName}}<span>{{item.cityName}}</span></div>
                                 </div>
-                                <div class="class_s other"><span v-if="item.answerCount!=null">{{item.answerCount||0}} 个回答</span><span>{{item.followCount||0}} 人关注</span></div>
+                                <div class="title">{{item.sign}}</div>
+                                <div class="itemDetail_class_s">
+                                    <span v-for="(tag,tagIndex) in item.domains" class="tab_i_i">{{tag.title}}</span>
+                                </div>
+                                <div class="class_s other">
+                                    <span class="price" ><b>问价</b>  <a>￥{{item.price}}</a></span>
+                                    <span  class="class_right">
+                                        <span v-if="item.answerCount!=null">{{item.answerCount||0}} 个回答</span>
+                                        <span>{{item.followCount||0}} 人关注</span>
+                                    </span>
+
+                                </div>
                             </div>
+                            <div style="clear: both"></div>
                         </div>
                     </div>
                 </div>
@@ -151,11 +158,9 @@
     }
 </script>
 <style>
-    .asker_my_answer_list_box .item{border-bottom: 1px solid #E0E0E1;}
+    .asker_my_answer_list_box .item{border-bottom: 0.02rem solid #E0E0E1;}
     .asker_my_answer_list_box .item:active{background: #f5f5f5}
     .asker_my_answer_list_box .answer_list .item{margin-top: 0}
-    .asker_my_answer_list_box  .answer_list .item .class_s{ margin-bottom: 0}
-    .asker_my_answer_list_box .answer_list .item .other{bottom:0!important;padding-left: 0.10rem;}
     .tab_i_i{color: #FF9966;
         background: rgba(204,204,204,0.3);
         border-radius: 0.05rem;
