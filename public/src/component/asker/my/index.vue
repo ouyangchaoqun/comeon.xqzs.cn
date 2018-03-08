@@ -25,7 +25,7 @@
                 <!--</router-link>-->
                 </div>
                 <router-link to="../my/listen/list" class="listen"><i></i>我的偷听</router-link>
-                <router-link to="../my/answer/list" class="answer"><i></i>我的收听</router-link>
+                <router-link to="../my/answer/list" class="answer"><i></i>我的关注</router-link>
                 <router-link to="../my/comment/list" class="comment"><i></i>我的评价</router-link>
             </div>
             <div class="join" @click="join()">入驻咨询师</div>
