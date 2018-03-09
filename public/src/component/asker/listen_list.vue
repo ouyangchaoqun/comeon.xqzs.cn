@@ -546,8 +546,14 @@
     }
     .widthAnimation_class{
         animation:widthAnimation .3s linear forwards;
+        -webkit-animation:widthAnimation .3s linear forwards;
+
     }
     @keyframes widthAnimation {
+        0%{width:0;opacity: 0}
+        100%{width:3.52rem;opacity: 1}
+    }
+    @-webkit-keyframes widthAnimation {
         0%{width:0;opacity: 0}
         100%{width:3.52rem;opacity: 1}
     }
