@@ -558,7 +558,7 @@
 
     .index_li_header {
         font-size: 0.24rem;
-        color: RGBA(69, 75, 84, 0.5);
+        color: RGBA(69, 75, 84, 0.6);
         line-height: 0.34rem;
         margin-bottom: 0.18rem;
         position: relative;

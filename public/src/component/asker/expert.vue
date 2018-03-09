@@ -424,36 +424,34 @@
     }
     .answer_index .title_top {
         background: #fff;
-        padding:0.40rem 0.00rem;
-        padding-left: 0.30rem;
         margin-top: 0.24rem;
     }
     .answer_index .hot_head{
         height: 1rem;
-        width: 100%;
         color: #454B54;
         font-size: 0.30rem;
         font-weight: bold;
         position: relative;
         margin-bottom: 0.20rem;
-        line-height: 0.61rem;
+        line-height: 1rem;
+        padding: 0 0.3rem;
         border-bottom: 0.02rem solid #eee;
     }
     .answer_index .new_head{
-        height: 0.60rem;
+        height: 1rem;
         color: #454B54;
         font-size: 0.30rem;
         font-weight: bold;
         position: relative;
         background: #fff;
-        line-height: 0.61rem;
+        line-height: 1rem;
+        padding:0 0.3rem;
     }
     .hot_hidden{
         position: absolute;
         right: 0.30rem;
         top:0;
         font-size: 0.24rem;
-        line-height: 0.61rem;
         color:RGBA(69, 75, 84, 0.5);
         background: url("http://oss.xqzs.cn/resources/psy/arrow.png") no-repeat center right;
         background-size: 0.24rem 0.20rem;
