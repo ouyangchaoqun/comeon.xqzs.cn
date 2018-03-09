@@ -226,10 +226,12 @@
         methods: {
             timeIntervalFun:function () {
                 let _this=this;
-                _this.timeInterval= setTimeout(function () {
+                if(_this.timeInterval!=null){
+                    clearInterval(_this.timeInterval);
+                }
+                _this.timeInterval=   setInterval(function () {
                     _this.detail.addTime= _this.detail.addTime + 1;
-                    _this.detail.addTime= _this.detail.addTime - 1;
-                    _this.timeIntervalFun();
+                    _this.detail.addTime= _this.detail.addTime - 1
                 },1000)
             },
             formatDateText:function (time) {
@@ -535,7 +537,7 @@
     .answer_answer_box  .action_btn .item{  -webkit-box-flex: 1;  -webkit-flex: 1;  flex: 1;  text-align: center; color:#666; font-size: 0.26rem;  }
     .answer_answer_box  .action_btn .item .txt{ margin-top: 0.20rem}
     .answer_answer_box  .audio_btn_in{ background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1)); border-radius: 50%; height: 1.40rem; width: 1.40rem;
-        -webkit-box-shadow:0 0 0.16rem rgba(255,158,25,1);box-shadow:0 0 0.16rem rgba(255,158,25,1);  position: relative; margin: 0 auto}
+        -webkit-box-shadow:0 0 0.16rem rgba(255,158,25,1);box-shadow:0 0 8px rgba(255,158,25,1);  position: relative; margin: 0 auto}
     .answer_answer_box .audio_btn_in:active{ background: rgba(253,114,6,0.6)}
     .answer_answer_box  .audio_btn_in:before{content: " " ; display: block ; position: absolute; top:50%; left:50% ;}
     .answer_answer_box   .audio_begin:before{ background:url(http://oss.xqzs.cn/resources/psy/audio_btn_begin1.png)  no-repeat; background-size:  0.46rem; width:0.46rem;; height: 0.64rem;  margin-left: -0.23rem; margin-top: -0.32rem;  }
