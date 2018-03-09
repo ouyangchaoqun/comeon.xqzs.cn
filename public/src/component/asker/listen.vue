@@ -18,8 +18,9 @@
                     </div>
                     <div v-show="list.length>0" class="index_content_active">
                         <ul>
-                            <li v-for="(item,index) in list" @click="goDetail(item.questionId)">
-                                <img :src=item.expertFaceUrl alt="" class="expert_headerImg">
+                            <li v-for="(item,index) in list" >
+                                <img :src=item.expertFaceUrl alt="" class="expert_headerImg" @click="goAnswer(item.expertId)">
+                                <div @click="goDetail(item.questionId)">
                                     <div class="index_li_header">
                                         <div>{{item.expertName}}咨询师 回答了</div>
                                         <div>{{item.title}}</div>
@@ -66,6 +67,7 @@
                                         </span>
 
                                         <div class="index_li_count">听过 {{item.listenTimes}}</div>
+                                    </div>
                                     </div>
                             </li>
 
@@ -162,6 +164,9 @@
                 this.isPageEnd = false;
                 this.isShowMoreText = false;
                 this.getList(false,true)
+            },
+            goAnswer:function (extId) {
+                this.$router.push('/asker/expert/detail/?id=' + extId)
             },
             getUserInfo: function () {
 //                console.log('获取user')
@@ -546,14 +551,14 @@
         padding: 0.30rem 0.30rem 0.36rem 0;
         border-bottom: 0.02rem solid RGBA(69, 75, 84, 0.15);
         position: relative;
-        padding-left: 1.3rem;
+        margin-left: 1.3rem;
     }
     .index_box li .expert_headerImg{
         width:0.8rem;
         height:0.8rem;
         border-radius: 50%;
         position: absolute;
-        left:0.3rem;
+        left:-1rem;
     }
 
     .index_li_header {
