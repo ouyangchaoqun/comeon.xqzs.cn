@@ -126,7 +126,8 @@
                 rechargeFlag: false,
                 user: {},
                 urlType:1,
-                isAnimate:false
+                isAnimate:false,
+                currPlayIndex:null
             }
         },
         components: {
@@ -350,7 +351,25 @@
                     }
                     _this.$set(_this.list, i, list[i]);
                 }
+
+                if(_this.currPlayIndex!=null)
+                {
+                    _this.clearTimeOut();
+                    _this.pause(_this.currPlayIndex);
+
+                }
+
                 list[index].isAdd = true;
+            },
+
+            pause:function (index) {
+                let  _this=this;
+                let list = _this.list;
+                list[index].paused = true;
+                list[index].playing = false;
+                _this.currPlayIndex = null;
+                _this.$set(_this.list, index, list[index])
+                xqzs.voice.pause();
             },
 
             play: function (index) {
@@ -380,6 +399,7 @@
                     list[index].playing = true;
                     _this.$set(_this.list, index, list[index])
                     xqzs.voice.play();
+                    _this.currPlayIndex=index;
                     _this.timeout(true, CT, index)
                 } else {
                     if (item.playing) {    //播放中去做暂停操作
@@ -397,6 +417,7 @@
                             list[index].paused = false;
                             _this.$set(_this.list, index, list[index]);
                             _this.playing = true;
+                            _this.currPlayIndex=index;
                             _this.clearTimeOut();
                             _this.timeout(true, T, index)
                         })
