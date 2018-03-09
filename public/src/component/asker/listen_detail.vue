@@ -179,7 +179,7 @@
                     payTitle = '确认偷听此问题';
                     subHtml='';
                     msg = '使用：<span class="colorStyle">1</span> 点豆&nbsp&nbsp&nbsp剩余：<span class="colorStyle">'+_this.user.dianCoin+'</span> 点豆';
-                    if(_this.user.dianCoin>1){
+                    if(_this.user.dianCoin>=1){
                         useCoin = true;
                         console.log(_this.user.dianCoin)
                     }else{
@@ -243,7 +243,8 @@
                             });
                             break;
                         case recharge:
-                            _this.rechargeFlag = true
+                            _this.rechargeFlag = true;
+                            console.log("_this.rechargeFlag" +_this.rechargeFlag )
                             break;
                     }
 
