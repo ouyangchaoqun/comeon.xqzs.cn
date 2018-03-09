@@ -436,7 +436,7 @@
         margin-top: 0.24rem;
     }
     .answer_index .hot_head{
-        height: 0.60rem;
+        height: 1rem;
         width: 100%;
         color: #454B54;
         font-size: 0.30rem;
