@@ -21,8 +21,9 @@
                                     <div class="index_li_bottom">
                                         <!--免费听-->
                                         <span class="problem_answer_yy" v-if="item.answerType==1">
+                                            <div class="audio_mask" @click.stop="hideMask(index)" :class="{maskState:item.isAdd}"></div>
                             <div class="audio" :class="{playing:item.playing,paused:item.paused}">
-                                <div class="audio_btn" @click.stop="play(index)">
+                                <div class="audio_btn" @click.stop="play(index)" :class="{widthAnimation_class:item.isAdd}">
                                     <div class="radio"><span></span><i></i></div>
                                     <template v-if="!item.playing&&!item.paused">点击播放</template>
                                     <template v-if="item.playing">正在播放..</template>
@@ -34,11 +35,10 @@
                         </span>
 
                                         <!--付费听-->
-                                        <div class="problem_answer_yy"
-                                             @click.stop="typeDialog(item.questionId,item.answerId,index )"
-                                             v-if="item.answerType==2||item.answerType==4">
+                                        <div class="problem_answer_yy" v-if="item.answerType==2||item.answerType==4">
+                                            <div class="audio_mask" @click.stop="hideMask(index)" :class="{maskState:item.isAdd}"></div>
                                             <div class="audio">
-                                                <div class="audio_btn pay">偷听
+                                                <div class="audio_btn pay" @click.stop="typeDialog(item.questionId,item.answerId,index )" :class="{widthAnimation_class:item.isAdd}">偷听
                                                     <div class="second">{{(item.ct &&
                                                         item.ct!='00')?item.ct:item.length}}”
                                                     </div>
@@ -47,8 +47,9 @@
                                         </div>
                                         <!--限时免费听-->
                                         <span class="problem_answer_yy" v-if="item.answerType==3">
+                                            <div class="audio_mask" @click.stop="hideMask(index)" :class="{maskState:item.isAdd}"></div>
                             <div class="audio" :class="{playing:item.playing,paused:item.paused}">
-                                <div class="audio_btn" @click.stop="play(index)">
+                                <div class="audio_btn" @click.stop="play(index)" :class="{widthAnimation_class:item.isAdd}">
                                     <template v-if="!item.playing&&!item.paused">限时免费听</template>
                                     <template v-if="item.playing">正在播放..</template>
                                     <template v-if="item.paused">播放暂停</template>
@@ -320,6 +321,19 @@
                 })
 
             },
+            hideMask:function (index) {
+                let _this = this;
+                let list = _this.list;
+                for (let i = 0; i < list.length; i++) {
+                    list[i].isAdd = false;
+                    if (index != i && (list[i].playing || list[i].paused)) {
+                        list[i].paused = false;
+                        list[i].playing = false;
+                    }
+                    _this.$set(_this.list, i, list[i]);
+                }
+                list[index].isAdd = true;
+            },
 
             play: function (index) {
 
@@ -483,6 +497,18 @@
 </script>
 
 <style>
+
+    .asker_listen_box .audio_mask{
+        position: absolute;
+        top: -0.02rem;
+        left:0rem;
+        height: 0.91rem;
+        width: 0.97rem;
+        z-index: 100;
+    }
+    .asker_listen_box .maskState{
+        display: none;
+    }
     .weui-dialog .weui-dialog__bd .colorStyle {
         color: rgba(251, 100, 10, 1);
     }
@@ -496,7 +522,14 @@
     }
 
     .asker_listen_box .audio .audio_btn {
-        width: 3.52rem !important;
+        width: 0 !important;
+    }
+    .widthAnimation_class{
+        animation:widthAnimation .3s linear forwards;
+    }
+    @keyframes widthAnimation {
+        0%{width:0;opacity: 0}
+        100%{width:3.52rem;opacity: 1}
     }
 
     .index_li_bottom .problem_answer_yy {
