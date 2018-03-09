@@ -307,9 +307,7 @@
             getClassList:function () {
                 console.log('快问类型选择')
                 let _this=this;
-                _this.showLoad = true;
                 _this.$http.get(web.API_PATH + 'come/listen/question/class/list?fastask=1').then(function (data) {//es5写法
-                    _this.showLoad = false
                     if (data.body.status == 1) {
                         _this.types= data.body.data;
                         _this.rechargeMoney = 10.00;

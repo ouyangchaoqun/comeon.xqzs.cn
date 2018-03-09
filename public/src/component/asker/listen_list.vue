@@ -436,7 +436,7 @@
             randContentNum:function (arr) {
 
                 for(let i =0;i<arr.length;i++){
-                    let count =30 + parseInt( Math.random()*30)
+                    let count =30 + parseInt( Math.random()*40)
                     if(count<arr[i].content.length){
                         arr[i].content= arr[i].content.substring(0,count) +".."
                     }

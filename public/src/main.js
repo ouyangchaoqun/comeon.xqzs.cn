@@ -10,9 +10,9 @@ let routers =
             component: appTransition, // 引入页面切换组件
             children: [
                 require('./routes/index'),
+                require('./routes/asker/listen'),
                 require('./routes/asker/ask'),
                 require('./routes/asker/listen_list'),
-                require('./routes/asker/listen'),
                 require('./routes/asker/listen_detail'),
                 require('./routes/asker/expert'),
                 require('./routes/asker/expert_list'),
