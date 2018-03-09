@@ -264,7 +264,7 @@ a{
 
 
 /*专家列表*/
-.answer_list .item{ background: #fff; padding:0.30rem; margin-top:0.02rem ;position: relative;padding-top: 0.42rem;}
+.answer_list .item{ background: #fff; padding:0.30rem; margin-top:0.02rem ;position: relative;padding-top: 0.42rem; border-top: 0.02rem solid #eee}
 .answer_list .itemHeader{height:0.50rem;line-height: 0.50rem;color:RGBA(69, 75, 84, 1);font-size: 0.3rem;position: relative;margin-bottom: 0.1rem;}
 .answer_list .itemHeader span{color:RGBA(69, 75, 84, 1);font-size: 0.26rem;font-weight: normal;margin-left: 0.14rem;}
 /*.answer_list .itemDetail{display: flex}*/
@@ -297,7 +297,6 @@ a{
 }
 .answer_list .other{position: static;
     margin-top: 0.06rem;
-    height: 0.50rem;
     margin-bottom: 0;
     display: flex;
     width: 100%}
