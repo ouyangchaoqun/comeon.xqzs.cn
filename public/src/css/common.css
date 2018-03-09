@@ -297,7 +297,7 @@ a{
 }
 .answer_list .other{position: static;
     margin-top: 0.06rem;
-    height: 0.64rem;
+    height: 0.50rem;
     margin-bottom: 0;
     display: flex;
     width: 100%}
@@ -309,7 +309,7 @@ a{
     bottom: 0.82rem;
     right: 0.00rem;
 }
-.answer_list .other span{flex:1;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; margin-top: 0.28rem}
+.answer_list .other span{flex:1;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; margin-top: 0.08rem}
 .answer_list .other .class_right{flex:2;text-align: right}
 .answer_list .other .class_right>span:nth-of-type(1){margin-right: 0.36rem;}
 .answer_list .other .ml{text-align: center}
