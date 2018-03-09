@@ -29,8 +29,9 @@
                                     <div class="index_li_bottom">
                                         <!--免费听-->
                                         <span class="problem_answer_yy" v-if="item.answerType==1">
+                                            <div class="audio_mask" @click.stop="hideMask(index)" :class="{maskState:item.isAdd}"></div>
                                             <div class="audio" :class="{playing:item.playing,paused:item.paused}">
-                                                <div class="audio_btn" @click.stop="play(index)">
+                                                <div class="audio_btn " @click.stop="play(index)" :class="{widthAnimation_class:item.isAdd}">
                                                     <div class="radio"><span></span><i></i></div>
                                                     <template v-if="!item.playing&&!item.paused">点击播放</template>
                                                     <template v-if="item.playing">正在播放..</template>
@@ -42,11 +43,11 @@
                                         </span>
 
                                         <!--付费听-->
-                                        <div class="problem_answer_yy"
-                                             @click.stop="typeDialog(item.questionId,item.answerId,index )"
-                                             v-if="item.answerType==2||item.answerType==4">
+                                        <div class="problem_answer_yy" v-if="item.answerType==2||item.answerType==4">
+                                            <div  class="audio_mask" @click.stop="hideMask(index)" :class="{maskState:item.isAdd}"></div>
                                             <div class="audio">
-                                                <div class="audio_btn pay">偷听
+                                                <div @click.stop="typeDialog(item.questionId,item.answerId,index )"
+                                                     v-if="item.answerType==2||item.answerType==4" class="audio_btn pay" :class="{widthAnimation_class:item.isAdd}">偷听
                                                     <div class="second">{{(item.ct &&
                                                         item.ct!='00')?item.ct:item.length}}”
                                                     </div>
@@ -55,8 +56,9 @@
                                         </div>
                                         <!--限时免费听-->
                                         <span class="problem_answer_yy" v-if="item.answerType==3">
+                                            <div class="audio_mask" @click.stop="hideMask(index)" :class="{maskState:item.isAdd}"></div>
                                             <div class="audio" :class="{playing:item.playing,paused:item.paused}">
-                                                <div class="audio_btn" @click.stop="play(index)">
+                                                <div class="audio_btn " @click.stop="play(index)" :class="{widthAnimation_class:item.isAdd}">
                                                     <template v-if="!item.playing&&!item.paused">限时免费听</template>
                                                     <template v-if="item.playing">正在播放..</template>
                                                     <template v-if="item.paused">播放暂停</template>
@@ -124,7 +126,8 @@
                 rechargeFlag: false,
                 user: {},
                 urlType:1,
-                isAnimate:false
+                isAnimate:false,
+                currPlayIndex:null
             }
         },
         components: {
@@ -140,7 +143,6 @@
             this.getUserInfo()
             this.getCoupon();
             xqzs.voice.audio = null;
-
 
 
             xqzs.wx.setConfig(this, function () {
@@ -181,12 +183,12 @@
             },
 
             initActive: function () {
-                var obj = $(".index_box li")
-                xqzs.weui.active(obj);
-
-                $(".audio ,.index_li_voice ").on("touchstart", function () {
-                    event.stopPropagation();
-                })
+//                var obj = $(".index_box li")
+//                xqzs.weui.active(obj);
+//
+//                $(".audio ,.index_li_voice ").on("touchstart", function () {
+//                    event.stopPropagation();
+//                })
             },
             timeout: function (play, time, index) {
                 let _this = this;
@@ -338,16 +340,43 @@
                 })
 
             },
+            hideMask:function (index) {
+                let _this = this;
+                let list = _this.list;
+                for (let i = 0; i < list.length; i++) {
+                    list[i].isAdd = false;
+                    if (index != i && (list[i].playing || list[i].paused)) {
+                        list[i].paused = false;
+                        list[i].playing = false;
+                    }
+                    _this.$set(_this.list, i, list[i]);
+                }
+
+                if(_this.currPlayIndex!=null)
+                {
+                    _this.clearTimeOut();
+                    _this.pause(_this.currPlayIndex);
+
+                }
+
+                list[index].isAdd = true;
+            },
+
+            pause:function (index) {
+                let  _this=this;
+                let list = _this.list;
+                list[index].paused = true;
+                list[index].playing = false;
+                _this.currPlayIndex = null;
+                _this.$set(_this.list, index, list[index])
+                xqzs.voice.pause();
+            },
 
             play: function (index) {
-
                 let _this = this;
                 let list = _this.list;
                 let CT = list[index].ct ? list[index].ct : list[index].length;
                 let T = list[index].length;
-                console.log(CT, T)
-                console.log(list)
-                console.log(list[index].length)
                 xqzs.voice.onEnded = function () {
                     list[index].paused = false;
                     list[index].playing = false;
@@ -364,11 +393,13 @@
                     }
                 }
                 let item = _this.list[index];
+
                 if (item.paused) {  //暂停中也就是已经获取到且为当前音频
                     list[index].paused = false;
                     list[index].playing = true;
                     _this.$set(_this.list, index, list[index])
                     xqzs.voice.play();
+                    _this.currPlayIndex=index;
                     _this.timeout(true, CT, index)
                 } else {
                     if (item.playing) {    //播放中去做暂停操作
@@ -386,12 +417,15 @@
                             list[index].paused = false;
                             _this.$set(_this.list, index, list[index]);
                             _this.playing = true;
+                            _this.currPlayIndex=index;
                             _this.clearTimeOut();
                             _this.timeout(true, T, index)
                         })
                     }
 
                 }
+
+
 
             },
 
@@ -415,7 +449,7 @@
             randContentNum:function (arr) {
 
                 for(let i =0;i<arr.length;i++){
-                    let count =30 + parseInt( Math.random()*30);
+                    let count =30 + parseInt( Math.random()*40);
                     if(count<arr[i].content.length){
                         arr[i].content= arr[i].content.substring(0,count) +".."
                     }
@@ -511,6 +545,17 @@
 </script>
 
 <style>
+    .asker_listen_box .audio_mask{
+        position: absolute;
+        top: -0.02rem;
+        left:0rem;
+        height: 0.91rem;
+        width: 0.97rem;
+        z-index: 100;
+    }
+    .asker_listen_box .maskState{
+        display: none;
+    }
     .weui-dialog .weui-dialog__bd .colorStyle {
         color: rgba(251, 100, 10, 1);
     }
@@ -520,7 +565,20 @@
     }
 
     .asker_listen_box .audio .audio_btn {
-        width: 3.52rem !important;
+        width: 0 !important;
+    }
+    .widthAnimation_class{
+        animation:widthAnimation .3s linear forwards;
+        -webkit-animation:widthAnimation .3s linear forwards;
+
+    }
+    @keyframes widthAnimation {
+        0%{width:0;opacity: 0}
+        100%{width:3.52rem;opacity: 1}
+    }
+    @-webkit-keyframes widthAnimation {
+        0%{width:0;opacity: 0}
+        100%{width:3.52rem;opacity: 1}
     }
 
     .index_li_bottom .problem_answer_yy {
@@ -587,7 +645,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
-        -webkit-line-clamp: 3;
+        -webkit-line-clamp: 4;
         -webkit-box-orient: vertical;
         margin-bottom: 0.30rem;
     }
