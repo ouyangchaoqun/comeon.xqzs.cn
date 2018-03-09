@@ -551,14 +551,14 @@
         padding: 0.30rem 0.30rem 0.36rem 0;
         border-bottom: 0.02rem solid RGBA(69, 75, 84, 0.15);
         position: relative;
-        margin-left: 1.3rem;
+        padding-left: 1.3rem;
     }
     .index_box li .expert_headerImg{
         width:0.8rem;
         height:0.8rem;
         border-radius: 50%;
         position: absolute;
-        left:-1rem;
+        left:0.3rem;
     }
 
     .index_li_header {
