@@ -16,7 +16,7 @@
 
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide" v-for="item in manList" style="background: #fbfbfb">
+                            <div class="swiper-slide" v-for="item in manList">
                                 <ul>
                                     <li  class="hot_item" @click="goDetail(item.expertId)">
                                         <div class="hot_face ">
@@ -478,7 +478,6 @@
         margin-right: 0.20rem;
         margin-left: 0.2rem;
         border-radius: 0.11rem 0.11rem 0.11rem 0.11rem;
-        background: RGBA(255, 255, 255, 1);
         margin-top: 0.4rem;
         margin-bottom: 0.4rem;
     }
