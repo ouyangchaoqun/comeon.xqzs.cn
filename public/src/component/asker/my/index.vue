@@ -53,13 +53,13 @@
         methods: {
             getUserInfo:function(){
                 let _this=this;
-                _this.showLoad = true;
+
                 _this.$http({
                     method: 'GET',
                     type: "json",
                     url: web.API_PATH + 'user/find/by/user/Id/_userId_',
                 }).then(function (data) {//es5写法
-                    _this.showLoad = false;
+
                     if (data.data.data !== null) {
                         _this.user = eval(data.data.data);
                     }
@@ -185,7 +185,7 @@
     .asker_my_index_box .main a:before {
         content: " ";
         height: 0.02rem;
-        background: rgba(238, 238, 238, 1);
+        background: #eee;
         display: block;
         position: absolute;
         bottom: 0;
@@ -244,7 +244,7 @@
     .asker_my_index_box .join {
         background: #fff;
         line-height: 1.18rem;
-        margin: 0.14rem 0;
+        margin: 0.2rem 0;
         text-align: center;
         font-size: 0.30rem;
         color: rgba(36, 37, 61, 1);

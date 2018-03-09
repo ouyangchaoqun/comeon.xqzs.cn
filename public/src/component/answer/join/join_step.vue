@@ -811,7 +811,7 @@
     .join_stepBox header{padding:0.30rem;border-bottom: 0.20rem solid rgba(69, 75, 84, 0.09);line-height: 1.20rem;position: relative}
     .join_stepBox header img{width:1.20rem;height:1.20rem;float: left}
     .step_detailBox{margin-bottom: 0.68rem}
-    .join_stepBox .step_detailBox li{height: 0.98rem;line-height:1.00rem;color:rgba(69, 75, 84, 1);border-bottom: 0.02rem solid rgba(224,224,225,1);padding:0 0.30rem;font-size: 0.28rem;position: relative;}
+    .join_stepBox .step_detailBox li{height: 0.98rem;line-height:1.00rem;color:rgba(69, 75, 84, 1);border-bottom: 0.02rem solid #eee;padding:0 0.30rem;font-size: 0.28rem;position: relative;}
     .join_stepBox .step_detailBox li .li_right{float: right;padding-right:0.51rem;width:55%;color: rgba(69, 75, 84, 1) !important;}
     .li_right>div{ width:100%;text-align: right;font-size: 0.28rem;color: rgba(69, 75, 84, 0.5); overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
     .join_stepBox .li_right i{background: url('http://oss.xqzs.cn/resources/psy/join_right_icon.png') no-repeat center;width: 0.17rem;  height: 0.34rem;  background-size:100%;  position: absolute;  right: 0.30rem;  top: 50%;margin-top: -0.17rem;  }

@@ -300,7 +300,7 @@
         content: '';
         height:0.38rem;
         width:0.02rem;
-        background: #E0E0E0;
+        background: #eee;
         position: absolute;
         right:0;
         top:50%;
@@ -327,7 +327,7 @@
 
     }
     .problem_item .li_border{
-        border-bottom: 0.14rem solid #F5F5F5;
+        border-bottom: 0.20rem solid #f4f4f7;
     }
     .problem_item_top{display: -webkit-box;display: -webkit-flex;display: flex;font-size: 0.24rem;line-height: 0.68rem;color:#999;position: relative}
     .problem_item_top span{color:rgba(36,37,61,0.7);margin-right: 0.20rem;}

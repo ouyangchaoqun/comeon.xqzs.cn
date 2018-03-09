@@ -450,7 +450,7 @@
     .steal_detail_header{
         padding:0.24rem 0.30rem 0.40rem 0.30rem;
         background: #fff;
-        border-bottom: 0.20rem solid rgba(245,245,245,1);
+        border-bottom: 0.20rem solid #f4f4f7;
     }
     .steal_detail_top{
         display: flex;
@@ -499,7 +499,7 @@
         margin-left: 0.88rem;
         margin-right: 0.60rem;
         margin-bottom: 0.20rem;
-        border-bottom: 0.02rem solid rgba(238,238,238,1);
+        border-bottom: 0.02rem solid #eee;
     }
     .steal_answer_topimg{
         display: block;
@@ -528,7 +528,7 @@
         padding-bottom:0.20rem;
         padding-right: 0.60rem;
         padding-left: 0.88rem;
-        border-bottom: 0.20rem solid rgba(245,245,245,1);
+        border-bottom: 0.20rem solid #f4f4f7;
     }
     /*.steal_answer_zan div{*/
     /*float: right;*/

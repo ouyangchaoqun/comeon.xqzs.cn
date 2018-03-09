@@ -14,7 +14,7 @@
                             <li v-for="(item,index) in list" @click="goDetail(item.questionId)">
                                 <img :src=item.expertFaceUrl alt="" class="expert_headerImg">
                                 <div class="index_li_header">
-                                    <div>{{item.expertName}}咨询师 回答了</div>
+                                    <div>{{item.expertName}} 回答了</div>
                                     <div>{{item.title}}</div>
                                 </div>
                                     <div class="index_li_content">{{item.content}}</div>
@@ -612,7 +612,7 @@
     .asker_listen_list_box li {
         background: #fff;
         padding: 0.40rem 0.3rem 0.36rem 0rem;
-        border-bottom: 0.01rem solid #f5f5f5;
+        border-bottom: 0.02rem solid #eee;
         position: relative;
         padding-left: 1.3rem;
     }

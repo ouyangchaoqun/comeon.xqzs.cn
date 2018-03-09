@@ -439,7 +439,7 @@
     .rob_lists li{
         background: #fff;
         padding:0.40rem 0.30rem 0 0.30rem;
-        border-bottom: 0.20rem solid rgba(245,245,245,1);
+        border-bottom: 0.20rem solid #f4f4f7;
     }
     .rob_problem .audio{
         margin:0;

@@ -194,7 +194,7 @@
 <style>
 
 
-    .answer_my_coment_list .item{ padding: 0.30rem; border-bottom: 0.24rem solid #F4F4F7;}
+    .answer_my_coment_list .item{ padding: 0.30rem; border-bottom: 0.20rem solid #F4F4F7;}
     .answer_my_coment_list .comment .img{ width: 0.68rem; height: 100%; float:left; margin-right: 0.17rem;}
     .answer_my_coment_list .comment .img img{width: 0.68rem; height: 0.68rem; border-radius: 0.34rem;}
     .answer_my_coment_list .comment .info{ width: 5.78rem; float:left;}

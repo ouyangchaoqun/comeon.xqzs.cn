@@ -65,7 +65,7 @@
                         <div @click="like(index)" class="good_care" :class="{good_cared:item.isLiked}"><span>{{item.likeTimes}}</span></div>
                     </div>
                 </div>
-                <div style="height:0.20rem;background: rgba(245,245,245,1)"></div>
+                <div style="height:0.20rem;background: #f4f4f7"></div>
             </template>
         </div>
 
@@ -414,7 +414,7 @@
     .ask_detailBox .steal_expert_info{
         padding-left:1.42rem;
         padding-bottom: 0.51rem;
-        border-top:0.20rem solid rgba(245,245,245,1);
+        border-top:0.20rem solid #f4f4f7;
     }
     .problem_wait_style{
         color:rgba(36,37,61,0.5);
@@ -426,8 +426,8 @@
     .problem_wait_style span{
         margin-right: 0.30rem;
     }
-    .ask_detailBox .answerInfo_border{border-bottom:0.02rem solid rgba(224,224,225,1);}
-    .ask_detailBox .yy_bottomBorder{height:0;width:80%;margin: 0 auto;border-bottom: 0.02rem solid rgba(210,210,210,1);margin-bottom: 0.36rem;padding-top:0.51rem;}
+    .ask_detailBox .answerInfo_border{border-bottom:0.02rem solid #eee;}
+    .ask_detailBox .yy_bottomBorder{height:0;width:80%;margin: 0 auto;border-bottom: 0.02rem solid #eee;margin-bottom: 0.36rem;padding-top:0.51rem;}
     .ask_detailBox .problem_answer_bottom{padding:0;margin:0 auto;width:80%;margin-bottom: 0.28rem;}
     .problem_assess_btn .weui-btn{border-radius: 1rem;}
     .problem_assess .star>div{display: inline-block;line-height: 1;color:rgba(36,37,61,0.5);font-size: 0.22rem;margin-bottom: 0.63rem}

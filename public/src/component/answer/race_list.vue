@@ -200,7 +200,7 @@
     }
 </script>
 <style>
-    .answer_race_list .list .item{ background: #fff; padding:0.30rem; margin-bottom:0.14rem; }
+    .answer_race_list .list .item{ background: #fff; padding:0.30rem; margin-bottom:0.20rem; }
     .answer_race_list  .list .item .img{ width: 0.58rem; height: 0.58rem;margin-right: 0.20rem }
     .answer_race_list  .list .item .img img{ width: 100%; height: 100%; border-radius: 50%}
     .answer_race_list  .list .info{line-height: 0.58rem;display: flex;display:-webkit-flex;position: relative;margin-bottom: 0.04rem;}

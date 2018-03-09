@@ -169,7 +169,7 @@
 .answer_my_income_box .money_dialog_title{line-height: 1.04rem;font-size: 0.26rem;color:rgba(255,157,24,1);background: rgba(250,250,250,1);padding-left: 0.60rem;}
 .answer_my_income_box .money_dialog_detail{padding:0.46rem 0.60rem;color:rgba(51,51,51,1);}
 .answer_my_income_box .money_dialog_detail .detail_top{margin-bottom: 0.56rem;font-size: 0.28rem;}
-.answer_my_income_box .money_dialog_detail .detail_input{margin-bottom: 0.40rem;padding-bottom: 0.12rem;height:1.04rem;border-bottom: 0.02rem solid rgba(231,231,231,1);}
+.answer_my_income_box .money_dialog_detail .detail_input{margin-bottom: 0.40rem;padding-bottom: 0.12rem;height:1.04rem;border-bottom: 0.02rem solid #eee;}
 .answer_my_income_box .money_dialog_detail .detail_input span{font-size: 0.60rem;color:rgba(51,51,51,1);line-height: 1;float: left;margin-right: 0.20rem;}
 .answer_my_income_box .money_dialog_detail .detail_input input{outline: none;height:100%;font-size: 0.82rem;color: rgba(255,157,24,1);text-shadow: 0 0 0 rgba(51,51,51,1);-webkit-text-fill-color: transparent;width:70%;float: left}
 .answer_my_income_box .money_dialog_detail .detail_warn{color:rgba(118,118,118,1);font-size: 0.26rem;line-height: 1; margin-bottom: 0.40rem;}

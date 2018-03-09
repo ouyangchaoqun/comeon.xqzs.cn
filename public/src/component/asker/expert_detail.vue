@@ -4,7 +4,7 @@
         <v-showLoad v-if="showLoad"></v-showLoad>
         <v-recharge :rechargeMoney="rechargeMoney" v-show="rechargeFlag" v-on:childMessage="getFlagVal"></v-recharge>
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
-                  :bottomHeight="50"
+                  :bottomHeight="0"
                   :isShowMoreText="isShowMoreText" >
             <div class="answer_info">
                 <div class="answer_banner">
@@ -65,9 +65,8 @@
                     <p :class={friestP:Hflag} v-html="detail.introduction"></p>
                     <div :class={addopen:!Hflag,addstop:Hflag}>
                         <b>专业培训经历：</b>
-                        <p style="margin-bottom: 0.60rem" v-html="detail.experience"></p>
-
-                        <b>擅长领域：</b>
+                        <p   v-html="detail.experience"></p>
+                        <b class="content_mt">擅长领域：</b>
                         <p v-html="detail.goodat"></p>
                     </div>
                 </div>
@@ -174,11 +173,12 @@
                     <div class="comment_btn">暂无回答</div>
                 </div>
             </div>
+            <div style="height: 1rem;"></div>
 
         </v-scroll>
         <!--{{detail.expertUserId}}-->
         <div class="ask_bottom">
-            <div class="ask_bottom" >
+
                 <div class="listen"  @click="follow()">
 
                 <span v-if="detail.followed===1">
@@ -187,7 +187,7 @@
                     <span v-if="detail.followed===0" class="followedColor">+关注</span>
                 </div>
                 <div class="pay_ask" @click="ask()"><span class="ask_dianCoinbg"></span>￥{{detail.price}} 提问</div>
-            </div>
+
         </div>
     </div>
 </template>
@@ -749,11 +749,12 @@
         color: rgba(36,37,61,0.5);
         font-size: 0.24rem;
     }
+    .answer_detail_box .content_mt{ margin-top: 0.3rem;    display: inline-block;}
     .answer_detail_box .answer_info{
         width: 100%;
         box-shadow: 0 0.10rem 0 #f5f5f5;
         -webkit-box-shadow:0 0.10rem 0 #f5f5f5;
-        margin-bottom: 0.10rem;
+        margin-bottom: 0.20rem;
     }
     .answer_detail_box .answer_banner{
         background: url("http://oss.xqzs.cn/resources/psy/answer/banner.jpg") top center  no-repeat;
@@ -833,7 +834,7 @@
     .answer_detail_box .line_1{
         width: 0.02rem;
         height: 0.71rem;
-        background:rgba(219,219,219,1);
+        background:#eee;
         position: absolute;
         right: 0;
         top:0.30rem;
@@ -870,7 +871,7 @@
         line-height: 0.88rem;
         font-size: 0.34rem;
         padding-left: 0.30rem;
-        border-bottom: 0.02rem solid rgba(224,224,225,1);
+        border-bottom: 0.02rem solid #eee;
         background: white;
         font-family: PingFangSC-Medium;
     }
@@ -882,8 +883,9 @@
         padding-right: 0.30rem;
     }
     .answer_detail_box .content{
-        font-size: 0.26rem;
+        font-size: 0.30rem;
         padding:0.30rem ;
+        line-height: 0.52rem;
         color:rgba(36,37,61,0.7)
 
     }
@@ -905,12 +907,12 @@
     }
     .answer_detail_box .answer_comments{
         background: white;
-        margin-top: 0.14rem;
+        margin-top: 0.2rem;
         padding-bottom: 0.30rem;
     }
     .answer_detail_box  .list .item{ background: #fff; padding: 0.30rem 0;margin:0 0.30rem;margin-bottom: 0.14rem;position: relative ; }
 
-    .answer_detail_box  .list .addBorder_bottom{border-bottom: 0.02rem solid #E0E0E1;}
+    .answer_detail_box  .list .addBorder_bottom{border-bottom: 0.02rem solid #eee;}
     .answer_detail_box .list .star span{ background: url(http://oss.xqzs.cn/resources/psy/star_no.png); width: 0.26rem; height: 0.26rem;  background-size: 0.26rem; display: inline-block; margin-right: 0.10rem; }
     .answer_detail_box  .list .star span.on{background: url(http://oss.xqzs.cn/resources/psy/star.png);background-size: 0.26rem; }
 
@@ -925,7 +927,7 @@
     .answer_detail_box  .list .info .class_s { clear: both; padding-top: 0.10rem;}
     .answer_detail_box  .list .info .class_s span{ display: block; float:left; text-align: center; border-radius:0.10rem;  height: 0.42rem; line-height: 0.42rem;  border: 0.02rem solid #E0E0E1 ; color:rgba(36,37,61,0.5) ; font-size: 0.24rem; padding: 0 0.24rem; margin-right:0.19rem;margin-bottom: 0.20rem}
     .answer_detail_box .ask_answer{
-        margin-top: 0.14rem;
+        margin-top: 0.2rem;
         background: white;
         padding-bottom: 0.30rem;
     }
@@ -990,7 +992,7 @@
     /*margin-right: 0.17rem;*/
     /*}*/
     .friestP{overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 4;line-height:0.40rem;-webkit-box-orient: vertical;}
-    .addopen{margin-top:0.60rem;height:auto;}
+    .addopen{margin-top:0.30rem;height:auto;}
     .addstop{margin-top:0;height:0;overflow: hidden;}
     .item .others{ color:rgba(36,37,61,0.5); position: relative; font-size: 0.24rem; padding-left: 0.98rem;}
     .item .others .listen_count{ float: left;margin-right: 0.20rem}

@@ -265,7 +265,7 @@
     .my_problem_list1 {
         padding: 0.24rem 0.30rem 0.31rem 0.30rem;
         background: #fff;
-        margin-bottom: 0.14rem;
+        margin-bottom: 0.20rem;
     }
 
     .problem_header {

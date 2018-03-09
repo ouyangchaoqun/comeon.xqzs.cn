@@ -158,7 +158,7 @@
     }
 </script>
 <style>
-    .asker_my_answer_list_box .item{border-bottom: 0.02rem solid #E0E0E1;}
+    .asker_my_answer_list_box .item:last-child{border-bottom: 0.02rem solid #eee;}
     .asker_my_answer_list_box .item:active{background: #f5f5f5}
     .asker_my_answer_list_box .answer_list .item{margin-top: 0}
     .tab_i_i{color: #FF9966;

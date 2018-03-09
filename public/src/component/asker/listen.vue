@@ -7,7 +7,7 @@
              <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                       :isShowMoreText="isShowMoreText" :bottomHeight="50">
                 <v-typeHeader :urlType="1"></v-typeHeader>
-                <div style="height:0.20rem;background: #f5f5f5"></div>
+                <div style="height:0.20rem;background: #f4f4f7"></div>
                 <div class="index_box">
                     <div class="new_question">
                         <div class="top_left">最新问题</div>
@@ -22,7 +22,7 @@
                                 <img :src=item.expertFaceUrl alt="" class="expert_headerImg" @click="goAnswer(item.expertId)">
                                 <div @click="goDetail(item.questionId)">
                                     <div class="index_li_header">
-                                        <div>{{item.expertName}}咨询师 回答了</div>
+                                        <div>{{item.expertName}} 回答了</div>
                                         <div>{{item.title}}</div>
                                     </div>
                                     <div class="index_li_content">{{item.content}}</div>
@@ -607,7 +607,7 @@
     .index_box li {
         background: #fff;
         padding: 0.30rem 0.30rem 0.36rem 0;
-        border-bottom: 0.02rem solid RGBA(69, 75, 84, 0.15);
+        border-bottom: 0.02rem solid #eee;
         position: relative;
         padding-left: 1.3rem;
     }

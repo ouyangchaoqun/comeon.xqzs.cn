@@ -51,7 +51,7 @@
                             <div class="img"><img :src="item.faceUrl"></div>
                             <div class="itemDetail_right">
                                 <div class="itemHeader">
-                                    <div style="font-weight: bold">{{item.nickName}}<span>{{item.city}}</span></div>
+                                    <div >{{item.nickName}}<span>{{item.city}}</span></div>
                                     <div class="header_addRightStyle" v-if="false ">
                                         <div class="headerImg" @click.stop="play(index)">
                                             <div :class="{addPlaying:item.playing,addPaused:item.paused}"></div>
@@ -424,7 +424,7 @@
     }
     .answer_index .title_top {
         background: #fff;
-        margin-top: 0.24rem;
+        margin-top: 0.2rem;
     }
     .answer_index .hot_head{
         height: 1rem;

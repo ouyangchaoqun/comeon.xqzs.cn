@@ -210,7 +210,7 @@
 </script>
 <style>
 
-    .asker_my_coment_list .item{ padding: 0.30rem; border-bottom: 0.24rem solid #F4F4F7;}
+    .asker_my_coment_list .item{ padding: 0.30rem; border-bottom: 0.20rem solid #F4F4F7;}
     .asker_my_coment_list .comment .img{ width: 0.80rem; height: 100%; float:left; margin-right: 0.17rem;}
     .asker_my_coment_list .comment .img img{width: 0.80rem; height:0.80rem; border-radius: 50%;display: block;border:0.01rem solid rgba(238,234,234,1)}
     .asker_my_coment_list .comment .info{     max-width: 5.78rem;float:left;}

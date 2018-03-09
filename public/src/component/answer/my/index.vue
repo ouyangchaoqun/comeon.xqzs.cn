@@ -128,7 +128,7 @@
 </script>
 <style>
     .answer_my_index_box{background: #fff}
-    .answer_my_index_box .top{ height:  1.20rem; line-height:  1; font-size: 0.36rem; background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1)); padding:0.30rem;border-bottom: 0.14rem solid #f4f4f8;position: relative}
+    .answer_my_index_box .top{ height:  1.20rem; line-height:  1; font-size: 0.36rem; background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1)); padding:0.30rem;border-bottom: 0.20rem solid #f4f4f7;position: relative}
     .answer_my_index_box .top:after{background: url(http://oss.xqzs.cn/resources/psy/arrow.png) ;width: 0.32rem; height: 0.32rem; background-size: 0.32rem;position: absolute; right:0.30rem;top:50%;margin-top:-0.16rem; content: " "}
     .answer_my_index_box .top:active{background: linear-gradient(to right, rgb(238, 148, 25), rgb(226, 92, 6));}
     .answer_my_index_box .top img{ display: block; float:left; width:1.20rem; height: 1.20rem;margin-right: 0.33rem;border-radius: 0.10rem;}
