@@ -1,7 +1,8 @@
 <template >
     <div class="listenDetail_box">
         <!--详情头部-->
-        <div v-title>问题详情</div>
+        <div v-title>问题详情</div>{{rechargeFlag}}
+        <v-recharge  v-if="rechargeFlag"  :rechargeMoney="rechargeMoney" v-on:childMessage="getFlagVal"></v-recharge>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="steal_detail_header" v-if="detail.title">
             <div class="steal_detail_top">
@@ -81,7 +82,7 @@
             </li>
 
         </ul>
-        <v-recharge :rechargeMoney="rechargeMoney" v-if="rechargeFlag" v-on:childMessage="getFlagVal"></v-recharge>
+
     </div>
 
 </template>
@@ -101,7 +102,8 @@
                 couponList:[],
                 couponNum:0,
                 rechargeMoney:0,
-                user:{}
+                user:{},
+                rechargeFlag:false
             }
         },
         mounted: function () {
@@ -122,8 +124,8 @@
             }
         },
         components: {
-            'v-showLoad': showLoad,
             'v-recharge':Recharge,
+            'v-showLoad': showLoad,
         },
         methods:{
             getUserInfo:function(){
