@@ -23,7 +23,7 @@
 <style>
     .asker_bottom_box {
         height:0.95rem;
-        border-top: 0.01rem solid rgba(0,0,0,0.2);
+        border-top: 1px solid #eee;
         display: -webkit-box;
         display: -webkit-flex;
         display: flex;
