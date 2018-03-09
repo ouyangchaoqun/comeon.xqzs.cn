@@ -165,12 +165,12 @@
             },
 
             initActive: function () {
-                var obj = $(".asker_listen_list_box li")
-                xqzs.weui.active(obj);
-
-                $(".audio ,.index_li_voice ").on("touchstart", function () {
-                    event.stopPropagation();
-                })
+//                var obj = $(".asker_listen_list_box li")
+//                xqzs.weui.active(obj);
+//
+//                $(".audio ,.index_li_voice ").on("touchstart", function () {
+//                    event.stopPropagation();
+//                })
             },
             timeout: function (play, time, index) {
                 let _this = this;
