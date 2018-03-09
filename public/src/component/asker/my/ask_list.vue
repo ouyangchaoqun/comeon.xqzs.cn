@@ -101,14 +101,13 @@
         methods: {
             timeIntervalFun:function () {
                 let _this=this;
-                if(_this.timeInterval!=null){
-                    clearInterval(_this.timeInterval);
-                }
-                _this.timeInterval=   setInterval(function () {
+
+                _this.timeInterval=   setTimeout(function () {
                     for(let i =0;i<_this.list.length;i++){
                         _this.list[i].endTime= _this.list[i].endTime + 1;
                         _this.list[i].endTime= _this.list[i].endTime - 1;
                         _this.$set(_this.list,i, _this.list[i]);
+                        _this.timeIntervalFun()
                     }
                 },1000)
             },

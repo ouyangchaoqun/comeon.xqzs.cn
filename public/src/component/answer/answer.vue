@@ -226,12 +226,10 @@
         methods: {
             timeIntervalFun:function () {
                 let _this=this;
-                if(_this.timeInterval!=null){
-                    clearInterval(_this.timeInterval);
-                }
-                _this.timeInterval=   setInterval(function () {
+                _this.timeInterval= setTimeout(function () {
                     _this.detail.addTime= _this.detail.addTime + 1;
-                    _this.detail.addTime= _this.detail.addTime - 1
+                    _this.detail.addTime= _this.detail.addTime - 1;
+                    _this.timeIntervalFun();
                 },1000)
             },
             formatDateText:function (time) {
