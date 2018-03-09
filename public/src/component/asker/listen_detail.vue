@@ -1,7 +1,7 @@
 <template >
     <div class="listenDetail_box">
         <!--详情头部-->
-        <div v-title>问题详情</div>{{rechargeFlag}}
+        <div v-title>问题详情</div>
         <v-recharge  v-if="rechargeFlag"  :rechargeMoney="rechargeMoney" v-on:childMessage="getFlagVal"></v-recharge>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="steal_detail_header" v-if="detail.title">
