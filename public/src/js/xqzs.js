@@ -44,9 +44,10 @@ var xqzs = {
                 $(this).addClass("active")
             }).on("touchend", function () {
                 $(this).removeClass("active")
-            }).on("touchmove", function () {
-                $(this).removeClass("active")
             })
+            //     .on("touchmove", function () {
+            //     $(this).removeClass("active")
+            // })
         },
         removeWhenPageChange: function () {
             $(".weui-mask").click();

@@ -220,13 +220,6 @@
                 _this.$http.get(web.API_PATH+ "come/expert/get/by/class/0/1/5?complexOrNew=1").then(function (data) {
                     if(data.body.status == 1){
                         var List=data.body.data;
-//                        console.log(List)
-                        for(var i =0;i<List.length;i++){
-//                                console.log(i)
-                            if( List[i].lastEvaluate.length>7){
-                                List[i].lastEvaluate=List[i].lastEvaluate.substring(0,7)+"..."
-                            }
-                        }
                         _this.manList=List;
 //                        console.log(_this.manList)
                     }
