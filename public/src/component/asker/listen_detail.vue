@@ -499,7 +499,7 @@
         margin-left: 0.88rem;
         margin-right: 0.60rem;
         margin-bottom: 0.20rem;
-        border-bottom: 1px solid rgba(238,238,238,1);
+        border-bottom: 0.02rem solid rgba(238,238,238,1);
     }
     .steal_answer_topimg{
         display: block;

@@ -206,66 +206,66 @@
         background: #fff;
     }
     .answer_join_mobile_box .validate_box {
-        padding: 20px 15px;
+        padding: 0.40rem 0.30rem;
         background: #fff;
     }
 
     .answer_join_mobile_box .validate_top {
-        margin-bottom: 32px;
+        margin-bottom: 0.64rem;
     }
 
     .answer_join_mobile_box .validate_top h1 {
-        font-size: 18px;
+        font-size: 0.36rem;
         color: rgba(36,37,61,1); text-align: center;
-        margin-bottom: 18px;
+        margin-bottom: 0.36rem;
     }
 
     .answer_join_mobile_box .validate_top p {
-        font-size: 15px;
+        font-size: 0.30rem;
         color: #878686;
         text-align: center;
     }
 
     .answer_join_mobile_box input {
-        height: 20px;
+        height: 0.40rem;
         outline: none;
-        line-height: 20px;
-        margin-top: 12px;
+        line-height: 0.40rem;
+        margin-top: 0.24rem;
     }
 
     #_phonebtn {
         width: 36%;
-        height: 46px;
-        font-size: 12px;
+        height: 0.92rem;
+        font-size: 0.24rem;
         float: right;
         padding: 0;
         text-align: center;
     }
 
     .answer_join_mobile_box .input_phone {
-        font-size: 15px;
+        font-size: 0.30rem;
         color: rgba(36,37,61,1);
 
     }
 
     .answer_join_mobile_box .input_code {
-        font-size: 15px;
+        font-size: 0.30rem;
         width: 100%;
         color: rgba(36,37,61,1);
     }
 
     .answer_join_mobile_box .validate_div {
-        height: 44px;
-        margin-bottom: 26px;
+        height: 0.88rem;
+        margin-bottom: 0.52rem;
         position: relative;
     }
 
     .answer_join_mobile_box .validate_phone {
-        border: 1px solid #D2D2D2;
-        height: 44px;
-        border-radius: 5px;
-        padding-left: 15px;
-        padding-right: 7px;
+        border: 0.02rem solid #D2D2D2;
+        height: 0.88rem;
+        border-radius: 0.10rem;
+        padding-left: 0.30rem;
+        padding-right: 0.14rem;
         float: left;
         width: 50%;
         overflow: hidden;
@@ -274,32 +274,32 @@
 
     #_phonebtn {
         float: right;
-        font-size: 14px;
+        font-size: 0.28rem;
     }
 
     .answer_join_mobile_box .validate_code {
-        height: 44px;
-        border: 1px solid #d2d2d2;
-        border-radius: 5px;
-        margin-bottom: 30px;
-        padding-left: 15px;
+        height: 0.88rem;
+        border: 0.02rem solid #d2d2d2;
+        border-radius: 0.10rem;
+        margin-bottom: 0.60rem;
+        padding-left: 0.30rem;
         position: relative;
     }
 
     #errorMobile, #errorCode {
-        font-size: 11px;
+        font-size: 0.22rem;
         color: #fc0303;
         position: absolute;
-        left: 15px;
-        top: 50px;
+        left: 0.30rem;
+        top: 1.00rem;
     }
 
     #message {
-        font-size: 11px;
+        font-size: 0.22rem;
         color: rgba(36,37,61,0.5);
         position: absolute;
-        top: 50px;
-        left: 15px;
+        top: 1.00rem;
+        left: 0.30rem;
 
     }
 

@@ -256,17 +256,17 @@
     }
 
     .joinmobile_box .validate_top {
-        margin-bottom: 32px;
+        margin-bottom: 0.64rem;
     }
 
     .joinmobile_box .validate_top h1 {
-        font-size: 18px;
+        font-size: 0.36rem;
         color: rgba(36,37,61,1); text-align: center;
-        margin-bottom: 18px;
+        margin-bottom: 0.36rem;
     }
 
     .joinmobile_box .validate_top p {
-        font-size: 15px;
+        font-size: 0.30rem;
         color: #878686;
         text-align: center;
     }
@@ -305,19 +305,19 @@
     }
 
     #errorMobile, #errorCode {
-        font-size: 11px;
+        font-size: 0.22rem;
         color: #fc0303;
         position: absolute;
-        left: 15px;
+        left: 0.30rem;
         bottom:-0.68rem;
     }
 
     #message {
-        font-size: 11px;
+        font-size: 0.22rem;
         color: rgba(36,37,61,0.5);
         position: absolute;
         bottom:-1.02rem;
-        left: 15px;
+        left: 0.30rem;
 
     }
     .joinmobile_box  input:-ms-input-placeholder {

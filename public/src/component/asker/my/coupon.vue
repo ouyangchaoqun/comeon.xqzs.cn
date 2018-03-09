@@ -163,7 +163,7 @@
         display: flex;
         display: -webkit-box;
         display: -webkit-flex;
-        border-bottom:1px solid rgba(216,216,216,1);
+        border-bottom:0.02rem solid rgba(216,216,216,1);
     }
     .coupon_type>div{
         flex-grow: 1;
@@ -176,7 +176,7 @@
     .coupon_type .type_active:after{
         content: '';
         width:38%;
-        height:2px;
+        height:0.04rem;
         background: rgba(248,123,7,1);
         position: absolute;
         bottom:0;

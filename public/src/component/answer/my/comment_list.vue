@@ -204,7 +204,7 @@
     .answer_my_coment_list .comment .info .content{ color:rgba(36,37,61,1); font-size: 0.28rem; margin: 0.07rem  0}
     .answer_my_coment_list .comment .info .tags{}
     .answer_my_coment_list .comment .info .tags span{ display: inline-block;
-        border:1px solid #D1D1D1; color:#D1D1D1; text-align: center; line-height: 0.45rem; border-radius: 0.23rem; padding: 0 0.17rem; font-size:0.24rem; margin-right: 0.10rem;}
+        border:0.02rem solid #D1D1D1; color:#D1D1D1; text-align: center; line-height: 0.45rem; border-radius: 0.23rem; padding: 0 0.17rem; font-size:0.24rem; margin-right: 0.10rem;}
     .answer_my_coment_list .comment .info .star span{ display: inline-block; background: url(http://oss.xqzs.cn/resources/psy/star_no.png) no-repeat; background-size: 0.26rem;  height: 0.26rem; width: 0.26rem; margin-right: 0.14rem; }
     .answer_my_coment_list .comment .info .star span.on{background: url(http://oss.xqzs.cn/resources/psy/star.png) no-repeat;background-size: 0.26rem; }
 

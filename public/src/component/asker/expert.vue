@@ -355,7 +355,7 @@
     .header_addRightStyle {
         position: absolute;
         right: 0;
-        top: -1px;
+        top: -0.02rem;
         display: flex;
         color: rgba(36, 37, 61, 0.5);
         font-size: 0.24rem;
@@ -365,7 +365,7 @@
         width: 0.50rem;
         height: 0.50rem;
         border-radius: 50%;
-        border: 1px solid rgba(253, 87, 57, 1);
+        border: 0.02rem solid rgba(253, 87, 57, 1);
         position: relative;
         margin-right: 0.12rem;
     }
@@ -375,8 +375,8 @@
         width: 0.30rem;
         height: 0.26rem;
         position: absolute;
-        left: 5px;
-        top: 6px;
+        left: 0.10rem;
+        top: 0.12rem;
         background-size: 100%;
     }
     .answer_index .answer_list .headerImg .addPlaying {
@@ -444,7 +444,7 @@
         position: relative;
         margin-bottom: 0.20rem;
         line-height: 0.61rem;
-        border-bottom: 1px solid #eee;
+        border-bottom: 0.02rem solid #eee;
     }
     .answer_index .new_head{
         height: 0.60rem;
@@ -511,7 +511,7 @@
     }
     .answer_index .hot_bottom{
         margin: 0.2rem auto;
-        border:1px solid #79CFFD;
+        border:0.02rem solid #79CFFD;
         background: #fff;
         width: 1.8rem;
         overflow: hidden;

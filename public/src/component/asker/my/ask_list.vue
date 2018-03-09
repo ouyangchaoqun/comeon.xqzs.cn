@@ -227,7 +227,7 @@
         display: -webkit-flex;
         display: flex;
         background: #fff;
-        border-bottom: 1px solid #eee;
+        border-bottom: 0.02rem solid #eee;
         height: 0.80rem;
         line-height: 0.80rem;
     }
@@ -240,7 +240,7 @@
     .my_problem_tabs > div:nth-of-type(1)::after {
         content: '';
         height: 0.38rem;
-        width: 1px;
+        width: 0.02rem;
         background: #E0E0E0;
         position: absolute;
         right: 0;
@@ -252,7 +252,7 @@
         margin:0 auto;
     }
     .my_problem_active {
-        border-bottom: 2px solid rgba(253,114,6,1);
+        border-bottom: 0.04rem solid rgba(253,114,6,1);
     }
 
     .my_problem_box {

@@ -203,7 +203,7 @@
     .answer_race_list .list .item{ background: #fff; padding:0.30rem; margin-bottom:0.14rem; }
     .answer_race_list  .list .item .img{ width: 0.58rem; height: 0.58rem;margin-right: 0.20rem }
     .answer_race_list  .list .item .img img{ width: 100%; height: 100%; border-radius: 50%}
-    .answer_race_list  .list .info{line-height: 0.58rem;display: flex;display:-webkit-flex;position: relative;margin-bottom: 2px;}
+    .answer_race_list  .list .info{line-height: 0.58rem;display: flex;display:-webkit-flex;position: relative;margin-bottom: 0.04rem;}
     .answer_race_list  .list .info .type{ font-size: 0.26rem;   color:rgba(36,37,61,0.5);}
     .answer_race_list .item .content{ font-size: 0.30rem;color:rgba(36,37,61,1);margin-bottom: 0.40rem;padding-left: 0.77rem}
     .answer_race_list .item .content>div:nth-of-type(1){margin-bottom:0.20rem;}

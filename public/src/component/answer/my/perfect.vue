@@ -80,7 +80,7 @@
         <div class="list03" @click="msgSubmit()">
             <a class="weui-btn weui-btn_primary">提交</a>
         </div>
-        <div style="height: 50px;"></div>
+        <div style="height: 1rem;"></div>
     </div>
 </template>
 <script type="text/javascript">
@@ -455,24 +455,24 @@
     .personal_box{ width: 100%;overflow: hidden}
 
     .list0.perfect_header{
-        height:70px;
-        line-height: 70px;
+        height:1.40rem;
+        line-height: 1.40rem;
         position: relative;
         padding:0 0.30rem;
     }
     .list0.perfect_header .headerImg{
-        width:49px;
-        height:49px;
-        border-radius: 5px;
+        width:0.98rem;
+        height:0.98rem;
+        border-radius: 0.10rem;
         position: absolute;
         right:0.71rem;
         top:50%;
-        margin-top:-24.5px;
+        margin-top:-0.49rem;
     }
-    .list0.perfect_header .rightImg{top:27px}
+    .list0.perfect_header .rightImg{top:0.54rem}
 
 
-    .lut{ float:left; background: #ececec; color:rgba(36,37,61,1); height: 30px; line-height: 30px;  padding: 0 10px; margin-top: 6px; font-size: 14px; margin-left: 10px;}
+    .lut{ float:left; background: #ececec; color:rgba(36,37,61,1); height: 0.60rem; line-height: 0.60rem;  padding: 0 0.20rem; margin-top: 0.12rem; font-size: 0.28rem; margin-left: 0.20rem;}
     .lut:nth-child(3){ margin-left: 0}
     .lut.on{ float:left; background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1)); color:#fff;}
 
@@ -487,7 +487,7 @@
 
 
     .list0:nth-child(2) {
-        margin-top: 12px;
+        margin-top: 0.24rem;
     }
 
     .list0 .line {
@@ -495,7 +495,7 @@
         content: " ";
         background: #eee;
         display: block;
-        height: 1px;
+        height: 0.02rem;
         overflow: hidden;
         position: absolute;
         bottom: 0;
@@ -506,9 +506,9 @@
 
     .list0 {
         background: #fff;
-        height: 44px;
-        line-height: 44px;
-        padding: 0 15px;
+        height: 0.88rem;
+        line-height: 0.88rem;
+        padding: 0 0.30rem;
         position: relative;
     }
 
@@ -517,27 +517,27 @@
     }
 
     .list02 {
-        margin-bottom: 15px
+        margin-bottom: 0.30rem
     }
 
     .list0 span {
         float: left;
         color: rgba(36,37,61,1);
-        font-size: 15px;
+        font-size: 0.30rem;
     }
 
     .list0 .mobile {
         float: right;
-        font-size: 15px;
+        font-size: 0.30rem;
         color: rgba(36,37,61,0.5);
-        margin-right: 20px
+        margin-right: 0.40rem
     }
 
     .list0 input,.list0 .input {
         float: right;
-        font-size: 14px;
+        font-size: 0.28rem;
         color: rgba(36,37,61,0.5);
-        height: 44px;
+        height: 0.88rem;
         text-align: right;
         border: 0;
         outline: none;
@@ -562,45 +562,45 @@
     .list0 img {
         width: 16PX;
         position: absolute;
-        top: 14px;
-        right: 15px;
+        top: 0.28rem;
+        right: 0.30rem;
     }
 
     .showdL {
         float: right;
         color: rgba(36,37,61,0.5);
-        font-size: 15px;
-        width: 150px;
+        font-size: 0.30rem;
+        width: 3.00rem;
         text-align: right;
     }
 
     .showdL span {
-        margin-left: 5px;
+        margin-left: 0.10rem;
         float: none;
         color: rgba(36,37,61,0.5);
     }
 
     .list03 {
         border: 0;
-        margin-top: 30px;
-        padding: 0 15px;
+        margin-top: 0.60rem;
+        padding: 0 0.30rem;
     }
 
     .weui-picker__indicator {
         width: 100%;
-        height: 34px;
+        height: 0.68rem;
         position: absolute;
         left: 0;
-        top: 102px;
+        top: 2.04rem;
         z-index: 3;
-        line-height: 34px;
+        line-height: 0.68rem;
     }
 
     #localCity {
         line-height: inherit;
         height: auto;
-        padding-top: 9px;
-        padding-bottom: 9px;
+        padding-top: 0.18rem;
+        padding-bottom: 0.18rem;
     }
 
     #localCity span {

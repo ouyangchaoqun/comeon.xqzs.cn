@@ -417,7 +417,7 @@
     }
     .answer_join_voice  .action_btn .item .txt{ margin-top: 0.20rem}
     .answer_join_voice  .audio_btn_in{ background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1)); border-radius: 50%; height: 1.40rem; width: 1.40rem;
-        -webkit-box-shadow:0 0 8px rgba(255,158,25,1);box-shadow:0 0 8px rgba(255,158,25,1);  position: relative; margin: 0 auto}
+        -webkit-box-shadow:0 0 0.16rem rgba(255,158,25,1);box-shadow:0 0 0.16rem rgba(255,158,25,1);  position: relative; margin: 0 auto}
     .answer_join_voice .audio_btn_in:active{ background: rgba(105,186,45,0.1)
     }
     .answer_join_voice  .audio_btn_in:before{content: " " ; display: block ; position: absolute; top:50%; left:50% ;}
@@ -426,7 +426,7 @@
     .answer_join_voice   .audio_play:before{ background:url(http://oss.xqzs.cn/resources/psy/audio_btn_play.png)  no-repeat; background-size: 0.45rem; width:0.45rem;; height: 0.52rem;  margin-left: -0.18rem; margin-top: -0.26rem;  }
     .answer_join_voice   .audio_send:before{ background:url(http://oss.xqzs.cn/resources/psy/audio_btn_send.png)  no-repeat; background-size:  0.46rem; width:0.50rem;; height:0.48rem;  margin-left: -0.25rem; margin-top: -0.24rem;   }
     .answer_join_voice   .audio_cant_begin:before{ background:url(http://oss.xqzs.cn/resources/psy/audio_btn_cant_begin.png)  no-repeat; background-size:  0.46rem; width:0.46rem;; height: 0.64rem;  margin-left: -0.23rem; margin-top: -0.32rem;  }
-    .applying{ text-align: center; color:#09bb07; margin-top: 50px}
+    .applying{ text-align: center; color:#09bb07; margin-top: 1rem}
     .message_box{ width: 100%;
         overflow: hidden;}
     .message_box .addPlayBox{position: absolute;bottom:0.51rem;width:100%;}

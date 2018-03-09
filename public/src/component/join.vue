@@ -176,7 +176,7 @@
         height:0.98rem;
         background:rgba(252,241,222,1);
         border-radius: 0.10rem;
-        border: dashed #F5A623 1px;
+        border: dashed #F5A623 0.02rem;
         text-align: center; line-height: 0.98rem;
         margin: 0 auto;
         color:#FE7A03 ; font-size: 0.40rem;  font-weight: bold;
@@ -193,7 +193,7 @@
     }
 
     .join_box .join_btn:active{   background: rgb(218, 108, 3);}
-    .service{ height: 1.10rem; width:1.44rem; background: url(http://oss.xqzs.cn/resources/psy/join_service.png) no-repeat #fff; background-size:0.60rem; background-position: 0.48rem 0.07rem;  border-radius:0.55rem; box-shadow: -4px 2px 6px #ddd; position: fixed; right:0; bottom:1.70rem; border-bottom-right-radius: 0; border-top-right-radius: 0; }
+    .service{ height: 1.10rem; width:1.44rem; background: url(http://oss.xqzs.cn/resources/psy/join_service.png) no-repeat #fff; background-size:0.60rem; background-position: 0.48rem 0.07rem;  border-radius:0.55rem;box-shadow: -0.08rem 0.04rem 0.12rem #ddd; position: fixed; right:0; bottom:1.70rem; border-bottom-right-radius: 0; border-top-right-radius: 0; }
     .service:active{
         background: url(http://oss.xqzs.cn/resources/psy/join_service.png) no-repeat #f1f1f1; background-size:0.60rem; background-position: 0.48rem 0.07rem;
     }

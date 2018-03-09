@@ -150,7 +150,7 @@
     }
     .fansItem li{
         height:1.24rem;
-        border-bottom: 1px solid #eee;
+        border-bottom: 0.02rem solid #eee;
         padding-right:0.30rem;
         font-size: 0.22rem;
         color: #999;

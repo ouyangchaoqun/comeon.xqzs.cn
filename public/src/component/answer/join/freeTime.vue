@@ -135,6 +135,6 @@
         color:RGBA(69, 75, 84, 0.7);
         font-size: 0.28rem;
     }
-    .time_type li{float: left;width:26%;margin:0 3.33%;margin-bottom: 0.40rem;text-align: center;line-height: 0.58rem;height:0.58rem;border:1px solid RGBA(69, 75, 84, 0.2);border-radius: 0.10rem;font-size: 0.28rem;color:RGBA(69, 75, 84, 0.5)}
+    .time_type li{float: left;width:26%;margin:0 3.33%;margin-bottom: 0.40rem;text-align: center;line-height: 0.58rem;height:0.58rem;border:0.02rem solid RGBA(69, 75, 84, 0.2);border-radius: 0.10rem;font-size: 0.28rem;color:RGBA(69, 75, 84, 0.5)}
     .time_type .free_checked{border-color: RGBA(254, 122, 3, 1);color:RGBA(254, 122, 3, 1);}
 </style>

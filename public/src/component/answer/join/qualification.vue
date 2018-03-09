@@ -252,15 +252,15 @@
     .answer_join_quali .photo_img .img:nth-of-type(1){margin-left: 4%;}
     .answer_join_quali .photo_img .img:nth-of-type(2){margin-right: 4%;}
     .answer_join_quali .photo_img .img img{ max-height: 100%; max-width: 100%; position: absolute; top:0; left:0; z-index: 100}
-    .img div{width:44px;height:44px;border-radius: 50%;background: #fff;text-align: center;line-height: 40px;position: absolute;top:25%;left:50%;margin-left:-22px;}
+    .img div{width:0.88rem;height:0.88rem;border-radius: 50%;background: #fff;text-align: center;line-height: 0.80rem;position: absolute;top:25%;left:50%;margin-left:-0.44rem;}
     .img div b{color:rgba(253,114,6,1);font-size: 0.54rem}
     .img p{color:#A9A7A7;font-size: 0.24rem;text-align: center;position: absolute;width:100%;top:75%;}
     .checks .level_types{padding:0 0.30rem;padding-top: 0.40rem}
     .checks .level_types .item{width:38%;float: left;margin:0 6%;margin-bottom: 0.30rem;position: relative;font-size:0.28rem;color:#666}
     .checks .level_types .item span{margin-left: 0.50rem;}
-    .checks .level_item{margin:0;height:14px;width:14px;position: absolute;border-radius: 50%;border:1px solid #D2D2D2;top:0.05rem;left:0}
+    .checks .level_item{margin:0;height:0.28rem;width:0.28rem;position: absolute;border-radius: 50%;border:0.02rem solid #D2D2D2;top:0.05rem;left:0}
     .checks .checked_item{border-color: rgba(253,114,6,1)}
-    .checks .checked_item::after{  content: '';  width:10px;  height: 10px;  background: rgba(253,114,6,1);  border-radius: 50%;  position: absolute;  top:50%;  margin-top:-5px;  left: 50%;  margin-left:-5px;  }
+    .checks .checked_item::after{  content: '';  width:0.20rem;  height: 0.20rem;  background: rgba(253,114,6,1);  border-radius: 50%;  position: absolute;  top:50%;  margin-top:-0.10rem;  left: 50%;  margin-left:-0.10rem;  }
     .photo,.number .weui-cell__hd{font-size: 0.28rem;color:#666}
     .quaBtn{line-height: 0.86rem;background:linear-gradient(rgba(255,158,25,0.5),rgba(253,115,1,0.5));text-align: center;color:rgba(255,255,255,1);font-size: 0.36rem;position: absolute;bottom:0;width:100%; }
 
@@ -271,3 +271,4 @@
     .level_types { position: relative}
     .otherInput input{background: rgba(245,245,245,1);height:0.61rem;width: 40%;border-radius: 0.10rem;font-size: 0.26rem;padding-left:0.20rem;  position: absolute; bottom:0.17rem; left:2.00rem;}
 </style>
+

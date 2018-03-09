@@ -439,7 +439,7 @@
         color:rgba(36,37,61,0.5);
         font-size: 0.30rem;
         padding:0.32rem 0;
-        border-bottom: 1px solid rgba(224,224,225,1);
+        border-bottom: 0.02rem solid rgba(224,224,225,1);
     }
     .addAnonymous_btn{
         color:rgba(253,87,57,1);
@@ -454,20 +454,20 @@
         margin-top: 0.27rem;
         margin-left: 0.30rem;
         font-size: 0.24rem;
-        line-height: 20px;
+        line-height: 0.40rem;
     }
     .addAnonymous span{
         float: left;
         margin-right: 0.10rem;
     }
     .addAnonymous .weui-switch, .weui-switch-cp__box{
-        width:42px;height:22px;
+        width:0.84rem;height:0.44rem;
     }
     .addAnonymous .weui-switch-cp__box:before, .weui-switch:before{
-        width:40px;height:20px;
+        width:0.80rem;height:0.40rem;
     }
     .addAnonymous .weui-switch-cp__box:after, .weui-switch:after{
-        width:20px;height:20px;
+        width:0.40rem;height:0.40rem;
     }
     .change_height{ height: 100%; overflow-y: scroll; width: 100%;}
     .asker_ask_box {
@@ -476,7 +476,7 @@
     .asker_ask_box .ask_type {
         margin: 0.50rem 0.30rem 0.40rem 0.30rem;
         background: rgba(245,245,245,1);
-        border-radius: 6px;
+        border-radius: 0.12rem;
     }
     .asker_ask_box .ask_type .tab {
         line-height: 0.88rem;
@@ -499,7 +499,7 @@
         position: relative;
         margin: 0 0.30rem;
         background: #F1F1F5;
-        border-radius: 6px;
+        border-radius: 0.12rem;
         font-size: 0.26rem;
         padding: 0.34rem;
         height: 3.06rem;
@@ -564,13 +564,13 @@
         width: 1.36rem;
         height:0.52rem;
         border: none;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 0.02rem solid #ccc;
 
     }
     ::-webkit-input-placeholder {
         color: #ff9900;}
     .asker_ask_box .submit {
-        border-radius: 50px;
+        border-radius: 1.00rem;
         margin: 1.02rem 0.30rem 1.70rem;
     }
 
@@ -578,7 +578,7 @@
         background: linear-gradient(to right, rgb(239, 143, 25), rgb(211, 105, 6));
     }
     .dialog_select_Height{ height:6.46rem;}
-    .dialog_select_type  .yes{ border-top: 1px solid #eee; color:#FE7301; text-align: center; line-height: 0.88rem; position: absolute; bottom:0; left:0; width: 100% }
+    .dialog_select_type  .yes{ border-top: 0.02rem solid #eee; color:#FE7301; text-align: center; line-height: 0.88rem; position: absolute; bottom:0; left:0; width: 100% }
     .dialog_select_type  .yes:active{background: #eee}
     .dialog_select_type .tip_content{ padding:0  0.34rem; line-height: 1.8; font-size: 0.28rem; color:#666; height: 4.42rem; overflow: auto}
     .dialog_select_type .tip_content p{ margin-bottom: 0.20rem;}
@@ -586,7 +586,7 @@
     .asker_ask_box .ask_type_new .tab{color:rgba(36,37,61,1);font-size: 0.34rem;line-height: 1;margin-bottom: 0.40rem;}
     .asker_ask_box .ask_type_new .tab span{color:rgba(36,37,61,0.5);font-size: 0.24rem;}
     .asker_ask_box .ask_type_new .select_box{display: flex;text-align: center;height:0.72rem;line-height: 0.72rem;}
-    .asker_ask_box .ask_type_new .select_box div{flex:1;color:rgba(36,37,61,0.7);font-size: 0.30rem;background: rgba(245,245,245,1);border-radius: 5px;}
+    .asker_ask_box .ask_type_new .select_box div{flex:1;color:rgba(36,37,61,0.7);font-size: 0.30rem;background: rgba(245,245,245,1);border-radius: 0.10rem;}
     .asker_ask_box .ask_type_new .select_box div:nth-of-type(2){margin:0 0.30rem;}
     .asker_ask_box .ask_type_new .select_box .on_new{background: rgba(253,114,6,1);color:#fff;}
     .asker_ask_box  .text_area .content{ font-size: 0.26rem; color:rgba(36,37,61,1); height: 90%; line-height: 0.48rem}

@@ -22,7 +22,7 @@
 <style>
     .asker_bottom_box {
         height:0.95rem;
-        border-top: 1px solid rgba(0,0,0,0.2);
+        border-top: 0.02rem solid rgba(0,0,0,0.2);
         display: -webkit-box;
         display: -webkit-flex;
         display: flex;
@@ -47,7 +47,7 @@
         height:0.89rem;
         border-radius: 50%;
         background: #cdcdcd;
-        font-size: 20px;
+        font-size: 0.4rem;
         color: #fff;
         text-align: center;
         line-height:0.88rem;

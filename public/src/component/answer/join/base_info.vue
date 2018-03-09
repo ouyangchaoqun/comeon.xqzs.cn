@@ -476,30 +476,30 @@
     .answer_join_base_info_box .submit{height:0.88rem;line-height: 0.88rem;color:#fff;background: linear-gradient(to right, rgba(255,158,25,0.4), rgba(253,114,6,0.4));text-align: center;
         border-radius: 0.40rem;margin:0 0.30rem}
 
-    .cannotsub{    background: linear-gradient(to right, rgba(255,158,25,0.4), rgba(253,114,6,0.4)) !important; border: 1px solid #fff !important;}
+    .cannotsub{    background: linear-gradient(to right, rgba(255,158,25,0.4), rgba(253,114,6,0.4)) !important; border: 0.02rem solid #fff !important;}
     .answer_join_base_info_box .weui-cell__bd .img{
         width: 1.28rem; height: 1.28rem; background: #F4F4F7; color:#fff; font-size: 1.09rem; line-height: 1.09rem ; text-align: center; margin-left: 0.68rem
     }
     .answer_join_base_info_box .head{ margin-top:0.10rem; border-bottom: solid 0.20rem #F4F4F7}
-    .answer_join_base_info_box .tip{ margin-top: 0.07rem; font-size: 0.24rem; padding: 10px 15px; color:rgba(36,37,61,0.5)}
+    .answer_join_base_info_box .tip{ margin-top: 0.07rem; font-size: 0.24rem; padding: 0.20rem 0.30rem; color:rgba(36,37,61,0.5)}
     .answer_join_base_info_box  .weui-label span{ color:red;}
 
-    .level_item{height:14px;width:14px;border-radius: 50%;border:1px solid #D2D2D2;display: inline-block;margin-right:0.28rem;position: absolute;top:50%;margin-top:-8px;}
+    .level_item{height:0.28rem;width:0.28rem;border-radius: 50%;border:0.02rem solid #D2D2D2;display: inline-block;margin-right:0.28rem;position: absolute;top:50%;margin-top:-0.16rem;}
     .checked_item{border-color: rgba(254,115,1,1)}
-    .checked_item::after{  content: '';  width:12px;  height: 12px;  background: rgba(254,115,1,1);  border-radius: 50%;  position: absolute;top:50%;margin-top:-6px;left:50%;margin-left:-6px;}
-    .infos li{height:40px;line-height: 40px;color:rgba(36,37,61,0.7);font-size: 0.28rem;display: flex;margin-bottom: 0.30rem;position: relative}
-    .infos li input{height:100%;width:70%;background: #F4F4F7;border-radius: 5px;position: absolute;right:0;padding-left: 0.20rem;color:rgba(36,37,61,1);font-size: 0.30rem;}
+    .checked_item::after{  content: '';  width:0.24rem;  height: 0.24rem;  background: rgba(254,115,1,1);  border-radius: 50%;  position: absolute;top:50%;margin-top:-0.12rem;left:50%;margin-left:-0.12rem;}
+    .infos li{height:0.80rem;line-height: 0.80rem;color:rgba(36,37,61,0.7);font-size: 0.28rem;display: flex;margin-bottom: 0.30rem;position: relative}
+    .infos li input{height:100%;width:70%;background: #F4F4F7;border-radius: 0.10rem;position: absolute;right:0;padding-left: 0.20rem;color:rgba(36,37,61,1);font-size: 0.30rem;}
     .info_right{height:100%;text-align: center;padding-left: 1.36rem;display: flex}
     .info_left{width:20%;text-align: right;}
     .infos ul{padding:0.30rem}
     .infos li span{color:red}
     .info_right>div{position: relative}
     .info_right>div:nth-of-type(1){margin-right: 0.60rem}
-    .info_right .level_itemsex{margin-left: 30px;color:rgba(36,37,61,1);font-size: 0.30rem}
-    .info_right i{display: inline-block;color:rgba(36,37,61,0.5);font-style: normal;width:60px;height:21px;font-size:0.24rem;line-height: 21px;border:1px solid rgba(36,37,61,0.5);border-radius: 0.34rem;margin-right:25px;margin-top:10px;}
+    .info_right .level_itemsex{margin-left: 0.60rem;color:rgba(36,37,61,1);font-size: 0.30rem}
+    .info_right i{display: inline-block;color:rgba(36,37,61,0.5);font-style: normal;width:1.20rem;height:0.42rem;font-size:0.24rem;line-height: 0.42rem;border:0.02rem solid rgba(36,37,61,0.5);border-radius: 0.34rem;margin-right:0.50rem;margin-top:0.20rem;}
     .info_right .right_active{background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1));border-color:rgba(254,115,1,1);color:#fff}
 
-    .lut{ float:left; background: #ececec; color:rgba(36,37,61,1); height: 30px; line-height: 30px;  padding: 0 10px; margin-top: 6px; font-size: 14px;  }
+    .lut{ float:left; background: #ececec; color:rgba(36,37,61,1); height: 0.60rem; line-height: 0.60rem;  padding: 0 0.20rem; margin-top: 0.12rem; font-size: 0.28rem;  }
     .lut:nth-child(3){ margin-left: 0}
     .lut:nth-child(1){ margin-left:0.40rem;     }
     .lut.on{ float:left; background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1)); color:#fff;}

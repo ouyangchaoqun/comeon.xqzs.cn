@@ -224,10 +224,10 @@
         width: 46.5%;
         height: 1.64rem;
         background: #F7F7F7;
-        border-radius: 10px;
+        border-radius: 0.2rem;
         float: left;
         text-align: center;
-        border: solid 1px #fff;
+        border: solid 0.02rem #fff;
     }
 
     .recharge_box .items_box .items:nth-of-type(2n) {
@@ -264,7 +264,7 @@
         background: rgba(228, 227, 227, 0.5);
         margin: 0 auto;
         margin-top: 0.40rem;
-        border-radius: 10px;
+        border-radius: 0.2rem;
         line-height: 1.00rem;
         font-size: 0.30rem;
         padding-left: 0.30rem;
@@ -294,7 +294,7 @@
         vertical-align: middle;
     }
     .recharge_box .question span{
-        border-bottom: 1px solid rgba(228, 227, 227, 0.5);
+        border-bottom: 0.02rem solid rgba(228, 227, 227, 0.5);
         padding: 0 0 0.03rem 0.07rem;
     }
     .mask {
@@ -319,7 +319,7 @@
     }
 
     .recharge_box .items_box .items.selected {
-        border: #FE7A03 solid 1px;
+        border: #FE7A03 solid 0.02rem;
     }
 
     .recharge_box .tips .close {

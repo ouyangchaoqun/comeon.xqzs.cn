@@ -544,7 +544,7 @@
     .index_box li {
         background: #fff;
         padding: 0.30rem 0.30rem 0.36rem 0;
-        border-bottom: 1px solid RGBA(69, 75, 84, 0.15);
+        border-bottom: 0.02rem solid RGBA(69, 75, 84, 0.15);
         position: relative;
         padding-left: 1.3rem;
     }
@@ -670,7 +670,7 @@
     .new_question{
         height: 1.10rem;
         width: 100%;
-        border-bottom: 1px solid #eee;
+        border-bottom: 0.02rem solid #eee;
         overflow: hidden;
     }
     .top_left{

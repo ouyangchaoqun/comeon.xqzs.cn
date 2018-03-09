@@ -453,33 +453,33 @@
     .setQualification_box{  background: #fff;  color: #666;  font-size: 0.28rem;   }
     .setQualification_box header{  padding:0.40rem 0.30rem 0.30rem 0.30rem;  border-bottom: 0.20rem solid #F4F4F7;  }
     .header_top{ position: relative;margin-bottom: 0.12rem;font-size: 0.30rem;  color: #474747;}
-    .setQualification_box .header-right{  position: absolute;  top:0px;  right:0;  padding:0.10rem 0.20rem;  border-radius: 0.21rem;  line-height: 1;  color: #fff;  font-size: 0.24rem;  background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1));}
+    .setQualification_box .header-right{  position: absolute;  top:0.00rem;  right:0;  padding:0.10rem 0.20rem;  border-radius: 0.21rem;  line-height: 1;  color: #fff;  font-size: 0.24rem;  background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1));}
     .setQualification_box .header_top .addStyle{  background: none;  color: rgba(253,114,6,1);  }
-    .setQualification_box .textarea_box{  height:0.70rem;  border:1.5px solid #EAE7E7; line-height: 0.40rem;  color: #666;  font-size: 0.28rem;  padding:0.20rem;  border-radius: 0.10rem;  }
+    .setQualification_box .textarea_box{  height:0.70rem;  border:0.03rem solid #EAE7E7; line-height: 0.40rem;  color: #666;  font-size: 0.28rem;  padding:0.20rem;  border-radius: 0.10rem;  }
     .textarea_box textarea{  width:100%;  height:100%;  border:0;  outline: none;  resize: none;  background: none;  color: #666;  }
     .setQualification_box .goodat{  padding:0.30rem;  border-bottom: 0.20rem solid #F4F4F7; }
     .goodat .header_top{margin-bottom: 0.30rem;}
     .goodat_class{display: -webkit-box;display: -webkit-flex;display: flex;}
-    .goodat_class div{flex: 1;text-align: center;line-height:0.66rem;border-radius: 0.34rem;border:1px solid #999;margin-right:0.30rem;}
+    .goodat_class div{flex: 1;text-align: center;line-height:0.66rem;border-radius: 0.34rem;border:0.02rem solid #999;margin-right:0.30rem;}
     .goodat_class div:nth-of-type(3){margin:0;}
-    .goodat .level{height:0.52rem;line-height:0.52rem;font-size:0.24rem;border:1px solid #999;border-radius: 0.34rem;text-align: center;padding:0 0.10rem;display: inline-block}
+    .goodat .level{height:0.52rem;line-height:0.52rem;font-size:0.24rem;border:0.02rem solid #999;border-radius: 0.34rem;text-align: center;padding:0 0.10rem;display: inline-block}
     .level_box{padding-top:0.12rem;position: relative;padding-bottom:0.44rem;}
     .cerpic{width:2.00rem;height:1.40rem;position: absolute;left:45%;top:-0.40rem;}
     .goodat .textarea_box{min-height:2.00rem;}
     .dialog_select_type{ background: #fff; border-radius: 0.20rem; width: 80%; height:6.46rem; position: fixed; top: 50%; margin-top: -3.23rem; left:50%; margin-left: -40% ;    z-index: 10001;}
     .dialog_select_type .title{line-height: 1; text-align: center;font-size: 0.36rem;  font-weight: bold;}
     .dialog_select_type .types{ margin: 0.31rem;}
-    .dialog_select_type .types .item{ width: 27%; float:left;text-align: center; border: 1px solid #9E9E9E ; line-height: 0.48rem; border-radius:0.24rem; margin: 0 2%; margin-bottom: 0.61rem; font-size: 0.24rem;color:#999; padding: 0 0.5%; }
-    .dialog_select_type .types .item.on{  border: 1px solid rgba(253,114,6,1); color:rgba(253,114,6,1)}
-    .dialog_select_type  .yes{ border-top: 1px solid #eee; color:rgba(253,114,6,1); text-align: center; line-height: 0.88rem; position: absolute; bottom:0; left:0; width: 100% ;font-size: 0.36rem;display: flex}
+    .dialog_select_type .types .item{ width: 27%; float:left;text-align: center; border: 0.02rem solid #9E9E9E ; line-height: 0.48rem; border-radius:0.24rem; margin: 0 2%; margin-bottom: 0.61rem; font-size: 0.24rem;color:#999; padding: 0 0.5%; }
+    .dialog_select_type .types .item.on{  border: 0.02rem solid rgba(253,114,6,1); color:rgba(253,114,6,1)}
+    .dialog_select_type  .yes{ border-top: 0.02rem solid #eee; color:rgba(253,114,6,1); text-align: center; line-height: 0.88rem; position: absolute; bottom:0; left:0; width: 100% ;font-size: 0.36rem;display: flex}
     .dialog_select_type  .yes div{flex:1;text-align: center;position: relative}
-    .dialog_select_type  .yes div:nth-of-type(1)::after{content: '';height:100%;width:1px;background:#eee;position: absolute;right:0;top:0}
+    .dialog_select_type  .yes div:nth-of-type(1)::after{content: '';height:100%;width:0.02rem;background:#eee;position: absolute;right:0;top:0}
     .dialog_select_type .level_types .item{width:46%;float: left;margin:0 2%;margin-bottom: 0.30rem;position: relative;font-size:0.24rem;color:#666}
     .dialog_select_type .level_types{padding:0 0.30rem;}
     .dialog_select_type .level_types .item span{margin-left: 0.50rem;}
-    .dialog_select_type .level_item{height:14px;width:14px;position: absolute;border-radius: 50%;border:1px solid #D2D2D2;top:1.2px;left:0}
+    .dialog_select_type .level_item{height:0.28rem;width:0.28rem;position: absolute;border-radius: 50%;border:0.02rem solid #D2D2D2;top:0.02rem;left:0}
     .dialog_select_type .checked_item{border-color: rgba(253,114,6,1)}
-    .dialog_select_type .checked_item::after{  content: '';  width:10px;  height: 10px;  background: rgba(253,114,6,1);  border-radius: 50%;  position: absolute;  top:50%;  margin-top:-5px;  left: 50%;  margin-left:-5px;  }
+    .dialog_select_type .checked_item::after{  content: '';  width:0.20rem;  height: 0.20rem;  background: rgba(253,114,6,1);  border-radius: 50%;  position: absolute;  top:50%;  margin-top:-0.10rem;  left: 50%;  margin-left:-0.10rem;  }
     .dialog_select_type .levle_type_bottom{  padding:0.28rem 0.30rem;font-size: 0.24rem;  color: #666;  }
     .dialog_select_type .levle_type_bottom>div:nth-of-type(1){  margin-bottom: 0.34rem;  }
     .dialog_select_type .levle_type_bottom>div:nth-of-type(2) .input_box{  line-height: 0.62rem;  color: #A9A7A7;  font-size: 0.24rem;  text-align: center;  }

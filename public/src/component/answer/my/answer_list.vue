@@ -284,7 +284,7 @@
         display: -webkit-flex;
         display: flex;
         background: #fff;
-        border-bottom: 1px solid #eee;
+        border-bottom: 0.02rem solid #eee;
         height:0.80rem;
         line-height: 0.80rem;
     }
@@ -299,7 +299,7 @@
     .my_problem_tabs>div:nth-of-type(1)::after{
         content: '';
         height:0.38rem;
-        width:1px;
+        width:0.02rem;
         background: #E0E0E0;
         position: absolute;
         right:0;
@@ -307,7 +307,7 @@
         margin-top:-0.19rem;
     }
     .my_problem_active{
-        border-bottom: 2px solid rgba(253,114,6,1);
+        border-bottom: 0.04rem solid rgba(253,114,6,1);
     }
     .my_problem_box{
         position: relative;
@@ -329,18 +329,18 @@
     .problem_item .li_border{
         border-bottom: 0.14rem solid #F5F5F5;
     }
-    .problem_item_top{display: -webkit-box;display: -webkit-flex;display: flex;font-size: 12px;line-height: 34px;color:#999;position: relative}
-    .problem_item_top span{color:rgba(36,37,61,0.7);margin-right: 10px;}
-    .problem_item_top i{font-style: normal;color:rgba(254,115,1,1);margin-left: 5px}
+    .problem_item_top{display: -webkit-box;display: -webkit-flex;display: flex;font-size: 0.24rem;line-height: 0.68rem;color:#999;position: relative}
+    .problem_item_top span{color:rgba(36,37,61,0.7);margin-right: 0.20rem;}
+    .problem_item_top i{font-style: normal;color:rgba(254,115,1,1);margin-left: 0.10rem}
     .problem_item_top img{
-        width:34px;
-        height:34px;
+        width:0.68rem;
+        height:0.68rem;
         display: block;
         border-radius: 50%;
-        margin-right: 10px;
+        margin-right: 0.20rem;
     }
     .problem_item_right{position: absolute;right:0}
-    .problem_item_del{color:rgba(36,37,61,1);font-size: 15px;line-height: 20px;padding-left:44px;margin-bottom: 0.40rem}
+    .problem_item_del{color:rgba(36,37,61,1);font-size: 0.30rem;line-height: 0.40rem;padding-left:0.88rem;margin-bottom: 0.40rem}
     .problem_answer_info{
         display: -webkit-box;
         display: -webkit-flex;
@@ -352,15 +352,15 @@
         margin-bottom: 0.30rem;
     }
     .problem_answer_info img{
-        height:44px;
+        height:0.88rem;
         display: block;
-        width:44px;
+        width:0.88rem;
         border-radius: 50%;
         margin-right: 0.20rem;
     }
     .problem_answer_yy{
         position: relative;
-        margin-top: 3px;
+        margin-top: 0.06rem;
     }
     .problem_answer_yy .problem_answer_ly{
         display: block;
@@ -385,7 +385,7 @@
         height:0.40rem;
         top:50%;
         right:-0.68rem;
-        margin-top:-10px;
+        margin-top:-0.20rem;
     }
     .problem_bestAns{
         color: rgba(36,37,61,1);
@@ -395,11 +395,11 @@
         top:0;
         line-height: 1;
         top:50%;
-        margin-top:-10px;
+        margin-top:-0.20rem;
 
     }
     .problem_answer_info .problem_answer_sond{
-        height:16px;
+        height:0.32rem;
         display: block;
         position: absolute;
         width:auto;
@@ -411,5 +411,5 @@
         padding:0;
         margin:0;
     }
-    .problem_answer_time span:nth-of-type(1){margin-right:20px}
+    .problem_answer_time span:nth-of-type(1){margin-right:0.40rem}
 </style>

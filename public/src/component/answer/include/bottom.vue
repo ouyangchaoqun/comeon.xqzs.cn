@@ -17,7 +17,7 @@
 <style>
     .answer_bottom_box {
         height:0.98rem;
-        border-top: 1px solid #eee;
+        border-top: 0.02rem solid #eee;
         display: -webkit-box;
         display: -webkit-flex;
         display: flex;

@@ -137,7 +137,7 @@
 </script>
 <style>
     .identity_tabs{padding: 0.52rem 28% 0 28%;display: flex;display: -webkit-flex;}
-    .identity_tabs div{width:60px;text-align: center;font-size: 0.24rem;height:21px;border:1px solid #D2D2D2;line-height: 21px;border-radius: 11px;margin:0 auto;color:#B0B0B0;}
+    .identity_tabs div{width:1.20rem;text-align: center;font-size: 0.24rem;height:0.42rem;border:0.02rem solid #D2D2D2;line-height: 0.42rem;border-radius: 0.22rem;margin:0 auto;color:#B0B0B0;}
     .identity_tabs .identity_tabs_active{color:#fff;background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1));border-color:rgba(253,114,6,1) }
     .content_list1{height:0.80rem;line-height: 0.80rem;color:#666;padding:0.30rem 0.30rem 0.52rem 0.28rem;font-size: 0.28rem;}
     .content_list1 span{color:red;}

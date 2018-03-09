@@ -128,7 +128,7 @@
     .ask_my_income_list .moneyOut_item{
         height:0.98rem;
         line-height: 0.98rem;
-        border-bottom: 1px solid rgba(238,238,238,1);
+        border-bottom: 0.02rem solid rgba(238,238,238,1);
         padding:0 0.30rem;
         display: flex;
     }

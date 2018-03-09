@@ -381,7 +381,7 @@
     }
     .answer_join_voice  .action_btn .item .txt{ margin-top: 0.20rem}
     .answer_join_voice  .audio_btn_in{ background: #fff; border-radius: 50%; height: 1.40rem; width: 1.40rem;
-        -webkit-box-shadow:0 0 8px #09bb07;box-shadow:0 0 8px #09bb07;  position: relative; margin: 0 auto}
+        -webkit-box-shadow:0 0 0.16rem #09bb07;box-shadow:0 0 0.16rem #09bb07;  position: relative; margin: 0 auto}
     .answer_join_voice .audio_btn_in:active{ background: rgba(105,186,45,0.1)
     }
 

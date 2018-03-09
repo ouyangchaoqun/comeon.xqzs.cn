@@ -212,14 +212,14 @@
 
     .asker_my_coment_list .item{ padding: 0.30rem; border-bottom: 0.24rem solid #F4F4F7;}
     .asker_my_coment_list .comment .img{ width: 0.80rem; height: 100%; float:left; margin-right: 0.17rem;}
-    .asker_my_coment_list .comment .img img{width: 0.80rem; height:0.80rem; border-radius: 50%;display: block;border:0.5px solid rgba(238,234,234,1)}
+    .asker_my_coment_list .comment .img img{width: 0.80rem; height:0.80rem; border-radius: 50%;display: block;border:0.01rem solid rgba(238,234,234,1)}
     .asker_my_coment_list .comment .info{     max-width: 5.78rem;float:left;}
     .asker_my_coment_list  .comment .info .times{ color:rgba(36,37,61,0.7); font-size:0.24rem; }
     .asker_my_coment_list .comment .info .times span{ font-weight: bold; color:rgba(36,37,61,1)}
     .asker_my_coment_list .comment .info .content{ color:rgba(36,37,61,1); font-size: 0.28rem; margin: 0.07rem  0}
     .asker_my_coment_list .comment .info .tags{}
     .asker_my_coment_list .comment .info .tags span{ display: inline-block;
-        border:1px solid rgba(36,37,61,0.5); color:rgba(36,37,61,0.5); text-align: center; line-height: 0.45rem; border-radius: 0.23rem; padding: 0 0.17rem; font-size:0.24rem; margin-right: 0.10rem;}
+        border:0.02rem solid rgba(36,37,61,0.5); color:rgba(36,37,61,0.5); text-align: center; line-height: 0.45rem; border-radius: 0.23rem; padding: 0 0.17rem; font-size:0.24rem; margin-right: 0.10rem;}
     .asker_my_coment_list .comment .info .star span{ display: inline-block; background: url(http://oss.xqzs.cn/resources/psy/starNew_no.png) no-repeat; background-size: 0.29rem;  height: 0.29rem; width: 0.29rem; margin-right: 0.14rem; }
     .asker_my_coment_list .comment .info .star span.on{background: url(http://oss.xqzs.cn/resources/psy/starNew.png) no-repeat;background-size: 0.29rem; }
 

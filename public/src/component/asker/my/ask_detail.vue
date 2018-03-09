@@ -426,10 +426,10 @@
     .problem_wait_style span{
         margin-right: 0.30rem;
     }
-    .ask_detailBox .answerInfo_border{border-bottom:1px solid rgba(224,224,225,1);}
-    .ask_detailBox .yy_bottomBorder{height:0.5px;width:80%;margin: 0 auto;border-bottom: 1px solid rgba(210,210,210,1);margin-bottom: 0.36rem;padding-top:0.51rem;}
+    .ask_detailBox .answerInfo_border{border-bottom:0.02rem solid rgba(224,224,225,1);}
+    .ask_detailBox .yy_bottomBorder{height:0;width:80%;margin: 0 auto;border-bottom: 0.02rem solid rgba(210,210,210,1);margin-bottom: 0.36rem;padding-top:0.51rem;}
     .ask_detailBox .problem_answer_bottom{padding:0;margin:0 auto;width:80%;margin-bottom: 0.28rem;}
-    .problem_assess_btn .weui-btn{border-radius: 50px;}
+    .problem_assess_btn .weui-btn{border-radius: 1rem;}
     .problem_assess .star>div{display: inline-block;line-height: 1;color:rgba(36,37,61,0.5);font-size: 0.22rem;margin-bottom: 0.63rem}
     .problem_assess .star span{ position:relative;display: inline-block;  height:0.56rem; width: 0.59rem; background: url(http://oss.xqzs.cn/resources/psy/starNew_no.png) no-repeat; background-size: 0.59rem; margin: 0.40rem  0.24rem 0.23rem 0.24rem;  }
     .problem_assess .star span.on{ background: url(http://oss.xqzs.cn/resources/psy/starNew.png) no-repeat; background-size: 0.59rem;}
@@ -467,14 +467,14 @@
         padding:0 0.17rem;
         height:0.46rem;
         line-height: 0.46rem;
-        border:1px solid rgba(36,37,61,0.5);
+        border:0.02rem solid rgba(36,37,61,0.5);
         border-radius: 0.34rem;
         display: inline-block;
         margin-bottom:0.24rem;
         margin-right: 0.08rem;
     }
     .problem_assess_item span.on{
-        border:1px solid rgba(255,158,25,1);
+        border:0.02rem solid rgba(255,158,25,1);
         color:rgba(253,114,6,1);
     }
     .problem_assess_class{
@@ -488,7 +488,7 @@
         position: relative;
         height:2.38rem;
         background: #EBEBEC;
-        border-radius: 5px;
+        border-radius: 0.1rem;
         overflow: hidden;
         margin-bottom: 0.64rem;
 
@@ -521,7 +521,7 @@
         color: rgba(36,37,61,1);
         padding:3% 3%;
         line-height: 1.6;
-        letter-spacing: 2px;
+        letter-spacing: 0.04rem;
     }
     .problem_assess_btn{
         padding: 0 0.30rem;

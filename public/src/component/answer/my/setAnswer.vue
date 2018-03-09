@@ -194,12 +194,12 @@
         color: rgba(36,37,61,0.7);
     }
     .setItem_bottom img{
-        height:14px;
-        width:14px;
+        height:0.28rem;
+        width:0.28rem;
         display: inline-block;
         position: absolute;
         left:0;
-        top:1px;
+        top:0.02rem;
     }
     .setItem_bottom span{
         margin:0 auto;
@@ -209,12 +209,12 @@
     .set_price{ width: 66%; margin: 0.00rem auto; margin-top: 48% }
     .set_price .til,  .set_price .select{ float:left; line-height: 0.68rem; text-align: center; color:rgba(36,37,61,1); font-size: 0.30rem;}
     .set_price .select input{ width: 2.04rem;font-size: 0.41rem; line-height: 0.68rem;;color: #FE7301; text-align: center}
-    .set_price .select{ margin-left: 0.20rem; width:50%;color: #ffaa00; font-size: 0.41rem; line-height: 0.68rem;; border-radius: 0.10rem; border: 1px solid #B3B3B3
+    .set_price .select{ margin-left: 0.20rem; width:50%;color: #ffaa00; font-size: 0.41rem; line-height: 0.68rem;; border-radius: 0.10rem; border:0.02rem solid #B3B3B3
     }
-    .set_price.mt_mb{ margin-top: 30px; margin-bottom: 30px;}
+    .set_price.mt_mb{ margin-top: 0.6rem; margin-bottom: 0.6rem;}
 
     .setAnswer_box  .btn_box{width:100%;position: relative;margin-top: 1.70rem;display: flex;display: -webkit-flex;text-align: center;line-height: 0.80rem}
-    .btn_box a{flex: 1;border:1px solid rgba(253,115,1,1);margin:0 0.30rem;border-radius: 0.40rem;color:rgba(253,115,1,1);background: #fff;}
+    .btn_box a{flex: 1;border:0.02rem solid rgba(253,115,1,1);margin:0 0.30rem;border-radius: 0.40rem;color:rgba(253,115,1,1);background: #fff;}
     .btn_box a:last-of-type{color:#fff;background:linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1))}
     .btn_box a:active{
         color:#fff;background:linear-gradient(to right, rgb(217, 128, 25), rgb(220, 107, 6))

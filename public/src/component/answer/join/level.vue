@@ -176,7 +176,7 @@
         line-height: 0.82rem;
         color:  RGBA(74, 74, 74, 0.5);
         font-size: 0.30rem;
-        border:1px solid RGBA(69, 75, 84, 0.1);
+        border:0.02rem solid RGBA(69, 75, 84, 0.1);
         border-radius: 0.10rem;
         text-align: center;
         float: left;
@@ -195,7 +195,7 @@
         font-size: 0.30rem;
     }
     .level_number{
-        border-bottom:1px solid RGBA(69, 75, 84, 0.09);
+        border-bottom:0.02rem solid RGBA(69, 75, 84, 0.09);
         margin-bottom: 0.24rem;
         padding-bottom:0.24rem;
     }
@@ -212,7 +212,7 @@
     }
     .level_photo .photo_box{
         min-height:2.72rem;
-        border:1px solid RGBA(69, 75, 84, 0.09);
+        border:0.02rem solid RGBA(69, 75, 84, 0.09);
         margin:0 auto;
         position: relative;
     }

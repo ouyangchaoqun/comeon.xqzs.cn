@@ -516,7 +516,7 @@
         font-size: 0.28rem;
         color: rgba(36, 37, 61, 1);
         text-align: center;
-        border-bottom: 1px solid #E0E0E1;
+        border-bottom: 0.02rem solid #E0E0E1;
         display: none;
     }
 
@@ -533,7 +533,7 @@
     .nav_active:after {
         content: '';
         width: 0.30rem;
-        height: 2px;
+        height: 0.04rem;
         background: #FE7301;
         position: absolute;
         bottom: 0.10rem;
@@ -553,7 +553,7 @@
     .asker_listen_list_box li {
         background: #fff;
         padding: 0.40rem 0.3rem 0.36rem 0rem;
-        border-bottom: 0.1px solid #f5f5f5;
+        border-bottom: 0.01rem solid #f5f5f5;
         position: relative;
         padding-left: 1.3rem;
     }
@@ -652,7 +652,7 @@
 
     .index_nocontent {
         background: #fff;
-        margin-top: 1px;
+        margin-top: 0.02rem;
         text-align: center;
         font-size: 0.26rem;
         color: rgba(36, 37, 61, 0.5);

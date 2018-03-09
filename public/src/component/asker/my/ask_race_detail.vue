@@ -412,7 +412,7 @@
         border-radius: 50%;
         margin-right: 0.20rem;
     }
-    .submit_best_answer{ background: #fff; height:0.88rem; line-height: 0.88rem;  color:rgba(36,37,61,1); font-size: 0.26rem; position: fixed; bottom:0;left:0; width: 100%;box-shadow: 2px 0px 10px rgba(0,0,0,0.3);padding-left:0.17rem;}
+    .submit_best_answer{ background: #fff; height:0.88rem; line-height: 0.88rem;  color:rgba(36,37,61,1); font-size: 0.26rem; position: fixed; bottom:0;left:0; width: 100%;box-shadow: 0.04rem 0 0.2rem rgba(0,0,0,0.3);padding-left:0.17rem;}
     .submit_btn { position: absolute;right:0.40rem; top:50%; height: 0.54rem;line-height: 0.54rem; text-align: center; width: 1.60rem;border:0.01rem solid rgba(252,66,42,1);color:rgba(252,66,42,1);border-radius: 0.30rem;margin-top:-0.27rem;}
     .submit_btn:active{ background: #FE7301;color:#fff;}
     .rob_problem{
@@ -438,13 +438,13 @@
     }
     .rob_lists li{
         background: #fff;
-        padding:0.40rem 0.30rem 0px 0.30rem;
+        padding:0.40rem 0.30rem 0 0.30rem;
         border-bottom: 0.20rem solid rgba(245,245,245,1);
     }
     .rob_problem .audio{
         margin:0;
         padding-bottom: 0.40rem;
-        border-bottom: 1px solid rgba(238,238,238,1);
+        border-bottom: 0.02rem solid rgba(238,238,238,1);
     }
     .rob_box_top{
         display: flex;
@@ -530,7 +530,7 @@
     .problem_dialog{
         width:5.60rem;
         background: #fff;
-        border-radius: 5px;
+        border-radius: 0.1rem;
         position: absolute;
         top:40%;
         left:50%;
@@ -542,7 +542,7 @@
         color: #7F7E7E;
         font-size: 0.32rem;
         text-align: center;
-        border-bottom: 1px solid #D1D1D3;
+        border-bottom: 0.02rem solid #D1D1D3;
     }
     .problem_dialog_bd span{
         color: rgba(36,37,61,1);
@@ -569,7 +569,7 @@
     .problem_dialog_fd div:nth-of-type(1)::after{
         content: '';
         height:100%;
-        width:1px;
+        width:0.02rem;
         background: #D1D1D3;
         position: absolute;
         right:0;
@@ -587,7 +587,7 @@
         padding-top:0.56rem;
         color: rgba(36,37,61,0.7);
         font-size: 0.26rem;
-        border-radius: 5px;
+        border-radius: 0.1rem;
         z-index: 10001;
     }
     .best_dialog_header{
@@ -608,7 +608,7 @@
     .best_dialog_html{
         padding:0 0.32rem 0.40rem 0.36rem;
         line-height: 0.40rem;
-        border-bottom: 1px solid #D1D1D3;
+        border-bottom: 0.02rem solid #D1D1D3;
     }
     .best_dialog_fb{
         color: #FE7301;
