@@ -693,11 +693,12 @@
     }
     .index_box .new_question .refresh{
         width: 0.34rem;
-        height:0.34rem;
+        height:0.3rem;
         margin-left: 0.10rem;
-        background:url("http://oss.xqzs.cn/resources/psy/asker/asker_refresh.png") no-repeat;
+        background:url("http://oss.xqzs.cn/resources/psy/asker/asker_refresh_blue.png") no-repeat;
         background-size: 100%;
         float: left;
+        margin-top: 0.04rem;
     }
     .index_box .new_question .refresh.click{
         animation:rotate 0.5s linear infinite;
