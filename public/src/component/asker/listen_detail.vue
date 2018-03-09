@@ -81,7 +81,7 @@
             </li>
 
         </ul>
-        <v-recharge :rechargeMoney="rechargeMoney" v-show="rechargeFlag" v-on:childMessage="getFlagVal"></v-recharge>
+        <v-recharge :rechargeMoney="rechargeMoney" v-if="rechargeFlag" v-on:childMessage="getFlagVal"></v-recharge>
     </div>
 
 </template>
