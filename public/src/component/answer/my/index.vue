@@ -12,13 +12,23 @@
                         <div class="perfect">完善资料</div>
                         <div class="clear"></div>
                 </div>
-                <div class="main_lists">
-                    <router-link to = "/answer/my/income"  class="income"  ><i></i>我的余额
-                        <div class="price">￥{{formatPrice(user.balance)}}</div>
+                <div class="income_margin">
+
+
+                    <a  class="my_nav" @click="goExpertDetail()" >
+                        <div class="my_diandou"></div>
+                        <p>我的主页</p>
+                    </a>
+                    <router-link to="../../../asker/my/cash" class="my_nav">
+                        <div class="my_money"></div>
+                        <p>我的余额</p>
                     </router-link>
-                    <!--<router-link to = "/answer/my/level" class="level" ><i></i>我的等级</router-link>-->
-                    <!--<router-link to = "/answer/my/setanswer" class="setanswer" ><i></i>解答设置</router-link>-->
-                    <router-link to = "/answer/my/answer/list" class="answer_list" ><i></i>我的回答</router-link>
+                    <router-link to="/answer/my/answer/list" class="my_nav">
+                        <div class="my_ask"></div>
+                        <p>我的回答</p>
+                    </router-link>
+                </div>
+                <div class="main_lists">
                     <router-link to = "/answer/my/fans" class="fans" ><i></i>我的粉丝</router-link>
                     <router-link to = "/answer/my/comment/list" class="comment_list" ><i></i>收到的评价</router-link>
                     <!--<router-link to = "/answer/my/message" class="message" ><i></i>60”语音寄语</router-link>-->
@@ -30,7 +40,7 @@
     </div>
 </template>
 
-<script type="es6">
+<script type="">
 
     import askerBottom from "../include/bottom.vue";
     import showLoad from '../../include/showLoad.vue';
@@ -78,6 +88,9 @@
                     //error
                 });
             },
+            goExpertDetail:function () {
+                this.$router.push("../../../asker/expert/detail?isMe=1&&id="+this.expert.id);
+            },
             resizeImg:function (v) {
                 return   xqzs.oss.resizeImg(v,100,100)
             },
@@ -98,6 +111,7 @@
                 let expertId= cookie.get("expertId")
                 _this.$http.get(web.API_PATH + 'come/expert/query/income/'+expertId+'/_userId_' ).then(function (data) {//es5写法
                     if (data.body.status == 1) {
+                        _this.erpertId=data.body.data.id;
                         _this.income= data.body.data.inCome
                     }
                 }, function (error) {
@@ -127,30 +141,80 @@
     }
 </script>
 <style>
-    .answer_my_index_box{background: #fff}
-    .answer_my_index_box .top{ height:  1.20rem; line-height:  1; font-size: 0.36rem; background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1)); padding:0.30rem;border-bottom: 0.20rem solid #f4f4f7;position: relative}
-    .answer_my_index_box .top:after{background: url(http://oss.xqzs.cn/resources/psy/arrow.png) ;width: 0.32rem; height: 0.32rem; background-size: 0.32rem;position: absolute; right:0.30rem;top:50%;margin-top:-0.16rem; content: " "}
+    .answer_my_index_box{background: #F4F4F7}
+    .answer_my_index_box .top{ height:  1.20rem; line-height:  1; font-size: 0.36rem;
+        background:rgba(121,207,253,1);
+        background:linear-gradient(to right,rgba(121,207,253,1),rgba(157,167,251,1));
+        padding:0.5rem;}
+    .answer_my_index_box .top:after{background: url(http://oss.xqzs.cn/resources/psy/arrow.png) ;width: 0.32rem; height: 0.32rem; background-size: 0.32rem;position: absolute; right:0.30rem;top:1.12rem;margin-top:-0.16rem; content: " "}
     .answer_my_index_box .top:active{background: linear-gradient(to right, rgb(238, 148, 25), rgb(226, 92, 6));}
-    .answer_my_index_box .top img{ display: block; float:left; width:1.20rem; height: 1.20rem;margin-right: 0.33rem;border-radius: 0.10rem;}
+    .answer_my_index_box .top img{ display: block; float:left; width:1.20rem; height: 1.20rem;margin-right: 0.33rem;border-radius: 50%;}
     .answer_my_index_box .top .name{color:rgba(255,255,255,1);padding-top: 0.28rem;margin-bottom:0.18rem}
     .answer_my_index_box .top .perfect{color:rgba(255,255,255,1);font-size: 0.26rem;}
     .main_lists a{ position: relative; height:1.18rem;    line-height:1.18rem;
         color:rgba(36,37,61,1); font-size: 0.30rem; padding:  0  0.30rem;display: block; overflow: hidden; padding-left: 0.90rem; background: #fff;  }
     .main_lists a:after{ background: url(http://oss.xqzs.cn/resources/psy/arrow.png) ; width: 0.32rem; height: 0.32rem; background-size: 0.32rem; position: absolute;
         right:0.30rem;top:0.42rem ; content: " "}
-    .main_lists a:before{ content: " "; height: 0.02rem; background: #eee; display: block; position: absolute; bottom:0;left: 0.32rem; width: 100%}
+    .main_lists a:before{ content: " "; height: 0.02rem; background: #eee; display: block; position: absolute; bottom:0;left: 1rem; width: 100%}
     .main_lists .income .price{position: absolute; right:0.75rem;top:0.00rem;color:#FE7301}
-    .main_lists a i{ display: block;width:0.50rem; height:0.50rem;  position: absolute; left: 0.26rem; top:50% ; margin-top: -0.29rem;}
+    .main_lists a i{ display: block;width:0.40rem; height:0.40rem;  position: absolute; left: 0.26rem; top:50% ; margin-top: -0.20rem;}
     .main_lists a.income i{background: url("http://oss.xqzs.cn/resources/psy/answer/sy_icon.png") no-repeat;background-size: 100% 100%;}
     .main_lists a.level i{ background-position: 0 -0.58rem; }
     .main_lists a.setanswer i{}
     .main_lists a.answer_list i{ background: url("http://oss.xqzs.cn/resources/psy/answer/hd_icon.png") no-repeat;background-size: 100% 100%;}
-    .main_lists a.fans i{ background: url("http://oss.xqzs.cn/resources/psy/answer/fs_icon.png") no-repeat;background-size: 100% 100%;}
-    .main_lists a.comment_list i{ background: url("http://oss.xqzs.cn/resources/psy/answer/pj_icon.png") no-repeat;background-size: 100% 100%;}
+    .main_lists a.fans i{ background: url("http://oss.xqzs.cn/resources/psy/answer/ex_fans.png") no-repeat;background-size: 100% 100%;}
+    .main_lists a.comment_list i{ background: url("http://oss.xqzs.cn/resources/psy/answer/ex_comment.png") no-repeat;background-size: 100% 100%;}
     .main_lists a.message i{ background-position: 0 -3.48rem; }
-    .main_lists a.qualification i{background: url("http://oss.xqzs.cn/resources/psy/answer/update_level_icon.png") no-repeat center; background-size: 0.40rem}
+    .main_lists a.qualification i{background: url("http://oss.xqzs.cn/resources/psy/answer/ex_update.png") no-repeat center; background-size: 0.40rem}
     .main_lists a:active{background: #eee}
-
+    .answer_my_index_box a.my_nav{
+        width: 33.33%;
+        height: 1.8rem;
+        background: #fff;
+        position: static;
+        line-height: 1.6;
+        color: rgba(36, 37, 61, 1);
+        font-size: 0.28rem;
+        padding: 0;
+        display: block;
+    }
+    .answer_my_index_box a.my_nav:after{
+        content: normal;
+    }
+    .answer_my_index_box a.my_nav:before{
+        content: normal;
+    }
+    .answer_my_index_box a.my_nav div{
+        width: 0.64rem;
+        margin: 0 auto;
+        margin-top: 0.4rem;
+        height: 0.64rem;
+    }
+    .answer_my_index_box a.my_nav .my_money{
+        width: 0.58rem;
+        height: 0.66rem;
+        background: url("http://oss.xqzs.cn/resources/psy/answer/ex_money.png") no-repeat;
+        -webkit-background-size:100%;
+        background-size:100%;
+    }
+    .answer_my_index_box  a.my_nav .my_diandou{
+        background: url("http://oss.xqzs.cn/resources/psy/answer/ex_myIndex.png") no-repeat;
+        -webkit-background-size:100%;
+        background-size:100%;
+    }
+    .answer_my_index_box a.my_nav .my_ask{
+        background: url("http://oss.xqzs.cn/resources/psy/answer/ex_answer.png") no-repeat;
+        -webkit-background-size:100%;
+        background-size:100%;
+    }
+    .answer_my_index_box  a.my_nav p{
+        text-align: center;
+    }
+    .answer_my_index_box .income_margin{
+        margin-bottom: 0.2rem;
+        display: flex;
+        overflow: hidden;
+    }
 
 
 

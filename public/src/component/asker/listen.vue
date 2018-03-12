@@ -3,7 +3,7 @@
         <!--头部导航栏-->
         <div v-title>心理咨询</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
-        <div @click.stop="go_expert()" class="expert_entry" v-if="isRegExpert"></div>
+        <!--<div @click.stop="go_expert()" class="expert_entry" v-if="isRegExpert"></div>-->
         <div class="weui-tab__panel main">
              <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                       :isShowMoreText="isShowMoreText" :bottomHeight="50">

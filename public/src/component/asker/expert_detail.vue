@@ -177,7 +177,7 @@
 
         </v-scroll>
         <!--{{detail.expertUserId}}-->
-        <div class="ask_bottom">
+        <div class="ask_bottom" v-if="isMe!=1">
 
                 <div class="listen"  @click="follow()">
 
@@ -236,6 +236,7 @@
                 rechargeFlag :false,
                 couponNum:0,
                 couponList:[],
+                isMe:""
             }
         },
         props:{
@@ -249,7 +250,7 @@
             'v-recharge':Recharge,
         },
         mounted: function () {
-
+            this.isMe=this.$route.query.isMe;
             this.id = this.$route.query.id;
             this.getDetail();
             this.getUser();

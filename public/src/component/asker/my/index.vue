@@ -4,11 +4,14 @@
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="weui-tab__panel main">
             <div class="main">
-                <div class="top">
-                    <img class="img" :src="user.faceUrl">
+                <div class="top" @click="revamp()">
+                    <img class="img" :src="user.faceUrl" >
                     <div class="name">
-                        {{user.nickName}}
+                        <p style="font-weight: bold;font-size: 0.3rem">{{user.nickName}}</p>
+                        <p >完善资料</p>
+                        <div class="revamp"></div>
                     </div>
+
                     <span class="top_jt"></span>
                     <div class="clear"></div>
 
@@ -74,7 +77,9 @@
             formatPrice:function (v) {
               return xqzs.string.formatPrice(v)
             },
-
+            revamp:function () {
+              window.location.href="http://wx.xqzs.cn/#/me/personal"
+            },
             join: function () {
 
                 let _this= this;
@@ -140,6 +145,24 @@
 
 </script>
 <style>
+    .asker_my_index_box .top .name{
+        height: 1.08rem;
+        line-height: 1;
+        font-size: 0.24rem;
+    }
+    .asker_my_index_box .top .name p{
+        width: 50%;
+        display: block;margin-top: 0.2rem;
+    }
+    .asker_my_index_box .top .name .revamp{
+        background: url(http://oss.xqzs.cn/resources/psy/asker/ask_fix.png) no-repeat;
+        background-size: 100%;
+        width: 0.3rem;
+        height: 0.3rem;
+        position: absolute;
+        top: 1.12rem;
+        left: 3rem;
+    }
     .asker_my_index_box .top {
         height: 1.08rem;
         line-height: 1.08rem;
@@ -205,7 +228,6 @@
         left: 0.96rem;
         width: 100%;
     }
-
     .asker_my_index_box .main a .price {
         position: absolute;
         right: 0.75rem;

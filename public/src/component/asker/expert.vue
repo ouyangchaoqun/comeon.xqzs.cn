@@ -16,9 +16,9 @@
 
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide" v-for="item in manList">
+                            <div class="swiper-slide" v-for="item in manList" v-if="item.expertId!=expertId">
                                 <ul>
-                                    <li  class="hot_item" @click="goDetail(item.expertId)">
+                                    <li  class="hot_item" @click="goDetail(item.expertId)" >
                                         <div class="hot_face ">
                                         <img :src="item.faceUrl" alt=""></div>
                                         <div class="hot_name">{{item.nickName}}</div>
@@ -45,7 +45,7 @@
                 </div>
 
 
-                <div class="item" v-for="(item,index) in list" v-if="item.expertId!=52">
+                <div class="item" v-for="(item,index) in list" v-if="item.expertId!=expertId">
                     <div @click="goDetail(item.expertId)">
                         <div class="itemDetail">
                             <div class="img"><img :src="item.faceUrl"></div>
@@ -106,7 +106,7 @@
     </div>
 </template>
 
-<script type="">
+<script>
     import showLoad from '../include/showLoad.vue';
     import scroll from '../include/scroll.vue';
     import Bus from '../bus.js';
@@ -138,6 +138,9 @@
             "v-asker-bottom": askerBottom,
             'v-typeHeader':typeHeader
         },
+        props :[
+                'expert'
+        ],
         methods: {
             initActive: function () {
                 var obj = $(".answer_list .item")
@@ -304,7 +307,7 @@
 
         },
         mounted: function () {
-
+            this.expertId = cookie.get('expertId')
             $(".weui-tab__panel").height($(window).height() - 50)
             this.getClassList();
             this.getList(0);
