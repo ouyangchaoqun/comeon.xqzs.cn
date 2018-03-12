@@ -140,7 +140,8 @@
             'v-typeHeader': typeHeader,
         },
         mounted: function () {
-            if(this.expert.id!=null||this.expert.id!=undefined){
+            let expertId = cookie.get("expertId");
+            if(expertId){
                 this.isRegExpert = true
             }else{
                 this.isRegExpert = false
@@ -168,9 +169,7 @@
         methods: {
             go_expert:function () {
                 let _this = this;
-                if(_this.expert!=null&&_this.expert.id!=null){
-                    _this.$router.push("/answer/race/list")
-                }
+                _this.$router.push("/answer/race/list")
             },
             getFlagVal: function (val) {
                 this.rechargeFlag = val.rechargeFlag;
