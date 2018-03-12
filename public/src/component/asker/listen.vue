@@ -567,7 +567,7 @@
         background-size: 0.5rem 0.5rem;
         background-color: RGBA(121, 207, 253, 1);
         position: absolute;
-        right:0.15rem;
+        right:0.25rem;
         bottom:15%;
         z-index: 10001;
     }
