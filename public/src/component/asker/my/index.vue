@@ -1,5 +1,5 @@
 <template>
-    <div style="height: 100%" class="asker_my_index_box">
+    <div style="height: 100%;width: 100%"  class="asker_my_index_box">
         <div v-title>我的</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="weui-tab__panel main">
@@ -9,20 +9,24 @@
                     <div class="name">
                         {{user.nickName}}
                     </div>
+                    <span class="top_jt"></span>
                     <div class="clear"></div>
 
                 </div>
                 <div class="income_margin">
-                <router-link to="../my/cash" class="income"><i></i>我的现金
-                    <div class="price">{{formatPrice(user.balance)}}<span style="font-size: 0.24rem;color: black "> 元</span></div>
-                </router-link>
+                    <router-link to="../my/cash" class="my_nav">
+                        <div class="my_money"></div>
+                        <p>我的余额</p>
+                    </router-link>
 
-                <router-link to="../my/dotbean" class="income dotCoin"><i></i>我的点豆
-                    <div class="price">{{user.dianCoin}}<span style="font-size: 0.24rem;color: black "> 点</span></div>
-                </router-link>
-                <!--<router-link to="../my/coupon" class="income yhcard "><i></i>优惠卡券-->
-                    <!--<div class="price">{{couponNum}}<span style="font-size: 0.24rem;color: black ">张</span></div>-->
-                <!--</router-link>-->
+                    <router-link to="../my/dotbean" class="my_nav" >
+                    <div class="my_diandou"></div>
+                        <p>我的点豆</p>
+                    </router-link>
+                    <router-link to="../my/ask/list" class="my_nav">
+                    <div class="my_ask"></div>
+                        <p>我的提问</p>
+                    </router-link>
                 </div>
                 <router-link to="../my/listen/list" class="listen"><i></i>我的偷听</router-link>
                 <router-link to="../my/answer/list" class="answer"><i></i>我的关注</router-link>
@@ -141,9 +145,18 @@
         line-height: 1.08rem;
         color: #fff;
         font-size: 0.36rem;
-        background: url("http://oss.xqzs.cn/resources/psy/asker/topBackground.png") no-repeat;
-        padding: 0.30rem;
-        background-size: 100% 100%;
+        background:rgba(121,207,253,1);
+        background:linear-gradient(to right,rgba(121,207,253,1),rgba(157,167,251,1));
+        padding: 0.5rem;
+    }
+    .asker_my_index_box .top .top_jt{
+        background: url(http://oss.xqzs.cn/resources/psy/arrow.png);
+        width: 0.32rem;
+        height: 0.32rem;
+        background-size: 0.32rem;
+        position: absolute;
+        right: 0.3rem;
+        top: 0.96rem;
     }
 
     .asker_my_index_box .top img {
@@ -190,7 +203,7 @@
         position: absolute;
         bottom: 0;
         left: 0.96rem;
-        width: 100%
+        width: 100%;
     }
 
     .asker_my_index_box .main a .price {
@@ -203,42 +216,99 @@
     .asker_my_index_box .main a:last-child:before {
         display: none;
     }
+    .asker_my_index_box .main a.my_nav{
+        width: 33.33%;
+        height: 1.8rem;
+        background: #fff;
+        position: static;
+        line-height: 1.6;
+        color: rgba(36, 37, 61, 1);
+         font-size: 0.28rem;
+        padding: 0;
+        display: block;
+    }
+    .asker_my_index_box .main a.my_nav:after{
+        content: normal;
+    }
+    .asker_my_index_box .main a.my_nav:before{
+        content: normal;
+    }
+    .asker_my_index_box .main a.my_nav div{
+        width: 0.64rem;
+        margin: 0 auto;
+        margin-top: 0.4rem;
+        height: 0.64rem;
+    }
+    .asker_my_index_box .main a.my_nav .my_money{
+        width: 0.58rem;
+        height: 0.66rem;
+        background: url("http://oss.xqzs.cn/resources/psy/answer/ex_money.png") no-repeat;
+        -webkit-background-size:100%;
+        background-size:100%;
+    }
+    .asker_my_index_box .main a.my_nav .my_diandou{
+        background: url("http://oss.xqzs.cn/resources/psy/answer/ex_dianBot.png") no-repeat;
+        -webkit-background-size:100%;
+        background-size:100%;
+    }
+    .asker_my_index_box .main a.my_nav .my_ask{
+        background: url("http://oss.xqzs.cn/resources/psy/answer/ex_answer.png") no-repeat;
+        -webkit-background-size:100%;
+        background-size:100%;
+    }
+    .asker_my_index_box .main a.my_nav p{
+        text-align: center;
+    }
 
     .asker_my_index_box .main a i {
         display: block;
-        background: url(http://oss.xqzs.cn/resources/psy/asker/asker_my_left_icon1.png) no-repeat;
-        background-size: 0.58rem;
-        width: 0.58rem;
-        height: 0.58rem;
         position: absolute;
-        left: 0.26rem;
+
         top: 50%;
-        margin-top: -0.29rem;
     }
 
-    .asker_my_index_box .main a.income i {
-        background-position: 0 0
-    }
-    .asker_my_index_box .main a.income.yhcard i{
-        background: url(http://oss.xqzs.cn/resources/psy/asker/asker_left_card.png) no-repeat;
-        background-size:65% 50% ;
-        background-position: 40% 40%;
-    }
-    .asker_my_index_box .main a.income.dotCoin i{
-        background: url(http://oss.xqzs.cn/resources/psy/asker/asker_left_dotCoin.png) no-repeat;
-        background-size:65% 65% ;
-        background-position: 40% 40%;
-    }
+    /*.asker_my_index_box .main a.income i {*/
+        /*background-position: 0 0*/
+    /*}*/
+    /*.asker_my_index_box .main a.income.yhcard i{*/
+        /*background: url(http://oss.xqzs.cn/resources/psy/asker/asker_left_card.png) no-repeat;*/
+        /*background-size:65% 50% ;*/
+        /*background-position: 40% 40%;*/
+    /*}*/
+    /*.asker_my_index_box .main a.income.dotCoin i{*/
+        /*background: url(http://oss.xqzs.cn/resources/psy/asker/asker_left_dotCoin.png) no-repeat;*/
+        /*background-size:65% 65% ;*/
+        /*background-position: 40% 40%;*/
+    /*}*/
     .asker_my_index_box .main a.listen i {
-        background-position: 0 -0.58rem;
+        width: 0.28rem;
+        height: 0.4rem;
+        background: url("http://oss.xqzs.cn/resources/psy/answer/ask_listen.png") no-repeat;
+        -webkit-background-size:100%;
+        background-size:100%;
+        margin-top: -0.2rem;
+        left: 0.44rem;
+
     }
 
     .asker_my_index_box .main a.answer i {
-        background-position: 0 -1.16rem
+        width: 0.36rem;
+        height: 0.34rem;
+        background: url("http://oss.xqzs.cn/resources/psy/answer/ask_care.png") no-repeat;
+        -webkit-background-size:100%;
+        background-size:100%;
+        margin-top: -0.17rem;
+        left: 0.40rem;
     }
 
     .asker_my_index_box .main a.comment i {
-        background-position: 0 -1.74rem;
+        width: 0.36rem;
+        height: 0.36rem;
+        background: url("http://oss.xqzs.cn/resources/psy/answer/ask_comment.png") no-repeat;
+        -webkit-background-size:100%;
+        background-size:100%;
+        margin-top: -0.18rem;
+        left: 0.40rem;
     }
 
     .asker_my_index_box .join {
@@ -250,6 +320,8 @@
         color: rgba(36, 37, 61, 1);
     }
     .income_margin{
-        margin: 0.20rem 0;
+       margin-bottom: 0.2rem;
+        display: flex;
+        overflow: hidden;
     }
 </style>
