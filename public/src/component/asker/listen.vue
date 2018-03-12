@@ -3,6 +3,7 @@
         <!--头部导航栏-->
         <div v-title>心理咨询</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
+        <div @click.stop="go_expert()" class="expert_entry" v-if="isRegExpert"></div>
         <div class="weui-tab__panel main">
              <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                       :isShowMoreText="isShowMoreText" :bottomHeight="50">
@@ -127,7 +128,8 @@
                 user: {},
                 urlType:1,
                 isAnimate:false,
-                currPlayIndex:null
+                currPlayIndex:null,
+                isRegExpert:false
             }
         },
         components: {
@@ -138,7 +140,11 @@
             'v-typeHeader': typeHeader,
         },
         mounted: function () {
-//            console.log(this.user)
+            if(this.expert.id!=null||this.expert.id!=undefined){
+                this.isRegExpert = true
+            }else{
+                this.isRegExpert = false
+            }
             this.getClassList();
             this.getUserInfo()
             this.getCoupon();
@@ -156,7 +162,16 @@
             });
 
         },
+        props:[
+            'expert'
+        ],
         methods: {
+            go_expert:function () {
+                let _this = this;
+                if(_this.expert!=null&&_this.expert.id!=null){
+                    _this.$router.push("/answer/race/list")
+                }
+            },
             getFlagVal: function (val) {
                 this.rechargeFlag = val.rechargeFlag;
                 this.getUserInfo()
@@ -545,6 +560,18 @@
 </script>
 
 <style>
+    .expert_entry{
+        width:1rem;
+        height:1rem;
+        border-radius: 50%;
+        background: url("http://oss.xqzs.cn/resources/psy/asker/expert_entry_bg.png") no-repeat center;
+        background-size: 0.5rem 0.5rem;
+        background-color: RGBA(121, 207, 253, 1);
+        position: absolute;
+        right:0.15rem;
+        bottom:15%;
+        z-index: 10001;
+    }
     .asker_listen_box .audio_mask{
         position: absolute;
         top: -0.02rem;
