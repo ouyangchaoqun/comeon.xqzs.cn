@@ -101,7 +101,6 @@
         </div>
 
 
-
         <div id="tip" style="display: none">
             <div class="dialog_select_type dialog_select_Height">
                 <div class="select_title"  v-if="detail.questionType==1">抢答须知</div>
@@ -118,10 +117,13 @@
                         3、用户可在48小时内选出最佳答案，最佳回答者获得100%赏金；
                     </p>
                     <p>
-                        4、最佳答案被其他用户偷听，其回答者将获得30%偷听费；
+                        4、若用户未选择最佳答案，所有回答的咨询师将平分赏金；
                     </p>
                     <p>
-                        5、若用户未选择最佳答案，所有回答的咨询师将平分赏金；
+                        5、最佳回答将会被推荐到首页，享受偷听曝光量；
+                    </p>
+                    <p>
+                        5、回答被用户偷听，将获得30%的偷听费。
                     </p>
                     <p>
                         备注：<br>
