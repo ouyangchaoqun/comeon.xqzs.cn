@@ -885,7 +885,7 @@
     .answer_detail_box .content{
         font-size: 0.30rem;
         padding:0.30rem ;
-        line-height: 0.52rem;
+        line-height: 0.4rem;
         color:rgba(36,37,61,0.7)
 
     }
