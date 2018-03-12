@@ -663,10 +663,12 @@ a{
     color:#888 !important;
 }
 .weui-btn_disabled{
-    background: linear-gradient(to right, rgba(255,158,25,0.6), rgba(253,114,6,0.6)) !important;
+    /*background: linear-gradient(to right, rgba(255,158,25,0.6), rgba(253,114,6,0.6)) !important;*/
+    background: RGBA(121, 207, 253, 0.5) !important;
 }
 .weui-btn_primary{
-    background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1));
+    /*background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1));*/
+    background: RGBA(121, 207, 253, 1)!important;
 }
 .weui-btn:after{
     border: 1px solid rgba(0,0,0,0) !important;
@@ -754,12 +756,13 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
     background: rgba(245,245,245,1);
 }
 .dialog_select_type .select_types .item.on{
-    background: rgba(253,115,1,1);
+    /*background: rgba(253,115,1,1);*/
+    background: RGBA(121, 207, 253, 1);
     color: #fff;
 }
 .dialog_select_type  .select_yes{
     border-top: 1px solid #eee;
-    color: #FE7301;
+    color: RGBA(121, 207, 253, 1);
     text-align: center;
     line-height: 0.88rem;
     position: absolute;

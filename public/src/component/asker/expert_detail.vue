@@ -899,11 +899,11 @@
         height:0.45rem;
         line-height: 0.45rem;
         border-radius: 0.10rem ;
-        border: 0.02rem solid rgba(254,115,1,1);
+        border: 0.02rem solid RGBA(121, 207, 253, 1);
         margin:0 auto;
         margin-top: 0.20rem;
         text-align: center;
-        color: rgba(254,115,1,1);
+        color: RGBA(121, 207, 253, 1);
         font-size: 0.24rem;
     }
     .answer_detail_box .answer_comments{
@@ -984,7 +984,7 @@
         padding-left:0.37rem;
         margin-left: 0.20rem;
     }
-    .answer_detail_box .pay_ask{width: 70%;float: right; background: linear-gradient(to right, rgba(255,158,25,1), rgba(254,115,1,1));color: white;line-height: 0.88rem;height: 0.88rem;}
+    .answer_detail_box .pay_ask{width: 70%;float: right; background: RGBA(121, 207, 253, 1);color: white;line-height: 0.88rem;height: 0.88rem;}
     /*.answer_detail_box .pay_ask .ask_dianCoinbg{ */
     /*background: url("http://oss.xqzs.cn/resources/psy/asker/user_dianCoin_white.png")no-repeat; width: 0.34rem;*/
     /*height: 0.34rem;*/
