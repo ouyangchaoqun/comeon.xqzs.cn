@@ -163,7 +163,7 @@
         height: 0.3rem;
         position: absolute;
         top: 1.26rem;
-        left: 3.2rem;
+        left: 3.3rem;
     }
     .answer_my_index_box .top img{ display: block; float:left; width:1.20rem; height: 1.20rem;margin-right: 0.33rem;border-radius: 50%;}
     .answer_my_index_box .top .name{color:rgba(255,255,255,1);padding-top: 0.28rem;margin-bottom:0.18rem}
