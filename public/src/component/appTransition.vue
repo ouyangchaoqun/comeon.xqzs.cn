@@ -108,9 +108,7 @@
         beforeRouteUpdate(to, from, next) {
             this.clearPlugs();
             this.clearAllVoice();
-            alert(  to.fullPath)
-            console.log(to.fullPath);
-            //是否底部tab切换
+             //是否底部tab切换
             if (this.isTabChange(from, to)) {
                 this.transitionName = '';
             } else {
