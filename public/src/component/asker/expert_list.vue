@@ -202,9 +202,10 @@
                 let vm= this;
                 let url = web.API_PATH + "come/expert/get/by/class/"+vm.classId+"/"+vm.page+"/"+vm.row+"";
                 this.rankUrl = url + "?complexOrNew="+vm.exType;
-//                if (web.guest) {
-//                    this.rankUrl = this.rankUrl + "guest=true"
-//                }
+
+                if (web.guest) {
+                    this.rankUrl = this.rankUrl + "&guest=true"
+                }
                 if (vm.isLoading || vm.isPageEnd) {
                     return;
                 }
