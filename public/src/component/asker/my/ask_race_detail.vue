@@ -21,24 +21,31 @@
             <!--超时未解答-->
             <div class="rob_status_box" v-if="detail.questionStatus==2&&detail.answerCount==0">
                 <div>未解答 </div>
-                <div>48小时内无人抢答，赏金已全额退还。</div>
+                <div>超过48小时，无咨询师抢答你的问题，赏金已全额退还至你的微信钱包！</div>
             </div>
             <!--正在进行中-->
             <div class="rob_status_box"  v-if="detail.questionStatus==0&&detail.answerCount==0">
                 <div class="last_red_color">还{{formatTimeLastText(detail.endTime)}} </div>
-                <div>暂无人抢答，如果48小时内没有专家回答该问题，提问酬金将原路返还。</div>
+                <div>还没有咨询师抢答</div>
             </div>
             <div class="rob_status_box" v-if="detail.questionStatus==0&&detail.answerCount!=0">
                 <div class="last_red_color">还{{formatTimeLastText(detail.endTime)}} </div>
-                <div>共有<span> {{detail.answerCount}} </span>人抢答，可选择一个最佳答案，其答主将获得全部赏金，并且你将获得{{set_award_dian_coin}}点豆奖励。</div>
+                <div>已有<span> {{detail.answerCount}} </span>位咨询师抢答，在48小时内选出最佳答案，你将免费获得1颗点豆！
+                </div>
             </div>
             <div class="rob_status_box" v-if="detail.questionStatus==1">
                 <div>已解答 </div>
-                <div>共有<span> {{detail.answerCount}}&nbsp;</span>人抢答，{{bestAnswer.expertNickName}}的回答被选为最佳答案，你已获得{{set_award_dian_coin}}点豆奖励。</div>
-            </div>
+                <div v-if="!detail.evaluate_ed">
+                    共有<span> {{detail.answerCount}}&nbsp;</span>位咨询师抢答，{{bestAnswer.expertNickName}}的回答被选为最佳答案，“去评价”老师的回答，将免费获得1颗点豆！
+
+                </div>
+                <div v-if="detail.evaluate_ed">
+                    共有<span> {{detail.answerCount}}&nbsp;</span>位咨询师抢答，{{bestAnswer.expertNickName}}的回答被选为最佳答案，你已免费获得2颗点豆！
+
+                </div>
             <div class="rob_status_box" v-if="detail.questionStatus==2">
                 <div>已解答 </div>
-                <div>共有<span>{{detail.answerCount}}</span>人抢答，抢答者平分赏金。</div>
+                <div>共有<span>{{detail.answerCount}}</span>位咨询师抢答，咨询师们已平分赏金！</div>
             </div>
 
 
