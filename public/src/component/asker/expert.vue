@@ -15,9 +15,9 @@
                 <div class="hot_content">
 
                     <div class="swiper-container">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide hot_item" v-for="item in manList" v-if="item.expertId!=expertId"  @click="goDetail(item.expertId)">
-
+                        <div class="swiper-wrapper" style="margin-left: 0.15rem">
+                            <div class="swiper-slide" v-for="item in manList" v-if="item.expertId!=expertId"  @click="goDetail(item.expertId)">
+                                <div class="hot_item">
                                     <div class="hot_face ">
                                         <img :src="item.faceUrl" alt=""></div>
                                     <div class="hot_name">{{item.nickName}}</div>
@@ -26,7 +26,7 @@
                                     </div>
                                     <div class="hot_num">已被<span class="hot_text">{{item.followCount}}</span>人关注</div>
                                     <div class="hot_bottom"> 咨询TA</div>
-
+                                </div>
 
                             </div>
                         </div>
