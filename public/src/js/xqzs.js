@@ -895,7 +895,7 @@ var xqzs = {
             });
         },
         getPubUrl:function (afterUrl) {
-            return "http://wx.xqzs.cn/wx/pub?reurl=" + encodeURI( "http://wx.xqzs.cn/comeon/guestvue_pound/"+afterUrl);
+            return   web.BASE_PATH + "/wx/pub?reurl=" + encodeURI( "http://wx.xqzs.cn/comeon/guestvue_pound/"+afterUrl);
         },
         setConfig: function (vm, callback) {
 
