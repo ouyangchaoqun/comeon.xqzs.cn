@@ -44,7 +44,7 @@
                 income: 0,
                 isUseIncome: false,
                 backUrl:'',
-                user:'',
+
                 havedianCoin:0,
                 balance:0,
             }
@@ -52,7 +52,8 @@
         },
         props:[
             'rechargeMoney',
-            'rechargeFlag'
+            'rechargeFlag',
+            'user'
         ],
         mounted: function () {
             let _this=this;
@@ -65,14 +66,22 @@
         methods: {
             getUserInfo:function(){
                 let _this=this;
-                xqzs.user.getUserInfo(function (user) {
-                    _this.user =user;
+                if(_this.user){
                     if( _this.user!=''|| _this.user!=undefined){
                         _this.balance = _this.user.balance
                         _this.havedianCoin = _this.user.dianCoin;
                     }
+                }else{
+                    xqzs.user.getUserInfo(function (user) {
+                        _this.user =user;
+                        if( _this.user!=''|| _this.user!=undefined){
+                            _this.balance = _this.user.balance
+                            _this.havedianCoin = _this.user.dianCoin;
+                        }
 
-                })
+                    })
+                }
+
             },
             select: function (index) {
                 this.checkIndex = index;

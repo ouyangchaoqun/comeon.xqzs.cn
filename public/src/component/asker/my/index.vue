@@ -51,13 +51,16 @@
             return {
                 showLoad:false,
                 couponNum:0,
-                user:{}
+
             }
         },
         components: {
             "v-asker-bottom": askerBottom,
             'v-showLoad':showLoad
         },
+        props:[
+            'user'
+        ],
         methods: {
             getUserInfo:function(){
                 let _this=this;

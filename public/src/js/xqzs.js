@@ -16,7 +16,7 @@ var xqzs = {
     },
     user:{
         getUserInfo:function (fun) {
-
+            console.log("getUserInfo1")
              $.ajax({
                 url:web.API_PATH + "user/find/by/user/Id/_userId_",
                 type: 'GET',
@@ -24,10 +24,9 @@ var xqzs = {
                 success: function (data) {
                     if(data!==''){
                         data =  JSON.parse(data)
-                    }else{
-
                     }
                     if(typeof fun ==='function'){
+                        console.log("getUserInfunctionfo1")
                         fun(data.data)
                     }
                 }

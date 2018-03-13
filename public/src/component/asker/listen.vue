@@ -91,7 +91,7 @@
          </div>
 
         <v-asker-bottom tabOnIndex="0"></v-asker-bottom>
-        <v-recharge :rechargeMoney="rechargeMoney" v-show="rechargeFlag" v-on:childMessage="getFlagVal"></v-recharge>
+        <v-recharge :rechargeMoney="rechargeMoney" v-show="rechargeFlag" :user="user" v-on:childMessage="getFlagVal"></v-recharge>
 
 
     </div>
@@ -125,7 +125,7 @@
                 couponList: [],
                 rechargeMoney: 0,
                 rechargeFlag: false,
-                user: {},
+
                 urlType:1,
                 isAnimate:false,
                 currPlayIndex:null,
@@ -147,7 +147,7 @@
                 this.isRegExpert = false
             }
             this.getClassList();
-            this.getUserInfo()
+            this.getUserInfo(true)
             this.getCoupon();
             xqzs.voice.audio = null;
 
@@ -164,7 +164,7 @@
 
         },
         props:[
-            'expert'
+            'expert','user'
         ],
         methods: {
             go_expert:function () {
@@ -184,12 +184,16 @@
             goAnswer:function (extId) {
                 this.$router.push('/asker/expert/detail/?id=' + extId)
             },
-            getUserInfo: function () {
-//                console.log('获取user')
+            getUserInfo: function (isAuto) {
+
                 let _this = this;
-                xqzs.user.getUserInfo(function (user) {
-                    _this.user = user;
-                })
+                if(isAuto&&!_this.user){
+                    console.log("getUserInfogetUserInfogetUserInfogetUserInfo")
+                    xqzs.user.getUserInfo(function (user) {
+                        _this.user = user;
+                    })
+                }
+
             },
             initView: function () {
                  var minHeight = $(window).height() - $('nav').height() - 100;
