@@ -148,7 +148,7 @@
         background:linear-gradient(to right,rgba(121,207,253,1),rgba(157,167,251,1));
         padding:0.5rem;}
     .answer_my_index_box .top:after{background: url(http://oss.xqzs.cn/resources/psy/arrow.png) ;width: 0.32rem; height: 0.32rem; background-size: 0.32rem;position: absolute; right:0.30rem;top:1.12rem;margin-top:-0.16rem; content: " "}
-    .answer_my_index_box .top:active{background: linear-gradient(to right, rgb(238, 148, 25), rgb(226, 92, 6));}
+    /*.answer_my_index_box .top:active{background: linear-gradient(to right, rgb(238, 148, 25), rgb(226, 92, 6));}*/
     .answer_my_index_box .top img{ display: block;
         float: left;
         width: 1.20rem;

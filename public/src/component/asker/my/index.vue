@@ -165,7 +165,7 @@
         height: 0.3rem;
         position: absolute;
         top: 1.12rem;
-        left: 3rem;
+        left: 3.1rem;
     }
     .asker_my_index_box .top {
         height: 1.08rem;

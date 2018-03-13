@@ -65,6 +65,7 @@
         methods: {
             getUserInfo:function(){
                 let _this=this;
+                console.log(_this.user)
                 if(_this.user){
                     if( _this.user!=''|| _this.user!=undefined){
                         _this.balance = _this.user.balance
@@ -72,14 +73,17 @@
                     }
                 }else{
                     xqzs.user.getUserInfo(function (user) {
+                        console.log("ok")
                         _this.user =user;
                         if( _this.user!=''|| _this.user!=undefined){
                             _this.balance = _this.user.balance
                             _this.havedianCoin = _this.user.dianCoin;
+                            console.log(_this.havedianCoin)
                         }
 
                     })
                 }
+
 
             },
             select: function (index) {
@@ -281,7 +285,7 @@
     .recharge_box .rechar_btn {
         width: 5.20rem;
         height: 0.88rem;
-        background: #FE7A03;
+        background: #79CFFD;
         color: #fff;
         font-size: 0.36rem;
         line-height: 0.88rem;
@@ -327,7 +331,7 @@
     }
 
     .recharge_box .items_box .items.selected {
-        border: #FE7A03 solid 0.02rem;
+        border: #79CFFD solid 0.02rem;
     }
 
     .recharge_box .tips .close {
