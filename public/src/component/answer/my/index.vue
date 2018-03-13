@@ -143,7 +143,7 @@
 </script>
 <style>
     .answer_my_index_box{background: #F4F4F7}
-    .answer_my_index_box .top{ height:  1.20rem; line-height:  1; font-size: 0.36rem;
+    .answer_my_index_box .top{ height:  1.08rem; line-height:  1; font-size: 0.36rem;
         background:rgba(121,207,253,1);
         background:linear-gradient(to right,rgba(121,207,253,1),rgba(157,167,251,1));
         padding:0.5rem;}
@@ -151,8 +151,8 @@
     /*.answer_my_index_box .top:active{background: linear-gradient(to right, rgb(238, 148, 25), rgb(226, 92, 6));}*/
     .answer_my_index_box .top img{ display: block;
         float: left;
-        width: 1.20rem;
-        height: 1.20rem;
+        width: 1.08rem;
+        height: 1.08rem;
         margin-right: 0.33rem;
         border: solid 0.08rem rgba(255,255,255,0.5);
         border-radius: 50%;}
@@ -162,12 +162,13 @@
         width: 0.3rem;
         height: 0.3rem;
         position: absolute;
-        top: 1.26rem;
-        left: 3.2rem;
+        top: 1.12rem;
+        left: 3.1rem;
     }
-    .answer_my_index_box .top img{ display: block; float:left; width:1.20rem; height: 1.20rem;margin-right: 0.33rem;border-radius: 50%;}
-    .answer_my_index_box .top .name{color:rgba(255,255,255,1);padding-top: 0.28rem;margin-bottom:0.18rem}
-    .answer_my_index_box .top .perfect{color:rgba(255,255,255,1);font-size: 0.26rem;}
+    .answer_my_index_box .top img{ display: block; float:left;     width: 1.08rem;
+        height: 1.08rem;margin-right: 0.25rem;border-radius: 50%;}
+    .answer_my_index_box .top .name{color:rgba(255,255,255,1);padding-top: 0.2rem; margin-bottom:0.2rem;font-weight: bold; font-size: 0.3rem;}
+    .answer_my_index_box .top .perfect{color:rgba(255,255,255,1);font-size: 0.24rem;}
     .main_lists a{ position: relative; height:1.18rem;    line-height:1.18rem;
         color:rgba(36,37,61,1); font-size: 0.30rem; padding:  0  0.30rem;display: block; overflow: hidden; padding-left: 0.90rem; background: #fff;  }
     .main_lists a:after{ background: url(http://oss.xqzs.cn/resources/psy/arrow.png) ; width: 0.32rem; height: 0.32rem; background-size: 0.32rem; position: absolute;
