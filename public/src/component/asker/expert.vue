@@ -17,17 +17,17 @@
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide" v-for="item in manList" v-if="item.expertId!=expertId">
-                                <ul>
-                                    <li  class="hot_item" @click="goDetail(item.expertId)" >
-                                        <div class="hot_face ">
+                                <div class="hot_item" @click="goDetail(item.expertId)">
+                                    <div class="hot_face ">
                                         <img :src="item.faceUrl" alt=""></div>
-                                        <div class="hot_name">{{item.nickName}}</div>
+                                    <div class="hot_name">{{item.nickName}}</div>
 
-                                        <div class="hot_evaluate">已帮助<span class="hot_text">{{item.answerCount}}</span>人</div>
-                                        <div class="hot_num">已被<span class="hot_text">{{item.followCount}}</span>人关注</div>
-                                        <div class="hot_bottom"> 咨询TA</div>
-                                    </li>
-                                </ul>
+                                    <div class="hot_evaluate">已帮助<span class="hot_text">{{item.answerCount}}</span>人
+                                    </div>
+                                    <div class="hot_num">已被<span class="hot_text">{{item.followCount}}</span>人关注</div>
+                                    <div class="hot_bottom"> 咨询TA</div>
+                                </div>
+
                             </div>
                         </div>
                     </div>

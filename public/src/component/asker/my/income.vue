@@ -9,7 +9,7 @@
             <!--<div class="get_money" @click="showOut()">提现</div>-->
             <!--<div class="income_list" @click="incomeList()"><span>余额明细</span></div>-->
         <!--</div>-->
-        <div class="moneyOut_box" v-if="isOut" @click="hideOut()">
+        <div class="moneyOut_box"     >
             <div class="money_dialog" @click.stop>
                 <div class="money_dialog_title">
                     1-3个工作日内将转账至您的微信钱包
@@ -52,7 +52,7 @@
             return {
                 showLoad:false,
                 income:0,
-                isOut:true,
+
                 isWarn:false,
                 moneyVal:'',
                 user:''
@@ -87,12 +87,7 @@
             goAsk:function () {
                 this.$router.push("/asker/expert");
             },
-            hideOut:function () {
-                this.isOut = false
-            },
-            showOut:function () {
-                this.isOut = true
-            },
+
             getMoney:function () {
                 console.log(this.user.balance)
                 if(Number(this.moneyVal)>Number(this.user.balance)){
@@ -121,8 +116,7 @@
                         _this.getUserInfo()
                         setTimeout(function () {
                             _this.showLoad = false;
-                            _this.isOut = false;
-                            _this.moneyVal = '';
+                             _this.moneyVal = '';
                             xqzs.weui.tip("提交成功，等待审核");
                         },500)
 
