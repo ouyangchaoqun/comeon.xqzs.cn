@@ -10,7 +10,7 @@
                 <div class="gift" v-if="item.couponCount!=0">赠送{{item.couponCount}}张偷听卡</div>
             </div>
         </div>
-        <div class="cash">现金余额可使用<span style="color: #FB640A"> {{user.balance||0.00}} </span>元
+        <div class="cash">现金余额可使用<span style="color: #FB640A"> {{balance||0.00}} </span>元
             <div class="cash_right" :class={no:!isUseIncome} @click="useIncome()"></div>
         </div>
         <div class="rechar_btn" @click="doPay()">立即支付（{{pay}} 元）</div>
@@ -44,7 +44,6 @@
                 income: 0,
                 isUseIncome: false,
                 backUrl:'',
-
                 havedianCoin:0,
                 balance:0,
             }
