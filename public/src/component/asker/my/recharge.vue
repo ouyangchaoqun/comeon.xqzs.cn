@@ -282,7 +282,7 @@
     .recharge_box .rechar_btn {
         width: 5.20rem;
         height: 0.88rem;
-        background: #79CFFD;
+        background: #56C4FE;
         color: #fff;
         font-size: 0.36rem;
         line-height: 0.88rem;
@@ -328,7 +328,7 @@
     }
 
     .recharge_box .items_box .items.selected {
-        border: #79CFFD solid 0.02rem;
+        border: #56C4FE solid 0.02rem;
     }
 
     .recharge_box .tips .close {

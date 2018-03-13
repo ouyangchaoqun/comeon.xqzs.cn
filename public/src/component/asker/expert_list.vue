@@ -202,9 +202,10 @@
                 let vm= this;
                 let url = web.API_PATH + "come/expert/get/by/class/"+vm.classId+"/"+vm.page+"/"+vm.row+"";
                 this.rankUrl = url + "?complexOrNew="+vm.exType;
-//                if (web.guest) {
-//                    this.rankUrl = this.rankUrl + "guest=true"
-//                }
+
+                if (web.guest) {
+                    this.rankUrl = this.rankUrl + "&guest=true"
+                }
                 if (vm.isLoading || vm.isPageEnd) {
                     return;
                 }
@@ -267,8 +268,9 @@
 
         },
         mounted: function () {
-
-            this.classId = this.$route.query.classId;
+            if(this.$route.query.classId){
+                this.classId = this.$route.query.classId;
+            }
             this.exType =1;
             if(this.$route.query.orderType) this.exType = this.$route.query.orderType;
             this.titleVal = this.$route.query.title;

@@ -12,9 +12,9 @@
 <style>
     .class_list{  padding:0.16rem 0;background: #fff;}
     .class_list .class_item{  float:left ; width: 20%; text-align: center;color:RGBA(69, 75, 84, 1);font-size: 0.21rem;padding: 6px 0 ; }
-    .addClassImg{height:0.98rem; width:0.98rem; margin:0 auto;margin-bottom: 0.12rem;background: url("http://oss.xqzs.cn/resources/psy/typeHeader_blue_bg.png") no-repeat ;background-size: 6.9rem; border-radius: 50%}
+    .addClassImg{height:0.98rem; width:0.98rem; margin:0 auto;margin-bottom: 0.12rem;background: url("http://oss.xqzs.cn/resources/psy/typeHeader_bg.png.png") no-repeat ;background-size: 6.9rem; border-radius: 50%}
     /*.addClassImg{height:0.88rem; width:0.88rem; margin:0 auto;margin-bottom: 0.12rem;background: url("http://oss.xqzs.cn/resources/psy/typeHeader_bg.png") no-repeat;background-size: 6.88rem; border-radius: 50%}*/
-    .class_item:active .addClassImg{background-color: #eee;}
+    /*.class_item:active .addClassImg{background-color: #eee;}*/
 
     .class_list .qb{background-position:0.00rem 0.00rem;  }
     .class_list  .qgkh{background-position:-1.5rem -0rem;  }

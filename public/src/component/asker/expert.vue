@@ -504,7 +504,7 @@
     }
     .answer_index .hot_bottom{
         margin: 0.2rem auto;
-        border:0.02rem solid #79CFFD;
+        border:0.02rem solid #56C4FE;
         background: #fff;
         width: 1.8rem;
         overflow: hidden;
@@ -512,7 +512,7 @@
         line-height: 0.5rem;
         text-align: center;
         border-radius: 0.1rem;
-        color: #79CFFD;
+        color: #56C4FE;
         font-size: 0.24rem;
     }
 
