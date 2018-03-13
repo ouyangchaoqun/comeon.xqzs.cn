@@ -21,7 +21,7 @@
             <!--超时未解答-->
             <div class="rob_status_box" v-if="detail.questionStatus==2&&detail.answerCount==0">
                 <div>未解答 </div>
-                <div>超过48小时，无咨询师抢答你的问题，赏金已全额退还至你的微信钱包！</div>
+                <div>超过<span>48</span>小时，无咨询师抢答你的问题，赏金已全额退还至你的微信钱包！</div>
             </div>
             <!--正在进行中-->
             <div class="rob_status_box"  v-if="detail.questionStatus==0&&detail.answerCount==0">
@@ -30,17 +30,17 @@
             </div>
             <div class="rob_status_box" v-if="detail.questionStatus==0&&detail.answerCount!=0">
                 <div class="last_red_color">还{{formatTimeLastText(detail.endTime)}} </div>
-                <div class="last_red_color">已有<span> {{detail.answerCount}} </span>位咨询师抢答，在48小时内选出最佳答案，你将免费获得1颗点豆！
+                <div class="last_red_color">已有<span> {{detail.answerCount}} </span>位咨询师抢答，在48小时内选出最佳答案，你将免费获得<span>1</span>颗点豆！
                 </div>
             </div>
             <div class="rob_status_box" v-if="detail.questionStatus==1">
                 <div>已解答 </div>
                 <div v-if="!detail.evaluate_ed">
-                    共有<span> {{detail.answerCount}}&nbsp;</span>位咨询师抢答，{{bestAnswer.expertNickName}}的回答被选为最佳答案，<span class="last_red_color">“去评价”老师的回答，将免费获得1颗点豆！</span>
+                    共有<span> {{detail.answerCount}}&nbsp;</span>位咨询师抢答，{{bestAnswer.expertNickName}}的回答被选为最佳答案，<span class="last_red_color">“去评价”老师的回答，将免费获得<span>1</span>颗点豆！</span>
 
                 </div>
                 <div v-if="detail.evaluate_ed">
-                    共有<span> {{detail.answerCount}}&nbsp;</span>位咨询师抢答，{{bestAnswer.expertNickName}}的回答被选为最佳答案，你已免费获得2颗点豆！
+                    共有<span> {{detail.answerCount}}&nbsp;</span>位咨询师抢答，{{bestAnswer.expertNickName}}的回答被选为最佳答案，你已免费获得<span>2</span>颗点豆！
 
                 </div>
             </div>
@@ -389,7 +389,7 @@
 <style>
     .rob_status_box .race_detail_inCome{float: right;margin-right: 0.30rem;color:rgba(36,37,61,0.5);}
     .rob_status_box span {
-        padding:  0 0.06rem;
+        padding:  0 0.04rem;
     }
     .comment_box2 .stars{ display: flex;margin-bottom: 0.37rem}
     .comment_box2 .stars li{ flex:1;}
