@@ -10,6 +10,7 @@
                             {{expert.nickName}}
                         </div>
                         <div class="perfect">完善资料</div>
+                    <div class="revamp"></div>
                         <div class="clear"></div>
                 </div>
                 <div class="income_margin">
@@ -147,6 +148,23 @@
         background:linear-gradient(to right,rgba(121,207,253,1),rgba(157,167,251,1));
         padding:0.5rem;}
     .answer_my_index_box .top:after{background: url(http://oss.xqzs.cn/resources/psy/arrow.png) ;width: 0.32rem; height: 0.32rem; background-size: 0.32rem;position: absolute; right:0.30rem;top:1.12rem;margin-top:-0.16rem; content: " "}
+    .answer_my_index_box .top:active{background: linear-gradient(to right, rgb(238, 148, 25), rgb(226, 92, 6));}
+    .answer_my_index_box .top img{ display: block;
+        float: left;
+        width: 1.20rem;
+        height: 1.20rem;
+        margin-right: 0.33rem;
+        border: solid 0.08rem rgba(255,255,255,0.5);
+        border-radius: 50%;}
+    .answer_my_index_box .top .revamp {
+        background: url(http://oss.xqzs.cn/resources/psy/asker/ask_fix.png) no-repeat;
+        background-size: 100%;
+        width: 0.3rem;
+        height: 0.3rem;
+        position: absolute;
+        top: 1.26rem;
+        left: 3.2rem;
+    }
     .answer_my_index_box .top img{ display: block; float:left; width:1.20rem; height: 1.20rem;margin-right: 0.33rem;border-radius: 50%;}
     .answer_my_index_box .top .name{color:rgba(255,255,255,1);padding-top: 0.28rem;margin-bottom:0.18rem}
     .answer_my_index_box .top .perfect{color:rgba(255,255,255,1);font-size: 0.26rem;}
@@ -161,7 +179,7 @@
     .main_lists a.level i{ background-position: 0 -0.58rem; }
     .main_lists a.setanswer i{}
     .main_lists a.answer_list i{ background: url("http://oss.xqzs.cn/resources/psy/answer/hd_icon.png") no-repeat;background-size: 100% 100%;}
-    .main_lists a.fans i{ background: url("http://oss.xqzs.cn/resources/psy/answer/ex_fans.png") no-repeat;background-size: 100% 100%;}
+    .main_lists a.fans i{ background: url("http://oss.xqzs.cn/resources/psy/answer/ex_fans.png") no-repeat;background-size: 100% ;}
     .main_lists a.comment_list i{ background: url("http://oss.xqzs.cn/resources/psy/answer/ex_comment.png") no-repeat;background-size: 100% 100%;}
     .main_lists a.message i{ background-position: 0 -3.48rem; }
     .main_lists a.qualification i{background: url("http://oss.xqzs.cn/resources/psy/answer/ex_update.png") no-repeat center; background-size: 0.40rem}

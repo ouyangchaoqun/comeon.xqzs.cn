@@ -189,7 +189,7 @@
         height: 1.08rem;
         border-radius: 50%;
         margin-right: 0.25rem;
-        border: 0.02rem solid #fff
+        border: 0.08rem solid rgba(255,255,255,0.5);
     }
 
     .asker_my_index_box .main a {
