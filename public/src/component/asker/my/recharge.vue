@@ -65,7 +65,6 @@
         methods: {
             getUserInfo:function(){
                 let _this=this;
-                console.log(_this.user)
                 if(_this.user){
                     if( _this.user!=''|| _this.user!=undefined){
                         _this.balance = _this.user.balance
@@ -73,12 +72,10 @@
                     }
                 }else{
                     xqzs.user.getUserInfo(function (user) {
-                        console.log("ok")
                         _this.user =user;
                         if( _this.user!=''|| _this.user!=undefined){
                             _this.balance = _this.user.balance
                             _this.havedianCoin = _this.user.dianCoin;
-                            console.log(_this.havedianCoin)
                         }
 
                     })
