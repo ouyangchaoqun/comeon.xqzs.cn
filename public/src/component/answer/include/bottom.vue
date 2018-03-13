@@ -24,7 +24,7 @@
         position: absolute; bottom: 0; left:0; line-height: 1; font-size: 0.31rem ; background: #fff;   color:rgba(36,37,61,1);
         width: 100%;
     }
-    .answer_bottom_box a:active,.answer_bottom_box a.on{ color:#FE7301}
+    .answer_bottom_box a:active,.answer_bottom_box a.on{ color:RGBA(121, 207, 253, 1)}
     .answer_bottom_box a{color:rgba(36,37,61,0.5);
         -webkit-box-flex: 1;
         -webkit-flex: 1;
@@ -33,7 +33,7 @@
         font-size: 0.20rem;
         vertical-align: text-bottom;
     }
-    .answer_bottom_box a .icon{ display: block;  width: 0.54rem;   margin: 0.03rem auto;background: url(http://oss.xqzs.cn/resources/psy/answer/tab_icon.png) no-repeat; background-size: 2.16rem; height: 0.54rem  }
+    .answer_bottom_box a .icon{ display: block;  width: 0.54rem;   margin: 0.03rem auto;background: url(http://oss.xqzs.cn/resources/psy/answer/tab_icon_blue.png) no-repeat; background-size: 2.16rem; height: 0.54rem  }
     .answer_bottom_box a .icon.race{  background-position: 0 0;}
     .answer_bottom_box a .icon.ask{background-position: -0.54rem 0;}
     .answer_bottom_box a .icon.my{  background-position: -1.08rem  0;}
