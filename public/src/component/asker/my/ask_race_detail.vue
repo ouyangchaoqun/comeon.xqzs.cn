@@ -43,6 +43,7 @@
                     共有<span> {{detail.answerCount}}&nbsp;</span>位咨询师抢答，{{bestAnswer.expertNickName}}的回答被选为最佳答案，你已免费获得2颗点豆！
 
                 </div>
+            </div>
             <div class="rob_status_box" v-if="detail.questionStatus==2">
                 <div>已解答 </div>
                 <div>共有<span>{{detail.answerCount}}</span>位咨询师抢答，咨询师们已平分赏金！</div>
