@@ -24,7 +24,7 @@
         position: absolute; bottom: 0; left:0; line-height: 1; font-size: 0.31rem ; background: #fff;   color:rgba(36,37,61,1);
         width: 100%;
     }
-    .answer_bottom_box a:active,.answer_bottom_box a.on{ color:RGBA(121, 207, 253, 1)}
+    .answer_bottom_box a:active,.answer_bottom_box a.on{ color:RGBA(86, 196, 245,1)}
     .answer_bottom_box a{color:rgba(36,37,61,0.5);
         -webkit-box-flex: 1;
         -webkit-flex: 1;

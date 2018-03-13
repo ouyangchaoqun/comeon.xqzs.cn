@@ -569,7 +569,7 @@
         border-radius: 50%;
         background: url("http://oss.xqzs.cn/resources/psy/asker/expert_entry_bg.png") no-repeat center;
         background-size: 0.5rem 0.5rem;
-        background-color: RGBA(121, 207, 253, 1);
+        background-color: RGBA(86, 196, 245,1);
         position: absolute;
         right:0.25rem;
         bottom:15%;

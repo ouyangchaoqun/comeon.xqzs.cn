@@ -32,7 +32,7 @@
         padding-top: 0.03rem;
         z-index: 100;
     }
-    .asker_bottom_box a:active,.asker_bottom_box a.on{ color:RGBA(121, 207, 253, 1);}
+    .asker_bottom_box a:active,.asker_bottom_box a.on{ color:RGBA(86, 196, 245,1);}
     .asker_bottom_box a{color:rgba(36,37,61,0.5);
         -webkit-box-flex: 1;
         -webkit-flex: 1;
