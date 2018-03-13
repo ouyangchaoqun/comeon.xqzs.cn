@@ -30,13 +30,13 @@
             </div>
             <div class="rob_status_box" v-if="detail.questionStatus==0&&detail.answerCount!=0">
                 <div class="last_red_color">还{{formatTimeLastText(detail.endTime)}} </div>
-                <div>已有<span> {{detail.answerCount}} </span>位咨询师抢答，在48小时内选出最佳答案，你将免费获得1颗点豆！
+                <div class="last_red_color">已有<span> {{detail.answerCount}} </span>位咨询师抢答，在48小时内选出最佳答案，你将免费获得1颗点豆！
                 </div>
             </div>
             <div class="rob_status_box" v-if="detail.questionStatus==1">
                 <div>已解答 </div>
                 <div v-if="!detail.evaluate_ed">
-                    共有<span> {{detail.answerCount}}&nbsp;</span>位咨询师抢答，{{bestAnswer.expertNickName}}的回答被选为最佳答案，“去评价”老师的回答，将免费获得1颗点豆！
+                    共有<span> {{detail.answerCount}}&nbsp;</span>位咨询师抢答，{{bestAnswer.expertNickName}}的回答被选为最佳答案，<span class="last_red_color">“去评价”老师的回答，将免费获得1颗点豆！</span>
 
                 </div>
                 <div v-if="detail.evaluate_ed">

@@ -18,15 +18,15 @@
             <div class="problem_wait_style">
                 <!--待回答-->
                 <div v-if="detail.questionStatus==0">
-                    <span>待回答</span><span class="last_red_color">还{{formatTimeLastText(detail.endTime)}}</span>
+                    <span>待回答</span>  <span class="last_red_color">还{{formatTimeLastText(detail.endTime)}}</span>
                 </div>
                 <!--超时未回答-->
                 <div v-if="detail.questionStatus==2">
-                    <span>超时未回答</span><span>提问酬金已原路返还</span>
+                    <span>超时未回答</span><span>  超过48小时，咨询师未回答你的问题，赏金已全额退还至你的微信钱包！</span>
                 </div>
                 <!--解答-->
                 <div v-if="detail.questionStatus==1">
-                    <span>已解答</span>
+                    <span>已解答  <span class="last_red_color" v-if="detail.answers[0].evaluate.id==null&&!isOver">去评价老师的回答，你将免费获得1颗点豆！</span></span>
                 </div>
             </div>
 
