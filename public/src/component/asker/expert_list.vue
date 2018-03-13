@@ -281,7 +281,7 @@
                     imgUrl:"http://oss.xqzs.cn/resources/psy/logo.jpg",
                     title:  "‘好一点’专业咨询师为你答疑解惑" ,
                     desc: '‘好一点’你的实用人生导师，专业咨询师60秒语音为你排忧解难',
-                    link:  xqzs.wx.getPubUrl("asker/expert") ,
+                    link:  xqzs.wx.getPubUrl("asker/expert/list") ,
                 };
                 weshare.init(wx, config)
             });
