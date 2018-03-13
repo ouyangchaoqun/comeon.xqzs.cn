@@ -267,8 +267,9 @@
 
         },
         mounted: function () {
-
-            this.classId = this.$route.query.classId;
+            if(this.$route.query.classId){
+                this.classId = this.$route.query.classId;
+            }
             this.exType =1;
             if(this.$route.query.orderType) this.exType = this.$route.query.orderType;
             this.titleVal = this.$route.query.title;

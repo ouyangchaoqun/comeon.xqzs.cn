@@ -48,7 +48,7 @@
                             去评价
                     </div>
                     <div class="rob_box_top">
-                        <img :src="item.expertFaceUrl" alt="">
+                        <img :src="item.expertFaceUrl" alt="" @click="goExpert(item.expertId)">
                         <div class="expertInfo">
                             <span>{{item.expertNickName}}</span>
                             <div><template v-for="(d,i) in item.domain">{{d.title}}<template v-if="i<item.domain.length-1">、</template></template></div>
@@ -333,6 +333,9 @@
 
 
 
+            },
+            goExpert:function (extId) {
+                this.$router.push('../../../../asker/expert/detail/?id='+extId)
             },
             formatDateText:function (time) {
                 return xqzs.dateTime.getTimeFormatText(time)
