@@ -6,7 +6,7 @@
             <div>
                 <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
                 <div class="nothing_bottom">
-                    <p>暂无抢答问题</p>
+                    <p>问题已被全部抢答</p>
                 </div>
             </div>
         </div>
