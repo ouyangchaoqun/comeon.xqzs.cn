@@ -224,6 +224,13 @@
                     if(data.body.status == 1){
                         var List=data.body.data;
                         _this.manList=List;
+                        this.$nextTick(function () {
+                            var mySwiper = new Swiper('.swiper-container',{
+                                slidesPerView :2.2,
+                                slidesPerGroup : 1,
+                                speed:500,
+                            })
+                        })
 //                        console.log(_this.manList)
                     }
                 })
@@ -312,14 +319,6 @@
             this.getClassList();
             this.getList(0);
             this.getHotList();
-            this.$nextTick(function () {
-                var mySwiper = new Swiper('.swiper-container',{
-                    slidesPerView :2.2,
-                    slidesPerGroup : 1,
-                    speed:500,
-                })
-            })
-
             xqzs.wx.setConfig(this, function () {
                 var config = {
                     imgUrl:"http://oss.xqzs.cn/resources/psy/logo.jpg",
