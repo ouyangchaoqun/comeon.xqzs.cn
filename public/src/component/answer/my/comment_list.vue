@@ -51,10 +51,12 @@
                                 <div class="img"><img
                                         :src="item.expertFaceUrl">
                                 </div>
-                                <div class="audio">
-                                    <div class="audio_btn">
-                                        点击播放
-                                        <div class="second">{{item.length}}”</div>
+                                <div class="audio"  :class="{playing:item.playing,paused:item.paused}">
+                                    <div class="audio_btn"   @click.stop="play(index)">
+                                        <template v-if="!item.playing&&!item.paused">点击播放</template>
+                                        <template v-if="item.playing">正在播放..</template>
+                                        <template v-if="item.paused">播放暂停</template>
+                                        <div class="second">{{(item.ct && item.ct!='00')?item.ct:item.length}}”</div>
                                     </div>
                                     <div class="clear"></div>
                                 </div>
@@ -98,6 +100,89 @@
 
         },
         methods:{
+
+
+
+            timeout:function (play,time,index) {
+                let _this=this;
+                _this.timeOut = setTimeout(function () {
+                    if(play==true){  //试听
+                        if(time>0){
+                            time = time -1 ;
+                            if(time<10)time="0"+time
+                            _this.timeout(play,time,index);
+                        }else{
+                            _this.playing=false;
+                        }
+                    }
+
+                },1000);
+                _this.list[index].ct =time;
+                console.log(time)
+                _this.$set(_this.list,index,_this.list[index])
+            },
+
+            clearTimeOut:function () {
+                let _this=this;
+                if(_this.timeOut!==null){
+                    clearTimeout(_this.timeOut);
+                }
+            },
+            play:function (index) {
+                let _this=this;
+                let list = _this.list;
+                let CT= list[index].ct? list[index].ct: list[index].length;
+                let T = list[index].length;
+                console.log(CT)
+                xqzs.voice.onEnded=function () {
+                    list[index].paused=false;
+                    list[index].playing=false;
+                    _this.$set(_this.list,index,list[index]);
+                    if(_this.playing)_this.clearTimeOut();
+                    _this.playing = false;
+                };
+                //重置其他列表内容
+                for(let i = 0;i<list.length;i++){
+                    if(index!=i&&(list[i].playing||list[i].paused)){
+                        list[i].paused=false;
+                        list[i].playing=false;
+                        _this.$set(_this.list,i,list[i]);
+                    }
+                }
+                let item= list[index];
+                if(item.paused){  //暂停中也就是已经获取到且为当前音频
+                    list[index].paused=false;
+                    list[index].playing=true;
+                    _this.$set(_this.list,index,list[index])
+                    xqzs.voice.play();
+                    _this.timeout(true,CT,index)
+                }else{
+                    if(item.playing){    //播放中去做暂停操作
+                        list[index].paused=true;
+                        list[index].playing=false;
+                        _this.$set(_this.list,index,list[index])
+                        xqzs.voice.pause();
+                        _this.clearTimeOut();
+                        _this.playing = false;
+                    }else{     //重新打开播放
+                        let answerId= item.answerId;
+                        xqzs.voice.getAnswerVoice(answerId,function (url) {
+                            xqzs.voice.play(url);
+                            list[index].playing=true;
+                            list[index].paused=false;
+                            _this.$set(_this.list,index,list[index]);
+                            _this.playing=true;
+                            _this.clearTimeOut();
+                            _this.timeout(true,T,index)
+                        })
+                    }
+
+                }
+
+            },
+
+
+
             formatTime:function(time){
                return   xqzs.dateTime.formatDateTime(time)
             },
@@ -220,8 +305,7 @@
     .answer_my_coment_list .answer .img{ width: 0.68rem; height: 0.68rem; float:left; margin-top: 0.07rem;  margin-right: 0.17rem;}
     .answer_my_coment_list .answer .img img{ width: 100%; height: 100%; border-radius: 50%;}
     .answer_my_coment_list .answer .audio{ width: 100%; margin-top: 0}
-    .answer_my_coment_list .answer .audio .audio_btn{ width: 47%}
-    .answer_my_coment_list .question{ border: 0.05rem solid #F1F1F5; border-radius: 0.14rem; padding: 0.21rem; margin-top:0.20rem; color:rgba(36,37,61,0.7); font-size: 0.24rem  }
+     .answer_my_coment_list .question{ border: 0.05rem solid #F1F1F5; border-radius: 0.14rem; padding: 0.21rem; margin-top:0.20rem; color:rgba(36,37,61,0.7); font-size: 0.24rem  }
     .answer_my_coment_list .question .content{ margin-bottom: 0.30rem}
     .answer_my_coment_list .item .time{ color:rgba(36,37,61,0.7); font-size: 0.27rem; margin-left: 0.00rem; margin-top: 0.10rem}
     .answer_my_coment_list .item{ position: relative}
