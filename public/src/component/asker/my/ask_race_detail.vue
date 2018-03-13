@@ -30,11 +30,11 @@
             </div>
             <div class="rob_status_box" v-if="detail.questionStatus==0&&detail.answerCount!=0">
                 <div class="last_red_color">还{{formatTimeLastText(detail.endTime)}} </div>
-                <div>共有<span>{{detail.answerCount}}</span>人抢答，可选择一个最佳答案，其答主将获得全部赏金，并且你将获得{{set_award_dian_coin}}点豆奖励。</div>
+                <div>共有<span> {{detail.answerCount}} </span>人抢答，可选择一个最佳答案，其答主将获得全部赏金，并且你将获得{{set_award_dian_coin}}点豆奖励。</div>
             </div>
             <div class="rob_status_box" v-if="detail.questionStatus==1">
                 <div>已解答 </div>
-                <div>共有<span>{{detail.answerCount}}</span>人抢答，{{bestAnswer.expertNickName}}的回答被选为最佳答案,你已获得{{set_award_dian_coin}}点豆奖励。</div>
+                <div>共有<span> {{detail.answerCount}}&nbsp;</span>人抢答，{{bestAnswer.expertNickName}}的回答被选为最佳答案，你已获得{{set_award_dian_coin}}点豆奖励。</div>
             </div>
             <div class="rob_status_box" v-if="detail.questionStatus==2">
                 <div>已解答 </div>
@@ -380,6 +380,9 @@
 </script>
 <style>
     .rob_status_box .race_detail_inCome{float: right;margin-right: 0.30rem;color:rgba(36,37,61,0.5);}
+    .rob_status_box span {
+        padding:  0 0.06rem;
+    }
     .comment_box2 .stars{ display: flex;margin-bottom: 0.37rem}
     .comment_box2 .stars li{ flex:1;}
     .comment_box2 .stars li .star{ background: url(http://oss.xqzs.cn/resources/psy/asker/ask_rack_comment_star.png) center no-repeat ; background-size:  0.48rem;;height:0.48rem; width: 0.48rem; color:#999; width: 100%; margin-bottom: 0.10rem; }
