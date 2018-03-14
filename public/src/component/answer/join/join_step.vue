@@ -817,7 +817,7 @@
     .join_stepBox .li_right i{background: url('http://oss.xqzs.cn/resources/psy/join_right_icon.png') no-repeat center;width: 0.17rem;  height: 0.34rem;  background-size:100%;  position: absolute;  right: 0.30rem;  top: 50%;margin-top: -0.17rem;  }
     .joinStep_bottom{padding:0.60rem 0.30rem;padding-top: 0}
     .join_agre{color:rgba(53, 58, 66, 1);font-size: 0.24rem;line-height: 0.34rem;margin-bottom: 0.61rem;}
-    .join_agre span{color:rgba(255, 99, 0, 1)}
+    .join_agre span{color:#56C4FE}
     .join_sub{height:0.98rem;line-height: 1.00rem;color:rgba(255, 255, 255, 1);background: rgba(254, 122, 3, 1);font-size: 0.36rem;border-radius:2.10rem;text-align: center }
     .agre_box{width:86%;position: absolute;top:10%;left:50%;margin-left: -46%;background: #fff;padding:0.30rem 3%;border-radius: 0.20rem;height:80%}
     .agre_box h2{color:RGBA(69, 75, 84, 1);font-size: 0.36rem;line-height: 0.50rem;text-align: center;margin-bottom: 0.30rem;}
