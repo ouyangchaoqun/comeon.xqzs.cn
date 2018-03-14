@@ -381,13 +381,13 @@
     .join_box .join_btn{
         width: 100%;
         height:1.09rem;
-        background:RGBA(86, 196, 254, 1);
+        background:rgba(86, 196, 254, 1);
         color:#fff;font-size: 0.36rem;
         line-height:1.09rem; text-align: center;  position: fixed; bottom:0;
         z-index: 1000;
     }
 
-    .join_box .join_btn:active{   background: rgb(218, 108, 3);}
+    .join_box .join_btn:active{   background: rgb(82, 181, 239);}
     .service{ height: 1.10rem; width:1.44rem; background: url(http://oss.xqzs.cn/resources/psy/join_service.png) no-repeat #fff; background-size:0.60rem; background-position: 0.48rem 0.07rem;  border-radius:0.55rem;box-shadow: -0.08rem 0.04rem 0.12rem #ddd; position: fixed; right:0; bottom:1.70rem; border-bottom-right-radius: 0; border-top-right-radius: 0; z-index: 100}
     .service:active{
         background: url(http://oss.xqzs.cn/resources/psy/join_service.png) no-repeat #f1f1f1; background-size:0.60rem; background-position: 0.48rem 0.07rem;
