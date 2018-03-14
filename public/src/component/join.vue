@@ -191,7 +191,7 @@
     .join_box{
         background:RGBA(86, 196, 254, 0.2);
     }
-    .join_box .top{  height: 5.28rem;background: url("http://oss.xqzs.cn/resources/psy/asker/update_join_header.png") no-repeat; width: 100%; background-size: 100% 100%;}
+    .join_box .top{  height: 5.44rem;background: url("http://oss.xqzs.cn/resources/psy/asker/update_join_header.png") no-repeat; width: 7.5rem; background-size: 100% 100%;}
     .join_box .detail{padding-top:2.16rem;margin-bottom: 2.48rem; }
     .detail_block{
         margin-bottom: 2.2rem;
