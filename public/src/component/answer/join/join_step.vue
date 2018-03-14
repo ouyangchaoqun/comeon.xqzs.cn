@@ -806,7 +806,7 @@
 </script>
 <style>
     .join_stepBox{background: #fff;}
-    .join_stepBox .li_right .tip_color{color:RGBA(254, 122, 3, 0.6)}
+    .join_stepBox .li_right .tip_color{color:#56C4FE}
     .join_stepBox .li_right{float: right;padding-right: 0.51rem;}
     .join_stepBox header{padding:0.30rem;border-bottom: 0.20rem solid rgba(69, 75, 84, 0.09);line-height: 1.20rem;position: relative}
     .join_stepBox header img{width:1.20rem;height:1.20rem;float: left}
@@ -818,7 +818,7 @@
     .joinStep_bottom{padding:0.60rem 0.30rem;padding-top: 0}
     .join_agre{color:rgba(53, 58, 66, 1);font-size: 0.24rem;line-height: 0.34rem;margin-bottom: 0.61rem;}
     .join_agre span{color:#56C4FE}
-    .join_sub{height:0.98rem;line-height: 1.00rem;color:rgba(255, 255, 255, 1);background: rgba(254, 122, 3, 1);font-size: 0.36rem;border-radius:2.10rem;text-align: center }
+    .join_sub{height:0.98rem;line-height: 1.00rem;color:rgba(255, 255, 255, 1);background: #56C4FE;font-size: 0.36rem;border-radius:2.10rem;text-align: center }
     .agre_box{width:86%;position: absolute;top:10%;left:50%;margin-left: -46%;background: #fff;padding:0.30rem 3%;border-radius: 0.20rem;height:80%}
     .agre_box h2{color:RGBA(69, 75, 84, 1);font-size: 0.36rem;line-height: 0.50rem;text-align: center;margin-bottom: 0.30rem;}
     .agre_box .agre_content{color:RGBA(69, 75, 84, 1);font-size: 0.26rem;background: RGBA(69, 75, 84, 0.05);padding:0.30rem 0.26rem;margin-bottom: 0.40rem;height:75%;overflow: auto;line-height: 0.48rem}
