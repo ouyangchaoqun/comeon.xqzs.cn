@@ -244,6 +244,7 @@
     }
     .block_box3 span{
         color:RGBA(254, 122, 3, 1);
+        font-size: 0.34rem;
     }
     .block_box3 i{
         width:0.4rem;
