@@ -4,7 +4,7 @@
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="weui-tab__panel main">
             <div class="main">
-                <div class="top" @click="goJoin()">
+                <div class="top" @click="goPerfectP()">
                         <img class="img" :src="resizeImg(expert.faceUrl)">
                         <div class="name">
                             {{expert.nickName}}
@@ -33,7 +33,9 @@
                     <router-link to = "/answer/my/fans" class="fans" ><i></i>我的粉丝</router-link>
                     <router-link to = "/answer/my/comment/list" class="comment_list" ><i></i>收到的评价</router-link>
                     <!--<router-link to = "/answer/my/message" class="message" ><i></i>60”语音寄语</router-link>-->
-                    <router-link to = "/answer/join/level?edit=1" class="qualification" ><i></i>更新资质</router-link>
+
+                    <router-link to = "/answer/join/joinstep" class="prefffff" ><i></i>完善专业资料</router-link>
+                    <router-link to = "/answer/join/level?edit=1" class="qualification" ><i></i>更新证书</router-link>
                 </div>
             </div>
         </div>
@@ -104,6 +106,11 @@
             goJoin:function () {
                 this.showLoad = true;
                 this.$router.push("/answer/join/joinstep");
+                //this.$router.push("/answer/join/join_update");
+            },
+            goPerfectP:function () {
+                this.showLoad = true;
+                 window.location.href='http://wx.xqzs.cn/#/me/personal';
                 //this.$router.push("/answer/join/join_update");
             },
             getIncome:function () {
@@ -184,6 +191,12 @@
     .main_lists a.comment_list i{ background: url("http://oss.xqzs.cn/resources/psy/answer/ex_comment.png") no-repeat;background-size: 100% 100%;}
     .main_lists a.message i{ background-position: 0 -3.48rem; }
     .main_lists a.qualification i{background: url("http://oss.xqzs.cn/resources/psy/answer/ex_update.png") no-repeat center; background-size: 0.40rem}
+    .main_lists a.prefffff i{background: url("http://oss.xqzs.cn/resources/psy/answer/ex_prefffff.png") no-repeat center; background-size: 0.40rem}
+
+
+
+
+
     .main_lists a:active{background: #eee}
     .answer_my_index_box a.my_nav{
         width: 33.33%;

@@ -2,7 +2,7 @@
     <div class="join_stepBox">
         <v-mobile class="mobile_box" style="display: none"></v-mobile>
         <v-showLoad v-if="showLoad"></v-showLoad>
-        <div v-title>入驻心理咨询师</div>
+        <div v-title>完善专业资料</div>
         <header @click="changeHeadpic()">
             <img v-if="isModify==0&&faceUrl==''" src="http://oss.xqzs.cn/resources/psy/joinHeaderImg.png" alt="">
             <img v-if="isModify==0" :src="faceUrl" alt="">
@@ -31,7 +31,7 @@
                     </div>
                 </li>
 
-                <li @click="setNickname()">
+                <li @click="setNickname()" v-if="false">
                     咨询师昵称
                     <div class="li_right" >
                         <div>
@@ -43,7 +43,7 @@
                     </div>
                 </li>
 
-                <li @click="goMobile()">
+                <li @click="goMobile()"  v-if="false">
                     手机号码
                     <div class="li_right" >
                         <div>
@@ -55,7 +55,7 @@
                     </div>
                 </li>
 
-                <li @click="getSexPicker()">
+                <li @click="getSexPicker()"  v-if="false">
                     性别
                     <div class="li_right">
                         <div>
@@ -67,7 +67,7 @@
                     </div>
                 </li>
 
-                <li @click="areaPicker()">
+                <li @click="areaPicker()"  v-if="false">
                     所在城市
                     <div class="li_right">
                         <div>
