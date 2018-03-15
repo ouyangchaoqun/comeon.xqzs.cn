@@ -238,7 +238,7 @@
         text-align: center;
         font-size: 0.30rem;
         color:RGBA(255, 255, 255, 1);
-        background: RGBA(254, 122, 3, 0.4);
+        background: RGBA(86, 196, 245, 0.4);
         border-radius: 0.10rem;
     }
     .code_right_can{
