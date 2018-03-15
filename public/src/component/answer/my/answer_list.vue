@@ -307,7 +307,7 @@
         margin-top:-0.19rem;
     }
     .my_problem_active{
-        border-bottom: 0.04rem solid rgba(253,114,6,1);
+        border-bottom: 0.04rem solid rgba(86,196,245,1);
     }
     .my_problem_box{
         position: relative;

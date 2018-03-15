@@ -147,7 +147,7 @@
         height:0.70rem;
         line-height: 0.71rem;
         border-radius: 0.45rem;
-        background: RGBA(254, 122, 3, 1);
+        background: RGBA(86, 196, 245,1);
         color:RGBA(255, 255, 255, 1);
         font-size: 0.30rem;
         text-align: center;

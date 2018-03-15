@@ -174,7 +174,7 @@
     .main_lists a:after{ background: url(http://oss.xqzs.cn/resources/psy/arrow.png) ; width: 0.32rem; height: 0.32rem; background-size: 0.32rem; position: absolute;
         right:0.30rem;top:0.42rem ; content: " "}
     .main_lists a:before{ content: " "; height: 0.02rem; background: #eee; display: block; position: absolute; bottom:0;left: 1rem; width: 100%}
-    .main_lists .income .price{position: absolute; right:0.75rem;top:0.00rem;color:#FE7301}
+    .main_lists .income .price{position: absolute; right:0.75rem;top:0.00rem;color:#56C4FE}
     .main_lists a i{ display: block;width:0.40rem; height:0.40rem;  position: absolute; left: 0.26rem; top:50% ; margin-top: -0.20rem;}
     .main_lists a.income i{background: url("http://oss.xqzs.cn/resources/psy/answer/sy_icon.png") no-repeat;background-size: 100% 100%;}
     .main_lists a.level i{ background-position: 0 -0.58rem; }

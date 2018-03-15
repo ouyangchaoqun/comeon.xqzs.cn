@@ -824,7 +824,7 @@
     .agre_box .agre_content{color:RGBA(69, 75, 84, 1);font-size: 0.26rem;background: RGBA(69, 75, 84, 0.05);padding:0.30rem 0.26rem;margin-bottom: 0.40rem;height:75%;overflow: auto;line-height: 0.48rem}
     .agre_content h3{padding-top: 0.40rem;padding-bottom: 0.10rem;}
     .agre_content p{margin-bottom: 0.10rem;}
-    .agre_btn{width:60%;height:0.70rem;line-height: 0.71rem;background: RGBA(254, 122, 3, 1);border-radius: 0.45rem;color:RGBA(255, 255, 255, 1);text-align: center;font-size: 0.30rem;margin:0 auto;margin-bottom: 0.10rem;}
+    .agre_btn{width:60%;height:0.70rem;line-height: 0.71rem;background: RGBA(86, 196, 245,1);border-radius: 0.45rem;color:RGBA(255, 255, 255, 1);text-align: center;font-size: 0.30rem;margin:0 auto;margin-bottom: 0.10rem;}
     .join_stepBox .lut_box{position: absolute;top:0;left:1.70rem}
     .join_stepBox .lut{float: left;background: #ececec;color: rgba(36,37,61,1);height: 0.60rem;line-height: 0.60rem;padding: 0 0.20rem;margin-top: 0.12rem;font-size: 0.28rem;}
     .join_stepBox .lut.on{float: left;background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1));color: #fff;}

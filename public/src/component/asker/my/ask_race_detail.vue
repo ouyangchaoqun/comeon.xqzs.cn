@@ -704,7 +704,7 @@
             font-size: 1.02rem;
             position: absolute;
             top:50%;
-            color: #FE7A03;
+            color: #56C4FE;
             opacity: 1;
             left: 30%;
         }
@@ -712,7 +712,7 @@
             font-size: 1.02rem;
             position: absolute;
             top:40%;
-            color: #FE7A03;
+            color: #56C4FE;
             opacity:0;
             left: 30%;
         }

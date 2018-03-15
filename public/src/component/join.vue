@@ -224,7 +224,7 @@
         padding:1.42rem 0.34rem 0 0.34rem;
     }
     .block_box1 p span{
-        color:RGBA(254, 122, 3, 1);
+        color:RGBA(86, 196, 245,1);
     }
     .block_box3{height:auto}
     .block_box3 ul{
@@ -243,7 +243,7 @@
         padding-left: 1.34rem;
     }
     .block_box3 span{
-        color:RGBA(254, 122, 3, 1);
+        color:RGBA(86, 196, 245,1);
         font-size: 0.34rem;
     }
     .block_box3 i{
@@ -285,7 +285,7 @@
     }
     .block_box4 li>div{
         position: absolute;
-        color:RGBA(254, 122, 3, 1);
+        color:RGBA(86, 196, 245,1);
         font-size: 0.26rem;
         line-height: 0.36rem;
         width:120%;
@@ -314,7 +314,7 @@
         padding:1.62rem 0.5rem 0 0.5rem;
         line-height: 1.8rem;
         text-align: center;
-        color:RGBA(254, 122, 3, 1);
+        color:RGBA(86, 196, 245,1);
         font-size:0.6rem;
     }
     .circle_box div{

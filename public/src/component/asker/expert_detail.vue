@@ -944,7 +944,7 @@
     }
     .answer_detail_box .bj{ border-bottom: 0.12rem solid rgba(36,37,61,0.5) ;border-top:0}
     .answer_detail_box .new{float: right;margin-right: 0.20rem; position: relative; padding-right: 0.46rem; color: rgba(36,37,61,0.5);font-size: 0.26rem;}
-    .answer_detail_box .price{font-size: 0.25rem;color:#FE7301}
+    .answer_detail_box .price{font-size: 0.25rem;color:#56C4FE}
     .answer_detail_box .reply{height: 1.00rem;}
     .answer_detail_box .status{color: rgba(36,37,61,0.5); font-size:0.24rem;margin-top: 0.30rem }
     .answer_detail_box .ask_time{float: left;}

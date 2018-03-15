@@ -499,7 +499,7 @@
         overflow: hidden;
     }
     .answer_index .hot_text{
-        color: #FE7A03;font-weight:bold;
+        color: #56C4FE;font-weight:bold;
         margin: 0 0.06rem;
     }
     .answer_index .hot_bottom{
