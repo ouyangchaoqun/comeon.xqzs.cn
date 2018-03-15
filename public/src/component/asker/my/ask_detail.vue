@@ -22,11 +22,11 @@
                 </div>
                 <!--超时未回答-->
                 <div v-if="detail.questionStatus==2">
-                    <span>超时未回答</span><span>  超过48小时，咨询师未回答你的问题，赏金已全额退还至你的微信钱包！</span>
+                    <span>未解答</span>  <span>超过48小时，咨询师未回答你的问题，赏金已全额退还至你的微信钱包！</span>
                 </div>
                 <!--解答-->
                 <div v-if="detail.questionStatus==1">
-                    <span>已解答  <span class="last_red_color" v-if="detail.answers[0].evaluate.id==null&&!isOver">去评价老师的回答，你将免费获得1颗点豆！</span></span>
+                    <span>已解答  <span class="last_red_color" v-if="detail.answers[0].evaluate.id==null&&!isOver"> 去评价老师的回答，你将免费获得1颗点豆！</span></span>
                 </div>
             </div>
 
@@ -50,7 +50,7 @@
                                 <span v-if="!item.playing&&!item.paused">点击播放</span>
                                 <span v-if="item.playing">正在播放..</span>
                                 <span v-if="item.paused">播放暂停</span>
-                                <div class="second">{{item.voiceLength}}”</div>
+                                <div class="second">{{(item.ct && item.ct!='00')?item.ct:item.voiceLength}}”</div>
                             </div>
                             <div class="clear"></div>
                         </div>
@@ -176,13 +176,45 @@
                 return xqzs.string.formatPrice(v)
             },
 
+
+
+            timeout:function (play,time,index) {
+                let _this=this;
+                _this.timeOut = setTimeout(function () {
+                    if(play==true){  //试听
+                        if(time>0){
+                            time = time -1 ;
+                            if(time<10)time="0"+time
+                            _this.timeout(play,time,index);
+                        }else{
+                            _this.playing=false;
+                        }
+                    }
+
+                },1000);
+
+                _this.detail.answers[index].ct =time;
+                console.log(time)
+                _this.$set(_this.detail.answers,index,_this.detail.answers[index])
+            },
+
+            clearTimeOut:function () {
+                let _this=this;
+                if(_this.timeOut!==null){
+                    clearTimeout(_this.timeOut);
+                }
+            },
             play:function (index) {
 
                 let _this=this;
                 let list = _this.detail.answers;
-                xqzs.voice.onEnded=function () {
+                console.log(list[index]);
+                 let CT= list[index].ct? list[index].ct: list[index].voiceLength;
+                let T = list[index].voiceLength;
+                 xqzs.voice.onEnded=function () {
                     list[index].paused=false;
                     list[index].playing=false;
+                    if(_this.playing)_this.clearTimeOut();
                     _this.$set(_this.detail.answers,index,list[index])
                 };
 
@@ -200,19 +232,23 @@
                     list[index].playing=true;
                     _this.$set(_this.detail.answers,index,list[index])
                     xqzs.voice.play();
+                    _this.timeout(true,CT,index)
                 }else{
                     if(item.playing){    //播放中去做暂停操作
                         list[index].paused=true;
                         list[index].playing=false;
                         _this.$set(_this.detail.answers,index,list[index])
                         xqzs.voice.pause();
+                        _this.clearTimeOut();
                     }else{     //重新打开播放
                         let answerId= item.id;
                         xqzs.voice.getAnswerVoice(answerId,function (url) {
                             xqzs.voice.play(url);
                             list[index].playing=true;
                             list[index].paused=false;
-                            _this.$set(_this.detail.answers,index,list[index])
+                            _this.$set(_this.detail.answers,index,list[index]);
+                            _this.clearTimeOut();
+                            _this.timeout(true,T,index)
                         })
                     }
 
@@ -424,7 +460,7 @@
         position: relative;
     }
     .problem_wait_style span{
-        margin-right: 0.30rem;
+        margin-right: 0.30rem; line-height: 0.40rem
     }
     .ask_detailBox .answerInfo_border{border-bottom:0.02rem solid #eee;}
     .ask_detailBox .yy_bottomBorder{height:0;width:80%;margin: 0 auto;border-bottom: 0.02rem solid #eee;margin-bottom: 0.36rem;padding-top:0.51rem;}
