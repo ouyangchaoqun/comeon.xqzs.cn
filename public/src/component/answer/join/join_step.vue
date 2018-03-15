@@ -31,7 +31,7 @@
                     </div>
                 </li>
 
-                <li @click="setNickname()" v-if="false">
+                <li @click="setNickname()" v-if="btnFlag">
                     咨询师昵称
                     <div class="li_right" >
                         <div>
@@ -43,7 +43,7 @@
                     </div>
                 </li>
 
-                <li @click="goMobile()"  v-if="false">
+                <li @click="goMobile()"  v-if="btnFlag">
                     手机号码
                     <div class="li_right" >
                         <div>
@@ -55,7 +55,7 @@
                     </div>
                 </li>
 
-                <li @click="getSexPicker()"  v-if="false">
+                <li @click="getSexPicker()"  v-if="btnFlag">
                     性别
                     <div class="li_right">
                         <div>
@@ -67,7 +67,7 @@
                     </div>
                 </li>
 
-                <li @click="areaPicker()"  v-if="false">
+                <li @click="areaPicker()"  v-if="btnFlag">
                     所在城市
                     <div class="li_right">
                         <div>
@@ -743,10 +743,10 @@
                 }else if(questionClassId==''){
                     xqzs.weui.tip('请选择擅长领域')
                     return
-                }else if(provinceId==''){
+                }else if(provinceId==''&&_this.btnFlag){
                     xqzs.weui.tip('请选择城市')
                     return
-                }else if(sex==null){
+                }else if(sex==null&&_this.btnFlag){
                     xqzs.weui.tip('请选择性别')
                     return
                 }
