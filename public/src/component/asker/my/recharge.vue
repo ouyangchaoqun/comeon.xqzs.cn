@@ -262,7 +262,7 @@
 
     .recharge_box .items_box .items .gift {
         line-height: 0.34rem;
-        color: #FE7A03;
+        color: #56C4FE;
         font-size: 0.24rem;
         margin-top: 0.07rem
     }

@@ -169,5 +169,5 @@
     .goodat_types{background: #fff;padding:0.36rem 0 0.10rem 0;}
     .goodat_title{color:RGBA(69, 75, 84, 0.7);font-size: 0.28rem;line-height: 0.40rem;padding-left: 0.30rem;margin-bottom: 0.36rem;}
     .goodat_types li{float: left;width:26%;margin:0 3.33%;margin-bottom: 0.40rem;text-align: center;line-height: 0.58rem;height:0.58rem;border:0.02rem solid RGBA(69, 75, 84, 0.2);border-radius: 0.10rem;font-size: 0.28rem;color:RGBA(69, 75, 84, 0.5)}
-    .goodat_types .item_checked{border-color: RGBA(254, 122, 3, 1);color:RGBA(254, 122, 3, 1);}
+    .goodat_types .item_checked{border-color: RGBA(86, 196, 245,1);color:RGBA(86, 196, 245,1);}
 </style>

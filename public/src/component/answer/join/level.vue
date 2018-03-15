@@ -183,8 +183,8 @@
         margin:0 3.33% 0.40rem 3.33%;
     }
     .level_types .checked_type{
-        color:RGBA(254, 122, 3, 1);
-        border-color: RGBA(254, 122, 3, 1);
+        color:RGBA(86, 196, 245,1);
+        border-color: RGBA(86, 196, 245,1);
     }
     .level_detail{padding: 0 0.30rem;}
     .level_detail>div{

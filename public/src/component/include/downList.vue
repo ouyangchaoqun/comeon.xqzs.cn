@@ -244,12 +244,12 @@
     }
 
     .sort_list_item.selected {
-        color: #FE7A03;
+        color: #56C4FE;
     }
 
     .class_list_item.selected {
         color: #fff;
-        background: #FE7A03;
+        background: #56C4FE;
     }
     .downList_mask{
         width: 100%;

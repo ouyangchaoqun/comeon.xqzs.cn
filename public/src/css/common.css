@@ -273,7 +273,7 @@ a{
 .answer_list .itemDetail_right .title{font-size: 0.28rem;margin-bottom: 0.2rem;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;}
 .answer_list .class_s{color:RGBA(74, 74, 74, 0.6);font-size: 0.24rem;line-height: 1.4;margin-bottom: 0.26rem;}
 
-.answer_list .itemDetail_class_s .tab_i_i {    color: RGBA(254, 122, 3, 1);
+.answer_list .itemDetail_class_s .tab_i_i {    color: RGBA(86, 196, 245,1);
     background: RGBA(254, 122, 3, 0.1);
     border-radius: 0.05rem;
     padding: 0.07rem 0.10rem;
@@ -288,7 +288,7 @@ a{
 }
 
   .answer_list .class_s .price {
-    color: RGBA(254, 122, 3, 1);
+    color: RGBA(86, 196, 245,1);
 }
  .answer_list .class_s .price b {
     color: rgba(36, 37, 61, 0.5);
@@ -372,9 +372,9 @@ a{
 .nothing img{ max-width: 100%}
 .nothing .nothing_bottom{position: absolute;width:100%;bottom:0;color:#C3C5CD;font-size: 0.24rem;line-height: 0.41rem}
 .nothing .nothing_bottom p{font-size: 0.30rem;color:#95979D;}
-.nothing .nothing_bottom div{width:2.20rem;height:0.60rem;border:1px solid #FE7301;color:#FE7301;font-size: 0.30rem;line-height: 0.60rem;border-radius: 5px;margin:0 auto;margin-top:0.16rem;}
+.nothing .nothing_bottom div{width:2.20rem;height:0.60rem;border:1px solid #56C4FE;color:#56C4FE  ;font-size: 0.30rem;line-height: 0.60rem;border-radius: 5px;margin:0 auto;margin-top:0.16rem;}
 .nothing .nothing_bottom div:active{
-    border:1px solid #FE7301;color:#fff; background: #FE7301;
+    border:1px solid #56C4FE  ;color:#fff; background: #56C4FE;
 }
 .wbg{ background: #fff !important}
 .top_tip{ background: #F4F4F7;text-align: center; line-height:0.88rem; font-size:0.30rem;  color:rgba(36,37,61,0.5)  }
@@ -423,11 +423,11 @@ a{
 .followed_box{
     height:0.51rem;
     line-height: 0.51rem;
-    border:1px solid #FE7301;
+    border:1px solid #56C4FE  ;
     display: inline-block;
     width:1.02rem;
     text-align: center;
-    color:#FE7301;
+    color:#56C4FE  ;
     border-radius: 0.10rem;
     position: absolute;
     right: 0.30rem;
@@ -705,7 +705,7 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
 
 
 
-.record_voice_box .mask {  width:90px;  height: 90px;  border-radius: 50%;  background:#FE7301 100%;  position: absolute;  top:50%;  left:50%;  margin-top:-45px;  margin-left:-45px;  text-align: center;  line-height: 80px; color:#fff;     z-index: 3; }
+.record_voice_box .mask {  width:90px;  height: 90px;  border-radius: 50%;  background:#56C4FE  100%;  position: absolute;  top:50%;  left:50%;  margin-top:-45px;  margin-left:-45px;  text-align: center;  line-height: 80px; color:#fff;     z-index: 3; }
 .record_voice_box .mask i{ display: block; position: absolute;
     left: 50%; top:50% }
 .record_voice_box  .tip{ position: absolute; top:55px; text-align: center; width: 100%; color:rgba(36,37,61,0.5) ; font-size: 0.28rem;}

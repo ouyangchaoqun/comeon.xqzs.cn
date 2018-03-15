@@ -8,7 +8,7 @@
                 <div class="detail_number">01</div>
                 <div class="block_titile title_left block_titile1">"好一点"平台介绍</div>
                 <div class="block_box block_box1">
-                    <p>“好一点”是一个专业的在线心理咨询平台，以<span>60秒语音</span>的方式，快速解决人生的小烦恼。<br/> 作为一个一站式解决内容付费的多渠道变现平台，我们推出的偷听功能，能让咨询师的<span>知识价值最大化</span></p>
+                    <p>“好一点”是一个专业的在线心理咨询平台，以<span>60秒语音</span>的方式，快速解决人生的小烦恼。<br/>作为一站式解决内容付费的多渠道变现平台，我们推出的偷听功能，能让咨询师<span>知识价值最大化</span>。</p>
                 </div>
             </div>
             <div class="detail_block">
@@ -38,7 +38,7 @@
                 <div class="block_titile title_left block_titile3">咨询师收益分成</div>
                 <div class="block_box block_box3">
                     <ul>
-                        <li><i></i>选为最佳答案,获<span>100%</span>的酬金</li>
+                        <li><i></i>选为最佳答案，获<span>100%</span>的酬金</li>
                         <li><i></i>其他用户偷听，获<span>30%</span>的分成</li>
                         <li><i></i>产生收益后，随时<span>提现</span></li>
                     </ul>
@@ -224,7 +224,7 @@
         padding:1.42rem 0.34rem 0 0.34rem;
     }
     .block_box1 p span{
-        color:RGBA(254, 122, 3, 1);
+        color:RGBA(86, 196, 245,1);
     }
     .block_box3{height:auto}
     .block_box3 ul{
@@ -243,7 +243,7 @@
         padding-left: 1.34rem;
     }
     .block_box3 span{
-        color:RGBA(254, 122, 3, 1);
+        color:RGBA(86, 196, 245,1);
         font-size: 0.34rem;
     }
     .block_box3 i{
@@ -285,7 +285,7 @@
     }
     .block_box4 li>div{
         position: absolute;
-        color:RGBA(254, 122, 3, 1);
+        color:RGBA(86, 196, 245,1);
         font-size: 0.26rem;
         line-height: 0.36rem;
         width:120%;
@@ -314,7 +314,7 @@
         padding:1.62rem 0.5rem 0 0.5rem;
         line-height: 1.8rem;
         text-align: center;
-        color:RGBA(254, 122, 3, 1);
+        color:RGBA(86, 196, 245,1);
         font-size:0.6rem;
     }
     .circle_box div{

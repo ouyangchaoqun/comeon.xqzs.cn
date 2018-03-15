@@ -235,7 +235,7 @@
         position: absolute;
         right: 0.75rem;
         top: 0.00rem;
-        color: #FE7301
+        color: #56C4FE
     }
 
     .asker_my_index_box .main a:last-child:before {

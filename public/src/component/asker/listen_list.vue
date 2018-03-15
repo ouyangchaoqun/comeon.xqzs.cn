@@ -584,7 +584,7 @@
     }
 
     .nav_active {
-        color: #FE7301;
+        color: #56C4FE;
         position: relative;
         transition: all .1s linear;
     }
@@ -593,7 +593,7 @@
         content: '';
         width: 0.30rem;
         height: 0.04rem;
-        background: #FE7301;
+        background: #56C4FE;
         position: absolute;
         bottom: 0.10rem;
         left: 50%;

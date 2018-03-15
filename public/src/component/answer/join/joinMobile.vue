@@ -242,7 +242,7 @@
         border-radius: 0.10rem;
     }
     .code_right_can{
-        background: RGBA(254, 122, 3, 1);
+        background: RGBA(86, 196, 245,1);
     }
     .code_right button{
         border:0;
