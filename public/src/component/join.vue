@@ -8,7 +8,7 @@
                 <div class="detail_number">01</div>
                 <div class="block_titile title_left block_titile1">"好一点"平台介绍</div>
                 <div class="block_box block_box1">
-                    <p>“好一点”是一个专业的在线心理咨询平台，<br/>以<span>60秒语音</span>的方式，快速解决人生的小烦恼。<br/>作为一个一站式解决内容付费的多渠道变现平台，我们推出的偷听功能，能让咨询师<span>知识价值最大化</span></p>
+                    <p>“好一点”是一个专业的在线心理咨询平台，以<span>60秒语音</span>的方式，快速解决人生的小烦恼。<br/>作为一站式解决内容付费的多渠道变现平台，我们推出的偷听功能，能让咨询师<span>知识价值最大化</span>。</p>
                 </div>
             </div>
             <div class="detail_block">
