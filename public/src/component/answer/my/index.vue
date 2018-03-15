@@ -174,7 +174,7 @@
     }
     .answer_my_index_box .top img{ display: block; float:left;     width: 1.08rem;
         height: 1.08rem;margin-right: 0.25rem;border-radius: 50%;}
-    .answer_my_index_box .top .name{color:rgba(255,255,255,1);padding-top: 0.2rem; margin-bottom:0.2rem;font-weight: bold; font-size: 0.3rem;}
+    .answer_my_index_box .top .name{color:rgba(255,255,255,1);padding-top: 0.2rem; margin-bottom:0.2rem;font-weight: bold; font-size: 0.3rem; height: 0.3rem; overflow: hidden}
     .answer_my_index_box .top .perfect{color:rgba(255,255,255,1);font-size: 0.24rem;}
     .main_lists a{ position: relative; height:1.18rem;    line-height:1.18rem;
         color:rgba(36,37,61,1); font-size: 0.30rem; padding:  0  0.30rem;display: block; overflow: hidden; padding-left: 0.90rem; background: #fff;  }

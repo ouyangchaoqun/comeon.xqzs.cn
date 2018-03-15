@@ -6,11 +6,9 @@
             <div class="main">
                 <div class="top" @click="revamp()">
                     <img class="img" :src="user.faceUrl" >
-                    <div class="name">
-                        <p style="font-weight: bold;font-size: 0.3rem">{{user.nickName}}</p>
-                        <p >完善资料</p>
-                        <div class="revamp"></div>
-                    </div>
+                    <div class="name">{{user.nickName}}</div>
+                    <div  class="perfect">完善资料</div>
+                    <div class="revamp"></div>
 
                     <span class="top_jt"></span>
                     <div class="clear"></div>
@@ -149,15 +147,13 @@
 </script>
 <style>
     .asker_my_index_box .top .name{
-        height: 1.08rem;
-        line-height: 1;
-        font-size: 0.24rem;
+             line-height: 1;
+         padding-top: 0.2rem; margin-bottom:0.13rem;font-weight: bold; font-size: 0.3rem; height: 0.3rem; overflow: hidden
     }
-    .asker_my_index_box .top .name p{
-        width: 50%;
-        display: block;margin-top: 0.2rem;
-    }
-    .asker_my_index_box .top .name .revamp{
+
+    .asker_my_index_box .top .perfect{color:rgba(255,255,255,1);font-size: 0.24rem;}
+
+    .asker_my_index_box .top  .revamp{
         background: url(http://oss.xqzs.cn/resources/psy/asker/ask_fix.png) no-repeat;
         background-size: 100%;
         width: 0.3rem;
@@ -168,8 +164,7 @@
     }
     .asker_my_index_box .top {
         height: 1.08rem;
-        line-height: 1.08rem;
-        color: #fff;
+         color: #fff;
         font-size: 0.36rem;
         background:rgba(121,207,253,1);
         background:linear-gradient(to right,rgba(121,207,253,1),rgba(157,167,251,1));
