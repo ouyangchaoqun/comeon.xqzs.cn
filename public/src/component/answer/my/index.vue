@@ -5,7 +5,7 @@
         <div class="weui-tab__panel main">
             <div class="main">
                 <div class="top" @click="goPerfect()">
-                        <img class="img" :src="resizeImg(expert.faceUrl)">
+                        <img class="img" :src="resizeImg(expertUpdatefaceUrl)">
                         <div class="name">
                             {{expertUpdateName}}
                         </div>
@@ -53,7 +53,8 @@
                 user:'',
                 income:0,
                 showLoad:false,
-                expertUpdateName:''
+                expertUpdateName:'',
+                expertUpdatefaceUrl:'',
             }
         },
         props:{
@@ -113,6 +114,7 @@
                     if (data.body.status == 1) {
                         this.expert = data.data.data;
                         this.expertUpdateName = this.expert.nickName;
+                        this.expertUpdatefaceUrl = this.expert.faceUrl;
                     }
                 }, function (error) {
                 });
