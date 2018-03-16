@@ -7,7 +7,7 @@
                 <div class="top" @click="goPerfect()">
                         <img class="img" :src="resizeImg(expert.faceUrl)">
                         <div class="name">
-                            {{user.nickName}}
+                            {{expert.nickName}}
                         </div>
                         <div class="perfect">完善资料</div>
                     <div class="revamp"></div>
@@ -35,7 +35,7 @@
                     <!--<router-link to = "/answer/my/message" class="message" ><i></i>60”语音寄语</router-link>-->
 
                     <router-link to = "/answer/join/joinstep" class="prefffff" ><i></i>完善专业资料</router-link>
-                    <router-link to = "/answer/join/level?edit=1" class="qualification" ><i></i>更新证书</router-link>
+                    <!--<router-link to = "/answer/join/level?edit=1" class="qualification" ><i></i>更新证书</router-link>-->
                 </div>
             </div>
         </div>

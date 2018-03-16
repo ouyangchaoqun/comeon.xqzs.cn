@@ -3,7 +3,7 @@
         <v-mobile class="mobile_box" style="display: none"></v-mobile>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div v-title>完善专业资料</div>
-        <header @click="changeHeadpic()">
+        <header @click="changeHeadpic()" v-if="btnFlag">
             <img v-if="isModify==0&&faceUrl==''" src="http://oss.xqzs.cn/resources/psy/joinHeaderImg.png" alt="">
             <img v-if="isModify==0" :src="faceUrl" alt="">
             <img v-if="isModify==1" :src="isShowInfo.faceUrl" alt="">
@@ -19,7 +19,7 @@
         </header>
         <div class="step_detailBox">
             <ul>
-                <li @click="setLevel()" v-if="btnFlag">
+                <li @click="setLevel()">
                     资质证书
                     <div class="li_right" >
                         <div>

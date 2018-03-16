@@ -3,10 +3,13 @@
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div v-title>完善资料</div>
 
-        <div class="list0 perfect_header active_tab" @click="changeHeadpic()" v-if="false">
-            头像
-            <img class="headerImg" :src="resizeImg(expert.faceUrl)" alt="">
-            <img class="rightImg" src="http://oss.xqzs.cn/resources/psy/arrow.png" alt="">
+        <div class="list0 perfect_header active_tab" @click="changeHeadpic()">
+            <img v-if="!updateFaceUrl" class="headerImg" :src="resizeImg(expert.faceUrl)" alt="">
+            <img v-if="updateFaceUrl" class="headerImg" :src="resizeImg(updateFaceUrl)" alt="">
+            <div class="header_right">
+                <div>更换头像</div>
+                <i></i>
+            </div>
         </div>
 
         <div class="list0 ">
@@ -16,19 +19,18 @@
         </div>
         <div class="list0 ">
             <span>昵称</span>
-            <input type="text" class="nickName" :value="user.nickName" placeholder="填写昵称" maxlength="8">
+            <input type="text" class="nickName" :value="expert.nickName" placeholder="填写昵称" maxlength="8">
             <div class="line"></div>
         </div>
         <div class="list0 list02" @click="changeSex()">
             <span>性别</span>
             <div class="input sex">{{sexs[sex-1].label}}</div>
-            <div class="line"></div>
         </div>
 
 
         <router-link to="/answer/join/mobile">
             <div class="list0  active_tab ">
-                <img src="http://oss.xqzs.cn/resources/psy/arrow.png" alt="">
+                <img src="http://oss.xqzs.cn/resources/psy/join_right_icon.png" alt="">
                 <span>绑定手机号</span><span class="mobile">{{user.mobile}}</span>
                 <div class="line"></div>
             </div>
@@ -110,6 +112,7 @@
                 expert:{},
                 alioss:null,
                 uploadpicinfo:null,
+                updateFaceUrl:''
             }
         },
         mounted: function () {
@@ -199,11 +202,10 @@
                     _this.showLoad=true;
                 },function (json,ix) {
                     _this.showLoad=false;
-                    _this.expert.faceUrl=json.data.path;
-
+                    let facePath = json.data.path
+                    _this.updateFaceUrl = facePath;
                     let data ={
-
-                        faceUrl: _this.expert.faceUrl,
+                        faceUrl: facePath,
                         expertId:cookie.get("expertId"),
                         userId:"_userId_"
                     }
@@ -439,21 +441,37 @@
     .personal_box{ width: 100%;overflow: hidden}
 
     .list0.perfect_header{
-        height:1.40rem;
-        line-height: 1.40rem;
         position: relative;
-        padding:0 0.30rem;
+        padding:0.30rem;
+        line-height: 1.2rem;
+        height:1.2rem;
+    }
+    .list0.perfect_header .header_right{
+        float: right;
+        font-size: 0.28rem;
+        color:rgba(36,37,61,0.5);
+        padding-right: 0.51rem;
+    }
+    .list0.perfect_header .header_right i{
+        background: url(http://oss.xqzs.cn/resources/psy/join_right_icon.png) no-repeat center;
+        width: 0.17rem;
+        height: 0.34rem;
+        background-size: 100%;
+        position: absolute;
+        right: 0.30rem;
+        top: 50%;
+        margin-top: -0.17rem;
     }
     .list0.perfect_header .headerImg{
-        width:0.98rem;
-        height:0.98rem;
+        width:1.2rem;
+        height:1.2rem;
         border-radius: 0.10rem;
         position: absolute;
-        right:0.71rem;
+        left:0.3rem;
         top:50%;
-        margin-top:-0.49rem;
+        margin-top:-0.6rem;
     }
-    .list0.perfect_header .rightImg{top:0.54rem}
+    .list0.perfect_header .rightImg{top:0.7rem}
 
 
     .lut{ float:left; background: #ececec; color:rgba(36,37,61,1); height: 0.60rem; line-height: 0.60rem;  padding: 0 0.20rem; margin-top: 0.12rem; font-size: 0.28rem; margin-left: 0.20rem;}
@@ -471,7 +489,7 @@
 
 
     .list0:nth-child(2) {
-        margin-top: 0.24rem;
+        margin-top: 0.2rem;
     }
 
     .list0 .line {
@@ -501,7 +519,7 @@
     }
 
     .list02 {
-        margin-bottom: 0.30rem
+        margin-bottom: 0.20rem
     }
 
     .list0 span {
@@ -544,10 +562,11 @@
     }
 
     .list0 img {
-        width: 16PX;
+        width: 0.17rem;
         position: absolute;
-        top: 0.28rem;
         right: 0.30rem;
+        top: 50%;
+        margin-top: -0.1rem;
     }
 
     .showdL {
