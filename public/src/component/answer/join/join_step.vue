@@ -468,7 +468,24 @@
                     _this.showLoad = false;
                     if (data.data.data !== null) {
                         _this.user = eval(data.data.data);
-                        console.log(_this.user)
+                        _this.birthday = _this.user.birthday;
+                        if (_this.birthday) {
+                            let date = _this.birthday.split(',');
+                            _this.year = date[0];
+                            _this.month = date[1];
+                            _this.day = date[2];
+                            if( _this.user.isLunar==1||_this.user.isLunar==2){
+                                _this.isLunar=true;
+                                _this.yearN = date[0]+'年';
+                                _this.monthN =  calendar.toChinaMonth(date[1]);
+                                if(_this.user.isLunar==2) {
+                                    _this.isLeapMonth=true;
+                                    _this.monthN= "闰"+ _this.monthN;
+                                }
+                                _this.dayN = calendar.toChinaDay(date[2]);
+                            }
+
+                        }
                     }
                 }, function (error) {
                     //error
