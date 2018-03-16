@@ -712,10 +712,11 @@
                     cityId = _this.cityId;
                     areaId = _this.areaId;
                 }
+                console.log(freeTime)
                 if(price==''){
                     xqzs.weui.tip('请填写价格')
                     return
-                }else if(freeTime==''){
+                }else if(freeTime===''){
                     xqzs.weui.tip('请设置免费时间')
                     return
                 }else if(jobTitle==''){
