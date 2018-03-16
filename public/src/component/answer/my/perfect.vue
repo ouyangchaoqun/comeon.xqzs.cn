@@ -33,11 +33,11 @@
                 <div class="line"></div>
             </div>
         </router-link>
-        <div class="list0 ">
-            <span>身份证号</span>
-            <input type="text" class="idcard" @focus="scrollTop('.idcard')" :value="user.idcard" placeholder="填写身份证号">
-            <div class="line"></div>
-        </div>
+        <!--<div class="list0 ">-->
+            <!--<span>身份证号</span>-->
+            <!--<input type="text" class="idcard" @focus="scrollTop('.idcard')" :value="user.idcard" placeholder="填写身份证号">-->
+            <!--<div class="line"></div>-->
+        <!--</div>-->
         <div class="list0 list02 " @click="showDate()">
             <span>生日</span>
             <div class="lut" :class="{on:!isLunar}" @click.stop="lutSelect(0)">阳历</div>
@@ -388,28 +388,12 @@
                 });
 
             },
-            updateHeadpic: function () {
-                let _this = this;
-                _this.$http({
-                    method: 'POST',
-                    url: web.API_PATH + 'user/update/user/headpic/_userId_',
-                }).then(function (data) {//es5写法
-                    if (data.data == 1) {
-                        xqzs.weui.toast("success", "更新成功", function () {
-
-                        });
-                    }
-                }, function (error) {
-                    //error
-                });
-
-            },
             msgSubmit: function () {
                 let _this = this;
                 let nick = $('.nickName').val();
                 let realName = $('.realName').val();
                 let address = $('.address').val();
-                let idcard= $(".idcard").val();
+//                let idcard= $(".idcard").val();
                 let msg = {
                     "id": _this.user.id,
                     "realName": realName,
@@ -421,7 +405,7 @@
                     "areaId": _this.areaId,
                     "address": address,
                     "sex":_this.sex,
-                    "idcard":idcard,
+//                    "idcard":idcard,
                     "isLunar":_this.isLunar?_this.isLeapMonth?2:1:0
                 };
                 console.log(msg);

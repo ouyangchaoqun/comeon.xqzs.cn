@@ -7,7 +7,7 @@
                 <div class="top" @click="goPerfect()">
                         <img class="img" :src="resizeImg(expert.faceUrl)">
                         <div class="name">
-                            {{expert.nickName}}
+                            {{user.nickName}}
                         </div>
                         <div class="perfect">完善资料</div>
                     <div class="revamp"></div>
