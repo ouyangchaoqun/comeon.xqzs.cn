@@ -1,5 +1,5 @@
 <template >
-    <div class="join_stepBox" v-if="!preIning">
+    <div class="join_stepBox" >
         <v-mobile class="mobile_box" style="display: none"></v-mobile>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div v-title>完善专业资料</div>
