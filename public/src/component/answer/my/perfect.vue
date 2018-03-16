@@ -431,7 +431,6 @@
                 };
                 console.log(msg);
                 _this.setExpertName();
-                return
                 _this.$http.post(web.API_PATH + 'user/update', msg)
                     .then(
                         (response) => {
