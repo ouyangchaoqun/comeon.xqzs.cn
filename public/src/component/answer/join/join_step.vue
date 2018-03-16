@@ -369,6 +369,8 @@
                             let status = data.data.data.status;
                             if(expertId){
                                 this.getExpertInfo(expertId);
+                            }else{
+                                this.preIning=false;
                             }
 
                             this.isModify = 1;//修改
@@ -396,6 +398,7 @@
 
                     }
                 }, function (error) {
+                    this.preIning=false;
                 });
             },
             //获取最新资料信息
