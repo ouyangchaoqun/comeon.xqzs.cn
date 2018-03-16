@@ -944,7 +944,7 @@
                             console.log(response)
                             if(response.data.status==1){
                                 xqzs.weui.toast("success","提交成功", function () {
-                                    _this.$router.replace('/answer/my/index');
+                                    _this.$router.replace('/asker/my/index');
                                 })
                             }
                         }
