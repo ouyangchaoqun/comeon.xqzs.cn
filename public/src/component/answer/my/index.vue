@@ -67,6 +67,7 @@
 
         mounted: function () {
             this.getUserInfo();
+            this.getExpertUpdateInfo();
             var obj =  $(".asker_my_index_box .main a")
             xqzs.weui.active(obj);
 
@@ -107,9 +108,13 @@
                 this.$router.push("/answer/join/joinstep");
                 //this.$router.push("/answer/join/join_update");
             },
-            goPerfectP:function () {
-                 window.location.href='http://wx.xqzs.cn/#/me/personal';
-                //this.$router.push("/answer/join/join_update");
+            getExpertUpdateInfo:function () {
+                this.$http.get(web.API_PATH + 'come/expert/query/detail/by/userId/_userId_' ).then(function (data) {//es5写法
+                    if (data.body.status == 1) {
+                        this.expert = data.data.data;
+                    }
+                }, function (error) {
+                });
             },
             getIncome:function () {
 
@@ -126,20 +131,10 @@
             },
             getExpertByUserId:function () {
                 let _this=this;
-                console.log('获取expert')
-                console.log(_this.expert)
                 if(_this.expert.id&&_this.expert.id!=null){
 
                 }else{
-                    this.$http.get(web.API_PATH + 'come/expert/query/detail/by/userId/_userId_' ).then(function (data) {//es5写法
-                        if (data.body.status == 1) {
-
-                            _this.expert = data.data.data;
-
-                            console.log(_this.expert)
-                        }
-                    }, function (error) {
-                    });
+                    _this.getExpertUpdateInfo()
                 }
 
             }
