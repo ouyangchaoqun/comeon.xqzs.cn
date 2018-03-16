@@ -290,15 +290,15 @@
                 let _this = this;
                 let url = "come/expert/modify";
                 let nick = $('.nickName').val();
-                let msg = {
+                let data = {
                     userId:_this.user.id,
                     id:_this.user.id,
                     nickName:nick,
                     expertId:cookie.get('expertId'),
                     finish:1
                 };
-                console.log(msg)
-                _this.$http.post(web.API_PATH + url, msg)
+                console.log(data)
+                _this.$http.post(web.API_PATH + url, data)
                     .then(
                         (response) => {
                     console.log(response)
