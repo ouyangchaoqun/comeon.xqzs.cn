@@ -7,7 +7,7 @@
                 <div class="top" @click="goPerfect()">
                         <img class="img" :src="resizeImg(expert.faceUrl)">
                         <div class="name">
-                            {{expert.nickName}}
+                            {{expertUpdateName}}
                         </div>
                         <div class="perfect">完善资料</div>
                     <div class="revamp"></div>
@@ -53,6 +53,7 @@
                 user:'',
                 income:0,
                 showLoad:false,
+                expertUpdateName:''
             }
         },
         props:{
@@ -111,6 +112,7 @@
                 this.$http.get(web.API_PATH + 'come/expert/query/detail/by/userId/_userId_' ).then(function (data) {//es5写法
                     if (data.body.status == 1) {
                         this.expert = data.data.data;
+                        this.expertUpdateName = this.expert.nickName;
                     }
                 }, function (error) {
                 });
