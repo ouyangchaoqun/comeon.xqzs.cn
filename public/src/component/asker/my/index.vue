@@ -6,7 +6,7 @@
             <div class="main">
                 <div class="top" @click="revamp()">
                     <img class="img" :src="user.faceUrl" >
-                    <div class="name">{{user.nickName}}</div>
+                    <div class="name">{{nickName}}</div>
                     <div  class="perfect">完善资料</div>
                     <div class="revamp"></div>
 
@@ -47,6 +47,7 @@
             return {
                 showLoad:false,
                 couponNum:0,
+                nickName:''
 
             }
         },
@@ -60,7 +61,7 @@
         methods: {
             getUserInfo:function(){
                 let _this=this;
-
+                console.log('获取个人信息')
                 _this.$http({
                     method: 'GET',
                     type: "json",
@@ -69,6 +70,7 @@
 
                     if (data.data.data !== null) {
                         _this.user = eval(data.data.data);
+                        _this.nickName = _this.user.nickName
                     }
                 }, function (error) {
                     //error
