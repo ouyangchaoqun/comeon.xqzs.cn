@@ -67,7 +67,6 @@
 
         mounted: function () {
             this.getUserInfo();
-            this.getExpertInfo()
             var obj =  $(".asker_my_index_box .main a")
             xqzs.weui.active(obj);
 
