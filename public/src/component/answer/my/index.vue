@@ -4,7 +4,7 @@
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="weui-tab__panel main">
             <div class="main">
-                <div class="top" @click="goPerfectP()">
+                <div class="top" @click="goPerfect()">
                         <img class="img" :src="resizeImg(expert.faceUrl)">
                         <div class="name">
                             {{expert.nickName}}
@@ -104,12 +104,10 @@
                 this.$router.push("./perfect")
             },
             goJoin:function () {
-                this.showLoad = true;
                 this.$router.push("/answer/join/joinstep");
                 //this.$router.push("/answer/join/join_update");
             },
             goPerfectP:function () {
-                this.showLoad = true;
                  window.location.href='http://wx.xqzs.cn/#/me/personal';
                 //this.$router.push("/answer/join/join_update");
             },

@@ -1,5 +1,5 @@
 <template >
-    <div class="join_stepBox">
+    <div class="join_stepBox" v-if="!preIning">
         <v-mobile class="mobile_box" style="display: none"></v-mobile>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div v-title>完善专业资料</div>
@@ -312,6 +312,7 @@
             return {
                 user:'',
                 showLoad:false,
+                preIning:true,
                 sexIndex:1,
                 defaultCity: '[330000, 330100, 330102]',
                 reg_mobile:cookie.get('reg_mobile')?cookie.get('reg_mobile'):'',
@@ -400,6 +401,7 @@
             //获取最新资料信息
             getExpertInfo:function (expertId) {
                 this.$http.get(web.API_PATH + 'come/expert/query/detail/for/edit/'+expertId+'/_userId_').then(function (data) {
+                    this.preIning=false;
                     if (data.body.status == 1) {
                         this.isShowInfo = data.data.data;
                         console.log('获取修改信息')
@@ -548,7 +550,7 @@
                 this.$router.push('./freetime?edit='+ this.isModify)
             },
             changeTime:function (v) {
-                if(v==null||v==''){
+                if(v===null||v===''){
                     return ''
                 }
                 if (Number(v)<30){

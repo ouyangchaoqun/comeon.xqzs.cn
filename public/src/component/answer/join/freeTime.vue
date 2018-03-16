@@ -68,10 +68,20 @@
         props: {
             user:{
                 type:Object
+            },
+            expert:{
+                type:Object
             }
         },
 
         mounted: function () {
+            console.log();
+            for(let i =0;i<this.times.length;i++){
+                if(this.expert.freeTime===this.times[i].value){
+                    this.times[i].isSelect=true;
+                    break;
+                }
+            }
             this.edit= this.$route.query.edit;
         } ,
 

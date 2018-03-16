@@ -3,7 +3,7 @@
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div v-title>完善资料</div>
 
-        <div class="list0 perfect_header active_tab" @click="changeHeadpic()">
+        <div class="list0 perfect_header active_tab" @click="changeHeadpic()" v-if="false">
             头像
             <img class="headerImg" :src="resizeImg(expert.faceUrl)" alt="">
             <img class="rightImg" src="http://oss.xqzs.cn/resources/psy/arrow.png" alt="">
@@ -474,7 +474,7 @@
 
     .lut{ float:left; background: #ececec; color:rgba(36,37,61,1); height: 0.60rem; line-height: 0.60rem;  padding: 0 0.20rem; margin-top: 0.12rem; font-size: 0.28rem; margin-left: 0.20rem;}
     .lut:nth-child(3){ margin-left: 0}
-    .lut.on{ float:left; background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1)); color:#fff;}
+    .lut.on{ float:left; background: #56C4F5!important; color:#fff;}
 
 
     .active_tab:active {
