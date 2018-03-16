@@ -286,6 +286,29 @@
 
                 }
             },
+            setExpertName:function () {
+                let _this = this;
+                let url = "come/expert/modify";
+                let nick = $('.nickName').val();
+                let msg = {
+                    userId:_this.user.id,
+                    id:_this.user.id,
+                    nickName:nick,
+                    expertId:cookie.get('expertId'),
+                    finish:1
+                };
+                console.log(msg)
+                _this.$http.post(web.API_PATH + url, msg)
+                    .then(
+                        (response) => {
+                    console.log(response)
+                if(response.data.status==1){
+
+                }
+             }
+            );
+
+            },
             showDate: function () {
                 let _this = this;
                 let defaultValue = [1988, 1, 1];
@@ -392,14 +415,11 @@
             },
             msgSubmit: function () {
                 let _this = this;
-                let nick = $('.nickName').val();
                 let realName = $('.realName').val();
                 let address = $('.address').val();
-//                let idcard= $(".idcard").val();
                 let msg = {
                     "id": _this.user.id,
                     "realName": realName,
-                    "nickName": nick,
                     "birthday": _this.birthday,
                     "countryId": 0,
                     "provinceId": _this.provinceId,
@@ -407,10 +427,11 @@
                     "areaId": _this.areaId,
                     "address": address,
                     "sex":_this.sex,
-//                    "idcard":idcard,
                     "isLunar":_this.isLunar?_this.isLeapMonth?2:1:0
                 };
                 console.log(msg);
+                _this.setExpertName();
+                return
                 _this.$http.post(web.API_PATH + 'user/update', msg)
                     .then(
                         (response) => {
