@@ -126,6 +126,8 @@
             },
             getExpertByUserId:function () {
                 let _this=this;
+                console.log('获取expert')
+                console.log(_this.expert)
                 if(_this.expert.id&&_this.expert.id!=null){
 
                 }else{
