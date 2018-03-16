@@ -61,13 +61,12 @@
         methods: {
             getUserInfo:function(){
                 let _this=this;
-                console.log('获取个人信息')
+
                 _this.$http({
                     method: 'GET',
                     type: "json",
                     url: web.API_PATH + 'user/find/by/user/Id/_userId_',
                 }).then(function (data) {//es5写法
-
                     if (data.data.data !== null) {
                         _this.user = eval(data.data.data);
                         _this.nickName = _this.user.nickName
