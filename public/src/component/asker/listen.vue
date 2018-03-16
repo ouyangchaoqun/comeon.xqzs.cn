@@ -11,10 +11,11 @@
                 <div style="height:0.20rem;background: #f4f4f7"></div>
                 <div class="index_box">
                     <div class="new_question">
+                        <div class="kuan"></div>
                         <div class="top_left">最新问题</div>
                         <div class="top_right" @click="updateList()">
-                            <div class="top text">换一批</div>
                             <div class="refresh" :class="{click:isAnimate==true}"></div>
+                            <div class="top text">换一批</div>
                         </div>
                     </div>
                     <div v-show="list.length>0" class="index_content_active">
@@ -796,5 +797,14 @@
         100%{
             transform: rotate(180deg);
         }
+    }
+
+    .asker_listen_box .kuan{
+        width: 0.09rem;
+        height: 0.4rem;
+        background: #56C4FE;
+        position: absolute;
+        margin: 0.34rem  0;
+        left:0;
     }
 </style>

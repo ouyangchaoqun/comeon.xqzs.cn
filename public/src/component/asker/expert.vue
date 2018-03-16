@@ -11,6 +11,7 @@
                        <div class="hot_hidden" @click="getMore()">
                           更多
                        </div>
+                        <div class="kuan"></div>
                   </div>
                 <div class="hot_content">
 
@@ -37,6 +38,7 @@
 
                 <div class="title_top">
                     <div class="new_head">
+                        <div class="kuan"></div>
                         最新.入驻
                         <div class="hot_hidden" @click="getNewMore()">
                             更多
@@ -499,7 +501,7 @@
         overflow: hidden;
     }
     .answer_index .hot_text{
-        color: #56C4FE;font-weight:bold;
+        color: #FE7A03;font-weight:bold;
         margin: 0 0.06rem;
     }
     .answer_index .hot_bottom{
@@ -532,5 +534,13 @@
         line-height: 1;
     }
     .swiper-slide{ overflow: auto}
-
+    .answer_index .kuan{
+        width: 0.09rem;
+        height: 0.4rem;
+        background: #56C4FE;
+        position: absolute;
+        top:50% ;
+        margin-top: -0.2rem;
+        left:0;
+    }
 </style>
