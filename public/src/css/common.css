@@ -657,7 +657,7 @@ a{
     float: left;
 }
 .weui-picker__action{
-    color: rgba(254,115,1,1) !important;
+    color: #56C4FE!important;
 }
 .weui-picker__action:first-child{
     color:#888 !important;

@@ -66,6 +66,32 @@
                         <i></i>
                     </div>
                 </li>
+                <li @click="showDate()"  v-if="btnFlag">
+                    生日
+                    <div class="addBir_box">
+                        <span class="lut" :class="{on:!isLunar}" @click.stop="lutSelect(0)">阳历</span>
+                        <span class="lut" :class="{on:isLunar}"  @click.stop="lutSelect(1)">阴历</span>
+                    </div>
+
+                    <div class="li_right">
+                        <div>
+                            <div v-if="birthday">
+                                <template v-if="!isLunar">
+                                    <span>{{year}}年 </span>
+                                    <span>{{month}}月 </span>
+                                    <span>{{day}}日 </span>
+                                </template>
+                                <template v-if="isLunar">
+                                    <span>{{yearN}} </span>
+                                    <span>{{monthN}} </span>
+                                    <span>{{dayN}} </span>
+                                </template>
+                            </div>
+                            <span v-else class="tip_color">请填写</span>
+                        </div>
+                        <i></i>
+                    </div>
+                </li>
 
                 <li @click="areaPicker()"  v-if="btnFlag">
                     所在城市
@@ -344,7 +370,14 @@
                 btnFlag:true,
                 types:'',
                 showTypes:[],
-
+                isLunar:0,
+                birthday:'',
+                year: '',
+                month: '',
+                day: '',
+                lunarDateData:[],
+                solarDateDate:[],
+                isLeapMonth:false,
             }
         },
         props: {
@@ -358,6 +391,8 @@
             this.initOss();
             this.getUserInfo();
             this.getClassList();
+            this.lunarDateData=xqzs.dateTime.getLunarData(1949,2017);
+            this.solarDateDate= xqzs.dateTime.getSolarData(1949,2017);
         },
         methods: {
             //判断是否入驻，获取入驻信息
@@ -448,7 +483,6 @@
                     _this.showLoad=false;
                     _this.faceUrl=facePath;
                     _this.isShowInfo.faceUrl = facePath;
-                    console.log(facePath)
                     if(_this.isModify){
                         //修改
                         console.log('修改')
@@ -498,6 +532,108 @@
                     token:this.uploadpicinfo.token
                 });
             },
+            showDate: function () {
+                let _this = this;
+                let defaultValue = [1988, 1, 1];
+                if (this.year != '' && this.month != '' && this.day != '') {
+                    defaultValue = [this.year, this.month, this.day]
+                }
+                if (this.isLunar) {
+                    weui.picker(  this.lunarDateData, {
+                        depth: 3,
+                        defaultValue: defaultValue,
+                        id:"id"+Math.random(),
+                        onChange: function (result) {
+                            console.log(result);
+                        },
+                        onConfirm: function (result) {
+                            _this.yearN = result[0].label;
+                            _this.monthN = result[1].label;
+                            _this.dayN = result[2].label;
+                            //闰月
+                            let monthValue =  result[1].value;
+                            if(typeof(monthValue)=="string"&&monthValue.indexOf("_")){
+                                _this.isLeapMonth=true;
+                                monthValue=result[1].value.split("_")[0];
+                            }else{
+                                _this.isLeapMonth=false;
+                            }
+                            _this.year = result[0].value;
+                            _this.month = result[1].value;
+                            _this.day = result[2].value;
+                            _this.birthday = result[0].value + ',' +monthValue + ',' + result[2].value;
+                            if(_this.birthday){
+                                _this.setBirthday()
+                            }
+                        },
+                    });
+
+                } else {
+                    weui.picker(  this.solarDateDate, {
+                        depth: 3,
+                        defaultValue: defaultValue,
+                        id:"id"+Math.random(),
+                        onChange: function (result) {
+                            console.log(result);
+                        },
+                        onConfirm: function (result) {
+                            _this.year = result[0].value;
+                            _this.month = result[1].value;
+                            _this.day = result[2].value;
+                            _this.birthday = result[0].value + ',' + result[1].value + ',' + result[2].value;
+                            if(_this.birthday){
+                                _this.setBirthday()
+                            }
+
+                        },
+                    });
+                }
+            },
+            setBirthday:function () {
+                let msg = {
+                    "id": this.user.id,
+                    "birthday": this.birthday
+                }
+                this.$http.post(web.API_PATH + 'user/update', msg)
+                    .then(
+                        (response) => {
+
+                        }
+                    );
+            },
+            lutSelect:function (v) {
+                let _this= this;
+                if(v==0){
+                    if( !this.isLunar) return ;
+                    if(this.birthday&&this.birthday!=''){
+                        let date = this.birthday.split(',');
+                        let solar=  calendar.lunar2solar(parseInt(date[0]),parseInt(date[1]),parseInt(date[2]),_this.isLeapMonth); //阳历
+                        this.birthday= solar.cYear+","+solar.cMonth+"," +solar.cDay ; //阳历
+                        _this.year = solar.cYear;
+                        _this.month = solar.cMonth;
+                        _this.day = solar.cDay;
+                    }
+                    this.isLunar=false;
+                }else if(v==1){
+                    if( this.isLunar) return ;
+                    this.isLunar=true;
+                    if(this.birthday&&this.birthday!=''){
+                        let date = this.birthday.split(',');
+                        let lunar=  calendar.solar2lunar(date[0],date[1],date[2]); //农历
+                        this.birthday= lunar.lYear+","+lunar.lMonth+"," +lunar.lDay; //农历
+                        _this.isLeapMonth=lunar.isLeap;
+                        _this.yearN =  lunar.lYear+"年";
+                        _this.monthN = lunar.IMonthCn;
+                        _this.dayN =lunar.IDayCn;
+                        _this.year = lunar.lYear;
+                        _this.month = lunar.lMonth;
+                        _this.day = lunar.lDay;
+                        if(lunar.isLeap){
+                            _this.month = lunar.lMonth+"_1";
+                        }
+                    }
+                }
+            },
             showAgre:function () {
                 this.agreFlag = true
             },
@@ -537,8 +673,6 @@
                                 }
                             }
                         }
-
-
                     }
                 }, function (error) {
                 });
@@ -579,10 +713,8 @@
 
                     },
                     onConfirm: function (result) {
-                        console.log(result)
                         _this.sexIndex = result[0].value;
                         _this.sex =  result[0].label;
-                        console.log(_this.sex)
                         if(_this.isModify){
                             let url = "come/expert/modify";
                             let msg = {
@@ -715,9 +847,11 @@
                     cityId = _this.cityId;
                     areaId = _this.areaId;
                 }
-                console.log(freeTime)
                 if(price==''){
                     xqzs.weui.tip('请填写价格')
+                    return
+                }else if(_this.birthday===''){
+                    xqzs.weui.tip('请设置生日')
                     return
                 }else if(freeTime===''){
                     xqzs.weui.tip('请设置免费时间')
@@ -786,7 +920,6 @@
                 if(_this.isModify==1){
                     msg.expertId = cookie.get('expertId')
                 }
-                console.log(msg)
 
                 _this.$http.post(web.API_PATH + url, msg)
                     .then(
@@ -832,8 +965,9 @@
     .agre_content p{margin-bottom: 0.10rem;}
     .agre_btn{width:60%;height:0.70rem;line-height: 0.71rem;background: RGBA(86, 196, 245,1);border-radius: 0.45rem;color:RGBA(255, 255, 255, 1);text-align: center;font-size: 0.30rem;margin:0 auto;margin-bottom: 0.10rem;}
     .join_stepBox .lut_box{position: absolute;top:0;left:1.70rem}
-    .join_stepBox .lut{float: left;background: #ececec;color: rgba(36,37,61,1);height: 0.60rem;line-height: 0.60rem;padding: 0 0.20rem;margin-top: 0.12rem;font-size: 0.28rem;}
-    .join_stepBox .lut.on{float: left;background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1));color: #fff;}
+    .addBir_box{position: absolute;top:50%;margin-top:-0.3rem;left:1.2rem}
+    .join_stepBox .lut{float: left;background: #ececec;color: rgba(36,37,61,1);height: 0.60rem;line-height: 0.60rem;padding: 0 0.20rem;font-size: 0.28rem;}
+    .join_stepBox .lut.on{float: left;background: #56c4f5;color: #fff;}
     .imgBox{padding-right: 0.30rem;padding-top:0.80rem;height:2.05rem;margin-bottom: 1.36rem}
     .imgBox img{display: block;width: 3.20rem;float: left;height:2.05rem}
     .imgBox img:nth-of-type(2){float: right}
