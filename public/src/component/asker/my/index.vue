@@ -6,7 +6,7 @@
             <div class="main">
                 <div class="top" @click="revamp()">
                     <img class="img" :src="user.faceUrl" >
-                    <div class="name">{{nickName}}</div>
+                    <div class="name">{{user.nickName}}</div>
                     <div  class="perfect">完善资料</div>
                     <div class="revamp"></div>
 
@@ -69,7 +69,6 @@
                 }).then(function (data) {//es5写法
                     if (data.data.data !== null) {
                         _this.user = eval(data.data.data);
-                        _this.nickName = _this.user.nickName
                     }
                 }, function (error) {
                     //error
