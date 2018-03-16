@@ -31,9 +31,8 @@
                 <router-link to="../my/listen/list" class="listen"><i></i>我的偷听</router-link>
                 <router-link to="../my/answer/list" class="answer"><i></i>我的关注</router-link>
                 <router-link to="../my/comment/list" class="comment"><i></i>我的评价</router-link>
-                <a class="join" @click="join()"><i></i>入驻咨询师</a>
             </div>
-
+            <div class="join" @click="join()">入驻咨询师</div>
         </div>
         <v-asker-bottom tabOnIndex="4"></v-asker-bottom>
     </div>
@@ -189,7 +188,19 @@
         margin-right: 0.25rem;
         border: 0.08rem solid rgba(255,255,255,0.5);
     }
-
+    .asker_my_index_box .main{
+        margin-bottom: 0.2rem;
+    }
+    .asker_my_index_box .join{
+        line-height: 1.02rem;
+        background: RGBA(255, 255, 255, 1);
+        text-align: center;
+        color:RGBA(43, 53, 68, 1);
+        font-size: 0.3rem;
+    }
+    .asker_my_index_box .join:active{
+        background: #eee;
+    }
     .asker_my_index_box .main a {
         position: relative;
         height: 1.18rem;
@@ -331,15 +342,6 @@
         left: 0.40rem;
     }
 
-    .asker_my_index_box .main a.join i {
-        width: 0.40rem;
-        height: 0.40rem;
-        background: url("http://oss.xqzs.cn/resources/psy/answer/ex_join.png") no-repeat;
-        -webkit-background-size:100%;
-        background-size:100%;
-        margin-top: -0.20rem;
-        left: 0.40rem;
-    }
     .income_margin{
        margin-bottom: 0.2rem;
         display: flex;
