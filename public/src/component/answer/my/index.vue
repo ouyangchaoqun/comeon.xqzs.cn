@@ -86,7 +86,6 @@
                 }).then(function (data) {//es5写法
                     if (data.data.data !== null) {
                         _this.user = eval(data.data.data);
-                        console.log( _this.user )
                     }
                 }, function (error) {
                     //error

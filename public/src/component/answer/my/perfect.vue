@@ -436,10 +436,10 @@
                         (response) => {
                             if(response.body.status==1){
                                 xqzs.weui.toast("success", "修改成功", function () {
-                                    _this.$router.go(-1)
+                                    _this.$router.replace('/answer/my/index')
                                 })
                             }else{
-                                xqzs.weui.tip("修改失败")
+                                _this.$router.replace('/answer/my/index')
                             }
 
                         }
