@@ -47,7 +47,6 @@
             return {
                 showLoad:false,
                 couponNum:0,
-                nickName:''
 
             }
         },
