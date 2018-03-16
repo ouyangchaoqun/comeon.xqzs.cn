@@ -66,7 +66,8 @@
         },
 
         mounted: function () {
-            this.getUserInfo()
+            this.getUserInfo();
+            this.getExpertInfo()
             var obj =  $(".asker_my_index_box .main a")
             xqzs.weui.active(obj);
 
@@ -124,6 +125,18 @@
                 });
 
             },
+            //获取最新资料信息
+            getExpertInfo:function () {
+                let expertId = cookie.get("expertId");
+                this.$http.get(web.API_PATH + 'come/expert/query/detail/for/edit/'+expertId+'/_userId_').then(function (data) {
+                    if (data.body.status == 1) {
+                        this.isShowInfo = data.data.data;
+                        console.log('获取修改信息')
+                        console.log(this.isShowInfo)
+                    }
+                }, function (error) {
+                });
+            },
             getExpertByUserId:function () {
                 let _this=this;
                 if(_this.expert.id&&_this.expert.id!=null){
@@ -133,6 +146,7 @@
                         if (data.body.status == 1) {
 
                             _this.expert = data.data.data;
+
                             console.log(_this.expert)
                         }
                     }, function (error) {
