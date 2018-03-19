@@ -7,7 +7,7 @@
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :isShowMoreText="isShowMoreText" :bottomHeight="0">
             <v-downList :urlType="2" v-on:downMessage="getQType" v-on:classMessage="getQid"  :currtype="classId" :ordertype="exType" ></v-downList>
-            <div class="answer_list" style="background: #fff;padding: 0 15px;">
+            <div class="answer_list" style="background: #fff;padding: 0 0.15rem;">
                 <div class="item" v-for="(item,index) in list"  v-if="item.expertId!=52">
                     <div @click="goDetail(item.expertId)">
                         <div class="itemDetail">
