@@ -12,14 +12,14 @@
                 <div class="index_box">
                     <div class="new_question">
                         <div class="kuan"></div>
-                        <div class="top_left">最新•问题</div>
+                        <div class="top_left">最新 • 问题</div>
                         <div class="top_right" @click="updateList()">
                             <div class="refresh" :class="{click:isAnimate==true}"></div>
                             <div class="top text">换一批</div>
                         </div>
                     </div>
                     <div v-show="list.length>0" class="index_content_active">
-                        <ul>
+                        <ul style="padding-left: 0.3rem">
                             <li v-for="(item,index) in list" >
                                 <img :src=item.expertFaceUrl alt="" class="expert_headerImg" @click="goAnswer(item.expertId)">
                                 <div @click="goDetail(item.questionId)">
@@ -639,7 +639,7 @@
         height:0.8rem;
         border-radius: 50%;
         position: absolute;
-        left:0.3rem;
+        left:0rem;
         border: solid 0.02rem #eee;
     }
 
@@ -781,7 +781,7 @@
     .index_box .new_question .refresh{
         width: 0.34rem;
         height:0.3rem;
-        margin-right: 0.10rem;
+        margin-right: 0.05rem;
         background:url("http://oss.xqzs.cn/resources/psy/asker/asker_refresh_blue.png") no-repeat;
         background-size: 90%;
         float: left;

@@ -473,7 +473,7 @@
     }
     .asker_ask_box .ask_type {
         margin: 0.50rem 0.30rem 0.40rem 0.30rem;
-        background: rgba(245,245,245,1);
+        background: #f4f4f7;
         border-radius: 0.12rem;
     }
     .asker_ask_box .ask_type .tab {
@@ -496,7 +496,7 @@
     .asker_ask_box .text_area {
         position: relative;
         margin: 0 0.30rem;
-        background: #F1F1F5;
+        background: #F4F4F7;
         border-radius: 0.12rem;
         font-size: 0.26rem;
         padding: 0.34rem;

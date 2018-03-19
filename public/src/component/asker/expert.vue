@@ -7,7 +7,7 @@
             <v-typeHeader :urlType="2"></v-typeHeader>
             <div class="title_top">
                 <div class="hot_head">
-                    热门•推荐
+                    热门 • 推荐
                        <div class="hot_hidden" @click="getMore()">
                           更多
                        </div>
@@ -38,46 +38,48 @@
 
                 <div class="title_top">
                     <div class="new_head">
-                        <div class="kuan"></div>
-                        最新•入驻
+                        <div class="kuan" style="background: RGBA(86, 196, 245,1)"></div>
+                        最新 • 入驻
                         <div class="hot_hidden" @click="getNewMore()">
                             更多
                         </div>
                     </div>
                 </div>
 
-
-                <div class="item" v-for="(item,index) in list" v-if="item.expertId!=expertId">
-                    <div @click="goDetail(item.expertId)">
-                        <div class="itemDetail">
-                            <div class="img"><img :src="item.faceUrl"></div>
-                            <div class="itemDetail_right">
-                                <div class="itemHeader">
-                                    <div >{{item.nickName}}<span>{{item.city}}</span></div>
-                                    <div class="header_addRightStyle" v-if="false ">
-                                        <div class="headerImg" @click.stop="play(index)">
-                                            <div :class="{addPlaying:item.playing,addPaused:item.paused}"></div>
+                <div style="padding-left: 0.3rem;background: #fff">
+                    <div class="item" v-for="(item,index) in list" v-if="item.expertId!=expertId">
+                        <div @click="goDetail(item.expertId)">
+                            <div class="itemDetail">
+                                <div class="img"><img :src="item.faceUrl"></div>
+                                <div class="itemDetail_right">
+                                    <div class="itemHeader">
+                                        <div >{{item.nickName}}<span>{{item.city}}</span></div>
+                                        <div class="header_addRightStyle" v-if="false ">
+                                            <div class="headerImg" @click.stop="play(index)">
+                                                <div :class="{addPlaying:item.playing,addPaused:item.paused}"></div>
+                                            </div>
+                                            {{item.length}}''
                                         </div>
-                                        {{item.length}}''
                                     </div>
-                                </div>
-                                <div class="title">{{item.sign}}</div>
-                                <div class="itemDetail_class_s">
-                                    <span v-for="(good,goodIndex) in item.goodAt" class="tab_i_i">{{good.title}}</span>
-                                </div>
-                                <div class="class_s other">
-                                    <span class="price"><b>问价</b>  <a>￥{{item.price}}</a></span>
-                                    <span class="class_right">
+                                    <div class="title">{{item.sign}}</div>
+                                    <div class="itemDetail_class_s">
+                                        <span v-for="(good,goodIndex) in item.goodAt" class="tab_i_i">{{good.title}}</span>
+                                    </div>
+                                    <div class="class_s other">
+                                        <span class="price"><b>问价</b>  <a>￥{{item.price}}</a></span>
+                                        <span class="class_right">
                                         <span v-if="item.answerCount!=null">{{item.answerCount}} 个回答</span>
                                         <span v-if="item.listenCount!=null">{{item.listenCount}} 次被偷听</span>
                                     </span>
 
+                                    </div>
                                 </div>
+                                <div style="clear: both"></div>
                             </div>
-                            <div style="clear: both"></div>
                         </div>
                     </div>
                 </div>
+
                 <div class="item" v-for="(item,index) in list" v-if="false">
                     <div @click="goDetail(item.expertId)">
                         <div class="info">
@@ -429,17 +431,18 @@
     .answer_index .title_top {
         background: #fff;
         margin-top: 0.2rem;
+        border-bottom: 0.02rem solid #eee;
     }
     .answer_index .hot_head{
         height: 1rem;
         color: #454B54;
         font-size: 0.30rem;
-        font-weight: bold;
         position: relative;
         margin-bottom: 0.20rem;
         line-height: 1rem;
         padding: 0 0.3rem;
         border-bottom: 0.02rem solid #eee;
+        font-weight: bold;
     }
     .answer_index .new_head{
         height: 1rem;
@@ -460,6 +463,7 @@
         background: url("http://oss.xqzs.cn/resources/psy/arrow.png") no-repeat center right;
         background-size: 0.24rem 0.20rem;
         padding-right: 0.30rem;
+        font-weight: normal;
     }
     .answer_index  .hot_head img{
         width: 0.20rem;
