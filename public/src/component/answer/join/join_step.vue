@@ -172,7 +172,7 @@
                     </div>
                 </li>
 
-                <li @click="goPrice()">
+                <li @click="goPrice()" v-if="!btnFlag">
                     提问酬金
                     <div class="li_right" >
                         <div>
@@ -184,7 +184,7 @@
                     </div>
                 </li>
 
-                <li @click="goFreeTime()">
+                <li @click="goFreeTime()" v-if="!btnFlag">
                     限时免费偷听时间
                     <div class="li_right" >
                         <div>
@@ -827,8 +827,8 @@
                 }
                 if(_this.isModify==0){
                     url = "come/expert/register";
-                    price = _this.reg_price;
-                    freeTime = _this.reg_freeTime;
+                    price = 10;
+                    freeTime = 60;
                     jobTitle = _this.reg_jobTitle;
                     introduction =_this.reg_introduction;
                     experience = _this.reg_experience;
@@ -864,14 +864,8 @@
                     cityId = _this.cityId;
                     areaId = _this.areaId;
                 }
-                if(price==''){
-                    xqzs.weui.tip('请填写价格')
-                    return
-                }else if(_this.birthday===''){
+                if(_this.birthday===''){
                     xqzs.weui.tip('请设置生日')
-                    return
-                }else if(freeTime===''){
-                    xqzs.weui.tip('请设置免费时间')
                     return
                 }else if(jobTitle==''){
                     xqzs.weui.tip('请选择资质')
@@ -906,12 +900,10 @@
                 }else if(sex==null&&_this.btnFlag){
                     xqzs.weui.tip('请选择性别')
                     return
+                }else if(nickName==''){
+                    xqzs.weui.tip('请填写昵称')
+                    return
                 }
-
-//                else if(nickName==''){
-//                    xqzs.weui.tip('请填写昵称')
-//                    return
-//                }
                 let msg = {
                     userId:_this.user.id,
                     id:_this.user.id,
