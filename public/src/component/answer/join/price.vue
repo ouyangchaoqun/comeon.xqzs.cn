@@ -11,7 +11,7 @@
                 <input type="number" class="priceInput" v-model="price"  :value="price" placeholder="设置提问价格（元）例如：10">
             </div>
             <div class="price_bottom">
-                <div>至少10元</div>
+                <div>建议设置为10元</div>
                 <div @click="showNotice()">解答须知</div>
             </div>
         </div>
