@@ -900,10 +900,10 @@
                 }else if(sex==null&&_this.btnFlag){
                     xqzs.weui.tip('请选择性别')
                     return
-                }else if(nickName==''){
-                    xqzs.weui.tip('请填写昵称')
-                    return
-                }
+//                }else if(nickName==''){
+//                    xqzs.weui.tip('请填写昵称')
+//                    return
+//                }
                 let msg = {
                     userId:_this.user.id,
                     id:_this.user.id,
