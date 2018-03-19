@@ -6,7 +6,7 @@
 
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :isShowMoreText="isShowMoreText" :bottomHeight="0">
-            <v-downList :urlType="2" v-on:downMessage="getQType" v-on:classMessage="getQid"  :currtype="classId" :ordertype="exType" ></v-downList>
+            <v-filter :urlType="2" v-on:downMessage="getQType" v-on:classMessage="getQid"  :currtype="classId" :ordertype="exType" ></v-filter>
             <div class="answer_list">
                 <div class="item" v-for="(item,index) in list"  v-if="item.expertId!=52">
                     <div @click="goDetail(item.expertId)">
@@ -73,7 +73,7 @@
     import scroll from '../include/scroll.vue';
     import Bus from '../bus.js';
     import askerBottom from "./include/bottom.vue";
-    import downList from "../include/downList.vue"
+    import filter from "../include/filter.vue"
 
     export default {
         data() {
@@ -95,7 +95,7 @@
             'v-showLoad': showLoad,
             'v-scroll': scroll,
             "v-asker-bottom": askerBottom,
-            'v-downList':downList,
+            'v-filter':filter,
 
         },
         methods: {
