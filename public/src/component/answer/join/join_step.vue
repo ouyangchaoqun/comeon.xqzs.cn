@@ -518,20 +518,6 @@
                             );
                     }
                     cookie.set('reg_faceUrl',facePath,1)
-
-//
-//                    let data ={
-//
-//                        faceUrl: _this.faceUrl,
-//                        expertId:cookie.get("expertId"),
-//                        userId:"_userId_"
-//                    }
-//                    _this.$http.post(web.API_PATH + "come/expert/modify", data)
-//                        .then(function (bt) {
-//                            if (bt.data && bt.data.status == 1) {
-//
-//                            }
-//                        });
                     xqzs.image.hideClip()
                 });
             },
@@ -864,8 +850,14 @@
                     cityId = _this.cityId;
                     areaId = _this.areaId;
                 }
-                if(_this.birthday===''){
+                if(price==''){
+                    xqzs.weui.tip('请填写价格')
+                    return
+                }else if(_this.birthday===''){
                     xqzs.weui.tip('请设置生日')
+                    return
+                }else if(freeTime===''){
+                    xqzs.weui.tip('请设置免费时间')
                     return
                 }else if(jobTitle==''){
                     xqzs.weui.tip('请选择资质')
@@ -900,10 +892,10 @@
                 }else if(sex==null&&_this.btnFlag){
                     xqzs.weui.tip('请选择性别')
                     return
-//                }else if(nickName==''){
-//                    xqzs.weui.tip('请填写昵称')
-//                    return
-//                }
+                }else if(nickName==''){
+                    xqzs.weui.tip('请填写昵称')
+                    return
+                }
                 let msg = {
                     userId:_this.user.id,
                     id:_this.user.id,
