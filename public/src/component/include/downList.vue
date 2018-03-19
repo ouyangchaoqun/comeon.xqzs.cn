@@ -14,7 +14,7 @@
                 {{item.title}}
             </li>
         </div>
-        <div class="downList_mask" v-if="isShowSort==true||isShowClass==true" @click="closeList()"></div>
+        <div class="downList_mask" v-if="isShowSort==true||isShowClass==true" @click="closeList()" @touchmove.prevent></div>
     </div>
 
 </template>
@@ -33,6 +33,7 @@
                 bottom1:true,
                 classId:0,
                 complexOrNew:1,
+                screenHeight:document.body.clientHeight,
             }
         },
         mounted:function () {
@@ -165,10 +166,8 @@
                     )
 
                 }
-
-
             },
-        }
+        },
     }
 
 
@@ -253,7 +252,7 @@
     }
     .downList_mask{
         width: 100%;
-        height: 16.32rem;
+        height: 100%;
         background: rgba(0,0,0,0.5);
         position: absolute;
         z-index: 54;
