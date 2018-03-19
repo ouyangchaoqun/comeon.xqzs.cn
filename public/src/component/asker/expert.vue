@@ -7,7 +7,7 @@
             <v-typeHeader :urlType="2"></v-typeHeader>
             <div class="title_top">
                 <div class="hot_head">
-                    热门.推荐
+                    热门▪推荐
                        <div class="hot_hidden" @click="getMore()">
                           更多
                        </div>
@@ -39,7 +39,7 @@
                 <div class="title_top">
                     <div class="new_head">
                         <div class="kuan"></div>
-                        最新.入驻
+                        最新▪入驻
                         <div class="hot_hidden" @click="getNewMore()">
                             更多
                         </div>
@@ -483,11 +483,13 @@
         border-radius: 50%;
         margin: 0 auto;
         padding-top: 0.24rem;
+
     }
     .answer_index .hot_face img{
         width: 100%;
         height: 100%;
         border-radius: 50%;
+        border: 0.02rem solid #eee;
     }
     .answer_index .hot_name{
         margin-top:0.15rem ;
@@ -537,10 +539,11 @@
     .answer_index .kuan{
         width: 0.09rem;
         height: 0.4rem;
-        background: #56C4FE;
+        background: #FE7A03;
         position: absolute;
         top:50% ;
         margin-top: -0.2rem;
         left:0;
+
     }
 </style>

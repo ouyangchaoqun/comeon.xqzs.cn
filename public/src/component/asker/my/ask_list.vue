@@ -318,6 +318,7 @@
         border-radius: 50%;
         display: inline-block;
         vertical-align: middle;
-        margin-left: -0.17rem;
+        border: 0.06rem solid #fff;
+        margin-left: -0.23rem;
     }
 </style>
