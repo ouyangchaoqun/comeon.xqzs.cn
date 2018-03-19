@@ -12,7 +12,7 @@
                 <div class="index_box">
                     <div class="new_question">
                         <div class="kuan"></div>
-                        <div class="top_left">最新问题</div>
+                        <div class="top_left">最新•问题</div>
                         <div class="top_right" @click="updateList()">
                             <div class="refresh" :class="{click:isAnimate==true}"></div>
                             <div class="top text">换一批</div>
@@ -781,9 +781,9 @@
     .index_box .new_question .refresh{
         width: 0.34rem;
         height:0.3rem;
-        margin-left: 0.10rem;
+        margin-right: 0.10rem;
         background:url("http://oss.xqzs.cn/resources/psy/asker/asker_refresh_blue.png") no-repeat;
-        background-size: 100%;
+        background-size: 90%;
         float: left;
         margin-top: 0.04rem;
     }

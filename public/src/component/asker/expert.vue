@@ -7,7 +7,7 @@
             <v-typeHeader :urlType="2"></v-typeHeader>
             <div class="title_top">
                 <div class="hot_head">
-                    热门▪推荐
+                    热门•推荐
                        <div class="hot_hidden" @click="getMore()">
                           更多
                        </div>
@@ -39,7 +39,7 @@
                 <div class="title_top">
                     <div class="new_head">
                         <div class="kuan"></div>
-                        最新▪入驻
+                        最新•入驻
                         <div class="hot_hidden" @click="getNewMore()">
                             更多
                         </div>
