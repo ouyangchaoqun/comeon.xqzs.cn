@@ -46,7 +46,7 @@
                     </div>
                 </div>
 
-                <div style="padding-left: 0.3rem;background: #fff">
+                <div>
                     <div class="item" v-for="(item,index) in list" v-if="item.expertId!=expertId">
                         <div @click="goDetail(item.expertId)">
                             <div class="itemDetail">

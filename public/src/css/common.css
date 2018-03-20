@@ -264,7 +264,7 @@ a{
 
 
 /*专家列表*/
-.answer_list .item{padding:0.30rem; border-bottom:0.02rem  solid #eee;position: relative;padding-top: 0.42rem;padding-left: 0}
+.answer_list .item{padding:0.30rem; border-bottom:0.02rem  solid #eee;position: relative;padding-top: 0.42rem;background: #fff;}
 .answer_list .item:last-child{border-bottom: 0}
 .answer_list .itemHeader>div:first-child{ font-weight: bold}
 .answer_list .itemHeader{height:0.50rem;line-height: 0.50rem;color:RGBA(69, 75, 84, 1);font-size: 0.3rem;position: relative;margin-bottom: 0.1rem;}
