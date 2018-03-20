@@ -5,14 +5,14 @@
 
         <div class="filter_box">
             <div class="filter_list">
-                <div v-for="(item,index) in filter_tabs" @click="showSelect(index)" :class="{activeColor:index == filter_num}">
-                    {{item}}
-                    <span class="sanjiao" :class="{xsanjiao:index==filter_num}"></span>
+                <div v-for="(item,index) in filter_tabs" @click="showSelect(index)" :class="{activeColor:index==filter_num||item.active}">
+                    {{item.name}}
+                    <span class="sanjiao" :class="{xsanjiao:index==filter_num,activeSanjiao:item.active}"></span>
                 </div>
             </div>
             <div class="tabCon">
                 <ul class="class_select" v-show="filter_num==0">
-                    <li v-for="(item,index) in classList" class="class_list_item" :class="{selected:index==filter_classIndex}" @click="selectTab(index,item.id,item.title)">
+                    <li v-for="(item,index) in classList" class="class_list_item" :class="{selected:item.active}" @click="selectTab(index,item.id,item.title)">
                         {{item.title}}
                     </li>
                     <div style="clear: both"></div>
@@ -136,19 +136,16 @@
                 isPageEnd: false,
                 isShowMoreText:false,
                 showLoad:false,
-                classId:0,
                 noContent:false,
                 titleVal:'',
-                filter_tabs:['主题','地区','排序','筛选'],
+                filter_tabs:[{name:'主题',active:false},{name:'地区',active:false},{name:'排序',active:false},{name:'筛选',active:false}],
                 filter_num:-1,
-                filter_classIndex:-1,
                 fliter_cityIndex:-1,
                 fliter_sortIndex:-1,
                 fliter_ageIndex:-1,
                 fliter_sexIndex:-1,
                 childIndex:-1,
                 filter_cityDate:[],
-                isChange:false,
                 classIdArray:[],
                 provinceId:'',
                 cityId:'',
@@ -205,30 +202,36 @@
             setCity:function (index,cId) {
                 this.cityId = cId;
                 this.childIndex = index;
+                this.filter_tabs[1].active = true;
                 this.initGetList();
                 this.filter_closeList();
             },
             showSelect:function (index) {
-                let _this=this;
+                let _this = this;
                 _this.filter_num = index;
 
             },
             selectTab:function (index,id,title) {
-                this.filter_classIndex = index;
+                this.classList[index].active = !this.classList[index].active;
+                this.$set(this.classList,index,this.classList[index]);
                 this.titleVal = title;
-                this.classId = id;
-                this.isChange = true;
-                this.classIdArray.push(this.classId)
+                if(this.classList[index].active){
+                    this.classIdArray.push(id)
+                }else{
+                    this.classIdArray.splice(this.classIdArray.indexOf(id),1)
+                }
             },
             setClass_sure:function () {
-                if(this.isChange){
+                if(this.classIdArray.length>0){
                     this.initGetList();
+                    this.filter_tabs[0].active = true;
                 }
                 this.filter_closeList();
             },
             sortSel:function (index,val) {
                 this.order = val;
                 this.initGetList();
+                this.filter_tabs[2].active = true;
                 this.filter_closeList();
                 this.fliter_sortIndex = index
             },
@@ -243,13 +246,17 @@
             init_lastSel:function () {
                 this.sex='';
                 this.age = '';
+                this.filter_tabs[3].active = false;
                 this.fliter_ageIndex = -1;
                 this.fliter_sexIndex = -1;
             },
             last_sure:function () {
-                this.ageVal = this.age;
-                this.sexVal = this.sex;
-                this.initGetList();
+                if(this.age||this.sex){
+                    this.ageVal = this.age;
+                    this.sexVal = this.sex;
+                    this.filter_tabs[3].active = true;
+                    this.initGetList();
+                }
                 this.filter_closeList();
             },
             initGetList:function () {
@@ -321,20 +328,16 @@
             goDetail:function (extId) {
                 this.$router.push('/asker/expert/detail/?id='+extId)
             },
-            goClass:function (classId) {
-//                this.$router.push('./list?id='+item.id+"&name="+item.title)
-                let _this = this;
-                _this.classId  = classId;
-                _this.page = 1;
-                _this.isPageEnd = false;
-                _this.getList()
-            },
             getClassList:function () {
                 let _this=this;
                 _this.$http.get(web.API_PATH + 'come/listen/question/class/list' ).then(function (data) {//es5写法
                     if (data.body.status == 1) {
                         _this.classList= data.body.data
                         _this.classList.splice(0,0,{id:0,title:'全部',code:'qb'})
+                        for(let i = 0 ; i<_this.classList.length;i++){
+                            _this.classList[i].active = false
+                        }
+                        _this.classList[0].active = true;
                     }
                 }, function (error) {
                 });
@@ -420,9 +423,6 @@
 
         },
         mounted: function () {
-            if(this.$route.query.classId){
-                this.classId = this.$route.query.classId;
-            }
             this.titleVal = this.$route.query.title;
             $(".weui-tab__panel").height($(window).height()-50)
             this.getClassList();
@@ -459,7 +459,7 @@
         overflow: hidden !important;
     }
     .expert_list .yo-scroll .inner{
-        top:0;
+        top:0.3rem;
     }
     .header_addRightStyle{position: absolute;right:0;top:-0.02rem;display: flex;color:rgba(36,37,61,0.5);font-size: 0.24rem;font-weight:normal}
 

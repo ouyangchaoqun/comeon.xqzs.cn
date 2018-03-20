@@ -837,7 +837,7 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
     display: flex;
     line-height:0.96rem;
     background: #fff;
-    border-bottom: 0.08rem solid #eee;
+    border-bottom: 0.08rem solid #f4f4f7;
     position: relative;
     z-index:55;
 }
@@ -848,21 +848,18 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
     width: 0;
     height: 0;
     display: inline-block;
-    border-top: 0.14rem solid RGBA(69, 75, 84, 0.2);
-    border-right: 0.14rem solid transparent;
-    border-left: 0.14rem solid transparent;
+    border-top: 0.1rem solid RGBA(69, 75, 84, 0.2);
+    border-right: 0.1rem solid transparent;
+    border-left: 0.1rem solid transparent;
     margin-left: 0.07rem;
     vertical-align: middle;
 }
+.filter_box .activeSanjiao {
+    border-top: 0.1rem solid RGBA(3, 207, 254, 1);
+}
 .filter_box .xsanjiao{
-    width: 0;
-    height: 0;
-    display: inline-block;
     border-top: 0;
-    border-bottom: 0.14rem solid #56C4FE;
-    border-right: 0.14rem solid transparent;
-    border-left: 0.14rem solid transparent;
-    margin-left: 0.07rem;
+    border-bottom: 0.1rem solid RGBA(3, 207, 254, 1);
 }
 .filter_box .activeColor{
     color:#56C4FE !important;
