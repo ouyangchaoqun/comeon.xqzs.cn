@@ -1307,10 +1307,11 @@ var xqzs = {
 
             var orientation = null;
             var html = '<article class="htmleaf-container clip_box">\n' +
+                ' <label  class="clipbuttonopen" for="clipFile" >选择</label>' +
                 '    <div id="clipArea"></div>\n' +
                 '    <div class="foot-use">\n' +
                 '        <div class="clipUpload blue">\n' +
-                '            <label  class="clipbuttonopen" for="clipFile" >选择</label>' +
+                '            <label  class="clipbuttonclose" >取消</label>' +
                 '            <input id="clipFile" name="clipFile" type="file"   accept="image/*" multiple  />\n' +
                 '        </div>\n' +
                 '        <button id="clipBtn">完成</button>\n' +
@@ -1319,6 +1320,9 @@ var xqzs = {
                 '</article>';
 
             $("body").append(html);
+            $(".clipbuttonclose").click(function () {
+                xqzs.image.hideClip();
+            })
 
             var isLoad=false;
             $("#clipArea").photoClip({

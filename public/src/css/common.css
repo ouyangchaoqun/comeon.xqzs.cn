@@ -627,13 +627,12 @@ a{
     float: left;
     height: 100%;
 }
-#clipBtn,.clipbuttonopen{
+#clipBtn,.clipbuttonclose,.clipbuttonopen{
     float: right;
-    height: 0.68rem;
-    line-height: 0.68rem;
-    width: 1.36rem;
-    background: #2ca02c;
-    border-radius: 0.17rem;
+    height: 0.72rem; border-radius: 0.36rem;
+    line-height: 0.72rem;
+    width:1.8rem;
+     background: #2ca02c;
     outline: none;
     color: #fff;
     font-size: 0.30rem;
@@ -643,7 +642,11 @@ a{
     position: absolute;
     border:0;
 }
-.clipbuttonopen{ left:0.30rem;}
+.clipbuttonclose{ left:0.30rem; background:none; border: 0.02rem solid #2ca02c }
+.clipbuttonopen{ top:50%; left:50%; margin-top: 120px;  margin-left: -0.9rem}
+
+
+
 #clipFile{ display: none}
 
 
