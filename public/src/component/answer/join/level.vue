@@ -13,7 +13,7 @@
         <div class="level_detail">
             <div class="level_number">
                 <span>证书编号：</span>
-                <input type="text" placeholder="请填写" :value="certificateNo" v-model="certificateNo"/>
+                <input type="text" placeholder="请填写" :value="certificateNo" class="certificateNo" @input="changeCertificateNo()"/>
             </div>
             <div class="level_photo">
                 <span>资质证书：</span>
@@ -71,6 +71,9 @@
             }
         },
         methods: {
+            changeCertificateNo:function (v) {
+                this.certificateNo =  $(".certificateNo").val()
+            },
             getExpertInfo:function () {
                 let expertId = cookie.get('expertId');
                 this.$http.get(web.API_PATH + 'come/expert/query/detail/for/edit/'+expertId+'/_userId_').then(function (data) {
