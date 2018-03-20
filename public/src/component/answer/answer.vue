@@ -573,10 +573,10 @@
     .answer_answer_box .outTimeStyle{background: linear-gradient(to right, rgba(255,158,25,0.4), rgba(253,114,6,0.4))}
     .answer_answer_box .addPlayBox{position: absolute;bottom:1.53rem;width:100%;}
 
-    .dialog_select_Height{ height:6.46rem;}
+    .dialog_select_Height{ height:8.46rem; margin-top: -4.43rem}
     .dialog_select_type  .yes{ border-top: 0.02rem solid #eee; color:#FE7301; text-align: center; line-height: 0.88rem; position: absolute; bottom:0; left:0; width: 100% }
     .dialog_select_type  .yes:active{background: #eee}
-    .dialog_select_type .tip_content{ padding:0  0.34rem; line-height: 1.8; font-size: 0.28rem; color:#666; height: 4.42rem; overflow: auto}
+    .dialog_select_type .tip_content{ padding:0  0.34rem; line-height: 1.8; font-size: 0.28rem; color:#666; height: 6.42rem; overflow: auto}
     .dialog_select_type .tip_content p{ margin-bottom: 0.20rem;}
     .asker_ask_box .ask_type_new{padding:0.40rem 0.30rem;padding-bottom: 0.10rem}
     .asker_ask_box .ask_type_new .tab{color:rgba(36,37,61,1);font-size: 0.34rem;line-height: 1;margin-bottom: 0.40rem;}
