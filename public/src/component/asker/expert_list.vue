@@ -2,7 +2,7 @@
     <div style="height: 100%" class="expert_list">
         <div v-title>{{titleVal}}</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
-        <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
+        <v-scroll :class="{banScroll:filter_num>-1}" :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :isShowMoreText="isShowMoreText" :bottomHeight="0">
             <div class="filter_box">
                 <div class="filter_list">
@@ -451,6 +451,9 @@
     }
 </script>
 <style>
+    .banScroll{
+        overflow: hidden !important;
+    }
     .header_addRightStyle{position: absolute;right:0;top:-0.02rem;display: flex;color:rgba(36,37,61,0.5);font-size: 0.24rem;font-weight:normal}
 
     .expert_list .noContent_icon{background: #fff;color:rgba(36,37,61,0.5);font-size: 0.26rem;text-align: center;}
