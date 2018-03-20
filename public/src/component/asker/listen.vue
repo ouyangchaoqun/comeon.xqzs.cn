@@ -803,7 +803,7 @@
     .asker_listen_box .kuan{
         width: 0.09rem;
         height: 0.4rem;
-        background: rgba(251, 100, 10, 1);
+        background: #56C4FE;
         position: absolute;
         margin: 0.34rem  0;
         left:0;
