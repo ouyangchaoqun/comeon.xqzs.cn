@@ -2,13 +2,61 @@
     <div style="height: 100%" class="expert_list">
         <div v-title>{{titleVal}}</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
-
-
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :isShowMoreText="isShowMoreText" :bottomHeight="0">
-            <v-filter :urlType="2" v-on:downMessage="getQType" v-on:classMessage="getQid"  :currtype="classId" :ordertype="exType" ></v-filter>
+            <div class="filter_box">
+                <div class="filter_list">
+                    <div v-for="(item,index) in filter_tabs" @click="showSelect(index)" :class="{activeColor:index == filter_num}">
+                        {{item}}
+                        <span class="sanjiao" :class="{xsanjiao:index==filter_num}"></span>
+                    </div>
+                </div>
+                <div class="tabCon">
+                    <ul class="class_select" v-show="filter_num==0">
+                        <li v-for="(item,index) in classList" class="class_list_item" :class="{selected:index==filter_classIndex}" @click="selectTab(index,item.id,item.title)">
+                            {{item.title}}
+                        </li>
+                        <div style="clear: both"></div>
+                        <div class="class_btn" @click="setClass_sure()">确定</div>
+                    </ul>
+                    <div class="city_box" v-show="filter_num==1">
+                        <ul>
+                            <li v-for="(item,index ) in filter_cityDate" @click.stop="citySel(index,item.value)" :class="{cityStyle:index== cityIndex}" >
+                                <div class="city_left">{{item.label}}</div>
+                                <div class="city_right"  v-show="index== fliter_cityIndex">
+                                    <div v-for="(child,index) in item.children" @click.stop="setCity(index,child.value)" :class="{activeColor:index==childIndex}">{{child.label}}</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul v-show="filter_num==2" class="sort_box">
+                        <li v-for="(item,index) in sortList" @click="sortSel(index,item.value)" :class="{activeColor:index == fliter_sortIndex}">
+                            {{item.name}}
+                        </li>
+                    </ul>
+                    <div v-show="filter_num==3" class="last_box">
+                        <div class="title">年龄</div>
+                        <ul class="age_box">
+                            <li v-for="(item,index) in ageList" @click="ageSel(index,item.lable)" :class="{selected:index==fliter_ageIndex}">{{item.name}}</li>
+                            <div style="clear: both"></div>
+                        </ul>
+                        <div class="title">性别</div>
+                        <ul class="sexBox">
+                            <li v-for="(item,index) in sexList" @click="sexSel(index,item.lable)" :class="{selected:index==fliter_sexIndex}">{{item.name}}</li>
+                            <div style="clear: both"></div>
+                        </ul>
+                        <div class="set_btn">
+                            <div @click="init_lastSel()">重置</div>
+                            <div @click="last_sure()">确定</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="downList_mask" v-show="filter_num>-1" @click="filter_closeList()"></div>
+            </div>
+
             <div class="answer_list">
-                <div class="item" v-for="(item,index) in list"  v-if="item.expertId!=52">
+                <div class="item" v-for="(item,index) in list">
                     <div @click="goDetail(item.expertId)">
                         <div class="itemDetail">
                             <div class="img"><img :src="item.faceUrl"></div>
@@ -73,7 +121,6 @@
     import scroll from '../include/scroll.vue';
     import Bus from '../bus.js';
     import askerBottom from "./include/bottom.vue";
-    import filter from "../include/filter.vue"
 
     export default {
         data() {
@@ -87,7 +134,43 @@
                 showLoad:false,
                 classId:0,
                 noContent:false,
-                titleVal:''
+                titleVal:'',
+                filter_tabs:['主题','地区','排序','筛选'],
+                filter_num:-1,
+                filter_classIndex:-1,
+                fliter_cityIndex:-1,
+                fliter_sortIndex:-1,
+                fliter_ageIndex:-1,
+                fliter_sexIndex:-1,
+                childIndex:-1,
+                filter_cityDate:[],
+                isChange:false,
+                classIdArray:[],
+                provinceId:'',
+                cityId:'',
+                sortList:[
+                    {name:'综合排序',value:'complex'},
+                    {name:'最新入驻',value:'new'},
+                    {name:'活跃度从高到低',value:'login'},
+                    {name:'回答次数从高到低',value:'answer'},
+                ],
+                order:'',
+                age:'',
+                ageVal:'',
+                sex:'',
+                sexVal:'',
+                ageList:[
+                    {name:'90后',lable:'1990'},
+                    {name:'85后',lable:'1985'},
+                    {name:'80后',lable:'1980'},
+                    {name:'75后',lable:'1975'},
+                    {name:'70后',lable:'1970'},
+                    {name:'70前',lable:'1970b'},
+                ],
+                sexList:[
+                    {name:'男咨询师',lable:1},
+                    {name:'女咨询师',lable:2}
+                ]
             }
         },
 
@@ -95,21 +178,76 @@
             'v-showLoad': showLoad,
             'v-scroll': scroll,
             "v-asker-bottom": askerBottom,
-            'v-filter':filter,
 
         },
         methods: {
-            getQType:function (n) {
-                this.exType= n.exType;
-                this.initGetList()
+            //filter
+            filter_getCity:function () {
+                let  _this = this;
+                $.get('/src/js/city.json', function (data) {
+                    data.unshift({label:'全国',value:'',children:[{label:'不限',value:''}]});
+                    _this.filter_cityDate = data;
+                    _this.$set(_this.filter_cityDate);
+                });
             },
-            getQid:function (msg) {
-                this.titleVal = msg.title;
-                this.classId = msg.classId;
-                this.exType= msg.exType;
-                this.initGetList()
+            filter_closeList:function () {
+                this.filter_num=-1;
             },
+            citySel:function (index,pId) {
+                this.provinceId = pId;
+                this.fliter_cityIndex = index;
+                this.childIndex = -1;
+            },
+            setCity:function (index,cId) {
+                this.cityId = cId;
+                this.childIndex = index;
+                this.initGetList();
+                this.filter_closeList();
+            },
+            showSelect:function (index) {
+                let _this=this;
+                _this.filter_num = index;
 
+            },
+            selectTab:function (index,id,title) {
+                this.filter_classIndex = index;
+                this.titleVal = title;
+                this.classId = id;
+                this.isChange = true;
+                this.classIdArray.push(this.classId)
+            },
+            setClass_sure:function () {
+                if(this.isChange){
+                    this.initGetList();
+                }
+                this.filter_closeList();
+            },
+            sortSel:function (index,val) {
+                this.order = val;
+                this.initGetList();
+                this.filter_closeList();
+                this.fliter_sortIndex = index
+            },
+            ageSel:function (index,age) {
+                this.age = age;
+                this.fliter_ageIndex = index;
+            },
+            sexSel:function (index,sex) {
+                this.sex = sex;
+                this.fliter_sexIndex = index
+            },
+            init_lastSel:function () {
+                this.sex='';
+                this.age = '';
+                this.fliter_ageIndex = -1;
+                this.fliter_sexIndex = -1;
+            },
+            last_sure:function () {
+                this.ageVal = this.age;
+                this.sexVal = this.sex;
+                this.initGetList();
+                this.filter_closeList();
+            },
             initGetList:function () {
                 this.isPageEnd = false;
                 this.page = 1;
@@ -200,11 +338,13 @@
             getList: function (done) {
 
                 let vm= this;
-                let url = web.API_PATH + "come/expert/get/by/class/"+vm.classId+"/"+vm.page+"/"+vm.row+"";
-                this.rankUrl = url + "?complexOrNew="+vm.exType;
-
+                let url = web.API_PATH + "come/expert/query/"+vm.page+"/"+vm.row+"";
+                this.rankUrl = url + "?";
                 if (web.guest) {
-                    this.rankUrl = this.rankUrl + "&guest=true"
+                    this.rankUrl = this.rankUrl + "guest=true"
+                }
+                if (web.guest) {
+                    this.rankUrl = this.rankUrl + ""
                 }
                 if (vm.isLoading || vm.isPageEnd) {
                     return;
@@ -212,8 +352,16 @@
                 if (vm.page == 1) {
                     vm.showLoad = true;
                 }
+                let msg = {
+                    class: this.classIdArray.join(','),
+                    provinceId: this.provinceId,
+                    cityId:this.cityId,
+                    order:this.order,
+                    age:this.ageVal,
+                    gender:this.sexVal
+                }
                 vm.isLoading = true;
-                vm.$http.get(vm.rankUrl).then((response) => {
+                vm.$http.get(vm.rankUrl,{params: msg}).then((response) => {
                     if(done&&typeof(done)==='function'){
                         done()
                     }
@@ -271,13 +419,11 @@
             if(this.$route.query.classId){
                 this.classId = this.$route.query.classId;
             }
-            this.exType =1;
-            if(this.$route.query.orderType) this.exType = this.$route.query.orderType;
             this.titleVal = this.$route.query.title;
             $(".weui-tab__panel").height($(window).height()-50)
             this.getClassList();
             this.getList(0);
-
+            this.filter_getCity();
             xqzs.wx.setConfig(this, function () {
                 var config = {
                     imgUrl:"http://oss.xqzs.cn/resources/psy/logo.jpg",

@@ -827,3 +827,186 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
 .regcom_Style_back .text_area .placeholder{position: absolute;color:RGBA(69, 75, 84, 0.59);font-size: 0.28rem;width:92%;height:100%;z-index: 1001}
 
 .last_red_color{ color:red !important ;}
+
+/**专家头部筛选样式**/
+.filter_box .filter_list{
+    height:0.96rem;
+    color:RGBA(43, 53, 68, 0.5);
+    font-size: 0.3rem;
+    text-align: center;
+    display: flex;
+    line-height:0.96rem;
+    background: #fff;
+    border-bottom: 0.08rem solid #eee;
+}
+.filter_box .filter_list>div{
+    flex: 1;
+}
+.filter_box .sanjiao {
+    width: 0;
+    height: 0;
+    display: inline-block;
+    border-top: 0.14rem solid RGBA(69, 75, 84, 0.2);
+    border-right: 0.14rem solid transparent;
+    border-left: 0.14rem solid transparent;
+    margin-left: 0.07rem;
+    vertical-align: middle;
+}
+.filter_box .xsanjiao{
+    width: 0;
+    height: 0;
+    display: inline-block;
+    border-top: 0;
+    border-bottom: 0.14rem solid #56C4FE;
+    border-right: 0.14rem solid transparent;
+    border-left: 0.14rem solid transparent;
+    margin-left: 0.07rem;
+}
+.filter_box .activeColor{
+    color:#56C4FE !important;
+}
+.filter_box .tabCon{
+    position: absolute;
+    z-index: 55;
+    background: #fff;
+    width: 100%;
+    top:1.65rem;
+}
+.filter_box .class_select {
+    height: 4.48rem;
+}
+.filter_box .city_box{
+    height:9rem;
+    font-size: 0.28rem;
+    overflow: auto;
+    position: relative;
+}
+.filter_box .city_box ul{
+    width:30%;
+    height:100%;
+    overflow: auto;
+}
+.filter_box .sort_box{
+    padding-left: 0.6rem;
+}
+.filter_box .last_box{
+    padding:0.32rem 0rem 0.3rem 0.6rem;
+}
+.filter_box .last_box .title{
+    font-size: 0.28rem;
+    color:RGBA(43, 53, 68, 0.7);
+    line-height: 0.4rem;
+    margin-bottom: 0.2rem;
+}
+.filter_box .last_box li{
+    float: left;
+    width:1.76rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.3rem;
+    text-align: center;
+    color:RGBA(43, 53, 68, 0.5);
+    border-radius: 0.1rem;
+    line-height: 0.6rem;
+    border:0.02rem solid RGBA(238, 238, 238, 1);
+    font-size: 0.26rem;
+}
+.filter_box .sort_box li{
+    line-height: 0.96rem;
+    font-size: 0.28rem;
+    border-bottom: 0.02rem solid RGBA(238, 238, 238, 1);
+    color:RGBA(69, 75, 84, 0.5);
+}
+.filter_box .city_box li{
+    display: flex;
+    line-height: 0.92rem;
+}
+.filter_box .cityStyle .city_left{
+    background:#fff;
+    color:RGBA(43, 53, 68, 0.5)
+}
+.filter_box .city_left{
+    width:100%;
+    text-align: center;
+    color:RGBA(43, 53, 68, 0.6);
+    background: RGBA(244, 244, 247, 1);
+    height:100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.filter_box .city_right{
+    position: absolute;
+    right:0;
+    width:70%;
+    color:RGBA(43, 53, 68, 0.5);
+    z-index:55;
+    top:0;
+    line-height: 0.9rem;
+    height:100%;
+    overflow: auto;
+}
+.filter_box .city_right>div{
+    border-bottom: 0.02rem solid RGBA(238, 238, 238, 1);
+    padding-left: 10%;
+}
+.filter_box .age_box{margin-bottom: 0.2rem;}
+.filter_box .sexBox{margin-bottom: 0.3rem;}
+.filter_box .class_select .class_btn{
+    line-height: 0.88rem;
+    color:RGBA(255, 255, 255, 1);
+    background: RGBA(86, 196, 254, 1);
+    text-align: center;
+    font-size: 0.36rem;
+    border-radius: 0.1rem;
+    width:92%;
+    margin: 0 auto;
+    margin-top: 0.6rem;
+}
+.filter_box .class_list_item {
+    float: left;
+    width: 1.56rem;
+    margin-left: 0.22rem;
+    margin-top: 0.25rem;
+    font-size: 0.30rem;
+    height: 0.60rem;
+    text-align: center;
+    line-height: 0.60rem;
+    color: RGBA(69, 75, 84, 0.5);
+    background: #fff;
+    border-radius: 0.10rem;
+    border: 1px solid #eee;
+}
+.filter_box .downList_mask{
+    width: 100%;
+    height: 16.32rem;
+    background: rgba(0,0,0,0.5);
+    position: absolute;
+    z-index: 54;
+}
+.filter_box .selected{
+    color:#56C4FE !important;
+    border-color: #56C4FE !important;
+}
+.filter_box .set_btn{
+    padding-right: 0.5rem;
+    line-height: 0.7rem;
+    height:0.66rem;
+}
+.filter_box .set_btn>div{
+    width:2.76rem;
+    font-size: 0.36rem;
+    text-align: center;
+    border-radius: 0.1rem;
+    border:0.02rem solid  RGBA(86, 196, 254, 1);
+}
+.filter_box .set_btn>div:nth-of-type(1){
+    float: left;
+    color: RGBA(86, 196, 254, 1);
+    margin-left: -0.1rem;
+}
+.filter_box .set_btn>div:nth-of-type(2){
+    float: right;
+    color:#fff;
+    background: RGBA(86, 196, 254, 1);
+}
+/**专家头部筛选样式**/
