@@ -2,58 +2,62 @@
     <div style="height: 100%" class="expert_list">
         <div v-title>{{titleVal}}</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
+
+        <div class="filter_box">
+            <div class="filter_list">
+                <div v-for="(item,index) in filter_tabs" @click="showSelect(index)" :class="{activeColor:index == filter_num}">
+                    {{item}}
+                    <span class="sanjiao" :class="{xsanjiao:index==filter_num}"></span>
+                </div>
+            </div>
+            <div class="tabCon">
+                <ul class="class_select" v-show="filter_num==0">
+                    <li v-for="(item,index) in classList" class="class_list_item" :class="{selected:index==filter_classIndex}" @click="selectTab(index,item.id,item.title)">
+                        {{item.title}}
+                    </li>
+                    <div style="clear: both"></div>
+                    <div class="class_btn" @click="setClass_sure()">确定</div>
+                </ul>
+                <div class="city_box" v-show="filter_num==1">
+                    <ul>
+                        <li v-for="(item,index ) in filter_cityDate" @click.stop="citySel(index,item.value)" :class="{cityStyle:index== fliter_cityIndex}">
+                            <div class="city_left">{{item.label}}</div>
+                            <div class="city_right"  v-show="index==fliter_cityIndex">
+                                <div v-for="(child,index) in item.children" @click.stop="setCity(index,child.value)" :class="{activeColor:index==childIndex}">{{child.label}}</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <ul v-show="filter_num==2" class="sort_box">
+                    <li v-for="(item,index) in sortList" @click="sortSel(index,item.value)" :class="{activeColor:index == fliter_sortIndex}">
+                        {{item.name}}
+                    </li>
+                </ul>
+                <div v-show="filter_num==3" class="last_box">
+                    <div class="title">年龄</div>
+                    <ul class="age_box">
+                        <li v-for="(item,index) in ageList" @click="ageSel(index,item.lable)" :class="{selected:index==fliter_ageIndex}">{{item.name}}</li>
+                        <div style="clear: both"></div>
+                    </ul>
+                    <div class="title">性别</div>
+                    <ul class="sexBox">
+                        <li v-for="(item,index) in sexList" @click="sexSel(index,item.lable)" :class="{selected:index==fliter_sexIndex}">{{item.name}}</li>
+                        <div style="clear: both"></div>
+                    </ul>
+                    <div class="set_btn">
+                        <div @click="init_lastSel()">重置</div>
+                        <div @click="last_sure()">确定</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="downList_mask" v-show="filter_num>-1" @click="filter_closeList()" @touchmove.prevent></div>
+        </div>
+
+
         <v-scroll :class="{banScroll:filter_num>-1}" :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :isShowMoreText="isShowMoreText" :bottomHeight="0">
-            <div class="filter_box">
-                <div class="filter_list">
-                    <div v-for="(item,index) in filter_tabs" @click="showSelect(index)" :class="{activeColor:index == filter_num}">
-                        {{item}}
-                        <span class="sanjiao" :class="{xsanjiao:index==filter_num}"></span>
-                    </div>
-                </div>
-                <div class="tabCon">
-                    <ul class="class_select" v-show="filter_num==0">
-                        <li v-for="(item,index) in classList" class="class_list_item" :class="{selected:index==filter_classIndex}" @click="selectTab(index,item.id,item.title)">
-                            {{item.title}}
-                        </li>
-                        <div style="clear: both"></div>
-                        <div class="class_btn" @click="setClass_sure()">确定</div>
-                    </ul>
-                    <div class="city_box" v-show="filter_num==1">
-                        <ul>
-                            <li v-for="(item,index ) in filter_cityDate" @click.stop="citySel(index,item.value)" :class="{cityStyle:index== fliter_cityIndex}">
-                                <div class="city_left">{{item.label}}</div>
-                                <div class="city_right"  v-show="index==fliter_cityIndex">
-                                    <div v-for="(child,index) in item.children" @click.stop="setCity(index,child.value)" :class="{activeColor:index==childIndex}">{{child.label}}</div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <ul v-show="filter_num==2" class="sort_box">
-                        <li v-for="(item,index) in sortList" @click="sortSel(index,item.value)" :class="{activeColor:index == fliter_sortIndex}">
-                            {{item.name}}
-                        </li>
-                    </ul>
-                    <div v-show="filter_num==3" class="last_box">
-                        <div class="title">年龄</div>
-                        <ul class="age_box">
-                            <li v-for="(item,index) in ageList" @click="ageSel(index,item.lable)" :class="{selected:index==fliter_ageIndex}">{{item.name}}</li>
-                            <div style="clear: both"></div>
-                        </ul>
-                        <div class="title">性别</div>
-                        <ul class="sexBox">
-                            <li v-for="(item,index) in sexList" @click="sexSel(index,item.lable)" :class="{selected:index==fliter_sexIndex}">{{item.name}}</li>
-                            <div style="clear: both"></div>
-                        </ul>
-                        <div class="set_btn">
-                            <div @click="init_lastSel()">重置</div>
-                            <div @click="last_sure()">确定</div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="downList_mask" v-show="filter_num>-1" @click="filter_closeList()" @touchmove.prevent></div>
-            </div>
 
             <div class="answer_list">
                 <div class="item" v-for="(item,index) in list">
@@ -453,6 +457,9 @@
 <style>
     .banScroll{
         overflow: hidden !important;
+    }
+    .expert_list .yo-scroll .inner{
+        top:0;
     }
     .header_addRightStyle{position: absolute;right:0;top:-0.02rem;display: flex;color:rgba(36,37,61,0.5);font-size: 0.24rem;font-weight:normal}
 

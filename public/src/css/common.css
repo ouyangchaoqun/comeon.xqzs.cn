@@ -872,7 +872,7 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
     z-index: 55;
     background: #fff;
     width: 100%;
-    top:1.65rem;
+    top:0.98rem;
 }
 .filter_box .class_select {
     height: 4.48rem;
@@ -979,7 +979,7 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
 }
 .filter_box .downList_mask{
     width: 100%;
-    height: 16.32rem;
+    height: 100%;
     background: rgba(0,0,0,0.5);
     position: absolute;
     z-index: 54;
