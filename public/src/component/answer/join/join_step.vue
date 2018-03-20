@@ -850,11 +850,11 @@
                     cityId = _this.cityId;
                     areaId = _this.areaId;
                 }
-                if(_this.birthday===''){
-                    xqzs.weui.tip('请设置生日')
+                if(faceUrl==''){
+                    xqzs.weui.tip('请上传头像')
                     return
-                }else if(freeTime===''){
-                    xqzs.weui.tip('请设置免费时间')
+                }else if(_this.birthday===''){
+                    xqzs.weui.tip('请设置生日')
                     return
                 }else if(jobTitle==''){
                     xqzs.weui.tip('请选择资质')
@@ -874,10 +874,7 @@
                 }else if(goodat==''){
                     xqzs.weui.tip('请填写擅长详情')
                     return
-                } else if(faceUrl==''){
-                    xqzs.weui.tip('请上传头像')
-                    return
-                }else if(sign==''){
+                } else if(sign==''){
                     xqzs.weui.tip('请填写个人签名')
                     return
                 }else if(questionClassId==''){
