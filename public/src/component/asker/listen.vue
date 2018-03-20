@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div v-show="list.length>0" class="index_content_active">
-                        <ul style="padding-left: 0.3rem">
+                        <ul>
                             <li v-for="(item,index) in list" >
                                 <img :src=item.expertFaceUrl alt="" class="expert_headerImg" @click="goAnswer(item.expertId)">
                                 <div @click="goDetail(item.questionId)">
@@ -639,7 +639,7 @@
         height:0.8rem;
         border-radius: 50%;
         position: absolute;
-        left:0rem;
+        left:0.3rem;
         border: solid 0.02rem #eee;
     }
 

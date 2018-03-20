@@ -850,10 +850,7 @@
                     cityId = _this.cityId;
                     areaId = _this.areaId;
                 }
-                if(price==''){
-                    xqzs.weui.tip('请填写价格')
-                    return
-                }else if(_this.birthday===''){
+                if(_this.birthday===''){
                     xqzs.weui.tip('请设置生日')
                     return
                 }else if(freeTime===''){
