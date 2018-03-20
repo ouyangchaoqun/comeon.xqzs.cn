@@ -838,6 +838,8 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
     line-height:0.96rem;
     background: #fff;
     border-bottom: 0.08rem solid #eee;
+    position: relative;
+    z-index:55;
 }
 .filter_box .filter_list>div{
     flex: 1;
@@ -981,6 +983,7 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
     background: rgba(0,0,0,0.5);
     position: absolute;
     z-index: 54;
+    top:0;
 }
 .filter_box .selected{
     color:#56C4FE !important;
