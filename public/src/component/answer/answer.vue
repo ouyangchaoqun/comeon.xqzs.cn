@@ -116,7 +116,9 @@
                     <p>
                         3、请专家针对用户的提问给予专业、有针对性的回答。
                     </p>
+                    <p>
                         4、不允许为用户推荐任何心理咨询机构及联系方式。
+                    </p>
                     <p>
                         5、不可开处方（包括指导用户具体用药剂量）、推荐处方及各种符合处方范畴内的药物。
                     </p>
@@ -153,11 +155,6 @@
                         </p>
                     </div>
                 </div>
-                <div class="tip_content" >
-
-
-                </div>
-
                 <div class="yes know" >知道了</div>
 
 
@@ -166,7 +163,7 @@
     </div>
 </template>
 
-<script type="es6">
+<script type="">
 
 
 
@@ -205,6 +202,21 @@
                     _this.timeIntervalFun();
                     console.log(data)
                     _this.detail = data.data.data;
+
+                    _this.$nextTick(function () {
+                        var isLookReply=xqzs.localdb.get("isLookReply");
+                        console.log(isLookReply)
+                         if(isLookReply){
+                             }else{
+                             this.tip()
+                             xqzs.localdb.set("isLookReply","true")
+                        }
+
+                    })
+
+
+
+
                     if( _this.detail.questionStatus==1){
                         xqzs.weui.tip('问题已经完成',function () {
                             if( _this.detail.questionTypp=2){
@@ -231,6 +243,8 @@
             });
 
             myVideo.config({obj:$('.circle')}).init(_this.start,_this.stop,_this.play,_this.play);
+                console.log(this.detail)
+
 
         },
         methods: {
