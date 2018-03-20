@@ -21,9 +21,9 @@
                     </ul>
                     <div class="city_box" v-show="filter_num==1">
                         <ul>
-                            <li v-for="(item,index ) in filter_cityDate" @click.stop="citySel(index,item.value)" :class="{cityStyle:index== cityIndex}" >
+                            <li v-for="(item,index ) in filter_cityDate" @click.stop="citySel(index,item.value)" :class="{cityStyle:index== fliter_cityIndex}">
                                 <div class="city_left">{{item.label}}</div>
-                                <div class="city_right"  v-show="index== fliter_cityIndex">
+                                <div class="city_right"  v-show="index==fliter_cityIndex">
                                     <div v-for="(child,index) in item.children" @click.stop="setCity(index,child.value)" :class="{activeColor:index==childIndex}">{{child.label}}</div>
                                 </div>
                             </li>
@@ -52,7 +52,7 @@
                     </div>
                 </div>
 
-                <div class="downList_mask" v-show="filter_num>-1" @click="filter_closeList()"></div>
+                <div class="downList_mask" v-show="filter_num>-1" @click="filter_closeList()" @touchmove.prevent></div>
             </div>
 
             <div class="answer_list">

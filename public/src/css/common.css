@@ -878,7 +878,6 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
 .filter_box .city_box{
     height:9rem;
     font-size: 0.28rem;
-    overflow: auto;
     position: relative;
 }
 .filter_box .city_box ul{
