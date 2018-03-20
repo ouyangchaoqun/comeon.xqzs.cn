@@ -38,7 +38,7 @@
 
                 <div class="title_top">
                     <div class="new_head">
-                        <div class="kuan" style="background: RGBA(86, 196, 245,1)"></div>
+                        <div class="kuan" style=" border-top: 0.4rem solid #56C4FE;"></div>
                         最新 • 入驻
                         <div class="hot_hidden" @click="getNewMore()">
                             更多
@@ -542,12 +542,11 @@
     .swiper-slide{ overflow: auto}
     .answer_index .kuan{
         width: 0.09rem;
-        height: 0.4rem;
-        background: #FE7A03;
         position: absolute;
         top:50% ;
         margin-top: -0.2rem;
-        left:0;
-
+        left: 0;
+        border-right: 0.09rem solid transparent;
+        border-top: 0.4rem solid rgba(251, 100, 10, 1);
     }
 </style>
