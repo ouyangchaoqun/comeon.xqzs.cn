@@ -915,7 +915,6 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
     color:RGBA(69, 75, 84, 0.5);
 }
 .filter_box .city_box li{
-    display: flex;
     line-height: 0.92rem;
 }
 .filter_box .cityStyle .city_left{
@@ -965,14 +964,14 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
     width: 1.56rem;
     margin-left: 0.22rem;
     margin-top: 0.25rem;
-    font-size: 0.30rem;
+    font-size: 0.26rem;
     height: 0.60rem;
     text-align: center;
     line-height: 0.60rem;
     color: RGBA(69, 75, 84, 0.5);
     background: #fff;
     border-radius: 0.10rem;
-    border: 1px solid #eee;
+    border: 0.02rem solid RGBA(69, 75, 84, 0.08);
 }
 .filter_box .downList_mask{
     width: 100%;

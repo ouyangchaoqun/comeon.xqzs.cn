@@ -22,7 +22,7 @@
                     <ul>
                         <li v-for="(item,index ) in filter_cityDate" @click.stop="citySel(index,item.value)" :class="{cityStyle:index== fliter_cityIndex}">
                             <div class="city_left">{{item.label}}</div>
-                            <div class="city_right"  v-show="index==fliter_cityIndex">
+                            <div class="city_right" >
                                 <div v-for="(child,index) in item.children" @click.stop="setCity(index,child.value)" :class="{activeColor:index==childIndex}">{{child.label}}</div>
                             </div>
                         </li>
@@ -220,9 +220,11 @@
                 }else{
                     this.classIdArray.splice(this.classIdArray.indexOf(id),1)
                 }
+                console.log(this.classIdArray)
             },
             setClass_sure:function () {
                 if(this.classIdArray.length>0){
+                    console.log(this.classIdArray)
                     this.initGetList();
                     this.filter_tabs[0].active = true;
                 }
@@ -337,7 +339,6 @@
                         for(let i = 0 ; i<_this.classList.length;i++){
                             _this.classList[i].active = false
                         }
-                        _this.classList[0].active = true;
                     }
                 }, function (error) {
                 });
