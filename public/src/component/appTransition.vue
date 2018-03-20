@@ -80,6 +80,7 @@
             clearPlugs: function () {
                 $(".child-view").removeClass("page-xqzs-left-enter-active").removeClass("page-xqzs-left-leave-active").removeClass("page-xqzs-right-enter-active").removeClass("page-xqzs-right-leave-active");
                 xqzs.weui.removeWhenPageChange();
+                xqzs.image.hideClip();
             },
             isTabChange: function (from, to) {
                 let userTabs = [
