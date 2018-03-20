@@ -880,7 +880,6 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
     position: relative;
 }
 .filter_box .city_box ul{
-    width:30%;
     height:100%;
     overflow: auto;
 }
@@ -922,7 +921,7 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
     color:RGBA(43, 53, 68, 0.5)
 }
 .filter_box .city_left{
-    width:100%;
+    width:30%;
     text-align: center;
     color:RGBA(43, 53, 68, 0.6);
     background: RGBA(244, 244, 247, 1);
@@ -941,6 +940,7 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
     line-height: 0.9rem;
     height:9rem;
     overflow: auto;
+    background: pink;
 }
 .filter_box .city_right>div{
     border-bottom: 0.02rem solid RGBA(238, 238, 238, 1);
