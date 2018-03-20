@@ -940,7 +940,6 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
     line-height: 0.9rem;
     height:9rem;
     overflow: auto;
-    background: pink;
 }
 .filter_box .city_right>div{
     border-bottom: 0.02rem solid RGBA(238, 238, 238, 1);
