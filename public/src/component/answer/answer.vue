@@ -573,10 +573,17 @@
     .answer_answer_box .outTimeStyle{background: linear-gradient(to right, rgba(255,158,25,0.4), rgba(253,114,6,0.4))}
     .answer_answer_box .addPlayBox{position: absolute;bottom:1.53rem;width:100%;}
 
-    .dialog_select_Height{ height:9.82rem; margin-top: -4.43rem;width: 86% ;margin-left:-43%}
-    .dialog_select_type  .yes{ width:60%;height:0.70rem;line-height: 0.71rem;background: RGBA(86, 196, 245,1);border-radius: 0.45rem;color:RGBA(255, 255, 255, 1);text-align: center;font-size: 0.30rem;margin:0.2rem auto;margin-bottom: 0.10rem;}
+    .dialog_select_Height{ height:10.04rem; margin-top: -5rem;width: 86% ;margin-left:-43%}
+    .dialog_select_type  .yes{ width:60%;height:0.70rem;line-height: 0.71rem;background: RGBA(86, 196, 245,1);border-radius: 0.45rem;color:RGBA(255, 255, 255, 1);text-align: center;font-size: 0.30rem;margin:0.25rem auto;}
     .dialog_select_type  .yes:active{background: #eee}
-    .dialog_select_type .tip_content{ padding:0  0.34rem; line-height: 1.8; font-size: 0.28rem; color:#666; height:7.78rem; overflow: auto}
+    .dialog_select_type .tip_content{ padding: 0 0.2rem;
+        margin: 0 0.2rem;
+        line-height: 1.8;
+        font-size: 0.28rem;
+        color: #666;
+        height: 7.78rem;
+        overflow: auto;
+        background: RGBA(69, 75, 84, 0.05);}
     .dialog_select_type .tip_content p{margin-top: 0.1rem ;margin-bottom: 0.10rem;}
     .asker_ask_box .ask_type_new{padding:0.40rem 0.30rem;padding-bottom: 0.10rem}
     .asker_ask_box .ask_type_new .tab{color:rgba(36,37,61,1);font-size: 0.34rem;line-height: 1;margin-bottom: 0.40rem;}
