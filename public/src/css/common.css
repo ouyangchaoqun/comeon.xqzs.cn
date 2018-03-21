@@ -848,18 +848,31 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
     width: 0;
     height: 0;
     display: inline-block;
-    border-top: 0.1rem solid RGBA(69, 75, 84, 0.2);
-    border-right: 0.1rem solid transparent;
-    border-left: 0.1rem solid transparent;
-    margin-left: 0.07rem;
+    border-top: 0.12rem solid RGBA(69, 75, 84, 0.2);
+    border-right: 0.12rem solid transparent;
+    border-left: 0.12rem solid transparent;
+    margin-left: 0.08rem;
     vertical-align: middle;
 }
 .filter_box .activeSanjiao {
-    border-top: 0.1rem solid RGBA(3, 207, 254, 1);
+    border-top: 0.12rem solid RGBA(3, 207, 254, 1);
 }
 .filter_box .xsanjiao{
     border-top: 0;
-    border-bottom: 0.1rem solid RGBA(3, 207, 254, 1);
+    border-bottom: 0.12rem solid RGBA(3, 207, 254, 1);
+}
+.filter_box .filter_icon{
+    width:0.28rem;
+    height:0.28rem;
+    display: inline-block;
+    background: url("http://oss.xqzs.cn/resources/psy/asker/filter_last_icon.png") no-repeat;
+    background-size: 100% 100%;
+    vertical-align: middle;
+    margin-left: 0.05rem;
+}
+.filter_box .filter_iconActive{
+    background: url("http://oss.xqzs.cn/resources/psy/asker/filter_last_active.png") no-repeat;
+    background-size: 100% 100%;
 }
 .filter_box .activeColor{
     color:#56C4FE !important;
@@ -912,6 +925,7 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
     font-size: 0.28rem;
     border-bottom: 0.02rem solid RGBA(238, 238, 238, 1);
     color:RGBA(69, 75, 84, 0.5);
+    position: relative;
 }
 .filter_box .city_box li{
     line-height: 0.92rem;
@@ -941,9 +955,18 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
     height:9rem;
     overflow: auto;
 }
+.filter_box .sure_icon{
+    width:0.32rem;
+    height:0.24rem;
+    position: absolute;
+    right:0.5rem;
+    top:50%;
+    margin-top: -0.12rem;
+}
 .filter_box .city_right>div{
     border-bottom: 0.02rem solid RGBA(238, 238, 238, 1);
     padding-left: 10%;
+    position: relative;
 }
 .filter_box .age_box{margin-bottom: 0.2rem;}
 .filter_box .sexBox{margin-bottom: 0.3rem;}

@@ -7,7 +7,8 @@
             <div class="filter_list">
                 <div v-for="(item,index) in filter_tabs" @click="showSelect(index)" :class="{activeColor:index==filter_num||item.active}">
                     {{item.name}}
-                    <span class="sanjiao" :class="{xsanjiao:index==filter_num,activeSanjiao:item.active}"></span>
+                    <span v-show="index!=3" class="sanjiao" :class="{xsanjiao:index==filter_num,activeSanjiao:item.active}"></span>
+                    <span v-show="index==3" class="filter_icon" :class="{filter_iconActive:index==filter_num||item.active}"></span>
                 </div>
             </div>
             <div class="tabCon">
@@ -23,7 +24,10 @@
                         <li v-for="(item,index ) in filter_cityDate" @click.stop="citySel(index,item.value)" :class="{cityStyle:index== fliter_cityIndex}">
                             <div class="city_left">{{item.label}}</div>
                             <div class="city_right"  v-show="index==fliter_cityIndex">
-                                <div v-for="(child,index) in item.children" @click.stop="setCity(index,child.value)" :class="{activeColor:index==childIndex}">{{child.label}}</div>
+                                <div v-for="(child,index) in item.children" @click.stop="setCity(index,child.value)" :class="{activeColor:index==childIndex}">
+                                    {{child.label}}
+                                    <img class="sure_icon" v-show="index==childIndex" src="http://oss.xqzs.cn/resources/psy/asker/filter_sure_icon.png" alt="">
+                                </div>
                             </div>
                         </li>
                     </ul>
@@ -31,6 +35,7 @@
                 <ul v-show="filter_num==2" class="sort_box">
                     <li v-for="(item,index) in sortList" @click="sortSel(index,item.value)" :class="{activeColor:index == fliter_sortIndex}">
                         {{item.name}}
+                        <img v-show="index == fliter_sortIndex" class="sure_icon" src="http://oss.xqzs.cn/resources/psy/asker/filter_sure_icon.png" alt="">
                     </li>
                 </ul>
                 <div v-show="filter_num==3" class="last_box">
@@ -139,6 +144,7 @@
                 noContent:false,
                 titleVal:'',
                 filter_tabs:[{name:'主题',active:false},{name:'地区',active:false},{name:'排序',active:false},{name:'筛选',active:false}],
+                classId:'',
                 filter_num:-1,
                 fliter_cityIndex:-1,
                 fliter_sortIndex:-1,
@@ -182,7 +188,6 @@
 
         },
         methods: {
-            //filter
             filter_getCity:function () {
                 let  _this = this;
                 $.get('/src/js/city.json', function (data) {
@@ -193,6 +198,7 @@
             },
             filter_closeList:function () {
                 this.filter_num=-1;
+
             },
             citySel:function (index,pId) {
                 this.provinceId = pId;
@@ -209,22 +215,27 @@
             showSelect:function (index) {
                 let _this = this;
                 _this.filter_num = index;
-
             },
             selectTab:function (index,id,title) {
+                this.titleVal = title;
+                if(id==0){
+                    for(let i = 0;i<this.classList.length;i++){
+                        this.classList[i].active = false;
+                    }
+                }else{
+                    this.classList[0].active = false;
+                }
                 this.classList[index].active = !this.classList[index].active;
                 this.$set(this.classList,index,this.classList[index]);
-                this.titleVal = title;
-                if(this.classList[index].active){
-                    this.classIdArray.push(id)
-                }else{
-                    this.classIdArray.splice(this.classIdArray.indexOf(id),1)
-                }
-                console.log(this.classIdArray)
             },
             setClass_sure:function () {
+                this.classIdArray = [];
+                for(let i = 0;i<this.classList.length;i++){
+                    if(this.classList[i].active){
+                        this.classIdArray.push(this.classList[i].id )
+                    }
+                }
                 if(this.classIdArray.length>0){
-                    console.log(this.classIdArray)
                     this.initGetList();
                     this.filter_tabs[0].active = true;
                 }
@@ -268,8 +279,8 @@
                 this.getList();
             },
             initActive:function () {
-                var obj =  $(".answer_list .item")
-                xqzs.weui.active(obj);
+//                var obj =  $(".answer_list .item")
+//                xqzs.weui.active(obj);
 
                 $(".audio ").on("touchstart",function () {
                     event.stopPropagation();
@@ -337,8 +348,13 @@
                         _this.classList= data.body.data
                         _this.classList.splice(0,0,{id:0,title:'全部',code:'qb'})
                         for(let i = 0 ; i<_this.classList.length;i++){
-                            _this.classList[i].active = false
+                            _this.classList[i].active = false;
+                            if(_this.classList[i].id==this.classId){
+                                _this.classList[i].active = true;
+//                                this.classIdArray.push(this.classId)
+                            }
                         }
+                        console.log(this.classIdArray)
                     }
                 }, function (error) {
                 });
@@ -424,6 +440,7 @@
 
         },
         mounted: function () {
+            this.classId = this.$route.query.classId;
             this.titleVal = this.$route.query.title;
             $(".weui-tab__panel").height($(window).height()-50)
             this.getClassList();

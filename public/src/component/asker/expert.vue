@@ -145,8 +145,8 @@
         ],
         methods: {
             initActive: function () {
-                var obj = $(".answer_list .item")
-                xqzs.weui.active(obj);
+//                var obj = $(".answer_list .item")
+//                xqzs.weui.active(obj);
 
                 $(".audio ").on("touchstart", function () {
                     event.stopPropagation();
