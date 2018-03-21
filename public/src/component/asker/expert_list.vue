@@ -357,7 +357,6 @@
                             if(_this.classList[i].id==_this.classId){
                                 _this.classList[i].active = true;
                                 _this.classIdArray.push(_this.classId)
-                                console.log(_this.classIdArray)
                             }
                         }
                         _this.getList();
@@ -382,7 +381,6 @@
                 if (vm.page == 1) {
                     vm.showLoad = true;
                 }
-                console.log(this.classIdArray)
                 let msg = {
                     class: this.classIdArray.join(','),
                     provinceId: this.provinceId,
