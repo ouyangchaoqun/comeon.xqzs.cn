@@ -19,13 +19,13 @@
                         <div class="my_ask"></div>
                         <p>我的提问</p>
                     </router-link>
-                    <router-link to="../my/dotbean" class="my_nav" >
-                    <div class="my_diandou"></div>
-                        <p>我的点豆</p>
-                    </router-link>
                     <router-link to="../my/cash" class="my_nav">
                         <div class="my_money"></div>
                         <p>我的余额</p>
+                    </router-link>
+                    <router-link to="../my/dotbean" class="my_nav" >
+                        <div class="my_diandou"></div>
+                        <p>我的点豆</p>
                     </router-link>
                 </div>
                 <router-link to="../my/listen/list" class="listen"><i></i>我的偷听</router-link>
