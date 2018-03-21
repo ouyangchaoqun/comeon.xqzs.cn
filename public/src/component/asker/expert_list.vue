@@ -354,10 +354,13 @@
                         _this.classList.splice(0,0,{id:0,title:'全部',code:'qb'})
                         for(let i = 0 ; i<_this.classList.length;i++){
                             _this.classList[i].active = false;
-                            if(_this.classList[i].id==this.classId){
+                            if(_this.classList[i].id==_this.classId){
                                 _this.classList[i].active = true;
+                                _this.classIdArray.push(_this.classId)
+                                console.log(_this.classIdArray)
                             }
                         }
+                        _this.getList();
                     }
                 }, function (error) {
                 });
@@ -379,6 +382,7 @@
                 if (vm.page == 1) {
                     vm.showLoad = true;
                 }
+                console.log(this.classIdArray)
                 let msg = {
                     class: this.classIdArray.join(','),
                     provinceId: this.provinceId,
@@ -452,7 +456,7 @@
 
             $(".weui-tab__panel").height($(window).height()-50)
             this.getClassList();
-            this.getList(0);
+
             this.filter_getCity();
             xqzs.wx.setConfig(this, function () {
                 var config = {
