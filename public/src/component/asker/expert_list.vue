@@ -477,7 +477,11 @@
         overflow: hidden !important;
     }
     .expert_list .yo-scroll .inner{
-        top:0.3rem;
+        top:0.48rem;
+    }
+    .expert_list .answer_list .item{
+        border-top: none;
+        border-bottom: 0.02rem solid #eee;
     }
     .header_addRightStyle{position: absolute;right:0;top:-0.02rem;display: flex;color:rgba(36,37,61,0.5);font-size: 0.24rem;font-weight:normal}
 
