@@ -147,8 +147,8 @@
         ],
         methods: {
             initActive: function () {
-                var obj = $(".answer_list .item")
-                xqzs.weui.active(obj);
+//                var obj = $(".answer_list .item")
+//                xqzs.weui.active(obj);
 
                 $(".audio ").on("touchstart", function () {
                     event.stopPropagation();
@@ -217,10 +217,10 @@
                 _this.getList()
             },
             getMore:function () {
-                this.$router.push('expert/list?classId=0&orderType=1&title=热门推荐')
+                this.$router.push('expert/list?classId=0&title=热门推荐')
             },
             getNewMore:function () {
-                this.$router.push('expert/list?classId=0&orderType=2&title=最新入驻')
+                this.$router.push('expert/list?classId=0&orderType=new&title=最新入驻')
             },
             getHotList:function () {
               let _this=this;
