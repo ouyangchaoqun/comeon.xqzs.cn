@@ -144,13 +144,13 @@
                 noContent:false,
                 titleVal:'',
                 filter_tabs:[{name:'主题',active:false},{name:'地区',active:false},{name:'排序',active:false},{name:'筛选',active:false}],
-                classId:'',
+                classId:0,
                 filter_num:-1,
-                fliter_cityIndex:-1,
-                fliter_sortIndex:-1,
+                fliter_cityIndex:0,
+                fliter_sortIndex:0,
                 fliter_ageIndex:-1,
                 fliter_sexIndex:-1,
-                childIndex:-1,
+                childIndex:0,
                 filter_cityDate:[],
                 classIdArray:[],
                 provinceId:'',
@@ -445,6 +445,11 @@
         mounted: function () {
             this.classId = this.$route.query.classId;
             this.titleVal = this.$route.query.title;
+            if(this.$route.query.orderType){
+                this.order = this.$route.query.orderType;
+                this.fliter_sortIndex = 1;
+            }
+
             $(".weui-tab__panel").height($(window).height()-50)
             this.getClassList();
             this.getList(0);
