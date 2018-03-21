@@ -62,19 +62,7 @@
         },
 
 
-        timeIntervalFun:function () {
-            let _this=this;
-            if(_this.timeInterval!=null){
-                clearInterval(_this.timeInterval);
-            }
-           _this.timeInterval=   setInterval(function () {
-                for(let i =0;i<_this.list.length;i++){
-                    _this.list[i].endTime= _this.list[i].endTime + 1;
-                    _this.list[i].endTime= _this.list[i].endTime - 1;
-                    _this.$set(_this.list,i, _this.list[i]);
-                }
-            },1000)
-        },
+
 
         mounted: function () {
             this.getList();
@@ -90,6 +78,19 @@
 
         },
         methods: {
+            timeIntervalFun:function () {
+                let _this=this;
+                if(_this.timeInterval!=null){
+                    clearInterval(_this.timeInterval);
+                }
+                _this.timeInterval=   setInterval(function () {
+                    for(let i =0;i<_this.list.length;i++){
+                        _this.list[i].endTime= _this.list[i].endTime + 1;
+                        _this.list[i].endTime= _this.list[i].endTime - 1;
+                        _this.$set(_this.list,i, _this.list[i]);
+                    }
+                },1000)
+            },
             getList: function (done) {
                 let vm= this;
                 let expertId = cookie.get('expertId')
