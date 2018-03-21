@@ -6,7 +6,7 @@
         <div class="filter_box">
             <div class="filter_list">
                 <div v-for="(item,index) in filter_tabs" @click="showSelect(index)" :class="{activeColor:index==filter_num||item.active}">
-                    {{item.name}}
+                    <span>{{cityStr(item.name)}}</span>
                     <span v-show="index!=3" class="sanjiao" :class="{xsanjiao:index==filter_num,activeSanjiao:item.active}"></span>
                     <span v-show="index==3" class="filter_icon" :class="{filter_iconActive:index==filter_num||item.active}"></span>
                 </div>
@@ -24,7 +24,7 @@
                         <li v-for="(item,index ) in filter_cityDate" @click.stop="citySel(index,item.value)" :class="{cityStyle:index== fliter_cityIndex}">
                             <div class="city_left">{{item.label}}</div>
                             <div class="city_right"  v-show="index==fliter_cityIndex">
-                                <div v-for="(child,index) in item.children" @click.stop="setCity(index,child.value)" :class="{activeColor:index==childIndex}">
+                                <div v-for="(child,index) in item.children" @click.stop="setCity(index,child.value,child.label)" :class="{activeColor:index==childIndex}">
                                     {{child.label}}
                                     <img class="sure_icon" v-show="index==childIndex" src="http://oss.xqzs.cn/resources/psy/asker/filter_sure_icon.png" alt="">
                                 </div>
@@ -205,12 +205,18 @@
                 this.fliter_cityIndex = index;
                 this.childIndex = -1;
             },
-            setCity:function (index,cId) {
+            setCity:function (index,cId,cName) {
+                //filter_tabs
+                console.log(cName)
+                this.filter_tabs[1].name = cName;
                 this.cityId = cId;
                 this.childIndex = index;
                 this.filter_tabs[1].active = true;
                 this.initGetList();
                 this.filter_closeList();
+            },
+            cityStr:function (name) {
+                return name.substring(0,4)
             },
             showSelect:function (index) {
                 let _this = this;
