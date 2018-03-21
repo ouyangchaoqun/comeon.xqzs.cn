@@ -577,7 +577,7 @@
     .dialog_select_type  .yes{ width:60%;height:0.70rem;line-height: 0.71rem;background: RGBA(86, 196, 245,1);border-radius: 0.45rem;color:RGBA(255, 255, 255, 1);text-align: center;font-size: 0.30rem;margin:0.2rem auto;margin-bottom: 0.10rem;}
     .dialog_select_type  .yes:active{background: #eee}
     .dialog_select_type .tip_content{ padding:0  0.34rem; line-height: 1.8; font-size: 0.28rem; color:#666; height:7.78rem; overflow: auto}
-    .dialog_select_type .tip_content p{ margin-bottom: 0.20rem;}
+    .dialog_select_type .tip_content p{margin-top: 0.1rem; margin-bottom: 0.10rem;}
     .asker_ask_box .ask_type_new{padding:0.40rem 0.30rem;padding-bottom: 0.10rem}
     .asker_ask_box .ask_type_new .tab{color:rgba(36,37,61,1);font-size: 0.34rem;line-height: 1;margin-bottom: 0.40rem;}
     .asker_ask_box .ask_type_new .tab span{color:rgba(36,37,61,0.5);font-size: 0.24rem;}
@@ -586,4 +586,5 @@
     .asker_ask_box .ask_type_new .select_box div:nth-of-type(2){margin:0 0.30rem;}
     .asker_ask_box .ask_type_new .select_box .on_new{background: rgba(253,114,6,1);color:#fff;}
     .asker_ask_box  .text_area .content{ font-size: 0.26rem; color:rgba(36,37,61,1); height: 90%; line-height: 0.48rem}
+
 </style>
