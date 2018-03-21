@@ -697,7 +697,7 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
 
 
 /*录音*/
-.record_voice_box{ position: absolute; bottom:0; width: 100%}
+.record_voice_box{ position: absolute; bottom:0.3rem; width: 100%}
 .record_voice_box .gg{width:100px;height:100px;position: absolute;background: #E4E4E5;border-radius: 50%;top:50%;left:50%;margin-left:-50px;margin-top:-50px;}
 .record_voice_box .move{position: relative;}
 .record_voice_box .qq{width:12px;height:12px;border-radius: 50%;background:#4493FF;top:-4px;left:50%;margin-left: -6px;position: absolute;}
