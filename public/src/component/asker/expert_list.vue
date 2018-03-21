@@ -207,7 +207,6 @@
             },
             setCity:function (index,cId,cName) {
                 //filter_tabs
-                console.log(cName)
                 this.filter_tabs[1].name = cName;
                 this.cityId = cId;
                 this.childIndex = index;
@@ -357,10 +356,8 @@
                             _this.classList[i].active = false;
                             if(_this.classList[i].id==this.classId){
                                 _this.classList[i].active = true;
-//                                this.classIdArray.push(this.classId)
                             }
                         }
-                        console.log(this.classIdArray)
                     }
                 }, function (error) {
                 });
