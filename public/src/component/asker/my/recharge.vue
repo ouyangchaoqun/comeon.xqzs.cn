@@ -151,7 +151,7 @@
                 };
 
                 console.log(msg)
-
+return;
                 _this.$http.put(web.API_PATH + "come/user/create/recharge", msg)
                         .then(function (bt) {
                             if (bt.data && bt.data.status == 1) {
