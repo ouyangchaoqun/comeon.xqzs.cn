@@ -7,7 +7,7 @@
             <!--导航栏-->
             <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite"
                       :isPageEnd="isPageEnd" :isShowMoreText="isShowMoreText" :bottomHeight="0" >
-                <v-downList v-on:downMessage="getQType" v-on:classMessage="getQid" :urlType="1" :currtype="type"></v-downList>
+                <v-downList  v-on:downMessage="getQType" v-on:classMessage="getQid" :urlType="1" :currtype="type"></v-downList>
                 <div class="asker_listen_list_box">
                     <div v-show="list.length>0">
                         <ul>
@@ -65,15 +65,15 @@
 
                         </ul>
                     </div>
-                    <div v-show="list.length==0&&!showLoad">
-                        <div class="index_nocontent">
-                            <div>
-                                <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
-                                <div class="nocontent_html">暂无该方面问题</div>
-                            </div>
+                    <!--<div v-show="list.length==0&&!showLoad">-->
+                        <!--<div class="index_nocontent">-->
+                            <!--<div>-->
+                                <!--<img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">-->
+                                <!--<div class="nocontent_html">暂无该方面问题</div>-->
+                            <!--</div>-->
 
-                        </div>
-                    </div>
+                        <!--</div>-->
+                    <!--</div>-->
             </div>
             </v-scroll>
         </div>
