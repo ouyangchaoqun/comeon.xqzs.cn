@@ -99,7 +99,7 @@
                 row: 10,
                 isPageEnd: false,
                 isShowMoreText: false,
-                showLoad: false,
+                showLoad: true,
                 type: 0,
                 timeOut: null,
                 playing: false,
