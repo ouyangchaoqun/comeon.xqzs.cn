@@ -13,7 +13,7 @@
         <div class="cash">现金余额可使用<span style="color: #FB640A"> {{balance||0.00}} </span>元
             <div class="cash_right" :class={no:!isUseIncome} @click="useIncome()"></div>
         </div>
-        <div class="rechar_btn" @click="doPay()">立即支付（{{pay}} 元）</div>
+        <div class="rechar_btn" v-show="isOver" @click="doPay()">立即支付（{{pay}} 元）</div>
         <div class="question" >
             <img src="http://oss.xqzs.cn/resources/psy/asker/question_icon.png" alt="">
             <span @click="showTips">充值须知</span>
@@ -46,13 +46,14 @@
                 backUrl:'',
                 havedianCoin:0,
                 balance:0,
+                isOver:false,
+                user:''
             }
 
         },
         props:[
             'rechargeMoney',
-            'rechargeFlag',
-            'user'
+            'rechargeFlag'
         ],
         mounted: function () {
             let _this=this;
@@ -72,16 +73,18 @@
                     }
                 }else{
                     xqzs.user.getUserInfo(function (user) {
+                        console.log(user)
                         _this.user =user;
                         if( _this.user!=''|| _this.user!=undefined){
-                            _this.balance = _this.user.balance
+
+                            console.log(_this.user)
+                            _this.isOver = true;
+                            _this.balance = _this.user.balance;
                             _this.havedianCoin = _this.user.dianCoin;
                         }
 
                     })
                 }
-
-
             },
             select: function (index) {
                 this.checkIndex = index;
@@ -151,7 +154,6 @@
                 };
 
                 console.log(msg)
-return;
                 _this.$http.put(web.API_PATH + "come/user/create/recharge", msg)
                         .then(function (bt) {
                             if (bt.data && bt.data.status == 1) {
