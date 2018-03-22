@@ -13,7 +13,7 @@
         <div class="cash">现金余额可使用<span style="color: #FB640A"> {{balance||0.00}} </span>元
             <div class="cash_right" :class={no:!isUseIncome} @click="useIncome()"></div>
         </div>
-        <div class="rechar_btn" v-show="isOver" @click="doPay()">立即支付（{{pay}} 元）</div>
+        <div class="rechar_btn" @click="doPay()">立即支付（{{pay}} 元）</div>
         <div class="question" >
             <img src="http://oss.xqzs.cn/resources/psy/asker/question_icon.png" alt="">
             <span @click="showTips">充值须知</span>
@@ -46,7 +46,6 @@
                 backUrl:'',
                 havedianCoin:0,
                 balance:0,
-                isOver:false,
                 user:''
             }
 
@@ -73,12 +72,8 @@
                     }
                 }else{
                     xqzs.user.getUserInfo(function (user) {
-                        console.log(user)
                         _this.user =user;
                         if( _this.user!=''|| _this.user!=undefined){
-
-                            console.log(_this.user)
-                            _this.isOver = true;
                             _this.balance = _this.user.balance;
                             _this.havedianCoin = _this.user.dianCoin;
                         }
@@ -190,7 +185,6 @@
 
             },
             doPay: function () {
-
                 xqzs.eventLog.visit('comeon_pay')
                 let _this = this;
                 if (this.isUseIncome) {
