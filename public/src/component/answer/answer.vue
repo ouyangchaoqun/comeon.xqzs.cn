@@ -195,8 +195,9 @@
         mounted: function () {
             let _this=this;
             myVideo.initStart();
-            this.questionId = this.$route.query.askId
-            this.$http.get(web.API_PATH + 'come/expert/question/detail/'+this.questionId).then(function (data) {//es5写法
+            this.questionId = this.$route.query.askId;
+            let expertId = cookie.get("expertId");
+            this.$http.get(web.API_PATH + 'come/expert/question/detail/'+this.questionId,{params:{expertId:expertId}}).then(function (data) {//es5写法
                 if (data.body.status == 1) {
 
                     _this.timeIntervalFun();
