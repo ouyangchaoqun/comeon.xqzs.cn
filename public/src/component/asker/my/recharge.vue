@@ -150,7 +150,7 @@
                     channelOpenId:xqzs.localdb.get("channelopenid")
                 };
 
-
+                console.log(msg)
 
                 _this.$http.put(web.API_PATH + "come/user/create/recharge", msg)
                         .then(function (bt) {
