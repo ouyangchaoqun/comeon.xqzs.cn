@@ -26,9 +26,10 @@ var xqzs = {
             return      cookie_base.get("xqzs_openId");
         },
         getUserInfo:function (fun) {
-            console.log("getUserInfo1")
+            console.log("getUserInfo1");
+             var   url = this.initUrl("user/find/by/user/Id/_userId_");
              $.ajax({
-                url:web.API_PATH + "user/find/by/user/Id/_userId_",
+                url:url,
                 type: 'GET',
                 dataType: 'text',
                 success: function (data) {
