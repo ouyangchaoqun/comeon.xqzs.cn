@@ -1164,8 +1164,6 @@ var xqzs = {
             return true;
         }
     },
-
-
     image: {
         convertCanvasToImage: function (canvas) {
             //新Image对象，可以理解为DOM
@@ -1397,90 +1395,40 @@ var xqzs = {
             width>maxWidth && (width=maxWidth);
              return    width * 100 / 750;
         }
+    },
+    api:{
+
+        initUrl:function (url) {
+            url = web.API_PATH + url ;
+            if(!cookie.get("xqzs_openId")){
+                url = url.replace("_userId_","0");
+            }
+            return url ;
+        },
+        get:function (vm,url,success,error) {
+            url = this.initUrl(url);
+            vm.$http.get(url).then(function (data) {
+                if (typeof success === 'function') {
+                    success(data);
+                }
+            },(e) => {
+                if (typeof error === 'function') {
+                    error(e);
+                }
+            });
+
+        },
+        post:function () {
+
+        },
+        put:function () {
+
+        },
+        del:function () {
+
+        }
     }
 };
-
-function myResizePicture(listObj, imgListStr, containerStr) {
-    if (!listObj) {
-        listObj = $('.myMood_list')
-    }
-    if (!imgListStr) {
-        imgListStr = "moodPhotoLists";
-    }
-    if (!containerStr) {
-        containerStr = "div";
-    }
-
-    var maxsize = 750;
-    $.each(listObj, function (index, obj) {
-
-        var imgList = $(obj).find('.' + imgListStr)
-
-        var n = imgList.children().length;
-        if (n == 1) {
-            imgList.addClass('one');
-        } else if (n == 2) {
-            imgList.addClass('two');
-        }
-
-        if (n > 0) {
-            //
-            var container = imgList.find('' + containerStr + ':eq(0)');
-            var images = imgList.find('img');
-            var containersize = {
-                w: container.width(),
-                h: container.height()
-            }
-
-
-            images.each(function () {
-                if ($(this).data('type') && $(this).data('type') == 'notresize') {
-                    return false;
-                }
-                //var spliter = 'x';
-                //$p = $(this).parent('a').data('size').split(spliter);
-                //var iw = parseInt($p[0],10), ih = parseInt($p[1],10);
-                var iw = parseInt($(this).data('w'), 10), ih = parseInt($(this).data('h'), 10);
-
-
-                if (iw > maxsize && ih > maxsize) {
-                    if (iw > ih) {
-                        iw = parseInt(iw * maxsize / ih, 10);
-                        ih = maxsize;
-                    }
-                    else {
-                        ih = parseInt(ih * maxsize / iw, 10);
-                        iw = maxsize;
-                    }
-                    //$(this).parent('a').data('size',iw+spliter+ih);
-                }
-                var imgstyle = {};
-                if (iw * containersize.h > ih * containersize.w) {
-                    var $w = iw * containersize.h / ih;
-                    var marginleft = 0;
-                    if ($w > containersize.w) {
-                        marginleft = (containersize.w - $w) / 2;
-                    }
-                    // imgstyle =
-                    //     'height:'+ containersize.h + 'px;margin-left:'+ marginleft + 'px;width:auto'
-                    // ;
-                    imgstyle = {"height": containersize.h + 'px', "margin-left": marginleft + 'px', 'width': 'auto'};
-                } else {
-                    var $h = ih * containersize.w / iw;
-                    var margintop = 0;
-                    if ($h > containersize.h) {
-                        margintop = (containersize.h - $h) / 2;
-                    }
-                    //imgstyle = 'width: '+ containersize.w + 'px;margin-top:'+ margintop + 'px;height:auto';
-                    imgstyle = {"width": containersize.w + 'px', "margin-top": margintop + 'px', 'height': 'auto'};
-                }
-
-                $(this).css(imgstyle)
-
-            })
-        }
-    })
-}
 
 
 ;(function () {

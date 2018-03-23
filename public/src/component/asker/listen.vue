@@ -445,7 +445,7 @@
             },
             getClassList: function () {
                 let _this = this;
-                _this.$http.get(web.API_PATH + 'come/listen/question/class/list').then(function (data) {//es5写法
+                xqzs.api.get(this,'come/listen/question/class/list',function (data) {
                     if (data.body.status == 1) {
                         let arr = [{"title": "全部", id: 0}]
                         _this.navLists = data.body.data
@@ -454,8 +454,8 @@
                         _this.initView();
                         _this.getList();
                     }
-                }, function (error) {
                 });
+
             },
             randContentNum:function (arr) {
 
@@ -470,7 +470,7 @@
             },
             getList: function (done,isRef) {
                 let vm = this;
-                let url = web.API_PATH + 'come/listen/listen/list/_userId_/' + vm.type + '/' + vm.page + '/' + vm.row;
+                let url =   'come/listen/listen/list/_userId_/' + vm.type + '/' + vm.page + '/' + vm.row;
                 this.rankUrl = url + "?";
                 if (web.guest) {
                     vm.rankUrl = vm.rankUrl + "guest=true"
@@ -486,7 +486,8 @@
                     vm.getCoupon();
                 }
 
-                vm.$http.get(vm.rankUrl).then((response) => {
+
+                xqzs.api.get(vm,vm.rankUrl,function (response) {
                     if (done && typeof(done) === 'function') {
                         done()
                     }
@@ -508,7 +509,6 @@
                         vm.isPageEnd = true;
                         vm.isShowMoreText = false
                     } else {
-
                         vm.isShowMoreText = true;
                     }
                     Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
@@ -532,15 +532,13 @@
 
                     vm.page = vm.page + 1;
 
-                     vm.$nextTick(function () {
+                    vm.$nextTick(function () {
                         vm.initActive()
                     });
-
-                }, (response) => {
+                },function () {
                     vm.isLoading = false;
                     vm.showLoad = false;
                 });
-
             },
             onInfinite(done) {
                 this.getList(done);

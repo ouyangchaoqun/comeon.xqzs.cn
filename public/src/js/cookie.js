@@ -1,7 +1,7 @@
 /**
  * Created by pc on 2017/5/27.
  */
-var COOKIE_BASE_NAME="come_"+cookieVersion+"_";
+var COOKIE_BASE_NAME=cookieVersion;
 var cookie = {
     set: function (name, value, days) {
         var d = new Date;
