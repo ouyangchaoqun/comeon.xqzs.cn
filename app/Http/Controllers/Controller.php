@@ -40,15 +40,15 @@ class Controller extends BaseController
     public function index(Request $request)
     {
 
-        $userId = $this->getUserId($request);
-        if ($userId == 0) {
+         $userId = $this->getUserId($request);
+        if ($userId == 0&&false) {
             $fullurl = $request->fullUrl();
-
-            return "<script>window.location.href = '/wx/index?reurl='+encodeURIComponent(window.location.href);</script>";
-
-//            return redirect("/wx/index?reurl=".urlencode($fullurl));
+             return "<script>window.location.href = '/wx/index?reurl='+encodeURIComponent(window.location.href);</script>";
+ //            return redirect("/wx/index?reurl=".urlencode($fullurl));
+        }else{
+            $this->apiService->login($userId);
         }
-         $this->apiService->login($userId);
+
         if (env("APP_ENV") == "production") {
             return view('index_production');
         }
