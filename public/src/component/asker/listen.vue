@@ -9,13 +9,86 @@
                       :isShowMoreText="isShowMoreText" :bottomHeight="50">
                 <v-typeHeader :urlType="1"></v-typeHeader>
                 <div style="height:0.20rem;background: #f4f4f7"></div>
+                 <!--精选-->
+                 <div class="index_box selected_box">
+                     <div class="new_question">
+                         <div class="kuan"></div>
+                         <div class="top_left">精选 • 问题</div>
+                         <div class="top_right" @click="updateList()">
+                            更多
+                         </div>
+                     </div>
+                     <div v-show="list.length>0" class="index_content_active">
+                         <ul>
+                             <li v-for="(item,index) in RecommendList">
+                                 <img :src=item.expertFaceUrl alt="" class="expert_headerImg" @click="goAnswer(item.expertId)">
+                                 <div @click="goDetail(item.questionId)">
+                                     <div class="index_li_header">
+                                         <div>{{item.expertName}} 回答了</div>
+                                         <div>{{item.title}}</div>
+                                     </div>
+                                     <div class="index_li_content">{{item.content}}</div>
+                                     <div class="index_li_bottom">
+                                         <!--免费听-->
+                                         <span class="problem_answer_yy" v-if="item.answerType==1">
+                                            <div class="audio_mask" @click.stop="hideMask(index,RecommendList)" :class="{maskState:item.isAdd}"></div>
+                                            <div class="audio" :class="{playing:item.playing,paused:item.paused}">
+                                                <div class="audio_btn " @click.stop="play(index,RecommendList)" :class="{widthAnimation_class:item.isAdd}">
+                                                    <div class="radio"><span></span><i></i></div>
+                                                    <template v-if="!item.playing&&!item.paused">点击播放</template>
+                                                    <template v-if="item.playing">正在播放..</template>
+                                                    <template v-if="item.paused">播放暂停</template>
+                                                    <div class="second">{{(item.ct && item.ct!='00')?item.ct:item.length}}”</div>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </span>
+
+                                         <!--付费听-->
+                                         <div class="problem_answer_yy" v-if="item.answerType==2||item.answerType==4">
+                                             <div  class="audio_mask" @click.stop="hideMask(index,RecommendList)" :class="{maskState:item.isAdd}"></div>
+                                             <div class="audio">
+                                                 <div @click.stop="typeDialog(item.questionId,item.answerId,index ,RecommendList)"
+                                                      v-if="item.answerType==2||item.answerType==4" class="audio_btn pay" :class="{widthAnimation_class:item.isAdd}">偷听
+                                                     <div class="second">{{(item.ct &&
+                                                         item.ct!='00')?item.ct:item.length}}”
+                                                     </div>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                         <!--限时免费听-->
+                                         <span class="problem_answer_yy" v-if="item.answerType==3">
+                                            <div class="audio_mask" @click.stop="hideMask(index,RecommendList)" :class="{maskState:item.isAdd}"></div>
+                                            <div class="audio" :class="{playing:item.playing,paused:item.paused}">
+                                                <div class="audio_btn " @click.stop="play(index,RecommendList)" :class="{widthAnimation_class:item.isAdd}">
+                                                    <template v-if="!item.playing&&!item.paused">限时免费听</template>
+                                                    <template v-if="item.playing">正在播放..</template>
+                                                    <template v-if="item.paused">播放暂停</template>
+                                                    <div class="second">{{(item.ct && item.ct!='00')?item.ct:item.length}}”</div>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </span>
+
+                                         <div class="index_li_count">听过 {{item.listenTimes}}</div>
+                                     </div>
+                                 </div>
+                             </li>
+
+                         </ul>
+                     </div>
+
+
+                 </div>
+
+
+                 <!--最新-->
                 <div class="index_box">
                     <div class="new_question">
                         <div class="kuan"></div>
                         <div class="top_left">最新 • 问题</div>
                         <div class="top_right" @click="updateList()">
-                            <div class="refresh" :class="{click:isAnimate==true}"></div>
-                            <div class="top text">换一批</div>
+                            更多
                         </div>
                     </div>
                     <div v-show="list.length>0" class="index_content_active">
@@ -31,9 +104,9 @@
                                     <div class="index_li_bottom">
                                         <!--免费听-->
                                         <span class="problem_answer_yy" v-if="item.answerType==1">
-                                            <div class="audio_mask" @click.stop="hideMask(index)" :class="{maskState:item.isAdd}"></div>
+                                            <div class="audio_mask" @click.stop="hideMask(index,list)" :class="{maskState:item.isAdd}"></div>
                                             <div class="audio" :class="{playing:item.playing,paused:item.paused}">
-                                                <div class="audio_btn " @click.stop="play(index)" :class="{widthAnimation_class:item.isAdd}">
+                                                <div class="audio_btn " @click.stop="play(index,list)" :class="{widthAnimation_class:item.isAdd}">
                                                     <div class="radio"><span></span><i></i></div>
                                                     <template v-if="!item.playing&&!item.paused">点击播放</template>
                                                     <template v-if="item.playing">正在播放..</template>
@@ -46,9 +119,9 @@
 
                                         <!--付费听-->
                                         <div class="problem_answer_yy" v-if="item.answerType==2||item.answerType==4">
-                                            <div  class="audio_mask" @click.stop="hideMask(index)" :class="{maskState:item.isAdd}"></div>
+                                            <div  class="audio_mask" @click.stop="hideMask(index,list)" :class="{maskState:item.isAdd}"></div>
                                             <div class="audio">
-                                                <div @click.stop="typeDialog(item.questionId,item.answerId,index )"
+                                                <div @click.stop="typeDialog(item.questionId,item.answerId,index ,list)"
                                                      v-if="item.answerType==2||item.answerType==4" class="audio_btn pay" :class="{widthAnimation_class:item.isAdd}">偷听
                                                     <div class="second">{{(item.ct &&
                                                         item.ct!='00')?item.ct:item.length}}”
@@ -58,9 +131,9 @@
                                         </div>
                                         <!--限时免费听-->
                                         <span class="problem_answer_yy" v-if="item.answerType==3">
-                                            <div class="audio_mask" @click.stop="hideMask(index)" :class="{maskState:item.isAdd}"></div>
+                                            <div class="audio_mask" @click.stop="hideMask(index,list)" :class="{maskState:item.isAdd}"></div>
                                             <div class="audio" :class="{playing:item.playing,paused:item.paused}">
-                                                <div class="audio_btn " @click.stop="play(index)" :class="{widthAnimation_class:item.isAdd}">
+                                                <div class="audio_btn " @click.stop="play(index,list)" :class="{widthAnimation_class:item.isAdd}">
                                                     <template v-if="!item.playing&&!item.paused">限时免费听</template>
                                                     <template v-if="item.playing">正在播放..</template>
                                                     <template v-if="item.paused">播放暂停</template>
@@ -122,7 +195,8 @@
                 urlType:1,
                 isAnimate:false,
                 currPlayIndex:null,
-                isRegExpert:false
+                isRegExpert:false,
+                RecommendList:[]
             }
         },
         components: {
@@ -233,7 +307,7 @@
                     _this.couponNum = data.data.data.length;
                 })
             },
-            typeDialog: function (questionId, answerId, index) {
+            typeDialog: function (questionId, answerId, index,list) {
                 let _this = this;
                 let useCoupon = false;
                 let useCoin = false;
@@ -274,7 +348,7 @@
                                 success: function (bt) {
                                     if (bt.status == 1) {
                                         xqzs.weui.toast("success", "支付成功", function () {
-                                            _this.setPayed(index);
+                                            _this.setPayed(index,list);
                                         });
                                     } else {
                                         xqzs.weui.tip("支付失败", function () {
@@ -297,7 +371,7 @@
                                 success: function (bt) {
                                     if (bt.status == 1) {
                                         xqzs.weui.toast("success", "支付成功", function () {
-                                            _this.setPayed(index);
+                                            _this.setPayed(index,list);
                                         });
                                     } else {
                                         xqzs.weui.tip("支付失败", function () {
@@ -318,8 +392,8 @@
 //                    _this.pay(index)
                 })
             },
-            pay: function (index) {
-                let item = this.list[index];
+            pay: function (index,list) {
+                let item = list[index];
                 console.log(item)
                 let _this = this;
                 this.$http.get(web.API_PATH + "come/listen/create/order/_userId_/" + item.answerId)
@@ -333,7 +407,7 @@
 
                                 }, function () {//success
                                     xqzs.weui.toast("success", "支付成功", function () {
-                                        _this.setPayed(index);
+                                        _this.setPayed(index,list);
                                     });
                                 }, function () {//error
 
@@ -342,25 +416,25 @@
                         });
             },
             //设置dom 已经支付
-            setPayed: function (index) {
-                let item = this.list[index];
+            setPayed: function (index,list) {
+                let item = list[index];
                 item.answerType = 1;
-                this.$set(this.list, index, item);
+                this.$set(list, index, item);
                 this.$nextTick(function () {
                     this.initActive();
                 })
 
             },
-            hideMask:function (index) {
+            hideMask:function (index,list) {
                 let _this = this;
-                let list = _this.list;
+//                let list = _this.list;
                 for (let i = 0; i < list.length; i++) {
                     list[i].isAdd = false;
                     if (index != i && (list[i].playing || list[i].paused)) {
                         list[i].paused = false;
                         list[i].playing = false;
                     }
-                    _this.$set(_this.list, i, list[i]);
+                    _this.$set(list, i, list[i]);
                 }
 
                 if(_this.currPlayIndex!=null)
@@ -373,25 +447,25 @@
                 list[index].isAdd = true;
             },
 
-            pause:function (index) {
+            pause:function (index,list) {
                 let  _this=this;
-                let list = _this.list;
+//                let list = _this.list;
                 list[index].paused = true;
                 list[index].playing = false;
                 _this.currPlayIndex = null;
-                _this.$set(_this.list, index, list[index])
+                _this.$set(list, index, list[index])
                 xqzs.voice.pause();
             },
 
-            play: function (index) {
+            play: function (index,list) {
                 let _this = this;
-                let list = _this.list;
+//                let list = _this.list;
                 let CT = list[index].ct ? list[index].ct : list[index].length;
                 let T = list[index].length;
                 xqzs.voice.onEnded = function () {
                     list[index].paused = false;
                     list[index].playing = false;
-                    _this.$set(_this.list, index, list[index]);
+                    _this.$set(list, index, list[index]);
                     if (_this.playing)_this.clearTimeOut();
                     _this.playing = false;
                 };
@@ -400,15 +474,15 @@
                     if (index != i && (list[i].playing || list[i].paused)) {
                         list[i].paused = false;
                         list[i].playing = false;
-                        _this.$set(_this.list, i, list[i]);
+                        _this.$set(list, i, list[i]);
                     }
                 }
-                let item = _this.list[index];
+                let item = list[index];
 
                 if (item.paused) {  //暂停中也就是已经获取到且为当前音频
                     list[index].paused = false;
                     list[index].playing = true;
-                    _this.$set(_this.list, index, list[index])
+                    _this.$set(list, index, list[index])
                     xqzs.voice.play();
                     _this.currPlayIndex=index;
                     _this.timeout(true, CT, index)
@@ -416,7 +490,7 @@
                     if (item.playing) {    //播放中去做暂停操作
                         list[index].paused = true;
                         list[index].playing = false;
-                        _this.$set(_this.list, index, list[index])
+                        _this.$set(list, index, list[index])
                         xqzs.voice.pause();
                         _this.clearTimeOut();
                         _this.playing = false;
@@ -426,7 +500,7 @@
                             xqzs.voice.play(url);
                             list[index].playing = true;
                             list[index].paused = false;
-                            _this.$set(_this.list, index, list[index]);
+                            _this.$set(list, index, list[index]);
                             _this.playing = true;
                             _this.currPlayIndex=index;
                             _this.clearTimeOut();
@@ -453,6 +527,7 @@
 
                         _this.initView();
                         _this.getList();
+                        _this.getRecommendList();
                     }
                 }, function (error) {
                 });
@@ -468,10 +543,16 @@
                 }
                 return arr ;
             },
+            getRecommendList:function () {
+                let vm = this;
+                vm.$http.get(web.API_PATH + 'come/listen/listen/list/_userId_/' + vm.type + '/1/3'+'?hottestOrNewest='+3).then((response) =>{
+                    vm.RecommendList = response.data.data;
+                })
+            },
             getList: function (done,isRef) {
                 let vm = this;
-                let url = web.API_PATH + 'come/listen/listen/list/_userId_/' + vm.type + '/' + vm.page + '/' + vm.row;
-                this.rankUrl = url + "?";
+                this.rankUrl = web.API_PATH + 'come/listen/listen/list/_userId_/' + vm.type + '/' + vm.page + '/' + vm.row+'?hottestOrNewest='+2;
+
                 if (web.guest) {
                     vm.rankUrl = vm.rankUrl + "guest=true"
                 }
@@ -752,7 +833,8 @@
     }
 
     .asker_listen_box .audio {
-        margin-bottom: 0
+        margin-bottom: 0;
+        overflow: hidden;
     }
     .new_question{
         height: 1.10rem;
@@ -766,13 +848,17 @@
         font-size: 0.3rem;
         margin-left: 0.27rem ;
         font-weight: bold;
+        color:RGBA(86, 196, 254, 1)
     }
     .top_right{
         float: right;
-        margin-right: 0.28rem;
+        margin-right: 0.4rem;
         font-size: 0.24rem;
-        margin-top: 0.38rem;
         color:RGBA(69, 75, 84,0.5);
+        line-height: 1.1rem;
+        background: url(http://oss.xqzs.cn/resources/psy/arrow.png) no-repeat center right;
+        background-size: 0.24rem 0.20rem;
+        padding-right: 0.30rem;
     }
 
     .index_box .new_question .top.text{
@@ -808,5 +894,14 @@
         left:0;
         border-right: 0.09rem solid transparent;
         border-top: 0.4rem solid #56C4FE;
+    }
+    .selected_box {
+        border-bottom: 0.16rem solid RGBA(244, 244, 247, 1);
+    }
+    .selected_box .kuan{
+        border-top: 0.4rem solid RGBA(254, 122, 3, 1);
+    }
+    .selected_box .top_left{
+        color:RGBA(254, 122, 3, 1);
     }
 </style>
