@@ -184,17 +184,15 @@
 //                    return;
 //                }
                 this.showLoad=true
-                that.$http.put(web.API_PATH + "come/user/evaluate/answer", {userId:"_userId_",answerId:this.detail.bestAnswerId, point:this.commentValue,content:content,isAnonymous :this.anonyVal})
-                    .then(function (bt) {
-                        that.showLoad=false;
-                        if (bt.data && bt.data.status == 1) {
-
-                            xqzs.weui.toast("success","评论成功",function () {
-                                that.showLoad = false;
-                                that.getDetail();
-                            })
-                        }
-                    });
+                xqzs.api.put(that, "come/user/evaluate/answer",{userId:"_userId_",answerId:that.detail.bestAnswerId, point:that.commentValue,content:content,isAnonymous :that.anonyVal},function (bt) {
+                    that.showLoad=false;
+                    if (bt.data && bt.data.status == 1) {
+                        xqzs.weui.toast("success","评论成功",function () {
+                            that.showLoad = false;
+                            that.getDetail();
+                        })
+                    }
+                })
             },
 
             showCommentBox:function () {
@@ -331,28 +329,24 @@
                     return ;
                 }
                 let _this=this;
-                this.$http.put(web.API_PATH + "come/user/like/answer/_userId_/"+item.answerId, {})
-                    .then(function (bt) {
-                        if (bt.data && bt.data.status == 1) {
-                            item.isLiked=1;
-                            item.likeTimes=item.likeTimes+1;
-                            _this.$set(_this.detail.answers,index,item);
-                        }
-                    });
+                xqzs.api.put(_this,"come/user/like/answer/_userId_/"+item.answerId,{},function (bt) {
+                    if (bt.data && bt.data.status == 1) {
+                        item.isLiked=1;
+                        item.likeTimes=item.likeTimes+1;
+                        _this.$set(_this.detail.answers,index,item);
+                    }
+                })
             },
             setBestAnswerId:function () {
                 let _this=this;
-                this.$http.post(web.API_PATH + "come/user/set/question/best/answer", {userId:"_userId_",answerId:this.selBestAnswerId, questionId: this.id})
-                    .then(function (bt) {
-                        if (bt.data && bt.data.status == 1) {
+                let data= {userId:"_userId_",answerId:_this.selBestAnswerId, questionId: _this.id};
+                xqzs.api.post(_this, "come/user/set/question/best/answer",data,function (bt) {
+                    if (bt.data && bt.data.status == 1) {
+                        _this.detail.bestAnswerId=_this.selBestAnswerId;
+                        _this.detail.questionStatus=1
+                    }
+                })
 
-                            _this.detail.bestAnswerId=_this.selBestAnswerId;
-                            _this.detail.questionStatus=1
-
-
-
-                        }
-                    });
             },
             selectBestAnswerId:function (answer) {
                 let _this=this;
@@ -386,7 +380,7 @@
             },
             getDetail:function () {
                 let _this= this;
-                _this.$http.get(web.API_PATH + 'come/user/query/question/_userId_/'+this.id ).then(function (data) {//es5写法
+                xqzs.api.get(_this,'come/user/query/question/_userId_/'+_this.id ,function (data) {
                     if (data.body.status == 1) {
                         console.log(data.body.data.data)
                         _this.detail= data.body.data.data;
@@ -399,9 +393,7 @@
                         }
                         _this.timeIntervalFun()
                     }
-                }, function (error) {
-                });
-
+                })
             },
             best_qx:function () {
                 this.changeFlg = false;

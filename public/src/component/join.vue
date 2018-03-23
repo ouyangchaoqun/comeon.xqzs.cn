@@ -123,7 +123,7 @@
 
                     if(user&&user.id){
 
-                        _this.$http.get(web.API_PATH + 'come/expert/query/detail/by/userId/_userId_' ).then(function (data) {//es5写法
+                        xqzs.api.get(_this,'come/expert/query/detail/by/userId/_userId_',function (data) {
                             if (data.body.status == 1) {
                                 if(data.data.data!=null){
                                     let status = data.data.data.status;
@@ -144,9 +144,8 @@
                                     _this.goJoin()
                                 }
                             }
-                        }, function (error) {
+                        })
 
-                        });
 
                     }else{
                         xqzs.weui.dialogCustom($("#ewm_box_join").html())

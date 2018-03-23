@@ -287,7 +287,7 @@
             //获取是否有偷听卡
             getCoupon:function () {
                 let _this = this;
-                _this.$http.get(web.API_PATH + 'come/user/get/coupon/_userId_/1/10/0').then(function (data) {
+                xqzs.api.get(_this, 'come/user/get/coupon/_userId_/1/10/0',function (data) {
                     _this.couponList = data.data.data;
                     _this.couponNum = data.data.data.length;
                 })
@@ -326,47 +326,35 @@
                                 answerId:answerId
                             };
                             _this.showLoad=true;
-                            $.ajax({
-                                url: web.API_PATH + "come/listen/put/coupon/_userId_",
-                                data:data,
-                                type: 'PUT',
-                                dataType:'JSON',
-                                success: function( bt ) {
-                                    if(bt.status==1){
-                                        xqzs.weui.toast("success","支付成功", function () {
-                                            _this.setPayed(index);
-                                        });
-                                    }else{
-                                        xqzs.weui.tip("支付失败", function () {
+                            xqzs.api.put(this,"come/listen/put/coupon/_userId_",data,function(bt){
+                                if(bt.data.status==1){
+                                    xqzs.weui.toast("success","支付成功", function () {
+                                        _this.setPayed(index);
+                                    });
+                                }else{
+                                    xqzs.weui.tip("支付失败", function () {
 
-                                        });
-                                    }
-                                    _this.getCoupon();
-                                    _this.showLoad=false;
+                                    });
                                 }
+                                _this.getCoupon();
+                                _this.showLoad=false;
                             });
                             break;
                         case useCoin:
                             console.log('使用点豆支付');
                             _this.showLoad=true;
-                            $.ajax({
-                                url: web.API_PATH + "come/listen/put/coin/_userId_/"+questionId+'/'+answerId+'/1',
-                                data:data,
-                                type: 'PUT',
-                                dataType:'JSON',
-                                success: function( bt ) {
-                                    if(bt.status==1){
-                                        xqzs.weui.toast("success","支付成功", function () {
-                                            _this.setPayed(index);
-                                        });
-                                    }else{
-                                        xqzs.weui.tip("支付失败", function () {
+                            xqzs.api.put(_this,"come/listen/put/coin/_userId_/"+questionId+'/'+answerId+'/1',data,function(bt){
+                                if(bt.data.status==1){
+                                    xqzs.weui.toast("success","支付成功", function () {
+                                        _this.setPayed(index);
+                                    });
+                                }else{
+                                    xqzs.weui.tip("支付失败", function () {
 
-                                        });
-                                    }
-                                    _this.getUser();
-                                    _this.showLoad=false;
+                                    });
                                 }
+                                _this.getUser();
+                                _this.showLoad=false;
                             });
                             break;
                         case recharge:
@@ -404,35 +392,35 @@
                     return ;
                 }
                 let _this=this;
-                this.$http.put(web.API_PATH + "come/user/like/answer/_userId_/"+item.answerId, {})
-                    .then(function (bt) {
-                        if (bt.data && bt.data.status == 1) {
-                            item.isCared=1;
-                            item.likeTimes=item.likeTimes+1;
-                            _this.$set(_this.answerList,index,item);
-                        }
-                    });
+                xqze.api.put( "come/user/like/answer/_userId_/"+item.answerId,{},function (bt) {
+                    if (bt.data && bt.data.status == 1) {
+                        item.isCared=1;
+                        item.likeTimes=item.likeTimes+1;
+                        _this.$set(_this.answerList,index,item);
+                    }
+                })
+
             },
             pay:function (index) {
                 let  item = this.answerList[index];
                 let _this=this;
-                this.$http.get(web.API_PATH + "come/listen/create/order/_userId_/"+item.answerId)
-                    .then(function (bt) {
-                        if (bt.data && bt.data.status == 1) {
-                            let result = bt.data.data;
+                xqzs.api.get(this,"come/listen/create/order/_userId_/"+item.answerId,function (bt) {
+                    if (bt.data && bt.data.status == 1) {
+                        let result = bt.data.data;
 
 
-                            xqzs.wx.pay.pay(result.order, function () {
+                        xqzs.wx.pay.pay(result.order, function () {
 
-                            }, function () {//success
-                                xqzs.weui.toast("success","支付成功", function () {
-                                    _this.setPayed(index);
-                                });
-                            }, function () {//error
+                        }, function () {//success
+                            xqzs.weui.toast("success","支付成功", function () {
+                                _this.setPayed(index);
+                            });
+                        }, function () {//error
 
-                            })
-                        }
-                    });
+                        })
+                    }
+                })
+
             },
             //设置dom 已经支付
             setPayed:function (index) {
@@ -531,18 +519,8 @@
 
             getUser:function () {
                 let _this=this;
-                _this.$http({
-                    method: 'GET',
-                    type: "json",
-                    url: web.API_PATH + 'user/find/by/user/Id/_userId_',
-                }).then(function (data) {//es5写法
-                    if (data.data.data !== null) {
-                        _this.user = eval(data.data.data);
-
-
-                    }
-                }, function (error) {
-                    //error
+                xqzs.user.getUserInfo(function (user) {
+                    _this.user=user;
                 });
             },
             btn_sq:function () {
@@ -584,28 +562,28 @@
 
             follow:function () {
 
-                let that=this;
-                that.$http.put(web.API_PATH + "come/expert/follow/expert/"+this.id+"/_userId_", {})
-                    .then(function (bt) {
-                        if (bt.data && bt.data.status == 1) {
+                let _this=this;
 
-                            if(that.detail.followed==1){
-                                that.detail.followed=0;
-                                that.detail.followCount=that.detail.followCount-1;
-                                xqzs.weui.toast("success","取消成功")
-                            }else{
-                                that.detail.followed=1;
-                                that.detail.followCount=that.detail.followCount+1;
-                                xqzs.weui.toast("success","关注成功")
-                            }
+                xqzs.api.put(_this,"come/expert/follow/expert/"+this.id+"/_userId_",{},function (bt) {
+                    if (bt.data && bt.data.status == 1) {
 
-
-                        }else if(bt.data.status ==9000003){
-                            xqzs.weui.toast("fail","不能关注自己")
-                        }else {
-                            xqzs.weui.toast("fail","关注失败")
+                        if(that.detail.followed==1){
+                            that.detail.followed=0;
+                            that.detail.followCount=that.detail.followCount-1;
+                            xqzs.weui.toast("success","取消成功")
+                        }else{
+                            that.detail.followed=1;
+                            that.detail.followCount=that.detail.followCount+1;
+                            xqzs.weui.toast("success","关注成功")
                         }
-                    });
+
+
+                    }else if(bt.data.status ==9000003){
+                        xqzs.weui.toast("fail","不能关注自己")
+                    }else {
+                        xqzs.weui.toast("fail","关注失败")
+                    }
+                })
             },
 //            answerTypeChange:function () {
 //                let _this=this;
@@ -641,13 +619,12 @@
             getComment:function () {
                 let _this= this;
                 let id=  this.id;
-                _this.$http.get(web.API_PATH + 'come/expert/get/evaluate/'+id+"/"+_this.viewType+'/1/1' ).then(function (data) {//es5写法
+                xqzs.api.get(_this,'come/expert/get/evaluate/'+id+"/"+_this.viewType+'/1/1',function (data) {
                     if (data.body.status == 1) {
                         _this.commentList= data.body.data
                         console.log(data.body.data)
                     }
-                }, function (error) {
-                });
+                })
             },
             onInfinite(done) {
                 this.getAnswer();
@@ -660,7 +637,7 @@
                 if (_this.page == 1) {_this.showLoad=true;}
                 if(   _this.isLoading ){return ;}
                 _this.isLoading = true;
-                _this.$http.get(web.API_PATH + 'come/expert/get/answer/'+id+"/"+_this.answerType+'/'+_this.page+'/'+_this.row+'/_userId_' ).then(function (data) {//es5写法
+                xqzs.api.get(_this,'come/expert/get/answer/'+id+"/"+_this.answerType+'/'+_this.page+'/'+_this.row+'/_userId_',function (data) {
                     _this.showLoad=false;
                     if (data.body.status == 1) {
 //                        _this.answerList= data.body.data;
@@ -689,16 +666,16 @@
                         console.log(_this.answerList)
                         _this.page = _this.page + 1;
                     }
-                }, function (error) {
+                },function (error) {
                     _this.isLoading = false;
                     _this.showLoad = false;
-                });
+                })
             },
             getDetail:function () {
                 let _this= this;
                 let id=  this.id;
                 _this.showLoad=true;
-                _this.$http.get(web.API_PATH + 'come/expert/show/to/user/'+id+'/_userId_' ).then(function (data) {//es5写法
+                xqzs.api.get(this,'come/expert/show/to/user/'+id+'/_userId_',function (data) {
                     _this.showLoad=false;
                     if (data.body.status == 1) {
                         _this.detail= data.body.data;
@@ -710,20 +687,18 @@
                             _this.scrollHeightBottom=50;
                         }
 
-
-                        xqzs.wx.setConfig(this, function () {
+                        console.log(weshare.getShareUrl("asker/expert/detail/?id=" + id,true))
+                        xqzs.wx.setConfig(_this, function () {
                             var config = {
                                 imgUrl: _this.detail.faceUrl,
                                 title:  xqzs.string.removeHtml(_this.detail.introduction) ,
                                 desc: '好一点平台特邀心理咨询师'+_this.detail.nickName+'，欢迎提问',
-                                link:  xqzs.wx.getPubUrl("asker/expert/detail/?id=" + id) ,
+                                link: weshare.getShareUrl("asker/expert/detail/?id=" + id,true),
                             };
                             weshare.init(wx, config)
                         });
                     }
-                }, function (error) {
-                });
-
+                })
             },
             beforeDestroy:function () {
                 xqzs.voice.pause();

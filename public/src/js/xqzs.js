@@ -15,6 +15,16 @@ var xqzs = {
         PIC_MIDDLE: '?x-oss-process=image/resize,h_750,w_750/quality,q_100'
     },
     user:{
+
+        goPub:function () {
+            var url = window.location.href.replace('#','vue_pound');
+            window.location.href= web.BASE_PATH.replace("comeon/","") +   "/wx/pub?reurl=" + encodeURI(url);
+
+
+        },
+        check:function () {
+            return      cookie_base.get("xqzs_openId");
+        },
         getUserInfo:function (fun) {
             console.log("getUserInfo1")
              $.ajax({
@@ -894,9 +904,7 @@ var xqzs = {
                 urls: imglist // 需要预览的图片http链接列表
             });
         },
-        getPubUrl:function (afterUrl) {
-            return    "http://wx.xqzs.cn/wx/pub?reurl=" + encodeURI( "http://wx.xqzs.cn/comeon/guestvue_pound/"+afterUrl);
-        },
+
         setConfig: function (vm, callback) {
 
             var url = window.location.href.split('#')[0];
@@ -1406,9 +1414,10 @@ var xqzs = {
             return url ;
         },
 
-        get:function (vm,url,success,error) {
+        get:function (vm,url,success,error,data) {
             url = this.initUrl(url);
-            vm.$http.get(url).then(function (data) {
+            if(!data)data={};
+            vm.$http.get(url,data).then(function (data) {
                 if (typeof success === 'function') {
                     success(data);
                 }
@@ -1420,11 +1429,38 @@ var xqzs = {
             });
 
         },
-        post:function () {
 
+        post:function (vm,url,data,success,error) {
+            if(!xqzs.user.check()){
+                xqzs.user.goPub();
+                return ;
+            }
+            url = this.initUrl(url);
+            vm.$http.post(url,data).then(function (data) {
+                if (typeof success === 'function') {
+                    success(data);
+                }
+            },function(e){
+                if (typeof error === 'function') {
+                    error(e);
+                }
+            });
         },
-        put:function () {
-
+        put:function (vm,url,data,success,error) {
+            if(!xqzs.user.check()){
+                xqzs.user.goPub();
+                return ;
+            }
+            url = this.initUrl(url);
+            vm.$http.put(url,data).then(function (data) {
+                if (typeof success === 'function') {
+                    success(data);
+                }
+            },function(e){
+                if (typeof error === 'function') {
+                    error(e);
+                }
+            });
         },
         del:function () {
 

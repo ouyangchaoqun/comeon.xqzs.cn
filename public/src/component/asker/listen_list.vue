@@ -135,7 +135,7 @@
                     imgUrl:"http://oss.xqzs.cn/resources/psy/logo.jpg",
                     title:  "专家详解人生小困惑" ,
                     desc: '你的人生小困惑都在这里，专家60秒解忧语音，偷听只需1点豆',
-                    link:  xqzs.wx.getPubUrl("asker/listen") ,
+                    link: weshare.getShareUrl("asker/listen"  ,false)
                 };
                 weshare.init(wx, config)
             });
@@ -238,48 +238,39 @@
                                 answerId: answerId
                             };
                             _this.showLoad = true;
-                            $.ajax({
-                                url: web.API_PATH + "come/listen/put/coupon/_userId_",
-                                data: data,
-                                type: 'PUT',
-                                dataType: 'JSON',
-                                success: function (bt) {
-                                    if (bt.status == 1) {
-                                        xqzs.weui.toast("success", "支付成功", function () {
-                                            _this.setPayed(index);
-                                        });
-                                    } else {
-                                        xqzs.weui.tip("支付失败", function () {
+                            xqzs.api.put(_this, "come/listen/put/coupon/_userId_",data,function (bt) {
+                                if (bt.data.status == 1) {
+                                    xqzs.weui.toast("success", "支付成功", function () {
+                                        _this.setPayed(index);
+                                    });
+                                } else {
+                                    xqzs.weui.tip("支付失败", function () {
 
-                                        });
-                                    }
-                                    _this.getCoupon();
-                                    _this.showLoad = false;
+                                    });
                                 }
-                            });
+                                _this.getCoupon();
+                                _this.showLoad = false;
+                            })
+
                             break;
                         case useCoin:
                             console.log('使用点豆支付');
                             _this.showLoad = true;
-                            $.ajax({
-                                url: web.API_PATH + "come/listen/put/coin/_userId_/" + questionId + '/' + answerId + '/1',
-                                data: data,
-                                type: 'PUT',
-                                dataType: 'JSON',
-                                success: function (bt) {
-                                    if (bt.status == 1) {
-                                        xqzs.weui.toast("success", "支付成功", function () {
-                                            _this.setPayed(index);
-                                        });
-                                    } else {
-                                        xqzs.weui.tip("支付失败", function () {
+                            xqzs.api.put(_this,  "come/listen/put/coin/_userId_/" + questionId + '/' + answerId + '/1',data,function (bt) {
 
-                                        });
-                                    }
-                                    _this.getUserInfo();
-                                    _this.showLoad = false;
+                                if (bt.data.status == 1) {
+                                    xqzs.weui.toast("success", "支付成功", function () {
+                                        _this.setPayed(index);
+                                    });
+                                } else {
+                                    xqzs.weui.tip("支付失败", function () {
+
+                                    });
                                 }
-                            });
+                                _this.getUserInfo();
+                                _this.showLoad = false;
+                            })
+
                             break;
                         case recharge:
                             xqzs.eventLog.visit('comeon_listen_go_pay');

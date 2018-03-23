@@ -132,7 +132,11 @@
             'v-recharge': Recharge,
             'v-typeHeader': typeHeader,
         },
+        updated:function () {
+            this.initReUrl();
+        },
         mounted: function () {
+
             let expertId = cookie.get("expertId");
             if(expertId){
                 this.isRegExpert = true
@@ -150,16 +154,27 @@
                     imgUrl:"http://oss.xqzs.cn/resources/psy/logo.jpg",
                     title:  "专家详解人生小困惑" ,
                     desc: '你的人生小困惑都在这里，专家60秒解忧语音，偷听只需1点豆',
-                    link:  xqzs.wx.getPubUrl("asker/listen") ,
+                    link: weshare.getShareUrl("asker/listen" ,false)
                 };
-                weshare.init(wx, config)
+                weshare.init(wx, config);
             });
+            let _this=this;
 
         },
         props:[
             'expert','user'
         ],
         methods: {
+            initReUrl:function () {
+
+                console.log("isReUrlisReUrlisReUrlisReUrlisReUrlisReUrl")
+
+                if( this.$route.query.reurl&& this.$route.query.reurl!=''&&xqzs.localdb.get("isReUrl")=='false'){
+                    xqzs.localdb.set("isReUrl","true");
+                    this.$router.push("/"+this.$route.query.reurl)
+                }
+
+            },
             go_expert:function () {
                 let _this = this;
                 _this.$router.push("/answer/race/list")
@@ -228,7 +243,7 @@
             //获取是否有偷听卡
             getCoupon: function () {
                 let _this = this;
-                _this.$http.get(web.API_PATH + 'come/user/get/coupon/_userId_/1/10/0').then(function (data) {
+                xqzs.api.get(_this,'come/user/get/coupon/_userId_/1/10/0',function (data) {
                     _this.couponList = data.data.data;
                     _this.couponNum = data.data.data.length;
                 })
@@ -266,52 +281,41 @@
                                 answerId: answerId
                             };
                             _this.showLoad = true;
-                            $.ajax({
-                                url: web.API_PATH + "come/listen/put/coupon/_userId_",
-                                data: data,
-                                type: 'PUT',
-                                dataType: 'JSON',
-                                success: function (bt) {
-                                    if (bt.status == 1) {
-                                        xqzs.weui.toast("success", "支付成功", function () {
-                                            _this.setPayed(index);
-                                        });
-                                    } else {
-                                        xqzs.weui.tip("支付失败", function () {
+                            xqzs.api.put(_this,"come/listen/put/coupon/_userId_",data,function (bt) {
+                                if (bt.data.status == 1) {
+                                    xqzs.weui.toast("success", "支付成功", function () {
+                                        _this.setPayed(index);
+                                    });
+                                } else {
+                                    xqzs.weui.tip("支付失败", function () {
 
-                                        });
-                                    }
-                                    _this.getCoupon();
-                                    _this.showLoad = false;
+                                    });
                                 }
-                            });
+                                _this.getCoupon();
+                                _this.showLoad = false;
+                            })
+
                             break;
                         case useCoin:
                             console.log('使用点豆支付');
                             _this.showLoad = true;
-                            $.ajax({
-                                url: web.API_PATH + "come/listen/put/coin/_userId_/" + questionId + '/' + answerId + '/1',
-                                data: data,
-                                type: 'PUT',
-                                dataType: 'JSON',
-                                success: function (bt) {
-                                    if (bt.status == 1) {
-                                        xqzs.weui.toast("success", "支付成功", function () {
-                                            _this.setPayed(index);
-                                        });
-                                    } else {
-                                        xqzs.weui.tip("支付失败", function () {
+                            xqzs.api.put(_this,"come/listen/put/coin/_userId_/" + questionId + '/' + answerId + '/1',data,function (bt) {
+                                if (bt.data.status == 1) {
+                                    xqzs.weui.toast("success", "支付成功", function () {
+                                        _this.setPayed(index);
+                                    });
+                                } else {
+                                    xqzs.weui.tip("支付失败", function () {
 
-                                        });
-                                    }
-                                    _this.getUserInfo();
-                                    _this.showLoad = false;
+                                    });
                                 }
+                                _this.getUserInfo();
+                                _this.showLoad = false;
                             });
                             break;
                         case recharge:
                             xqzs.eventLog.visit('comeon_listen_go_pay');
-                            _this.rechargeFlag = true
+                            _this.rechargeFlag = true;
                             break;
                     }
 
@@ -322,24 +326,23 @@
                 let item = this.list[index];
                 console.log(item)
                 let _this = this;
-                this.$http.get(web.API_PATH + "come/listen/create/order/_userId_/" + item.answerId)
-                        .then(function (bt) {
-                            if (bt.data && bt.data.status == 1) {
+                xqzs.api.get(_this,"come/listen/create/order/_userId_/" + item.answerId,function (bt) {
+                    if (bt.data && bt.data.status == 1) {
 
-                                let result = bt.data.data;
+                        let result = bt.data.data;
 
 
-                                xqzs.wx.pay.pay(result.order, function () {
+                        xqzs.wx.pay.pay(result.order, function () {
 
-                                }, function () {//success
-                                    xqzs.weui.toast("success", "支付成功", function () {
-                                        _this.setPayed(index);
-                                    });
-                                }, function () {//error
+                        }, function () {//success
+                            xqzs.weui.toast("success", "支付成功", function () {
+                                _this.setPayed(index);
+                            });
+                        }, function () {//error
 
-                                })
-                            }
-                        });
+                        })
+                    }
+                })
             },
             //设置dom 已经支付
             setPayed: function (index) {

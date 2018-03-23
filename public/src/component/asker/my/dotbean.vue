@@ -54,19 +54,9 @@
             },
             getUserInfo:function(){
                 let _this=this;
-                _this.showLoad = true;
-                _this.$http({
-                    method: 'GET',
-                    type: "json",
-                    url: web.API_PATH + 'user/find/by/user/Id/_userId_',
-                }).then(function (data) {//es5写法
-                    _this.showLoad = false;
-                    if (data.data.data !== null) {
-                        _this.user = eval(data.data.data);
-                    }
-                }, function (error) {
-                    //error
-                });
+                xqzs.user.getUserInfo(function (user) {
+                    _this.user=user;
+                })
             }
 
         },
