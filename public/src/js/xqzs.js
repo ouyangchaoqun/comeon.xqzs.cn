@@ -1400,7 +1400,7 @@ var xqzs = {
 
         initUrl:function (url) {
             url = web.API_PATH + url ;
-            if(!cookie.get("xqzs_openId")){
+            if(!cookie_base.get("xqzs_openId")){
                 url = url.replace("_userId_","0");
             }
             return url ;
