@@ -199,10 +199,11 @@
             //获取是否有偷听卡
             getCoupon: function () {
                 let _this = this;
-                _this.$http.get(web.API_PATH + 'come/user/get/coupon/_userId_/1/10/0').then(function (data) {
+                xqzs.api.get(_this,"come/user/get/coupon/_userId_/1/10/0",function (data) {
                     _this.couponList = data.data.data;
                     _this.couponNum = data.data.data.length;
                 })
+
             },
             typeDialog: function (questionId, answerId, index) {
                 let _this = this;
@@ -293,24 +294,24 @@
                 let item = this.list[index];
                 console.log(item)
                 let _this = this;
-                this.$http.get(web.API_PATH + "come/listen/create/order/_userId_/" + item.answerId)
-                    .then(function (bt) {
-                        if (bt.data && bt.data.status == 1) {
+                xqzs.api.get(_this,"come/listen/create/order/_userId_/" + item.answerId,function (bt) {
+                    if (bt.data && bt.data.status == 1) {
 
-                            let result = bt.data.data;
+                        let result = bt.data.data;
 
 
-                            xqzs.wx.pay.pay(result.order, function () {
+                        xqzs.wx.pay.pay(result.order, function () {
 
-                            }, function () {//success
-                                xqzs.weui.toast("success", "支付成功", function () {
-                                    _this.setPayed(index);
-                                });
-                            }, function () {//error
+                        }, function () {//success
+                            xqzs.weui.toast("success", "支付成功", function () {
+                                _this.setPayed(index);
+                            });
+                        }, function () {//error
 
-                            })
-                        }
-                    });
+                        })
+                    }
+                })
+
             },
             //设置dom 已经支付
             setPayed: function (index) {
@@ -413,8 +414,7 @@
             },
             getClassList: function () {
                 let _this = this;
-                console.log('getClassList')
-                _this.$http.get(web.API_PATH + 'come/listen/question/class/list').then(function (data) {//es5写法
+                xqzs.api.get(_this, 'come/listen/question/class/list', function (data) {
                     if (data.body.status == 1) {
                         let arr = [{"title": "全部", id: 0, list: []}]
                         _this.navLists = data.body.data;
@@ -422,8 +422,8 @@
                         _this.navLists = arr.concat(_this.navLists);
                         _this.getList();
                     }
-                }, function (error) {
-                });
+                })
+
             },
             initGetList:function () {
 
@@ -446,7 +446,7 @@
 
             getList: function (done) {
                 let vm = this;
-                this.rankUrl = web.API_PATH + 'come/listen/listen/list/_userId_/' + vm.type + '/' + vm.page + '/' + vm.row+'?hottestOrNewest='+vm.qType;;
+                this.rankUrl = 'come/listen/listen/list/_userId_/' + vm.type + '/' + vm.page + '/' + vm.row+'?hottestOrNewest='+vm.qType;;
                 if (vm.isLoading || vm.isPageEnd) {
                     return;
                 }
@@ -458,8 +458,7 @@
                 if (vm.couponNum != 0) {
                     vm.getCoupon();
                 }
-
-                vm.$http.get(vm.rankUrl).then((response) => {
+                xqzs.api.get(vm,vm.rankUrl,function (response) {
                     if (done && typeof(done) === 'function') {
                         done()
                     }
@@ -474,7 +473,7 @@
                         Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
                         return;
                     }
-                   let arr = response.data.data;
+                    let arr = response.data.data;
                     arr= vm.randContentNum(arr);
                     if (arr.length < vm.row) {
                         vm.isPageEnd = true;
@@ -493,14 +492,13 @@
                     if (arr.length == 0) return;
 
                     vm.page = vm.page + 1;
-                     vm.$nextTick(function () {
+                    vm.$nextTick(function () {
                         vm.initActive()
                     });
-
-                }, (response) => {
+                },function (error) {
                     vm.isLoading = false;
                     vm.showLoad = false;
-                });
+                })
 
             },
             onInfinite(done) {

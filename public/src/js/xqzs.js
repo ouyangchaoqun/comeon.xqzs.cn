@@ -1405,6 +1405,7 @@ var xqzs = {
             }
             return url ;
         },
+
         get:function (vm,url,success,error) {
             url = this.initUrl(url);
             vm.$http.get(url).then(function (data) {
@@ -1416,8 +1417,6 @@ var xqzs = {
                 if (typeof error === 'function') {
                     error(e);
                 }
-
-
             });
 
         },
