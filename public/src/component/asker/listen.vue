@@ -275,22 +275,22 @@
 //                    event.stopPropagation();
 //                })
             },
-            timeout: function (play, time, index) {
+            timeout: function (play, time, index,list) {
                 let _this = this;
                 _this.timeOut = setTimeout(function () {
                     if (play == true) {  //试听
                         if (time > 0) {
                             time = time - 1;
                             if (time < 10)time = "0" + time
-                            _this.timeout(play, time, index);
+                            _this.timeout(play, time, index,list);
                         } else {
                             _this.playing = false;
                         }
                     }
 
                 }, 1000);
-                _this.list[index].ct = time;
-                _this.$set(_this.list, index, _this.list[index])
+                list[index].ct = time;
+                _this.$set(list, index,list[index])
             },
 
             clearTimeOut: function () {
@@ -440,7 +440,7 @@
                 if(_this.currPlayIndex!=null)
                 {
                     _this.clearTimeOut();
-                    _this.pause(_this.currPlayIndex);
+                    _this.pause(_this.currPlayIndex,list);
 
                 }
 
@@ -485,7 +485,7 @@
                     _this.$set(list, index, list[index])
                     xqzs.voice.play();
                     _this.currPlayIndex=index;
-                    _this.timeout(true, CT, index)
+                    _this.timeout(true, CT, index,list)
                 } else {
                     if (item.playing) {    //播放中去做暂停操作
                         list[index].paused = true;
@@ -504,7 +504,7 @@
                             _this.playing = true;
                             _this.currPlayIndex=index;
                             _this.clearTimeOut();
-                            _this.timeout(true, T, index)
+                            _this.timeout(true, T, index,list)
                         })
                     }
 
