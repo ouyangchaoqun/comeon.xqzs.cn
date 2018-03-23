@@ -341,7 +341,7 @@
                 preIning:true,
                 sexIndex:1,
                 defaultCity: '[330000, 330100, 330102]',
-                reg_mobile:cookie.get('reg_mobile')?cookie.get('reg_mobile'):'',
+                reg_mobile :cookie.get('reg_mobile')?cookie.get('reg_mobile'):'',
                 reg_sign:cookie.get('reg_sign')?unescape(cookie.get('reg_sign')):'',
                 reg_introduction:cookie.get('reg_introduction')?unescape(cookie.get('reg_introduction')):'',
                 reg_goodat:cookie.get('reg_goodat')?unescape(cookie.get('reg_goodat')):'',
@@ -796,7 +796,7 @@
             msgSubmit: function () {
                 let _this = this;
                 console.log('提交')
-                let url, price ,freeTime,jobTitle,introduction,experience,goodat,faceUrl,nickName,sign,provinceId,sex,questionClassId,certificateNo,certificateFile1,cityId,areaId;
+                let url, price ,freeTime,jobTitle,introduction,experience,goodat,faceUrl,nickName,sign,provinceId,sex,questionClassId,certificateNo,certificateFile1,cityId,areaId,mobile;
                 let reg_questionClassId;
                 if(cookie.get("questionClassId")){
                     reg_questionClassId = cookie.get("questionClassId").split(",");
@@ -829,6 +829,7 @@
                     certificateFile1 = reg_certificateFile1;
                     cityId = _this.cityId;
                     areaId=_this.areaId;
+                    mobile = _this.reg_mobile
                 }
 
                 if(_this.isModify==1){
@@ -849,18 +850,25 @@
                     certificateFile1 = _this.isShowInfo.certificateFile1;
                     cityId = _this.cityId;
                     areaId = _this.areaId;
+                    mobile = _this.user.mobile;
                 }
                 if(faceUrl==''){
                     xqzs.weui.tip('请上传头像')
-                    return
-                }else if(_this.birthday===''){
-                    xqzs.weui.tip('请设置生日')
                     return
                 }else if(jobTitle==''){
                     xqzs.weui.tip('请选择资质')
                     return
                 }else if(certificateNo==''){
                     xqzs.weui.tip('请填写证书编号')
+                    return
+                }else if(mobile==''){
+                    xqzs.weui.tip('请填写手机号码')
+                    return
+                }else if(nickName==''){
+                    xqzs.weui.tip('请填写昵称')
+                    return
+                } else if(_this.birthday===''){
+                    xqzs.weui.tip('请设置生日')
                     return
                 }else if(certificateFile1==''){
                     xqzs.weui.tip('请上传证件照')
@@ -885,9 +893,6 @@
                     return
                 }else if(sex==null&&_this.btnFlag){
                     xqzs.weui.tip('请选择性别')
-                    return
-                }else if(nickName==''){
-                    xqzs.weui.tip('请填写昵称')
                     return
                 }
                 let msg = {
