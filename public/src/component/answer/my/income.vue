@@ -23,14 +23,17 @@
                         <img @click="clearMoneyVal()" src="http://oss.xqzs.cn/resources/psy/clear_moneyVal_img.png" alt="">
                     </div>
                     <div class="detail_warn">
-                        <span v-if="!isWarn">
+                        <span v-if="!isWarn&&!isSmall">
                             可用余额¥{{formatPrice(user.balance)}}
                         </span>
                         <span v-if="isWarn" class="warn_red">
                             金额已超过可提现余额
                         </span>
+                        <span v-if="isSmall" class="warn_red">
+                            提现金额至少1元
+                        </span>
                     </div>
-                    <div v-if="moneyVal<1" class="disabled_btn weui-btn weui-btn_disabled weui-btn_primary">
+                    <div v-if="moneyVal<1" class="disabled_btn weui-btn weui-btn_disabled">
                         确认提现
                     </div>
                     <div v-if="moneyVal>=1" class="dialog_btn weui-btn weui-btn_primary" @click="withdraw()">
@@ -52,6 +55,7 @@
                 income:0,
                 isOut:false,
                 isWarn:false,
+                isSmall:false,
                 moneyVal:'',
                 user:''
 
@@ -114,8 +118,13 @@
             getMoney:function () {
                 if(Number(this.moneyVal)>Number(this.user.balance)){
                     this.isWarn = true;
-                }else {
+                    this.isSmall = false;
+                }else if(Number(this.moneyVal)<1){
+                    this.isSmall = true
                     this.isWarn = false;
+                }else{
+                    this.isWarn = false;
+                    this.isSmall = false;
                 }
             },
             clearMoneyVal:function () {
