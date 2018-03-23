@@ -1411,10 +1411,13 @@ var xqzs = {
                 if (typeof success === 'function') {
                     success(data);
                 }
-            },(e) => {
+            },function(e){
+
                 if (typeof error === 'function') {
                     error(e);
                 }
+
+
             });
 
         },
