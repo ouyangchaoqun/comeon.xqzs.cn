@@ -29,7 +29,7 @@ var xqzs = {
 
         goPub:function () {
             var url = window.location.href.replace('#','vue_pound');
-            window.location.href= web.BASE_PATH.replace("comeon/","") +   "/wx/pub?reurl=" + encodeURI(url);
+            window.location.href= web.BASE_PATH.replace("comeon/","") +   "wx/pub?reurl=" + encodeURI(url);
 
 
         },
