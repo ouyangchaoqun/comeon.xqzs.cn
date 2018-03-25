@@ -84,7 +84,10 @@ class WeixinController extends Controller
         $url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri=" . urlencode($callback)
             . "&response_type=code&scope=snsapi_userinfo&state={$backurl}#wechat_redirect";
 
-        return redirect($url);
+
+        return "<script>window.location.replace('$url');</script>";
+
+//        return redirect($url);
     }
 
     public function pubjump(Request $request, ApiService $apiService)
@@ -113,7 +116,9 @@ class WeixinController extends Controller
         } catch (\Exception $e) {
 
         } finally {
-            return redirect($gourl);
+            $gourl  = str_replace("vue_pound","#",$gourl);
+            return "<script>window.location.replace ('$gourl');</script>";
+//            return redirect($gourl);
         }
     }
 
