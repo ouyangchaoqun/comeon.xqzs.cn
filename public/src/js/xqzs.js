@@ -38,7 +38,7 @@ var xqzs = {
         },
         getUserInfo:function (fun) {
             console.log("getUserInfo1");
-             var   url = this.initUrl("user/find/by/user/Id/_userId_");
+             var   url = xqzs.api.initUrl("user/find/by/user/Id/_userId_");
              $.ajax({
                 url:url,
                 type: 'GET',
