@@ -16,6 +16,17 @@ var xqzs = {
     },
     user:{
 
+
+
+        isUserLogin:function () {
+            if(!xqzs.user.check()){
+                xqzs.user.goPub();
+                return false ;
+             }
+             return true;
+        },
+
+
         goPub:function () {
             var url = window.location.href.replace('#','vue_pound');
             window.location.href= web.BASE_PATH.replace("comeon/","") +   "/wx/pub?reurl=" + encodeURI(url);

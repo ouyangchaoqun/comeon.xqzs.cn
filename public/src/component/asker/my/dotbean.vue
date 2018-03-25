@@ -35,6 +35,9 @@
             }
         },
         mounted: function () {
+            if(!xqzs.user.isUserLogin()){
+                return ;
+            }
             this.getUserInfo();
             xqzs.wx.setConfig(this, function () {weshare.init(wx)});
         },

@@ -129,7 +129,9 @@
             }
         },
         mounted: function () {
-            this.showLoad = true;
+            if(!xqzs.user.isUserLogin()){
+                return ;
+            }
             this.id= parseInt(this.$route.query.id);
             this.getDetail();
 //            this.getTags();

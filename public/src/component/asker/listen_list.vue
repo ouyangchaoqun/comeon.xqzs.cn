@@ -206,6 +206,13 @@
 
             },
             typeDialog: function (questionId, answerId, index) {
+
+
+                if(!xqzs.user.isUserLogin()){
+                    return ;
+                }
+
+
                 let _this = this;
                 let useCoupon = false;
                 let useCoin = false;

@@ -117,6 +117,9 @@
 
         },
         mounted: function () {
+            if(!xqzs.user.isUserLogin()){
+                return ;
+            }
             $(".weui-tab__panel").height($(window).height() - 50);
             var obj = $(".asker_my_index_box .main a ,.join")
             xqzs.weui.active(obj);

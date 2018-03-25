@@ -94,6 +94,9 @@
             "v-asker-bottom": askerBottom
         },
         mounted: function () {
+            if(!xqzs.user.isUserLogin()){
+                return ;
+            }
             console.log(this.user)
             this.getList();
             xqzs.wx.setConfig(this, function () {weshare.init(wx)});

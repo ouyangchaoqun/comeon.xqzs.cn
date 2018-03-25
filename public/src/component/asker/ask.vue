@@ -202,6 +202,9 @@
                 })
             },
             typeDialog:function () {
+                if(!xqzs.user.isUserLogin()){
+                    return ;
+                }
                 if(this.questionClass==0){
                     xqzs.weui.tip("请选择问题类型")
                     return;

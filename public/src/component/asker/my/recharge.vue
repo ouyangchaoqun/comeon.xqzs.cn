@@ -184,6 +184,9 @@
 
             },
             doPay: function () {
+                if(!xqzs.user.isUserLogin()){
+                    return ;
+                }
                 xqzs.eventLog.visit('comeon_pay')
                 let _this = this;
                 if (this.isUseIncome) {

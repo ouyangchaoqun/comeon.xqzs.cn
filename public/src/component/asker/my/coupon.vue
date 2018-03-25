@@ -67,6 +67,9 @@
             'v-scroll': scroll,
         },
         mounted: function () {
+            if(!xqzs.user.isUserLogin()){
+                return ;
+            }
             this.getList();
             xqzs.wx.setConfig(this, function () {weshare.init(wx)});
         },

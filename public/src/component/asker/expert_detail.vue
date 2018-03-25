@@ -293,6 +293,9 @@
                 })
             },
            payDialog:function (questionId ,answerId ,index) {
+               if(!xqzs.user.isUserLogin()){
+                   return ;
+               }
                 let _this = this;
                 let useCoupon = false;
                 let useCoin = false;
@@ -402,6 +405,9 @@
 
             },
             pay:function (index) {
+                if(!xqzs.user.isUserLogin()){
+                    return ;
+                }
                 let  item = this.answerList[index];
                 let _this=this;
                 xqzs.api.get(this,"come/listen/create/order/_userId_/"+item.answerId,function (bt) {
@@ -605,6 +611,10 @@
                     this.$router.push("/answer/comment?expertId="+this.id );
             },
             ask:function () {
+
+                if(!xqzs.user.isUserLogin()){
+                    return ;
+                }
                 if(this.detail.expertUserId==null||this.user.id==null){
                     xqzs.weui.tip('加载中，请稍后重试')
                     return;

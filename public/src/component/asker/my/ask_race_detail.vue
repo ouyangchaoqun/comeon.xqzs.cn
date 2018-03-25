@@ -149,7 +149,9 @@
             }
         },
         mounted: function () {
-
+            if(!xqzs.user.isUserLogin()){
+                return ;
+            }
             this.id= parseInt(this.$route.query.id);
             this.getDetail();
             xqzs.wx.setConfig(this, function () {weshare.init(wx)});
