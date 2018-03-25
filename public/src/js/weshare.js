@@ -7,7 +7,7 @@
         imgUrl: 'http://oss.xqzs.cn/resources/psy/logo.jpg'
     },
     getShareUrl:function (vueUrl,isBack) {
-        var reUrl=  "http://wx.xqzs.cn/comeon/#/asker/listen";
+        var reUrl=  "http://wx.xqzs.cn/comeon/?#/asker/listen";
         if(isBack){
             reUrl +=  "?reurl=" + encodeURIComponent(vueUrl)
         }else{
