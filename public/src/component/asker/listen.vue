@@ -14,7 +14,7 @@
                      <div class="new_question">
                          <div class="kuan"></div>
                          <div class="top_left">精选 • 问题</div>
-                         <div class="top_right" @click="updateList()">
+                         <div class="top_right" @click="goListenList(3,'精选问题')">
                             更多
                          </div>
                      </div>
@@ -31,9 +31,9 @@
                                      <div class="index_li_bottom">
                                          <!--免费听-->
                                          <span class="problem_answer_yy" v-if="item.answerType==1">
-                                            <div class="audio_mask" @click.stop="hideMask(index,RecommendList)" :class="{maskState:item.isAdd}"></div>
+                                            <div class="audio_mask" @click.stop="hideMask(index,RecommendList,list)" :class="{maskState:item.isAdd}"></div>
                                             <div class="audio" :class="{playing:item.playing,paused:item.paused}">
-                                                <div class="audio_btn " @click.stop="play(index,RecommendList)" :class="{widthAnimation_class:item.isAdd}">
+                                                <div class="audio_btn " @click.stop="play(index,RecommendList,list)" :class="{widthAnimation_class:item.isAdd}">
                                                     <div class="radio"><span></span><i></i></div>
                                                     <template v-if="!item.playing&&!item.paused">点击播放</template>
                                                     <template v-if="item.playing">正在播放..</template>
@@ -46,7 +46,7 @@
 
                                          <!--付费听-->
                                          <div class="problem_answer_yy" v-if="item.answerType==2||item.answerType==4">
-                                             <div  class="audio_mask" @click.stop="hideMask(index,RecommendList)" :class="{maskState:item.isAdd}"></div>
+                                             <div  class="audio_mask" @click.stop="hideMask(index,RecommendList,list)" :class="{maskState:item.isAdd}"></div>
                                              <div class="audio">
                                                  <div @click.stop="typeDialog(item.questionId,item.answerId,index ,RecommendList)"
                                                       v-if="item.answerType==2||item.answerType==4" class="audio_btn pay" :class="{widthAnimation_class:item.isAdd}">偷听
@@ -58,9 +58,9 @@
                                          </div>
                                          <!--限时免费听-->
                                          <span class="problem_answer_yy" v-if="item.answerType==3">
-                                            <div class="audio_mask" @click.stop="hideMask(index,RecommendList)" :class="{maskState:item.isAdd}"></div>
+                                            <div class="audio_mask" @click.stop="hideMask(index,RecommendList,list)" :class="{maskState:item.isAdd}"></div>
                                             <div class="audio" :class="{playing:item.playing,paused:item.paused}">
-                                                <div class="audio_btn " @click.stop="play(index,RecommendList)" :class="{widthAnimation_class:item.isAdd}">
+                                                <div class="audio_btn " @click.stop="play(index,RecommendList,list)" :class="{widthAnimation_class:item.isAdd}">
                                                     <template v-if="!item.playing&&!item.paused">限时免费听</template>
                                                     <template v-if="item.playing">正在播放..</template>
                                                     <template v-if="item.paused">播放暂停</template>
@@ -87,7 +87,7 @@
                     <div class="new_question">
                         <div class="kuan"></div>
                         <div class="top_left">最新 • 问题</div>
-                        <div class="top_right" @click="updateList()">
+                        <div class="top_right" @click="goListenList(2,'最新问题')">
                             更多
                         </div>
                     </div>
@@ -104,9 +104,9 @@
                                     <div class="index_li_bottom">
                                         <!--免费听-->
                                         <span class="problem_answer_yy" v-if="item.answerType==1">
-                                            <div class="audio_mask" @click.stop="hideMask(index,list)" :class="{maskState:item.isAdd}"></div>
+                                            <div class="audio_mask" @click.stop="hideMask(index,list,RecommendList)" :class="{maskState:item.isAdd}"></div>
                                             <div class="audio" :class="{playing:item.playing,paused:item.paused}">
-                                                <div class="audio_btn " @click.stop="play(index,list)" :class="{widthAnimation_class:item.isAdd}">
+                                                <div class="audio_btn " @click.stop="play(index,list,RecommendList)" :class="{widthAnimation_class:item.isAdd}">
                                                     <div class="radio"><span></span><i></i></div>
                                                     <template v-if="!item.playing&&!item.paused">点击播放</template>
                                                     <template v-if="item.playing">正在播放..</template>
@@ -119,7 +119,7 @@
 
                                         <!--付费听-->
                                         <div class="problem_answer_yy" v-if="item.answerType==2||item.answerType==4">
-                                            <div  class="audio_mask" @click.stop="hideMask(index,list)" :class="{maskState:item.isAdd}"></div>
+                                            <div  class="audio_mask" @click.stop="hideMask(index,list,RecommendList)" :class="{maskState:item.isAdd}"></div>
                                             <div class="audio">
                                                 <div @click.stop="typeDialog(item.questionId,item.answerId,index ,list)"
                                                      v-if="item.answerType==2||item.answerType==4" class="audio_btn pay" :class="{widthAnimation_class:item.isAdd}">偷听
@@ -131,9 +131,9 @@
                                         </div>
                                         <!--限时免费听-->
                                         <span class="problem_answer_yy" v-if="item.answerType==3">
-                                            <div class="audio_mask" @click.stop="hideMask(index,list)" :class="{maskState:item.isAdd}"></div>
+                                            <div class="audio_mask" @click.stop="hideMask(index,list,RecommendList)" :class="{maskState:item.isAdd}"></div>
                                             <div class="audio" :class="{playing:item.playing,paused:item.paused}">
-                                                <div class="audio_btn " @click.stop="play(index,list)" :class="{widthAnimation_class:item.isAdd}">
+                                                <div class="audio_btn " @click.stop="play(index,list,RecommendList)" :class="{widthAnimation_class:item.isAdd}">
                                                     <template v-if="!item.playing&&!item.paused">限时免费听</template>
                                                     <template v-if="item.playing">正在播放..</template>
                                                     <template v-if="item.paused">播放暂停</template>
@@ -234,6 +234,9 @@
             'expert','user'
         ],
         methods: {
+            goListenList:function (qType,titVal) {
+                this.$router.push("/asker/listen/list?classId=0&title="+titVal+'&qType='+qType)
+            },
             go_expert:function () {
                 let _this = this;
                 _this.$router.push("/answer/race/list")
@@ -242,12 +245,12 @@
                 this.rechargeFlag = val.rechargeFlag;
                 this.getUserInfo()
             },
-            updateList:function () {
-                this.isAnimate=true
-                this.isPageEnd = false;
-                this.isShowMoreText = false;
-                this.getList(false,true)
-            },
+//            updateList:function () {
+//                this.isAnimate=true
+//                this.isPageEnd = false;
+//                this.isShowMoreText = false;
+//                this.getList(false,true)
+//            },
             goAnswer:function (extId) {
                 this.$router.push('/asker/expert/detail/?id=' + extId)
             },
@@ -425,9 +428,15 @@
                 })
 
             },
-            hideMask:function (index,list) {
+            hideMask:function (index,list,otherList) {
                 let _this = this;
-//                let list = _this.list;
+
+                for (let i = 0; i < otherList.length; i++) {
+                    otherList[i].isAdd = false;
+                    otherList[i].paused = false;
+                    otherList[i].playing = false;
+                    _this.$set(otherList, i, otherList[i]);
+                }
                 for (let i = 0; i < list.length; i++) {
                     list[i].isAdd = false;
                     if (index != i && (list[i].playing || list[i].paused)) {
@@ -457,7 +466,7 @@
                 xqzs.voice.pause();
             },
 
-            play: function (index,list) {
+            play: function (index,list,otherList) {
                 let _this = this;
 //                let list = _this.list;
                 let CT = list[index].ct ? list[index].ct : list[index].length;
@@ -476,6 +485,11 @@
                         list[i].playing = false;
                         _this.$set(list, i, list[i]);
                     }
+                }
+                for (let i = 0; i < otherList.length; i++) {
+                    otherList[i].paused = false;
+                    otherList[i].playing = false;
+                    _this.$set(otherList, i, otherList[i]);
                 }
                 let item = list[index];
 
@@ -602,7 +616,7 @@
                             vm.list = arr;
                             if(vm.list.length==0){
                                 vm.page=1;
-                                vm.updateList()
+//                                vm.updateList()
                             }
                         }else {
                             vm.list = vm.list.concat(arr);

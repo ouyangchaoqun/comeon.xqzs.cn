@@ -20,14 +20,14 @@
 </template>
 <script>
     export default {
-        props: ['urlType',"currtype","ordertype"],
+        props: ["currtype","ordertype"],
         data() {
             return {
-                sortList: [{label: "综合排序", value: 1, flag: true}, {label: "最新入驻", value: 2, flag: false}],
+                sortList: [{label: "最热问题", value: 1, flag: true}, {label: "最新问题", value: 2, flag: false},{label: "精选问题", value: 3, flag: false}],
                 classList:[],
                 isShowSort:false,
                 isShowClass:false,
-                nowSort:"综合排序",
+                nowSort:"最新问题",
                 nowClass:"全部",
                 bottom:true,
                 bottom1:true,
@@ -37,29 +37,7 @@
             }
         },
         mounted:function () {
-            let _this=this;
             this. getClassList();
-
-            if(this.urlType==1){
-                //偷听
-                console.log('偷听')
-                this.sortList=[{label: "最热问题", value: 1, flag: true}, {label: "最新问题", value: 2, flag: false}]
-                this.nowSort = '最新问题'
-            }
-            if(this.urlType==2){
-                //专家
-                console.log('专家')
-                this.sortList= [{label: "综合排序", value: 1, flag: true}, {label: "最新入驻", value: 2, flag: false}]
-                this.nowSort = '综合排序';
-               setTimeout(function () {
-                   if(_this.ordertype==2){
-                       _this.nowSort = '最新入驻';
-                   }
-               },1)
-
-            }
-
-
         },
 
         methods:{
@@ -105,67 +83,34 @@
 
             },
             selectTab:function (item,n) {
-                if(this.urlType==1){
-                    //偷听
-                    let typeVal;
-                    let _this=this;
-                    if(n==1){
-                        _this.nowSort=item.label;
-                        _this.isShowSort=false;
-                        _this.bottom=true;
-                        typeVal = item.value;
-                        cookie.set('typeVal',typeVal,1)
-                    }
+                //偷听
+                let typeVal;
+                let _this=this;
+                if(n==1){
+                    _this.nowSort=item.label;
+                    _this.isShowSort=false;
+                    _this.bottom=true;
+                    typeVal = item.value;
+                    cookie.set('typeVal',typeVal,1)
+                }
 
-                    if(n==2){
-                        _this.nowClass=item.title;
-                        _this.isShowClass=false;
-                        _this.bottom1=true;
-                        _this.$emit(
-                            'classMessage',{
-                                classId:item.id,
-                                qType:cookie.get('typeVal')||1,
-                                title:item.title
-                            }
-                        )
-                    }
+                if(n==2){
+                    _this.nowClass=item.title;
+                    _this.isShowClass=false;
+                    _this.bottom1=true;
                     _this.$emit(
-                        'downMessage',{
-                            qType:typeVal,
+                        'classMessage',{
+                            classId:item.id,
+                            qType:cookie.get('typeVal')||1,
+                            title:item.title
                         }
                     )
                 }
-                if(this.urlType==2){
-                    //专家
-                    let exType;
-                    let _this=this;
-                    if(n==1){
-                        _this.nowSort=item.label;
-                        _this.isShowSort=false;
-                        _this.bottom=true;
-                        exType = item.value;
-                        cookie.set('exType',exType,1)
+                _this.$emit(
+                    'downMessage',{
+                        qType:typeVal,
                     }
-
-                    if(n==2){
-                        _this.nowClass=item.title;
-                        _this.isShowClass=false;
-                        _this.bottom1=true;
-                        _this.$emit(
-                            'classMessage',{
-                                classId:item.id,
-                                title:item.title,
-                                exType:cookie.get('exType')||1
-                            }
-                        )
-                    }
-                    _this.$emit(
-                        'downMessage',{
-                            exType:exType,
-                        }
-                    )
-
-                }
+                )
             },
         },
     }
@@ -173,94 +118,5 @@
 
 </script>
 <style>
-    .sort_rank {
-        width: 50%;
-        height: 100%;
-        float: left
-    }
 
-    .class_rank {
-        width: 50%;
-        height: 100%;
-        float: right
-    }
-
-    .sanjiao {
-        width: 0;
-        height: 0;
-        display: inline-block;
-        border-top: 0.14rem solid RGBA(69, 75, 84, 0.2);
-        border-right: 0.14rem solid transparent;
-        border-left: 0.14rem solid transparent;
-        margin-left: 0.07rem;
-    }
-    .xsanjiao{
-        width: 0;
-        height: 0;
-        display: inline-block;
-        border-bottom: 0.14rem solid RGBA(69, 75, 84, 0.2);
-        border-right: 0.14rem solid transparent;
-        border-left: 0.14rem solid transparent;
-        margin-left: 0.07rem;
-    }
-
-    .sort_list_item {
-        width: 100%;
-        font-size: 0.30rem;
-        height: 0.96rem;
-        text-align: center;
-        line-height: 0.96rem;
-        background: #fff;
-        border-bottom: 1px solid #eee;
-    }
-    .sort_list{
-        height: 3.16rem;
-        position: absolute;
-        z-index: 55;
-        width: 100%;
-    }
-    .class_select {
-        width: 100%;
-        height: 3.16rem;
-        background: #fff;
-        position: absolute;
-        z-index: 55;
-    }
-
-    .class_list_item {
-        float: left;
-        width: 1.56rem;
-        margin-left: 0.22rem;
-        margin-top: 0.25rem;
-        font-size: 0.30rem;
-        height: 0.60rem;
-        text-align: center;
-        line-height: 0.60rem;
-        color: RGBA(69, 75, 84, 0.5);
-        background: #fff;
-        border-radius: 0.10rem;
-        border: 1px solid #eee;
-    }
-
-    .sort_list_item.selected {
-        color: #56C4FE;
-    }
-
-    .class_list_item.selected {
-        color: #fff;
-        background: #56C4FE;
-    }
-    .downList_mask{
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.5);
-        position: absolute;
-        z-index: 54;
-    }
-    .nav_select{ background:RGBA(69, 75, 84, 0.04) ;height: 0.96rem;width: 100%; overflow: hidden;text-align: center;line-height: 0.96rem;font-size: 0.30rem;color: RGBA(69, 75, 84, 0.5)
-
-
-
-
-    }
 </style>
