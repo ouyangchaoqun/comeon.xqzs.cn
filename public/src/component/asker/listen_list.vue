@@ -1,5 +1,5 @@
 <template>
-    <div class="asker_listen_box">
+    <div class="asker_listen_box listenList_box">
         <div v-title>{{titleVal}}</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="weui-tab__panel main">
@@ -585,7 +585,7 @@
 </script>
 
 <style>
-    .asker_listen_box .yo-scroll .inner{
+     .listenList_box .yo-scroll .inner{
         top:0.48rem;
     }
     .down_list{
