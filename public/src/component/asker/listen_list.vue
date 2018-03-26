@@ -166,6 +166,7 @@
             }
             let rightTitle = this.$route.query.rightTitle
             if(rightTitle){
+                this.titleVal = rightTitle;
                 this.nowClass = rightTitle;
             }
             this.getClassList();
