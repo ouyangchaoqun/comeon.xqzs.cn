@@ -217,7 +217,7 @@
                 _this.getList()
             },
             getMore:function () {
-                this.$router.push('expert/list?classId=0&title=推荐专家')
+                this.$router.push('expert/list?classId=0&title=推荐专家&orderType=hot')
             },
             getNewMore:function () {
                 this.$router.push('expert/list?classId=0&orderType=new&title=最新入驻')
@@ -228,13 +228,7 @@
                     if(data.body.status == 1){
                         var List=data.body.data;
                         _this.manList=List;
-                        _this.$nextTick(function () {
-                            var mySwiper = new Swiper('.swiper-container',{
-                                slidesPerView :2.2,
-                                slidesPerGroup : 1,
-                                speed:500,
-                            })
-                        })
+
 //                        console.log(_this.manList)
                     }
                 });
@@ -345,6 +339,13 @@
             $('.class_item').click(function () {
                 $('.class_item div').removeClass('clickImg');
                 $(this).find('div').addClass('clickImg');
+            })
+            this.$nextTick(function () {
+                var mySwiper = new Swiper('.swiper-container',{
+                    slidesPerView :2.2,
+                    slidesPerGroup : 1,
+                    speed:500,
+                })
             })
         }
 
