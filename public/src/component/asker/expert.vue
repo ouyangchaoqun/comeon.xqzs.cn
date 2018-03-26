@@ -228,6 +228,16 @@
                     if(data.body.status == 1){
                         var List=data.body.data;
                         _this.manList=List;
+                        setTimeout(function () {
+                            _this.$nextTick(function () {
+                                var mySwiper = new Swiper('.swiper-container',{
+                                    slidesPerView :2.2,
+                                    slidesPerGroup : 1,
+                                    speed:500,
+                                })
+                            })
+                        },10)
+
 
 //                        console.log(_this.manList)
                     }
@@ -340,13 +350,7 @@
                 $('.class_item div').removeClass('clickImg');
                 $(this).find('div').addClass('clickImg');
             })
-            this.$nextTick(function () {
-                var mySwiper = new Swiper('.swiper-container',{
-                    slidesPerView :2.2,
-                    slidesPerGroup : 1,
-                    speed:500,
-                })
-            })
+
         }
 
     }
