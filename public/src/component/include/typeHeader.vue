@@ -62,7 +62,7 @@
                 console.log(classId)
                 //偷听类型
                 if(this.urlType==1){
-                    this.$router.push('listen/list?classId='+classId+'&&title='+title)
+                    this.$router.push('listen/list?classId='+classId+'&&rightTitle='+title)
                 }
                 if(this.urlType==2){
                     //专家类型

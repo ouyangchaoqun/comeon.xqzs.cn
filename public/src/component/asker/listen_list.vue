@@ -15,7 +15,7 @@
                     <div  v-if="isShowSort" class="sort_list"  >
                         <ul>
                             <li v-for="item in sortList" :val="item.value" class="sort_list_item " :class="{selected:nowSort==item.label}" @click="selectTab(item,1)">{{item.label}}
-                                <img src="" alt="">
+                                <img v-show="nowSort==item.label" src="http://oss.xqzs.cn/resources/psy/asker/filter_sure_icon.png" alt="">
                             </li>
                         </ul>
 
@@ -115,11 +115,11 @@
                 classList:[],
                 isShowSort:false,
                 isShowClass:false,
-                nowSort:"最新问题",
+                nowSort:"最热问题",
                 nowClass:"全部",
                 bottom:true,
                 bottom1:true,
-                classId:0,
+                classId:1,
                 complexOrNew:1,
                 screenHeight:document.body.clientHeight,
                 //downList
@@ -140,7 +140,7 @@
                 rechargeMoney: 0,
                 rechargeFlag: false,
                 user: {},
-                qType:2,
+                qType:1,
                 titleVal:'',
                 currPlayIndex:null
             }
@@ -155,8 +155,19 @@
         },
         mounted: function () {
             this.type = this.$route.query.classId;
-            this.titleVal = this.$route.query.title;
-            this.nowClass = this.$route.query.title;
+            let qType = this.$route.query.qType
+            if(qType){
+                this.qType = qType;
+            }
+            let title = this.$route.query.title;
+            if(title){
+                this.titleVal = title;
+                this.nowSort = title;
+            }
+            let rightTitle = this.$route.query.rightTitle
+            if(rightTitle){
+                this.nowClass = rightTitle;
+            }
             this.getClassList();
             this.getUserInfo()
             this.getCoupon();
@@ -620,6 +631,15 @@
         line-height: 0.96rem;
         border-bottom: 1px solid #eee;
         color:RGBA(69, 75, 84, 1);
+        position: relative;
+    }
+    .sort_list_item img{
+        width:0.32rem;
+        height:0.24rem;
+        position: absolute;
+        right:0.4rem;
+        top:50%;
+        margin-top: -0.12rem;
     }
     .sort_list{
         position: absolute;
