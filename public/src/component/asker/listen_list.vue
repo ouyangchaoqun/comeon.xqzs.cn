@@ -114,7 +114,7 @@
                 isShowSort:false,
                 isShowClass:false,
                 nowSort:"最热问题",
-                nowClass:"全部",
+                nowClass:"主题",
                 classId:1,
                 screenHeight:document.body.clientHeight,
                 //downList
