@@ -217,7 +217,7 @@
                 _this.getList()
             },
             getMore:function () {
-                this.$router.push('expert/list?classId=0&title=热门推荐')
+                this.$router.push('expert/list?classId=0&title=推荐专家')
             },
             getNewMore:function () {
                 this.$router.push('expert/list?classId=0&orderType=new&title=最新入驻')
