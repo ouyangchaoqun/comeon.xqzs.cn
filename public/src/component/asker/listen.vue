@@ -5,8 +5,7 @@
         <v-showLoad v-if="showLoad"></v-showLoad>
         <!--<div @click.stop="go_expert()" class="expert_entry" v-if="isRegExpert"></div>-->
         <div class="weui-tab__panel main">
-            <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
-                      :isShowMoreText="isShowMoreText" :bottomHeight="50">
+            <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd" :isShowMoreText="isShowMoreText" :bottomHeight="48">
                 <v-typeHeader :urlType="1"></v-typeHeader>
                 <div style="height:0.20rem;background: #f4f4f7" v-show="!showLoad"></div>
 
