@@ -102,7 +102,6 @@
 </template>
 <script>
     import showLoad from '../include/showLoad.vue';
-    import typeHeader from '../include/typeHeader.vue';
     import scroll from '../include/scroll.vue';
     import Bus from '../bus.js';
     import askerBottom from "./include/bottom.vue";
@@ -146,12 +145,10 @@
             'v-scroll': scroll,
             "v-asker-bottom": askerBottom,
             'v-recharge': Recharge,
-            'v-typeHeader': typeHeader,
-
         },
         mounted: function () {
             this.type = this.$route.query.classId;
-            let qType = this.$route.query.qType
+            let qType = this.$route.query.qType;
             if(qType){
                 this.qType = qType;
             }
@@ -585,6 +582,9 @@
 </script>
 
 <style>
+    .listenList_box{
+        background: #F4F4F7 !important;
+    }
      .listenList_box .yo-scroll .inner{
         top:0.48rem;
     }
