@@ -22,10 +22,10 @@
                 <!--</div>-->
             <!--</div>-->
             <div class="text_area">
-                <textarea v-model="expertextContent" v-if="isSelectAnswer" placeholder="请详细描述您的问题，专家将第一时间帮您解答。" class="content answer_select" maxlength="200" @input="valChange()"></textarea>
-                <textarea @input="valChange()" v-model="fastAsktextContent" v-if="!isSelectAnswer" placeholder="请详细描述你的问题，专家将尽快为你解答！" class="content" maxlength="200"></textarea>
-                <div v-if="!isSelectAnswer" class="last_word_count">{{contentLength}}/200</div>
-                <div v-if="isSelectAnswer" class="last_word_count">{{contentLength}}/{{MAX_LENGTH}}</div>
+                <textarea v-model="expertextContent" v-if="isSelectAnswer" placeholder="请详细描述您的问题，专家将第一时间帮您解答。" class="content answer_select" :maxlength="MAX_LENGTH" @input="valChange()"></textarea>
+                <textarea @input="valChange()" v-model="fastAsktextContent" v-if="!isSelectAnswer" placeholder="请详细描述你的问题，专家将尽快为你解答！" class="content" :maxlength="MAX_LENGTH"></textarea>
+                <!--<div v-if="!isSelectAnswer" class="last_word_count">{{contentLength}}/{{MAX_LENGTH}}</div>-->
+                <!--<div v-if="isSelectAnswer" class="last_word_count">{{contentLength}}/{{MAX_LENGTH}}</div>-->
                 <div class="price" v-if="isSelectAnswer">￥{{parseInt(expertDetail.price)}}</div>
                 <div class="price" v-if="!isSelectAnswer">￥10</div>
             </div>
@@ -122,7 +122,7 @@
                 expertId:0,
                 expertDetail:{},
                 contentLength:0,
-                MAX_LENGTH:200,
+                MAX_LENGTH:1000,
                 checked:false,
                 isAnonymous:0,
                 is_checked:false,

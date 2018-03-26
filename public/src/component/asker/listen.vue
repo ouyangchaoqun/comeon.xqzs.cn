@@ -215,6 +215,8 @@
                 this.isRegExpert = false
             }
             this.getClassList();
+            this.getHotList();
+            this.getNewList();
             this.getUserInfo(true)
             this.getCoupon();
             xqzs.voice.audio = null;
@@ -532,7 +534,7 @@
                         _this.navLists = arr.concat(_this.navLists);
 
                         _this.initView();
-                        _this.getAllList();
+
                     }
                 });
 
@@ -548,19 +550,18 @@
                 }
                 return arr ;
             },
-            getAllList:function (done) {
+            getHotList:function () {
                 let vm = this;
                 xqzs.api.get(vm, 'come/listen/listen/list/_userId_/0/1/3'+'?hottestOrNewest='+3,function (response) {
-
+                    console.log(response)
                     vm.list = response.data.data;
                     for (let i = 0;i<vm.list.length;i++){
                         vm.list[i].isSel = true;
                     }
-                    console.log(vm.list)
-                    vm.getList(done);
+
                 })
             },
-            getList: function (done) {
+            getNewList: function () {
                 let vm = this;
                 xqzs.api.get(vm, 'come/listen/listen/list/_userId_/0/1/3'+'?hottestOrNewest='+2,function (response) {
                     vm.showLoad = false;
@@ -570,10 +571,7 @@
                 })
 
             },
-           onInfinite(done) {
-               this.getList(done);
 
-            },
        },
         beforeDestroy: function () {
             xqzs.voice.pause();
