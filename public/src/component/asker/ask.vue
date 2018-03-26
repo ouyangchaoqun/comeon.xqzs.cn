@@ -196,12 +196,15 @@
             },
             getCoupon:function () {
                 let _this = this;
-                _this.$http.get(web.API_PATH + 'come/user/get/coupon/_userId_/1/10/0').then(function (data) {
+                xqzs.api.get(_this, 'come/user/get/coupon/_userId_/1/10/0',function (data) {
                     _this.couponList = data.data.data;
                     _this.couponNum = data.data.data.length;
                 })
             },
             typeDialog:function () {
+                if(!xqzs.user.isUserLogin()){
+                    return ;
+                }
                 if(this.questionClass==0){
                     xqzs.weui.tip("请选择问题类型")
                     return;
@@ -214,45 +217,42 @@
                 let _this = this;
                 if( _this.expertId&& _this.expertId!=''){
                     console.log('一对一')
-                    _this.$http.post(web.API_PATH + "come/expert/post/expert/question", {userId:"_userId_",content:content, questionClass: _this.questionClass,expertId:_this.expertId,isAnonymous:this.isAnonymous,  channelOpenId:xqzs.localdb.get("channelopenid")})
-                        .then(function (bt) {
-                            if (bt.data && bt.data.status == 1) {
-                                let result = bt.data.data;
-                                xqzs.localdb.remove('expertextContent');
-                                let config =result.config;
-                                xqzs.wx.pay.pay(config, function () {
+                    xqzs.api.post(_this,"come/expert/post/expert/question",{userId:"_userId_",content:content, questionClass: _this.questionClass,expertId:_this.expertId,isAnonymous:this.isAnonymous,  channelOpenId:xqzs.localdb.get("channelopenid")},function (bt) {
+                        if (bt.data && bt.data.status == 1) {
+                            let result = bt.data.data;
+                            xqzs.localdb.remove('expertextContent');
+                            let config =result.config;
+                            xqzs.wx.pay.pay(config, function () {
 
-                                }, function () {
-                                    xqzs.weui.toast("success","支付成功", function () {
-                                        _this.$router.push("/asker/my/ask/list");
-                                    });
-                                }, function () {
+                            }, function () {
+                                xqzs.weui.toast("success","支付成功", function () {
+                                    _this.$router.push("/asker/my/ask/list");
+                                });
+                            }, function () {
 
-                                },web.BASE_PATH+"asker/my/ask/list")
-                            }
-                        });
+                            },web.BASE_PATH+"asker/my/ask/list")
+                        }
+                    })
                 }else{
-                    console.log('快问')
-                    _this.$http.post(web.API_PATH + "come/user/post/grab/question", {userId:"_userId_",content:content, questionClass: _this.questionClass,price:10,isAnonymous:this.isAnonymous,  channelOpenId:xqzs.localdb.get("channelopenid")})
-                        .then(function (bt) {
-                            if (bt.data && bt.data.status == 1) {
-                                let result = bt.data.data;
-                                let config =result.config;
-                                xqzs.localdb.remove('fastAsktextContent');
-                                xqzs.wx.pay.pay(config, function () {
+                    console.log('快问');
+                    xqzs.api.post(_this,"come/user/post/grab/question", {userId:"_userId_",content:content, questionClass: _this.questionClass,price:10,isAnonymous:this.isAnonymous,  channelOpenId:xqzs.localdb.get("channelopenid")},function (bt) {
+                        if (bt.data && bt.data.status == 1) {
+                            let result = bt.data.data;
+                            let config =result.config;
+                            xqzs.localdb.remove('fastAsktextContent');
+                            xqzs.wx.pay.pay(config, function () {
 
-                                }, function () {
-                                    xqzs.weui.toast("success","支付成功", function () {
-                                        _this.$router.push("/asker/my/ask/list");
-                                    });
-                                }, function () {
+                            }, function () {
+                                xqzs.weui.toast("success","支付成功", function () {
+                                    _this.$router.push("/asker/my/ask/list");
+                                });
+                            }, function () {
 
-                                },web.BASE_PATH+"asker/my/ask/list")
+                            },web.BASE_PATH+"asker/my/ask/list")
 
 
-                            }
-                        });
-
+                        }
+                    })
                 }
 //                let payTitle;
 //                let subHtml;
@@ -294,26 +294,24 @@
                 //专家擅长领域
                 let _this= this;
                 let id=  this.expertId;
-                _this.$http.get(web.API_PATH + 'come/expert/show/to/user/'+id+'/_userId_' ).then(function (data) {//es5写法
+                xqzs.api.get(_this, 'come/expert/show/to/user/'+id+'/_userId_',function (data) {
                     if (data.body.status == 1) {
                         _this.expertDetail=data.body.data;
                         _this.rechargeMoney = _this.expertDetail.price;
                         console.log( _this.rechargeMoney)
                         _this.types= data.body.data.domain;
                     }
-                }, function (error) {
-                });
+                })
             },
             getClassList:function () {
                 console.log('快问类型选择')
                 let _this=this;
-                _this.$http.get(web.API_PATH + 'come/listen/question/class/list?fastask=1').then(function (data) {//es5写法
+                xqzs.api.get(_this, 'come/listen/question/class/list?fastask=1',function (data) {
                     if (data.body.status == 1) {
                         _this.types= data.body.data;
                         _this.rechargeMoney = 10.00;
                     }
-                }, function (error) {
-                });
+                })
             },
 //            submit:function () {
 //                let _this = this;

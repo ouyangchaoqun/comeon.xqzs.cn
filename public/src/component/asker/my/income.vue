@@ -62,6 +62,9 @@
             }
         },
         mounted: function () {
+            if(!xqzs.user.isUserLogin()){
+                return ;
+            }
             this.getUserInfo()
             xqzs.wx.setConfig(this, function () {weshare.init(wx)});
         },
@@ -74,18 +77,9 @@
             },
             getUserInfo:function () {
                 let _this = this;
-                _this.$http({
-                    method: 'GET',
-                    type: "json",
-                    url: web.API_PATH + 'user/find/by/user/Id/_userId_',
-                }).then(function (data) {//es5写法
-                    if (data.data.data !== null) {
-                        _this.user = eval(data.data.data);
-                        console.log( _this.user )
-                    }
-                }, function (error) {
-                    //error
-                });
+                xqzs.user.getUserInfo(function (user) {
+                    _this.user=user;
+                })
             },
             goAsk:function () {
                 this.$router.push("/asker/expert");
@@ -117,19 +111,19 @@
                     return;
                 }
                 _this.showLoad = true;
-                _this.$http.post(web.API_PATH+'user/withdraw',msg).then(function (data) {
-
+                xqzs.api.post(_this,'user/withdraw',msg,function (data) {
                     if(data.data.status==1){
                         _this.getUserInfo()
                         setTimeout(function () {
                             _this.showLoad = false;
-                             _this.moneyVal = '';
+                            _this.moneyVal = '';
                             xqzs.weui.tip("提交成功，等待审核");
                         },500)
 
 
                     }
                 })
+
             },
 //            getIncome:function () {
 //

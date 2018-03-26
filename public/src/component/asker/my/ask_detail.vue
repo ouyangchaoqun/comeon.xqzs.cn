@@ -129,7 +129,9 @@
             }
         },
         mounted: function () {
-            this.showLoad = true;
+            if(!xqzs.user.isUserLogin()){
+                return ;
+            }
             this.id= parseInt(this.$route.query.id);
             this.getDetail();
 //            this.getTags();
@@ -160,17 +162,16 @@
                     return ;
                 }
                 let _this=this;
-                this.$http.put(web.API_PATH + "come/user/like/answer/_userId_/"+item.id, {})
-                    .then(function (bt) {
-                        if (bt.data && bt.data.status == 1) {
-                            item.isLiked=1;
-                            item.likeTimes=item.likeTimes+1;
-                            _this.$set(_this.detail.answers,index,item);
-                        }else if(bt.data.status==920006){
-                            xqzs.weui.tip("已经点赞");
+                xqzs.api.put(_this,"come/user/like/answer/_userId_/"+item.id,{},function (bt) {
+                    if (bt.data && bt.data.status == 1) {
+                        item.isLiked=1;
+                        item.likeTimes=item.likeTimes+1;
+                        _this.$set(_this.detail.answers,index,item);
+                    }else if(bt.data.status==920006){
+                        xqzs.weui.tip("已经点赞");
 
-                        }
-                    });
+                    }
+                })
             },
             formatPrice:function (v) {
                 return xqzs.string.formatPrice(v)
@@ -336,48 +337,43 @@
 //                    return;
 //                }
 
-                that.$http.put(web.API_PATH + "come/user/evaluate/answer", {userId:"_userId_",answerId:this.detail.bestAnswerId, point:this.point,content:content,isAnonymous:anonyVal})
-                    .then(function (bt) {
-                        if (bt.data && bt.data.status == 1) {
-                            xqzs.weui.toast("success","评论成功",function () {
-                                that.isOver = true;
-                                console.log(that.isOver)
+                xqzs.api.put(that,"come/user/evaluate/answer",{userId:"_userId_",answerId:this.detail.bestAnswerId, point:this.point,content:content,isAnonymous:anonyVal},function (bt) {
+                    if (bt.data && bt.data.status == 1) {
+                        xqzs.weui.toast("success","评论成功",function () {
+                            that.isOver = true;
+                            console.log(that.isOver)
 //                                window.location.href=window.location.href
-                            })
-                        }
-                    });
+                        })
+                    }
+                })
             },
             follow:function (id) {
                 let that=this;
-
-                that.$http.put(web.API_PATH + "come/expert/follow/expert/"+id+"/_userId_", {})
-                    .then(function (bt) {
-                        if (bt.data && bt.data.status == 1) {
-                            if(that.detail.expert.isFollow==0){
-                                that.detail.expert.isFollow=1;
-                                that.followCount = that.followCount+1;
-                                xqzs.weui.toast("success","关注成功")
-                            }else {
-                                that.detail.expert.isFollow=0;
-                                that.followCount = that.followCount-1;
-                                xqzs.weui.toast("success","取消成功")
-                            }
-
-
-                        }else if(bt.data.status ==900004){
-                            xqzs.weui.tip("已经关注")
-                        }else if(bt.data.status ==9000003){
-                            xqzs.weui.tip("不能关注自己")
+                xqzs.api.put(that, "come/expert/follow/expert/"+id+"/_userId_",{},function (bt) {
+                    if (bt.data && bt.data.status == 1) {
+                        if(that.detail.expert.isFollow==0){
+                            that.detail.expert.isFollow=1;
+                            that.followCount = that.followCount+1;
+                            xqzs.weui.toast("success","关注成功")
                         }else {
-                            xqzs.weui.tip("关注失败")
+                            that.detail.expert.isFollow=0;
+                            that.followCount = that.followCount-1;
+                            xqzs.weui.toast("success","取消成功")
                         }
-                    });
+
+
+                    }else if(bt.data.status ==900004){
+                        xqzs.weui.tip("已经关注")
+                    }else if(bt.data.status ==9000003){
+                        xqzs.weui.tip("不能关注自己")
+                    }else {
+                        xqzs.weui.tip("关注失败")
+                    }
+                })
             },
             getDetail:function () {
-
                 let _this= this;
-
-                _this.$http.get(web.API_PATH + 'come/user/query/question/_userId_/'+this.id ).then(function (data) {//es5写法
+                xqzs.api.get(_this,'come/user/query/question/_userId_/'+_this.id,function (data) {
                     if (data.body.status == 1) {
                         _this.showLoad = false
                         console.log(data.body.data.data)
@@ -386,9 +382,7 @@
                         console.log(_this.detail);
                         _this.timeIntervalFun()
                     }
-                }, function (error) {
                 });
-
             }
 
         },

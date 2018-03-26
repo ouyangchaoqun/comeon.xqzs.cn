@@ -89,6 +89,9 @@
         },
 
         mounted: function () {
+            if(!xqzs.user.isUserLogin()){
+                return ;
+            }
             this.getList();
             xqzs.wx.setConfig(this, function () {weshare.init(wx)});
 
@@ -113,14 +116,14 @@
                     return ;
                 }
                 let _this=this;
-                this.$http.put(web.API_PATH + "come/user/like/answer/_userId_/"+item.answerId, {})
-                    .then(function (bt) {
-                        if (bt.data && bt.data.status == 1) {
-                            item.isCared=1;
-                            item.likeTimes=item.likeTimes+1;
-                            _this.$set(_this.list,index,item);
-                        }
-                    });
+                xqzs.api.put(_this,"come/user/like/answer/_userId_/"+item.answerId,{},function (bt) {
+                    if (bt.data && bt.data.status == 1) {
+                        item.isCared=1;
+                        item.likeTimes=item.likeTimes+1;
+                        _this.$set(_this.list,index,item);
+                    }
+                })
+
             },
 
             timeout:function (play,time,index) {
@@ -213,7 +216,7 @@
             getList: function (done) {
 
                 let vm= this;
-                let url =web.API_PATH + 'come/user/query/listen/page/_userId_/'+vm.page+'/'+vm.row;
+                let url =  'come/user/query/listen/page/_userId_/'+vm.page+'/'+vm.row;
 
                 this.rankUrl = url + "?";
                 if (web.guest) {
@@ -228,7 +231,7 @@
                 }
 
                 vm.isLoading = true;
-                vm.$http.get(vm.rankUrl).then((response) => {
+                xqzs.api.get(vm,vm.rankUrl,function (response) {
                     if(done&&typeof(done)==='function'){
                         done()
                     }
@@ -263,13 +266,10 @@
                     }
                     if (arr.length == 0) return;
                     vm.page = vm.page + 1;
-
-
-                }, (response) => {
+                },function (error) {
                     vm.isLoading = false;
                     vm.showLoad = false;
-                });
-
+                })
             },
             onInfinite(done) {
                 this.getList(done);

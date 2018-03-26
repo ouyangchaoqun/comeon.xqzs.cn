@@ -224,11 +224,11 @@
             },
             getHotList:function () {
               let _this=this;
-                _this.$http.get(web.API_PATH+ "come/expert/get/by/class/0/1/5?complexOrNew=1").then(function (data) {
+                xqzs.api.get(_this,"come/expert/get/by/class/0/1/5?complexOrNew=1",function (data) {
                     if(data.body.status == 1){
                         var List=data.body.data;
                         _this.manList=List;
-                        this.$nextTick(function () {
+                        _this.$nextTick(function () {
                             var mySwiper = new Swiper('.swiper-container',{
                                 slidesPerView :2.2,
                                 slidesPerGroup : 1,
@@ -237,22 +237,23 @@
                         })
 //                        console.log(_this.manList)
                     }
-                })
+                });
+
             },
             getClassList: function () {
                 let _this = this;
-                _this.$http.get(web.API_PATH + 'come/listen/question/class/list').then(function (data) {//es5写法
+                xqzs.api.get(_this,'come/listen/question/class/list',function (data) {
                     if (data.body.status == 1) {
                         _this.classList = data.body.data
                         _this.classList.splice(0, 0, {id: 0, title: '全部', code: 'qb'})
                     }
-                }, function (error) {
-                });
+                })
+
             },
             getList: function (done) {
 
                 let vm = this;
-                let url = web.API_PATH + "come/expert/get/by/class/" + vm.classId + "/" + vm.page + "/" + vm.row + "";
+                let url =   "come/expert/get/by/class/" + vm.classId + "/" + vm.page + "/" + vm.row + "";
                 this.rankUrl = url + "?";
                 if (web.guest) {
                     this.rankUrl = this.rankUrl + "guest=true"
@@ -264,7 +265,7 @@
                     vm.showLoad = true;
                 }
                 vm.isLoading = true;
-                vm.$http.get(vm.rankUrl).then((response) => {
+                xqzs.api.get(vm,vm.rankUrl,function (response) {
                     if (done && typeof(done) === 'function') {
                         done()
                     }
@@ -305,7 +306,7 @@
                     if (arr.length == 0) return;
                     vm.page = vm.page + 1;
 
-                }, (response) => {
+                }, function (error) {
                     vm.isLoading = false;
                     vm.showLoad = false;
                 });
@@ -328,7 +329,7 @@
                     imgUrl:"http://oss.xqzs.cn/resources/psy/logo.jpg",
                     title:  "‘好一点’专业咨询师为你答疑解惑" ,
                     desc: '‘好一点’你的实用人生导师，专业咨询师60秒语音为你排忧解难',
-                    link:  xqzs.wx.getPubUrl("asker/expert") ,
+                    link: weshare.getShareUrl("asker/expert",false) ,
                 };
                 weshare.init(wx, config)
             });

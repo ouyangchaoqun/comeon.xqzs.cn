@@ -145,14 +145,14 @@
                     return ;
                 }
                 let _this=this;
-                this.$http.put(web.API_PATH + "come/user/like/answer/_userId_/"+item.answerId, {})
-                    .then(function (bt) {
-                        if (bt.data && bt.data.status == 1) {
-                            item.isCared=1;
-                            item.likeTimes=item.likeTimes+1;
-                            _this.$set(_this.detail.answerList,index,item);
-                        }
-                    });
+                xqzs.api.put(_this,"come/user/like/answer/_userId_/"+item.answerId,{},function (bt) {
+                    if (bt.data && bt.data.status == 1) {
+                        item.isCared=1;
+                        item.likeTimes=item.likeTimes+1;
+                        _this.$set(_this.detail.answerList,index,item);
+                    }
+                })
+
             },
             formatDateText:function (time) {
                 return xqzs.dateTime.getTimeFormatText(time)
@@ -160,12 +160,15 @@
             //获取是否有偷听卡
             getCoupon:function () {
                 let _this = this;
-                _this.$http.get(web.API_PATH + 'come/user/get/coupon/_userId_/1/10/0').then(function (data) {
+                xqzs.api.get(_this,'come/user/get/coupon/_userId_/1/10/0',function (data) {
                     _this.couponList = data.data.data;
                     _this.couponNum = data.data.data.length;
                 })
             },
             typeDialog:function (questionId ,answerId ,index) {
+                if(!xqzs.user.isUserLogin()){
+                    return ;
+                }
                 let _this = this;
                 let useCoupon = false;
                 let useCoin = false;
@@ -201,48 +204,39 @@
                                 answerId:answerId
                             };
                             _this.showLoad=true;
-                            $.ajax({
-                                url: web.API_PATH + "come/listen/put/coupon/_userId_",
-                                data:data,
-                                type: 'PUT',
-                                dataType:'JSON',
-                                success: function( bt ) {
-                                    if(bt.status==1){
-                                        xqzs.weui.toast("success","支付成功", function () {
-                                            _this.setPayed(index);
-                                        });
-                                    }else{
-                                        xqzs.weui.tip("支付失败", function () {
 
-                                        });
-                                    }
-                                    _this.getCoupon();
-                                    _this.showLoad=false;
+
+                            xqzs.api.put(_this,"come/listen/put/coupon/_userId_",data,function (bt) {
+                                if(bt.data.status==1){
+                                    xqzs.weui.toast("success","支付成功", function () {
+                                        _this.setPayed(index);
+                                    });
+                                }else{
+                                    xqzs.weui.tip("支付失败", function () {
+
+                                    });
                                 }
+                                _this.getCoupon();
+                                _this.showLoad=false;
                             });
                             break;
                         case useCoin:
                             console.log('使用点豆支付');
                             _this.showLoad=true;
-                            $.ajax({
-                                url: web.API_PATH + "come/listen/put/coin/_userId_/"+questionId+'/'+answerId+'/1',
-                                data:data,
-                                type: 'PUT',
-                                dataType:'JSON',
-                                success: function( bt ) {
-                                    if(bt.status==1){
-                                        xqzs.weui.toast("success","支付成功", function () {
-                                            _this.setPayed(index);
-                                        });
-                                    }else{
-                                        xqzs.weui.tip("支付失败", function () {
+                            xqzs.api.put(_this,"come/listen/put/coin/_userId_/"+questionId+'/'+answerId+'/1',data,function (bt) {
+                                if(bt.data.status==1){
+                                    xqzs.weui.toast("success","支付成功", function () {
+                                        _this.setPayed(index);
+                                    });
+                                }else{
+                                    xqzs.weui.tip("支付失败", function () {
 
-                                        });
-                                    }
-                                    _this.getUserInfo();
-                                    _this.showLoad=false;
+                                    });
                                 }
-                            });
+                                _this.getUserInfo();
+                                _this.showLoad=false;
+                            })
+
                             break;
                         case recharge:
                             _this.rechargeFlag = true;
@@ -256,23 +250,20 @@
             pay:function (index) {
                 let  item = this.detail.answerList[index];
                 let _this=this;
-                this.$http.get(web.API_PATH + "come/listen/create/order/_userId_/"+item.answerId)
-                    .then(function (bt) {
-                        if (bt.data && bt.data.status == 1) {
+                xqzs.api.get(_this, "come/listen/create/order/_userId_/" + item.answerId, function (bt) {
+                    if (bt.data && bt.data.status == 1) {
+                        let result = bt.data.data;
+                        xqzs.wx.pay.pay(result.order, function () {
 
-                            let result = bt.data.data;
+                        }, function () {//success
+                            xqzs.weui.toast("success", "支付成功", function () {
+                                _this.setPayed(index);
+                            });
+                        }, function () {//error
 
-                            xqzs.wx.pay.pay(result.order, function () {
-
-                            }, function () {//success
-                                xqzs.weui.toast("success","支付成功", function () {
-                                    _this.setPayed(index);
-                                });
-                            }, function () {//error
-
-                            })
-                        }
-                    });
+                        })
+                    }
+                });
             },
             //设置dom 已经支付
             setPayed:function (index) {
@@ -364,25 +355,26 @@
             getDetail:function () {
                 let _this= this;
                 _this.showLoad=true;
-                _this.$http.get(web.API_PATH + 'come/listen/question/detail/'+_this.questionId +"/_userId_").then(function (data) {//es5写法
+                xqzs.api.get(_this,'come/listen/question/detail/'+_this.questionId +"/_userId_",function (data) {
                     _this.showLoad=false;
                     if (data.body.status == 1) {
                         _this.detail= data.body.data
                         _this.list = _this.detail.answerList;
                         console.log(_this.detail);
-                        xqzs.wx.setConfig(this, function () {
+                        xqzs.wx.setConfig(_this, function () {
                             var config = {
                                 imgUrl:"http://oss.xqzs.cn/resources/psy/logo.jpg",
                                 title:  "听解答：" +  _this.detail.content,
                                 desc: '价值10元的解忧语音，1点豆即可偷听！‘好一点’你的实用人生导师',
-                                link:  xqzs.wx.getPubUrl("asker/listen/detail?questionId="+ _this.questionId) ,
+                                link: weshare.getShareUrl("asker/listen/detail?questionId="+ _this.questionId ,true)
                             };
                             weshare.init(wx, config)
                         });
                     }
-                }, function (error) {
+                },function (error) {
                     _this.showLoad=false;
-                });
+                })
+
 
             },
             goDetail:function (extId) {
@@ -394,35 +386,35 @@
                 let id = item.expertId;
                 console.log(item)
                 let that=this;
-                that.$http.put(web.API_PATH + "come/expert/follow/expert/"+id+"/_userId_", {})
-                    .then(function (bt) {
-                        if (bt.data && bt.data.status == 1) {
-                            if(item.isFollowed==0){
-                                item.isFollowed==1
-                                item.followCount = item.followCount + 1
-                                xqzs.weui.toast("success","关注成功")
-                            }else{
-                                item.isFollowed==0
-                                item.followCount = item.followCount - 1
-                                xqzs.weui.toast("success","取消成功")
-                            }
-                            item.isFollowed=!item.isFollowed;
-                            that.$set(that.list,index,item);
-
-                        }else if(bt.data.status ==900004){
-                            xqzs.weui.toast("success","已经关注",function () {
-
-                            })
-                        }else if(bt.data.status ==9000003){
-                            xqzs.weui.toast("fail","不能关注自己",function () {
-
-                            })
-                        }else {
-                            xqzs.weui.toast("fail","关注失败",function () {
-
-                            })
+                xqzs.api.put(this,"come/expert/follow/expert/"+id+"/_userId_",{},function (bt) {
+                    if (bt.data && bt.data.status == 1) {
+                        if(item.isFollowed==0){
+                            item.isFollowed==1
+                            item.followCount = item.followCount + 1
+                            xqzs.weui.toast("success","关注成功")
+                        }else{
+                            item.isFollowed==0
+                            item.followCount = item.followCount - 1
+                            xqzs.weui.toast("success","取消成功")
                         }
-                    });
+                        item.isFollowed=!item.isFollowed;
+                        that.$set(that.list,index,item);
+
+                    }else if(bt.data.status ==900004){
+                        xqzs.weui.toast("success","已经关注",function () {
+
+                        })
+                    }else if(bt.data.status ==9000003){
+                        xqzs.weui.toast("fail","不能关注自己",function () {
+
+                        })
+                    }else {
+                        xqzs.weui.toast("fail","关注失败",function () {
+
+                        })
+                    }
+                });
+
             },
         },
         beforeDestroy:function () {

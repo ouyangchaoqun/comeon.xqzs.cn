@@ -348,7 +348,7 @@
             },
             getClassList:function () {
                 let _this=this;
-                _this.$http.get(web.API_PATH + 'come/listen/question/class/list' ).then(function (data) {//es5写法
+                xqzs.api.get(_this, 'come/listen/question/class/list',function (data) {
                     if (data.body.status == 1) {
                         _this.classList= data.body.data
                         _this.classList.splice(0,0,{id:0,title:'全部',code:'qb'})
@@ -361,13 +361,13 @@
                         }
                         _this.getList();
                     }
-                }, function (error) {
-                });
+                })
+
             },
             getList: function (done) {
 
                 let vm= this;
-                let url = web.API_PATH + "come/expert/query/"+vm.page+"/"+vm.row+"";
+                let url =   "come/expert/query/"+vm.page+"/"+vm.row+"";
                 this.rankUrl = url + "?";
                 if (web.guest) {
                     this.rankUrl = this.rankUrl + "guest=true"
@@ -390,7 +390,7 @@
                     gender:this.sexVal
                 }
                 vm.isLoading = true;
-                vm.$http.get(vm.rankUrl,{params: msg}).then((response) => {
+                xqzs.api.get(vm,vm.rankUrl,function (response) {
                     if(done&&typeof(done)==='function'){
                         done()
                     }
@@ -431,11 +431,13 @@
                     }
                     if (arr.length == 0) return;
                     vm.page = vm.page + 1;
-
-                }, (response) => {
+                },function (error) {
                     vm.isLoading = false;
                     vm.showLoad = false;
-                });
+                },{params: msg})
+
+
+
 
             },
             onInfinite(done) {
@@ -461,7 +463,7 @@
                     imgUrl:"http://oss.xqzs.cn/resources/psy/logo.jpg",
                     title:  "‘好一点’专业咨询师为你答疑解惑" ,
                     desc: '‘好一点’你的实用人生导师，专业咨询师60秒语音为你排忧解难',
-                    link:  xqzs.wx.getPubUrl("asker/expert/list") ,
+                    link: weshare.getShareUrl("asker/expert/list" ,true),
                 };
                 weshare.init(wx, config)
             });

@@ -21,7 +21,7 @@ class ApiController extends Controller
 
         $userId = $this->getUserId($request);
         if(empty($request->input("guest"))){ //不是guest
-            if($userId==0||$userId==null||$userId==''||empty($userId)) return "";
+            if(($userId==0||$userId==null||$userId==''||empty($userId))&&$request->getMethod()!='GET') return "";
         }
 
 

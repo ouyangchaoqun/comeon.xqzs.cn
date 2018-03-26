@@ -73,7 +73,7 @@
                 }else{
                     xqzs.user.getUserInfo(function (user) {
                         _this.user =user;
-                        if( _this.user!=''|| _this.user!=undefined){
+                        if(_this.user&& _this.user!=''|| _this.user!=undefined){
                             _this.balance = _this.user.balance;
                             _this.havedianCoin = _this.user.dianCoin;
                         }
@@ -128,15 +128,14 @@
             getRechargeConfig: function () {
                 let _this = this;
 //                console.log('获取充值信息')
-                _this.$http.get(web.API_PATH + 'come/user/query/recharge/config').then(function (data) {//es5写法
+                xqzs.api.get(_this,'come/user/query/recharge/config',function (data) {
                     if (data.body.status == 1) {
                         _this.items = data.body.data;
                         if( _this.items!=''|| _this.items!=[]){
                             _this.initSelect()
                         }
                     }
-                }, function (error) {
-                });
+                })
             },
             _doPay:function (isUseBalance) {
                 let _this = this;
@@ -148,43 +147,46 @@
                     channelOpenId:xqzs.localdb.get("channelopenid")
                 };
 
-                console.log(msg)
-                _this.$http.put(web.API_PATH + "come/user/create/recharge", msg)
-                        .then(function (bt) {
-                            if (bt.data && bt.data.status == 1) {
-                                let result = bt.data.data;
-                                if (result.resultCode == 1) {
-                                    xqzs.eventLog.visit('comeon_pay_balance_success');
-                                    xqzs.weui.toast("success","支付成功", function () {
-                                        _this.$emit(
-                                                'childMessage',{
-                                                    rechargeFlag:false
-                                                }
-                                        )
-                                    });
+                console.log(msg);
+                xqzs.api.put(_this,"come/user/create/recharge",msg,function (bt) {
+                    if (bt.data && bt.data.status == 1) {
+                        let result = bt.data.data;
+                        if (result.resultCode == 1) {
+                            xqzs.eventLog.visit('comeon_pay_balance_success');
+                            xqzs.weui.toast("success","支付成功", function () {
+                                _this.$emit(
+                                    'childMessage',{
+                                        rechargeFlag:false
+                                    }
+                                )
+                            });
 
-                                }else{
-                                    xqzs.wx.pay.pay(result, function () {
+                        }else{
+                            xqzs.wx.pay.pay(result, function () {
 
-                                    }, function () {//success
-                                        xqzs.eventLog.visit('comeon_pay_wxpay_success');
-                                        xqzs.weui.toast("success","支付成功", function () {
-                                            _this.$emit(
-                                                'childMessage',{
-                                                    rechargeFlag:false,
-                                                }
-                                            )
-                                        });
-                                    }, function () {//error
+                            }, function () {//success
+                                xqzs.eventLog.visit('comeon_pay_wxpay_success');
+                                xqzs.weui.toast("success","支付成功", function () {
+                                    _this.$emit(
+                                        'childMessage',{
+                                            rechargeFlag:false,
+                                        }
+                                    )
+                                });
+                            }, function () {//error
 
-                                    })
-                                }
+                            })
+                        }
 
-                            }
-                        });
+                    }
+                })
+
 
             },
             doPay: function () {
+                if(!xqzs.user.isUserLogin()){
+                    return ;
+                }
                 xqzs.eventLog.visit('comeon_pay')
                 let _this = this;
                 if (this.isUseIncome) {

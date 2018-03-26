@@ -7,7 +7,7 @@
 </template>
 <script>
     import Bus from './bus.js';
-
+    xqzs.localdb.set("isReUrl","false");
     export default {
         data() {
             return {

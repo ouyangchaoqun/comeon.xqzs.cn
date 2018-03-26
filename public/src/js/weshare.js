@@ -6,6 +6,15 @@
         link:   'http://wx.xqzs.cn/comeon/',
         imgUrl: 'http://oss.xqzs.cn/resources/psy/logo.jpg'
     },
+    getShareUrl:function (vueUrl,isBack) {
+        var reUrl=  "http://wx.xqzs.cn/comeon/?#/asker/listen";
+        if(isBack){
+            reUrl +=  "?reurl=" + encodeURIComponent(vueUrl)
+        }else{
+            reUrl= reUrl+ vueUrl;
+        }
+        return  reUrl;
+    },
     init: function (wx,config, success, cancel,type) {
         this.config = $.extend(this.config,config);
         if (success && typeof success == 'function') {

@@ -15,10 +15,32 @@ var xqzs = {
         PIC_MIDDLE: '?x-oss-process=image/resize,h_750,w_750/quality,q_100'
     },
     user:{
+
+
+
+        isUserLogin:function () {
+            if(!xqzs.user.check()){
+                xqzs.user.goPub();
+                return false ;
+             }
+             return true;
+        },
+
+
+        goPub:function () {
+            var url = window.location.href.replace('#','vue_pound');
+            window.location.href= web.BASE_PATH.replace("comeon/","") +   "wx/pub?reurl=" + encodeURI(url);
+
+
+        },
+        check:function () {
+            return      cookie_base.get("xqzs_openId");
+        },
         getUserInfo:function (fun) {
-            console.log("getUserInfo1")
+            console.log("getUserInfo1");
+             var   url = xqzs.api.initUrl("user/find/by/user/Id/_userId_");
              $.ajax({
-                url:web.API_PATH + "user/find/by/user/Id/_userId_",
+                url:url,
                 type: 'GET',
                 dataType: 'text',
                 success: function (data) {
@@ -894,9 +916,7 @@ var xqzs = {
                 urls: imglist // 需要预览的图片http链接列表
             });
         },
-        getPubUrl:function (afterUrl) {
-            return    "http://wx.xqzs.cn/wx/pub?reurl=" + encodeURI( "http://wx.xqzs.cn/comeon/guestvue_pound/"+afterUrl);
-        },
+
         setConfig: function (vm, callback) {
 
             var url = window.location.href.split('#')[0];
@@ -1164,8 +1184,6 @@ var xqzs = {
             return true;
         }
     },
-
-
     image: {
         convertCanvasToImage: function (canvas) {
             //新Image对象，可以理解为DOM
@@ -1397,90 +1415,70 @@ var xqzs = {
             width>maxWidth && (width=maxWidth);
              return    width * 100 / 750;
         }
+    },
+    api:{
+
+        initUrl:function (url) {
+            url = web.API_PATH + url ;
+            if(!cookie_base.get("xqzs_openId")){
+                url = url.replace("_userId_","0");
+            }
+            return url ;
+        },
+
+        get:function (vm,url,success,error,data) {
+            url = this.initUrl(url);
+            if(!data)data={};
+            vm.$http.get(url,data).then(function (data) {
+                if (typeof success === 'function') {
+                    success(data);
+                }
+            },function(e){
+
+                if (typeof error === 'function') {
+                    error(e);
+                }
+            });
+
+        },
+
+        post:function (vm,url,data,success,error) {
+            if(!xqzs.user.check()){
+                xqzs.user.goPub();
+                return ;
+            }
+            url = this.initUrl(url);
+            vm.$http.post(url,data).then(function (data) {
+                if (typeof success === 'function') {
+                    success(data);
+                }
+            },function(e){
+                if (typeof error === 'function') {
+                    error(e);
+                }
+            });
+        },
+        put:function (vm,url,data,success,error) {
+            if(!xqzs.user.check()){
+                xqzs.user.goPub();
+                return ;
+            }
+            url = this.initUrl(url);
+            vm.$http.put(url,data).then(function (data) {
+                if (typeof success === 'function') {
+                    success(data);
+                }
+            },function(e){
+                if (typeof error === 'function') {
+                    error(e);
+                }
+            });
+        },
+        del:function () {
+
+        }
     }
 };
-
-function myResizePicture(listObj, imgListStr, containerStr) {
-    if (!listObj) {
-        listObj = $('.myMood_list')
-    }
-    if (!imgListStr) {
-        imgListStr = "moodPhotoLists";
-    }
-    if (!containerStr) {
-        containerStr = "div";
-    }
-
-    var maxsize = 750;
-    $.each(listObj, function (index, obj) {
-
-        var imgList = $(obj).find('.' + imgListStr)
-
-        var n = imgList.children().length;
-        if (n == 1) {
-            imgList.addClass('one');
-        } else if (n == 2) {
-            imgList.addClass('two');
-        }
-
-        if (n > 0) {
-            //
-            var container = imgList.find('' + containerStr + ':eq(0)');
-            var images = imgList.find('img');
-            var containersize = {
-                w: container.width(),
-                h: container.height()
-            }
-
-
-            images.each(function () {
-                if ($(this).data('type') && $(this).data('type') == 'notresize') {
-                    return false;
-                }
-                //var spliter = 'x';
-                //$p = $(this).parent('a').data('size').split(spliter);
-                //var iw = parseInt($p[0],10), ih = parseInt($p[1],10);
-                var iw = parseInt($(this).data('w'), 10), ih = parseInt($(this).data('h'), 10);
-
-
-                if (iw > maxsize && ih > maxsize) {
-                    if (iw > ih) {
-                        iw = parseInt(iw * maxsize / ih, 10);
-                        ih = maxsize;
-                    }
-                    else {
-                        ih = parseInt(ih * maxsize / iw, 10);
-                        iw = maxsize;
-                    }
-                    //$(this).parent('a').data('size',iw+spliter+ih);
-                }
-                var imgstyle = {};
-                if (iw * containersize.h > ih * containersize.w) {
-                    var $w = iw * containersize.h / ih;
-                    var marginleft = 0;
-                    if ($w > containersize.w) {
-                        marginleft = (containersize.w - $w) / 2;
-                    }
-                    // imgstyle =
-                    //     'height:'+ containersize.h + 'px;margin-left:'+ marginleft + 'px;width:auto'
-                    // ;
-                    imgstyle = {"height": containersize.h + 'px', "margin-left": marginleft + 'px', 'width': 'auto'};
-                } else {
-                    var $h = ih * containersize.w / iw;
-                    var margintop = 0;
-                    if ($h > containersize.h) {
-                        margintop = (containersize.h - $h) / 2;
-                    }
-                    //imgstyle = 'width: '+ containersize.w + 'px;margin-top:'+ margintop + 'px;height:auto';
-                    imgstyle = {"width": containersize.w + 'px', "margin-top": margintop + 'px', 'height': 'auto'};
-                }
-
-                $(this).css(imgstyle)
-
-            })
-        }
-    })
-}
 
 
 ;(function () {

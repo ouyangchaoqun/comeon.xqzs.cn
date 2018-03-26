@@ -60,18 +60,10 @@
         methods: {
             getUserInfo:function(){
                 let _this=this;
+                xqzs.user.getUserInfo(function (user) {
+                    _this.user =user;
+                })
 
-                _this.$http({
-                    method: 'GET',
-                    type: "json",
-                    url: web.API_PATH + 'user/find/by/user/Id/_userId_',
-                }).then(function (data) {//es5写法
-                    if (data.data.data !== null) {
-                        _this.user = eval(data.data.data);
-                    }
-                }, function (error) {
-                    //error
-                });
             },
             formatPrice:function (v) {
               return xqzs.string.formatPrice(v)
@@ -82,7 +74,7 @@
             join: function () {
 
                 let _this= this;
-                this.$http.get(web.API_PATH + 'come/expert/query/detail/by/userId/_userId_' ).then(function (data) {//es5写法
+                xqzs.api.get(_this,'come/expert/query/detail/by/userId/_userId_',function (data) {
                     if (data.body.status == 1) {
                         if(data.data.data!=null){
                             let status = data.data.data.status;
@@ -108,11 +100,7 @@
                             _this.goJoin()
                         }
                     }
-                }, function (error) {
-
-                });
-
-
+                })
             },
             goJoin:function () {
                 this.showLoad = true;
@@ -120,17 +108,18 @@
             },
             getCoupon:function () {
                 let _this=this;
-                _this.$http.get(web.API_PATH + 'come/user/query/coupon/_userId_' ).then(function (data) {//es5写法
+                xqzs.api.get(_this, 'come/user/query/coupon/_userId_',function (data) {
                     if (data.body.status == 1) {
-                       _this.couponNum=data.body.data.couponCount;
+                        _this.couponNum=data.body.data.couponCount;
                     }
-                }, function (error) {
-
-                });
+                })
             }
 
         },
         mounted: function () {
+            if(!xqzs.user.isUserLogin()){
+                return ;
+            }
             $(".weui-tab__panel").height($(window).height() - 50);
             var obj = $(".asker_my_index_box .main a ,.join")
             xqzs.weui.active(obj);

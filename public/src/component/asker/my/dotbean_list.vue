@@ -48,7 +48,9 @@
             'v-scroll': scroll
         },
         mounted: function () {
-
+            if(!xqzs.user.isUserLogin()){
+                return ;
+            }
             this.getList();
             xqzs.wx.setConfig(this, function () {weshare.init(wx)});
         },
@@ -63,7 +65,7 @@
 
                 let vm= this;
                // let url =web.API_PATH + 'come/user/query/income/page/_userId_/'+vm.page+'/'+vm.row;
-                let url = web.API_PATH + 'come/user/query/dian/detail' + '/_userId_/' + vm.page+ '/' + vm.row;
+                let url =   'come/user/query/dian/detail' + '/_userId_/' + vm.page+ '/' + vm.row;
                 this.rankUrl = url + "?";
                 if (web.guest) {
                     this.rankUrl = this.rankUrl + "guest=true"
@@ -77,7 +79,7 @@
                 }
 
                 vm.isLoading = true;
-                vm.$http.get(vm.rankUrl).then((response) => {
+                xqzs.api.get(vm,vm.rankUrl,function (response) {
                     if(done&&typeof(done)==='function'){
                         done()
                     }
@@ -107,11 +109,11 @@
                     }
                     if (arr.length == 0) return;
                     vm.page = vm.page + 1;
-
-                }, (response) => {
+                },function (error) {
                     vm.isLoading = false;
                     vm.showLoad = false;
-                });
+                })
+
 
             },
             onInfinite(done) {
