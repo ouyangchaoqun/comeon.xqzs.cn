@@ -3,30 +3,30 @@
         <div v-title>{{titleVal}}</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="weui-tab__panel main">
+            <div class="down_list">
+                <div class="nav_select">
+                    <div class="sort_rank" :class="{active_color:isShowSort}" @click="showSelect(1)">{{nowSort}}<span class="sanjiao" :class="{xsanjiao:isShowSort}"></span></div>
+                    <div class="class_rank" :class="{active_color:isShowClass}"  @click="showSelect(2)">{{nowClass}}<span class="sanjiao" :class="{xsanjiao:isShowClass}"></span></div>
+                </div>
+                <div  v-if="isShowSort" class="sort_list"  >
+                    <ul>
+                        <li v-for="item in sortList" :val="item.value" class="sort_list_item " :class="{selected:nowSort==item.label}" @click="selectTab(item,1)">{{item.label}}
+                            <img v-show="nowSort==item.label" src="http://oss.xqzs.cn/resources/psy/asker/filter_sure_icon.png" alt="">
+                        </li>
+                    </ul>
 
+                </div>
+                <div v-if="isShowClass" class="class_select" >
+                    <li v-for="item in navLists" :val="item.value" class="class_list_item" :class="{selected:nowClass==item.title}" @click="selectTab(item,2)">
+                        {{item.title}}
+                    </li>
+                </div>
+            </div>
+            <div class="downList_mask" v-if="isShowSort==true||isShowClass==true" @click="closeList()" @touchmove.prevent></div>
             <!--导航栏-->
             <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite"
                       :isPageEnd="isPageEnd" :isShowMoreText="isShowMoreText" :bottomHeight="0" >
-                <div class="down_list">
-                    <div class="nav_select">
-                        <div class="sort_rank" :class="{active_color:isShowSort}" @click="showSelect(1)">{{nowSort}}<span class="sanjiao" :class="{xsanjiao:isShowSort}"></span></div>
-                        <div class="class_rank" :class="{active_color:isShowClass}"  @click="showSelect(2)">{{nowClass}}<span class="sanjiao" :class="{xsanjiao:isShowClass}"></span></div>
-                    </div>
-                    <div  v-if="isShowSort" class="sort_list"  >
-                        <ul>
-                            <li v-for="item in sortList" :val="item.value" class="sort_list_item " :class="{selected:nowSort==item.label}" @click="selectTab(item,1)">{{item.label}}
-                                <img v-show="nowSort==item.label" src="http://oss.xqzs.cn/resources/psy/asker/filter_sure_icon.png" alt="">
-                            </li>
-                        </ul>
 
-                    </div>
-                    <div v-if="isShowClass" class="class_select" >
-                        <li v-for="item in navLists" :val="item.value" class="class_list_item" :class="{selected:nowClass==item.title}" @click="selectTab(item,2)">
-                            {{item.title}}
-                        </li>
-                    </div>
-                    <div class="downList_mask" v-if="isShowSort==true||isShowClass==true" @click="closeList()" @touchmove.prevent></div>
-                </div>
                 <div class="asker_listen_list_box">
                     <div v-show="list.length>0">
                         <ul>
@@ -112,15 +112,11 @@
             return {
                 //downList
                 sortList: [{label: "最热问题", value: 1, flag: true}, {label: "最新问题", value: 2, flag: false},{label: "精选问题", value: 3, flag: false}],
-                classList:[],
                 isShowSort:false,
                 isShowClass:false,
                 nowSort:"最热问题",
                 nowClass:"全部",
-                bottom:true,
-                bottom1:true,
                 classId:1,
-                complexOrNew:1,
                 screenHeight:document.body.clientHeight,
                 //downList
                 navLists: [
@@ -195,15 +191,11 @@
                 let _this=this;
                 if(n==1){
                     _this.isShowSort=!_this.isShowSort;
-                    _this.bottom=!_this.bottom;
-                    _this.bottom1=true;
                     _this.isShowClass=false;
 
                 }
                 else if(n==2){
                     _this.isShowSort=false;
-                    _this.bottom1=!_this.bottom1;
-                    _this.bottom=true;
                     _this.isShowClass=!_this.isShowClass;
                 }
 
@@ -215,7 +207,6 @@
                 if(n==1){
                     _this.nowSort=item.label;
                     _this.isShowSort=false;
-                    _this.bottom=true;
                     _this.qType =item.value;
                     _this.titleVal = item.label;
                 }
@@ -223,7 +214,6 @@
                 if(n==2){
                     _this.nowClass=item.title;
                     _this.isShowClass=false;
-                    _this.bottom1=true;
                     _this.type = item.id;
                     _this.titleVal = item.title
                 }
@@ -595,7 +585,13 @@
 </script>
 
 <style>
-
+    .asker_listen_box .yo-scroll .inner{
+        top:0.48rem;
+    }
+    .down_list{
+        position: relative;
+        z-index: 10001;
+    }
     .sort_rank {
         width: 50%;
         height: 100%;
@@ -630,7 +626,7 @@
         font-size: 0.28rem;
         height: 0.96rem;
         line-height: 0.96rem;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid #f4f4f7;
         color:RGBA(69, 75, 84, 1);
         position: relative;
     }
@@ -689,7 +685,7 @@
         position: absolute;
         z-index: 54;
     }
-    .nav_select{ background:RGBA(69, 75, 84, 0.04) ;height: 0.96rem;width: 100%; overflow: hidden;text-align: center;line-height: 0.96rem;font-size: 0.30rem;color: RGBA(69, 75, 84, 0.5)}
+    .nav_select{ background:#fff;height: 0.96rem;width: 100%; overflow: hidden;text-align: center;line-height: 0.96rem;font-size: 0.30rem;color: RGBA(69, 75, 84, 0.5);border-bottom: 0.02rem solid #f4f4f7;}
 
     .asker_listen_box .audio_mask{
         position: absolute;
@@ -706,9 +702,6 @@
         color: rgba(251, 100, 10, 1);
     }
 
-    .asker_listen_box {
-        background: #fff;
-    }
 
     .con_swiper_c .swiper-slide {
         overflow-y: scroll
@@ -908,7 +901,8 @@
     }
 
     .asker_listen_box .audio {
-        margin-bottom: 0
+        margin-bottom: 0;
+        overflow: hidden;
     }
 
 
