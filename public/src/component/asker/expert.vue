@@ -224,7 +224,7 @@
             },
             getHotList:function () {
               let _this=this;
-                _this.$http.get(web.API_PATH+ "come/expert/get/by/class/0/1/5?complexOrNew=1").then(function (data) {
+                _this.$http.get(web.API_PATH+ "come/expert/get/by/class/0/1/10?complexOrNew=3").then(function (data) {
                     if(data.body.status == 1){
                         var List=data.body.data;
                         _this.manList=List;
