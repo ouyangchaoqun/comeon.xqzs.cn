@@ -5,8 +5,8 @@
         <div class="weui-tab__panel main">
             <div class="down_list">
                 <div class="nav_select">
-                    <div class="sort_rank" :class="{active_color:isShowSort}" @click="showSelect(1)">{{nowSort}}<span class="sanjiao" :class="{xsanjiao:isShowSort}"></span></div>
-                    <div class="class_rank" :class="{active_color:isShowClass}"  @click="showSelect(2)">{{nowClass}}<span class="sanjiao" :class="{xsanjiao:isShowClass}"></span></div>
+                    <div class="sort_rank" :class="{active_color:isShowSort||firstSel}" @click="showSelect(1)">{{nowSort}}<span class="sanjiao" :class="{xsanjiao:isShowSort,selActive:firstSel&&!isShowSort}"></span></div>
+                    <div class="class_rank" :class="{active_color:isShowClass||twoSel}"  @click="showSelect(2)">{{nowClass}}<span class="sanjiao" :class="{xsanjiao:isShowClass,selActive:twoSel&&!isShowClass}"></span></div>
                 </div>
                 <div  v-if="isShowSort" class="sort_list"  >
                     <ul>
@@ -137,7 +137,9 @@
                 user: {},
                 qType:1,
                 titleVal:'',
-                currPlayIndex:null
+                currPlayIndex:null,
+                firstSel:false,
+                twoSel:false
             }
         },
         components: {
@@ -206,13 +208,15 @@
                     _this.isShowSort=false;
                     _this.qType =item.value;
                     _this.titleVal = item.label;
+                    _this.firstSel = true;
                 }
 
                 if(n==2){
                     _this.nowClass=item.title;
                     _this.isShowClass=false;
                     _this.type = item.id;
-                    _this.titleVal = item.title
+                    _this.titleVal = item.title;
+                    _this.twoSel = true;
                 }
                 this.initGetList();
             },
@@ -619,6 +623,10 @@
     .xsanjiao{
         border-top:0;
         border-bottom: 0.1rem solid RGBA(86, 196, 254, 1);
+    }
+    .selActive{
+        border-top: 0.1rem solid RGBA(86, 196, 254, 1);
+        border-bottom:0;
     }
 
     .sort_list_item {

@@ -609,18 +609,9 @@
                     Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
                     vm.isAnimate=false
                     if (vm.page == 1) {
-//                        console.log("dogopage1")
                         vm.list = arr;
                     } else {
-                        if(isRef==true){
-                            vm.list = arr;
-                            if(vm.list.length==0){
-                                vm.page=1;
-//                                vm.updateList()
-                            }
-                        }else {
-                            vm.list = vm.list.concat(arr);
-                        }
+                        vm.list = vm.list.concat(arr);
 
                     }
                     if (arr.length == 0) return;
@@ -635,6 +626,7 @@
                     vm.isLoading = false;
                     vm.showLoad = false;
                 });
+                console.log(vm.list)
 
             },
             onInfinite(done) {
