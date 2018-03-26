@@ -614,7 +614,7 @@
         border-top: 0.1rem solid RGBA(69, 75, 84, 0.2);
         border-right: 0.1rem solid transparent;
         border-left: 0.1rem solid transparent;
-        margin-left: 0.07rem;
+        margin-left: 0.12rem;
     }
     .xsanjiao{
         border-top:0;
@@ -685,7 +685,7 @@
         position: absolute;
         z-index: 54;
     }
-    .nav_select{ background:#fff;height: 0.96rem;width: 100%; overflow: hidden;text-align: center;line-height: 0.96rem;font-size: 0.30rem;color: RGBA(69, 75, 84, 0.5);border-bottom: 0.02rem solid #f4f4f7;}
+    .nav_select{ background:#fff;height: 0.96rem;width: 100%; overflow: hidden;text-align: center;line-height: 0.96rem;font-size: 0.30rem;color: RGBA(69, 75, 84, 0.5);border-bottom: 0.08rem solid #f4f4f7;}
 
     .asker_listen_box .audio_mask{
         position: absolute;
