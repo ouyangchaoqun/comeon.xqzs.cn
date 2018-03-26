@@ -10,7 +10,7 @@
                 <v-typeHeader :urlType="1"></v-typeHeader>
                 <div style="height:0.20rem;background: #f4f4f7"></div>
                  <!--精选-->
-                 <div class="index_box selected_box">
+                 <div class="index_box selected_box" v-show="!showLoad">
                      <div class="new_question">
                          <div class="kuan"></div>
                          <div class="top_left">精选 • 问题</div>
@@ -83,7 +83,7 @@
 
 
                  <!--最新-->
-                <div class="index_box">
+                <div class="index_box" v-show="!showLoad">
                     <div class="new_question">
                         <div class="kuan"></div>
                         <div class="top_left">最新 • 问题</div>
