@@ -159,7 +159,7 @@
             this.getCoupon();
             _this.$nextTick(function () {
                 $(document).resize(function() {
-                    $(".asker_ask_box .change_height").height($(document).height()-50)
+                    $(".asker_ask_box .change_height").height($(document).height()-48)
                 });
                 $(".content").keyup(function () {
                     let content  =  $(this).val();
