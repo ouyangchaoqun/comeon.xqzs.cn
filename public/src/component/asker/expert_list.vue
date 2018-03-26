@@ -117,7 +117,7 @@
                 </div>
                 <div class="noContent_icon" v-if="noContent">
                     <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
-                    <div>暂无该方面问题</div>
+                    <div>暂无符合该条件专家</div>
                 </div>
             </div>
         </v-scroll>

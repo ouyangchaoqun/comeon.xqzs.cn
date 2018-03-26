@@ -4,7 +4,7 @@
         <div v-if="count!=0">
             <v-showLoad v-if="showLoad"></v-showLoad>
             <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
-                      :bottomHeight="50"
+                      :bottomHeight="48"
                       :isShowMoreText="isShowMoreText">
                 <div>
                     <header>共{{count}}位粉丝</header>

@@ -5,22 +5,21 @@
         <v-showLoad v-if="showLoad"></v-showLoad>
         <!--<div @click.stop="go_expert()" class="expert_entry" v-if="isRegExpert"></div>-->
         <div class="weui-tab__panel main">
-             <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
-                      :isShowMoreText="isShowMoreText" :bottomHeight="50">
+            <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd" :isShowMoreText="isShowMoreText" :bottomHeight="48">
                 <v-typeHeader :urlType="1"></v-typeHeader>
-                <div style="height:0.20rem;background: #f4f4f7"></div>
-                <div class="index_box">
+                <div style="height:0.20rem;background: #f4f4f7" v-show="!showLoad"></div>
+
+                <div class="index_box selected_box" v-show="!showLoad">
                     <div class="new_question">
                         <div class="kuan"></div>
-                        <div class="top_left">最新 • 问题</div>
-                        <div class="top_right" @click="updateList()">
-                            <div class="refresh" :class="{click:isAnimate==true}"></div>
-                            <div class="top text">换一批</div>
+                        <div class="top_left">精选 • 问题</div>
+                        <div class="top_right" @click="goListenList(3,'精选问题')">
+                            更多
                         </div>
                     </div>
                     <div v-show="list.length>0" class="index_content_active">
                         <ul>
-                            <li v-for="(item,index) in list" >
+                            <li v-for="(item,index) in list" v-show="item.isSel">
                                 <img :src=item.expertFaceUrl alt="" class="expert_headerImg" @click="goAnswer(item.expertId)">
                                 <div @click="goDetail(item.questionId)">
                                     <div class="index_li_header">
@@ -72,7 +71,79 @@
 
                                         <div class="index_li_count">听过 {{item.listenTimes}}</div>
                                     </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+
+
+                </div>
+
+
+                <div class="index_box" v-show="!showLoad">
+                    <div class="new_question">
+                        <div class="kuan"></div>
+                        <div class="top_left">最新 • 问题</div>
+                        <div class="top_right" @click="goListenList(2,'最新问题')">
+                            更多
+                        </div>
+                    </div>
+                    <div v-show="list.length>0" class="index_content_active">
+                        <ul>
+                            <li v-for="(item,index) in list" v-show="!item.isSel">
+                                <img :src=item.expertFaceUrl alt="" class="expert_headerImg" @click="goAnswer(item.expertId)">
+                                <div @click="goDetail(item.questionId)">
+                                    <div class="index_li_header">
+                                        <div>{{item.expertName}} 回答了</div>
+                                        <div>{{item.title}}</div>
                                     </div>
+                                    <div class="index_li_content">{{item.content}}</div>
+                                    <div class="index_li_bottom">
+                                        <!--免费听-->
+                                        <span class="problem_answer_yy" v-if="item.answerType==1">
+                                            <div class="audio_mask" @click.stop="hideMask(index)" :class="{maskState:item.isAdd}"></div>
+                                            <div class="audio" :class="{playing:item.playing,paused:item.paused}">
+                                                <div class="audio_btn " @click.stop="play(index)" :class="{widthAnimation_class:item.isAdd}">
+                                                    <div class="radio"><span></span><i></i></div>
+                                                    <template v-if="!item.playing&&!item.paused">点击播放</template>
+                                                    <template v-if="item.playing">正在播放..</template>
+                                                    <template v-if="item.paused">播放暂停</template>
+                                                    <div class="second">{{(item.ct && item.ct!='00')?item.ct:item.length}}”</div>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </span>
+
+                                        <!--付费听-->
+                                        <div class="problem_answer_yy" v-if="item.answerType==2||item.answerType==4">
+                                            <div  class="audio_mask" @click.stop="hideMask(index)" :class="{maskState:item.isAdd}"></div>
+                                            <div class="audio">
+                                                <div @click.stop="typeDialog(item.questionId,item.answerId,index )"
+                                                     v-if="item.answerType==2||item.answerType==4" class="audio_btn pay" :class="{widthAnimation_class:item.isAdd}">偷听
+                                                    <div class="second">{{(item.ct &&
+                                                        item.ct!='00')?item.ct:item.length}}”
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--限时免费听-->
+                                        <span class="problem_answer_yy" v-if="item.answerType==3">
+                                            <div class="audio_mask" @click.stop="hideMask(index)" :class="{maskState:item.isAdd}"></div>
+                                            <div class="audio" :class="{playing:item.playing,paused:item.paused}">
+                                                <div class="audio_btn " @click.stop="play(index)" :class="{widthAnimation_class:item.isAdd}">
+                                                    <template v-if="!item.playing&&!item.paused">限时免费听</template>
+                                                    <template v-if="item.playing">正在播放..</template>
+                                                    <template v-if="item.paused">播放暂停</template>
+                                                    <div class="second">{{(item.ct && item.ct!='00')?item.ct:item.length}}”</div>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </span>
+
+                                        <div class="index_li_count">听过 {{item.listenTimes}}</div>
+                                    </div>
+                                </div>
                             </li>
 
                         </ul>
@@ -81,7 +152,7 @@
 
                 </div>
             </v-scroll>
-         </div>
+        </div>
 
         <v-asker-bottom tabOnIndex="0"></v-asker-bottom>
         <v-recharge :rechargeMoney="rechargeMoney" v-show="rechargeFlag" :user="user" v-on:childMessage="getFlagVal"></v-recharge>
@@ -179,6 +250,9 @@
                 let _this = this;
                 _this.$router.push("/answer/race/list")
             },
+            goListenList:function (qType,titVal) {
+                this.$router.push("/asker/listen/list?classId=0&title="+titVal+'&qType='+qType)
+            },
             getFlagVal: function (val) {
                 this.rechargeFlag = val.rechargeFlag;
                 this.getUserInfo()
@@ -204,8 +278,8 @@
 
             },
             initView: function () {
-                 var minHeight = $(window).height() - $('nav').height() - 100;
-                 $('.index_nocontent').css('minHeight', minHeight)
+                var minHeight = $(window).height() - $('nav').height() - 100;
+                $('.index_nocontent').css('minHeight', minHeight)
             },
 
             initActive: function () {
@@ -458,7 +532,7 @@
                         _this.navLists = arr.concat(_this.navLists);
 
                         _this.initView();
-                        _this.getList();
+                        _this.getAllList();
                     }
                 });
 
@@ -474,83 +548,33 @@
                 }
                 return arr ;
             },
-            getList: function (done,isRef) {
+            getAllList:function (done) {
                 let vm = this;
-                let url =   'come/listen/listen/list/_userId_/' + vm.type + '/' + vm.page + '/' + vm.row;
-                this.rankUrl = url + "?";
-                if (web.guest) {
-                    vm.rankUrl = vm.rankUrl + "guest=true"
-                }
-                if (vm.isLoading || vm.isPageEnd) {
-                    return;
-                }
-                if (vm.page == 1) {
-                    vm.showLoad = true;
-                }
-                vm.isLoading = true;
-                if (vm.couponNum != 0) {
-                    vm.getCoupon();
-                }
+                xqzs.api.get(vm, 'come/listen/listen/list/_userId_/0/1/3'+'?hottestOrNewest='+3,function (response) {
 
-
-                xqzs.api.get(vm,vm.rankUrl,function (response) {
-                    if (done && typeof(done) === 'function') {
-                        done()
+                    vm.list = response.data.data;
+                    for (let i = 0;i<vm.list.length;i++){
+                        vm.list[i].isSel = true;
                     }
+                    console.log(vm.list)
+                    vm.getList(done);
+                })
+            },
+            getList: function (done) {
+                let vm = this;
+                xqzs.api.get(vm, 'come/listen/listen/list/_userId_/0/1/3'+'?hottestOrNewest='+2,function (response) {
                     vm.showLoad = false;
-                    vm.isLoading = false;
-
-
-                    if (response.data.status != 1 && vm.page == 1) {
-                        vm.list = [];
-                        vm.isPageEnd = true;
-                        vm.isShowMoreText = false;
-                        Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
-                        return;
-                    }
-
                     let arr = response.data.data;
-                    arr= vm.randContentNum(arr);
-                    if (arr.length < vm.row) {
-                        vm.isPageEnd = true;
-                        vm.isShowMoreText = false
-                    } else {
-                        vm.isShowMoreText = true;
-                    }
-                    Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
-                    vm.isAnimate=false
-                    if (vm.page == 1) {
-//                        console.log("dogopage1")
-                        vm.list = arr;
-                    } else {
-                        if(isRef==true){
-                            vm.list = arr;
-                            if(vm.list.length==0){
-                                vm.page=1;
-                                vm.updateList()
-                            }
-                        }else {
-                            vm.list = vm.list.concat(arr);
-                        }
-
-                    }
-                    if (arr.length == 0) return;
-
-                    vm.page = vm.page + 1;
-
-                    vm.$nextTick(function () {
-                        vm.initActive()
-                    });
-                },function () {
-                    vm.isLoading = false;
-                    vm.showLoad = false;
-                });
-            },
-            onInfinite(done) {
-                this.getList(done);
+                    vm.list = vm.list.concat(arr);
+                    console.log(vm.list)
+                })
 
             },
-        },
+           onInfinite(done) {
+               this.getList(done);
+
+            },
+       },
         beforeDestroy: function () {
             xqzs.voice.pause();
         },
@@ -637,6 +661,9 @@
         border-bottom: 0.02rem solid #eee;
         position: relative;
         padding-left: 1.3rem;
+    }
+    .index_box li:last-of-type{
+        border-bottom: 0;
     }
     .index_box li .expert_headerImg{
         width:0.8rem;
@@ -756,13 +783,15 @@
     }
 
     .asker_listen_box .audio {
-        margin-bottom: 0
+        margin-bottom: 0;
+        overflow: hidden;
     }
     .new_question{
         height: 1.10rem;
         width: 100%;
         border-bottom: 0.02rem solid #eee;
         overflow: hidden;
+        position: relative;
     }
     .top_left{
         float: left;
@@ -770,13 +799,17 @@
         font-size: 0.3rem;
         margin-left: 0.27rem ;
         font-weight: bold;
+        color:RGBA(86, 196, 254, 1)
     }
     .top_right{
         float: right;
-        margin-right: 0.28rem;
+        margin-right: 0.4rem;
         font-size: 0.24rem;
-        margin-top: 0.38rem;
         color:RGBA(69, 75, 84,0.5);
+        line-height: 1.1rem;
+        background: url(http://oss.xqzs.cn/resources/psy/arrow.png) no-repeat center right;
+        background-size: 0.24rem 0.20rem;
+        padding-right: 0.30rem;
     }
 
     .index_box .new_question .top.text{
@@ -812,5 +845,14 @@
         left:0;
         border-right: 0.09rem solid transparent;
         border-top: 0.4rem solid #56C4FE;
+    }
+    .selected_box {
+        border-bottom: 0.16rem solid RGBA(244, 244, 247, 1);
+    }
+    .selected_box .kuan{
+        border-top: 0.4rem solid RGBA(254, 122, 3, 1);
+    }
+    .selected_box .top_left{
+        color:rgba(254, 122, 3, 1);
     }
 </style>

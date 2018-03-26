@@ -3,9 +3,9 @@
         <div v-title>找专家</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
-                  :isShowMoreText="isShowMoreText" :bottomHeight="50">
+                  :isShowMoreText="isShowMoreText" :bottomHeight="48">
             <v-typeHeader :urlType="2"></v-typeHeader>
-            <div class="title_top">
+            <div class="title_top" v-show="!showLoad">
                 <div class="hot_head">
                     热门 • 推荐
                        <div class="hot_hidden" @click="getMore()">
@@ -34,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            <div class="answer_list">
+            <div class="answer_list" v-show="!showLoad">
 
                 <div class="title_top">
                     <div class="new_head">
@@ -217,14 +217,14 @@
                 _this.getList()
             },
             getMore:function () {
-                this.$router.push('expert/list?classId=0&title=热门推荐')
+                this.$router.push('expert/list?classId=0&title=推荐专家')
             },
             getNewMore:function () {
                 this.$router.push('expert/list?classId=0&orderType=new&title=最新入驻')
             },
             getHotList:function () {
               let _this=this;
-                xqzs.api.get(_this,"come/expert/get/by/class/0/1/5?complexOrNew=1",function (data) {
+                xqzs.api.get(_this,"come/expert/get/by/class/0/1/10?complexOrNew=3",function (data) {
                     if(data.body.status == 1){
                         var List=data.body.data;
                         _this.manList=List;

@@ -3,7 +3,7 @@
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div v-title>我问</div>
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
-                  :bottomHeight="50"
+                  :bottomHeight="48"
                   :isShowMoreText="isShowMoreText">
 
             <!--<div class="my_problem_tabs">-->

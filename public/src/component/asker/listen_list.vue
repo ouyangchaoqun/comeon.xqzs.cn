@@ -1,13 +1,32 @@
 <template>
-    <div class="asker_listen_box">
+    <div class="asker_listen_box listenList_box">
         <div v-title>{{titleVal}}</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="weui-tab__panel main">
+            <div class="down_list">
+                <div class="nav_select">
+                    <div class="sort_rank" :class="{active_color:isShowSort||firstSel}" @click="showSelect(1)">{{nowSort}}<span class="sanjiao" :class="{xsanjiao:isShowSort,selActive:firstSel&&!isShowSort}"></span></div>
+                    <div class="class_rank" :class="{active_color:isShowClass||twoSel}"  @click="showSelect(2)">{{nowClass}}<span class="sanjiao" :class="{xsanjiao:isShowClass,selActive:twoSel&&!isShowClass}"></span></div>
+                </div>
+                <div  v-if="isShowSort" class="sort_list"  >
+                    <ul>
+                        <li v-for="item in sortList" :val="item.value" class="sort_list_item " :class="{selected:nowSort==item.label}" @click="selectTab(item,1)">{{item.label}}
+                            <img v-show="nowSort==item.label" src="http://oss.xqzs.cn/resources/psy/asker/filter_sure_icon.png" alt="">
+                        </li>
+                    </ul>
 
+                </div>
+                <div v-if="isShowClass" class="class_select" >
+                    <li v-for="item in navLists" :val="item.value" class="class_list_item" :class="{selected:nowClass==item.title}" @click="selectTab(item,2)">
+                        {{item.title}}
+                    </li>
+                </div>
+            </div>
+            <div class="downList_mask" v-if="isShowSort==true||isShowClass==true" @click="closeList()" @touchmove.prevent></div>
             <!--导航栏-->
             <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite"
                       :isPageEnd="isPageEnd" :isShowMoreText="isShowMoreText" :bottomHeight="0" >
-                <v-downList  v-on:downMessage="getQType" v-on:classMessage="getQid" :urlType="1" :currtype="type"></v-downList>
+
                 <div class="asker_listen_list_box">
                     <div v-show="list.length>0">
                         <ul>
@@ -83,15 +102,22 @@
 </template>
 <script>
     import showLoad from '../include/showLoad.vue';
-    import typeHeader from '../include/typeHeader.vue';
     import scroll from '../include/scroll.vue';
     import Bus from '../bus.js';
     import askerBottom from "./include/bottom.vue";
     import Recharge from '../asker/my/recharge.vue' ;
-    import downList from  "../include/downList.vue"
     export default {
         data() {
             return {
+                //downList
+                sortList: [{label: "最热问题", value: 1, flag: true}, {label: "最新问题", value: 2, flag: false},{label: "精选问题", value: 3, flag: false}],
+                isShowSort:false,
+                isShowClass:false,
+                nowSort:"最热问题",
+                nowClass:"主题",
+                classId:1,
+                screenHeight:document.body.clientHeight,
+                //downList
                 navLists: [
                 ],
                 typeIndex: 0,
@@ -100,7 +126,7 @@
                 isPageEnd: false,
                 isShowMoreText: false,
                 showLoad: true,
-                type: 0,
+                type: 1,
                 timeOut: null,
                 playing: false,
                 list: [],
@@ -109,9 +135,11 @@
                 rechargeMoney: 0,
                 rechargeFlag: false,
                 user: {},
-                qType:2,
+                qType:1,
                 titleVal:'',
-                currPlayIndex:null
+                currPlayIndex:null,
+                firstSel:false,
+                twoSel:false
             }
         },
         components: {
@@ -119,13 +147,23 @@
             'v-scroll': scroll,
             "v-asker-bottom": askerBottom,
             'v-recharge': Recharge,
-            'v-typeHeader': typeHeader,
-            'v-downList':downList,
-
         },
         mounted: function () {
             this.type = this.$route.query.classId;
-            this.titleVal = this.$route.query.title;
+            let qType = this.$route.query.qType;
+            if(qType){
+                this.qType = qType;
+            }
+            let title = this.$route.query.title;
+            if(title){
+                this.titleVal = title;
+                this.nowSort = title;
+            }
+            let rightTitle = this.$route.query.rightTitle
+            if(rightTitle){
+                this.titleVal = rightTitle;
+                this.nowClass = rightTitle;
+            }
             this.getClassList();
             this.getUserInfo()
             this.getCoupon();
@@ -141,17 +179,48 @@
             });
         },
         methods: {
-            getQType:function (n) {
-               this.qType= n.qType;
+            //downList
+            closeList:function () {
+                let _this=this;
+                _this.isShowSort=false;
+                _this.isShowClass=false;
+
+            },
+            showSelect:function (n) {
+                let _this=this;
+                if(n==1){
+                    _this.isShowSort=!_this.isShowSort;
+                    _this.isShowClass=false;
+
+                }
+                else if(n==2){
+                    _this.isShowSort=false;
+                    _this.isShowClass=!_this.isShowClass;
+                }
+
+            },
+            selectTab:function (item,n) {
+                //偷听
+                console.log(item)
+                let _this=this;
+                if(n==1){
+                    _this.nowSort=item.label;
+                    _this.isShowSort=false;
+                    _this.qType =item.value;
+                    _this.titleVal = item.label;
+                    _this.firstSel = true;
+                }
+
+                if(n==2){
+                    _this.nowClass=item.title;
+                    _this.isShowClass=false;
+                    _this.type = item.id;
+                    _this.titleVal = item.title;
+                    _this.twoSel = true;
+                }
                 this.initGetList();
             },
-            getQid:function (msg) {
-               console.log(msg.classId)
-                this.type = msg.classId;
-                this.qType= msg.qType;
-                this.titleVal = msg.title;
-                this.initGetList();
-            },
+            //downList
             getFlagVal: function (val) {
                 this.rechargeFlag = val.rechargeFlag;
                 this.getUserInfo()
@@ -513,6 +582,114 @@
 </script>
 
 <style>
+    .listenList_box{
+        background: #F4F4F7 !important;
+    }
+     .listenList_box .yo-scroll .inner{
+        top:0.48rem;
+    }
+    .down_list{
+        position: relative;
+        z-index: 10001;
+    }
+    .sort_rank {
+        width: 50%;
+        height: 100%;
+        float: left
+    }
+
+    .class_rank {
+        width: 50%;
+        height: 100%;
+        float: right
+    }
+    .active_color{
+        color:RGBA(46, 177, 255, 1);
+    }
+    .sanjiao {
+        width: 0;
+        height: 0;
+        display: inline-block;
+        vertical-align: middle;
+        border-top: 0.1rem solid RGBA(69, 75, 84, 0.2);
+        border-right: 0.1rem solid transparent;
+        border-left: 0.1rem solid transparent;
+        margin-left: 0.12rem;
+    }
+    .xsanjiao{
+        border-top:0;
+        border-bottom: 0.1rem solid RGBA(86, 196, 254, 1);
+    }
+    .selActive{
+        border-top: 0.1rem solid RGBA(86, 196, 254, 1);
+        border-bottom:0;
+    }
+
+    .sort_list_item {
+        width: 100%;
+        font-size: 0.28rem;
+        height: 0.96rem;
+        line-height: 0.96rem;
+        border-bottom: 1px solid #f4f4f7;
+        color:RGBA(69, 75, 84, 1);
+        position: relative;
+    }
+    .sort_list_item img{
+        width:0.32rem;
+        height:0.24rem;
+        position: absolute;
+        right:0.4rem;
+        top:50%;
+        margin-top: -0.12rem;
+    }
+    .sort_list{
+        position: absolute;
+        z-index: 55;
+        width: 100%;
+        background: #fff;
+    }
+    .sort_list ul{
+        padding-left: 0.4rem;
+    }
+    .class_select {
+        width: 100%;
+        height: 3.16rem;
+        background: #fff;
+        position: absolute;
+        z-index: 55;
+    }
+
+    .class_list_item {
+        float: left;
+        width: 1.56rem;
+        margin-left: 0.22rem;
+        margin-top: 0.25rem;
+        font-size: 0.26rem;
+        height: 0.56rem;
+        text-align: center;
+        line-height: 0.60rem;
+        color: RGBA(69, 75, 84, 0.5);
+        background: #fff;
+        border-radius: 0.10rem;
+        border: 0.02rem solid #eee;
+    }
+
+    .sort_list_item.selected {
+        color: #56C4FE;
+    }
+
+    .class_list_item.selected {
+        color: #fff !important;
+        background: #56C4FE;
+    }
+    .downList_mask{
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        position: absolute;
+        z-index: 54;
+    }
+    .nav_select{ background:#fff;height: 0.96rem;width: 100%; overflow: hidden;text-align: center;line-height: 0.96rem;font-size: 0.30rem;color: RGBA(69, 75, 84, 0.5);border-bottom: 0.08rem solid #f4f4f7;}
 
     .asker_listen_box .audio_mask{
         position: absolute;
@@ -529,9 +706,6 @@
         color: rgba(251, 100, 10, 1);
     }
 
-    .asker_listen_box {
-        background: #fff;
-    }
 
     .con_swiper_c .swiper-slide {
         overflow-y: scroll
@@ -731,7 +905,8 @@
     }
 
     .asker_listen_box .audio {
-        margin-bottom: 0
+        margin-bottom: 0;
+        overflow: hidden;
     }
 
 
