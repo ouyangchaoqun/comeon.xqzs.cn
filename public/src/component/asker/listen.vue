@@ -656,6 +656,9 @@
         position: relative;
         padding-left: 1.3rem;
     }
+    .index_box li:last-of-type{
+        border-bottom: 0;
+    }
     .index_box li .expert_headerImg{
         width:0.8rem;
         height:0.8rem;

@@ -5,7 +5,7 @@
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :isShowMoreText="isShowMoreText" :bottomHeight="50">
             <v-typeHeader :urlType="2"></v-typeHeader>
-            <div class="title_top">
+            <div class="title_top" v-show="!showLoad">
                 <div class="hot_head">
                     热门 • 推荐
                        <div class="hot_hidden" @click="getMore()">
@@ -34,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            <div class="answer_list">
+            <div class="answer_list" v-show="!showLoad">
 
                 <div class="title_top">
                     <div class="new_head">
