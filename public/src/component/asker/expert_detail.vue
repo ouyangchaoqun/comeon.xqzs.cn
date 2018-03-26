@@ -258,17 +258,6 @@
             this.getComment();
             this.getAnswer();
 
-
-
-
-
-
-
-
-
-            this.isInteger(1.00000);
-            this.isInteger(1.00001);
-            this.isInteger(1);
         },
         updated:function () {
             let _this = this;
@@ -693,7 +682,7 @@
                         _this.detail.experience= xqzs.string.transferContentBr(_this.detail.experience);
                         _this.detail.goodat= xqzs.string.transferContentBr(_this.detail.goodat);
                         console.log( _this.detail)
-                        if(_this.detail.expertUserId!=_this.user.id&&_this.detail.expertUserId!=null&&_this.user.id!=null){
+                        if(_this.user&&_this.detail.expertUserId!=_this.user.id&&_this.detail.expertUserId!=null&&_this.user.id!=null){
                             _this.scrollHeightBottom=50;
                         }
 
