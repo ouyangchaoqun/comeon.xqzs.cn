@@ -11,7 +11,7 @@
             </div>
         </div>
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
-                  :bottomHeight="50"
+                  :bottomHeight="48"
                   :isShowMoreText="isShowMoreText">
 
 
