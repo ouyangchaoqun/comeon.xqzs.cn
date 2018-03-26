@@ -663,14 +663,14 @@
         width: 1.56rem;
         margin-left: 0.22rem;
         margin-top: 0.25rem;
-        font-size: 0.30rem;
-        height: 0.60rem;
+        font-size: 0.26rem;
+        height: 0.56rem;
         text-align: center;
         line-height: 0.60rem;
         color: RGBA(69, 75, 84, 0.5);
         background: #fff;
         border-radius: 0.10rem;
-        border: 1px solid #eee;
+        border: 0.02rem solid #eee;
     }
 
     .sort_list_item.selected {
