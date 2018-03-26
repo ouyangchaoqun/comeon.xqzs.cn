@@ -216,7 +216,7 @@
             }
             this.getClassList();
             this.getHotList();
-            this.getNewList();
+
             this.getUserInfo(true)
             this.getCoupon();
             xqzs.voice.audio = null;
@@ -558,6 +558,7 @@
                     for (let i = 0;i<vm.list.length;i++){
                         vm.list[i].isSel = true;
                     }
+                    vm.getNewList();
 
                 })
             },
