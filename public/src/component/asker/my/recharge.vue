@@ -73,7 +73,7 @@
                 }else{
                     xqzs.user.getUserInfo(function (user) {
                         _this.user =user;
-                        if( _this.user!=''|| _this.user!=undefined){
+                        if(_this.user&& _this.user!=''|| _this.user!=undefined){
                             _this.balance = _this.user.balance;
                             _this.havedianCoin = _this.user.dianCoin;
                         }
