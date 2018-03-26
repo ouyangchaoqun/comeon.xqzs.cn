@@ -29,7 +29,7 @@
         display: flex;
         position: absolute; bottom: 0; left:0; line-height: 1; font-size: 0.31rem ; background: #fff;   color:rgba(36,37,61,1);
         width: 100%;
-        padding-top: 0.04rem;
+        padding-top: 0.02rem;
         z-index: 100;
     }
     .asker_bottom_box a:active,.asker_bottom_box a.on{ color:RGBA(86, 196, 245,1);}
