@@ -82,7 +82,14 @@
             </li>
 
         </ul>
-
+        <!--新增评价-->
+        <!--<div class="evaluate_box" v-if="!evaluates&&!showLoad">-->
+            <!--<h3>用户评价</h3>-->
+            <!--<div class="title_border"></div>-->
+            <!--<ul>-->
+                <!--<li></li>-->
+            <!--</ul>-->
+        <!--</div>-->
     </div>
 
 </template>
@@ -103,7 +110,8 @@
                 couponNum:0,
                 rechargeMoney:0,
                 user:{},
-                rechargeFlag:false
+                rechargeFlag:false,
+                evaluates:[],
             }
         },
         mounted: function () {
@@ -360,6 +368,7 @@
                     if (data.body.status == 1) {
                         _this.detail= data.body.data
                         _this.list = _this.detail.answerList;
+                        _this.evaluates = _this.list.evaluates;
                         console.log(_this.detail);
                         xqzs.wx.setConfig(_this, function () {
                             var config = {
@@ -427,7 +436,26 @@
 </script>
 
 <style>
-
+    /**新增评价样式**/
+    .evaluate_box{
+        padding-top: 0.3rem;
+    }
+    .evaluate_box h3{
+        color:#2EB1FF;
+        font-size: 0.36rem;
+        line-height: 0.5rem;
+        text-align: center;
+        font-weight: normal;
+        margin-bottom: 0.14rem;
+    }
+    .evaluate_box .title_border{
+        width:0.62rem;
+        height:0.06rem;
+        background: #D8D8D8;
+        border-radius: 0.03rem;
+        margin: 0 auto;
+        margin-bottom: 0.24rem;
+    }
     .listenDetail_box{
         background: #fff;
     }
@@ -480,7 +508,7 @@
     }
     .steal_detail_answer{
         background: #fff;
-        margin-bottom: 0.20rem;
+        /*margin-bottom: 0.20rem;*/
     }
     .steal_answer_top{
         display: flex;
