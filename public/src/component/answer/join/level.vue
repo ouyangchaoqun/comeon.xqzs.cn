@@ -42,7 +42,7 @@
                     {name:'其它'}
                 ],
                 jobTitle:cookie.get('reg_jobTitle')?unescape(cookie.get('reg_jobTitle')):'',
-                certificateFile1:'',
+                certificateFile1:cookie.get('reg_certificateFile1')?unescape(cookie.get('reg_certificateFile1')):'',
                 certificateFile1Show:'',
                 certificateNo:cookie.get('reg_certificateNo')?cookie.get('reg_certificateNo'):'',
                 uploadpicinfo:null,
@@ -59,12 +59,8 @@
         mounted: function () {
             this.edit= this.$route.query.edit;
             this.initOss();
-            if(this.jobTitle!=''){
-                for (let i=0;i<this.level.length;i++){
-                    if(this.level[i].name==this.jobTitle){
-                        this.getItemClass(i)
-                    }
-                }
+            if(this.certificateFile1){
+                this.certificateFile1Show = this.certificateFile1 +'?x-oss-process=image/resize,m_lfit,,h_'+fileHeight+',w_'+fileWidth;
             }
             if(this.edit==1){
                 this.getExpertInfo();
@@ -79,16 +75,19 @@
                 this.$http.get(web.API_PATH + 'come/expert/query/detail/for/edit/'+expertId+'/_userId_').then(function (data) {
                     if (data.body.status == 1) {
                         let showInfo = data.data.data;
-                        for (let i=0;i<this.level.length;i++){
-                            if(this.level[i].name==showInfo.jobTitle){
-                                this.getItemClass(i)
+                        if(this.jobTitle!=''){
+                            for (let i=0;i<this.level.length;i++){
+                                if(this.level[i].name==showInfo.jobTitle){
+                                    this.getItemClass(i)
+                                }
                             }
                         }
+
                         let fileWidth = parseInt($('.photo_box').width());
                         let fileHeight = parseInt($('.photo_box').height());
                         this.certificateNo = showInfo.certificateNo;
                         this.certificateFile1 = showInfo.certificateFile1;
-                        this.certificateFile1Show = cookie.get('reg_certificateFile1')?cookie.get('reg_certificateFile1')+'?x-oss-process=image/resize,m_lfit,,h_'+fileHeight+',w_'+fileWidth:'';
+                        this.certificateFile1Show = this.certificateFile1+'?x-oss-process=image/resize,m_lfit,,h_'+fileHeight+',w_'+fileWidth;
 
                     }
                 }, function (error) {
