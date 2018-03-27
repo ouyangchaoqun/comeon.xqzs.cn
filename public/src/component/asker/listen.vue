@@ -557,8 +557,8 @@
             },
             getNewList: function (done) {
                 let vm = this;
-                let url = web.API_PATH + 'come/listen/listen/list/_userId_/' + vm.type + '/' + vm.page + '/' + vm.row+'?hottestOrNewest=2';
-                this.rankUrl = url ;
+                let url =  'come/listen/listen/list/_userId_/' + vm.type + '/' + vm.page + '/' + vm.row+'?hottestOrNewest=2';
+                vm.rankUrl = url ;
                 if (vm.isLoading || vm.isPageEnd) {
                     return;
                 }
@@ -570,7 +570,9 @@
                     vm.getCoupon();
                 }
 
-                vm.$http.get(vm.rankUrl).then((response) => {
+                xqzs.api.get(vm,vm.rankUrl,function (response) {
+
+
                     if (done && typeof(done) === 'function') {
                         done()
                     }
