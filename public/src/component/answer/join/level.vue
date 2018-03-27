@@ -64,16 +64,22 @@
         mounted: function () {
             this.edit= this.$route.query.edit;
             this.initOss();
-            if(this.certificateFile1){
-                this.certificateFile1Show = this.certificateFile1 +'?x-oss-process=image/resize,m_lfit,,h_'+fileHeight+',w_'+fileWidth;
+            let _this = this;
+            if(_this.edit==0){
+                _this.getPhoto(_this.certificateFile1)
             }
-            if(this.edit==1){
-                this.getExpertInfo();
+            if(_this.edit==1){
+                _this.getExpertInfo();
             }
         },
         methods: {
             changeCertificateNo:function (v) {
                 this.certificateNo =  $(".certificateNo").val()
+            },
+            getPhoto:function (val) {
+                let fileWidth = parseInt($('.photo_box').width());
+                let fileHeight = parseInt($('.photo_box').height());
+                this.certificateFile1Show = val +'?x-oss-process=image/resize,m_lfit,,h_'+fileHeight+',w_'+fileWidth;
             },
             getExpertInfo:function () {
                 let expertId = cookie.get('expertId');
@@ -87,12 +93,9 @@
                                 }
                             }
                         }
-
-                        let fileWidth = parseInt($('.photo_box').width());
-                        let fileHeight = parseInt($('.photo_box').height());
                         this.certificateNo = showInfo.certificateNo;
                         this.certificateFile1 = showInfo.certificateFile1;
-                        this.certificateFile1Show = this.certificateFile1+'?x-oss-process=image/resize,m_lfit,,h_'+fileHeight+',w_'+fileWidth;
+                        this.getPhoto(this.certificateFile1);
 
                     }
                 }, function (error) {
