@@ -259,12 +259,6 @@
                 this.rechargeFlag = val.rechargeFlag;
                 this.getUserInfo()
             },
-            updateList:function () {
-                this.isAnimate=true
-                this.isPageEnd = false;
-                this.isShowMoreText = false;
-                this.getList(false,true)
-            },
             goAnswer:function (extId) {
                 this.$router.push('/asker/expert/detail/?id=' + extId)
             },
@@ -550,26 +544,78 @@
                 }
                 return arr ;
             },
-            getHotList:function () {
+            getHotList:function (done) {
                 let vm = this;
                 xqzs.api.get(vm, 'come/listen/listen/list/_userId_/0/1/3'+'?hottestOrNewest='+3,function (response) {
-                    console.log(response)
                     vm.list = response.data.data;
                     for (let i = 0;i<vm.list.length;i++){
                         vm.list[i].isSel = true;
                     }
-                    vm.getNewList();
+                    vm.getNewList(done);
 
                 })
             },
-            getNewList: function () {
+            getNewList: function (done) {
                 let vm = this;
-                xqzs.api.get(vm, 'come/listen/listen/list/_userId_/0/1/3'+'?hottestOrNewest='+2,function (response) {
+                let url = web.API_PATH + 'come/listen/listen/list/_userId_/0/1/5'+'?hottestOrNewest='+2;
+                this.rankUrl = url + "?";
+                if (web.guest) {
+                    vm.rankUrl = vm.rankUrl + "guest=true"
+                }
+                if (vm.isLoading || vm.isPageEnd) {
+                    return;
+                }
+                if (vm.page == 1) {
+                    vm.showLoad = true;
+                }
+                vm.isLoading = true;
+                if (vm.couponNum != 0) {
+                    vm.getCoupon();
+                }
+
+                vm.$http.get(vm.rankUrl).then((response) => {
+                    if (done && typeof(done) === 'function') {
+                        done()
+                    }
                     vm.showLoad = false;
+                    vm.isLoading = false;
+
+
+                    if (response.data.status != 1 && vm.page == 1) {
+                        vm.isPageEnd = true;
+                        vm.isShowMoreText = false;
+                        Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
+                        return;
+                    }
+
                     let arr = response.data.data;
+                    arr= vm.randContentNum(arr);
+                    if (arr.length < vm.row) {
+                        vm.isPageEnd = true;
+                        vm.isShowMoreText = false
+                    } else {
+
+                        vm.isShowMoreText = true;
+                    }
+                    Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
+                    vm.isAnimate=false
                     vm.list = vm.list.concat(arr);
-                    console.log(vm.list)
-                })
+                    if (arr.length == 0) return;
+
+                    vm.page = vm.page + 1;
+
+                    vm.$nextTick(function () {
+                        vm.initActive()
+                    });
+
+                }, (response) => {
+                    vm.isLoading = false;
+                    vm.showLoad = false;
+                });
+
+            },
+            onInfinite(done) {
+                this.getNewList(done);
 
             },
 
