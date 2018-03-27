@@ -26,11 +26,6 @@
                 </div>
             </div>
         </div>
-        <div >
-            <div>{{certificateFile1}}-----</div>
-            <div>{{certificateFile1Show}}****</div>
-        </div>
-
     </div>
 </template>
 
