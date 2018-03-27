@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-        <div style="visibility: hidden">
+        <div >
             <div>{{certificateFile1}}-----</div>
             <div>{{certificateFile1Show}}****</div>
         </div>
