@@ -557,11 +557,8 @@
             },
             getNewList: function (done) {
                 let vm = this;
-                let url = web.API_PATH + 'come/listen/listen/list/_userId_/0/1/5'+'?hottestOrNewest='+2;
-                this.rankUrl = url + "?";
-                if (web.guest) {
-                    vm.rankUrl = vm.rankUrl + "guest=true"
-                }
+                let url = web.API_PATH + 'come/listen/listen/list/_userId_/' + vm.type + '/' + vm.page + '/' + vm.row+'?hottestOrNewest=2';
+                this.rankUrl = url ;
                 if (vm.isLoading || vm.isPageEnd) {
                     return;
                 }
