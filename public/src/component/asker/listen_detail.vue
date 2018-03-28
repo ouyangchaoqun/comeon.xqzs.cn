@@ -83,13 +83,43 @@
 
         </ul>
         <!--新增评价-->
-        <!--<div class="evaluate_box" v-if="!evaluates&&!showLoad">-->
-            <!--<h3>用户评价</h3>-->
-            <!--<div class="title_border"></div>-->
-            <!--<ul>-->
-                <!--<li></li>-->
-            <!--</ul>-->
-        <!--</div>-->
+        <div class="evaluate_box" v-if="!evaluates&&!showLoad">
+            <h3>用户评价</h3>
+            <div class="title_border"></div>
+            <ul>
+                <li>
+                    <img src="http://oss.hh-idea.com/2018-03/20/feecyceeblmvtw6cv7mbchga4iybxio8.jpg" alt="">
+                    <div class="eva_main">
+                        <div class="eva_name">胡八凯</div>
+                        <div class="eva_content">确实，除了沟通技能，提高自身能力也很重要， 努力学习，努力工作</div>
+                        <div class="eva_time">3月26号 </div>
+                    </div>
+                </li>
+                <li>
+                    <img src="http://oss.hh-idea.com/2018-03/20/feecyceeblmvtw6cv7mbchga4iybxio8.jpg" alt="">
+                    <div class="eva_main">
+                        <div class="eva_name">胡八凯</div>
+                        <div class="eva_content">确实，除了沟通技能，提高自身能力也很重要， 努力学习，努力工作</div>
+                        <div class="eva_time">3月26号 </div>
+                    </div>
+                </li>
+                <li>
+                    <img src="http://oss.hh-idea.com/2018-03/20/feecyceeblmvtw6cv7mbchga4iybxio8.jpg" alt="">
+                    <div class="eva_main">
+                        <div class="eva_name">胡八凯</div>
+                        <div class="eva_content">确实，除了沟通技能，提高自身能力也很重要， 努力学习，努力工作</div>
+                        <div class="eva_time">3月26号 </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="eva_btn">查看更多</div>
+        </div>
+        <div class="evaluate_input" v-if="isListened">
+            <div>
+                <input type="text" placeholder="我要评论"/>
+                <span>发送</span>
+            </div>
+        </div>
     </div>
 
 </template>
@@ -112,6 +142,7 @@
                 user:{},
                 rechargeFlag:false,
                 evaluates:[],
+                isListened:false
             }
         },
         mounted: function () {
@@ -369,6 +400,7 @@
                         _this.detail= data.body.data
                         _this.list = _this.detail.answerList;
                         _this.evaluates = _this.list.evaluates;
+                        _this.isListened = _this.detail.isListened;
                         console.log(_this.detail);
                         xqzs.wx.setConfig(_this, function () {
                             var config = {
@@ -439,6 +471,7 @@
     /**新增评价样式**/
     .evaluate_box{
         padding-top: 0.3rem;
+        padding-bottom: 1.68rem;
     }
     .evaluate_box h3{
         color:#2EB1FF;
@@ -454,7 +487,82 @@
         background: #D8D8D8;
         border-radius: 0.03rem;
         margin: 0 auto;
-        margin-bottom: 0.24rem;
+    }
+    .evaluate_box li{
+        margin-left: 0.28rem;
+        border-bottom: 0.02rem solid #eee;
+        position: relative;
+        padding-top: 0.3rem;
+    }
+    .evaluate_box li img{
+        width:0.6rem;
+        height:0.6rem;
+        position: absolute;
+        border-radius: 50%;
+    }
+    .evaluate_box li .eva_main{
+        padding-left: 0.9rem;
+        padding-right: 0.2rem;
+        color:RGBA(3, 3, 3, 1);
+        font-size: 0.3rem;
+        line-height: 0.42rem;
+    }
+    .evaluate_box li .eva_main .eva_name{
+        color:RGBA(3, 3, 3, 0.5);
+        font-size: 0.28rem;
+        line-height: 0.4rem;
+        margin-bottom: 0.1rem;
+    }
+    .evaluate_box li .eva_main .eva_content{
+        margin-bottom: 0.14rem;
+    }
+    .evaluate_box .eva_main .eva_time{
+        color:RGBA(3, 3, 3, 0.5);
+        font-size: 0.24rem;
+        line-height: 0.34rem;
+        margin-bottom: 0.3rem;
+    }
+    .evaluate_box .eva_btn{
+        width:1.8rem;
+        line-height: 0.6rem;
+        text-align: center;
+        border-radius: 0.36rem;
+        color:RGBA(202, 201, 203, 1);
+        border:0.02rem solid RGBA(202, 201, 203, 1);
+        font-size: 0.28rem;
+        margin: 0.3rem auto;
+    }
+    .evaluate_input{
+        height:1.68rem;
+        background: RGBA(238, 238, 238, 1);
+        position: fixed;
+        bottom:0;
+        width: 100%;
+        left:0;
+        right:0;
+    }
+    .evaluate_input>div{
+        padding:0.24rem 0.3rem 0 0.3rem;
+    }
+    .evaluate_input input{
+        height:0.66rem;
+        width: 5.3rem;
+        border-radius: 0.1rem;
+        border:0.02rem solid RGBA(202, 201, 203, 1);
+        padding-left: 0.2rem;
+        vertical-align: middle;
+    }
+    .evaluate_input span{
+        background: RGBA(46, 177, 255, 1);
+        color:#fff;
+        font-size: 0.36rem;
+        width:1.2rem;
+        line-height: 0.7rem;
+        display: inline-block;
+        text-align: center;
+        border-radius: 0.1rem;
+        vertical-align: middle;
+        float: right;
     }
     .listenDetail_box{
         background: #fff;
