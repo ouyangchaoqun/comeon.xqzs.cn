@@ -42,6 +42,7 @@
     var cookieVersion="";
 </script>
 <script src="<?=OSS_BUILD_PATH?>/rem.min.js?v=<?=STATIC_XQZS_VERSION?>"></script>
+<script src="<?=OSS_BUILD_PATH?>/catch.error.min.js?v=<?=STATIC_XQZS_VERSION?>"></script>
 <script src="<?=OSS_BUILD_PATH?>/cookie.min.js?v=<?=STATIC_XQZS_VERSION?>"></script>
 <script src="<?=OSS_BUILD_PATH?>/xqzs.min.js?v=<?=STATIC_XQZS_VERSION?>"></script>
 <script src="<?=OSS_BUILD_PATH?>/xqzs.face.min.js?v=<?=STATIC_XQZS_VERSION?>"></script>

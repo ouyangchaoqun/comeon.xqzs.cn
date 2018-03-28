@@ -19,7 +19,7 @@ $app->group(['prefix'=>'wx'],function () use($app){
     $app->get('pubjump','WeixinController@pubjump');
 });
 $app->get('/wxjump','WeixinController@jump');
-
+$app->post('/error/log','Controller@errorLog');
 
 
 $app->options('/api/{url:[a-zA-Z/\-\d\{\}\%\[\]\_]+}','ApiController@url');;

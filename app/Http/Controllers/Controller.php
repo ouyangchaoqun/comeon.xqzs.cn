@@ -36,7 +36,18 @@ class Controller extends BaseController
         }
         return view('index')->with("guest", true);
     }
+    public function errorLog(Request $request){
+        $log = storage_path('logs').'/web_js_log.txt';
+        $url = $request->input("url");
+        if($url==''){
+            return ;
+        }
+        $msg = $request->input("msg");
+        $headArray = getallheaders();
+        $content =  date("Y_m_d h:i:s") . "【msg:$msg ，User-Agent:". $headArray['User-Agent']  ."】\r\n\r\n";
+        file_put_contents($log, $content, FILE_APPEND);
 
+    }
     public function index(Request $request)
     {
 
