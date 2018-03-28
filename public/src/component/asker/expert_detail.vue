@@ -562,13 +562,13 @@
                 xqzs.api.put(_this,"come/expert/follow/expert/"+this.id+"/_userId_",{},function (bt) {
                     if (bt.data && bt.data.status == 1) {
 
-                        if(that.detail.followed==1){
-                            that.detail.followed=0;
-                            that.detail.followCount=that.detail.followCount-1;
-                            xqzs.weui.toast("success","取消成功")
+                        if(_this.detail.followed==1){
+                            _this.detail.followed=0;
+                            _this.detail.followCount=_this.detail.followCount-1;
+                            _this.weui.toast("success","取消成功")
                         }else{
-                            that.detail.followed=1;
-                            that.detail.followCount=that.detail.followCount+1;
+                            _this.detail.followed=1;
+                            _this.detail.followCount=_this.detail.followCount+1;
                             xqzs.weui.toast("success","关注成功")
                         }
 
