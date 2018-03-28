@@ -88,7 +88,7 @@
             <div class="title_border"></div>
             <ul>
                 <li v-for="item in evaluates">
-                    <img src="http://oss.hh-idea.com/2018-03/20/feecyceeblmvtw6cv7mbchga4iybxio8.jpg" alt="">
+                    <img :src="item.faceUrl" alt="">
                     <div class="eva_main">
                         <div class="eva_name">{{item.nickName}}</div>
                         <div class="eva_content">{{item.content}}</div>
@@ -174,7 +174,7 @@
             },
             subEvaluate:function () {
                 if(this.evaVal){
-                    xqzs.api.put(this, "come/user/evaluate/answer",{userId:"_userId_",answerId:this.detail.bestAnswerId, point:0,content:this.evaVal,isAnonymous :0},function (bt) {
+                    xqzs.api.put(this, "come/user/evaluate/answer",{userId:"_userId_",answerId:this.detail.bestAnswerId, point:1,content:this.evaVal,isAnonymous :0},function (bt) {
                         if (bt.data && bt.data.status == 1) {
                             xqzs.weui.toast("success","评论成功",function () {
 
