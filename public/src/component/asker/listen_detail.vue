@@ -83,43 +83,31 @@
 
         </ul>
         <!--新增评价-->
-        <div class="evaluate_box" v-if="!evaluates&&!showLoad">
+        <div class="evaluate_box" v-if="evaluates_flag&&!showLoad">
             <h3>用户评价</h3>
             <div class="title_border"></div>
             <ul>
-                <li>
+                <li v-for="item in evaluates">
                     <img src="http://oss.hh-idea.com/2018-03/20/feecyceeblmvtw6cv7mbchga4iybxio8.jpg" alt="">
                     <div class="eva_main">
-                        <div class="eva_name">胡八凯</div>
-                        <div class="eva_content">确实，除了沟通技能，提高自身能力也很重要， 努力学习，努力工作</div>
-                        <div class="eva_time">3月26号 </div>
-                    </div>
-                </li>
-                <li>
-                    <img src="http://oss.hh-idea.com/2018-03/20/feecyceeblmvtw6cv7mbchga4iybxio8.jpg" alt="">
-                    <div class="eva_main">
-                        <div class="eva_name">胡八凯</div>
-                        <div class="eva_content">确实，除了沟通技能，提高自身能力也很重要， 努力学习，努力工作</div>
-                        <div class="eva_time">3月26号 </div>
-                    </div>
-                </li>
-                <li>
-                    <img src="http://oss.hh-idea.com/2018-03/20/feecyceeblmvtw6cv7mbchga4iybxio8.jpg" alt="">
-                    <div class="eva_main">
-                        <div class="eva_name">胡八凯</div>
-                        <div class="eva_content">确实，除了沟通技能，提高自身能力也很重要， 努力学习，努力工作</div>
-                        <div class="eva_time">3月26号 </div>
+                        <div class="eva_name">{{item.nickName}}</div>
+                        <div class="eva_content">{{item.content}}</div>
+                        <div class="eva_time">{{item.addTime}}</div>
                     </div>
                 </li>
             </ul>
-            <div class="eva_btn">查看更多</div>
+            <div class="eva_btn" @click="getCommentList()" v-show="!isPageEnd">查看更多</div>
         </div>
-        <div class="evaluate_input" v-if="isListened">
-            <div>
-                <input type="text" placeholder="我要评论"/>
-                <span>发送</span>
+            <div >
+                <div class="comment_box evaluate_block" v-if="isListened">
+                    <span class="release" :class="{releaseActive:canSub}" @click="subEvaluate()">发送</span>
+                    <div class="box">
+                        <textarea @input="setTextareaHeight();" v-model="evaVal"  class="comment_text" id="textarea" placeholder="评价"></textarea>
+                    </div>
+                    <div style=" height: 44px;    background: #f5f5f5;width: 100%;position: absolute;bottom: -44px;text-align: center;font-size: 12px;color: #ddd; line-height: 30px">一切都好一点</div>
+                </div>
             </div>
-        </div>
+
     </div>
 
 </template>
@@ -142,7 +130,14 @@
                 user:{},
                 rechargeFlag:false,
                 evaluates:[],
-                isListened:false
+                isListened:false,
+                evaVal:'',
+                canSub:false,
+                evaluates_flag:false,
+                page:2,
+                row:3,
+                isPageEnd:false,
+                isLoading:false
             }
         },
         mounted: function () {
@@ -150,10 +145,6 @@
             this.getDetail();
             this.getCoupon();
             this.getUserInfo();
-
-
-
-
 
 
         },
@@ -171,6 +162,46 @@
                 let _this=this;
                 xqzs.user.getUserInfo(function (user) {
                     _this.user =user;
+                })
+            },
+            setTextareaHeight:function () {
+                if(this.evaVal){
+                    this.canSub = true
+                }else {
+                    this.canSub = false
+                }
+              return xqzs.weui.textareaAutoHeight();
+            },
+            subEvaluate:function () {
+                if(this.evaVal){
+                    xqzs.api.put(this, "come/user/evaluate/answer",{userId:"_userId_",answerId:this.detail.bestAnswerId, point:0,content:this.evaVal,isAnonymous :0},function (bt) {
+                        if (bt.data && bt.data.status == 1) {
+                            xqzs.weui.toast("success","评论成功",function () {
+
+                            })
+                        }
+                    })
+                }
+            },
+            getCommentList:function () {
+                let _this = this;
+                if(_this.isLoading){
+                    return
+                }
+                let questionId = _this.detail.questionId;
+                _this.isLoading = true
+                xqzs.api.get(_this,'come/comment/query/page/question/'+questionId+'/'+this.page+'/'+this.row,function(data){
+                    if (data.body.status == 1) {
+                        _this.isLoading=false;
+                        _this.page++;
+                        let arr =  data.data.data;
+                        if(arr.length<_this.row){
+                            _this.isPageEnd = true
+                        }
+                        _this.evaluates = _this.evaluates.concat(arr);
+                    }
+                },function (error) {
+                    _this.isLoading=false;
                 })
             },
             getFlagVal:function (val) {
@@ -310,6 +341,7 @@
                 item.answerType=1;
                 item.needPay=0;
                 this.detail.needPay=0;
+                this.detail.isListened = 1;
                 this.$set( this.detail.answerList,index,item);
             },
             timeout:function (play,time,index) {
@@ -394,14 +426,16 @@
             getDetail:function () {
                 let _this= this;
                 _this.showLoad=true;
-                xqzs.api.get(_this,'come/listen/question/detail/'+_this.questionId +"/_userId_",function (data) {
+                xqzs.api.get(_this,'come/listen/question/detail/'+_this.questionId +"/_userId_"+'?comments=3',function (data) {
                     _this.showLoad=false;
                     if (data.body.status == 1) {
                         _this.detail= data.body.data
                         _this.list = _this.detail.answerList;
-                        _this.evaluates = _this.list.evaluates;
+                        _this.evaluates = _this.detail.evaluates;
+                        if(_this.evaluates.length){
+                            _this.evaluates_flag = true
+                        }
                         _this.isListened = _this.detail.isListened;
-                        console.log(_this.detail);
                         xqzs.wx.setConfig(_this, function () {
                             var config = {
                                 imgUrl:"http://oss.xqzs.cn/resources/psy/logo.jpg",
@@ -503,12 +537,12 @@
     .evaluate_box li .eva_main{
         padding-left: 0.9rem;
         padding-right: 0.2rem;
-        color:RGBA(3, 3, 3, 1);
+        color:rgba(3, 3, 3, 1);
         font-size: 0.3rem;
         line-height: 0.42rem;
     }
     .evaluate_box li .eva_main .eva_name{
-        color:RGBA(3, 3, 3, 0.5);
+        color:rgba(3, 3, 3, 0.5);
         font-size: 0.28rem;
         line-height: 0.4rem;
         margin-bottom: 0.1rem;
@@ -517,7 +551,7 @@
         margin-bottom: 0.14rem;
     }
     .evaluate_box .eva_main .eva_time{
-        color:RGBA(3, 3, 3, 0.5);
+        color:rgba(3, 3, 3, 0.5);
         font-size: 0.24rem;
         line-height: 0.34rem;
         margin-bottom: 0.3rem;
@@ -527,42 +561,21 @@
         line-height: 0.6rem;
         text-align: center;
         border-radius: 0.36rem;
-        color:RGBA(202, 201, 203, 1);
-        border:0.02rem solid RGBA(202, 201, 203, 1);
+        color:rgba(202, 201, 203, 1);
+        border:0.02rem solid rgba(202, 201, 203, 1);
         font-size: 0.28rem;
         margin: 0.3rem auto;
     }
-    .evaluate_input{
-        height:1.68rem;
-        background: RGBA(238, 238, 238, 1);
-        position: fixed;
+    .evaluate_block{
         bottom:0;
-        width: 100%;
-        left:0;
-        right:0;
     }
-    .evaluate_input>div{
-        padding:0.24rem 0.3rem 0 0.3rem;
+    .evaluate_block .release{
+        background: RGBA(46, 177, 255, 0.6);
+        border-color:RGBA(46, 177, 255, 0.2);
     }
-    .evaluate_input input{
-        height:0.66rem;
-        width: 5.3rem;
-        border-radius: 0.1rem;
-        border:0.02rem solid RGBA(202, 201, 203, 1);
-        padding-left: 0.2rem;
-        vertical-align: middle;
-    }
-    .evaluate_input span{
-        background: RGBA(46, 177, 255, 1);
-        color:#fff;
-        font-size: 0.36rem;
-        width:1.2rem;
-        line-height: 0.7rem;
-        display: inline-block;
-        text-align: center;
-        border-radius: 0.1rem;
-        vertical-align: middle;
-        float: right;
+    .evaluate_block .releaseActive{
+        background: RGBA(46, 177, 255,1);
+        border-color:RGBA(46, 177, 255, 1);
     }
     .listenDetail_box{
         background: #fff;
