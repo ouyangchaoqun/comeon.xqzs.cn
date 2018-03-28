@@ -44,7 +44,7 @@
 
                 </div>
             </div>
-            <div class="rob_status_box" v-if="detail.questionStatus==2">
+                <div class="rob_status_box" v-if="detail.questionStatus==2&&detail.answerCount>0">
                 <div>已解答 </div>
                 <div>共有<span>{{detail.answerCount}}</span>位咨询师抢答，咨询师们已平分赏金！</div>
             </div>
