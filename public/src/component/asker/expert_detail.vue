@@ -181,10 +181,10 @@
 
                 <div class="listen"  @click="follow()">
 
-                <span v-if="detail.followed===1">
-                    <img v-if="detail.followed===1" src="http://oss.xqzs.cn/resources/psy/followed_new.png" alt="">已关注
+                <span v-if="detail.followed==1">
+                    <img v-if="detail.followed==1" src="http://oss.xqzs.cn/resources/psy/followed_new.png" alt="">已关注
                 </span>
-                    <span v-if="detail.followed===0" class="followedColor">+关注</span>
+                    <span v-if="detail.followed==0" class="followedColor">+关注</span>
                 </div>
                 <div class="pay_ask" @click="ask()"><span class="ask_dianCoinbg"></span>￥{{detail.price}} 提问</div>
 
