@@ -156,7 +156,7 @@
                 isListened:false,
                 evaluates_flag:false,
                 page:2,
-                row:3,
+                row:5,
                 isPageEnd:false,
                 isLoading:false,
                 anonyVal:0,
@@ -510,7 +510,7 @@
             getDetail:function () {
                 let _this= this;
                 _this.showLoad=true;
-                xqzs.api.get(_this,'come/listen/question/detail/'+_this.questionId +"/_userId_"+'?comments=3',function (data) {
+                xqzs.api.get(_this,'come/listen/question/detail/'+_this.questionId +"/_userId_"+'?comments=5',function (data) {
                     _this.showLoad=false;
                     if (data.body.status == 1) {
                         _this.detail= data.body.data
