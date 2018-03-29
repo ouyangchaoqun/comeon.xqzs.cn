@@ -1,7 +1,7 @@
 <template >
     <div class="listenDetail_box" :class="{heightLock:needLock}">
         <!--详情头部-->
-        <div class="listenDetail_inner_box">
+        <div class="listenDetail_inner_box" :style="'height:'+innerHeight+'px'">
             <div v-title>问题详情</div>
             <v-recharge  v-if="rechargeFlag"  :rechargeMoney="rechargeMoney" v-on:childMessage="getFlagVal"></v-recharge>
             <v-showLoad v-if="showLoad"></v-showLoad>
@@ -103,7 +103,7 @@
             </div>
         </div>
         <!--底部评价-->
-        <div class="evaluate_block" :class='{canEvaluate:isListened }'>
+        <div class="evaluate_block" :class='{canEvaluate:isListened&&!isEvaluated}' :style="'height:'+height+'px'">
             <div @click="showCommentBox()">
                 <img src="http://oss.xqzs.cn/resources/psy/asker/evaulate_icon.png" alt="">
                 我要评价
@@ -122,7 +122,7 @@
                     </li>
                 </ul>
                 <div class="frame_textarea">
-                    <textarea placeholder="分享您的咨询感受" id="frame_textarea" @input="frameChange()"></textarea>
+                    <textarea placeholder="分享您的偷听感受" id="frame_textarea" @input="frameChange()"></textarea>
                     <div class="anFlag" @click="setAnonymous()" :class="{anFlag_on:isAnonymous}">
                         匿名
                     </div>
@@ -168,10 +168,12 @@
                 star_pass:false,
                 textVal_pass:false,
                 needLock:false,
+                height:xqzs.equipment.tabHeight(),
+                innerHeight:'',
+                isEvaluated:false,
             }
         },
         mounted: function () {
-            $(".listenDetail_inner_box").height($(window).height() - $('.evaluate_block').outerHeight());
             this.questionId=this.$route.query.questionId;
             this.getDetail();
             this.getCoupon();
@@ -253,10 +255,13 @@
                                 isAnonymous:that.anonyVal,
                                 addTime:parseInt(new Date().getTime()/1000)
                             };
+                            that.isEvaluated = true;
+                            that.innerHeight = $(window).height() ;
                             that.evaluates.splice(0,0,stuckMessage); //插入第一条
                             that.evaluates_flag = true;
                             that.evaluation_frame_flag = false;
                             that.initFramState();
+                            that.getDetail();
                             that.showLoad = false;
                         })
                     }
@@ -460,6 +465,10 @@
                 let _this=this;
                 let list = _this.detail.answerList;
                 _this.isListened = 1;//播放更改评价框状态
+                if(_this.isListened==1&&!_this.isEvaluated){
+                    _this.innerHeight = $(window).height() - _this.height
+                }
+
                 let CT= list[index].ct? list[index].ct: list[index].length;
                 let T = list[index].length;
                 console.log(CT)
@@ -520,10 +529,15 @@
                         _this.detail= data.body.data
                         _this.list = _this.detail.answerList;
                         _this.evaluates = _this.detail.evaluates; //获取评论列表
+                        _this.isEvaluated = _this.detail.isEvaluated
                         if(_this.evaluates.length){
                             _this.evaluates_flag = true
                         }
                         _this.isListened = _this.detail.isListened;
+                        if(_this.isListened==1&&!_this.isEvaluated){
+                           _this.innerHeight = $(window).height() - _this.height
+                            console.log(_this.innerHeight)
+                        }
                         xqzs.wx.setConfig(_this, function () {
                             var config = {
                                 imgUrl:"http://oss.xqzs.cn/resources/psy/logo.jpg",
@@ -636,6 +650,7 @@
     /**新增评价样式**/
     .evaluate_box{
         padding-top: 0.3rem;
+        padding-bottom: 0.24rem;
     }
     .evaluate_box h3{
         color:#2EB1FF;
