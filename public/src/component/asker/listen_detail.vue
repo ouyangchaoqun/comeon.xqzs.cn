@@ -1,87 +1,138 @@
 <template >
-    <div class="listenDetail_box">
+    <div class="listenDetail_box" :class="{heightLock:needLock}">
         <!--详情头部-->
-        <div v-title>问题详情</div>
-        <v-recharge  v-if="rechargeFlag"  :rechargeMoney="rechargeMoney" v-on:childMessage="getFlagVal"></v-recharge>
-        <v-showLoad v-if="showLoad"></v-showLoad>
-        <div class="steal_detail_header" v-if="detail.title">
-            <div class="steal_detail_top">
-                <img v-if="detail.isAnonymous==0" :src="detail.faceUrl" alt="">
-                <img v-if="detail.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
-                <!--<div>在<span>{{detail.title}}</span>方面</div>-->
-                <div v-if="detail.isAnonymous==0">{{detail.nickName}}</div>
-                <div v-if="detail.isAnonymous==1">匿名用户</div>
-                <div class="steal_detail_top_price">{{detail.title}}</div>
-            </div>
-            <div class="steal_detail_content">{{detail.content}}</div>
-        </div>
-        <!--专家回答列表-->
-        <ul>
-            <li class="steal_detail_answer" v-for="(item,index) in detail.answerList">
-
-                <div class="steal_expert_info">
-                    <img :src="item.expertUrl" alt="" @click="goDetail(item.expertId)">
-                    <div>
-                        <span class="steal_expert_name" @click="goDetail(item.expertId)">{{item.expertName}}</span><span class="steal_expert_fans">{{item.followCount}} 人关注</span>
-                    </div>
-                    <div class="steal_expert_des">{{item.sign}}</div>
-                    <div class="followed_box" v-if="item.isFollowed==0" @click="follow(index)"> 关注</div>
-                    <div class="followed_box isfollow_style"  v-if="item.isFollowed==1" @click="follow(index)" >已关注</div>
+        <div class="listenDetail_inner_box" :style="'height:'+innerHeight+'px'">
+            <div v-title>问题详情</div>
+            <v-recharge  v-if="rechargeFlag"  :rechargeMoney="rechargeMoney" v-on:childMessage="getFlagVal"></v-recharge>
+            <v-showLoad v-if="showLoad"></v-showLoad>
+            <div class="steal_detail_header" v-if="detail.title">
+                <div class="steal_detail_top">
+                    <img v-if="detail.isAnonymous==0" :src="detail.faceUrl" alt="">
+                    <img v-if="detail.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
+                    <!--<div>在<span>{{detail.title}}</span>方面</div>-->
+                    <div v-if="detail.isAnonymous==0">{{detail.nickName}}</div>
+                    <div v-if="detail.isAnonymous==1">匿名用户</div>
+                    <div class="steal_detail_top_price">{{detail.title}}</div>
                 </div>
-                <div class="steal_answer_top">
-                    <!--<img class="steal_answer_topimg" :src="item.expertUrl" alt="" >-->
-                    <div class="steal_answer_yy">
+                <div class="steal_detail_content">{{detail.content}}</div>
+            </div>
+            <!--专家回答列表-->
+            <ul>
+                <li class="steal_detail_answer" v-for="(item,index) in detail.answerList">
 
-                        <!--* const GRAB_NOT_BEST    = 1;抢答一般的答案-->
-                        <!--* const GRAB_BEST_ANSWER = 2;抢答最好的答案-->
-                        <!--* const EXPERT_FREE_TIME = 3;专家免费偷听期内答案-->
-                        <!--* const EXPERT_NOT_FREE  = 4;专家收费期内的答案",-->
-                        <!--免费听-->
-                        <template v-if="detail.needPay==0&&(item.answerType==1||item.answerType!=3)">
-                            <div class="audio" :class="{playing:item.playing,paused:item.paused}">
-                                <div class="audio_btn" @click.stop="play(index)" >
-                                    <template v-if="!item.playing&&!item.paused">点击播放</template>
+                    <div class="steal_expert_info">
+                        <img :src="item.expertUrl" alt="" @click="goDetail(item.expertId)">
+                        <div>
+                            <span class="steal_expert_name" @click="goDetail(item.expertId)">{{item.expertName}}</span><span class="steal_expert_fans">{{item.followCount}} 人关注</span>
+                        </div>
+                        <div class="steal_expert_des">{{item.sign}}</div>
+                        <div class="followed_box" v-if="item.isFollowed==0" @click="follow(index)"> 关注</div>
+                        <div class="followed_box isfollow_style"  v-if="item.isFollowed==1" @click="follow(index)" >已关注</div>
+                    </div>
+                    <div class="steal_answer_top">
+                        <!--<img class="steal_answer_topimg" :src="item.expertUrl" alt="" >-->
+                        <div class="steal_answer_yy">
+
+                            <!--* const GRAB_NOT_BEST    = 1;抢答一般的答案-->
+                            <!--* const GRAB_BEST_ANSWER = 2;抢答最好的答案-->
+                            <!--* const EXPERT_FREE_TIME = 3;专家免费偷听期内答案-->
+                            <!--* const EXPERT_NOT_FREE  = 4;专家收费期内的答案",-->
+                            <!--免费听-->
+                            <template v-if="detail.needPay==0&&(item.answerType==1||item.answerType!=3)">
+                                <div class="audio" :class="{playing:item.playing,paused:item.paused}">
+                                    <div class="audio_btn" @click.stop="play(index)" >
+                                        <template v-if="!item.playing&&!item.paused">点击播放</template>
+                                        <template v-if="item.playing">正在播放..</template>
+                                        <template v-if="item.paused">播放暂停</template>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </template>
+
+                            <!--付费听-->
+                            <template  v-if="detail.needPay==1">
+                                <div @click="typeDialog(item.questionId,item.answerId,index)">
+                                    <div class="audio"><div class="audio_btn pay" >偷听</div></div>
+                                </div>
+                            </template>
+                            <!--限时免费听-->
+                            <template v-if="item.answerType==3&&detail.needPay==0">
+                                <div class="audio"  :class="{playing:item.playing,paused:item.paused}"><div class="audio_btn" @click.stop="play(index)" >
+                                    <template v-if="!item.playing&&!item.paused">限时免费听</template>
                                     <template v-if="item.playing">正在播放..</template>
                                     <template v-if="item.paused">播放暂停</template>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                        </template>
-
-                        <!--付费听-->
-                        <template  v-if="detail.needPay==1">
-                            <div @click="typeDialog(item.questionId,item.answerId,index)">
-                                <div class="audio"><div class="audio_btn pay" >偷听</div></div>
-                            </div>
-                        </template>
-                        <!--限时免费听-->
-                        <template v-if="item.answerType==3&&detail.needPay==0">
-                            <div class="audio"  :class="{playing:item.playing,paused:item.paused}"><div class="audio_btn" @click.stop="play(index)" >
-                                <template v-if="!item.playing&&!item.paused">限时免费听</template>
-                                <template v-if="item.playing">正在播放..</template>
-                                <template v-if="item.paused">播放暂停</template>
-                            </div><div class="clear"></div></div>
-                        </template>
+                                </div><div class="clear"></div></div>
+                            </template>
 
 
 
-                    </div>
-                    <div :class="{position_change2:(item.answerType==2||item.answerType==4)&&detail.needPay==1}">{{(item.ct && item.ct!='00')?item.ct:item.length}}”</div>
-                </div>
-                <div class="steal_answer_zan">
-                    <div class="problem_answer_time">{{formatDateText(item.addTime)}}</div>
-                    <div class="problem_answer_zan">
-                        <div>
-                            <span>听过</span>
-                            <span> {{item.listenTimes}}</span>
                         </div>
-                        <div @click="like(index)" class="good_care" :class="{good_cared:item.isCared}"><span>{{item.likeTimes}}</span></div>
+                        <div :class="{position_change2:(item.answerType==2||item.answerType==4)&&detail.needPay==1}">{{(item.ct && item.ct!='00')?item.ct:item.length}}”</div>
                     </div>
+                    <div class="steal_answer_zan">
+                        <div class="problem_answer_time">{{formatDateText(item.addTime)}}</div>
+                        <div class="problem_answer_zan">
+                            <div>
+                                <span>听过</span>
+                                <span> {{item.listenTimes}}</span>
+                            </div>
+                            <div @click="like(index)" class="good_care" :class="{good_cared:item.isCared}"><span>{{item.likeTimes}}</span></div>
+                        </div>
 
+                    </div>
+                </li>
+
+            </ul>
+            <!--新增评价列表-->
+            <div class="evaluate_box" v-if="evaluates_flag&&!showLoad">
+                <h3>用户评价</h3>
+                <div class="title_border"></div>
+                <ul>
+                    <li v-for="item in evaluates">
+                        <img v-if="item.isAnonymous==0" :src="item.faceUrl" alt="">
+                        <img v-if="item.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
+                        <div class="eva_main">
+                            <div class="eva_name" v-if="item.isAnonymous==0">{{item.nickName}}</div>
+                            <div class="eva_name" v-if="item.isAnonymous==1">匿名用户</div>
+                            <div class="eva_content">{{item.content}}</div>
+                            <div class="eva_time">{{getFormatDate(item.addTime)}}</div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="eva_btn" @click="getCommentList()" v-show="!isPageEnd">查看更多</div>
+            </div>
+            <div v-if="isPageEnd" class="pageEndStyle">已经到底啦</div>
+        </div>
+
+        <!--底部评价-->
+        <div class="evaluate_block" :class='{canEvaluate:isListened&&!isEvaluated}' :style="'height:'+height+'px'">
+            <div @click="showCommentBox()">
+                <img src="http://oss.xqzs.cn/resources/psy/asker/evaulate_icon.png" alt="">
+                我要评价
+            </div>
+        </div>
+        <!--评价弹窗-->
+        <div v-if="evaluation_frame_flag" >
+            <div class="weui-mask" @click="frameClose()"></div>
+            <div class="evaluation_frame">
+                <div class="frame_title">评价</div>
+                <div class="frame_close" @click="frameClose()"></div>
+                <ul class="stars">
+                    <li  v-for="(item,index) in comments" @click="getStar(item.v)"  :class="{on:item.v<=commentValue}" >
+                        <div class="star"></div>
+                        <div class="text">{{item.t}}</div>
+                    </li>
+                </ul>
+                <div class="frame_textarea">
+                    <textarea placeholder="分享您的偷听感受" id="frame_textarea" @input="frameChange()"></textarea>
+                    <div class="anFlag" @click="setAnonymous()" :class="{anFlag_on:isAnonymous}">
+                        匿名
+                    </div>
                 </div>
-            </li>
+                <div class="frame_btn" :class="{frame_btn_active:star_pass&&textVal_pass}" @click="subEvaluationFrame()">提交评价</div>
+            </div>
+        </div>
 
-        </ul>
     </div>
 
 </template>
@@ -92,6 +143,8 @@
     export default {
         data() {
             return {
+                comments:[{v:1,t:'极差'},{v:2,t:'不满意'},{v:3,t:'一般'},{v:4,t:'满意'},{v:5,t:'极满意'}],
+                commentValue:0,
                 questionId:0,
                 detail:{},
                 showLoad:false,
@@ -104,7 +157,22 @@
                 user:{},
                 rechargeFlag:false,
                 evaluates:[],
-                isListened:false
+                isListened:false,
+                evaluates_flag:false,
+                page:2,
+                row:5,
+                isPageEnd:false,
+                isLoading:false,
+                anonyVal:0,
+                evaluation_frame_flag:false,
+                isAnonymous:false,
+                anonyVal:0,
+                star_pass:false,
+                textVal_pass:false,
+                needLock:false,
+                height:xqzs.equipment.tabHeight(),
+                innerHeight:'',
+                isEvaluated:false,
             }
         },
         mounted: function () {
@@ -112,6 +180,12 @@
             this.getDetail();
             this.getCoupon();
             this.getUserInfo();
+
+
+
+
+
+
         },
         props:{
             user:{
@@ -127,6 +201,108 @@
                 let _this=this;
                 xqzs.user.getUserInfo(function (user) {
                     _this.user =user;
+                })
+            },
+            frameClose:function () {
+                this.needLock = false;
+                this.evaluation_frame_flag = false;
+            },
+
+            initFramState:function () {
+                this.commentValue = 0;
+                this.isAnonymous = false,
+                this.anonyVal=0;
+                this.star_pass = false;
+                this.textVal_pass = false
+            },
+            frameChange:function () {
+                let textareaVal = $('#frame_textarea').val();
+                if(textareaVal){
+                    this.textVal_pass = true
+                }else{
+                    this.textVal_pass = false
+                }
+            },
+            getStar:function (v) {
+                this.commentValue = v;
+                if(this.commentValue!=0){
+                    this.star_pass= true;
+                }
+            },
+            setAnonymous:function () {
+                this.isAnonymous = !this.isAnonymous;
+                if(this.isAnonymous){
+                    this.anonyVal = 1
+                }else {
+                    this.anonyVal = 0
+                }
+            },
+            subEvaluationFrame:function () {
+                let that=this;
+                let textareaVal = $('#frame_textarea').val();
+                if(that.commentValue==0){
+                    xqzs.weui.tip("请选择评分",function () {
+
+                    })
+                    return;
+                }
+                if(textareaVal==''){
+                    xqzs.weui.tip("请填写评价",function () {
+
+                    })
+                    return;
+                }
+                xqzs.api.put(that, "come/user/evaluate/answer",{userId:"_userId_",answerId:that.detail.bestAnswerId, point:that.commentValue,content:textareaVal,isAnonymous :that.anonyVal},function (bt) {
+                    that.showLoad=false;
+                    if (bt.data && bt.data.status == 1) {
+                        xqzs.weui.toast("success","评论成功",function () {
+                            let  stuckMessage = {
+                                faceUrl:that.user.faceUrl,
+                                content:textareaVal,
+                                nickName: that.user.nickName,
+                                isAnonymous:that.anonyVal,
+                                addTime:parseInt(new Date().getTime()/1000)
+                            };
+                            that.isEvaluated = true;
+                            that.innerHeight = $(window).height() ;
+                            that.evaluates.splice(0,0,stuckMessage); //插入第一条
+                            that.evaluates_flag = true;
+                            that.evaluation_frame_flag = false;
+                            that.initFramState();
+                            that.getDetail();
+                            that.showLoad = false;
+                        })
+                    }
+                })
+
+            },
+            getFormatDate:function (t) {
+                return xqzs.dateTime.formatDate(t)
+            },
+            showCommentBox:function () {
+                let _this=this;
+                _this.evaluation_frame_flag = true;
+                _this.needLock = true
+            },
+            getCommentList:function () {
+                let _this = this;
+                if(_this.isLoading){
+                    return
+                }
+                let questionId = _this.detail.questionId;
+                _this.isLoading = true
+                xqzs.api.get(_this,'come/comment/query/page/question/'+questionId+'/'+this.page+'/'+this.row,function(data){
+                    if (data.body.status == 1) {
+                        _this.isLoading=false;
+                        _this.page++;
+                        let arr =  data.data.data;
+                        if(arr.length<_this.row){
+                            _this.isPageEnd = true
+                        }
+                        _this.evaluates = _this.evaluates.concat(arr);
+                    }
+                },function (error) {
+                    _this.isLoading=false;
                 })
             },
             getFlagVal:function (val) {
@@ -296,6 +472,11 @@
             play:function (index) {
                 let _this=this;
                 let list = _this.detail.answerList;
+                _this.isListened = 1;//播放更改评价框状态
+                if(_this.isListened==1&&!_this.isEvaluated){
+                    _this.innerHeight = $(window).height() - _this.height
+                }
+
                 let CT= list[index].ct? list[index].ct: list[index].length;
                 let T = list[index].length;
                 console.log(CT)
@@ -350,14 +531,21 @@
             getDetail:function () {
                 let _this= this;
                 _this.showLoad=true;
-                xqzs.api.get(_this,'come/listen/question/detail/'+_this.questionId +"/_userId_",function (data) {
+                xqzs.api.get(_this,'come/listen/question/detail/'+_this.questionId +"/_userId_"+'?comments=5',function (data) {
                     _this.showLoad=false;
                     if (data.body.status == 1) {
                         _this.detail= data.body.data
                         _this.list = _this.detail.answerList;
-                        _this.evaluates = _this.list.evaluates;
+                        _this.evaluates = _this.detail.evaluates; //获取评论列表
+                        _this.isEvaluated = _this.detail.isEvaluated
+                        if(_this.evaluates.length){
+                            _this.evaluates_flag = true
+                        }
                         _this.isListened = _this.detail.isListened;
-                        console.log(_this.detail);
+                        if(_this.isListened==1&&!_this.isEvaluated){
+                           _this.innerHeight = $(window).height() - _this.height
+                            console.log(_this.innerHeight)
+                        }
                         xqzs.wx.setConfig(_this, function () {
                             var config = {
                                 imgUrl:"http://oss.xqzs.cn/resources/psy/logo.jpg",
@@ -424,8 +612,149 @@
 </script>
 
 <style>
+    .listenDetail_inner_box{
+        overflow-y: scroll !important;
+    }
+    /**评价框**/
+    .evaluation_frame{
+        width:84%;
+        background: #fff;
+        border-radius: 0.2rem;
+        position: fixed;
+        webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        top:50%;
+        left:50%;
+        padding:0.36rem 0.2rem 0.5rem 0.2rem;
+        z-index: 10001;
+    }
+    .evaluation_frame .frame_title{
+        font-size: 0.4rem;
+        color:RGBA(69, 75, 84, 1);
+        line-height: 0.56rem;
+        text-align: center;
+        margin-bottom: 0.28rem;
+    }
+    .evaluation_frame .frame_close{
+        width:0.32rem;height:0.32rem;
+        background: url('http://oss.xqzs.cn/resources/psy/asker/user_close.png') no-repeat;
+        background-size: 100% 100%;
+        position: absolute;
+        right:0.3rem;
+        top:0.3rem;
+    }
+    .evaluation_frame .stars{ display: flex;margin-bottom: 0.44rem}
+    .evaluation_frame .stars li{ flex:1;}
+    .evaluation_frame .stars li .star{ background: url(http://oss.xqzs.cn/resources/psy/asker/ask_rack_comment_star.png) center no-repeat ; background-size:  0.66rem;;height:0.66rem; width: 0.66rem; color:#999; width: 100%; margin-bottom: 0.26rem; }
+    .evaluation_frame .stars li .text{color:RGBA(69, 75, 84, 0.5) ; font-size: 0.28rem; text-align: center;line-height: 0.4rem;}
+    .evaluation_frame .stars li.on .star{background: url(http://oss.xqzs.cn/resources/psy/asker/ask_rack_comment_star_on.png) center no-repeat ; background-size:  0.66rem;}
+    .evaluation_frame .stars li.on .text{ color:RGBA(245, 166, 35, 1)}
+    .frame_textarea{height:2.2rem;border:0.02rem solid RGBA(238, 238, 238, 1);border-radius: 0.12rem;margin-bottom: 0.5rem;padding:0.2rem;position: relative}
+    .frame_textarea textarea{color:rgba(36,37,61,1);outline: none;border:0;width:100%;font-size: 0.28rem;line-height: 0.4rem;height:1.6rem;}
+    .frame_btn{color:RGBA(255, 255, 255, 1);font-size: 0.36rem;width:80%;line-height: 0.88rem;border-radius: 0.1rem;text-align: center;margin: 0 auto;background: RGBA(86, 196, 254, 0.5);}
+    .frame_btn_active{background: RGBA(86, 196, 254, 1);}
+    .evaluation_frame .frame_textarea .anFlag{position: absolute;right:0.2rem;bottom:0.2rem;color:RGBA(69, 75, 84, 0.49);font-size: 0.24rem;background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_no.png")no-repeat left center;background-size: 0.28rem;padding-left: 0.34rem;line-height: 0.34rem;z-index:1000;height:0.32rem;}
+    .evaluation_frame .frame_textarea .anFlag_on{background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_on.png") no-repeat left center;background-size: 0.28rem;}
+    .pageEndStyle{text-align: center;font-size: 0.28rem;color:RGBA(69, 75, 84, 0.5);line-height: 0.4rem;padding-bottom: 0.2rem;}
+    /**新增评价样式**/
+    .evaluate_box{
+        padding-top: 0.3rem;
+        padding-bottom: 0.24rem;
+    }
+    .evaluate_box h3{
+        color:#2EB1FF;
+        font-size: 0.36rem;
+        line-height: 0.5rem;
+        text-align: center;
+        font-weight: normal;
+        margin-bottom: 0.14rem;
+    }
+    .evaluate_box .title_border{
+        width:0.62rem;
+        height:0.06rem;
+        background: #D8D8D8;
+        border-radius: 0.03rem;
+        margin: 0 auto;
+    }
+    .evaluate_box li{
+        margin-left: 0.28rem;
+        border-bottom: 0.02rem solid #eee;
+        position: relative;
+        padding-top: 0.3rem;
+    }
+    .evaluate_box li img{
+        width:0.6rem;
+        height:0.6rem;
+        position: absolute;
+        border-radius: 50%;
+    }
+    .evaluate_box li .eva_main{
+        padding-left: 0.9rem;
+        padding-right: 0.2rem;
+        color:rgba(3, 3, 3, 1);
+        font-size: 0.3rem;
+        line-height: 0.42rem;
+    }
+    .evaluate_box li .eva_main .eva_name{
+        color:rgba(3, 3, 3, 0.5);
+        font-size: 0.28rem;
+        line-height: 0.4rem;
+        margin-bottom: 0.1rem;
+    }
+    .evaluate_box li .eva_main .eva_content{
+        margin-bottom: 0.14rem;
+    }
+    .evaluate_box .eva_main .eva_time{
+        color:rgba(3, 3, 3, 0.5);
+        font-size: 0.24rem;
+        line-height: 0.34rem;
+        margin-bottom: 0.3rem;
+    }
+    .evaluate_box .eva_btn{
+        width:1.8rem;
+        line-height: 0.6rem;
+        text-align: center;
+        border-radius: 0.36rem;
+        color:rgba(202, 201, 203, 1);
+        border:0.02rem solid rgba(202, 201, 203, 1);
+        font-size: 0.28rem;
+        margin: 0.3rem auto;
+    }
+    .evaluate_block{
+        display: none;
+        bottom:0;
+        width: 100%;
+        background: #2EB1FF;
+        position: absolute;
+        left: 0;
+        z-index: 999;
+        border-top: 0.02rem solid RGBA(238, 238, 238, 1);
+        height:1.42rem;
+        padding-top: 0.24rem;
+    }
+    .canEvaluate{
+        display: block;
+    }
+    .evaluate_block>div{
+        color:RGBA(69, 75, 84, 1);
+        font-size: 0.3rem;
+        border-radius: 0.1rem;
+        background: #fff;
+        line-height: 0.68rem;
+        margin:0 0.3rem;
+    }
+    .evaluate_block>div img{
+        width:0.36rem;
+        display: inline-block;
+        margin-left:0.2rem;
+        margin-right: 0.12rem;
+    }
     .listenDetail_box{
         background: #fff;
+    }
+    .heightLock{
+        height:100%;
+        overflow: hidden !important;
     }
     .steal_expert_info{
         padding-left: 1.42rem;
