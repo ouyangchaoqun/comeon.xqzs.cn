@@ -167,7 +167,9 @@
         },
         mounted: function () {
 
-
+            if(!xqzs.user.isUserLogin()){
+                return ;
+            }
 
 
             xqzs.wx.setConfig(this, function () {
