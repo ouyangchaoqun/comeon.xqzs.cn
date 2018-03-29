@@ -120,12 +120,12 @@
                     </li>
                 </ul>
                 <div class="frame_textarea">
-                    <textarea placeholder="分享您的咨询感受" id="frame_textarea"></textarea>
+                    <textarea placeholder="分享您的咨询感受" id="frame_textarea" @input="frameChange()"></textarea>
                     <div class="anFlag" @click="setAnonymous()" :class="{anFlag_on:isAnonymous}">
                         匿名
                     </div>
                 </div>
-                <div class="frame_btn" @click="subEvaluationFrame()">提交评价</div>
+                <div class="frame_btn" :class="{frame_btn_active:star_pass&&textVal_pass}" @click="subEvaluationFrame()">提交评价</div>
             </div>
         </div>
 
@@ -163,7 +163,8 @@
                 evaluation_frame_flag:false,
                 isAnonymous:false,
                 anonyVal:0,
-                aaa:''
+                star_pass:false,
+                textVal_pass:false
             }
         },
         mounted: function () {
@@ -198,10 +199,22 @@
                 this.commentValue = 0;
                 this.isAnonymous = false,
                 this.anonyVal=0;
+                this.star_pass = false;
+                this.textVal_pass = false
+            },
+            frameChange:function () {
+                let textareaVal = $('#frame_textarea').val();
+                if(textareaVal){
+                    this.textVal_pass = true
+                }else{
+                    this.textVal_pass = false
+                }
             },
             getStar:function (v) {
                 this.commentValue = v;
-                console.log(v)
+                if(this.commentValue!=0){
+                    this.star_pass= true;
+                }
             },
             setAnonymous:function () {
                 this.isAnonymous = !this.isAnonymous;
@@ -213,13 +226,13 @@
             },
             subEvaluationFrame:function () {
                 let that=this;
+                let textareaVal = $('#frame_textarea').val();
                 if(that.commentValue==0){
                     xqzs.weui.tip("请选择评分",function () {
 
                     })
                     return;
                 }
-                let textareaVal = $('#frame_textarea').val();
                 if(textareaVal==''){
                     xqzs.weui.tip("请填写评价",function () {
 
@@ -575,7 +588,7 @@
 <style>
     /**评价框**/
     .evaluation_frame{
-        width:86%;
+        width:84%;
         background: #fff;
         border-radius: 0.2rem;
         position: fixed;
@@ -608,8 +621,9 @@
     .evaluation_frame .stars li.on .star{background: url(http://oss.xqzs.cn/resources/psy/asker/ask_rack_comment_star_on.png) center no-repeat ; background-size:  0.66rem;}
     .evaluation_frame .stars li.on .text{ color:RGBA(245, 166, 35, 1)}
     .frame_textarea{height:2.2rem;border:0.02rem solid RGBA(238, 238, 238, 1);border-radius: 0.12rem;margin-bottom: 0.5rem;padding:0.2rem;position: relative}
-    .frame_textarea textarea{outline: none;border:0;width:100%;font-size: 0.28rem;line-height: 0.4rem;height:1.6rem;}
-    .frame_btn{color:RGBA(255, 255, 255, 1);font-size: 0.36rem;background: RGBA(86, 196, 254, 1);width:80%;line-height: 0.88rem;border-radius: 0.1rem;text-align: center;margin: 0 auto;}
+    .frame_textarea textarea{color:rgba(36,37,61,1);outline: none;border:0;width:100%;font-size: 0.28rem;line-height: 0.4rem;height:1.6rem;}
+    .frame_btn{color:RGBA(255, 255, 255, 1);font-size: 0.36rem;width:80%;line-height: 0.88rem;border-radius: 0.1rem;text-align: center;margin: 0 auto;background: RGBA(86, 196, 254, 0.5);}
+    .frame_btn_active{background: RGBA(86, 196, 254, 1);}
     .evaluation_frame .frame_textarea .anFlag{position: absolute;right:0.2rem;bottom:0.2rem;color:RGBA(69, 75, 84, 0.49);font-size: 0.24rem;background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_no.png")no-repeat left center;background-size: 0.28rem;padding-left: 0.34rem;line-height: 0.34rem;z-index:1000;height:0.32rem;}
     .evaluation_frame .frame_textarea .anFlag_on{background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_on.png") no-repeat left center;background-size: 0.28rem;}
     /**新增评价样式**/
