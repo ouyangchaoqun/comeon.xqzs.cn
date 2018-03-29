@@ -237,13 +237,15 @@
                     if (bt.data && bt.data.status == 1) {
                         xqzs.weui.toast("success","评论成功",function () {
                             let  stuckMessage = {
-                                faceUrl:that.detail.faceUrl,
+                                faceUrl:that.user.faceUrl,
                                 content:content,
-                                nickName: that.detail.nickName,
+                                nickName: that.user.nickName,
                                 isAnonymous:that.anonyVal,
                                 addTime:parseInt(new Date().getTime()/1000)
                             };
-                            that.evaluates.splice(0,0,stuckMessage)
+                            that.evaluates.splice(0,0,stuckMessage); //插入第一条
+                            that.evaluates_flag = true;
+                            console.log(that.evaluates)
                             that.showLoad = false;
                         })
                     }
@@ -449,9 +451,8 @@
             },
             play:function (index) {
                 let _this=this;
-                console.log('bofangle ')
                 let list = _this.detail.answerList;
-                _this.isListened = 1;
+                _this.isListened = 1;//播放更改评价框状态
                 let CT= list[index].ct? list[index].ct: list[index].length;
                 let T = list[index].length;
                 console.log(CT)
@@ -511,7 +512,7 @@
                     if (data.body.status == 1) {
                         _this.detail= data.body.data
                         _this.list = _this.detail.answerList;
-                        _this.evaluates = _this.detail.evaluates;
+                        _this.evaluates = _this.detail.evaluates; //获取评论列表
                         if(_this.evaluates.length){
                             _this.evaluates_flag = true
                         }
@@ -585,7 +586,7 @@
     /**新增评价样式**/
     .evaluate_box{
         padding-top: 0.3rem;
-        padding-bottom: 1.68rem;
+        padding-bottom: 1.66rem;
     }
     .evaluate_box h3{
         color:#2EB1FF;
