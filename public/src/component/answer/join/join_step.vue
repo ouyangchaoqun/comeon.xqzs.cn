@@ -856,9 +856,12 @@
                 if(faceUrl==''){
                     faceUrl=_this.user.faceUrl;
 
-                }else
+                }
 
-                    if(jobTitle==''){
+
+
+
+                if(jobTitle==''){
                     xqzs.weui.tip('请选择资质')
                     return
                 }else if(certificateNo==''){
