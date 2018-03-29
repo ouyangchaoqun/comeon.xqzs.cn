@@ -88,25 +88,41 @@
             <div class="title_border"></div>
             <ul>
                 <li v-for="item in evaluates">
-                    <img :src="item.faceUrl" alt="">
+                    <img v-if="item.isAnonymous==0" :src="item.faceUrl" alt="">
+                    <img v-if="item.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
                     <div class="eva_main">
-                        <div class="eva_name">{{item.nickName}}</div>
+                        <div class="eva_name" v-if="item.isAnonymous==0">{{item.nickName}}</div>
+                        <div class="eva_name" v-if="item.isAnonymous==1">匿名用户</div>
                         <div class="eva_content">{{item.content}}</div>
-                        <div class="eva_time">{{item.addTime}}</div>
+                        <div class="eva_time">{{getFormatDate(item.addTime)}}</div>
                     </div>
                 </li>
             </ul>
             <div class="eva_btn" @click="getCommentList()" v-show="!isPageEnd">查看更多</div>
         </div>
-            <div >
-                <div class="comment_box evaluate_block" v-if="isListened">
-                    <span class="release" :class="{releaseActive:canSub}" @click="subEvaluate()">发送</span>
-                    <div class="box">
-                        <textarea @input="setTextareaHeight();" v-model="evaVal"  class="comment_text" id="textarea" placeholder="评价"></textarea>
+        <div class="evaluate_block" v-if="isListened">
+            <div @click="showCommentBox()">
+                <img src="http://oss.xqzs.cn/resources/psy/asker/evaulate_icon.png" alt="">
+                我要评价
+            </div>
+        </div>
+
+        <div id="comment_box" style="display: none">
+            <div class="comment_box2">
+                <ul class="stars">
+                    <li  v-for="(item,index) in comments"  :v="item.v" :class="{on:item.v<=commentValue}" >
+                        <div class="star"></div>
+                        <div class="text">{{item.t}}</div>
+                    </li>
+                </ul>
+                <div class="textarea">
+                    <textarea placeholder="分享您的咨询感受" id="textarea_comment" ></textarea>
+                    <div class="anFlag">
+                        匿名
                     </div>
-                    <div style=" height: 44px;    background: #f5f5f5;width: 100%;position: absolute;bottom: -44px;text-align: center;font-size: 12px;color: #ddd; line-height: 30px">一切都好一点</div>
                 </div>
             </div>
+        </div>
 
     </div>
 
@@ -118,6 +134,8 @@
     export default {
         data() {
             return {
+                comments:[{v:1,t:'极差'},{v:2,t:'不满意'},{v:3,t:'一般'},{v:4,t:'满意'},{v:5,t:'极满意'}],
+                commentValue:0,
                 questionId:0,
                 detail:{},
                 showLoad:false,
@@ -131,13 +149,12 @@
                 rechargeFlag:false,
                 evaluates:[],
                 isListened:false,
-                evaVal:'',
-                canSub:false,
                 evaluates_flag:false,
                 page:2,
                 row:3,
                 isPageEnd:false,
-                isLoading:false
+                isLoading:false,
+                anonyVal:0,
             }
         },
         mounted: function () {
@@ -164,24 +181,86 @@
                     _this.user =user;
                 })
             },
-            setTextareaHeight:function () {
-                if(this.evaVal){
-                    this.canSub = true
-                }else {
-                    this.canSub = false
-                }
-              return xqzs.weui.textareaAutoHeight();
+            getFormatDate:function (t) {
+                return xqzs.dateTime.formatDate(t)
             },
-            subEvaluate:function () {
-                if(this.evaVal){
-                    xqzs.api.put(this, "come/user/evaluate/answer",{userId:"_userId_",answerId:this.detail.bestAnswerId, point:1,content:this.evaVal,isAnonymous :0},function (bt) {
-                        if (bt.data && bt.data.status == 1) {
-                            xqzs.weui.toast("success","评论成功",function () {
+            showCommentBox:function () {
+                let _this=this;
+                let isAnonymous = false;
 
-                            })
-                        }
+                xqzs.weui.dialog("评价",$("#comment_box").html(),"",function () {
+
+                },function () {
+
+                    _this.submitComment();
+                });
+
+                $(".anFlag").click(function () {
+                    isAnonymous = !isAnonymous;
+                    if(isAnonymous==true){
+                        $(this).addClass('anFlag_on')
+                        _this.anonyVal = 1
+                    }else {
+                        $(this).removeClass('anFlag_on')
+                        _this.anonyVal = 0
+                    }
+                    console.log(_this.anonyVal)
+                })
+
+
+                $(".comment_box2 .stars li ").click(function () {
+                    let v= parseInt($(this).attr("v"))
+                    _this.setCommentValue(v)
+                })
+
+
+            },
+            submitComment:function () {
+                let that=this;
+                let content = $(".weui-dialog #textarea_comment").val();
+                console.log(content)
+                console.log(that.detail.bestAnswerId)
+                if(that.commentValue==0){
+                    xqzs.weui.toast('fail',"请选择评分",function () {
+
                     })
+                    return;
                 }
+                if(content.length==0){
+                    xqzs.weui.toast('fail',"请输入评论内容",function () {
+
+                    })
+                    return;
+                }
+                xqzs.api.put(that, "come/user/evaluate/answer",{userId:"_userId_",answerId:that.detail.bestAnswerId, point:that.commentValue,content:content,isAnonymous :that.anonyVal},function (bt) {
+                    that.showLoad=false;
+                    if (bt.data && bt.data.status == 1) {
+                        xqzs.weui.toast("success","评论成功",function () {
+                            let  stuckMessage = {
+                                faceUrl:that.detail.faceUrl,
+                                content:content,
+                                nickName: that.detail.nickName,
+                                isAnonymous:that.anonyVal,
+                                addTime:parseInt(new Date().getTime()/1000)
+                            };
+                            that.evaluates.splice(0,0,stuckMessage)
+                            that.showLoad = false;
+                        })
+                    }
+                })
+            },
+            setCommentValue:function (v) {
+                let _this=this;
+                _this.commentValue=v;
+                console.log(_this.commentValue)
+                $(".comment_box2 .stars li ").each(function () {
+                    let v= parseInt($(this).attr("v"))
+                    if( _this.commentValue>=v){
+                        $(this).addClass("on")
+                    }else{
+                        $(this).removeClass("on")
+                    }
+                })
             },
             getCommentList:function () {
                 let _this = this;
@@ -371,6 +450,7 @@
             },
             play:function (index) {
                 let _this=this;
+                console.log('bofangle ')
                 let list = _this.detail.answerList;
                 let CT= list[index].ct? list[index].ct: list[index].length;
                 let T = list[index].length;
@@ -568,15 +648,40 @@
     }
     .evaluate_block{
         bottom:0;
+        width: 100%;
+        background: RGBA(255, 255, 255, 1);
+        position: fixed;
+        left: 0;
+        z-index: 10000;
+        border-top: 0.02rem solid RGBA(238, 238, 238, 1);
+        height:1.42rem;
+        padding-top: 0.24rem;
     }
-    .evaluate_block .release{
-        background: RGBA(46, 177, 255, 0.6);
-        border-color:RGBA(46, 177, 255, 0.2);
+    .evaluate_block>div{
+        color:RGBA(69, 75, 84, 1);
+        font-size: 0.3rem;
+        border-radius: 0.1rem;
+        background: RGBA(244, 244, 247, 1);
+        line-height: 0.68rem;
+        margin:0 0.3rem;
     }
-    .evaluate_block .releaseActive{
-        background: RGBA(46, 177, 255,1);
-        border-color:RGBA(46, 177, 255, 1);
+    .evaluate_block>div img{
+        width:0.36rem;
+        display: inline-block;
+        margin-left:0.2rem;
+        margin-right: 0.12rem;
     }
+    .comment_box2 .stars{ display: flex;margin-bottom: 0.37rem}
+    .comment_box2 .stars li{ flex:1;}
+    .comment_box2 .stars li .star{ background: url(http://oss.xqzs.cn/resources/psy/asker/ask_rack_comment_star.png) center no-repeat ; background-size:  0.48rem;;height:0.48rem; width: 0.48rem; color:#999; width: 100%; margin-bottom: 0.10rem; }
+    .comment_box2 .stars li .text{color:#999 ; font-size: 0.24rem; text-align: center}
+    .comment_box2 .stars li.on .star{background: url(http://oss.xqzs.cn/resources/psy/asker/ask_rack_comment_star_on.png) center no-repeat ; background-size:  0.48rem;}
+    .comment_box2 .stars li.on .text{ color:#ffaa00}
+
+    .comment_box2 .textarea{ width: 100%; height:2.38rem;position: relative;background: #f1f1f1; border-radius: 0.07rem;overflow: hidden;margin-bottom: 0.10rem; }
+    .comment_box2 .textarea .anFlag{position: absolute;right:0.10rem;bottom:0.10rem;color:RGBA(69, 75, 84, 0.49);font-size: 0.24rem;background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_no.png")no-repeat left center;background-size: 0.28rem;padding-left: 0.34rem;line-height: 0.34rem;z-index:1000;height:0.32rem;}
+    .comment_box2 .textarea .anFlag_on{background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_on.png") no-repeat left center;background-size: 0.28rem;}
+    .comment_box2 .textarea  textarea{ border: none; width: 92% ;font-size: 0.30rem; line-height: 0.41rem; height: 1.70rem;background: #f1f1f1;padding-top: 0.20rem;}
     .listenDetail_box{
         background: #fff;
     }
