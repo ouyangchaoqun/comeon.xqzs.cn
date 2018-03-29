@@ -15,7 +15,7 @@
                   </div>
                 <div class="hot_content">
 
-                    <div class="swiper-container">
+                    <div class="swiper-container hotSwiper">
                         <div class="swiper-wrapper" style="margin-left: 0.15rem">
                             <div class="swiper-slide" v-for="item in manList" v-if="item.expertId!=expertId"  @click="goDetail(item.expertId)">
                                 <div class="hot_item">
@@ -132,7 +132,7 @@
                 urlType: 2,
                 manList:[1,2,3,4,5],
                 psychtestSwiper:null,
-
+                hotSwiper:null
             }
         },
 
@@ -228,18 +228,15 @@
                     if(data.body.status == 1){
                         var List=data.body.data;
                         _this.manList=List;
-                        setTimeout(function () {
-                            _this.$nextTick(function () {
-                                var mySwiper = new Swiper('.swiper-container',{
-                                    slidesPerView :2.2,
-                                    slidesPerGroup : 1,
-                                    speed:500,
-                                })
+                        _this.$nextTick(function () {
+                            _this.hotSwiper = new Swiper('.hotSwiper',{
+                                slidesPerView :2.2,
+                                slidesPerGroup : 1,
+                                speed:500,
+                                observer:true,
+                                observeParents:true
                             })
-                        },10)
-
-
-//                        console.log(_this.manList)
+                        })
                     }
                 });
 
