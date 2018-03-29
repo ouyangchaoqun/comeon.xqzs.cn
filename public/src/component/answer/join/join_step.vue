@@ -4,12 +4,12 @@
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div v-title>完善专业资料</div>
         <header @click="changeHeadpic()" v-if="btnFlag">
-            <img v-if="isModify==0&&faceUrl==''" src="http://oss.xqzs.cn/resources/psy/joinHeaderImg.png" alt="">
+            <img v-if="isModify==0&&faceUrl==''" :src="user.faceUrl" alt="">
             <img v-if="isModify==0" :src="faceUrl" alt="">
             <img v-if="isModify==1" :src="isShowInfo.faceUrl" alt="">
             <div class="li_right">
                 <div>
-                    <span v-if="faceUrl==''&&isModify==0" class="tip_color">请上传头像</span>
+                    <span v-if="faceUrl==''&&isModify==0" class="tip_color">上传头像</span>
                     <template v-if="faceUrl!=''&&isModify==0">更换头像</template>
                     <template v-if="isShowInfo.faceUrl!=''&&isModify==1">更换头像</template>
                 </div>
@@ -468,6 +468,7 @@
                     _this.showLoad = false;
                     if (data.data.data !== null) {
                         _this.user = eval(data.data.data);
+
                         _this.birthday = _this.user.birthday;
                         if (_this.birthday) {
                             let date = _this.birthday.split(',');
@@ -853,9 +854,11 @@
                     mobile = _this.user.mobile;
                 }
                 if(faceUrl==''){
-                    xqzs.weui.tip('请上传头像')
-                    return
-                }else if(jobTitle==''){
+                    faceUrl=_this.user.faceUrl;
+
+                }else
+
+                    if(jobTitle==''){
                     xqzs.weui.tip('请选择资质')
                     return
                 }else if(certificateNo==''){

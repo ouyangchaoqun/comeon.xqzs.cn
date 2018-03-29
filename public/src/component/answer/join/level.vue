@@ -3,8 +3,8 @@
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="joinSet_top">
             <div class="joinSet_cancel" @click="backStep()">取消</div>
-            <div class="joinSet_sure sure_nor" v-if="jobTitle==''||certificateNo==''||certificateFile1==''">确定</div>
-            <div class="joinSet_sure" @click="subLevel()" v-if="jobTitle!=''&&certificateNo!=''&&certificateFile1!=''">确定</div>
+            <div class="joinSet_sure sure_nor" v-if="jobTitle==''||certificateNo==''">确定</div>
+            <div class="joinSet_sure" @click="subLevel()" v-if="jobTitle!=''&&certificateNo!=''">确定</div>
         </div>
         <div class="level_types">
             <div class="level_type" :class="{checked_type:item.name==jobTitle}" v-for="(item,index) in level" @click="getItemClass(index)"  :index="index" >{{item.name}}</div>
@@ -16,7 +16,7 @@
                 <input type="text" placeholder="请填写" :value="certificateNo" class="certificateNo" @input="changeCertificateNo()"/>
             </div>
             <div class="level_photo">
-                <span>资质证书：</span>
+                <span>资质证书：(可选)</span>
                 <div class="photo_box" @click="upload()">
                     <template v-if="certificateFile1==''" >
                         <img class="addIcon"  src="http://oss.xqzs.cn/resources/psy/level_addIBtnIcon.png" alt="">
