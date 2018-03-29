@@ -82,7 +82,7 @@
             </li>
 
         </ul>
-        <!--新增评价-->
+        <!--新增评价列表-->
         <div class="evaluate_box" v-if="evaluates_flag&&!showLoad">
             <h3>用户评价</h3>
             <div class="title_border"></div>
@@ -100,27 +100,32 @@
             </ul>
             <div class="eva_btn" @click="getCommentList()" v-show="!isPageEnd">查看更多</div>
         </div>
+        <!--底部评价-->
         <div class="evaluate_block" :class='{canEvaluate:isListened }'>
             <div @click="showCommentBox()">
                 <img src="http://oss.xqzs.cn/resources/psy/asker/evaulate_icon.png" alt="">
                 我要评价
             </div>
         </div>
-
-        <div id="comment_box" style="display: none">
-            <div class="comment_box2">
+        <!--评价弹窗-->
+        <div v-if="evaluation_frame_flag" >
+            <div class="weui-mask" @click="frameClose()"></div>
+            <div class="evaluation_frame">
+                <div class="frame_title">评价</div>
+                <div class="frame_close" @click="frameClose()"></div>
                 <ul class="stars">
-                    <li  v-for="(item,index) in comments"  :v="item.v" :class="{on:item.v<=commentValue}" >
+                    <li  v-for="(item,index) in comments" @click="getStar(item.v)"  :class="{on:item.v<=commentValue}" >
                         <div class="star"></div>
                         <div class="text">{{item.t}}</div>
                     </li>
                 </ul>
-                <div class="textarea">
-                    <textarea placeholder="分享您的咨询感受" id="textarea_comment" ></textarea>
-                    <div class="anFlag">
+                <div class="frame_textarea">
+                    <textarea placeholder="分享您的咨询感受" id="frame_textarea"></textarea>
+                    <div class="anFlag" @click="setAnonymous()" :class="{anFlag_on:isAnonymous}">
                         匿名
                     </div>
                 </div>
+                <div class="frame_btn" @click="subEvaluationFrame()">提交评价</div>
             </div>
         </div>
 
@@ -155,6 +160,10 @@
                 isPageEnd:false,
                 isLoading:false,
                 anonyVal:0,
+                evaluation_frame_flag:false,
+                isAnonymous:false,
+                anonyVal:0,
+                aaa:''
             }
         },
         mounted: function () {
@@ -181,88 +190,69 @@
                     _this.user =user;
                 })
             },
-            getFormatDate:function (t) {
-                return xqzs.dateTime.formatDate(t)
+            frameClose:function () {
+                this.evaluation_frame_flag = false;
             },
-            showCommentBox:function () {
-                let _this=this;
-                let isAnonymous = false;
 
-                xqzs.weui.dialog("评价",$("#comment_box").html(),"",function () {
-
-                },function () {
-
-                    _this.submitComment();
-                });
-
-                $(".anFlag").click(function () {
-                    isAnonymous = !isAnonymous;
-                    if(isAnonymous==true){
-                        $(this).addClass('anFlag_on')
-                        _this.anonyVal = 1
-                    }else {
-                        $(this).removeClass('anFlag_on')
-                        _this.anonyVal = 0
-                    }
-                    console.log(_this.anonyVal)
-                })
-
-
-                $(".comment_box2 .stars li ").click(function () {
-                    let v= parseInt($(this).attr("v"))
-                    _this.setCommentValue(v)
-                })
-
-
+            initFramState:function () {
+                this.commentValue = 0;
+                this.isAnonymous = false,
+                this.anonyVal=0;
             },
-            submitComment:function () {
+            getStar:function (v) {
+                this.commentValue = v;
+                console.log(v)
+            },
+            setAnonymous:function () {
+                this.isAnonymous = !this.isAnonymous;
+                if(this.isAnonymous){
+                    this.anonyVal = 1
+                }else {
+                    this.anonyVal = 0
+                }
+            },
+            subEvaluationFrame:function () {
                 let that=this;
-                let content = $(".weui-dialog #textarea_comment").val();
-                console.log(content)
-                console.log(that.detail.bestAnswerId)
                 if(that.commentValue==0){
-                    xqzs.weui.toast('fail',"请选择评分",function () {
+                    xqzs.weui.tip("请选择评分",function () {
 
                     })
                     return;
                 }
-                if(content.length==0){
-                    xqzs.weui.toast('fail',"请输入评论内容",function () {
+                let textareaVal = $('#frame_textarea').val();
+                if(textareaVal==''){
+                    xqzs.weui.tip("请填写评价",function () {
 
                     })
                     return;
                 }
-                xqzs.api.put(that, "come/user/evaluate/answer",{userId:"_userId_",answerId:that.detail.bestAnswerId, point:that.commentValue,content:content,isAnonymous :that.anonyVal},function (bt) {
+                xqzs.api.put(that, "come/user/evaluate/answer",{userId:"_userId_",answerId:that.detail.bestAnswerId, point:that.commentValue,content:textareaVal,isAnonymous :that.anonyVal},function (bt) {
                     that.showLoad=false;
                     if (bt.data && bt.data.status == 1) {
                         xqzs.weui.toast("success","评论成功",function () {
                             let  stuckMessage = {
                                 faceUrl:that.user.faceUrl,
-                                content:content,
+                                content:textareaVal,
                                 nickName: that.user.nickName,
                                 isAnonymous:that.anonyVal,
                                 addTime:parseInt(new Date().getTime()/1000)
                             };
                             that.evaluates.splice(0,0,stuckMessage); //插入第一条
                             that.evaluates_flag = true;
-                            console.log(that.evaluates)
+                            that.evaluation_frame_flag = false;
+                            that.initFramState();
                             that.showLoad = false;
                         })
                     }
                 })
+
             },
-            setCommentValue:function (v) {
+            getFormatDate:function (t) {
+                return xqzs.dateTime.formatDate(t)
+            },
+            showCommentBox:function () {
                 let _this=this;
-                _this.commentValue=v;
-                console.log(_this.commentValue)
-                $(".comment_box2 .stars li ").each(function () {
-                    let v= parseInt($(this).attr("v"))
-                    if( _this.commentValue>=v){
-                        $(this).addClass("on")
-                    }else{
-                        $(this).removeClass("on")
-                    }
-                })
+                _this.evaluation_frame_flag = true;
             },
             getCommentList:function () {
                 let _this = this;
@@ -583,6 +573,45 @@
 </script>
 
 <style>
+    /**评价框**/
+    .evaluation_frame{
+        width:86%;
+        background: #fff;
+        border-radius: 0.2rem;
+        position: fixed;
+        webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        top:50%;
+        left:50%;
+        padding:0.36rem 0.2rem 0.5rem 0.2rem;
+        z-index: 10001;
+    }
+    .evaluation_frame .frame_title{
+        font-size: 0.4rem;
+        color:RGBA(69, 75, 84, 1);
+        line-height: 0.56rem;
+        text-align: center;
+        margin-bottom: 0.28rem;
+    }
+    .evaluation_frame .frame_close{
+        width:0.32rem;height:0.32rem;
+        background: url('http://oss.xqzs.cn/resources/psy/asker/user_close.png') no-repeat;
+        background-size: 100% 100%;
+        position: absolute;
+        right:0.3rem;
+        top:0.3rem;
+    }
+    .evaluation_frame .stars{ display: flex;margin-bottom: 0.44rem}
+    .evaluation_frame .stars li{ flex:1;}
+    .evaluation_frame .stars li .star{ background: url(http://oss.xqzs.cn/resources/psy/asker/ask_rack_comment_star.png) center no-repeat ; background-size:  0.66rem;;height:0.66rem; width: 0.66rem; color:#999; width: 100%; margin-bottom: 0.26rem; }
+    .evaluation_frame .stars li .text{color:RGBA(69, 75, 84, 0.5) ; font-size: 0.28rem; text-align: center;line-height: 0.4rem;}
+    .evaluation_frame .stars li.on .star{background: url(http://oss.xqzs.cn/resources/psy/asker/ask_rack_comment_star_on.png) center no-repeat ; background-size:  0.66rem;}
+    .evaluation_frame .stars li.on .text{ color:RGBA(245, 166, 35, 1)}
+    .frame_textarea{height:2.2rem;border:0.02rem solid RGBA(238, 238, 238, 1);border-radius: 0.12rem;margin-bottom: 0.5rem;padding:0.2rem;position: relative}
+    .frame_textarea textarea{outline: none;border:0;width:100%;font-size: 0.28rem;line-height: 0.4rem;height:1.6rem;}
+    .frame_btn{color:RGBA(255, 255, 255, 1);font-size: 0.36rem;background: RGBA(86, 196, 254, 1);width:80%;line-height: 0.88rem;border-radius: 0.1rem;text-align: center;margin: 0 auto;}
+    .evaluation_frame .frame_textarea .anFlag{position: absolute;right:0.2rem;bottom:0.2rem;color:RGBA(69, 75, 84, 0.49);font-size: 0.24rem;background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_no.png")no-repeat left center;background-size: 0.28rem;padding-left: 0.34rem;line-height: 0.34rem;z-index:1000;height:0.32rem;}
+    .evaluation_frame .frame_textarea .anFlag_on{background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_on.png") no-repeat left center;background-size: 0.28rem;}
     /**新增评价样式**/
     .evaluate_box{
         padding-top: 0.3rem;
@@ -653,7 +682,7 @@
         background: RGBA(255, 255, 255, 1);
         position: fixed;
         left: 0;
-        z-index: 10000;
+        z-index: 999;
         border-top: 0.02rem solid RGBA(238, 238, 238, 1);
         height:1.42rem;
         padding-top: 0.24rem;
@@ -675,17 +704,6 @@
         margin-left:0.2rem;
         margin-right: 0.12rem;
     }
-    .comment_box2 .stars{ display: flex;margin-bottom: 0.37rem}
-    .comment_box2 .stars li{ flex:1;}
-    .comment_box2 .stars li .star{ background: url(http://oss.xqzs.cn/resources/psy/asker/ask_rack_comment_star.png) center no-repeat ; background-size:  0.48rem;;height:0.48rem; width: 0.48rem; color:#999; width: 100%; margin-bottom: 0.10rem; }
-    .comment_box2 .stars li .text{color:#999 ; font-size: 0.24rem; text-align: center}
-    .comment_box2 .stars li.on .star{background: url(http://oss.xqzs.cn/resources/psy/asker/ask_rack_comment_star_on.png) center no-repeat ; background-size:  0.48rem;}
-    .comment_box2 .stars li.on .text{ color:#ffaa00}
-
-    .comment_box2 .textarea{ width: 100%; height:2.38rem;position: relative;background: #f1f1f1; border-radius: 0.07rem;overflow: hidden;margin-bottom: 0.10rem; }
-    .comment_box2 .textarea .anFlag{position: absolute;right:0.10rem;bottom:0.10rem;color:RGBA(69, 75, 84, 0.49);font-size: 0.24rem;background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_no.png")no-repeat left center;background-size: 0.28rem;padding-left: 0.34rem;line-height: 0.34rem;z-index:1000;height:0.32rem;}
-    .comment_box2 .textarea .anFlag_on{background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_on.png") no-repeat left center;background-size: 0.28rem;}
-    .comment_box2 .textarea  textarea{ border: none; width: 92% ;font-size: 0.30rem; line-height: 0.41rem; height: 1.70rem;background: #f1f1f1;padding-top: 0.20rem;}
     .listenDetail_box{
         background: #fff;
     }
