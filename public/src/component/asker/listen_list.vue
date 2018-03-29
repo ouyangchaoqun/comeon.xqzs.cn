@@ -110,10 +110,10 @@
         data() {
             return {
                 //downList
-                sortList: [{label: "最热问题", value: 1, flag: true}, {label: "最新问题", value: 2, flag: false},{label: "精选问题", value: 3, flag: false}],
+                sortList: [{label: "最热问题", value: 1, flag: false}, {label: "最新问题", value: 2, flag: false},{label: "精选问题", value: 3, flag: true}],
                 isShowSort:false,
                 isShowClass:false,
-                nowSort:"最热问题",
+                nowSort:"精选问题",
                 nowClass:"主题",
                 classId:1,
                 screenHeight:document.body.clientHeight,
@@ -135,7 +135,7 @@
                 rechargeMoney: 0,
                 rechargeFlag: false,
                 user: {},
-                qType:1,
+                qType:3,
                 titleVal:'',
                 currPlayIndex:null,
                 firstSel:false,

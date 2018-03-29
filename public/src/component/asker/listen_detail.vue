@@ -100,7 +100,7 @@
             </ul>
             <div class="eva_btn" @click="getCommentList()" v-show="!isPageEnd">查看更多</div>
         </div>
-        <div class="evaluate_block" v-if="isListened">
+        <div class="evaluate_block" :class='{canEvaluate:isListened }'>
             <div @click="showCommentBox()">
                 <img src="http://oss.xqzs.cn/resources/psy/asker/evaulate_icon.png" alt="">
                 我要评价
@@ -451,7 +451,7 @@
                 let _this=this;
                 console.log('bofangle ')
                 let list = _this.detail.answerList;
-                _this.detail.isListened = 1;
+                _this.isListened = 1;
                 let CT= list[index].ct? list[index].ct: list[index].length;
                 let T = list[index].length;
                 console.log(CT)
@@ -647,7 +647,7 @@
         margin: 0.3rem auto;
     }
     .evaluate_block{
-        bottom:0;
+        bottom:-1.68rem;
         width: 100%;
         background: RGBA(255, 255, 255, 1);
         position: fixed;
@@ -656,6 +656,10 @@
         border-top: 0.02rem solid RGBA(238, 238, 238, 1);
         height:1.42rem;
         padding-top: 0.24rem;
+    }
+    .canEvaluate{
+        bottom:0;
+        transition: bottom 1s;
     }
     .evaluate_block>div{
         color:RGBA(69, 75, 84, 1);
