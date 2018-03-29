@@ -1,5 +1,5 @@
 <template >
-    <div class="listenDetail_box">
+    <div class="listenDetail_box" :class="{heightLock:needLock}">
         <!--详情头部-->
         <div v-title>问题详情</div>
         <v-recharge  v-if="rechargeFlag"  :rechargeMoney="rechargeMoney" v-on:childMessage="getFlagVal"></v-recharge>
@@ -109,7 +109,7 @@
         </div>
         <!--评价弹窗-->
         <div v-if="evaluation_frame_flag" >
-            <div class="weui-mask" @click="frameClose()" @touchmove.prevent></div>
+            <div class="weui-mask" @click="frameClose()"></div>
             <div class="evaluation_frame">
                 <div class="frame_title">评价</div>
                 <div class="frame_close" @click="frameClose()"></div>
@@ -164,7 +164,8 @@
                 isAnonymous:false,
                 anonyVal:0,
                 star_pass:false,
-                textVal_pass:false
+                textVal_pass:false,
+                needLock:false,
             }
         },
         mounted: function () {
@@ -192,6 +193,7 @@
                 })
             },
             frameClose:function () {
+                this.needLock = false;
                 this.evaluation_frame_flag = false;
             },
 
@@ -266,6 +268,7 @@
             showCommentBox:function () {
                 let _this=this;
                 _this.evaluation_frame_flag = true;
+                _this.needLock = true
             },
             getCommentList:function () {
                 let _this = this;
@@ -720,6 +723,10 @@
     }
     .listenDetail_box{
         background: #fff;
+    }
+    .heightLock{
+        height:100%;
+        overflow: hidden !important;
     }
     .steal_expert_info{
         padding-left: 1.42rem;
