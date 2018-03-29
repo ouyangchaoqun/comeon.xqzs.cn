@@ -101,7 +101,9 @@
                 </ul>
                 <div class="eva_btn" @click="getCommentList()" v-show="!isPageEnd">查看更多</div>
             </div>
+            <div v-if="isPageEnd" class="pageEndStyle">已经到底啦</div>
         </div>
+
         <!--底部评价-->
         <div class="evaluate_block" :class='{canEvaluate:isListened&&!isEvaluated}' :style="'height:'+height+'px'">
             <div @click="showCommentBox()">
@@ -647,6 +649,7 @@
     .frame_btn_active{background: RGBA(86, 196, 254, 1);}
     .evaluation_frame .frame_textarea .anFlag{position: absolute;right:0.2rem;bottom:0.2rem;color:RGBA(69, 75, 84, 0.49);font-size: 0.24rem;background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_no.png")no-repeat left center;background-size: 0.28rem;padding-left: 0.34rem;line-height: 0.34rem;z-index:1000;height:0.32rem;}
     .evaluation_frame .frame_textarea .anFlag_on{background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_on.png") no-repeat left center;background-size: 0.28rem;}
+    .pageEndStyle{text-align: center;font-size: 0.28rem;color:RGBA(69, 75, 84, 0.5);line-height: 0.4rem;padding-bottom: 0.2rem;}
     /**新增评价样式**/
     .evaluate_box{
         padding-top: 0.3rem;
