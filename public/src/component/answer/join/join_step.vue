@@ -387,6 +387,9 @@
         },
 
         mounted: function () {
+            if(!xqzs.user.isUserLogin()){
+                return ;
+            }
             this.isJoin();
             this.initOss();
             this.getUserInfo();
