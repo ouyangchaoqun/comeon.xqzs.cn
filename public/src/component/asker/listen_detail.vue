@@ -101,36 +101,35 @@
                 </ul>
                 <div class="eva_btn" @click="getCommentList()" v-show="!isPageEnd">查看更多</div>
             </div>
-            <!--底部评价-->
-            <div class="evaluate_block" :class='{canEvaluate:isListened }'>
-                <div @click="showCommentBox()">
-                    <img src="http://oss.xqzs.cn/resources/psy/asker/evaulate_icon.png" alt="">
-                    我要评价
-                </div>
-            </div>
-            <!--评价弹窗-->
-            <div v-if="evaluation_frame_flag" >
-                <div class="weui-mask" @click="frameClose()"></div>
-                <div class="evaluation_frame">
-                    <div class="frame_title">评价</div>
-                    <div class="frame_close" @click="frameClose()"></div>
-                    <ul class="stars">
-                        <li  v-for="(item,index) in comments" @click="getStar(item.v)"  :class="{on:item.v<=commentValue}" >
-                            <div class="star"></div>
-                            <div class="text">{{item.t}}</div>
-                        </li>
-                    </ul>
-                    <div class="frame_textarea">
-                        <textarea placeholder="分享您的咨询感受" id="frame_textarea" @input="frameChange()"></textarea>
-                        <div class="anFlag" @click="setAnonymous()" :class="{anFlag_on:isAnonymous}">
-                            匿名
-                        </div>
-                    </div>
-                    <div class="frame_btn" :class="{frame_btn_active:star_pass&&textVal_pass}" @click="subEvaluationFrame()">提交评价</div>
-                </div>
+        </div>
+        <!--底部评价-->
+        <div class="evaluate_block" :class='{canEvaluate:isListened }'>
+            <div @click="showCommentBox()">
+                <img src="http://oss.xqzs.cn/resources/psy/asker/evaulate_icon.png" alt="">
+                我要评价
             </div>
         </div>
-
+        <!--评价弹窗-->
+        <div v-if="evaluation_frame_flag" >
+            <div class="weui-mask" @click="frameClose()"></div>
+            <div class="evaluation_frame">
+                <div class="frame_title">评价</div>
+                <div class="frame_close" @click="frameClose()"></div>
+                <ul class="stars">
+                    <li  v-for="(item,index) in comments" @click="getStar(item.v)"  :class="{on:item.v<=commentValue}" >
+                        <div class="star"></div>
+                        <div class="text">{{item.t}}</div>
+                    </li>
+                </ul>
+                <div class="frame_textarea">
+                    <textarea placeholder="分享您的咨询感受" id="frame_textarea" @input="frameChange()"></textarea>
+                    <div class="anFlag" @click="setAnonymous()" :class="{anFlag_on:isAnonymous}">
+                        匿名
+                    </div>
+                </div>
+                <div class="frame_btn" :class="{frame_btn_active:star_pass&&textVal_pass}" @click="subEvaluationFrame()">提交评价</div>
+            </div>
+        </div>
 
     </div>
 
