@@ -98,6 +98,28 @@
                 </li>
             </ul>
         </div>
+        <!--评价弹窗-->
+        <div v-if="evaluation_frame_flag">
+            <div class="weui-mask" @click="frameClose()"></div>
+            <div class="evaluation_frame">
+                <div class="frame_title">评价</div>
+                <div class="frame_close" @click="frameClose()"></div>
+                <ul class="stars">
+                    <li  v-for="(item,index) in comments" @click="getStar(item.v)"  :class="{on:item.v<=commentValue}" >
+                        <div class="star"></div>
+                        <div class="text">{{item.t}}</div>
+                    </li>
+                </ul>
+                <div class="frame_textarea">
+                    <textarea placeholder="分享您的咨询感受" id="frame_textarea"></textarea>
+                    <div class="anFlag" @click="setAnonymous()" :class="{anFlag_on:isAnonymous}">
+                        匿名
+                    </div>
+                </div>
+                <div class="frame_btn" :class="{frame_btn_active:star_pass}" @click="subEvaluationFrame()">提交评价</div>
+            </div>
+        </div>
+
 
         <div id="comment_box" style="display: none">
             <div class="comment_box2">
@@ -141,6 +163,9 @@
                 anonyVal:0,
                 set_award_dian_coin:0,
 //                showOk:false,
+                evaluation_frame_flag:false,
+                isAnonymous:false,
+                anonyVal:0,
             }
         },
         props:{
@@ -167,80 +192,47 @@
                     _this.detail.endTime= _this.detail.endTime - 1
                 },1000)
             },
-            submitComment:function () {
+            showCommentBox:function () {
+                let _this=this;
+                _this.evaluation_frame_flag = true;
+            },
+            frameClose:function () {
+                this.evaluation_frame_flag = false;
+            },
+            getStar:function (v) {
+                this.commentValue = v;
+                if(this.commentValue!=0){
+                    this.star_pass= true;
+                }
+            },
+            setAnonymous:function () {
+                this.isAnonymous = !this.isAnonymous;
+                if(this.isAnonymous){
+                    this.anonyVal = 1
+                }else {
+                    this.anonyVal = 0
+                }
+            },
+            subEvaluationFrame:function () {
                 let that=this;
-                that.showLoad = true;
-                let content = $(".weui-dialog #textarea_comment").val();
-                that.contentOver = content;
+                that.showLoad=true
+                let textareaVal = $('#frame_textarea').val();
                 if(that.commentValue==0){
-                    xqzs.weui.toast('fail',"请选择评分",function () {
+                    xqzs.weui.tip("请选择评分",function () {
 
                     })
                     return;
                 }
-
-//                if(content.length==0){
-//                    xqzs.weui.toast('fail',"请输入评论内容",function () {
-//
-//                    })
-//                    return;
-//                }
-                this.showLoad=true
-                xqzs.api.put(that, "come/user/evaluate/answer",{userId:"_userId_",answerId:that.detail.bestAnswerId, point:that.commentValue,content:content,isAnonymous :that.anonyVal},function (bt) {
-                    that.showLoad=false;
+                xqzs.api.put(that, "come/user/evaluate/answer",{userId:"_userId_",answerId:that.detail.bestAnswerId, point:that.commentValue,content:textareaVal,isAnonymous :that.anonyVal},function (bt) {
                     if (bt.data && bt.data.status == 1) {
                         xqzs.weui.toast("success","评论成功",function () {
                             that.showLoad = false;
+                            that.evaluation_frame_flag = false;
                             that.getDetail();
                         })
                     }
                 })
-            },
 
-            showCommentBox:function () {
-                let _this=this;
-                let isAnonymous = false;
-
-                xqzs.weui.dialog("评价",$("#comment_box").html(),"",function () {
-
-                },function () {
-
-                    _this.submitComment();
-                });
-
-                $(".anFlag").click(function () {
-                    isAnonymous = !isAnonymous;
-                    if(isAnonymous==true){
-                        $(this).addClass('anFlag_on')
-                        _this.anonyVal = 1
-                    }else {
-                        $(this).removeClass('anFlag_on')
-                        _this.anonyVal = 0
-                    }
-                    console.log(_this.anonyVal)
-                })
-
-
-                $(".comment_box2 .stars li ").click(function () {
-                    let v= parseInt($(this).attr("v"))
-                    _this.setCommentValue(v)
-                })
-
-
-            },
-
-
-            setCommentValue:function (v) {
-                let _this=this;
-                _this.commentValue=v;
-                $(".comment_box2 .stars li ").each(function () {
-                    let v= parseInt($(this).attr("v"))
-                    if( _this.commentValue>=v){
-                        $(this).addClass("on")
-                    }else{
-                        $(this).removeClass("on")
-                    }
-                })
             },
             formatPrice:function (v) {
                 return xqzs.string.formatPrice(v)
@@ -414,6 +406,47 @@
     }
 </script>
 <style>
+    /**评价框**/
+    .evaluation_frame{
+        width:84%;
+        background: #fff;
+        border-radius: 0.2rem;
+        position: fixed;
+        webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        top:50%;
+        left:50%;
+        padding:0.36rem 0.2rem 0.5rem 0.2rem;
+        z-index: 10001;
+    }
+    .evaluation_frame .frame_title{
+        font-size: 0.4rem;
+        color:RGBA(69, 75, 84, 1);
+        line-height: 0.56rem;
+        text-align: center;
+        margin-bottom: 0.28rem;
+    }
+    .evaluation_frame .frame_close{
+        width:0.32rem;height:0.32rem;
+        background: url('http://oss.xqzs.cn/resources/psy/asker/user_close.png') no-repeat;
+        background-size: 100% 100%;
+        position: absolute;
+        right:0.3rem;
+        top:0.3rem;
+    }
+    .evaluation_frame .stars{ display: flex;margin-bottom: 0.44rem}
+    .evaluation_frame .stars li{ flex:1;}
+    .evaluation_frame .stars li .star{ background: url(http://oss.xqzs.cn/resources/psy/asker/ask_rack_comment_star.png) center no-repeat ; background-size:  0.66rem;;height:0.66rem; width: 0.66rem; color:#999; width: 100%; margin-bottom: 0.26rem; }
+    .evaluation_frame .stars li .text{color:RGBA(69, 75, 84, 0.5) ; font-size: 0.28rem; text-align: center;line-height: 0.4rem;}
+    .evaluation_frame .stars li.on .star{background: url(http://oss.xqzs.cn/resources/psy/asker/ask_rack_comment_star_on.png) center no-repeat ; background-size:  0.66rem;}
+    .evaluation_frame .stars li.on .text{ color:RGBA(245, 166, 35, 1)}
+    .frame_textarea{height:2.2rem;border:0.02rem solid RGBA(238, 238, 238, 1);border-radius: 0.12rem;margin-bottom: 0.5rem;padding:0.2rem;position: relative}
+    .frame_textarea textarea{color:rgba(36,37,61,1);outline: none;border:0;width:100%;font-size: 0.28rem;line-height: 0.4rem;height:1.6rem;}
+    .frame_btn{color:RGBA(255, 255, 255, 1);font-size: 0.36rem;width:80%;line-height: 0.88rem;border-radius: 0.1rem;text-align: center;margin: 0 auto;background: RGBA(86, 196, 254, 0.5);}
+    .frame_btn_active{background: RGBA(86, 196, 254, 1);}
+    .evaluation_frame .frame_textarea .anFlag{position: absolute;right:0.2rem;bottom:0.2rem;color:RGBA(69, 75, 84, 0.49);font-size: 0.24rem;background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_no.png")no-repeat left center;background-size: 0.28rem;padding-left: 0.34rem;line-height: 0.34rem;z-index:1000;height:0.32rem;}
+    .evaluation_frame .frame_textarea .anFlag_on{background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_on.png") no-repeat left center;background-size: 0.28rem;}
+
     .rob_status_box .race_detail_inCome{float: right;margin-right: 0.30rem;color:rgba(36,37,61,0.5);}
     .rob_status_box span {
         padding:  0 0.04rem;

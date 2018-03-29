@@ -697,9 +697,10 @@
         margin: 0.3rem auto;
     }
     .evaluate_block{
-        bottom:-1.68rem;
+        display: none;
+        bottom:0;
         width: 100%;
-        background: RGBA(255, 255, 255, 1);
+        background: #2EB1FF;
         position: absolute;
         left: 0;
         z-index: 999;
@@ -708,13 +709,13 @@
         padding-top: 0.24rem;
     }
     .canEvaluate{
-        bottom:0;
+        display: block;
     }
     .evaluate_block>div{
         color:RGBA(69, 75, 84, 1);
         font-size: 0.3rem;
         border-radius: 0.1rem;
-        background: RGBA(244, 244, 247, 1);
+        background: #fff;
         line-height: 0.68rem;
         margin:0 0.3rem;
     }
