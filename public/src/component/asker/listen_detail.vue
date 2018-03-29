@@ -109,7 +109,7 @@
         </div>
         <!--评价弹窗-->
         <div v-if="evaluation_frame_flag" >
-            <div class="weui-mask" @click="frameClose()"></div>
+            <div class="weui-mask" @click="frameClose()" @touchmove.prevent></div>
             <div class="evaluation_frame">
                 <div class="frame_title">评价</div>
                 <div class="frame_close" @click="frameClose()"></div>
