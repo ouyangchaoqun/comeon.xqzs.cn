@@ -420,7 +420,6 @@
                 item.answerType=1;
                 item.needPay=0;
                 this.detail.needPay=0;
-                this.detail.isListened = 1;
                 this.$set( this.detail.answerList,index,item);
             },
             timeout:function (play,time,index) {
@@ -452,6 +451,7 @@
                 let _this=this;
                 console.log('bofangle ')
                 let list = _this.detail.answerList;
+                _this.detail.isListened = 1;
                 let CT= list[index].ct? list[index].ct: list[index].length;
                 let T = list[index].length;
                 console.log(CT)
