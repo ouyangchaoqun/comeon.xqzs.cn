@@ -1,133 +1,136 @@
 <template >
     <div class="listenDetail_box" :class="{heightLock:needLock}">
         <!--详情头部-->
-        <div v-title>问题详情</div>
-        <v-recharge  v-if="rechargeFlag"  :rechargeMoney="rechargeMoney" v-on:childMessage="getFlagVal"></v-recharge>
-        <v-showLoad v-if="showLoad"></v-showLoad>
-        <div class="steal_detail_header" v-if="detail.title">
-            <div class="steal_detail_top">
-                <img v-if="detail.isAnonymous==0" :src="detail.faceUrl" alt="">
-                <img v-if="detail.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
-                <!--<div>在<span>{{detail.title}}</span>方面</div>-->
-                <div v-if="detail.isAnonymous==0">{{detail.nickName}}</div>
-                <div v-if="detail.isAnonymous==1">匿名用户</div>
-                <div class="steal_detail_top_price">{{detail.title}}</div>
-            </div>
-            <div class="steal_detail_content">{{detail.content}}</div>
-        </div>
-        <!--专家回答列表-->
-        <ul>
-            <li class="steal_detail_answer" v-for="(item,index) in detail.answerList">
-
-                <div class="steal_expert_info">
-                    <img :src="item.expertUrl" alt="" @click="goDetail(item.expertId)">
-                    <div>
-                        <span class="steal_expert_name" @click="goDetail(item.expertId)">{{item.expertName}}</span><span class="steal_expert_fans">{{item.followCount}} 人关注</span>
-                    </div>
-                    <div class="steal_expert_des">{{item.sign}}</div>
-                    <div class="followed_box" v-if="item.isFollowed==0" @click="follow(index)"> 关注</div>
-                    <div class="followed_box isfollow_style"  v-if="item.isFollowed==1" @click="follow(index)" >已关注</div>
+        <div class="listenDetail_inner_box">
+            <div v-title>问题详情</div>
+            <v-recharge  v-if="rechargeFlag"  :rechargeMoney="rechargeMoney" v-on:childMessage="getFlagVal"></v-recharge>
+            <v-showLoad v-if="showLoad"></v-showLoad>
+            <div class="steal_detail_header" v-if="detail.title">
+                <div class="steal_detail_top">
+                    <img v-if="detail.isAnonymous==0" :src="detail.faceUrl" alt="">
+                    <img v-if="detail.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
+                    <!--<div>在<span>{{detail.title}}</span>方面</div>-->
+                    <div v-if="detail.isAnonymous==0">{{detail.nickName}}</div>
+                    <div v-if="detail.isAnonymous==1">匿名用户</div>
+                    <div class="steal_detail_top_price">{{detail.title}}</div>
                 </div>
-                <div class="steal_answer_top">
-                    <!--<img class="steal_answer_topimg" :src="item.expertUrl" alt="" >-->
-                    <div class="steal_answer_yy">
+                <div class="steal_detail_content">{{detail.content}}</div>
+            </div>
+            <!--专家回答列表-->
+            <ul>
+                <li class="steal_detail_answer" v-for="(item,index) in detail.answerList">
 
-                        <!--* const GRAB_NOT_BEST    = 1;抢答一般的答案-->
-                        <!--* const GRAB_BEST_ANSWER = 2;抢答最好的答案-->
-                        <!--* const EXPERT_FREE_TIME = 3;专家免费偷听期内答案-->
-                        <!--* const EXPERT_NOT_FREE  = 4;专家收费期内的答案",-->
-                        <!--免费听-->
-                        <template v-if="detail.needPay==0&&(item.answerType==1||item.answerType!=3)">
-                            <div class="audio" :class="{playing:item.playing,paused:item.paused}">
-                                <div class="audio_btn" @click.stop="play(index)" >
-                                    <template v-if="!item.playing&&!item.paused">点击播放</template>
+                    <div class="steal_expert_info">
+                        <img :src="item.expertUrl" alt="" @click="goDetail(item.expertId)">
+                        <div>
+                            <span class="steal_expert_name" @click="goDetail(item.expertId)">{{item.expertName}}</span><span class="steal_expert_fans">{{item.followCount}} 人关注</span>
+                        </div>
+                        <div class="steal_expert_des">{{item.sign}}</div>
+                        <div class="followed_box" v-if="item.isFollowed==0" @click="follow(index)"> 关注</div>
+                        <div class="followed_box isfollow_style"  v-if="item.isFollowed==1" @click="follow(index)" >已关注</div>
+                    </div>
+                    <div class="steal_answer_top">
+                        <!--<img class="steal_answer_topimg" :src="item.expertUrl" alt="" >-->
+                        <div class="steal_answer_yy">
+
+                            <!--* const GRAB_NOT_BEST    = 1;抢答一般的答案-->
+                            <!--* const GRAB_BEST_ANSWER = 2;抢答最好的答案-->
+                            <!--* const EXPERT_FREE_TIME = 3;专家免费偷听期内答案-->
+                            <!--* const EXPERT_NOT_FREE  = 4;专家收费期内的答案",-->
+                            <!--免费听-->
+                            <template v-if="detail.needPay==0&&(item.answerType==1||item.answerType!=3)">
+                                <div class="audio" :class="{playing:item.playing,paused:item.paused}">
+                                    <div class="audio_btn" @click.stop="play(index)" >
+                                        <template v-if="!item.playing&&!item.paused">点击播放</template>
+                                        <template v-if="item.playing">正在播放..</template>
+                                        <template v-if="item.paused">播放暂停</template>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </template>
+
+                            <!--付费听-->
+                            <template  v-if="detail.needPay==1">
+                                <div @click="typeDialog(item.questionId,item.answerId,index)">
+                                    <div class="audio"><div class="audio_btn pay" >偷听</div></div>
+                                </div>
+                            </template>
+                            <!--限时免费听-->
+                            <template v-if="item.answerType==3&&detail.needPay==0">
+                                <div class="audio"  :class="{playing:item.playing,paused:item.paused}"><div class="audio_btn" @click.stop="play(index)" >
+                                    <template v-if="!item.playing&&!item.paused">限时免费听</template>
                                     <template v-if="item.playing">正在播放..</template>
                                     <template v-if="item.paused">播放暂停</template>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                        </template>
-
-                        <!--付费听-->
-                        <template  v-if="detail.needPay==1">
-                            <div @click="typeDialog(item.questionId,item.answerId,index)">
-                                <div class="audio"><div class="audio_btn pay" >偷听</div></div>
-                            </div>
-                        </template>
-                        <!--限时免费听-->
-                        <template v-if="item.answerType==3&&detail.needPay==0">
-                            <div class="audio"  :class="{playing:item.playing,paused:item.paused}"><div class="audio_btn" @click.stop="play(index)" >
-                                <template v-if="!item.playing&&!item.paused">限时免费听</template>
-                                <template v-if="item.playing">正在播放..</template>
-                                <template v-if="item.paused">播放暂停</template>
-                            </div><div class="clear"></div></div>
-                        </template>
+                                </div><div class="clear"></div></div>
+                            </template>
 
 
 
-                    </div>
-                    <div :class="{position_change2:(item.answerType==2||item.answerType==4)&&detail.needPay==1}">{{(item.ct && item.ct!='00')?item.ct:item.length}}”</div>
-                </div>
-                <div class="steal_answer_zan">
-                    <div class="problem_answer_time">{{formatDateText(item.addTime)}}</div>
-                    <div class="problem_answer_zan">
-                        <div>
-                            <span>听过</span>
-                            <span> {{item.listenTimes}}</span>
                         </div>
-                        <div @click="like(index)" class="good_care" :class="{good_cared:item.isCared}"><span>{{item.likeTimes}}</span></div>
+                        <div :class="{position_change2:(item.answerType==2||item.answerType==4)&&detail.needPay==1}">{{(item.ct && item.ct!='00')?item.ct:item.length}}”</div>
                     </div>
+                    <div class="steal_answer_zan">
+                        <div class="problem_answer_time">{{formatDateText(item.addTime)}}</div>
+                        <div class="problem_answer_zan">
+                            <div>
+                                <span>听过</span>
+                                <span> {{item.listenTimes}}</span>
+                            </div>
+                            <div @click="like(index)" class="good_care" :class="{good_cared:item.isCared}"><span>{{item.likeTimes}}</span></div>
+                        </div>
 
-                </div>
-            </li>
-
-        </ul>
-        <!--新增评价列表-->
-        <div class="evaluate_box" v-if="evaluates_flag&&!showLoad">
-            <h3>用户评价</h3>
-            <div class="title_border"></div>
-            <ul>
-                <li v-for="item in evaluates">
-                    <img v-if="item.isAnonymous==0" :src="item.faceUrl" alt="">
-                    <img v-if="item.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
-                    <div class="eva_main">
-                        <div class="eva_name" v-if="item.isAnonymous==0">{{item.nickName}}</div>
-                        <div class="eva_name" v-if="item.isAnonymous==1">匿名用户</div>
-                        <div class="eva_content">{{item.content}}</div>
-                        <div class="eva_time">{{getFormatDate(item.addTime)}}</div>
                     </div>
                 </li>
+
             </ul>
-            <div class="eva_btn" @click="getCommentList()" v-show="!isPageEnd">查看更多</div>
-        </div>
-        <!--底部评价-->
-        <div class="evaluate_block" :class='{canEvaluate:isListened }'>
-            <div @click="showCommentBox()">
-                <img src="http://oss.xqzs.cn/resources/psy/asker/evaulate_icon.png" alt="">
-                我要评价
-            </div>
-        </div>
-        <!--评价弹窗-->
-        <div v-if="evaluation_frame_flag" >
-            <div class="weui-mask" @click="frameClose()"></div>
-            <div class="evaluation_frame">
-                <div class="frame_title">评价</div>
-                <div class="frame_close" @click="frameClose()"></div>
-                <ul class="stars">
-                    <li  v-for="(item,index) in comments" @click="getStar(item.v)"  :class="{on:item.v<=commentValue}" >
-                        <div class="star"></div>
-                        <div class="text">{{item.t}}</div>
+            <!--新增评价列表-->
+            <div class="evaluate_box" v-if="evaluates_flag&&!showLoad">
+                <h3>用户评价</h3>
+                <div class="title_border"></div>
+                <ul>
+                    <li v-for="item in evaluates">
+                        <img v-if="item.isAnonymous==0" :src="item.faceUrl" alt="">
+                        <img v-if="item.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
+                        <div class="eva_main">
+                            <div class="eva_name" v-if="item.isAnonymous==0">{{item.nickName}}</div>
+                            <div class="eva_name" v-if="item.isAnonymous==1">匿名用户</div>
+                            <div class="eva_content">{{item.content}}</div>
+                            <div class="eva_time">{{getFormatDate(item.addTime)}}</div>
+                        </div>
                     </li>
                 </ul>
-                <div class="frame_textarea">
-                    <textarea placeholder="分享您的咨询感受" id="frame_textarea" @input="frameChange()"></textarea>
-                    <div class="anFlag" @click="setAnonymous()" :class="{anFlag_on:isAnonymous}">
-                        匿名
-                    </div>
+                <div class="eva_btn" @click="getCommentList()" v-show="!isPageEnd">查看更多</div>
+            </div>
+            <!--底部评价-->
+            <div class="evaluate_block" :class='{canEvaluate:isListened }'>
+                <div @click="showCommentBox()">
+                    <img src="http://oss.xqzs.cn/resources/psy/asker/evaulate_icon.png" alt="">
+                    我要评价
                 </div>
-                <div class="frame_btn" :class="{frame_btn_active:star_pass&&textVal_pass}" @click="subEvaluationFrame()">提交评价</div>
+            </div>
+            <!--评价弹窗-->
+            <div v-if="evaluation_frame_flag" >
+                <div class="weui-mask" @click="frameClose()"></div>
+                <div class="evaluation_frame">
+                    <div class="frame_title">评价</div>
+                    <div class="frame_close" @click="frameClose()"></div>
+                    <ul class="stars">
+                        <li  v-for="(item,index) in comments" @click="getStar(item.v)"  :class="{on:item.v<=commentValue}" >
+                            <div class="star"></div>
+                            <div class="text">{{item.t}}</div>
+                        </li>
+                    </ul>
+                    <div class="frame_textarea">
+                        <textarea placeholder="分享您的咨询感受" id="frame_textarea" @input="frameChange()"></textarea>
+                        <div class="anFlag" @click="setAnonymous()" :class="{anFlag_on:isAnonymous}">
+                            匿名
+                        </div>
+                    </div>
+                    <div class="frame_btn" :class="{frame_btn_active:star_pass&&textVal_pass}" @click="subEvaluationFrame()">提交评价</div>
+                </div>
             </div>
         </div>
+
 
     </div>
 
@@ -169,12 +172,11 @@
             }
         },
         mounted: function () {
+            $(".listenDetail_inner_box").height($(window).height() - $('.evaluate_block').outerHeight());
             this.questionId=this.$route.query.questionId;
             this.getDetail();
             this.getCoupon();
             this.getUserInfo();
-
-
         },
         props:{
             user:{
@@ -589,6 +591,9 @@
 </script>
 
 <style>
+    .listenDetail_inner_box{
+        overflow-y: scroll !important;
+    }
     /**评价框**/
     .evaluation_frame{
         width:84%;
@@ -632,7 +637,6 @@
     /**新增评价样式**/
     .evaluate_box{
         padding-top: 0.3rem;
-        padding-bottom: 1.66rem;
     }
     .evaluate_box h3{
         color:#2EB1FF;
@@ -697,7 +701,7 @@
         bottom:-1.68rem;
         width: 100%;
         background: RGBA(255, 255, 255, 1);
-        position: fixed;
+        position: absolute;
         left: 0;
         z-index: 999;
         border-top: 0.02rem solid RGBA(238, 238, 238, 1);
