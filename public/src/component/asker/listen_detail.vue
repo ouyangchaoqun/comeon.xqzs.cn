@@ -659,7 +659,6 @@
     }
     .canEvaluate{
         bottom:0;
-        transition: bottom 1s;
     }
     .evaluate_block>div{
         color:RGBA(69, 75, 84, 1);
