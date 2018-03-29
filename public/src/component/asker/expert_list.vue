@@ -451,7 +451,12 @@
             this.titleVal = this.$route.query.title;
             if(this.$route.query.orderType){
                 this.order = this.$route.query.orderType;
-                this.fliter_sortIndex = 1;
+                if(this.order == 'new'){
+                    this.fliter_sortIndex = 1;
+                }else {
+                    this.fliter_sortIndex = -1;
+                }
+
             }
 
             $(".weui-tab__panel").height($(window).height()-50)
