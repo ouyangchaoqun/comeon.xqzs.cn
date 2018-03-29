@@ -233,6 +233,7 @@
                                 slidesPerView :2.2,
                                 slidesPerGroup : 1,
                                 speed:500,
+                                freeMode : true,
                                 observer:true,
                                 observeParents:true
                             })
