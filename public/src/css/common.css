@@ -68,7 +68,7 @@ input,textarea{-webkit-appearance:none;outline: 0;resize: none;color:rgba(69, 75
     position: fixed;
     left: 0;
     z-index: 10000;
-    border-top:1px solid #ccc;
+    border-top:1px solid #eee;
 }
 .comment_header{
     height: 35px;
