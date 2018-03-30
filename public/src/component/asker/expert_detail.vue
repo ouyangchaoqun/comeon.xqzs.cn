@@ -379,6 +379,7 @@
             },
             like:function (index) {
                 let  item = this.answerList[index];
+                console.log(item)
                 if(item.isCared){
                     xqzs.weui.tip("已经点赞");
                     return ;
@@ -387,7 +388,7 @@
                 xqzs.api.put(_this, "come/user/like/answer/_userId_/"+item.answerId,{},function (bt) {
                     if (bt.data && bt.data.status == 1) {
                         item.isCared=1;
-                        item.likeTimes=item.likeTimes+1;
+                        item.likeTimes=parseInt(item.likeTimes)+1;
                         _this.$set(_this.answerList,index,item);
                     }
                 })

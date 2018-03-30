@@ -325,7 +325,7 @@
                 xqzs.api.put(_this,"come/user/like/answer/_userId_/"+item.answerId,{},function (bt) {
                     if (bt.data && bt.data.status == 1) {
                         item.isLiked=1;
-                        item.likeTimes=item.likeTimes+1;
+                        item.likeTimes=parseInt(item.likeTimes)+1;
                         _this.$set(_this.detail.answers,index,item);
                     }
                 })

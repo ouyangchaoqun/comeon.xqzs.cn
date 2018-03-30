@@ -165,7 +165,7 @@
                 xqzs.api.put(_this,"come/user/like/answer/_userId_/"+item.id,{},function (bt) {
                     if (bt.data && bt.data.status == 1) {
                         item.isLiked=1;
-                        item.likeTimes=item.likeTimes+1;
+                        item.likeTimes=parseInt(item.likeTimes)+1;
                         _this.$set(_this.detail.answers,index,item);
                     }else if(bt.data.status==920006){
                         xqzs.weui.tip("已经点赞");
