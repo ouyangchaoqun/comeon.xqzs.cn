@@ -120,7 +120,7 @@
     export default {
         data() {
             return {
-                classList: [],
+
                 list: [],
                 page: 1,
                 row: 10,
@@ -241,16 +241,7 @@
                 });
 
             },
-            getClassList: function () {
-                let _this = this;
-                xqzs.api.get(_this,'come/listen/question/class/list',function (data) {
-                    if (data.body.status == 1) {
-                        _this.classList = data.body.data
-                        _this.classList.splice(0, 0, {id: 0, title: '全部', code: 'qb'})
-                    }
-                })
 
-            },
             getList: function (done) {
 
                 let vm = this;
@@ -322,7 +313,7 @@
         mounted: function () {
             this.expertId = cookie.get('expertId')
             $(".weui-tab__panel").height($(window).height() - 50)
-            this.getClassList();
+
             this.getList(0);
             this.getHotList();
             xqzs.wx.setConfig(this, function () {
