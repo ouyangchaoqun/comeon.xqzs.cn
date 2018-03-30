@@ -59,7 +59,9 @@
         mounted: function () {
             let expertId;
             let _this=this;
-
+            if(!xqzs.user.isUserLogin()){
+                return ;
+            }
             if(cookie.get('expertId')==null){
                 this.$http.get(web.API_PATH + 'come/expert/query/detail/by/userId/_userId_' ).then(function (data) {//es5写法
                     if (data.body.status == 1) {
