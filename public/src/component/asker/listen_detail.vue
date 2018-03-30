@@ -85,7 +85,7 @@
             </ul>
             <!--新增评价列表-->
             <div class="evaluate_box" v-if="evaluates_flag&&!showLoad">
-                <h3>用户评价</h3>
+                <h3>用户留言</h3>
                 <div class="title_border"></div>
                 <ul>
                     <li v-for="item in evaluates">
@@ -108,30 +108,30 @@
         <div class="evaluate_block" :class='{canEvaluate:isListened&&!isEvaluated}' :style="'height:'+height+'px'">
             <div @click="showCommentBox()">
                 <img src="http://oss.xqzs.cn/resources/psy/asker/evaulate_icon.png" alt="">
-                我要评价
+                我要留言
             </div>
         </div>
         <!--评价弹窗-->
-        <div v-if="evaluation_frame_flag" >
-            <div class="weui-mask" @click="frameClose()"></div>
-            <div class="evaluation_frame">
-                <div class="frame_title">评价</div>
-                <div class="frame_close" @click="frameClose()"></div>
-                <ul class="stars">
-                    <li  v-for="(item,index) in comments" @click="getStar(item.v)"  :class="{on:item.v<=commentValue}" >
-                        <div class="star"></div>
-                        <div class="text">{{item.t}}</div>
-                    </li>
-                </ul>
-                <div class="frame_textarea">
-                    <textarea placeholder="分享您的偷听感受" id="frame_textarea" @input="frameChange()"></textarea>
-                    <div class="anFlag" @click="setAnonymous()" :class="{anFlag_on:isAnonymous}">
-                        匿名
-                    </div>
-                </div>
-                <div class="frame_btn" :class="{frame_btn_active:star_pass&&textVal_pass}" @click="subEvaluationFrame()">提交评价</div>
-            </div>
-        </div>
+        <!--<div v-if="evaluation_frame_flag" >-->
+            <!--<div class="weui-mask" @click="frameClose()"></div>-->
+            <!--<div class="evaluation_frame">-->
+                <!--<div class="frame_title">评价</div>-->
+                <!--<div class="frame_close" @click="frameClose()"></div>-->
+                <!--<ul class="stars">-->
+                    <!--<li  v-for="(item,index) in comments" @click="getStar(item.v)"  :class="{on:item.v<=commentValue}" >-->
+                        <!--<div class="star"></div>-->
+                        <!--<div class="text">{{item.t}}</div>-->
+                    <!--</li>-->
+                <!--</ul>-->
+                <!--<div class="frame_textarea">-->
+                    <!--<textarea placeholder="分享您的偷听感受" id="frame_textarea" @input="frameChange()"></textarea>-->
+                    <!--<div class="anFlag" @click="setAnonymous()" :class="{anFlag_on:isAnonymous}">-->
+                        <!--匿名-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="frame_btn" :class="{frame_btn_active:star_pass&&textVal_pass}" @click="subEvaluationFrame()">提交评价</div>-->
+            <!--</div>-->
+        <!--</div>-->
 
     </div>
 
@@ -261,8 +261,6 @@
                             that.innerHeight = $(window).height() ;
                             that.evaluates.splice(0,0,stuckMessage); //插入第一条
                             that.evaluates_flag = true;
-                            that.evaluation_frame_flag = false;
-                            that.initFramState();
                             that.getDetail();
                             that.showLoad = false;
                         })
@@ -275,8 +273,36 @@
             },
             showCommentBox:function () {
                 let _this=this;
-                _this.evaluation_frame_flag = true;
-                _this.needLock = true
+                //_this.evaluation_frame_flag = true;
+                _this.needLock = true;
+                xqzs.weui.actionSheetEdit( "发布", function (value) {
+                    //回复操作
+                    console.log('发布')
+                    xqzs.api.put(_this, "come/user/evaluate/question",{userId:"_userId_",questionId :_this.detail.questionId,content:value,isAnonymous :_this.anonyVal},function (bt) {
+                        _this.showLoad=false;
+                        if (bt.data && bt.data.status == 1) {
+                            xqzs.weui.toast("success","发布成功",function () {
+                                let  stuckMessage = {
+                                    faceUrl:_this.user.faceUrl,
+                                    content:value,
+                                    nickName: _this.user.nickName,
+                                    isAnonymous:_this.anonyVal,
+                                    addTime:parseInt(new Date().getTime()/1000)
+                                };
+                                _this.isEvaluated = true;
+                                _this.innerHeight = $(window).height() ;
+                                _this.evaluates.splice(0,0,stuckMessage); //插入第一条
+                                _this.evaluates_flag = true;
+                                _this.evaluation_frame_flag = false;
+                                _this.initFramState();
+                                _this.getDetail();
+                                _this.showLoad = false;
+                            })
+                        }
+                    })
+                }, function () {
+
+                }, '')
             },
             getCommentList:function () {
                 let _this = this;
@@ -718,7 +744,7 @@
         display: none;
         bottom:0;
         width: 100%;
-        background: #2EB1FF;
+        background: #f4f4f7;
         position: absolute;
         left: 0;
         z-index: 999;
@@ -733,14 +759,14 @@
         color:RGBA(69, 75, 84, 1);
         font-size: 0.3rem;
         border-radius: 0.1rem;
-        background: #fff;
         line-height: 0.68rem;
         margin:0 0.3rem;
+        text-align: center;
     }
     .evaluate_block>div img{
         width:0.36rem;
         display: inline-block;
-        margin-left:0.2rem;
+        margin-left:-0.2rem;
         margin-right: 0.12rem;
     }
     .listenDetail_box{
