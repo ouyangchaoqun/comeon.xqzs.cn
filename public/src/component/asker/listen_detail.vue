@@ -215,9 +215,9 @@
                         $(".comment_p").css('display', 'block');
                     }
                 });
-                if(!noHide){
-                    $(".comment_text").focus();
-                }
+//                if(!noHide){
+//                    $(".comment_text").focus();
+//                }
 
                 setTimeout(function () {
                     $(".comment_box").removeClass('subactive').addClass("addactive");
@@ -236,6 +236,7 @@
                     var v = $(".comment_text").val();
                     if (v !== "") {
                         doFun(v);
+                        $('.comment_text').val('')
                     }
                     if(noHide){
 
