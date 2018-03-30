@@ -118,10 +118,10 @@
                         if(data.data.data&&data.data.data.id&&data.data.data.status==1){
                             _this.$router.replace("/answer/race/list")
                         }else{
-                            _this.$router.replace("/asker/listen")
+                            _this.$router.replace("/join")
                         }
                     }else{
-                        _this.$router.replace("/asker/listen")
+                        _this.$router.replace("/join")
                     }
                 }, function (error) {
                 });

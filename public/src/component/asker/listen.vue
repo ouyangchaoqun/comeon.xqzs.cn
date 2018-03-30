@@ -174,7 +174,6 @@
     export default {
         data() {
             return {
-                navLists: [],
                 typeIndex: 0,
                 page: 1,
                 row: 5,
@@ -214,11 +213,10 @@
             }else{
                 this.isRegExpert = false
             }
-            this.getClassList();
-            this.getHotList();
+             this.getHotList();
 
             this.getUserInfo(true)
-            this.getCoupon();
+//            this.getCoupon();
             xqzs.voice.audio = null;
 
 
@@ -239,8 +237,6 @@
         ],
         methods: {
             initReUrl:function () {
-
-                console.log("isReUrlisReUrlisReUrlisReUrlisReUrlisReUrl")
 
                 if( this.$route.query.reurl&& this.$route.query.reurl!=''&&xqzs.localdb.get("isReUrl")=='false'){
                     xqzs.localdb.set("isReUrl","true");
@@ -273,10 +269,7 @@
                 }
 
             },
-            initView: function () {
-                var minHeight = $(window).height() - $('nav').height() - 100;
-                $('.index_nocontent').css('minHeight', minHeight)
-            },
+
 
             initActive: function () {
 //                var obj = $(".index_box li")
@@ -519,20 +512,7 @@
             goDetail: function (questionId) {
                 this.$router.push("/asker/listen/detail/?questionId=" + questionId)
             },
-            getClassList: function () {
-                let _this = this;
-                xqzs.api.get(this,'come/listen/question/class/list',function (data) {
-                    if (data.body.status == 1) {
-                        let arr = [{"title": "全部", id: 0}]
-                        _this.navLists = data.body.data
-                        _this.navLists = arr.concat(_this.navLists);
 
-                        _this.initView();
-
-                    }
-                });
-
-            },
             randContentNum:function (arr) {
 
                 for(let i =0;i<arr.length;i++){

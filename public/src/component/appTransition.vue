@@ -27,20 +27,11 @@
             if(channelopenid){
                 xqzs.localdb.set("channelopenid",channelopenid);
             }
-//            console.log("create");
-            var _this = this;
-            _this.$http({
-                method: 'GET',
-                type: "json",
-                url: web.API_PATH + 'user/find/by/user/Id/_userId_',
-            }).then(function (data) {//es5写法
-                if (data.data.data !== null) {
-                    _this.user = eval(data.data.data);
-
-                }
-            }, function (error) {
-                //error
+            let _this=this;
+            xqzs.user.getUserInfo(function (user) {
+                _this.user =user
             });
+//
         },
         mounted: function () {
             let _this = this

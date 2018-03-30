@@ -37,7 +37,7 @@ var xqzs = {
             return      cookie_base.get("xqzs_openId");
         },
         getUserInfo:function (fun) {
-            console.log("getUserInfo1");
+            console.log("xqzsGetUserInfo");
              var   url = xqzs.api.initUrl("user/find/by/user/Id/_userId_");
              $.ajax({
                 url:url,
@@ -1572,6 +1572,7 @@ var xqzs = {
                 postdata.append('callback', that.callbackbody);
                 postdata.append('signature', that.signature);
                 postdata.append('token', that.token);
+                postdata.append('Cache-Control', 500);
 
                 callback();
             });

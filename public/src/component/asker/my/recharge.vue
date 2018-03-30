@@ -49,13 +49,13 @@
                 backUrl:'',
                 havedianCoin:0,
                 balance:0,
-                user:''
+
             }
 
         },
         props:[
             'rechargeMoney',
-            'rechargeFlag'
+            'rechargeFlag',"user"
         ],
         mounted: function () {
             let _this=this;
@@ -74,6 +74,8 @@
                         _this.havedianCoin = _this.user.dianCoin;
                     }
                 }else{
+
+
                     xqzs.user.getUserInfo(function (user) {
                         _this.user =user;
                         if(_this.user&& _this.user!=''|| _this.user!=undefined){
