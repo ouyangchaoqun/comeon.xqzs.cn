@@ -152,12 +152,7 @@
             this.getDetail();
             this.getCoupon();
             this.getUserInfo();
-
-
-
-
-
-
+            $('.comment_box').height(this.height);
         },
         props:{
             user:{
