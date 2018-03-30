@@ -384,7 +384,7 @@
                     return ;
                 }
                 let _this=this;
-                xqze.api.put( "come/user/like/answer/_userId_/"+item.answerId,{},function (bt) {
+                xqzs.api.put( "come/user/like/answer/_userId_/"+item.answerId,{},function (bt) {
                     if (bt.data && bt.data.status == 1) {
                         item.isCared=1;
                         item.likeTimes=item.likeTimes+1;
