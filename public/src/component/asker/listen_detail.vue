@@ -1,5 +1,5 @@
 <template >
-    <div class="listenDetail_box" :class="{heightLock:needLock}">
+    <div class="listenDetail_box">
         <!--详情头部-->
         <div class="listenDetail_inner_box" :style="'height:'+innerHeight+'px'">
             <div v-title>问题详情</div>
@@ -84,8 +84,8 @@
 
             </ul>
             <!--新增评价列表-->
-            <div class="evaluate_box" v-if="evaluates_flag&&!showLoad">
-                <h3>用户评价</h3>
+            <div class="evaluate_box" v-if="evaluates_flag">
+                <h3>用户留言</h3>
                 <div class="title_border"></div>
                 <ul>
                     <li v-for="item in evaluates">
@@ -105,33 +105,12 @@
         </div>
 
         <!--底部评价-->
-        <div class="evaluate_block" :class='{canEvaluate:isListened&&!isEvaluated}' :style="'height:'+height+'px'">
-            <div @click="showCommentBox()">
-                <img src="http://oss.xqzs.cn/resources/psy/asker/evaulate_icon.png" alt="">
-                我要评价
-            </div>
-        </div>
-        <!--评价弹窗-->
-        <div v-if="evaluation_frame_flag" >
-            <div class="weui-mask" @click="frameClose()"></div>
-            <div class="evaluation_frame">
-                <div class="frame_title">评价</div>
-                <div class="frame_close" @click="frameClose()"></div>
-                <ul class="stars">
-                    <li  v-for="(item,index) in comments" @click="getStar(item.v)"  :class="{on:item.v<=commentValue}" >
-                        <div class="star"></div>
-                        <div class="text">{{item.t}}</div>
-                    </li>
-                </ul>
-                <div class="frame_textarea">
-                    <textarea placeholder="分享您的偷听感受" id="frame_textarea" @input="frameChange()"></textarea>
-                    <div class="anFlag" @click="setAnonymous()" :class="{anFlag_on:isAnonymous}">
-                        匿名
-                    </div>
-                </div>
-                <div class="frame_btn" :class="{frame_btn_active:star_pass&&textVal_pass}" @click="subEvaluationFrame()">提交评价</div>
-            </div>
-        </div>
+        <!--<div class="evaluate_block" :style="'height:'+height+'px'">-->
+            <!--&lt;!&ndash;<div @click="showCommentBox()">&ndash;&gt;-->
+                <!--&lt;!&ndash;<img src="http://oss.xqzs.cn/resources/psy/asker/evaulate_icon.png" alt="">&ndash;&gt;-->
+                <!--&lt;!&ndash;我要留言&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</div>-->
 
     </div>
 
@@ -157,22 +136,15 @@
                 user:{},
                 rechargeFlag:false,
                 evaluates:[],
-                isListened:false,
                 evaluates_flag:false,
                 page:2,
                 row:5,
                 isPageEnd:false,
                 isLoading:false,
-                anonyVal:0,
-                evaluation_frame_flag:false,
                 isAnonymous:false,
                 anonyVal:0,
-                star_pass:false,
-                textVal_pass:false,
-                needLock:false,
                 height:xqzs.equipment.tabHeight(),
                 innerHeight:'',
-                isEvaluated:false,
             }
         },
         mounted: function () {
@@ -197,38 +169,115 @@
             'v-showLoad': showLoad,
         },
         methods:{
+            actionSheetEdit: function ( sendText, doFun, cancelFun, placeholder,maxLength,noHide) {
+                let _this = this;
+                if(!maxLength){
+                    maxLength=1000;
+                }
+                //判断是否已经存在输入框
+                if ($("#action_sheet_edit") && $("#action_sheet_edit").hasClass("action-sheet-edit")) {
+                    return;
+                }
+                xqzs.weui.textareaAutoOldHeight = xqzs.weui.textareaAutoBaseH;
+                xqzs.weui.textareaHeight = [];
+                var html = '<div class="action-sheet-edit" id="action_sheet_edit">';
+                html += ' <div class="comment_box">';
+                html += '  <span class="release release_btn">' + sendText + '</span>';
+                html += '<div class="box box_new"><div class="anonymous_box">匿</div><textarea contenteditable="true" maxlength="'+maxLength+'" class="comment_text" id="textarea" placeholder="' + placeholder + '" ></textarea></div>';
+                if(xqzs.isIos()){
+                    html +='<div style=" height: 44px;    background: #f5f5f5;width: 100%;position: absolute;bottom: -44px;text-align: center;font-size: 12px;color: #ddd; line-height: 30px">一切都好一点</div>';
+                }
+
+                html += '  </div>';
+                html += '  </div>';
+
+                $("body").append(html);
+
+
+                var timeout ;
+                // //解决第三方软键盘唤起时底部input输入框被遮挡问题
+                // var bfscrolltop = document.body.scrollTop;//获取软键盘唤起前浏览器滚动部分的高度
+                //
+                $(".comment_text").focus(function () {
+                    xqzs.weui.textareaHover=true;
+                    xqzs.weui.actionSheetEditTimeout();
+                }).blur(function () {
+                    xqzs.weui.textareaHover=false;
+                    $(".comment_box").animate({bottom: 0}, 150)
+                });
+                //.blur(function () {//设定输入框失去焦点时的事件
+                //     clearTimeout(interval);//清除计时器
+                //      document.body.scrollTop = bfscrolltop;//将软键盘唤起前的浏览器滚动部分高度重新赋给改变后的高度
+                // });
+
+
+                $(".comment_text").keyup(function () {
+                    var val = $(this).val();
+                    if (val.length > 0) {
+                        $(".action-sheet-edit .release_btn").css({'borderColor': "rgba(86, 196, 254, 1)", "background": "rgba(86, 196, 254, 1)"})
+                        $(".comment_p").css('display', 'none')
+                    } else {
+                        $(".action-sheet-edit .release_btn").css({'borderColor': "RGBA(86, 196, 254, 0.1)", "background": "RGBA(86, 196, 254, 0.5)"})
+                        $(".comment_p").css('display', 'block');
+                    }
+                });
+//                if(!noHide){
+//                    $(".comment_text").focus();
+//                }
+
+                setTimeout(function () {
+                    $(".comment_box").removeClass('subactive').addClass("addactive");
+                }, 10);
+
+
+                $(".action-sheet-edit .cancel").click(function () {
+                    xqzs.weui.weuiMaskClose();
+                    $(".comment_box").removeClass('addactive').addClass("subactive");
+                    $(".action-sheet-edit").delay(100).animate({opacity: 0}, 200, function () {
+                        $(".action-sheet-edit").remove();
+                        cancelFun();
+                    });
+                });
+                $(".comment_box .release_btn").click(function () {
+                    var v = $(".comment_text").val();
+                    if (v !== "") {
+                        doFun(v);
+                        $('.comment_text').val('')
+                    }
+                    if(noHide){
+
+                    }else{
+                        $(".comment_box").removeClass('addactive').addClass("subactive");
+//                        $(".action-sheet-edit").delay(100).animate({opacity: 0}, 200, function () {
+//                            $(".action-sheet-edit").remove();
+//                        });
+                    }
+
+
+                })
+                $('.anonymous_box').click(function () {
+                    $(".anonymous_box").toggleClass('anonymous_active','');
+                    let classStr = $(".anonymous_box").attr("class");
+                    let isActive = classStr.indexOf('anonymous_active');
+                    if(isActive==-1){
+                        //不匿名
+                        _this.anonyVal=0
+                    }else{
+                        //匿名
+                        _this.anonyVal=1
+                    }
+                    console.log(_this.anonyVal)
+                })
+
+
+            },
             getUserInfo:function(){
                 let _this=this;
                 xqzs.user.getUserInfo(function (user) {
                     _this.user =user;
                 })
             },
-            frameClose:function () {
-                this.needLock = false;
-                this.evaluation_frame_flag = false;
-            },
 
-            initFramState:function () {
-                this.commentValue = 0;
-                this.isAnonymous = false,
-                this.anonyVal=0;
-                this.star_pass = false;
-                this.textVal_pass = false
-            },
-            frameChange:function () {
-                let textareaVal = $('#frame_textarea').val();
-                if(textareaVal){
-                    this.textVal_pass = true
-                }else{
-                    this.textVal_pass = false
-                }
-            },
-            getStar:function (v) {
-                this.commentValue = v;
-                if(this.commentValue!=0){
-                    this.star_pass= true;
-                }
-            },
             setAnonymous:function () {
                 this.isAnonymous = !this.isAnonymous;
                 if(this.isAnonymous){
@@ -237,52 +286,34 @@
                     this.anonyVal = 0
                 }
             },
-            subEvaluationFrame:function () {
-                let that=this;
-                let textareaVal = $('#frame_textarea').val();
-                if(that.commentValue==0){
-                    xqzs.weui.tip("请选择评分",function () {
-
-                    })
-                    return;
-                }
-                if(textareaVal==''){
-                    xqzs.weui.tip("请填写评价",function () {
-
-                    })
-                    return;
-                }
-                xqzs.api.put(that, "come/user/evaluate/answer",{userId:"_userId_",answerId:that.detail.bestAnswerId, point:that.commentValue,content:textareaVal,isAnonymous :that.anonyVal},function (bt) {
-                    that.showLoad=false;
-                    if (bt.data && bt.data.status == 1) {
-                        xqzs.weui.toast("success","评论成功",function () {
-                            let  stuckMessage = {
-                                faceUrl:that.user.faceUrl,
-                                content:textareaVal,
-                                nickName: that.user.nickName,
-                                isAnonymous:that.anonyVal,
-                                addTime:parseInt(new Date().getTime()/1000)
-                            };
-                            that.isEvaluated = true;
-                            that.innerHeight = $(window).height() ;
-                            that.evaluates.splice(0,0,stuckMessage); //插入第一条
-                            that.evaluates_flag = true;
-                            that.evaluation_frame_flag = false;
-                            that.initFramState();
-                            that.getDetail();
-                            that.showLoad = false;
-                        })
-                    }
-                })
-
-            },
             getFormatDate:function (t) {
                 return xqzs.dateTime.formatDate(t)
             },
             showCommentBox:function () {
                 let _this=this;
-                _this.evaluation_frame_flag = true;
-                _this.needLock = true
+                xqzs.weui.actionSheetEdit( "发布", function (value) {
+                    //回复操作
+
+                    _this.showLoad = true;
+                    xqzs.api.put(_this, "come/user/evaluate/question",{userId:"_userId_",questionId :_this.detail.questionId,content:value,isAnonymous :_this.anonyVal},function (bt) {
+
+                        if (bt.data && bt.data.status == 1) {
+
+                            let  stuckMessage = {
+                                faceUrl:_this.user.faceUrl,
+                                content:value,
+                                nickName: _this.user.nickName,
+                                isAnonymous:_this.anonyVal,
+                                addTime:parseInt(new Date().getTime()/1000)
+                            };
+                            _this.evaluates.splice(0,0,stuckMessage); //插入第一条
+                            _this.evaluates_flag = true;
+                            _this.showLoad = false;
+                        }
+                    })
+                }, function () {
+
+                }, '')
             },
             getCommentList:function () {
                 let _this = this;
@@ -472,11 +503,6 @@
             play:function (index) {
                 let _this=this;
                 let list = _this.detail.answerList;
-                _this.isListened = 1;//播放更改评价框状态
-                if(_this.isListened==1&&!_this.isEvaluated){
-                    _this.innerHeight = $(window).height() - _this.height
-                }
-
                 let CT= list[index].ct? list[index].ct: list[index].length;
                 let T = list[index].length;
                 console.log(CT)
@@ -530,6 +556,29 @@
 
             getDetail:function () {
                 let _this= this;
+                _this.innerHeight = $(window).height() - _this.height;
+                _this.actionSheetEdit( "发布", function (value) {
+                    //回复操作
+                    _this.showLoad = true;
+                    xqzs.api.put(_this, "come/user/evaluate/question",{userId:"_userId_",questionId :_this.detail.questionId,content:value,isAnonymous :_this.anonyVal},function (bt) {
+
+                        if (bt.data && bt.data.status == 1) {
+
+                            let  stuckMessage = {
+                                faceUrl:_this.user.faceUrl,
+                                content:value,
+                                nickName: _this.user.nickName,
+                                isAnonymous:_this.anonyVal,
+                                addTime:parseInt(new Date().getTime()/1000)
+                            };
+                            _this.evaluates.splice(0,0,stuckMessage); //插入第一条
+                            _this.evaluates_flag = true;
+                            _this.showLoad = false;
+                        }
+                    })
+                }, function () {
+
+                }, '我要留言')
                 _this.showLoad=true;
                 xqzs.api.get(_this,'come/listen/question/detail/'+_this.questionId +"/_userId_"+'?comments=5',function (data) {
                     _this.showLoad=false;
@@ -537,14 +586,8 @@
                         _this.detail= data.body.data
                         _this.list = _this.detail.answerList;
                         _this.evaluates = _this.detail.evaluates; //获取评论列表
-                        _this.isEvaluated = _this.detail.isEvaluated
                         if(_this.evaluates.length){
                             _this.evaluates_flag = true
-                        }
-                        _this.isListened = _this.detail.isListened;
-                        if(_this.isListened==1&&!_this.isEvaluated){
-                           _this.innerHeight = $(window).height() - _this.height
-                            console.log(_this.innerHeight)
                         }
                         xqzs.wx.setConfig(_this, function () {
                             var config = {
@@ -612,6 +655,34 @@
 </script>
 
 <style>
+    /**底部input样式**/
+    .comment_box .release_btn{
+        background: rgba(86, 196, 254, 0.5);
+        border:1px solid  rgba(86, 196, 254, 0.1);
+    }
+    .comment_box .box_new{
+        padding-left: 10%;
+        width:65%;
+    }
+    .comment_box .anonymous_box{
+        position: absolute;
+        top:0;
+        left:0;
+        width:30px;
+        background: #fff;
+        font-size: 14px;
+        line-height: 32px;
+        height:100%;
+        text-align: center;
+        border-right:1px solid #eee;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+        color:rgba(69, 75, 84, 0.7);
+    }
+    .comment_box .anonymous_active{
+        background: rgba(86, 196, 254, 1);
+        color:#fff;
+    }
     .listenDetail_inner_box{
         overflow-y: scroll !important;
     }
@@ -655,11 +726,10 @@
     .frame_btn_active{background: RGBA(86, 196, 254, 1);}
     .evaluation_frame .frame_textarea .anFlag{position: absolute;right:0.2rem;bottom:0.2rem;color:RGBA(69, 75, 84, 0.49);font-size: 0.24rem;background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_no.png")no-repeat left center;background-size: 0.28rem;padding-left: 0.34rem;line-height: 0.34rem;z-index:1000;height:0.32rem;}
     .evaluation_frame .frame_textarea .anFlag_on{background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_on.png") no-repeat left center;background-size: 0.28rem;}
-    .pageEndStyle{text-align: center;font-size: 0.28rem;color:RGBA(69, 75, 84, 0.5);line-height: 0.4rem;padding-bottom: 0.2rem;}
+    .pageEndStyle{text-align: center;font-size: 0.28rem;color:RGBA(69, 75, 84, 0.5);line-height: 0.4rem;padding: 0.2rem;}
     /**新增评价样式**/
     .evaluate_box{
         padding-top: 0.3rem;
-        padding-bottom: 0.24rem;
     }
     .evaluate_box h3{
         color:#2EB1FF;
@@ -721,10 +791,9 @@
         margin: 0.3rem auto;
     }
     .evaluate_block{
-        display: none;
         bottom:0;
         width: 100%;
-        background: #2EB1FF;
+        background: #f4f4f7;
         position: absolute;
         left: 0;
         z-index: 999;
@@ -739,22 +808,18 @@
         color:RGBA(69, 75, 84, 1);
         font-size: 0.3rem;
         border-radius: 0.1rem;
-        background: #fff;
         line-height: 0.68rem;
         margin:0 0.3rem;
+        text-align: center;
     }
     .evaluate_block>div img{
         width:0.36rem;
         display: inline-block;
-        margin-left:0.2rem;
+        margin-left:-0.2rem;
         margin-right: 0.12rem;
     }
     .listenDetail_box{
         background: #fff;
-    }
-    .heightLock{
-        height:100%;
-        overflow: hidden !important;
     }
     .steal_expert_info{
         padding-left: 1.42rem;
