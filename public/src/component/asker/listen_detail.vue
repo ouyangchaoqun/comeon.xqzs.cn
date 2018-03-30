@@ -101,7 +101,7 @@
                 </ul>
                 <div class="eva_btn" @click="getCommentList()" v-show="!isPageEnd">查看更多</div>
             </div>
-            <div v-if="isPageEnd" class="pageEndStyle">已经到底啦</div>
+            <div v-if="isPageEnd&&lengthLock" class="pageEndStyle">已经到底啦</div>
         </div>
 
         <!--底部评价-->
@@ -145,6 +145,7 @@
                 anonyVal:0,
                 height:xqzs.equipment.tabHeight(),
                 innerHeight:'',
+                lengthLock:false
             }
         },
         mounted: function () {
@@ -326,6 +327,12 @@
                             _this.isPageEnd = true
                         }
                         _this.evaluates = _this.evaluates.concat(arr);
+                        if(_this.evaluates.length>5){
+                            _this.lengthLock = true
+                        }else{
+                            _this.lengthLock = false
+                        }
+
                     }
                 },function (error) {
                     _this.isLoading=false;
