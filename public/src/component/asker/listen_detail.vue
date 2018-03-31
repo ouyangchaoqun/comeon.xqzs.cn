@@ -3,7 +3,7 @@
         <!--详情头部-->
         <div class="listenDetail_inner_box" :style="'height:'+innerHeight+'px'">
             <div v-title>问题详情</div>
-            <v-recharge  v-if="rechargeFlag"  :rechargeMoney="rechargeMoney" v-on:childMessage="getFlagVal"></v-recharge>
+            <v-recharge  v-if="rechargeFlag"  :rechargeMoney="rechargeMoney" :user="user" v-on:childMessage="getFlagVal"></v-recharge>
             <v-showLoad v-if="showLoad"></v-showLoad>
             <div class="steal_detail_header" v-if="detail.title">
                 <div class="steal_detail_top">

@@ -2,7 +2,7 @@
     <div class="dotcoin_box">
         <div v-title>我的点豆</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
-        <v-recharge :rechargeMoney="rechargeMoney" v-show="rechargeFlag" v-on:childMessage="getFlagVal"></v-recharge>
+        <v-recharge :rechargeMoney="rechargeMoney" v-show="rechargeFlag" :user="user" v-on:childMessage="getFlagVal"></v-recharge>
         <div class="banner banner_bg">
             <div class="title">我的点豆</div>
             <div class="value">{{user.dianCoin||0}}<span style="font-size: 0.48rem"> 点豆</span></div>
