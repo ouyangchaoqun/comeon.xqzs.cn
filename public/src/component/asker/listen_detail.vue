@@ -88,14 +88,17 @@
                 <h3>用户留言</h3>
                 <div class="title_border"></div>
                 <ul>
-                    <li v-for="item in evaluates">
+                    <li v-for="(item,index) in evaluates">
                         <img v-if="item.isAnonymous==0" :src="item.faceUrl" alt="">
                         <img v-if="item.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
                         <div class="eva_main">
                             <div class="eva_name" v-if="item.isAnonymous==0">{{item.nickName}}</div>
                             <div class="eva_name" v-if="item.isAnonymous==1">匿名用户</div>
                             <div class="eva_content">{{item.content}}</div>
-                            <div class="eva_time">{{getFormatDate(item.addTime)}}</div>
+                            <div class="eva_time">
+                                {{getFormatDate(item.addTime)}}
+                                <span v-if="item.userId == user.id" @click="delItem(item.userId ,item.id,index)">删除</span>
+                            </div>
                         </div>
                     </li>
                 </ul>
@@ -156,6 +159,22 @@
             'v-showLoad': showLoad,
         },
         methods:{
+            //删除留言
+            delItem:function (id,messageId,index) {
+                let _this = this;
+                xqzs.weui.dialog("", "确定删除吗？","" ,function(){
+                    console.log('取消')
+                }, function(){
+                    console.log('删除')
+                    xqzs.api.post(_this, "come/user/evaluate/remove",{userId:id,id:messageId},function (bt) {
+                        if (bt.data && bt.data.status == 1) {
+                            console.log('删除成功')
+                            _this.evaluates.splice(index,1)
+                            _this.$set(_this.evaluates, index, _this.evaluates[index])
+                        }
+                    })
+                })
+            },
             actionSheetEdit: function ( sendText, doFun, cancelFun, placeholder,maxLength,noHide) {
                 let _this = this;
                 if(!maxLength){
@@ -278,7 +297,7 @@
                 }
             },
             getFormatDate:function (t) {
-                return xqzs.dateTime.formatDate(t)
+                return xqzs.dateTime.formatLevMsgDate(t)
             },
             getCommentList:function () {
                 let _this = this;
@@ -702,19 +721,19 @@
         margin: 0 auto;
     }
     .evaluate_box li{
-        margin-left: 0.28rem;
+        margin-left: 0.3rem;
         border-bottom: 0.02rem solid #eee;
         position: relative;
         padding-top: 0.3rem;
     }
     .evaluate_box li img{
-        width:0.6rem;
-        height:0.6rem;
+        width:0.8rem;
+        height:0.8rem;
         position: absolute;
         border-radius: 50%;
     }
     .evaluate_box li .eva_main{
-        padding-left: 0.9rem;
+        padding-left: 1.12rem;
         padding-right: 0.2rem;
         color:rgba(3, 3, 3, 1);
         font-size: 0.3rem;
@@ -735,6 +754,10 @@
         font-size: 0.24rem;
         line-height: 0.34rem;
         margin-bottom: 0.3rem;
+    }
+    .evaluate_box .eva_main .eva_time span{
+        color:#5e61a2;
+        float: right;
     }
     .evaluate_box .eva_btn{
         width:1.8rem;
@@ -799,7 +822,7 @@
         display: -webkit-box;
         color: rgba(36,37,61,0.5);
         font-size: 0.24rem;
-        line-height: 0.68rem;
+        line-height: 0.8rem;
         position: relative;
     }
     .steal_detail_top .steal_detail_top_price{
@@ -808,10 +831,10 @@
     }
     .steal_detail_top img{
         display: block;
-        height:0.68rem;
-        width:0.68rem;
+        height:0.8rem;
+        width:0.8rem;
         border-radius: 50%;
-        margin-right: 0.20rem;
+        margin-right: 0.32rem;
         margin-bottom: 0.24rem;
     }
     .steal_detail_top span{

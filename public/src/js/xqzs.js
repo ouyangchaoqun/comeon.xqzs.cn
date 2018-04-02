@@ -447,6 +447,7 @@ var xqzs = {
         TIME: "time",
         DATE_PATH: "date_path",
         DATE: "date",
+        DATE_LEVMSG:'date_levMsg',
         _format: function (type, time) {
             time = time * 1000;
             var now = new Date(time);
@@ -469,7 +470,12 @@ var xqzs = {
                 return year + "/" + month + "/" + date
             } else if (type === this.DATE) {
                 return year + "-" + month + "-" + date
+            }else if(type === this.DATE_LEVMSG){  //留言所需日期格式
+                return month + "月" + date + "日" + " " + hour + ":" + minute + ":" + second;
             }
+        },
+        formatLevMsgDate:function (time) {       //留言所需日期格式
+            return this._format(this.DATE_LEVMSG, time);
         },
         formatTime: function (time) {
             return this._format(this.TIME, time);
