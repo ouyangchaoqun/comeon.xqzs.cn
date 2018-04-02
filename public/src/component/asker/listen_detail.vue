@@ -233,6 +233,7 @@
                         doFun(v);
                         $('.comment_text').val('');
                         $('#textarea').height('');
+                        _this.height = xqzs.equipment.tabHeight()
                     }
                     if(noHide){
 
@@ -725,6 +726,7 @@
     }
     .evaluate_box li .eva_main .eva_content{
         margin-bottom: 0.14rem;
+        word-wrap:break-word
     }
     .evaluate_box .eva_main .eva_time{
         color:rgba(3, 3, 3, 0.5);
