@@ -369,6 +369,7 @@
                                 if (bt.data.status == 1) {
                                     xqzs.weui.toast("success", "支付成功", function () {
                                         _this.setPayed(index);
+                                        _this.getUserInfo();
                                     });
                                 } else {
                                     xqzs.weui.tip("支付失败", function () {
