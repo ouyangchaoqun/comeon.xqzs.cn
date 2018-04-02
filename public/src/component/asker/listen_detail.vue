@@ -148,6 +148,9 @@
             this.getDetail();
             this.getCoupon();
             this.getUserInfo();
+            this.$nextTick(function () {
+                this.levMsg();
+            })
         },
         props:{
             user:{
@@ -170,7 +173,7 @@
                     xqzs.api.post(_this, "come/user/evaluate/remove",{userId:"_userId_",id:messageId},function (bt) {
                         if (bt.data && bt.data.status == 1) {
                             console.log('删除成功')
-                            _this.evaluates.splice(index,1)
+                            //_this.evaluates.splice(index,1)
                             _this.$set(_this.evaluates, index, _this.evaluates[index])
                             console.log(_this.evaluates)
                         }
@@ -285,8 +288,10 @@
             },
             getUserInfo:function(){
                 let _this=this;
+                _this.showLoad = true
                 xqzs.user.getUserInfo(function (user) {
                     _this.user =user;
+                    _this.showLoad = false
                 })
             },
 
@@ -303,14 +308,14 @@
             },
             getCommentList:function () {
                 let _this = this;
-                if(_this.isLoading){
+                if(_this.showLoad){
                     return
                 }
                 let questionId = _this.detail.questionId;
-                _this.isLoading = true
+                _this.showLoad = true
                 xqzs.api.get(_this,'come/comment/query/page/question/'+questionId+'/'+this.page+'/'+this.row,function(data){
                     if (data.body.status == 1) {
-                        _this.isLoading=false;
+                        _this.showLoad=false;
                         _this.page++;
                         let arr =  data.data.data;
                         if(arr.length<_this.row){
@@ -325,7 +330,7 @@
 
                     }
                 },function (error) {
-                    _this.isLoading=false;
+                    _this.showLoad=false;
                 })
             },
             getFlagVal:function (val) {
@@ -544,26 +549,25 @@
                 }
 
             },
-
-
-            getDetail:function () {
+            levMsg:function () {
                 let _this= this;
-
                 _this.actionSheetEdit( "发布", function (value) {
                     //回复操作
                     xqzs.api.put(_this, "come/user/evaluate/question",{userId:"_userId_",questionId :_this.detail.questionId,content:value,isAnonymous :_this.anonyVal},function (bt) {
 
                         if (bt.data && bt.data.status == 1) {
                             xqzs.weui.toast('success','留言成功',function () {
-                                let  stuckMessage = {
-                                    faceUrl:_this.user.faceUrl,
-                                    content:value,
-                                    nickName: _this.user.nickName,
-                                    isAnonymous:_this.anonyVal,
-                                    addTime:parseInt(new Date().getTime()/1000)
-                                };
-                                _this.evaluates.splice(0,0,stuckMessage); //插入第一条
+//                                let  stuckMessage = {
+//                                    faceUrl:_this.user.faceUrl,
+//                                    content:value,
+//                                    nickName: _this.user.nickName,
+//                                    isAnonymous:_this.anonyVal,
+//                                    addTime:parseInt(new Date().getTime()/1000)
+//                                };
+//                                _this.evaluates.splice(0,0,stuckMessage); //插入第一条
+                                _this.getDetail();
                                 _this.evaluates_flag = true;
+
                             })
 
 
@@ -574,9 +578,13 @@
                 }, '我也来说两句');
 
                 $('.comment_box').attr({'minHeight':_this.height})
-                _this.showLoad=true;
+            },
+
+
+            getDetail:function () {
+                let _this= this;
                 xqzs.api.get(_this,'come/listen/question/detail/'+_this.questionId +"/_userId_"+'?comments=5',function (data) {
-                    _this.showLoad=false;
+
                     if (data.body.status == 1) {
                         _this.detail= data.body.data
                         _this.list = _this.detail.answerList;
@@ -595,7 +603,7 @@
                         });
                     }
                 },function (error) {
-                    _this.showLoad=false;
+
                 })
 
 
