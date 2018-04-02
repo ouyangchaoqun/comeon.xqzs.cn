@@ -174,8 +174,8 @@
                         if (bt.data && bt.data.status == 1) {
                             console.log('删除成功')
                             //_this.getDetail()
-                            //_this.evaluates.splice(index,1)
-                            _this.$set(_this.evaluates, index, '')
+                            _this.evaluates.splice(index,1)
+                            //_this.$set(_this.evaluates, index, '')
                             console.log(_this.evaluates)
                         }
                     })
@@ -569,9 +569,8 @@
                                     userId :msg.userId,
                                     id:msg.id
                                 };
-                                //_this.evaluates.splice(0,0,stuckMessage); //插入第一条
+                                _this.evaluates.splice(0,0,stuckMessage); //插入第一条
                                 //_this.getDetail();
-                                _this.$set(_this.evaluates,0,stuckMessage)
                                 console.log(_this.evaluates)
 
                                 _this.evaluates_flag = true;
