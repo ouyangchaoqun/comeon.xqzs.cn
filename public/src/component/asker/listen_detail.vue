@@ -173,9 +173,9 @@
                     xqzs.api.post(_this, "come/user/evaluate/remove",{userId:"_userId_",id:messageId},function (bt) {
                         if (bt.data && bt.data.status == 1) {
                             console.log('删除成功')
-                            _this.getDetail()
+                            //_this.getDetail()
                             //_this.evaluates.splice(index,1)
-                            //_this.$set(_this.evaluates, index, _this.evaluates[index])
+                            _this.$set(_this.evaluates, index, '')
                             console.log(_this.evaluates)
                         }
                     })
@@ -557,16 +557,23 @@
                     xqzs.api.put(_this, "come/user/evaluate/question",{userId:"_userId_",questionId :_this.detail.questionId,content:value,isAnonymous :_this.anonyVal},function (bt) {
 
                         if (bt.data && bt.data.status == 1) {
+                            let msg = bt.data.data;
+                            console.log(bt.data.data)
                             xqzs.weui.toast('success','留言成功',function () {
-//                                let  stuckMessage = {
-//                                    faceUrl:_this.user.faceUrl,
-//                                    content:value,
-//                                    nickName: _this.user.nickName,
-//                                    isAnonymous:_this.anonyVal,
-//                                    addTime:parseInt(new Date().getTime()/1000)
-//                                };
-//                                _this.evaluates.splice(0,0,stuckMessage); //插入第一条
-                                _this.getDetail();
+                                let  stuckMessage = {
+                                    faceUrl:_this.user.faceUrl,
+                                    content:value,
+                                    nickName: _this.user.nickName,
+                                    isAnonymous:_this.anonyVal,
+                                    addTime:parseInt(new Date().getTime()/1000),
+                                    userId :msg.userId,
+                                    id:msg.id
+                                };
+                                //_this.evaluates.splice(0,0,stuckMessage); //插入第一条
+                                //_this.getDetail();
+                                _this.$set(_this.evaluates,0,stuckMessage)
+                                console.log(_this.evaluates)
+
                                 _this.evaluates_flag = true;
 
                             })
