@@ -117,7 +117,7 @@ input,textarea{-webkit-appearance:none;outline: 0;resize: none;color:rgba(69, 75
 
 }
 .comment_box .comment_text{
-
+    color:RGBA(69, 75, 84, 1);
     border-radius: 4px;
     outline: none;
     min-height: 20px;height: 20px;

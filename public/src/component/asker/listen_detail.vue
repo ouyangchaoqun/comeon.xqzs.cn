@@ -104,13 +104,6 @@
             <div v-if="isPageEnd&&lengthLock" class="pageEndStyle">已经到底啦</div>
         </div>
 
-        <!--底部评价-->
-        <!--<div class="evaluate_block" :style="'height:'+height+'px'">-->
-            <!--&lt;!&ndash;<div @click="showCommentBox()">&ndash;&gt;-->
-                <!--&lt;!&ndash;<img src="http://oss.xqzs.cn/resources/psy/asker/evaulate_icon.png" alt="">&ndash;&gt;-->
-                <!--&lt;!&ndash;我要留言&ndash;&gt;-->
-            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-        <!--</div>-->
 
     </div>
 
@@ -179,7 +172,7 @@
                 var html = '<div class="action-sheet-edit" id="action_sheet_edit">';
                 html += ' <div class="comment_box">';
                 html += '  <span class="release release_btn">' + sendText + '</span>';
-                html += '<div class="box box_new"><div class="anonymous_box">匿</div><textarea contenteditable="true" maxlength="'+maxLength+'" class="comment_text" id="textarea" placeholder="' + placeholder + '" ></textarea></div>';
+                html += '<div class="box"><textarea contenteditable="true" maxlength="'+maxLength+'" class="comment_text" id="textarea" placeholder="' + placeholder + '" oninput="xqzs.weui.textareaAutoHeight();"></textarea></div>';
                 if(xqzs.isIos()){
                     html +='<div style=" height: 44px;    background: #f5f5f5;width: 100%;position: absolute;bottom: -44px;text-align: center;font-size: 12px;color: #ddd; line-height: 30px">一切都好一点</div>';
                 }
@@ -251,19 +244,19 @@
 
 
                 })
-                $('.anonymous_box').click(function () {
-                    $(".anonymous_box").toggleClass('anonymous_active','');
-                    let classStr = $(".anonymous_box").attr("class");
-                    let isActive = classStr.indexOf('anonymous_active');
-                    if(isActive==-1){
-                        //不匿名
-                        _this.anonyVal=0
-                    }else{
-                        //匿名
-                        _this.anonyVal=1
-                    }
-                    console.log(_this.anonyVal)
-                })
+//                $('.anonymous_box').click(function () {
+//                    $(".anonymous_box").toggleClass('anonymous_active','');
+//                    let classStr = $(".anonymous_box").attr("class");
+//                    let isActive = classStr.indexOf('anonymous_active');
+//                    if(isActive==-1){
+//                        //不匿名
+//                        _this.anonyVal=0
+//                    }else{
+//                        //匿名
+//                        _this.anonyVal=1
+//                    }
+//                    console.log(_this.anonyVal)
+//                })
 
 
             },
@@ -284,32 +277,6 @@
             },
             getFormatDate:function (t) {
                 return xqzs.dateTime.formatDate(t)
-            },
-            showCommentBox:function () {
-                let _this=this;
-                xqzs.weui.actionSheetEdit( "发布", function (value) {
-                    //回复操作
-
-                    _this.showLoad = true;
-                    xqzs.api.put(_this, "come/user/evaluate/question",{userId:"_userId_",questionId :_this.detail.questionId,content:value,isAnonymous :_this.anonyVal},function (bt) {
-
-                        if (bt.data && bt.data.status == 1) {
-
-                            let  stuckMessage = {
-                                faceUrl:_this.user.faceUrl,
-                                content:value,
-                                nickName: _this.user.nickName,
-                                isAnonymous:_this.anonyVal,
-                                addTime:parseInt(new Date().getTime()/1000)
-                            };
-                            _this.evaluates.splice(0,0,stuckMessage); //插入第一条
-                            _this.evaluates_flag = true;
-                            _this.showLoad = false;
-                        }
-                    })
-                }, function () {
-
-                }, '')
             },
             getCommentList:function () {
                 let _this = this;
@@ -580,7 +547,7 @@
                     })
                 }, function () {
 
-                }, '我要留言')
+                }, '我也来说两句')
                 _this.showLoad=true;
                 xqzs.api.get(_this,'come/listen/question/detail/'+_this.questionId +"/_userId_"+'?comments=5',function (data) {
                     _this.showLoad=false;
@@ -661,25 +628,6 @@
     .comment_box .release_btn{
         background: rgba(86, 196, 254, 0.5);
         border:1px solid  rgba(86, 196, 254, 0.1);
-    }
-    .comment_box .box_new{
-        padding-left: 10%;
-        width:65%;
-    }
-    .comment_box .anonymous_box{
-        position: absolute;
-        top:0;
-        left:0;
-        width:30px;
-        background: #fff;
-        font-size: 14px;
-        line-height: 32px;
-        height:100%;
-        text-align: center;
-        border-right:1px solid #eee;
-        border-top-left-radius: 4px;
-        border-bottom-left-radius: 4px;
-        color:rgba(69, 75, 84, 0.7);
     }
     .comment_box .anonymous_active{
         background: rgba(86, 196, 254, 1);
