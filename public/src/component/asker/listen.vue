@@ -447,7 +447,7 @@
             },
 
             pause:function (index) {
-
+                console.log(index)
                 let  _this=this;
                 _this.clearTimeOut();
                 let list = _this.list;
@@ -629,6 +629,7 @@
             console.log("activated")
         },
         deactivated:function () {
+            if(this.currPlayIndex)
             this.pause(this.currPlayIndex);
         }
     }

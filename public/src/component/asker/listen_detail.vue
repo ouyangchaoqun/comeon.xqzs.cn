@@ -667,7 +667,7 @@
             xqzs.voice.pause();
         },
         deactivated:function () {
-            this.pause(this.currPlayIndex);
+            if(this.currPlayIndex)this.pause(this.currPlayIndex);
         },
 
 
