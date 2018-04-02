@@ -146,7 +146,6 @@
             this.getDetail();
             this.getCoupon();
             this.getUserInfo();
-            $('.comment_box').height(this.height);
         },
         props:{
             user:{
@@ -170,7 +169,7 @@
                 xqzs.weui.textareaAutoOldHeight = xqzs.weui.textareaAutoBaseH;
                 xqzs.weui.textareaHeight = [];
                 var html = '<div class="action-sheet-edit" id="action_sheet_edit">';
-                html += ' <div class="comment_box">';
+                html += ' <div class="comment_box" style="">';
                 html += '  <span class="release release_btn">' + sendText + '</span>';
                 html += '<div class="box"><textarea contenteditable="true" maxlength="'+maxLength+'" class="comment_text" id="textarea" placeholder="' + placeholder + '" oninput="xqzs.weui.textareaAutoHeight();"></textarea></div>';
                 if(xqzs.isIos()){
@@ -201,8 +200,10 @@
 
 
                 $(".comment_text").keyup(function () {
+                    _this.innerHeight = $(window).height() - $('.comment_box').outerHeight();
                     var val = $(this).val();
                     if (val.length > 0) {
+
                         $(".action-sheet-edit .release_btn").css({'borderColor': "rgba(86, 196, 254, 1)", "background": "rgba(86, 196, 254, 1)"})
                         $(".comment_p").css('display', 'none')
                     } else {
@@ -231,7 +232,8 @@
                     var v = $(".comment_text").val();
                     if (v !== "") {
                         doFun(v);
-                        $('.comment_text').val('')
+                        $('.comment_text').val('');
+                        $('#textarea').height('');
                     }
                     if(noHide){
 
@@ -525,7 +527,6 @@
 
             getDetail:function () {
                 let _this= this;
-                _this.innerHeight = $(window).height() - _this.height;
                 _this.actionSheetEdit( "发布", function (value) {
                     //回复操作
                     _this.showLoad = true;
@@ -547,7 +548,10 @@
                     })
                 }, function () {
 
-                }, '我也来说两句')
+                }, '我也来说两句');
+
+                $('.comment_box').attr({'minHeight':_this.height})
+                _this.innerHeight = $(window).height() - _this.height;
                 _this.showLoad=true;
                 xqzs.api.get(_this,'come/listen/question/detail/'+_this.questionId +"/_userId_"+'?comments=5',function (data) {
                     _this.showLoad=false;
