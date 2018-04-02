@@ -1,7 +1,7 @@
 <template >
     <div class="listenDetail_box">
         <!--详情头部-->
-        <div class="listenDetail_inner_box" :style="'height:'+innerHeight+'px'">
+        <div class="listenDetail_inner_box" :style="'padding-bottom:'+height+'px'">
             <div v-title>问题详情</div>
             <v-recharge  v-if="rechargeFlag"  :rechargeMoney="rechargeMoney" :user="user" v-on:childMessage="getFlagVal"></v-recharge>
             <v-showLoad v-if="showLoad"></v-showLoad>
@@ -137,7 +137,6 @@
                 isAnonymous:false,
                 anonyVal:0,
                 height:xqzs.equipment.tabHeight(),
-                innerHeight:'',
                 lengthLock:false
             }
         },
@@ -200,7 +199,7 @@
 
 
                 $(".comment_text").keyup(function () {
-                    _this.innerHeight = $(window).height() - $('.comment_box').outerHeight();
+                    _this.height = $('.comment_box').outerHeight();
                     var val = $(this).val();
                     if (val.length > 0) {
 
@@ -551,7 +550,6 @@
                 }, '我也来说两句');
 
                 $('.comment_box').attr({'minHeight':_this.height})
-                _this.innerHeight = $(window).height() - _this.height;
                 _this.showLoad=true;
                 xqzs.api.get(_this,'come/listen/question/detail/'+_this.questionId +"/_userId_"+'?comments=5',function (data) {
                     _this.showLoad=false;
