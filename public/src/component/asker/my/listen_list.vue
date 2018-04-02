@@ -87,7 +87,9 @@
             'v-showLoad': showLoad,
             'v-scroll': scroll
         },
-
+        deactivated:function () {
+            this.clearTimeOut();
+        },
         activated: function () {
             this.isPageEnd=false;
             this.page=1;

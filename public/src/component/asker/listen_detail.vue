@@ -503,6 +503,19 @@
                     clearTimeout(_this.timeOut);
                 }
             },
+
+            pause:function (index) {
+                let  _this=this;
+                _this.clearTimeOut();
+                let list = _this.list;
+                list[index].paused = true;
+                list[index].playing = false;
+                _this.currPlayIndex = null;
+                _this.$set(_this.list, index, list[index])
+                xqzs.voice.pause();
+            },
+
+
             play:function (index) {
                 let _this=this;
                 let list = _this.detail.answerList;
@@ -530,6 +543,7 @@
                     list[index].playing=true;
                     _this.$set(_this.detail.answerList,index,list[index])
                     xqzs.voice.play();
+                    _this.currPlayIndex=index;
                     _this.timeout(true,CT,index)
                 }else{
                     if(item.playing){    //播放中去做暂停操作
@@ -547,6 +561,7 @@
                             list[index].paused=false;
                             _this.$set(_this.detail.answerList,index,list[index]);
                             _this.playing=true;
+                            _this.currPlayIndex=index;
                             _this.clearTimeOut();
                             _this.timeout(true,T,index)
                         })
@@ -650,6 +665,9 @@
         },
         beforeDestroy:function () {
             xqzs.voice.pause();
+        },
+        deactivated:function () {
+            this.pause(this.currPlayIndex);
         },
 
 

@@ -355,7 +355,6 @@
                                 questionId: questionId,
                                 answerId: answerId
                             };
-                            _this.showLoad = true;
                             xqzs.api.put(_this,"come/listen/put/coupon/_userId_",data,function (bt) {
                                 if (bt.data.status == 1) {
                                     xqzs.weui.toast("success", "支付成功", function () {
@@ -367,13 +366,11 @@
                                     });
                                 }
                                 _this.getCoupon();
-                                _this.showLoad = false;
                             })
 
                             break;
                         case useCoin:
                             console.log('使用点豆支付');
-                            _this.showLoad = true;
                             xqzs.api.put(_this,"come/listen/put/coin/_userId_/" + questionId + '/' + answerId + '/1',data,function (bt) {
                                 if (bt.data.status == 1) {
                                     xqzs.weui.toast("success", "支付成功", function () {
@@ -385,7 +382,6 @@
                                     });
                                 }
                                 _this.getUserInfo();
-                                _this.showLoad = false;
                             });
                             break;
                         case recharge:
@@ -410,7 +406,7 @@
                         xqzs.wx.pay.pay(result.order, function () {
 
                         }, function () {//success
-                            xqzs.weui.toast("success", "支付成功", function () {
+                            xqzs.weui.toast("success", "支付3成功", function () {
                                 _this.setPayed(index);
                             });
                         }, function () {//error
@@ -443,7 +439,6 @@
 
                 if(_this.currPlayIndex!=null)
                 {
-                    _this.clearTimeOut();
                     _this.pause(_this.currPlayIndex);
 
                 }
@@ -452,7 +447,9 @@
             },
 
             pause:function (index) {
+
                 let  _this=this;
+                _this.clearTimeOut();
                 let list = _this.list;
                 list[index].paused = true;
                 list[index].playing = false;
@@ -632,7 +629,7 @@
             console.log("activated")
         },
         deactivated:function () {
-            console.log("deactivated")
+            this.pause(this.currPlayIndex);
         }
     }
 

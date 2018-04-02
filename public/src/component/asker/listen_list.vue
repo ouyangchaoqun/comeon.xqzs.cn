@@ -411,7 +411,7 @@
 
                 if(_this.currPlayIndex!=null)
                 {
-                    _this.clearTimeOut();
+
                     _this.pause(_this.currPlayIndex);
 
                 }
@@ -420,6 +420,7 @@
             },
             pause:function (index) {
                 let  _this=this;
+                _this.clearTimeOut();
                 let list = _this.list;
                 list[index].paused = true;
                 list[index].playing = false;
@@ -582,6 +583,9 @@
         },
         beforeDestroy: function () {
             xqzs.voice.pause();
+        },
+        deactivated:function () {
+            this.pause(this.currPlayIndex);
         },
         activated:function () {
             console.log("this.isKeepAlive"+this.isKeepAlive)
