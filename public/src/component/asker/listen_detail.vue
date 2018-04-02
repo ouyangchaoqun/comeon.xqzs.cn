@@ -527,23 +527,25 @@
 
             getDetail:function () {
                 let _this= this;
+
                 _this.actionSheetEdit( "发布", function (value) {
                     //回复操作
-                    _this.showLoad = true;
                     xqzs.api.put(_this, "come/user/evaluate/question",{userId:"_userId_",questionId :_this.detail.questionId,content:value,isAnonymous :_this.anonyVal},function (bt) {
 
                         if (bt.data && bt.data.status == 1) {
+                            xqzs.weui.toast('success','留言成功',function () {
+                                let  stuckMessage = {
+                                    faceUrl:_this.user.faceUrl,
+                                    content:value,
+                                    nickName: _this.user.nickName,
+                                    isAnonymous:_this.anonyVal,
+                                    addTime:parseInt(new Date().getTime()/1000)
+                                };
+                                _this.evaluates.splice(0,0,stuckMessage); //插入第一条
+                                _this.evaluates_flag = true;
+                            })
 
-                            let  stuckMessage = {
-                                faceUrl:_this.user.faceUrl,
-                                content:value,
-                                nickName: _this.user.nickName,
-                                isAnonymous:_this.anonyVal,
-                                addTime:parseInt(new Date().getTime()/1000)
-                            };
-                            _this.evaluates.splice(0,0,stuckMessage); //插入第一条
-                            _this.evaluates_flag = true;
-                            _this.showLoad = false;
+
                         }
                     })
                 }, function () {
