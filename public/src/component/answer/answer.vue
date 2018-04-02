@@ -193,7 +193,21 @@
             }
         },
         activated: function () {
-            let _this=this;
+            let _this = this;
+            this.showLoad = false;
+            this.isAnswered = false;
+            this.answering = false;
+            this.outTime = false;
+            this.playing = false;
+            this.answerTime = "00";
+            this.timeOut = null;
+            this.questionId = null;
+            this.detail = {};
+            this.str = null;
+            this.localId = null;
+            this.serviceId = null;
+            this.voiceLength = 0;
+            this.isOver = false;
             myVideo.initStart();
             this.questionId = this.$route.query.askId;
             let expertId = cookie.get("expertId");

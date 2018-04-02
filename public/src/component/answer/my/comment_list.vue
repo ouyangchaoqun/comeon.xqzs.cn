@@ -101,7 +101,6 @@
             this.list=[];
             this.getList();
             xqzs.wx.setConfig(this);
-
         },
         methods:{
 
@@ -275,6 +274,11 @@
                 this.getList(done);
 
             },
+        },
+        deactivated:function () {
+            if(this.timeOut!=null){
+                this.clearTimeOut();
+            }
         }
 
 
