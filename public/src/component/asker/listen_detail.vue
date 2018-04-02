@@ -173,8 +173,9 @@
                     xqzs.api.post(_this, "come/user/evaluate/remove",{userId:"_userId_",id:messageId},function (bt) {
                         if (bt.data && bt.data.status == 1) {
                             console.log('删除成功')
+                            _this.getDetail()
                             //_this.evaluates.splice(index,1)
-                            _this.$set(_this.evaluates, index, _this.evaluates[index])
+                            //_this.$set(_this.evaluates, index, _this.evaluates[index])
                             console.log(_this.evaluates)
                         }
                     })
