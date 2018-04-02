@@ -7,11 +7,11 @@
             <v-showLoad v-if="showLoad"></v-showLoad>
             <div class="steal_detail_header" v-if="detail.title">
                 <div class="steal_detail_top">
-                    <img v-if="detail.isAnonymous==0" :src="detail.faceUrl" alt="">
-                    <img v-if="detail.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
+                    <img v-if="!detail.isAnonymous" :src="detail.faceUrl" alt="">
+                    <img v-if="detail.isAnonymous" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
                     <!--<div>在<span>{{detail.title}}</span>方面</div>-->
-                    <div v-if="detail.isAnonymous==0">{{detail.nickName}}</div>
-                    <div v-if="detail.isAnonymous==1">匿名用户</div>
+                    <div v-if="!detail.isAnonymous">{{detail.nickName}}</div>
+                    <div v-if="detail.isAnonymous">匿名用户</div>
                     <div class="steal_detail_top_price">{{detail.title}}</div>
                 </div>
                 <div class="steal_detail_content">{{detail.content}}</div>
@@ -97,7 +97,7 @@
                             <div class="eva_content">{{item.content}}</div>
                             <div class="eva_time">
                                 {{getFormatDate(item.addTime)}}
-                                <span v-if="item.userId == user.id" @click="delItem(item.userId ,item.id,index)">删除</span>
+                                <span v-if="item.userId == user.id" @click="delItem(item.id,index)">删除</span>
                             </div>
                         </div>
                     </li>
@@ -160,17 +160,19 @@
         },
         methods:{
             //删除留言
-            delItem:function (id,messageId,index) {
+            delItem:function (messageId,index) {
                 let _this = this;
+                console.log(_this.evaluates)
                 xqzs.weui.dialog("", "确定删除吗？","" ,function(){
                     console.log('取消')
                 }, function(){
                     console.log('删除')
-                    xqzs.api.post(_this, "come/user/evaluate/remove",{userId:id,id:messageId},function (bt) {
+                    xqzs.api.post(_this, "come/user/evaluate/remove",{userId:"_userId_",id:messageId},function (bt) {
                         if (bt.data && bt.data.status == 1) {
                             console.log('删除成功')
                             _this.evaluates.splice(index,1)
                             _this.$set(_this.evaluates, index, _this.evaluates[index])
+                            console.log(_this.evaluates)
                         }
                     })
                 })
