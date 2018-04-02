@@ -192,13 +192,6 @@
                 }else if(_this.certificateNo==''){
                     re=false;
                     tip="请填写证件编号";
-                }else if(_this.certificateFile1==''){
-                    re=false;
-                    tip="请上传证件照";
-
-                }else if(!_this.otherType&&_this.certificateFile2==''){
-                    re=false;
-                    tip="请上传证件照";
                 }
                 if(showTip&&!re){
                     xqzs.weui.tip(tip);

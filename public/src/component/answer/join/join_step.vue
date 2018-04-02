@@ -879,9 +879,6 @@
                 } else if(_this.birthday===''){
                     xqzs.weui.tip('请设置生日')
                     return
-                }else if(certificateFile1==''){
-                    xqzs.weui.tip('请上传证件照')
-                    return
                 }else if(introduction==''){
                     xqzs.weui.tip('请填写个人简介')
                     return

@@ -97,7 +97,7 @@
                             <div class="eva_content">{{item.content}}</div>
                             <div class="eva_time">
                                 {{getFormatDate(item.addTime)}}
-                                <span v-if="item.userId == user.id" @click="delItem(item.id,index)">删除</span>
+                                <!--<span v-if="item.userId == user.id" @click="delItem(item.id,index)">删除</span>-->
                             </div>
                         </div>
                     </li>
