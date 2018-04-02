@@ -226,6 +226,12 @@
                 this.isShowMoreText=false;
                 this.list=[];
                 this.getList()
+            }else{
+                let st = xqzs.localdb.get("st_"+this.$route.path);
+                console.log(st);
+                if(st){
+                    $('.yo-scroll').scrollTop(st);
+                }
             }
         }
 

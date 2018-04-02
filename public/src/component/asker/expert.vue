@@ -345,6 +345,12 @@
         activated:function () {
             if(!this.isKeepAlive){
                 this.initAll();
+            }else{
+                let st = xqzs.localdb.get("st_"+this.$route.path);
+                console.log(st);
+                if(st){
+                    $('.yo-scroll').scrollTop(st);
+                }
             }
         }
 

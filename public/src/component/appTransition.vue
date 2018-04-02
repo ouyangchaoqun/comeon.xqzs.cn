@@ -108,7 +108,14 @@
 
         beforeRouteUpdate(to, from, next) {
 
+             console.log('position');
+           if($('.yo-scroll')){
+               console.log($('.yo-scroll').scrollTop());
+               xqzs.localdb.set("st_"+from.path,$('.yo-scroll').scrollTop())
 
+           }
+
+//            this.$store.commit('SAVE_POSITION', position) //离开路由时把位置存起来
 
 
 
