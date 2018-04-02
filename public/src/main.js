@@ -81,6 +81,7 @@ let router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     // console.log('路由全局勾子：beforeEach');
+
     xqzs.voice.pause();
     wx.stopRecord();
     let localId = xqzs.localdb.get("voice_localId");

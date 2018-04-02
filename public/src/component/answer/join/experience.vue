@@ -42,7 +42,7 @@
             }
         },
 
-        mounted: function () {
+        activated: function () {
             this.edit= this.$route.query.edit;
             if(this.edit==1){
                 this.getExpertInfo();

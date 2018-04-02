@@ -130,55 +130,54 @@
     import scroll from '../include/scroll.vue';
     import Bus from '../bus.js';
     import askerBottom from "./include/bottom.vue";
-
+    let defaultData={
+        classList:[],
+        list:[],
+        page: 1,
+        row: 10,
+        isPageEnd: false,
+        isShowMoreText:false,
+        showLoad:false,
+        noContent:false,
+        titleVal:'',
+        filter_tabs:[{name:'主题',active:false},{name:'地区',active:false},{name:'排序',active:false},{name:'筛选',active:false}],
+        classId:0,
+        filter_num:-1,
+        fliter_cityIndex:0,
+        fliter_sortIndex:0,
+        fliter_ageIndex:-1,
+        fliter_sexIndex:-1,
+        childIndex:0,
+        filter_cityDate:[],
+        classIdArray:[],
+        provinceId:'',
+        cityId:'',
+        sortList:[
+            {name:'综合排序',value:'complex'},
+            {name:'最新入驻',value:'new'},
+            {name:'活跃度从高到低',value:'login'},
+            {name:'回答次数从高到低',value:'answer'},
+        ],
+        order:'',
+        age:'',
+        ageVal:'',
+        sex:'',
+        sexVal:'',
+        ageList:[
+            {name:'90后',lable:'1990'},
+            {name:'85后',lable:'1985'},
+            {name:'80后',lable:'1980'},
+            {name:'75后',lable:'1975'},
+            {name:'70后',lable:'1970'},
+            {name:'70前',lable:'1970b'},
+        ],
+        sexList:[
+            {name:'男咨询师',lable:1},
+            {name:'女咨询师',lable:2}
+        ]};
     export default {
         data() {
-            return {
-                classList:[],
-                list:[],
-                page: 1,
-                row: 10,
-                isPageEnd: false,
-                isShowMoreText:false,
-                showLoad:false,
-                noContent:false,
-                titleVal:'',
-                filter_tabs:[{name:'主题',active:false},{name:'地区',active:false},{name:'排序',active:false},{name:'筛选',active:false}],
-                classId:0,
-                filter_num:-1,
-                fliter_cityIndex:0,
-                fliter_sortIndex:0,
-                fliter_ageIndex:-1,
-                fliter_sexIndex:-1,
-                childIndex:0,
-                filter_cityDate:[],
-                classIdArray:[],
-                provinceId:'',
-                cityId:'',
-                sortList:[
-                    {name:'综合排序',value:'complex'},
-                    {name:'最新入驻',value:'new'},
-                    {name:'活跃度从高到低',value:'login'},
-                    {name:'回答次数从高到低',value:'answer'},
-                ],
-                order:'',
-                age:'',
-                ageVal:'',
-                sex:'',
-                sexVal:'',
-                ageList:[
-                    {name:'90后',lable:'1990'},
-                    {name:'85后',lable:'1985'},
-                    {name:'80后',lable:'1980'},
-                    {name:'75后',lable:'1975'},
-                    {name:'70后',lable:'1970'},
-                    {name:'70前',lable:'1970b'},
-                ],
-                sexList:[
-                    {name:'男咨询师',lable:1},
-                    {name:'女咨询师',lable:2}
-                ]
-            }
+            return defaultData
         },
 
         components: {
@@ -188,6 +187,34 @@
 
         },
         methods: {
+            initAll:function () {
+                this.classId = this.$route.query.classId;
+                this.titleVal = this.$route.query.title;
+                if(this.$route.query.orderType){
+                    this.order = this.$route.query.orderType;
+                    if(this.order == 'new'){
+                        this.fliter_sortIndex = 1;
+                    }else {
+                        this.fliter_sortIndex = -1;
+                    }
+
+                }
+
+                $(".weui-tab__panel").height($(window).height()-50)
+                this.getClassList();
+
+                this.filter_getCity();
+                xqzs.wx.setConfig(this, function () {
+                    var config = {
+                        imgUrl:"http://oss.xqzs.cn/resources/psy/logo.jpg",
+                        title:  "‘好一点’专业咨询师为你答疑解惑" ,
+                        desc: '‘好一点’你的实用人生导师，专业咨询师60秒语音为你排忧解难',
+                        link: weshare.getShareUrl("asker/expert/list" ,true),
+                    };
+                    weshare.init(wx, config)
+                });
+
+            },
             filter_getCity:function () {
                 let  _this = this;
                 $.get('/src/js/city.json', function (data) {
@@ -446,33 +473,58 @@
             },
 
         },
-        mounted: function () {
-            this.classId = this.$route.query.classId;
-            this.titleVal = this.$route.query.title;
-            if(this.$route.query.orderType){
-                this.order = this.$route.query.orderType;
-                if(this.order == 'new'){
-                    this.fliter_sortIndex = 1;
-                }else {
-                    this.fliter_sortIndex = -1;
-                }
+        activated:function () {
+            console.log("this.isKeepAlive"+this.isKeepAlive)
+            if(!this.isKeepAlive){
+                this.filter_tabs=[{name:'主题',active:false},{name:'地区',active:false},{name:'排序',active:false},{name:'筛选',active:false}];
+                this.titleVal = '';
+                this.classId = 0;
+                this.filter_num = -1;
+                this.fliter_cityIndex = 0;
+                this.fliter_sortIndex = 0;
+                this.fliter_ageIndex = -1;
+                this.fliter_sexIndex = -1;
+                this.childIndex = 0;
+                this.filter_cityDate = [];
+                this.classIdArray = [];
+                this.provinceId = '';
+                this.cityId = '';
+                this.sortList = [
+                    {name: '综合排序', value: 'complex'},
+                    {name: '最新入驻', value: 'new'},
+                    {name: '活跃度从高到低', value: 'login'},
+                    {name: '回答次数从高到低', value: 'answer'},
+                ];
+                this.order = '';
+                this.age = '';
+                this.ageVal = '';
+                this.sex = '';
+                this.sexVal = '';
+                this.ageList = [
+                    {name: '90后', lable: '1990'},
+                    {name: '85后', lable: '1985'},
+                    {name: '80后', lable: '1980'},
+                    {name: '75后', lable: '1975'},
+                    {name: '70后', lable: '1970'},
+                    {name: '70前', lable: '1970b'},
+                ];
+                this.sexList = [
+                    {name: '男咨询师', lable: 1},
+                    {name: '女咨询师', lable: 2}
+                ];
 
+
+                this.isPageEnd = false;
+                this.page = 1;
+                this.isShowMoreText = false;
+                this.initAll();
             }
-
-            $(".weui-tab__panel").height($(window).height()-50)
-            this.getClassList();
-
-            this.filter_getCity();
-            xqzs.wx.setConfig(this, function () {
-                var config = {
-                    imgUrl:"http://oss.xqzs.cn/resources/psy/logo.jpg",
-                    title:  "‘好一点’专业咨询师为你答疑解惑" ,
-                    desc: '‘好一点’你的实用人生导师，专业咨询师60秒语音为你排忧解难',
-                    link: weshare.getShareUrl("asker/expert/list" ,true),
-                };
-                weshare.init(wx, config)
-            });
-
+        },
+        props:
+            ['isKeepAlive','user']
+        ,
+        mounted: function () {
+            this.initAll();
         },
         beforeDestroy:function () {
             xqzs.voice.pause();

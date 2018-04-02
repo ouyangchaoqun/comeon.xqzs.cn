@@ -132,7 +132,11 @@
             'v-showLoad': showLoad,
             'v-scroll': scroll
         },
-        mounted: function () {
+        activated: function () {
+            this.page=1;
+            this.isPageEnd=false;
+            this.isShowMoreText=false;
+            this.list=[];
             let _this = this;
             $('.my_problem_tabs .my_problem_tab div').click(function () {
                 $('.my_problem_tabs .my_problem_tab div').removeClass('my_problem_active')

@@ -33,8 +33,10 @@
         },
 
 
-        mounted: function () {
-
+        activated: function () {
+            this.inputLength=0;
+            this.experience='';
+            this.canGoNext=false;
             let experience= (cookie.get("experience"));
             if(experience&&experience!=''){
                 this.experience=unescape(experience)

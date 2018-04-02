@@ -78,7 +78,14 @@
             'v-showLoad': showLoad,
             'v-scroll': scroll
         },
-        mounted: function () {
+        activated: function () {
+
+
+            this.page=1;
+            this.isPageEnd=false;
+            this.isShowMoreText=false;
+            this.list=[];
+
             this.expertId = this.$route.query.expertId;
             this.getTags();
             this.getList();

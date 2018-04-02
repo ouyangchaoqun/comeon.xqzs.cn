@@ -192,7 +192,7 @@
                 MIN_VOICE_LENGTH:45
             }
         },
-        mounted: function () {
+        activated: function () {
             let _this=this;
             myVideo.initStart();
             this.questionId = this.$route.query.askId;

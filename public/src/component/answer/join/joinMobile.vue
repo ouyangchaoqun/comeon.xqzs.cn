@@ -64,7 +64,7 @@
 
             }
         },
-        mounted: function () {
+        activated: function () {
             let _this = this;
             $('.mobile__box').click(function (e) {
                 e.stopPropagation();

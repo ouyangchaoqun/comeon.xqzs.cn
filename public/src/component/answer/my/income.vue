@@ -65,7 +65,7 @@
             'v-showLoad': showLoad
         },
 
-        mounted: function () {
+        activated: function () {
             this.getUserInfo()
             xqzs.wx.setConfig(this);
 

@@ -290,6 +290,22 @@
             let _this= this;
             myVideo.config({obj:$('.circle')}).init(_this.start,_this.stop,_this.play,_this.play);
         },
+        activated:function () {
+            this.answering2 = false;
+            this.preAnswer = false;
+            this.playing = false;
+            this.answerTime = "00";
+            this.timeOut = null;
+            this.finish = false;
+
+            this.vPlaying = false;
+            this.vPaused = false;
+            this.localId = null;
+            this.serviceId = null;
+            this.voiceLength = 0;
+            this.MIN_VOICE_LENGTH = 10;
+            this.clearTimeOut()
+        },
         components: {
             "v-answer-top-step": answerTopStep
         },

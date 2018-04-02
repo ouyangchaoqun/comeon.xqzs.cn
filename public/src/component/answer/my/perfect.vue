@@ -115,7 +115,7 @@
                 updateFaceUrl:''
             }
         },
-        mounted: function () {
+        activated: function () {
             this.initOss();
             this.getExpertByUserId();
             let _this = this;

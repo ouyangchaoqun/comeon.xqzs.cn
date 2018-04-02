@@ -130,7 +130,7 @@
             }
         },
 
-        mounted: function () {
+        activated: function () {
 
             $('.info_right i').click(function () {
                 $('.info_right i').removeClass('right_active')

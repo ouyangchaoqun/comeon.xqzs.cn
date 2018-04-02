@@ -148,23 +148,24 @@
                 lengthLock:false
             }
         },
-        mounted: function () {
-            this.questionId=this.$route.query.questionId;
-            this.getDetail();
-            this.getCoupon();
-            this.getUserInfo();
-            $('.comment_box').height(this.height);
+        activated: function () {
+            this.initAll();
         },
-        props:{
-            user:{
-                type:Object
-            }
-        },
+        props:
+           ['user','isKeepAlive']
+        ,
         components: {
             'v-recharge':Recharge,
             'v-showLoad': showLoad,
         },
         methods:{
+            initAll:function () {
+                this.questionId=this.$route.query.questionId;
+                this.getDetail();
+                this.getCoupon();
+                this.getUserInfo();
+                $('.comment_box').height(this.height);
+            },
             actionSheetEdit: function ( sendText, doFun, cancelFun, placeholder,maxLength,noHide) {
                 let _this = this;
                 if(!maxLength){
@@ -650,6 +651,7 @@
         beforeDestroy:function () {
             xqzs.voice.pause();
         },
+
 
     }
 

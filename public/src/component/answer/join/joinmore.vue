@@ -170,7 +170,7 @@
 
             }
         },
-        mounted: function () {
+        activated: function () {
             this.isEdit=this.$route.query.edit;
             this.$http.get(web.API_PATH+'come/expert/query/detail/by/userId/_userId_').then(function (data) {
                 if(data.data.status==1&&data.data.data !=null){

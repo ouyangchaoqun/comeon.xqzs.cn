@@ -40,7 +40,8 @@
             }
         },
 
-        mounted: function () {
+        activated: function () {
+            this.placeFlag=true;
             this.edit= this.$route.query.edit;
             if(this.edit==1){
                 this.getExpertInfo();

@@ -302,7 +302,7 @@
 
 
         },
-        mounted: function () {
+        activated: function () {
             let _this=this ;
             let expertId= cookie.get("expertId")
             this.$http.get(web.API_PATH + 'come/expert/query/detail/for/edit/'+expertId + "/_userId_" ).then(function (data) {//es5写法

@@ -110,10 +110,11 @@
         data() {
             return {
                 //downList
-                sortList: [{label: "精选问题", value: 3, flag: true}, {label: "最新问题", value: 2, flag: false},{label: "最热问题", value: 1, flag: false}],
+
+                sortList: [ {label: "最新问题", value: 2, flag: false},{label: "精选问题", value: 3, flag: true},{label: "最热问题", value: 1, flag: false}],
                 isShowSort:false,
                 isShowClass:false,
-                nowSort:"精选问题",
+                nowSort:"最新问题",
                 nowClass:"主题",
                 classId:1,
                 screenHeight:document.body.clientHeight,
@@ -134,14 +135,17 @@
                 couponList: [],
                 rechargeMoney: 0,
                 rechargeFlag: false,
-                user: {},
-                qType:3,
+
+                qType:2,
                 titleVal:'',
                 currPlayIndex:null,
                 firstSel:false,
                 twoSel:false
             }
         },
+        props:
+            ['isKeepAlive','user']
+        ,
         components: {
             'v-showLoad': showLoad,
             'v-scroll': scroll,
@@ -149,36 +153,39 @@
             'v-recharge': Recharge,
         },
         mounted: function () {
-            this.type = this.$route.query.classId;
-            let qType = this.$route.query.qType;
-            if(qType){
-                this.qType = qType;
-            }
-            let title = this.$route.query.title;
-            if(title){
-                this.titleVal = title;
-                this.nowSort = title;
-            }
-            let rightTitle = this.$route.query.rightTitle
-            if(rightTitle){
-                this.titleVal = rightTitle;
-                this.nowClass = rightTitle;
-            }
-            this.getClassList();
-            this.getUserInfo()
-            this.getCoupon();
-            xqzs.voice.audio = null;
-            xqzs.wx.setConfig(this, function () {
-                var config = {
-                    imgUrl:"http://oss.xqzs.cn/resources/psy/logo.jpg",
-                    title:  "专家详解人生小困惑" ,
-                    desc: '你的人生小困惑都在这里，专家60秒解忧语音，偷听只需1点豆',
-                    link: weshare.getShareUrl("asker/listen"  ,false)
-                };
-                weshare.init(wx, config)
-            });
+            this.initAll()
         },
         methods: {
+            initAll:function () {
+                this.type = this.$route.query.classId;
+                let qType = this.$route.query.qType;
+                if(qType){
+                    this.qType = qType;
+                }
+                let title = this.$route.query.title;
+                if(title){
+                    this.titleVal = title;
+                    this.nowSort = title;
+                }
+                let rightTitle = this.$route.query.rightTitle
+                if(rightTitle){
+                    this.titleVal = rightTitle;
+                    this.nowClass = rightTitle;
+                }
+                this.getClassList();
+                this.getUserInfo()
+                this.getCoupon();
+                xqzs.voice.audio = null;
+                xqzs.wx.setConfig(this, function () {
+                    var config = {
+                        imgUrl:"http://oss.xqzs.cn/resources/psy/logo.jpg",
+                        title:  "专家详解人生小困惑" ,
+                        desc: '你的人生小困惑都在这里，专家60秒解忧语音，偷听只需1点豆',
+                        link: weshare.getShareUrl("asker/listen"  ,false)
+                    };
+                    weshare.init(wx, config)
+                });
+            },
             //downList
             closeList:function () {
                 let _this=this;
@@ -576,6 +583,23 @@
         beforeDestroy: function () {
             xqzs.voice.pause();
         },
+        activated:function () {
+            console.log("this.isKeepAlive"+this.isKeepAlive)
+            if(!this.isKeepAlive){
+                this.nowSort="最新问题";
+                 for(let i= 0;i<this.sortList.length;i++){
+                    this.sortList[i].flag=false;
+                    this.$set(this.sortList,i,this.sortList[i])
+                }
+                this.firstSel=false;
+                this.twoSel=false;
+                this.isPageEnd = false;
+                this.page = 1;
+                this.isShowMoreText = false;
+                this.initAll();
+            }
+        }
+
     }
 
 

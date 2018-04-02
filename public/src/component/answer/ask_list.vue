@@ -64,7 +64,11 @@
 
 
 
-        mounted: function () {
+        activated: function () {
+            this.page=1;
+            this.isPageEnd=false;
+            this.isShowMoreText=false;
+            this.list=[];
             this.getList();
             xqzs.wx.setConfig(this, function () {
                 var config = {

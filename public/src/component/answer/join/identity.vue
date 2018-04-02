@@ -47,7 +47,7 @@
             }
         },
 
-        mounted: function () {
+        activated: function () {
             xqzs.wx.setConfig(this);
             this.uploadpicinfo = {
                 token: xqzs.string.guid(),

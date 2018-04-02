@@ -56,7 +56,11 @@
                 list:[],
             }
         },
-        mounted: function () {
+        activated: function () {
+            this.page=1;
+            this.isPageEnd=false;
+            this.isShowMoreText=false;
+            this.list=[];
             let expertId;
             let _this=this;
             if(!xqzs.user.isUserLogin()){

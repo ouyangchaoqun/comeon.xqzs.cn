@@ -54,7 +54,8 @@
                 type:Object
             }
         },
-        mounted: function () {
+        activated: function () {
+            this.noticeFlag=false
             this.edit= this.$route.query.edit;
             if(this.edit==1){
                 this.getExpertInfo();

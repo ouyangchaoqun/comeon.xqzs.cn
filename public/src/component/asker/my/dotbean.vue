@@ -34,7 +34,7 @@
                 addMoneyVal:0
             }
         },
-        mounted: function () {
+        activated: function () {
             if(!xqzs.user.isUserLogin()){
                 return ;
             }

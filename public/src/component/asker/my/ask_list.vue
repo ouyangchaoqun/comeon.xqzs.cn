@@ -82,11 +82,7 @@
                 timeInterval:null
             }
         },
-        props:{
-            user:{
-                type:Object
-            }
-        },
+        props:['user','isKeepAlive'],
 
         components: {
             'v-showLoad': showLoad,
@@ -97,11 +93,17 @@
             if(!xqzs.user.isUserLogin()){
                 return ;
             }
-            console.log(this.user)
+            this.isPageEnd=false;
+            this.page=1;
+            this.list=[];
+            this.isShowMoreText=false;
             this.getList();
             xqzs.wx.setConfig(this, function () {weshare.init(wx)});
         },
         methods: {
+            initAll:function () {
+                this.getList();
+            },
             timeIntervalFun:function () {
                 let _this=this;
                 if(_this.timeInterval!=null){
@@ -216,6 +218,15 @@
         },
         updated:function () {
             this.initActive();
+        },
+        activated:function () {
+            if(!this.isKeepAlive){
+                this.page=1;
+                this.isPageEnd=false;
+                this.isShowMoreText=false;
+                this.list=[];
+                this.getList()
+            }
         }
 
 

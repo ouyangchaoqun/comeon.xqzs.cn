@@ -78,7 +78,11 @@
             'v-scroll': scroll
         },
 
-        mounted: function () {
+        activated: function () {
+            this.page=1;
+            this.isPageEnd=false;
+            this.isShowMoreText=false;
+            this.list=[];
             this.name= this.$route.query.name;
             this.getList();
             xqzs.wx.setConfig(this,function () {

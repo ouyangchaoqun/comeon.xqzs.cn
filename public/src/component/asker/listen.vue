@@ -203,39 +203,47 @@
             'v-typeHeader': typeHeader,
         },
         updated:function () {
+            console.log("updated")
             this.initReUrl();
         },
+
         mounted: function () {
 
-            let expertId = cookie.get("expertId");
-            if(expertId){
-                this.isRegExpert = true
-            }else{
-                this.isRegExpert = false
-            }
-             this.getHotList();
-
-            this.getUserInfo(true)
-//            this.getCoupon();
-            xqzs.voice.audio = null;
-
-
-            xqzs.wx.setConfig(this, function () {
-                var config = {
-                    imgUrl:"http://oss.xqzs.cn/resources/psy/logo.jpg",
-                    title:  "专家详解人生小困惑" ,
-                    desc: '你的人生小困惑都在这里，专家60秒解忧语音，偷听只需1点豆',
-                    link: weshare.getShareUrl("asker/listen" ,false)
-                };
-                weshare.init(wx, config);
-            });
-            let _this=this;
+            this.initAll();
 
         },
         props:[
-            'expert','user'
+            'expert','user','isKeepAlive'
         ],
         methods: {
+            initAll:function () {
+                console.log("mounted")
+                if(!xqzs.user.isUserLogin()){
+                    return ;
+                }
+                let expertId = cookie.get("expertId");
+                if(expertId){
+                    this.isRegExpert = true
+                }else{
+                    this.isRegExpert = false
+                }
+                this.getHotList();
+
+                this.getUserInfo(true)
+//            this.getCoupon();
+                xqzs.voice.audio = null;
+
+
+                xqzs.wx.setConfig(this, function () {
+                    var config = {
+                        imgUrl:"http://oss.xqzs.cn/resources/psy/logo.jpg",
+                        title:  "专家详解人生小困惑" ,
+                        desc: '你的人生小困惑都在这里，专家60秒解忧语音，偷听只需1点豆',
+                        link: weshare.getShareUrl("asker/listen" ,false)
+                    };
+                    weshare.init(wx, config);
+                });
+            },
             initReUrl:function () {
 
                 if( this.$route.query.reurl&& this.$route.query.reurl!=''&&xqzs.localdb.get("isReUrl")=='false'){
@@ -600,8 +608,25 @@
 
        },
         beforeDestroy: function () {
+            console.log("beforeDestroy")
             xqzs.voice.pause();
         },
+        create:function () {
+            console.log("create")
+        },
+        beforeCreate:function () {
+            console.log("beforeCreate")
+        },
+
+        activated:function () {
+            if(!this.isKeepAlive){
+                this.initAll();
+            }
+            console.log("activated")
+        },
+        deactivated:function () {
+            console.log("deactivated")
+        }
     }
 
 

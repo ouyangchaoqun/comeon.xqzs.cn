@@ -81,7 +81,7 @@
                 }]
             }
         },
-        mounted: function () {
+        activated: function () {
             this.getExpertByUserId();
             $("#timePic").focus(function(){
                 document.activeElement.blur();

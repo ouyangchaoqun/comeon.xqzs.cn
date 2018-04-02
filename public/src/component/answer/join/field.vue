@@ -91,7 +91,7 @@
             }
         },
 
-        mounted: function () {
+        activated: function () {
             this.getClassList();
             xqzs.wx.setConfig(this);
 

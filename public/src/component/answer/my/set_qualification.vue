@@ -380,7 +380,7 @@
         components: {
             'v-showLoad': showLoad,
          },
-        mounted: function () {
+        activated: function () {
 
             this.uploadpicinfo = {
                 token: xqzs.string.guid(),

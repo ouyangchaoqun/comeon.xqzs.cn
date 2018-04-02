@@ -84,7 +84,11 @@
             'v-scroll': scroll
         },
 
-        mounted: function () {
+        activated: function () {
+            this.page=1;
+            this.isPageEnd=false;
+            this.isShowMoreText=false;
+            this.list=[];
             if(!xqzs.user.isUserLogin()){
                 return ;
             }

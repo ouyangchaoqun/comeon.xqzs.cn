@@ -116,7 +116,7 @@
             }
 
         },
-        mounted: function () {
+        activated: function () {
             if(!xqzs.user.isUserLogin()){
                 return ;
             }

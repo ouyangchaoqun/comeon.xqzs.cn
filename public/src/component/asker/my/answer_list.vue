@@ -75,10 +75,14 @@
         },
 
 
-        mounted: function () {
+        activated: function () {
             if(!xqzs.user.isUserLogin()){
                 return ;
             }
+            this.isPageEnd=false;
+            this.page=1;
+            this.list=[];
+            this.isShowMoreText=false;
             this.getList();
             xqzs.wx.setConfig(this, function () {weshare.init(wx)});
         },
