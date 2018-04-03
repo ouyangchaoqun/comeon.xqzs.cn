@@ -103,7 +103,7 @@
                             <div class="eva_commont_box" v-if="item.replies&&item.replies.length>0">
                                 <div class="friend_commont"  v-for="(reply,replyIndex) in item.replies" :key="replyIndex" @click.stop="commentOrDel(reply.userId,reply.id,item.questionId,reply.nickName,replyIndex,item.replies)">
                                 <span class="name" v-if="reply.toEvaluateId==0||reply.toEvaluateId==null">
-                                    <template v-if="reply.userId==item.userId">作者</template><template v-if="reply.userId!=item.userId">{{reply.nickName | shortName(7)}}</template>：</span><template v-if="reply.toEvaluateId!=0&&reply.toEvaluateId!=null"><span class="name"><template v-if="reply.userId==item.userId">作者</template><template v-if="reply.userId!=item.userId">{{reply.nickName | shortName(7)}}</template></span>回复<span class="name"><template v-if="reply.toUserId==item.userId">作者</template><template v-else>{{reply.toNickName | shortName(7)}}</template>：</span></template><span class="commont">{{reply.content}}</span>
+                                    <template v-if="reply.userId==item.userId">{{reply.nickName}}</template><template v-if="reply.userId!=item.userId">{{reply.nickName | shortName(7)}}</template>：</span><template v-if="reply.toEvaluateId!=0&&reply.toEvaluateId!=null"><span class="name"><template v-if="reply.userId==item.userId">{{reply.nickName}}</template><template v-if="reply.userId!=item.userId">{{reply.nickName | shortName(7)}}</template></span>回复<span class="name"><template v-if="reply.toUserId==item.userId">{{reply.nickName}}</template><template v-else>{{reply.toNickName | shortName(7)}}</template>：</span></template><span class="commont">{{reply.content}}</span>
                                 </div>
                             </div>
                         </div>
@@ -209,6 +209,7 @@
             commentOrDel:function (userId,msgId,questionId,name,index,item) {
                 let vm = this;
                 console.log(userId,msgId,questionId,name,index,item);
+                if(!xqzs.user.isUserLogin())return
                 if(userId==vm.user.id){
                     console.log('删除自己的留言评论')
                     vm.delItem(userId,msgId,index,item)
