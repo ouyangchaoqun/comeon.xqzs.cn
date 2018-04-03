@@ -375,7 +375,7 @@ a{
 .nothing img{ max-width: 100%}
 .nothing .nothing_bottom{position: absolute;width:100%;bottom:0;color:#C3C5CD;font-size: 0.24rem;line-height: 0.41rem}
 .nothing .nothing_bottom p{font-size: 0.30rem;color:#95979D;}
-.nothing .nothing_bottom div{width:2.20rem;height:0.60rem;border:1px solid #56C4FE;color:#56C4FE  ;font-size: 0.30rem;line-height: 0.60rem;border-radius: 5px;margin:0 auto;margin-top:0.16rem;}
+.nothing .nothing_bottom div{width:2.20rem;border:1px solid #56C4FE;color:#56C4FE  ;font-size: 0.30rem;border-radius: 5px;margin:0 auto;margin-top:0.16rem;padding:0.1rem 0;}
 .nothing .nothing_bottom div:active{
     border:1px solid #56C4FE  ;color:#fff; background: #56C4FE;
 }
