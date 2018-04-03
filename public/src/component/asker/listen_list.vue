@@ -723,7 +723,7 @@
         position: absolute;
         z-index: 54;
     }
-    .nav_select{ background:#fff;height: 0.96rem;width: 100%; overflow: hidden;text-align: center;line-height: 0.96rem;font-size: 0.30rem;color: RGBA(69, 75, 84, 0.5);border-bottom: 0.08rem solid #f4f4f7;}
+    .nav_select{ background:#fff;height: 0.96rem;width: 100%; overflow: hidden;text-align: center;line-height: 0.96rem;font-size: 0.30rem;color: #999;border-bottom: 0.02rem solid #eee;}
 
     .asker_listen_box .audio_mask{
         position: absolute;

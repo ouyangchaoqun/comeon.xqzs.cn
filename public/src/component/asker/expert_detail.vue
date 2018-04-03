@@ -256,6 +256,13 @@
             if(this.currPlayIndex!=null)this.pause(this.currPlayIndex);
         },
         activated: function () {
+
+            this.page=1;
+            this.commentList=[];
+            this.answerList=[];
+            this.isPageEnd=false;
+            this.isShowMoreText=true;
+
             this.isMe=this.$route.query.isMe;
             this.id = this.$route.query.id;
             this.getDetail();
@@ -263,7 +270,7 @@
             this.getCoupon();
             this.getComment();
             this.getAnswer();
-            this.isShare=  this.$route.query.is_share
+
 
         },
         updated:function () {

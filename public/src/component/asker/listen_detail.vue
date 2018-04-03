@@ -87,7 +87,7 @@
 
             </ul>
             <!--新增评价列表-->
-            <div class="evaluate_box" v-if="evaluates_flag">
+            <div class="evaluate_box" v-if="evaluates.length>0">
                 <h3>用户留言</h3>
                 <div class="title_border"></div>
                 <ul>
