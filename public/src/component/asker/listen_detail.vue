@@ -88,7 +88,7 @@
                 <h3>用户留言</h3>
                 <div class="title_border"></div>
                 <ul>
-                    <li v-for="(item,index) in evaluates">
+                    <li v-for="(item,index) in evaluates" @click.stop="commentOrDel(item.userId,item.id,item.questionId,item.nickName,index,item.replies)">
                         <img v-if="item.isAnonymous==0" :src="item.faceUrl" alt="">
                         <img v-if="item.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
                         <div class="eva_main">
@@ -97,11 +97,11 @@
                             <div class="eva_content">{{item.content}}</div>
                             <div class="eva_time">
                                 {{getFormatDate(item.addTime)}}
-                                <span v-if="item.userId == user.id" @click="delItem(item.userId,item.id,index,evaluates)">删除</span>
-                                <span v-if="item.userId !=user.id" @click="replyItem(item.id,item.questionId,item.nickName)">回复</span>
+                                <!--<span v-if="item.userId == user.id" @click="delItem(item.userId,item.id,index,evaluates)">删除</span>-->
+                                <!--<span v-if="item.userId !=user.id" @click="replyItem(item.id,item.questionId,item.nickName,evaluates)">回复</span>-->
                             </div>
                             <div class="eva_commont_box" v-if="item.replies&&item.replies.length>0">
-                                <div class="friend_commont"  v-for="(reply,replyIndex) in item.replies" :key="replyIndex" @click="commentOrDel(reply.userId,reply.id,index,replyIndex,item.questionId,item.replies)">
+                                <div class="friend_commont"  v-for="(reply,replyIndex) in item.replies" :key="replyIndex" @click.stop="commentOrDel(reply.userId,reply.id,item.questionId,reply.nickName,replyIndex,item.replies)">
                                 <span class="name" v-if="reply.toEvaluateId==0||reply.toEvaluateId==null">
                                     <template v-if="reply.userId==item.userId">作者</template><template v-if="reply.userId!=item.userId">{{reply.nickName | shortName(7)}}</template>：</span><template v-if="reply.toEvaluateId!=0&&reply.toEvaluateId!=null"><span class="name"><template v-if="reply.userId==item.userId">作者</template><template v-if="reply.userId!=item.userId">{{reply.nickName | shortName(7)}}</template></span>回复<span class="name"><template v-if="reply.toUserId==item.userId">作者</template><template v-else>{{reply.toNickName | shortName(7)}}</template>：</span></template><span class="commont">{{reply.content}}</span>
                                 </div>
@@ -174,27 +174,53 @@
             'v-showLoad': showLoad,
         },
         methods:{
-            commentOrDel:function (userId,replyId,index,replyIndex,questionId,item) {
+            //默认留言框
+            levMsg:function () {
+                let _this= this;
+                _this.actionSheetEdit( "发布", function (value) {
+                    //回复操作
+                    xqzs.api.put(_this, "come/user/evaluate/question",{userId:"_userId_",questionId :_this.detail.questionId,content:value,isAnonymous :_this.anonyVal},function (bt) {
+
+                        if (bt.data && bt.data.status == 1) {
+                            let msg = bt.data.data;
+                            xqzs.weui.toast('success','留言成功',function () {
+                                let  stuckMessage = {
+                                    faceUrl:_this.user.faceUrl,
+                                    content:value,
+                                    nickName: _this.user.nickName,
+                                    isAnonymous:_this.anonyVal,
+                                    addTime:parseInt(new Date().getTime()/1000),
+                                    userId :msg.userId,
+                                    id:msg.id
+                                };
+                                _this.evaluates.splice(0,0,stuckMessage); //插入第一条
+                                console.log(_this.evaluates)
+                                _this.evaluates_flag = true;
+                            })
+                        }
+                    })
+                }, function () {
+
+                }, '我也来说两句');
+
+                $('.comment_box').attr({'minHeight':_this.height})
+            },
+            //留言或删除
+            commentOrDel:function (userId,msgId,questionId,name,index,item) {
                 let vm = this;
-                console.log(userId,replyId,index,replyIndex,item);
+                console.log(userId,msgId,questionId,name,index,item);
                 if(userId==vm.user.id){
-                    //vm._delComment(replyId,index,replyIndex);
                     console.log('删除自己的留言评论')
-                    vm.delItem(userId,replyId,replyIndex,item)
+                    vm.delItem(userId,msgId,index,item)
 
                 }else{
-                    //vm.addComment(replyId,index,replyIndex);
                     console.log('对别人的评论进行评论')
-                    console.log(questionId)
-                    console.log(item[replyIndex])
-                    //replyItem:function (id,questionId,nickName) {
-                    vm.replyItem(replyId,questionId,item[replyIndex].nickName)
+                    vm.replyItem(msgId,questionId,name,item)
                 }
             },
-
-
-            //删除留言
+            //删除留言、删除回复
             delItem:function (userId,messageId,index,item) {
+                console.log(index,item)
                 let _this = this;
                 xqzs.weui.dialog("", "确定删除吗？","" ,function(){
                     console.log('取消')
@@ -213,10 +239,10 @@
                     })
                 })
             },
-            //回复
-            replyItem:function (id,questionId,nickName) {
+            //对留言进行回复、对别人的回复进行回复
+            replyItem:function (id,questionId,nickName,item) {
                 let vm = this;
-                console.log(id,questionId,nickName)
+                console.log(id,questionId,nickName,item)
                 vm.actionSheetEdit("发送", function (v) {
                     xqzs.api.put(vm,'come/user/evaluate/question', {
                         "id": id,
@@ -225,7 +251,20 @@
                         "questionId":questionId,
                     },function (response) {
                         if (response.data.status === 1) {
+                            let msg = response.data.data;
+                            console.log(msg)
                             xqzs.weui.toast("success", "提交成功", function () {
+                                let  stuckMessage = {
+                                    content:v,
+                                    nickName: vm.user.nickName,
+                                    toNickName:nickName,
+                                    id:id,
+                                    questionId:questionId,
+                                    toEvaluateId:msg.toEvaluateId,
+                                    toUserId:msg.toUserId,
+                                    userId:vm.user.id,
+                                };
+                                item.push(stuckMessage);
                                 vm.levMsg()
                             });
                         }
@@ -606,44 +645,6 @@
                 }
 
             },
-            levMsg:function () {
-                let _this= this;
-                _this.actionSheetEdit( "发布", function (value) {
-                    //回复操作
-                    xqzs.api.put(_this, "come/user/evaluate/question",{userId:"_userId_",questionId :_this.detail.questionId,content:value,isAnonymous :_this.anonyVal},function (bt) {
-
-                        if (bt.data && bt.data.status == 1) {
-                            let msg = bt.data.data;
-                            console.log(bt.data.data)
-                            xqzs.weui.toast('success','留言成功',function () {
-                                let  stuckMessage = {
-                                    faceUrl:_this.user.faceUrl,
-                                    content:value,
-                                    nickName: _this.user.nickName,
-                                    isAnonymous:_this.anonyVal,
-                                    addTime:parseInt(new Date().getTime()/1000),
-                                    userId :msg.userId,
-                                    id:msg.id
-                                };
-                                _this.evaluates.splice(0,0,stuckMessage); //插入第一条
-                                //_this.getDetail();
-                                console.log(_this.evaluates)
-
-                                _this.evaluates_flag = true;
-
-                            })
-
-
-                        }
-                    })
-                }, function () {
-
-                }, '我也来说两句');
-
-                $('.comment_box').attr({'minHeight':_this.height})
-            },
-
-
             getDetail:function () {
                 let _this= this;
                 xqzs.api.get(_this,'come/listen/question/detail/'+_this.questionId +"/_userId_"+'?comments=5',function (data) {
