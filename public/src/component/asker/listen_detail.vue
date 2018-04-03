@@ -88,7 +88,7 @@
                 <h3>用户留言</h3>
                 <div class="title_border"></div>
                 <ul>
-                    <li v-for="(item,index) in evaluates" @click.stop="commentOrDel(item.userId,item.id,item.questionId,item.nickName,index,null,evaluates)">
+                    <li v-for="(item,index) in evaluates" @click.stop="commentOrDel(item.userId,item.id,item.questionId,item.nickName,index,item.replies,evaluates)">
                         <img v-if="item.isAnonymous==0" :src="item.faceUrl" alt="">
                         <img v-if="item.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
                         <div class="eva_main">
@@ -101,7 +101,7 @@
                                 <!--<span v-if="item.userId !=user.id" @click="replyItem(item.id,item.questionId,item.nickName,evaluates)">回复</span>-->
                             </div>
                             <div class="eva_commont_box" v-if="item.replies&&item.replies.length>0">
-                                <div class="friend_commont"  v-for="(reply,replyIndex) in item.replies" :key="replyIndex" @click.stop="commentOrDel(reply.userId,reply.id,item.questionId,reply.nickName,replyIndex,item.replies)">
+                                <div class="friend_commont"  v-for="(reply,replyIndex) in item.replies" :key="replyIndex" @click.stop="commentOrDel(reply.userId,reply.id,item.questionId,reply.nickName,replyIndex,item.replies,null)">
                                 <span class="name" v-if="reply.toEvaluateId==0||reply.toEvaluateId==null">
                                     <template >{{reply.nickName | shortName(7)}}</template>：</span>
                                     <template v-if="reply.toEvaluateId!=0&&reply.toEvaluateId!=null"><span class="name">
@@ -237,14 +237,17 @@
                     xqzs.api.post(_this, "come/user/evaluate/remove",{userId:userId,id:messageId},function (bt) {
                         if (bt.data && bt.data.status == 1) {
                             console.log('删除成功')
-                            if(item)
+                            if(bigItem){
+                                bigItem.splice(index,1);
+                                if(bigItem.length==0){
+                                    _this.page = 1;
+                                    _this.getCommentList()
+                                }
+                            }else if(item){
                                 item.splice(index,1)
-                            if(bigItem)
-                                bigItem.splice(index,1)
-                            if(bigItem.length==0){
-                                _this.page = 1;
-                                _this.getCommentList()
                             }
+
+
                         }
                     })
                 })
