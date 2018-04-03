@@ -511,7 +511,7 @@
     .answer_answer_box .answer .info .names span{
         margin-left: 0.20rem;
     }
-    .answer_answer_box .answer .info .content{  font-size: 0.30rem; color:rgba(36,37,61,1); line-height:0.40rem; margin-bottom:  0.28rem;width:98%; min-height: 3rem;}
+    .answer_answer_box .answer .info .content{  font-size: 0.30rem; color:rgba(36,37,61,1); line-height:0.40rem; margin-bottom:  0.28rem;width:98%; min-height: 3rem;    word-wrap: break-word;}
     .answer_answer_box .answer .info .last_time{ line-height:1;font-size: 0.26rem;color:rgba(36,37,61,0.5);margin-bottom: 0.18rem;
     }
     .answer_answer_box .answer .info .type span{ color:rgba(36,37,61,0.5);}
