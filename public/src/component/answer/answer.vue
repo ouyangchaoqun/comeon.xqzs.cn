@@ -329,7 +329,7 @@
             },
             reStart:function () {
                 let _this=this;
-                _this.tryListenColor = false
+                _this.tryListenColor = false;
                 xqzs.weui.dialog("重新录制将会删除此条录音","确定要重新录制嘛","",function () {
                     
                 },function () {
@@ -460,10 +460,10 @@
             stop:function () { //停止录制
                 console.log('stopstopstopstopstopstop')
                 let _this = this;
-
+                _this.tryListenColor = true;
                 xqzs.wx.voice.stopRecord(function (localId) {
                     console.log("stopstopstopstopstop"+localId)
-                    _this.tryListenColoe = true;
+
                     if(localId){
                         _this.localId = localId;
                         xqzs.localdb.set("voice_localId", localId);
