@@ -97,7 +97,14 @@
                             <div class="eva_content">{{item.content}}</div>
                             <div class="eva_time">
                                 {{getFormatDate(item.addTime)}}
-                                <span v-if="item.userId == user.id" @click="delItem(item.id,index)">删除</span>
+                                <span v-if="item.userId == user.id" @click="delItem(item.userId,item.id,index,evaluates)">删除</span>
+                                <span v-if="item.userId !=user.id" @click="replyItem(item.id,item.questionId,item.nickName)">回复</span>
+                            </div>
+                            <div class="eva_commont_box" v-if="item.replies&&item.replies.length>0">
+                                <div class="friend_commont"  v-for="(reply,replyIndex) in item.replies" :key="replyIndex" @click="commentOrDel(reply.userId,reply.id,index,replyIndex,item.questionId,item.replies)">
+                                <span class="name" v-if="reply.toEvaluateId==0||reply.toEvaluateId==null">
+                                    <template v-if="reply.userId==item.userId">作者</template><template v-if="reply.userId!=item.userId">{{reply.nickName | shortName(7)}}</template>：</span><template v-if="reply.toEvaluateId!=0&&reply.toEvaluateId!=null"><span class="name"><template v-if="reply.userId==item.userId">作者</template><template v-if="reply.userId!=item.userId">{{reply.nickName | shortName(7)}}</template></span>回复<span class="name"><template v-if="reply.toUserId==item.userId">作者</template><template v-else>{{reply.toNickName | shortName(7)}}</template>：</span></template><span class="commont">{{reply.content}}</span>
+                                </div>
                             </div>
                         </div>
                     </li>
@@ -157,29 +164,78 @@
                 type:Object
             }
         },
+        filters:{
+            shortName:function(value,len){
+                return xqzs.shortname(value,len);
+            }
+        },
         components: {
             'v-recharge':Recharge,
             'v-showLoad': showLoad,
         },
         methods:{
+            commentOrDel:function (userId,replyId,index,replyIndex,questionId,item) {
+                let vm = this;
+                console.log(userId,replyId,index,replyIndex,item);
+                if(userId==vm.user.id){
+                    //vm._delComment(replyId,index,replyIndex);
+                    console.log('删除自己的留言评论')
+                    vm.delItem(userId,replyId,replyIndex,item)
+
+                }else{
+                    //vm.addComment(replyId,index,replyIndex);
+                    console.log('对别人的评论进行评论')
+                    console.log(questionId)
+                    console.log(item[replyIndex])
+                    //replyItem:function (id,questionId,nickName) {
+                    vm.replyItem(replyId,questionId,item[replyIndex].nickName)
+                }
+            },
+
+
             //删除留言
-            delItem:function (messageId,index) {
+            delItem:function (userId,messageId,index,item) {
                 let _this = this;
-                console.log(_this.evaluates)
                 xqzs.weui.dialog("", "确定删除吗？","" ,function(){
                     console.log('取消')
                 }, function(){
                     console.log('删除')
-                    xqzs.api.post(_this, "come/user/evaluate/remove",{userId:"_userId_",id:messageId},function (bt) {
+                    xqzs.api.post(_this, "come/user/evaluate/remove",{userId:userId,id:messageId},function (bt) {
                         if (bt.data && bt.data.status == 1) {
                             console.log('删除成功')
-                            //_this.getDetail()
-                            _this.evaluates.splice(index,1)
-                            //_this.$set(_this.evaluates, index, '')
-                            console.log(_this.evaluates)
+                            item.splice(index,1)
+                            console.log(item)
+//                            if(_this.evaluates.length==0){
+//                                _this.page = 1;
+//                                _this.getCommentList()
+//                            }
                         }
                     })
                 })
+            },
+            //回复
+            replyItem:function (id,questionId,nickName) {
+                let vm = this;
+                console.log(id,questionId,nickName)
+                vm.actionSheetEdit("发送", function (v) {
+                    xqzs.api.put(vm,'come/user/evaluate/question', {
+                        "id": id,
+                        "userId":"_userId_",
+                        "content": v,
+                        "questionId":questionId,
+                    },function (response) {
+                        if (response.data.status === 1) {
+                            xqzs.weui.toast("success", "提交成功", function () {
+                                vm.levMsg()
+                            });
+                        }
+                    })
+                    console.log(v)
+
+                }, function (v) {
+                    console.log(v)
+                    //取消
+                }, "回复" + xqzs.shortname(nickName,7))
             },
             actionSheetEdit: function ( sendText, doFun, cancelFun, placeholder,maxLength,noHide) {
                 let _this = this;
@@ -188,7 +244,7 @@
                 }
                 //判断是否已经存在输入框
                 if ($("#action_sheet_edit") && $("#action_sheet_edit").hasClass("action-sheet-edit")) {
-                    return;
+                    $("#action_sheet_edit").remove()
                 }
                 xqzs.weui.textareaAutoOldHeight = xqzs.weui.textareaAutoBaseH;
                 xqzs.weui.textareaHeight = [];
@@ -665,7 +721,22 @@
 </script>
 
 <style>
-    /**底部input样式**/
+    /**留言回复**/
+    .eva_commont_box{
+        background: #f9f9f9;
+        padding:0.1rem 0.2rem;
+        margin-bottom: 0.3rem;
+        border-radius: 0.1rem;
+        font-size: 0.26rem;
+        color:RGBA(69, 75, 84, 1);
+    }
+    .eva_commont_box .name{
+        color:#5e61a2;
+        font-weight: 600;
+    }
+
+
+        /**底部input样式**/
     .comment_box .release_btn{
         background: rgba(86, 196, 254, 0.5);
         border:1px solid  rgba(86, 196, 254, 0.1);
@@ -752,7 +823,7 @@
     .evaluate_box li .eva_main{
         padding-left: 1.12rem;
         padding-right: 0.2rem;
-        color:rgba(3, 3, 3, 1);
+        color:rgba(69,75,84,1);
         font-size: 0.3rem;
         line-height: 0.42rem;
     }
