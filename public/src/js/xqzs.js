@@ -17,7 +17,14 @@ var xqzs = {
     user:{
 
 
-
+        getShareTip:function () {
+            let subHtml='<div class="subscribe_box">' +
+                '<div class="top">心理专家语音回答，为您排忧解难</div>' +
+                '<div class="img"><img src="http://oss.xqzs.cn/resources/psy/subscripe_ewm.png" /></div>' +
+                '<div class="tip">长按识别关注“好一点”</div>' +
+                '</div>';
+            xqzs.weui.dialogCustom(subHtml);
+        },
         isUserLogin:function () {
             if(!xqzs.user.check()){
                 xqzs.user.goPub();
@@ -471,7 +478,7 @@ var xqzs = {
             } else if (type === this.DATE) {
                 return year + "-" + month + "-" + date
             }else if(type === this.DATE_LEVMSG){  //留言所需日期格式
-                return month + "月" + date + "日" + " " + hour + ":" + minute + ":" + second;
+                return month + "-" + date + "" + " " + hour + ":" + minute ;
             }
         },
         formatLevMsgDate:function (time) {       //留言所需日期格式

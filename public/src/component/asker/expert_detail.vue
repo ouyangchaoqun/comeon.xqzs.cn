@@ -189,9 +189,7 @@
                 <div class="pay_ask" @click="ask()"><span class="ask_dianCoinbg"></span>￥{{detail.price}} 提问</div>
 
         </div>
-        <!--<div class="click_me" @click="sub" v-if="isShare">-->
-            <!--戳我-->
-        <!--</div>-->
+
     </div>
 </template>
 
@@ -327,7 +325,7 @@
                                 answerId:answerId
                             };
                             _this.showLoad=true;
-                            xqzs.api.put(this,"come/listen/put/coupon/_userId_",data,function(bt){
+                            xqzs.api.put(_this,"come/listen/put/coupon/_userId_",data,function(bt){
                                 if(bt.data.status==1){
                                     xqzs.weui.toast("success","支付成功", function () {
                                         _this.setPayed(index);
@@ -581,9 +579,20 @@
 
             follow:function () {
 
+
+
+
+
+
                 let _this=this;
 
                 xqzs.api.put(_this,"come/expert/follow/expert/"+this.id+"/_userId_",{},function (bt) {
+
+                    //弹出关注
+                    if(_this.user.issubscribe!=1){
+                        xqzs.user.getShareTip();
+                    }
+
                     if (bt.data && bt.data.status == 1) {
 
                         if(_this.detail.followed==1){
@@ -735,14 +744,7 @@
     }
 </script>
 <style>
-    .answer_detail_box .click_me { background: #00b9e8; color:#fff; font-size: 0.3rem;  line-height: 2;  padding: 0 0.3rem; position: fixed; top:1rem; right:0.3rem;}
-    .answer_detail_box .click_me:after{ content: '' ; display: block; position: absolute; right:-0.3rem; top:0;
-        width: 0;
-        height: 0;
-        border-top:0.3rem solid transparent;
-        border-left: 0.3rem solid #00b9e8;
-        border-bottom: 0.3rem solid transparent;
-    }
+
     .weui-dialog .weui-dialog__bd .colorStyle{
         color:rgba(251,100,10,1);
     }

@@ -11,6 +11,7 @@
 
 
         </transition>
+
     </div>
 </template>
 <script>
@@ -38,7 +39,8 @@
             }
             let _this=this;
             xqzs.user.getUserInfo(function (user) {
-                _this.user =user
+                _this.user =user;
+                _this.subscribe();//没有关注的逻辑
             });
 //
         },
@@ -48,8 +50,26 @@
                 _this.isGoIndex = v;
             });
             this.getExpert();
+
+
+
         },
         methods: {
+            subscribe:function () {
+                let  isShare = this.$route.query.share;
+
+                console.log("isShare")
+                console.log(isShare)
+                if(!this.user||(this.user.issubscribe!=1&&isShare==1)){
+                    //戳我
+                    let clickMeHtml  = '<div class="click_me" >戳我</div>';
+                    $('body').append(clickMeHtml);
+                    $(".click_me").click(function () {
+                        xqzs.user.getShareTip();
+                    })
+
+                }
+            },
             getExpert:function () {
                 let _this=this;
                 this.$http.get(web.API_PATH + 'come/expert/query/detail/by/userId/_userId_' ).then(function (data) {//es5写法
@@ -168,7 +188,19 @@
 </script>
 
 <style>
-
+    .subscribe_box{ background: #fff; position: absolute; top:50%;left:50%; margin-top: -3.2rem; height: 6.4rem; width: 6rem ; margin-left: -3rem; border-radius: 0.1rem; font-size: 0.3rem; color:#666;  z-index: 1000;
+        text-align: center; line-height: 2 }
+    .subscribe_box img{ width: 4rem;
+        height:4rem; }
+    .subscribe_box .top{ line-height: 1rem;}
+     .click_me { background: #00b9e8; color:#fff; font-size: 0.3rem; z-index: 1000;  line-height: 2;  padding: 0 0.3rem; position: fixed; top:4rem; right:0.3rem;}
+      .click_me:after{ content: '' ; display: block; position: absolute; right:-0.3rem; top:0;
+        width: 0;
+        height: 0;
+        border-top:0.3rem solid transparent;
+        border-left: 0.3rem solid #00b9e8;
+        border-bottom: 0.3rem solid transparent;
+    }
     .audio .audio_btn:before {
         width: 0.23rem;
         position: absolute;

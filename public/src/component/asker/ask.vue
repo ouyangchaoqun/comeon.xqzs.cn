@@ -226,7 +226,7 @@
 
                             }, function () {
                                 xqzs.weui.toast("success","支付成功", function () {
-                                    _this.$router.push("/asker/my/ask/list");
+                                    _this.$router.push("/asker/my/ask/list?payback=1");
                                 });
                             }, function () {
 
@@ -244,7 +244,7 @@
 
                             }, function () {
                                 xqzs.weui.toast("success","支付成功", function () {
-                                    _this.$router.push("/asker/my/ask/list");
+                                    _this.$router.push("/asker/my/ask/list?payback=1");
                                 });
                             }, function () {
 

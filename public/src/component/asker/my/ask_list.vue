@@ -225,6 +225,10 @@
             this.initActive();
         },
         activated:function () {
+
+            if(this.$route.query.payback==1&&this.user.issubscribe!=1){
+                xqzs.user.getShareTip();
+            }
             if(!this.isKeepAlive){
                 this.page=1;
                 this.isPageEnd=false;
