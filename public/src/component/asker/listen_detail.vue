@@ -103,7 +103,14 @@
                             <div class="eva_commont_box" v-if="item.replies&&item.replies.length>0">
                                 <div class="friend_commont"  v-for="(reply,replyIndex) in item.replies" :key="replyIndex" @click.stop="commentOrDel(reply.userId,reply.id,item.questionId,reply.nickName,replyIndex,item.replies)">
                                 <span class="name" v-if="reply.toEvaluateId==0||reply.toEvaluateId==null">
-                                    <template v-if="reply.userId==item.userId">{{reply.nickName}}</template><template v-if="reply.userId!=item.userId">{{reply.nickName | shortName(7)}}</template>：</span><template v-if="reply.toEvaluateId!=0&&reply.toEvaluateId!=null"><span class="name"><template v-if="reply.userId==item.userId">{{reply.nickName}}</template><template v-if="reply.userId!=item.userId">{{reply.nickName | shortName(7)}}</template></span>回复<span class="name"><template v-if="reply.toUserId==item.userId">{{reply.nickName}}</template><template v-else>{{reply.toNickName | shortName(7)}}</template>：</span></template><span class="commont">{{reply.content}}</span>
+                                    <template >{{reply.nickName | shortName(7)}}</template>：</span>
+                                    <template v-if="reply.toEvaluateId!=0&&reply.toEvaluateId!=null"><span class="name">
+                                        <template >{{reply.nickName | shortName(7)}}</template>
+                                    </span>回复
+                                        <span class="name">
+                                        <template>{{reply.toNickName | shortName(7)}}</template>：
+                                        </span>
+                                    </template><span class="commont">{{reply.content}}</span>
                                 </div>
                             </div>
                         </div>
