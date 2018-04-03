@@ -36,11 +36,12 @@
             <div class="join mt" @click="busniess()"  >商务合作</div>
         </div>
         <v-asker-bottom tabOnIndex="4"></v-asker-bottom>
-        <div id="busniess">
+        <div id="busniess" style="display: none;">
             <div class="busniess">
                 <div class="title">商务合作</div>
                 <div class="content">
                     “好一点”小程序有强大的粉丝变现能力，如果你有公众号或者小程序需要流量变现，请加客服微信，备注商务合作：<br><span>17816117310（同电话）</span> <span class="green">复制</span>
+
                 </div>
                 <div class="img">
                     <img src="http://oss.xqzs.cn/resources/psy/asker/buessniess.png">
@@ -48,6 +49,8 @@
                 <div class="tip">长按加客服微信</div>
             </div>
         </div>
+        <div class="hide" style="position: fixed; z-index: -1">  <input type="text"   value="17816117310" id="mobile"></div>
+
     </div>
 </template>
 
@@ -73,7 +76,12 @@
         methods: {
             busniess:function () {
                 xqzs.weui.dialogCustom($("#busniess").html());
-                window.clipboardData.setData("Text",clipBoardContent);
+                $(".busniess .green").click(function () {
+                     document.getElementById("mobile").select();
+                    document.execCommand("Copy");
+                     xqzs.weui.tip('复制成功')
+                });
+
             },
             getUserInfo:function(){
                 let _this=this;

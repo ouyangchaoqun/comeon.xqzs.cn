@@ -296,12 +296,13 @@
                 this.fliter_sexIndex = -1;
             },
             last_sure:function () {
-                if(this.age||this.sex){
+
                     this.ageVal = this.age;
                     this.sexVal = this.sex;
                     this.filter_tabs[3].active = true;
-                    this.initGetList();
-                }
+
+
+                this.initGetList();
                 this.filter_closeList();
             },
             initGetList:function () {
