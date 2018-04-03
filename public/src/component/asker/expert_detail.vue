@@ -253,6 +253,10 @@
             'v-scroll': scroll,
             'v-recharge':Recharge,
         },
+        deactivated: function () {
+            console.log(this.currPlayIndex)
+            if(this.currPlayIndex!=null)this.pause(this.currPlayIndex);
+        },
         activated: function () {
             this.isMe=this.$route.query.isMe;
             this.id = this.$route.query.id;
@@ -431,6 +435,17 @@
             },
 
             //回答播放
+            pause:function (index) {
+                console.log(index)
+                let  _this=this;
+                _this.clearTimeOut();
+                let list = _this.answerList;
+                list[index].paused = true;
+                list[index].playing = false;
+                _this.currPlayIndex = null;
+                _this.$set(_this.answerList, index, list[index])
+                xqzs.voice.pause();
+            },
             playAnswer:function (index) {
                 let _this=this;
                 let list = _this.answerList;
@@ -459,6 +474,7 @@
                     item.playing=true;
                     _this.$set(_this.answerList,index,item)
                     xqzs.voice.play();
+                    _this.currPlayIndex=index;
                     _this.clearTimeOut();
                     _this.timeout(true,CT,index)
                 }else{
@@ -472,13 +488,14 @@
                     }else{     //重新打开播放
                         xqzs.voice.getAnswerVoice(item.answerId,function (url) {
                             console.log(3)
-
+                            _this.currPlayIndex=index;
                             if(url!=null&&url!=undefined&&url!=''){
                                 xqzs.voice.play(url);
                                 item.playing=true;
                                 item.paused=false;
                                 _this.$set(_this.answerList,index,item);
                                 _this.clearTimeOut();
+                                _this.currPlayIndex=index;
                                 _this.timeout(true,CT,index)
                             }
 
@@ -528,6 +545,7 @@
                 let _this=this;
                 _this.Hflag = !this.Hflag
             },
+
             play:function () {
                 let _this=this;
                 xqzs.voice.onEnded=function () {
@@ -546,13 +564,13 @@
                         _this.playing2=false;
                         xqzs.voice.pause();
                         console.log( _this.playing2)
-                        console.log("2")
+                        console.log("222")
                     }else{     //重新打开播放
                         xqzs.voice.getExpertVoice(_this.detail.expertId,function (url) {
                             xqzs.voice.play(url);
                             _this.playing2=true;
                             _this.paused2=false;
-                            console.log("3")
+                            console.log("23333")
                         })
                     }
 
