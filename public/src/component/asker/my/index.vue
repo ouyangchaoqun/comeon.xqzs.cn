@@ -47,6 +47,7 @@
                     <img src="http://oss.xqzs.cn/resources/psy/asker/buessniess.png">
                 </div>
                 <div class="tip">长按加客服微信</div>
+                <div class="bottom">好一点</div>
             </div>
         </div>
         <div class="hide" style="position: fixed; z-index: -1">  <input type="text"   value="17816117310" id="mobile"></div>
@@ -158,15 +159,18 @@
 
 </script>
 <style>
-    .busniess { position: absolute; z-index: 1000; top:50%; left:50%; margin-left: -3rem; margin-top: -4rem; height: 8rem; width: 6rem; background: #fff; border-radius: 0.1rem; padding-top: 0.3rem; padding-bottom: 0.3rem}
-    .busniess .title{ font-size: 0.36rem; font-weight: bold; text-align: center; line-height: 1.6; }
-    .busniess .content{ font-size: 0.3rem;color:#333; line-height: 1.6; margin: 0.3rem;}
+    .busniess { position: absolute; z-index: 1000; top:50%; left:50%; margin-left: -2.95rem; margin-top: -4rem; height: 8rem; width: 5.9rem; background: #fff; border-radius: 0.1rem; padding-top: 0.3rem; padding-bottom: 0.3rem}
+    .busniess .title{  background: url(http://oss.xqzs.cn/resources/runmini/bind_mini_program_tip_top.png) no-repeat; width: 5.62rem; background-size: 5.62rem; height: 1rem; position: absolute; top:0.14rem;left:0.14rem;text-align: center;
+        padding-top: 0.3rem;}
+    .busniess .content{ font-size: 0.3rem;color:#333; line-height: 1.6; margin: 0.3rem; margin-top: 0.8rem;}
     .busniess .content span{ color:red; }
     .busniess .content span.green{ color:#09bb07; }
     .busniess .img{ text-align: center}
     .busniess .img img{ width: 3.8rem; height: 3.8rem; margin: 0 auto}
-    .busniess .tip{ color:#999; font-size: 0.3rem; text-align: center; margin-top: 0.3rem;}
-
+    .busniess .tip{ color:#999; font-size: 0.3rem; text-align: center; margin-top: -0.2rem;}
+    .busniess .bottom{
+  background: url(http://oss.xqzs.cn/resources/runmini/bind_mini_program_tip_foot.png) no-repeat; width: 5.62rem; background-size: 5.62rem; height: 1rem; position: absolute; bottom:0.14rem;left:0.14rem;font-size: 0.24rem; color:#666 ; text-align: center;  line-height: 1.40rem; overflow: hidden
+    }
 
     .asker_my_index_box .top .name{
              line-height: 1;
