@@ -2,41 +2,6 @@
     <div style="height: 100%" class="answer_race_list" :class="{wbg:list.length==0&&!showLoad}">
         <div v-title class='hide_title'>抢答</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
-        <div class="nothing comment" v-if="true"><!--list.length==0&&!showLoad-->
-            <div>
-                <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
-                <div class="nothing_bottom">
-                    <p>问题已被全部抢答</p>
-                    <div @click="tip()">抢答须知</div>
-                </div>
-            </div>
-        </div>
-        <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
-                  :bottomHeight="48"
-                  :isShowMoreText="isShowMoreText">
-
-
-            <div class="list" v-if="false">
-                <div class="item" v-for="item in list"  @click="answer(item.id)">
-                    <div class="info">
-                        <div class="img">
-                            <img v-if="item.isAnonymous==0" :src="item.faceUrl">
-                            <img v-if="item.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
-                        </div>
-                        <div class="price">赏金 <span>￥{{item.price}}</span></div>
-                        <div class="type">在哪方面：{{item.questionClassName}}</div>
-                    </div>
-
-                    <div class="content">
-                        <div>{{item.content}}</div>
-                        <div class="last_time last_red_color">还{{formatDateText(item.endTime)}}</div>
-                    </div>
-                    <div class="clear"></div>
-                    <div class="btn_race">抢答</div>
-                </div>
-            </div>
-        </v-scroll>
-        <v-answer-bottom  tabOnIndex="0"></v-answer-bottom>
         <div id="tip" style="display: none">
             <div class="dialog_select_type dialog_select_Height">
                 <div class="select_title">抢答须知</div>
@@ -79,6 +44,40 @@
                 <div class="yes know " >知道了</div>
             </div>
         </div>
+        <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
+                  :bottomHeight="48"
+                  :isShowMoreText="isShowMoreText">
+
+            <div class="nothing comment" v-if="list.length==0&&!showLoad">
+                <div>
+                    <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
+                    <div class="nothing_bottom">
+                        <p>问题已被全部抢答</p>
+                        <div @click="tip()">抢答须知</div>
+                    </div>
+                </div>
+            </div>
+            <div class="list">
+                <div class="item" v-for="item in list"  @click="answer(item.id)">
+                    <div class="info">
+                        <div class="img">
+                            <img v-if="item.isAnonymous==0" :src="item.faceUrl">
+                            <img v-if="item.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
+                        </div>
+                        <div class="price">赏金 <span>￥{{item.price}}</span></div>
+                        <div class="type">在哪方面：{{item.questionClassName}}</div>
+                    </div>
+
+                    <div class="content">
+                        <div>{{item.content}}</div>
+                        <div class="last_time last_red_color">还{{formatDateText(item.endTime)}}</div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="btn_race">抢答</div>
+                </div>
+            </div>
+        </v-scroll>
+        <v-answer-bottom  tabOnIndex="0"></v-answer-bottom>
     </div>
 </template>
 
@@ -123,15 +122,15 @@
             }
         },
         methods: {
+            closeDialog:function () {
+                xqzs.weui.dialogClose()
+            },
             tip: function () {
                 let _this= this;
                 xqzs.weui.dialogCustom($("#tip").html());
                 $(".know").click(function () {
                     _this.closeDialog()
                 })
-            },
-            closeDialog:function () {
-                xqzs.weui.dialogClose()
             },
             initAll:function () {
                 this.page = 1;
@@ -307,5 +306,5 @@
         overflow: auto;
         background: RGBA(69, 75, 84, 0.05);}
     .dialog_select_type .tip_content p{margin-top: 0.1rem ;margin-bottom: 0.10rem;}
-
+    .wbg{background: #fff;}
 </style>
