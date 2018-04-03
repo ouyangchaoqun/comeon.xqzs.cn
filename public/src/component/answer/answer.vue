@@ -329,7 +329,7 @@
             },
             reStart:function () {
                 let _this=this;
-                _this.tryListenColor = false;
+                _this.isTry = false;
                 xqzs.weui.dialog("重新录制将会删除此条录音","确定要重新录制嘛","",function () {
                     
                 },function () {
@@ -421,7 +421,7 @@
             },
             play:function () {//试听
                 let _this = this;
-                _this.tryListenColor = false;
+                _this.isTry = false;
                 if(this.playing){  //在播放中则暂停
                     if(_this.localId!=null) {
                         _this.clearTimeOut();
@@ -460,7 +460,7 @@
             stop:function () { //停止录制
                 console.log('stopstopstopstopstopstop')
                 let _this = this;
-                _this.tryListenColor = true;
+                _this.isTry = true;
                 xqzs.wx.voice.stopRecord(function (localId) {
                     console.log("stopstopstopstopstop"+localId)
 
