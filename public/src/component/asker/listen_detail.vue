@@ -303,7 +303,7 @@
                 xqzs.weui.textareaAutoOldHeight = xqzs.weui.textareaAutoBaseH;
                 xqzs.weui.textareaHeight = [];
                 var html = '<div class="action-sheet-edit" id="action_sheet_edit">';
-                html += ' <div class="comment_box" style="">';
+                html += ' <div class="comment_box bottom_comment" style="">';
                 html += '  <span class="release release_btn">' + sendText + '</span>';
                 html += '<div class="box"><textarea contenteditable="true" maxlength="'+maxLength+'" class="comment_text" id="textarea" placeholder="' + placeholder + '" oninput="xqzs.weui.textareaAutoHeight();"></textarea></div>';
                 if(xqzs.isIos()){
@@ -773,6 +773,9 @@
 
 
         /**底部input样式**/
+    .bottom_comment{
+        z-index: 900;
+    }
     .comment_box .release_btn{
         background: rgba(86, 196, 254, 0.5);
         border:1px solid  rgba(86, 196, 254, 0.1);
