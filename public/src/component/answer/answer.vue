@@ -37,68 +37,63 @@
             <div class="clear"></div>
         </div>
 
-
-
-        <!--播放状态-->
-
-        <div class="addPlayBox" >
-
-            <!--操作按钮-->
-            <div class="action_btn" v-if="!isAnswered">
-
-                <div class="item" v-if="isOver">
-                    <div class="re_start" @click="reStart()">重录</div>
-                </div>
-                <div class="item" style="flex: 2" >
-                </div>
-
-
-                <div class="item" v-if="isOver">
-                    <div class="send" :class="{cant_send:voiceLength<MIN_VOICE_LENGTH}" @click="send()">发送</div>
-                </div>
-
-
-                <div class="item" v-if="outTime">
-                    <div class="audio_btn_in audio_cant_begin outTimeStyle"></div>
-                    <div class="txt">已超时</div>
-                </div>
-            </div>
-        </div>
         <div class="tipxuzhi" @click="tip()">  <div   v-if="detail.questionType==1">抢答须知</div>
             <div  v-if="detail.questionType==2">回答须知</div></div>
-        <div class="record_voice_box" v-if="!isAnswered&&!outTime">
+        <div style="clear: both"></div>
+
+        <!--播放状态-->
+        <div>
+            <div class="record_voice_box" style="position: relative" v-if="!isAnswered&&!outTime">
+                <div class="time_in" style="position: static;margin-bottom: 1rem;">
+                    <div>{{answerTime}}"</div>
+                </div>
+                <div class="circle" style="margin:0 auto;left: auto;bottom:auto;margin-bottom: 1rem;">
+                    <div class="pie_left_play">
+                        <div class="left_play"></div>
+                    </div>
+                    <div class="pie_right_play">
+                        <div class="right_play"></div>
+                    </div>
+                    <div class="pie_left">
+                        <div class="left"></div>
+                    </div>
+                    <div class="pie_right">
+                        <div class="right"></div>
+                    </div>
+                    <div class="gg"></div>
+                    <div class="move">
+                        <div class="qq"></div>
+                    </div>
+                    <div class="mask"><i class="start"></i></div>
+                </div>
+                <div class="tip" style="position: static">点击录音(至少录制45秒)</div>
+                <div class="addPlayBox" >
+                    <!--操作按钮-->
+                    <div class="action_btn" v-if="!isAnswered"> <!---->
+
+                        <div class="item" v-if="isOver">  <!---->
+                            <div class="re_start" @click="reStart()">重录</div>
+                        </div>
+                        <div class="item" style="flex: 2">
+                        </div>
 
 
-            <div class="time_in">
-                <div>{{answerTime}}"</div>
+                        <div class="item" v-if="isOver"> <!---->
+                            <div class="send" :class="{cant_send:voiceLength<MIN_VOICE_LENGTH}" @click="send()">发送</div>
+                        </div>
 
+
+                        <div class="item" v-if="outTime">
+                            <div class="audio_btn_in audio_cant_begin outTimeStyle"></div>
+                            <div class="txt">已超时</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!--<div class="time_in_tip">至少录制45秒</div>-->
-            <div class="circle">
-                <div class="pie_left_play">
-                    <div class="left_play"></div>
-                </div>
-                <div class="pie_right_play">
-                    <div class="right_play"></div>
-                </div>
-                <div class="pie_left">
-                    <div class="left"></div>
-                </div>
-                <div class="pie_right">
-                    <div class="right"></div>
-                </div>
-
-
-
-                <div class="gg"></div>
-                <div class="move">
-                    <div class="qq"></div>
-                </div>
-                <div class="mask"><i class="start"></i></div>
-
-            </div>
-            <div class="tip">点击录音(至少录制45秒)</div>
         </div>
+
+
+
 
 
         <div id="tip" style="display: none">
@@ -513,7 +508,7 @@
     .answer_answer_box .answer .info .names span{
         margin-left: 0.20rem;
     }
-    .answer_answer_box .answer .info .content{  font-size: 0.30rem; color:rgba(36,37,61,1); line-height:0.40rem; margin-bottom:  0.28rem;width:98%; height: 5.8rem;
+    .answer_answer_box .answer .info .content{  font-size: 0.30rem; color:rgba(36,37,61,1); line-height:0.40rem; margin-bottom:  0.28rem;width:98%; min-height: 3rem;
         overflow-y: scroll;}
     .answer_answer_box .answer .info .last_time{ line-height:1;font-size: 0.26rem;color:rgba(36,37,61,0.5);margin-bottom: 0.18rem;
     }
@@ -579,7 +574,7 @@
     .answer_answer_box    .times .bg .in{ padding:  0.05rem; }
     .answer_answer_box    .times .bg .go{ background: #09bb07; height: 0.90rem; min-width:0.90rem;  width: 0; border-radius:0.45rem;      }
     .answer_answer_box  .times .last_time{ text-align: center; color:#666; margin-top: 0.17rem; font-size: 0.52rem;}
-    .answer_answer_box  .action_btn{ background: #fff; padding: 2.18rem 0.34rem 0 0.34rem; display: -webkit-box; display: -webkit-flex;  display: flex;}
+    .answer_answer_box  .action_btn{ top:3rem;width:100%;position: absolute;  display: -webkit-box; display: -webkit-flex;  display: flex;}
     .answer_answer_box  .action_btn .item{  -webkit-box-flex: 1;  -webkit-flex: 1;  flex: 1;  text-align: center; color:#666; font-size: 0.26rem;  }
     .answer_answer_box  .action_btn .item .txt{ margin-top: 0.20rem}
     .answer_answer_box  .audio_btn_in{ background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1)); border-radius: 50%; height: 1.40rem; width: 1.40rem;
@@ -593,7 +588,7 @@
     .answer_answer_box   .audio_cant_begin:before{ background:url(http://oss.xqzs.cn/resources/psy/audio_btn_begin1.png)  no-repeat; background-size:  0.46rem; width:0.46rem;; height: 0.64rem;  margin-left: -0.23rem; margin-top: -0.32rem;  }
     .answer_answer_box .overStyle{background: #00B9E8;}
     .answer_answer_box .outTimeStyle{background: linear-gradient(to right, rgba(255,158,25,0.4), rgba(253,114,6,0.4))}
-    .answer_answer_box .addPlayBox{position: absolute;bottom:1.53rem;width:100%;}
+    /*.answer_answer_box .addPlayBox{position: absolute;bottom:1.53rem;width:100%;}*/
 
     .dialog_select_Height{ height:10.04rem; margin-top: -5rem;width: 86% ;margin-left:-43%}
     .dialog_select_type  .yes{ width:60%;height:0.70rem;line-height: 0.71rem;background: RGBA(86, 196, 245,1);border-radius: 0.45rem;color:RGBA(255, 255, 255, 1);text-align: center;font-size: 0.30rem;margin:0.25rem auto;}
