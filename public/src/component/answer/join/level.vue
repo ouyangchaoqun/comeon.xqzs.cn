@@ -161,6 +161,7 @@
                 cookie.set('reg_certificateFile1',_this.certificateFile1,1)
                 _this.showLoad= true;
                 setTimeout(function () {
+                    _this.showLoad= false;
                     _this.$router.go(-1);
                 },300)
 

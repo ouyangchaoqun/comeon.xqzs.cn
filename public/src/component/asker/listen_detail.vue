@@ -96,10 +96,7 @@
                 <ul>
                     <li v-for="(item,index) in evaluates" @click.stop="commentOrDel(item.userId,item.id,item.questionId,item.nickName,index,item.replies,evaluates)">
 
-
-
-
-                       <block v-if="item.userExpertId">
+                       <block v-if="item.userExpertId&&item.userId!=1658&&item.userId!=424">
                            <img :src="item.userExpertFaceUrl" alt="" @click.stop="goExpert(item.userExpertId)">
                            <img src="http://oss.xqzs.cn/resources/psy/asker/expert_v.png" class="expert_v">
                        </block>
@@ -109,7 +106,7 @@
                         </block>
 
                         <div class="eva_main">
-                            <block v-if="item.userExpertId">
+                            <block v-if="item.userExpertId&&item.userId!=1658&&item.userId!=424">
                                 <div class="eva_name" @click.stop="goExpert(item.userExpertId)">{{item.userExpertNickName}} <span class="expert_line"></span> <span> {{item.userExpertJobTitle}}</span></div>
                             </block>
                             <block v-else>

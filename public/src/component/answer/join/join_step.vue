@@ -341,6 +341,7 @@
                 preIning:true,
                 sexIndex:1,
                 defaultCity: '[330000, 330100, 330102]',
+
                 reg_mobile :cookie.get('reg_mobile')?cookie.get('reg_mobile'):'',
                 reg_sign:cookie.get('reg_sign')?unescape(cookie.get('reg_sign')):'',
                 reg_introduction:cookie.get('reg_introduction')?unescape(cookie.get('reg_introduction')):'',
