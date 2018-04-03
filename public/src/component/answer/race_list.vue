@@ -2,11 +2,12 @@
     <div style="height: 100%" class="answer_race_list" :class="{wbg:list.length==0&&!showLoad}">
         <div v-title class='hide_title'>抢答</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
-        <div class="nothing comment" v-if="list.length==0&&!showLoad">
+        <div class="nothing comment" v-if="true"><!--list.length==0&&!showLoad-->
             <div>
                 <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
                 <div class="nothing_bottom">
                     <p>问题已被全部抢答</p>
+                    <div @click="tip()">抢答须知</div>
                 </div>
             </div>
         </div>
@@ -15,7 +16,7 @@
                   :isShowMoreText="isShowMoreText">
 
 
-            <div class="list">
+            <div class="list" v-if="false">
                 <div class="item" v-for="item in list"  @click="answer(item.id)">
                     <div class="info">
                         <div class="img">
@@ -36,6 +37,48 @@
             </div>
         </v-scroll>
         <v-answer-bottom  tabOnIndex="0"></v-answer-bottom>
+        <div id="tip" style="display: none">
+            <div class="dialog_select_type dialog_select_Height">
+                <div class="select_title">抢答须知</div>
+                <div class="tip_content">
+                    <h3>一、专家解答注意事项</h3>
+                    <p>
+                        1、回答问题时请保持清晰的思路，并找一个安静的地方进行录制。
+                    </p>
+                    <p>
+                        2、60秒语音录制完成后，请试听一遍，确认表达无误后再点击发送。
+                    </p>
+                    <p>
+                        3、请专家针对用户的提问给予专业、有针对性的回答。
+                    </p>
+                    <p>
+                        4、不允许为用户推荐任何心理咨询机构及联系方式。
+                    </p>
+                    <p>
+                        5、不可开处方（包括指导用户具体用药剂量）、推荐处方及各种符合处方范畴内的药物。
+                    </p>
+                    <div>
+                        <h3>
+                            二、抢答问题回复须知
+                        </h3>
+                        <p>
+                            1、抢答模式的问题提出后，将保留48小时，每个问题最多由5位咨询师进行抢答
+                        </p>
+
+                        <p>
+                            2、回答成功后，用户未选择最佳答案，酬金将被所有回答者平分
+                        </p>
+                        <p>
+                            3、回答成功后，用户可在48小时内选出最佳答案，最佳答案回答者将获得100%酬金；
+                        </p>
+                        <p>
+                            4、最佳回答将会被推荐到首页，享受偷听曝光量；
+                        </p>
+                    </div>
+                </div>
+                <div class="yes know " >知道了</div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -80,6 +123,16 @@
             }
         },
         methods: {
+            tip: function () {
+                let _this= this;
+                xqzs.weui.dialogCustom($("#tip").html());
+                $(".know").click(function () {
+                    _this.closeDialog()
+                })
+            },
+            closeDialog:function () {
+                xqzs.weui.dialogClose()
+            },
             initAll:function () {
                 this.page = 1;
                 this.isPageEnd = false;
@@ -242,6 +295,17 @@
         background: linear-gradient(to right, rgb(238, 146, 24), rgb(238, 109, 6));
     }
     .answer_race_list .list .btn_race{ color:#fff; text-align: center; width: 1.80rem; margin: 0 auto; line-height: 0.60rem; border-radius: 0.41rem; background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1));font-size: 0.30rem}
-
+    .dialog_select_Height{ height:10.04rem; margin-top: -5rem;width: 86% ;margin-left:-43%}
+    .dialog_select_type  .yes{ width:60%;height:0.70rem;line-height: 0.71rem;background: RGBA(86, 196, 245,1);border-radius: 0.45rem;color:RGBA(255, 255, 255, 1);text-align: center;font-size: 0.30rem;margin:0.25rem auto;}
+    .dialog_select_type  .yes:active{background: #eee}
+    .dialog_select_type .tip_content{ padding: 0 0.2rem;
+        margin: 0 0.2rem;
+        line-height: 1.8;
+        font-size: 0.28rem;
+        color: #666;
+        height: 7.78rem;
+        overflow: auto;
+        background: RGBA(69, 75, 84, 0.05);}
+    .dialog_select_type .tip_content p{margin-top: 0.1rem ;margin-bottom: 0.10rem;}
 
 </style>
