@@ -36,6 +36,18 @@
             <div class="join mt" @click="busniess()"  >商务合作</div>
         </div>
         <v-asker-bottom tabOnIndex="4"></v-asker-bottom>
+        <div id="busniess">
+            <div class="busniess">
+                <div class="title">商务合作</div>
+                <div class="content">
+                    “好一点”小程序有强大的粉丝变现能力，如果你有公众号或者小程序需要流量变现，请加客服微信，备注商务合作：<br><span>17816117310（同电话）</span> <span class="green">复制</span>
+                </div>
+                <div class="img">
+                    <img src="http://oss.xqzs.cn/resources/psy/asker/buessniess.png">
+                </div>
+                <div class="tip">长按加客服微信</div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -59,6 +71,10 @@
             'user'
         ],
         methods: {
+            busniess:function () {
+                xqzs.weui.dialogCustom($("#busniess").html());
+                window.clipboardData.setData("Text",clipBoardContent);
+            },
             getUserInfo:function(){
                 let _this=this;
                 xqzs.user.getUserInfo(function (user) {
@@ -134,6 +150,16 @@
 
 </script>
 <style>
+    .busniess { position: absolute; z-index: 1000; top:50%; left:50%; margin-left: -3rem; margin-top: -4rem; height: 8rem; width: 6rem; background: #fff; border-radius: 0.1rem; padding-top: 0.3rem; padding-bottom: 0.3rem}
+    .busniess .title{ font-size: 0.36rem; font-weight: bold; text-align: center; line-height: 1.6; }
+    .busniess .content{ font-size: 0.3rem;color:#333; line-height: 1.6; margin: 0.3rem;}
+    .busniess .content span{ color:red; }
+    .busniess .content span.green{ color:#09bb07; }
+    .busniess .img{ text-align: center}
+    .busniess .img img{ width: 3.8rem; height: 3.8rem; margin: 0 auto}
+    .busniess .tip{ color:#999; font-size: 0.3rem; text-align: center; margin-top: 0.3rem;}
+
+
     .asker_my_index_box .top .name{
              line-height: 1;
          padding-top: 0.2rem; margin-bottom:0.13rem;font-weight: bold; font-size: 0.3rem; height: 0.3rem; overflow: hidden
