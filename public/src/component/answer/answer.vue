@@ -44,7 +44,7 @@
         <!--播放状态-->
         <div>
             <div class="record_voice_box" v-if="!isAnswered&&!outTime">
-                <div class="time_in" style="position: static;margin-bottom: 1rem;">
+                <div class="time_in" style="position: static;margin-bottom:0.6rem;padding-top: 0.6rem;">
                     <div>{{answerTime}}"</div>
                 </div>
                 <div class="circle">

@@ -697,11 +697,11 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
 
 
 /*录音*/
-.record_voice_box{ position: relative;margin-bottom: 1rem;}
+.record_voice_box{ position: relative;padding: 0.2rem 0;}
 .record_voice_box .gg{width:102px;height:102px;position: absolute;background:#d5f0ff;border-radius: 50%;top:50%;left:50%;margin-left:-51px;margin-top:-51px;}
 .record_voice_box .move{position: relative;}
 .record_voice_box .qq{width:8px;height:8px;border-radius: 50%;background:rgba(254,115,1,1);top:-3px;left:50%;margin-left: -6px;position: absolute;}
-.record_voice_box .circle {  width: 108px;  height: 108px;  position: relative;  border-radius: 50%;  background: rgba(254,115,1,1);margin: 0 auto;margin-bottom: 1rem;}
+.record_voice_box .circle {  width: 108px;  height: 108px;  position: relative;  border-radius: 50%;  background: rgba(254,115,1,1);margin: 0 auto;margin-bottom: 0.8rem;}
 .record_voice_box .move{  width: 108px;  height: 108px;  position: absolute;  border-radius: 50%;  }
 .record_voice_box  .pie_left,  .record_voice_box .pie_right ,.record_voice_box  .pie_left_play,  .record_voice_box .pie_right_play {  width:108px;  height:108px;  position: absolute;  top: 0;left: 0;  }
 .record_voice_box .left,.record_voice_box .right ,.record_voice_box .left_play,.record_voice_box .right_play {  width:108px;  height:108px;  background:#d5f0ff;  border-radius: 50%;  position: absolute;  top: 0;  left: 0;  }
