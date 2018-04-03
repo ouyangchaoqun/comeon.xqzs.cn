@@ -9,10 +9,13 @@
                 <div class="steal_detail_top">
                     <img v-if="!detail.isAnonymous" :src="detail.faceUrl" alt="">
                     <img v-if="detail.isAnonymous" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
-                    <!--<div>在<span>{{detail.title}}</span>方面</div>-->
-                    <div v-if="!detail.isAnonymous">{{detail.nickName}}</div>
-                    <div v-if="detail.isAnonymous">匿名用户</div>
-                    <div class="steal_detail_top_price">{{detail.title}}</div>
+                    <div class="base_info">
+                        <div class="name"><template v-if="!detail.isAnonymous">{{detail.nickName}}</template><template v-if="detail.isAnonymous">匿名用户</template> 咨询</div>
+                        <div class="base_title">{{detail.title}} 问题</div>
+                    </div>
+
+
+
                 </div>
                 <div class="steal_detail_content">{{detail.content}}</div>
             </div>
@@ -180,11 +183,11 @@
                 this.getUserInfo();
 
                 this.$nextTick(function () {
-                    this.levMsg();
+                    this.levMsg(true);
                 })
             },
             //默认留言框
-            levMsg:function () {
+            levMsg:function (isAuto) {
                 let _this= this;
                 _this.actionSheetEdit( "发布", function (value) {
                     //回复操作
@@ -210,7 +213,7 @@
                     })
                 }, function () {
 
-                }, '我也来说两句');
+                }, '我也来说两句',false,false,isAuto);
 
                 $('.comment_box').attr({'minHeight':_this.height})
             },
@@ -291,7 +294,7 @@
                     //取消
                 }, "回复" + xqzs.shortname(nickName,7))
             },
-            actionSheetEdit: function ( sendText, doFun, cancelFun, placeholder,maxLength,noHide) {
+            actionSheetEdit: function ( sendText, doFun, cancelFun, placeholder,maxLength,noHide,isAuto) {
                 let _this = this;
                 if(!maxLength){
                     maxLength=1000;
@@ -331,7 +334,9 @@
                 //     clearTimeout(interval);//清除计时器
                 //      document.body.scrollTop = bfscrolltop;//将软键盘唤起前的浏览器滚动部分高度重新赋给改变后的高度
                 // });
-
+                if(!isAuto){
+                    $(".comment_text").focus()
+                }
 
                 $(".comment_text").keyup(function () {
                     _this.height = $('.comment_box').outerHeight();
@@ -765,7 +770,12 @@
         border-radius: 0.1rem;
         font-size: 0.26rem;
         color:RGBA(69, 75, 84, 1);
+        position: relative;
     }
+    .eva_commont_box:before{ content: '';  width: 0; height: 0;border-left:0.2rem solid transparent;
+        border-right: 0.2rem solid transparent;
+        border-bottom:  0.2rem solid #f9f9f9; position: absolute; top:-0.15rem;
+        display: block;}
     .eva_commont_box .name{
         color:#5e61a2;
         font-weight: 600;
@@ -860,7 +870,7 @@
         border-radius: 50%;
     }
     .evaluate_box li .eva_main{
-        padding-left: 1.12rem;
+        padding-left: 1rem;
         padding-right: 0.2rem;
         color:rgba(69,75,84,1);
         font-size: 0.3rem;
@@ -928,7 +938,7 @@
         background: #fff;
     }
     .steal_expert_info{
-        padding-left: 1.42rem;
+        padding-left: 1.30rem;
         padding-bottom: 0.51rem;
     }
     .position_change_detail{
@@ -947,11 +957,15 @@
         display: flex;
         display: -webkit-flex;
         display: -webkit-box;
-        color: rgba(36,37,61,0.5);
+        color: #999;
         font-size: 0.24rem;
-        line-height: 0.8rem;
+        line-height: 1.3;
         position: relative;
     }
+
+    .steal_detail_top .base_info{ padding-top: 0.1rem;}
+
+
     .steal_detail_top .steal_detail_top_price{
         position: absolute;
         right:0.30rem;
@@ -961,7 +975,7 @@
         height:0.8rem;
         width:0.8rem;
         border-radius: 50%;
-        margin-right: 0.32rem;
+        margin-right: 0.20rem;
         margin-bottom: 0.24rem;
     }
     .steal_detail_top span{
@@ -987,7 +1001,7 @@
         color: rgba(36,37,61,0.5);
         font-size: 0.28rem;
         padding-bottom: 0.40rem;
-        margin-left: 0.88rem;
+        margin-left: 1.3rem;
         margin-right: 0.60rem;
         margin-bottom: 0.20rem;
         border-bottom: 0.02rem solid #eee;
@@ -1018,7 +1032,7 @@
         line-height: 0.32rem;
         padding-bottom:0.20rem;
         padding-right: 0.60rem;
-        padding-left: 0.88rem;
+        padding-left: 1.3rem;
         border-bottom: 0.20rem solid #f4f4f7;
     }
     /*.steal_answer_zan div{*/
