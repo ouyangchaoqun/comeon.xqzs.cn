@@ -697,11 +697,11 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
 
 
 /*录音*/
-.record_voice_box{ position: absolute; bottom:0rem; width: 100%}
+.record_voice_box{ position: relative;margin-bottom: 0.5rem;}
 .record_voice_box .gg{width:102px;height:102px;position: absolute;background:#d5f0ff;border-radius: 50%;top:50%;left:50%;margin-left:-51px;margin-top:-51px;}
 .record_voice_box .move{position: relative;}
 .record_voice_box .qq{width:8px;height:8px;border-radius: 50%;background:rgba(254,115,1,1);top:-3px;left:50%;margin-left: -6px;position: absolute;}
-.record_voice_box .circle {  width: 108px;  height: 108px;  position: relative;  border-radius: 50%;  background: rgba(254,115,1,1);  bottom:1.36rem; left:50%; margin-left: -54px;  }
+.record_voice_box .circle {  width: 108px;  height: 108px;  position: relative;  border-radius: 50%;  background: rgba(254,115,1,1);margin: 0 auto;margin-bottom: 0.8rem;}
 .record_voice_box .move{  width: 108px;  height: 108px;  position: absolute;  border-radius: 50%;  }
 .record_voice_box  .pie_left,  .record_voice_box .pie_right ,.record_voice_box  .pie_left_play,  .record_voice_box .pie_right_play {  width:108px;  height:108px;  position: absolute;  top: 0;left: 0;  }
 .record_voice_box .left,.record_voice_box .right ,.record_voice_box .left_play,.record_voice_box .right_play {  width:108px;  height:108px;  background:#d5f0ff;  border-radius: 50%;  position: absolute;  top: 0;  left: 0;  }
@@ -714,7 +714,7 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
 .record_voice_box .mask {  width:90px;  height: 90px;  border-radius: 50%;  background:#56C4FE  100%;  position: absolute;  top:50%;  left:50%;  margin-top:-45px;  margin-left:-45px;  text-align: center;  line-height: 80px; color:#fff;     z-index: 3; }
 .record_voice_box .mask i{ display: block; position: absolute;
     left: 50%; top:50% }
-.record_voice_box  .tip{ position: absolute; top:55px; text-align: center; width: 100%; color:#000; font-size: 0.30rem;font-weight: bold;}
+.record_voice_box  .tip{ text-align: center; width: 100%; color:#000; font-size: 0.30rem;font-weight: bold;}
 /*选择问题类型弹窗*/
 .select_type{
     width: 100%;
