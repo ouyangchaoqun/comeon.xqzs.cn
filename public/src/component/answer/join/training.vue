@@ -34,6 +34,7 @@
 
 
         activated: function () {
+
             this.inputLength=0;
             this.experience='';
             this.canGoNext=false;

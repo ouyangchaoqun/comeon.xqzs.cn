@@ -61,6 +61,7 @@
             this.certificateFile1=cookie.get('certificateFile1')?unescape(cookie.get('certificateFile1')):'';
             this.reg_certificateNo=cookie.get('reg_certificateNo')?unescape(cookie.get('reg_certificateNo')):'';
             this.certificateFile1Show='';
+            this.showLoad=false;
             this.edit= this.$route.query.edit;
             this.initOss();
             let _this = this;

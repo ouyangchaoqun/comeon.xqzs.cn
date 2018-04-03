@@ -31,6 +31,7 @@
         },
         activated: function () {
             this.edit= this.$route.query.edit;
+            this.showLoad=false;
             console.log()
             if(this.edit==1){
                 this.getExpertInfo();

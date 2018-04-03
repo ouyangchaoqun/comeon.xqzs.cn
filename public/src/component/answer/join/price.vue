@@ -55,6 +55,7 @@
             }
         },
         activated: function () {
+            this.showLoad=false;
             this.noticeFlag=false
             this.edit= this.$route.query.edit;
             if(this.edit==1){

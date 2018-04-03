@@ -1,7 +1,10 @@
 <template >
     <div class="listenDetail_box">
-        <!--详情头部-->
-        <div class="listenDetail_inner_box" :style="'padding-bottom:'+height+'px'">
+
+        <v-scroll   :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
+                  :isShowMoreText="isShowMoreText" :bottomHeight="height">
+            <!--详情头部-->
+            <div class="listenDetail_inner_box">
             <div v-title class='hide_title'>问题详情</div>
             <v-recharge  v-if="rechargeFlag"  :rechargeMoney="rechargeMoney" :user="user" v-on:childMessage="getFlagVal"></v-recharge>
             <v-showLoad v-if="showLoad"></v-showLoad>
@@ -92,11 +95,27 @@
                 <div class="title_border"></div>
                 <ul>
                     <li v-for="(item,index) in evaluates" @click.stop="commentOrDel(item.userId,item.id,item.questionId,item.nickName,index,item.replies,evaluates)">
-                        <img v-if="item.isAnonymous==0" :src="item.faceUrl" alt="">
-                        <img v-if="item.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
+
+
+
+
+                       <block v-if="item.userExpertId">
+                           <img :src="item.userExpertFaceUrl" alt="" @click.stop="goExpert(item.userExpertId)">
+                           <img src="http://oss.xqzs.cn/resources/psy/asker/expert_v.png" class="expert_v">
+                       </block>
+                        <block v-else>
+                            <img v-if="item.isAnonymous==0" :src="item.faceUrl" alt="">
+                            <img v-if="item.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
+                        </block>
+
                         <div class="eva_main">
+                            <block v-if="item.userExpertId">
+                                <div class="eva_name" @click.stop="goExpert(item.userExpertId)">{{item.userExpertNickName}} <span class="expert_line"></span> <span> {{item.userExpertJobTitle}}</span></div>
+                            </block>
+                            <block v-else>
                             <div class="eva_name" v-if="item.isAnonymous==0">{{item.nickName}}</div>
                             <div class="eva_name" v-if="item.isAnonymous==1">匿名用户</div>
+                            </block>
                             <div class="eva_content">{{item.content}}</div>
                             <div class="eva_time">
                                 {{getFormatDate(item.addTime)}}
@@ -119,17 +138,17 @@
                         </div>
                     </li>
                 </ul>
-                <div class="eva_btn" @click="getCommentList()" v-show="!isPageEnd">查看更多</div>
-            </div>
-            <div v-if="isPageEnd&&lengthLock" class="pageEndStyle">已经到底啦</div>
-        </div>
 
+            </div>
+         </div>
+        </v-scroll>
 
     </div>
 
 </template>
 <script>
-
+    import Bus from '../bus.js';
+    import scroll from '../include/scroll.vue';
     import showLoad from '../include/showLoad.vue';
     import Recharge from '../asker/my/recharge.vue' ;
     export default {
@@ -139,6 +158,7 @@
                 commentValue:0,
                 questionId:0,
                 detail:{},
+                isShowMoreText:false,
                 showLoad:false,
                 timeOut:null,
                 playing:false,
@@ -167,6 +187,7 @@
            ['user','isKeepAlive']
         ,
         components: {
+            'v-scroll': scroll,
             'v-recharge':Recharge,
             'v-showLoad': showLoad,
         },
@@ -176,13 +197,15 @@
             }
         },
         methods:{
+            goExpert: function (id) {
+                this.$router.push("/asker/expert/detail?id=" + id);
+            },
             initAll:function () {
                 this.questionId=this.$route.query.questionId;
                 this.getDetail();
                 this.getCoupon();
                 this.getUserInfo();
-
-                this.$nextTick(function () {
+                 this.$nextTick(function () {
                     this.levMsg(true);
                 })
             },
@@ -196,19 +219,18 @@
                         if (bt.data && bt.data.status == 1) {
                             let msg = bt.data.data;
                             xqzs.weui.toast('success','留言成功',function () {
-                                let  stuckMessage = {
-                                    faceUrl:_this.user.faceUrl,
-                                    content:value,
-                                    nickName: _this.user.nickName,
-                                    isAnonymous:_this.anonyVal,
-                                    addTime:parseInt(new Date().getTime()/1000),
-                                    userId :msg.userId,
-                                    id:msg.id
-                                };
-                                _this.evaluates.splice(0,0,stuckMessage); //插入第一条
-                                console.log(_this.evaluates)
-                                _this.evaluates_flag = true;
-                            })
+                            });
+                            let  stuckMessage = {
+                                faceUrl:_this.user.faceUrl,
+                                content:value,
+                                nickName: _this.user.nickName,
+                                isAnonymous:_this.anonyVal,
+                                addTime:parseInt(new Date().getTime()/1000),
+                                userId :msg.userId,
+                                id:msg.id
+                            };
+                            _this.evaluates.splice(0,0,stuckMessage); //插入第一条
+                            console.log(_this.evaluates)
                         }
                     })
                 }, function () {
@@ -271,20 +293,21 @@
                         if (response.data.status === 1) {
                             let msg = response.data.data;
                             console.log(msg)
-                            xqzs.weui.toast("success", "提交成功", function () {
-                                let  stuckMessage = {
-                                    content:v,
-                                    nickName: vm.user.nickName,
-                                    toNickName:nickName,
-                                    id:msg.id,
-                                    questionId:questionId,
-                                    toEvaluateId:msg.toEvaluateId,
-                                    toUserId:msg.toUserId,
-                                    userId:vm.user.id,
-                                };
-                                item.push(stuckMessage);
+                            xqzs.weui.toast("success", "回复成功", function () {
+
                                 vm.levMsg()
                             });
+                            let  stuckMessage = {
+                                content:v,
+                                nickName: vm.user.nickName,
+                                toNickName:nickName,
+                                id:msg.id,
+                                questionId:questionId,
+                                toEvaluateId:msg.toEvaluateId,
+                                toUserId:msg.toUserId,
+                                userId:vm.user.id,
+                            };
+                            item.push(stuckMessage);
                         }
                     })
                     console.log(v)
@@ -306,7 +329,13 @@
                 xqzs.weui.textareaAutoOldHeight = xqzs.weui.textareaAutoBaseH;
                 xqzs.weui.textareaHeight = [];
                 var html = '<div class="action-sheet-edit" id="action_sheet_edit">';
-                html += ' <div class="comment_box bottom_comment" style="">';
+                html += ' <div class="comment_box bottom_comment" style="' ;
+
+                if(xqzs.equipment.isIphoneX()){
+                    html +=' bottom:40px';
+                }
+
+                html += '">';
                 html += '  <span class="release release_btn">' + sendText + '</span>';
                 html += '<div class="box"><textarea contenteditable="true" maxlength="'+maxLength+'" class="comment_text" id="textarea" placeholder="' + placeholder + '" oninput="xqzs.weui.textareaAutoHeight();"></textarea></div>';
                 if(xqzs.isIos()){
@@ -328,7 +357,8 @@
                     xqzs.weui.actionSheetEditTimeout();
                 }).blur(function () {
                     xqzs.weui.textareaHover=false;
-                    $(".comment_box").animate({bottom: 0}, 150)
+                    let h= xqzs.equipment.isIphoneX()?'40px':0
+                    $(".comment_box").animate({bottom: h}, 150)
                 });
                 //.blur(function () {//设定输入框失去焦点时的事件
                 //     clearTimeout(interval);//清除计时器
@@ -422,33 +452,36 @@
             getFormatDate:function (t) {
                 return xqzs.dateTime.formatLevMsgDate(t)
             },
-            getCommentList:function () {
+            onInfinite(done) {
+                 this.getCommentList(done);
+
+            },
+            getCommentList:function (done) {
                 let _this = this;
-                if(_this.showLoad){
-                    return
+                if (_this.isLoading || _this.isPageEnd) {
+                    return;
                 }
                 let questionId = _this.detail.questionId;
-                _this.showLoad = true
+                 _this.isLoading = true;
                 xqzs.api.get(_this,'come/comment/query/page/question/'+questionId+'/'+this.page+'/'+this.row,function(data){
-                    _this.showLoad=false;
+                      _this.isLoading = false;
+                    if(done&&typeof(done)==='function'){
+                        done()
+                    }
                     if (data.body.status == 1) {
 
                         _this.page++;
                         let arr =  data.data.data;
                         if(arr.length<_this.row){
-                            _this.isPageEnd = true
+                            _this.isPageEnd = true;
+                            _this.isShowMoreText = false;
+                            Bus.$emit("scrollMoreTextInit", _this.isShowMoreText);
                         }
                         _this.evaluates = _this.evaluates.concat(arr);
-                        if(_this.evaluates.length>5){
-                            _this.lengthLock = true
-                        }else{
-                            _this.lengthLock = false
-                        }
 
                     }
                 },function (error) {
-                    _this.showLoad=false;
-                })
+                 })
             },
             getFlagVal:function (val) {
                 this.rechargeFlag  = val.rechargeFlag;
@@ -689,8 +722,9 @@
                         _this.detail= data.body.data
                         _this.list = _this.detail.answerList;
                         _this.evaluates = _this.detail.evaluates; //获取评论列表
-                        if(_this.evaluates.length){
-                            _this.evaluates_flag = true
+                        if(_this.evaluates.length>=_this.row){
+                            _this.isShowMoreText = true;
+                            Bus.$emit("scrollMoreTextInit", _this.isShowMoreText);
                         }
                         xqzs.wx.setConfig(_this, function () {
                             var config = {
@@ -858,7 +892,7 @@
         margin: 0 auto;
     }
     .evaluate_box li{
-        margin-left: 0.3rem;
+        margin-left: 0.4rem;
         border-bottom: 0.02rem solid #eee;
         position: relative;
         padding-top: 0.3rem;
@@ -869,25 +903,35 @@
         position: absolute;
         border-radius: 50%;
     }
+
+    .evaluate_box li .expert_line{ height: 0.28rem; width: 0.02rem; background: #00b9e8;display: inline-block; position: relative; vertical-align: middle; margin-left: 0.12rem; margin-right: 0.06rem;}
+    .evaluate_box li .expert_line:before{ content: ''; display: inline-block; position: absolute; height: 0.04rem; width: 0.04rem; border-radius: 50%;left:-0.02rem; top:0.12rem; background:#00b9e8;}
+    .evaluate_box li .expert_v{
+        width:0.3rem;
+        height:0.3rem;
+        border-radius: inherit;
+        top:0.2rem; left:0.55rem;
+    }
     .evaluate_box li .eva_main{
         padding-left: 1rem;
-        padding-right: 0.2rem;
-        color:rgba(69,75,84,1);
-        font-size: 0.3rem;
-        line-height: 0.42rem;
-    }
-    .evaluate_box li .eva_main .eva_name{
-        color:rgba(3, 3, 3, 0.5);
+        padding-right: 0.3rem;
+        color:#333;
         font-size: 0.28rem;
-        line-height: 0.4rem;
-        margin-bottom: 0.1rem;
+     }
+    .evaluate_box li .eva_main .eva_name{
+        color:#999;
+        font-size: 0.28rem;
+        line-height: 1;
+        padding-top: .07rem;
+        margin-bottom: .12rem;
     }
+    .evaluate_box li .eva_main .eva_name span{ color:#2EB1FF}
     .evaluate_box li .eva_main .eva_content{
         margin-bottom: 0.14rem;
         word-wrap:break-word
     }
     .evaluate_box .eva_main .eva_time{
-        color:rgba(3, 3, 3, 0.5);
+        color:#999;
         font-size: 0.24rem;
         line-height: 0.34rem;
         margin-bottom: 0.3rem;

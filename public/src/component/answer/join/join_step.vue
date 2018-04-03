@@ -387,6 +387,51 @@
         },
 
         activated: function () {
+
+            this.user='';
+            this.showLoad=false;
+            this.preIning=true;
+            this.sexIndex=1;
+            this.defaultCity= '[330000, 330100, 330102]';
+            this.reg_mobile =cookie.get('reg_mobile')?cookie.get('reg_mobile'):'';
+            this.reg_sign=cookie.get('reg_sign')?unescape(cookie.get('reg_sign')):'';
+            this.reg_introduction=cookie.get('reg_introduction')?unescape(cookie.get('reg_introduction')):'';
+            this.reg_goodat=cookie.get('reg_goodat')?unescape(cookie.get('reg_goodat')):'';
+            this.reg_experience=cookie.get('reg_experience')?unescape(cookie.get('reg_experience')):'';
+            this.reg_price=cookie.get('reg_price')?cookie.get('reg_price'):'';
+            this.reg_freeTime=cookie.get('reg_freeTime')?cookie.get('reg_freeTime'):'';
+            this.reg_nickName=cookie.get('reg_nickName')?unescape(cookie.get('reg_nickName')):'';
+            this.reg_jobTitle=cookie.get('reg_jobTitle')?unescape(cookie.get('reg_jobTitle')):'';
+            this.faceUrl=cookie.get('reg_faceUrl')?cookie.get('reg_faceUrl'):'';
+            this.sex=cookie.get('reg_sex')?unescape(cookie.get('reg_sex')):'';
+            this.provinceName=cookie.get('reg_provinceName')?unescape(cookie.get('reg_provinceName')):'';
+            this.cityName=cookie.get('reg_cityName')?unescape(cookie.get('reg_cityName')):'';
+            this.areaName=cookie.get('reg_areaName')?unescape(cookie.get('reg_areaName')):'';
+            this.provinceId= cookie.get('reg_provinceId')?cookie.get('reg_provinceId'):'';
+            this.cityId= cookie.get('reg_cityId')?cookie.get('reg_cityId'):'';
+            this.areaId=cookie.get('reg_areaId')?cookie.get('reg_areaId'):'';
+            this.alioss=null;
+            this.uploadpicinfo=null;
+            this.identityFile1='';
+            this.goodAt='';
+            this.mobileBox=false;
+            this.agreFlag=false;
+            this.questionClassId=[];
+            this.isModify=0;
+            this.isShowInfo={};
+            this.btnFlag=true;
+            this.types='';
+            this.showTypes=[];
+            this.isLunar=0;
+            this.birthday='';
+            this.year= '';
+            this.month= '';
+            this.day= '';
+            this.lunarDateData=[];
+            this.solarDateDate=[];
+            this.isLeapMonth=false;
+
+
             if(!xqzs.user.isUserLogin()){
                 return ;
             }

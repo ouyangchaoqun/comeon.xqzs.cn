@@ -75,6 +75,10 @@
         },
 
         activated: function () {
+            this.showLoad= false;
+            this.freeTime= '';
+            this.edit= '';
+            this.checkedIndex= -1;
             console.log();
             for(let i =0;i<this.times.length;i++){
                 if(this.expert.freeTime===this.times[i].value){

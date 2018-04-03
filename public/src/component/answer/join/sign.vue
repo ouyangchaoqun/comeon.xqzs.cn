@@ -41,6 +41,7 @@
             }
         },
         activated: function () {
+            this.showLoad=false;
             this.edit='';
             this.placeFlag=true;
             this.edit= this.$route.query.edit;
