@@ -259,7 +259,7 @@
                                     content:v,
                                     nickName: vm.user.nickName,
                                     toNickName:nickName,
-                                    id:id,
+                                    id:msg.id,
                                     questionId:questionId,
                                     toEvaluateId:msg.toEvaluateId,
                                     toUserId:msg.toUserId,
