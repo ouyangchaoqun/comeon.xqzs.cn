@@ -1,7 +1,7 @@
 <template >
     <div style="height: 100%" class="wbg answer_join_price_box">
 
-        <div v-title>入驻心理咨询师</div>
+        <div v-title class='hide_title'>入驻心理咨询师</div>
         <div class="stepStyle">2/10</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <v-answer-top-step step="2"  preUrl="./base/info" nextUrl="./field" :canGoNext="canGoNext"title="请拍摄身份证正反面，该信息仅用于心情加油站身份验证" errorWord="请上传身份认证"></v-answer-top-step>
@@ -47,7 +47,7 @@
             }
         },
 
-        mounted: function () {
+        activated: function () {
             xqzs.wx.setConfig(this);
             this.uploadpicinfo = {
                 token: xqzs.string.guid(),

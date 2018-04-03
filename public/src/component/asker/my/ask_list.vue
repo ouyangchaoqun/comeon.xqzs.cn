@@ -1,7 +1,7 @@
 <template>
     <div :class="{wbg:list.length==0&&!showLoad}">
         <v-showLoad v-if="showLoad"></v-showLoad>
-        <div v-title>我问</div>
+        <div v-title class='hide_title'>我问</div>
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :bottomHeight="48"
                   :isShowMoreText="isShowMoreText">
@@ -82,11 +82,7 @@
                 timeInterval:null
             }
         },
-        props:{
-            user:{
-                type:Object
-            }
-        },
+        props:['user','isKeepAlive'],
 
         components: {
             'v-showLoad': showLoad,
@@ -97,11 +93,22 @@
             if(!xqzs.user.isUserLogin()){
                 return ;
             }
-            console.log(this.user)
+            this.isPageEnd=false;
+            this.page=1;
+            this.list=[];
+            this.isShowMoreText=false;
             this.getList();
             xqzs.wx.setConfig(this, function () {weshare.init(wx)});
         },
+        deactivated: function () {
+            if(this.timeInterval!=null){
+                clearInterval(this.timeInterval);
+            }
+        },
         methods: {
+            initAll:function () {
+                this.getList();
+            },
             timeIntervalFun:function () {
                 let _this=this;
                 if(_this.timeInterval!=null){
@@ -216,6 +223,21 @@
         },
         updated:function () {
             this.initActive();
+        },
+        activated:function () {
+            if(!this.isKeepAlive){
+                this.page=1;
+                this.isPageEnd=false;
+                this.isShowMoreText=false;
+                this.list=[];
+                this.getList()
+            }else{
+                let st = xqzs.localdb.get("st_"+this.$route.path);
+                console.log(st);
+                if(st){
+                    $('.yo-scroll').scrollTop(st);
+                }
+            }
         }
 
 

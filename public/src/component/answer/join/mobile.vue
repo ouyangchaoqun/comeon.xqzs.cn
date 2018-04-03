@@ -1,6 +1,6 @@
 <template>
     <div class="answer_join_mobile_box" @touchmove.prevent >
-        <div v-title>入驻心理咨询师</div>
+        <div v-title class='hide_title'>入驻心理咨询师</div>
         <div class="validate_box">
             <div class="mobile__box">
                 <div class="validate_top">
@@ -55,7 +55,24 @@
 
             }
         },
-        mounted: function () {
+        activated: function () {
+
+
+            this.isGetingCodeIn = false;
+            this.interValObj = null;
+            this.time = 60;
+            this.getCodeBtnText = "获取验证码";
+            this.isShowMessage = false;
+            this.isMobileRight = false;
+            this.isErrorCode = false;
+            this.mobile = "";
+            this.code = "";
+            this.message = "验证码已发送，请注意查收短信";
+            this.isShowErrorMobileMsg = false;
+            this.isShowErrorCodeMsg = false;
+            this.isAllInput = false;
+            this.codeError = false;
+
             let _this = this;
             $('.answer_join_mobile_box').click(function () {
                 $('.answer_join_mobile_box').hide()

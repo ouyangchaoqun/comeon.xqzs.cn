@@ -1,6 +1,6 @@
 <template id="my_problem_index">
     <div style="background: #fff">
-        <div v-title>我的回答</div>
+        <div v-title class='hide_title'>我的回答</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :bottomHeight="0"
@@ -132,7 +132,11 @@
             'v-showLoad': showLoad,
             'v-scroll': scroll
         },
-        mounted: function () {
+        activated: function () {
+            this.page=1;
+            this.isPageEnd=false;
+            this.isShowMoreText=false;
+            this.list=[];
             let _this = this;
             $('.my_problem_tabs .my_problem_tab div').click(function () {
                 $('.my_problem_tabs .my_problem_tab div').removeClass('my_problem_active')

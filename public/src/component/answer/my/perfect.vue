@@ -1,7 +1,7 @@
 <template >
     <div class="personal_box">
         <v-showLoad v-if="showLoad"></v-showLoad>
-        <div v-title>完善资料</div>
+        <div v-title class='hide_title'>完善资料</div>
 
         <div class="list0 perfect_header active_tab" @click="changeHeadpic()">
             <img v-if="!updateFaceUrl" class="headerImg" :src="resizeImg(expert.faceUrl)" alt="">
@@ -115,7 +115,7 @@
                 updateFaceUrl:''
             }
         },
-        mounted: function () {
+        activated: function () {
             this.initOss();
             this.getExpertByUserId();
             let _this = this;

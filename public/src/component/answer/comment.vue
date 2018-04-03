@@ -1,6 +1,6 @@
 <template >
     <div style="height: 100%" class="answer_comment_box"> 
-        <div v-title>专家点评</div>
+        <div v-title class='hide_title'>专家点评</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :bottomHeight="0"
@@ -78,7 +78,14 @@
             'v-showLoad': showLoad,
             'v-scroll': scroll
         },
-        mounted: function () {
+        activated: function () {
+
+
+            this.page=1;
+            this.isPageEnd=false;
+            this.isShowMoreText=false;
+            this.list=[];
+
             this.expertId = this.$route.query.expertId;
             this.getTags();
             this.getList();

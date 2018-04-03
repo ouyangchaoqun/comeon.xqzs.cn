@@ -1,7 +1,7 @@
 <template id="stealListen_index">
     <div class="asker_listen_box" :class="{wbg:list.length==0 }">
         <!--头部导航栏-->
-        <div v-title>心理咨询</div>
+        <div v-title class='hide_title'>心理咨询</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <!--<div @click.stop="go_expert()" class="expert_entry" v-if="isRegExpert"></div>-->
         <div class="weui-tab__panel main">
@@ -203,39 +203,48 @@
             'v-typeHeader': typeHeader,
         },
         updated:function () {
+            console.log("updated")
             this.initReUrl();
+
         },
+
         mounted: function () {
 
-            let expertId = cookie.get("expertId");
-            if(expertId){
-                this.isRegExpert = true
-            }else{
-                this.isRegExpert = false
-            }
-             this.getHotList();
-
-            this.getUserInfo(true)
-//            this.getCoupon();
-            xqzs.voice.audio = null;
-
-
-            xqzs.wx.setConfig(this, function () {
-                var config = {
-                    imgUrl:"http://oss.xqzs.cn/resources/psy/logo.jpg",
-                    title:  "专家详解人生小困惑" ,
-                    desc: '你的人生小困惑都在这里，专家60秒解忧语音，偷听只需1点豆',
-                    link: weshare.getShareUrl("asker/listen" ,false)
-                };
-                weshare.init(wx, config);
-            });
-            let _this=this;
+            this.initAll();
 
         },
         props:[
-            'expert','user'
+            'expert','user','isKeepAlive'
         ],
         methods: {
+            initAll:function () {
+                console.log("mounted")
+                if(!xqzs.user.isUserLogin()){
+                    return ;
+                }
+                let expertId = cookie.get("expertId");
+                if(expertId){
+                    this.isRegExpert = true
+                }else{
+                    this.isRegExpert = false
+                }
+                this.getHotList();
+
+                this.getUserInfo(true)
+//            this.getCoupon();
+                xqzs.voice.audio = null;
+
+
+                xqzs.wx.setConfig(this, function () {
+                    var config = {
+                        imgUrl:"http://oss.xqzs.cn/resources/psy/logo.jpg",
+                        title:  "专家详解人生小困惑" ,
+                        desc: '你的人生小困惑都在这里，专家60秒解忧语音，偷听只需1点豆',
+                        link: weshare.getShareUrl("asker/listen" ,false)
+                    };
+                    weshare.init(wx, config);
+                });
+            },
             initReUrl:function () {
 
                 if( this.$route.query.reurl&& this.$route.query.reurl!=''&&xqzs.localdb.get("isReUrl")=='false'){
@@ -398,7 +407,7 @@
                         xqzs.wx.pay.pay(result.order, function () {
 
                         }, function () {//success
-                            xqzs.weui.toast("success", "支付成功", function () {
+                            xqzs.weui.toast("success", "支付3成功", function () {
                                 _this.setPayed(index);
                             });
                         }, function () {//error
@@ -431,7 +440,6 @@
 
                 if(_this.currPlayIndex!=null)
                 {
-                    _this.clearTimeOut();
                     _this.pause(_this.currPlayIndex);
 
                 }
@@ -440,7 +448,9 @@
             },
 
             pause:function (index) {
+                console.log(index)
                 let  _this=this;
+                _this.clearTimeOut();
                 let list = _this.list;
                 list[index].paused = true;
                 list[index].playing = false;
@@ -597,8 +607,31 @@
 
        },
         beforeDestroy: function () {
+            console.log("beforeDestroy")
             xqzs.voice.pause();
         },
+        create:function () {
+            console.log("create")
+        },
+        beforeCreate:function () {
+            console.log("beforeCreate")
+        },
+
+        activated:function () {
+            if(!this.isKeepAlive){
+                this.initAll();
+            }else{
+                let st = xqzs.localdb.get("st_"+this.$route.path);
+                console.log(st);
+                if(st){
+                    $('.yo-scroll').scrollTop(st);
+                }
+            }
+            console.log("activated")
+        },
+        deactivated:function () {
+            if(this.currPlayIndex!=null)this.pause(this.currPlayIndex);
+        }
     }
 
 

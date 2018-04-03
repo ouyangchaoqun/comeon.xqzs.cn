@@ -2,7 +2,7 @@
     <div class="listenDetail_box">
         <!--详情头部-->
         <div class="listenDetail_inner_box" :style="'padding-bottom:'+height+'px'">
-            <div v-title>问题详情</div>
+            <div v-title class='hide_title'>问题详情</div>
             <v-recharge  v-if="rechargeFlag"  :rechargeMoney="rechargeMoney" :user="user" v-on:childMessage="getFlagVal"></v-recharge>
             <v-showLoad v-if="showLoad"></v-showLoad>
             <div class="steal_detail_header" v-if="detail.title">
@@ -157,30 +157,32 @@
                 lengthLock:false
             }
         },
-        mounted: function () {
-            this.questionId=this.$route.query.questionId;
-            this.getDetail();
-            this.getCoupon();
-            this.getUserInfo();
-            this.$nextTick(function () {
-                this.levMsg();
-            })
+        activated: function () {
+            this.initAll();
         },
-        props:{
-            user:{
-                type:Object
-            }
+        props:
+           ['user','isKeepAlive']
+        ,
+        components: {
+            'v-recharge':Recharge,
+            'v-showLoad': showLoad,
         },
         filters:{
             shortName:function(value,len){
                 return xqzs.shortname(value,len);
             }
         },
-        components: {
-            'v-recharge':Recharge,
-            'v-showLoad': showLoad,
-        },
         methods:{
+            initAll:function () {
+                this.questionId=this.$route.query.questionId;
+                this.getDetail();
+                this.getCoupon();
+                this.getUserInfo();
+
+                this.$nextTick(function () {
+                    this.levMsg();
+                })
+            },
             //默认留言框
             levMsg:function () {
                 let _this= this;
@@ -423,8 +425,9 @@
                 let questionId = _this.detail.questionId;
                 _this.showLoad = true
                 xqzs.api.get(_this,'come/comment/query/page/question/'+questionId+'/'+this.page+'/'+this.row,function(data){
+                    _this.showLoad=false;
                     if (data.body.status == 1) {
-                        _this.showLoad=false;
+
                         _this.page++;
                         let arr =  data.data.data;
                         if(arr.length<_this.row){
@@ -606,6 +609,19 @@
                     clearTimeout(_this.timeOut);
                 }
             },
+
+            pause:function (index) {
+                let  _this=this;
+                _this.clearTimeOut();
+                let list = _this.list;
+                list[index].paused = true;
+                list[index].playing = false;
+                _this.currPlayIndex = null;
+                _this.$set(_this.list, index, list[index])
+                xqzs.voice.pause();
+            },
+
+
             play:function (index) {
                 let _this=this;
                 let list = _this.detail.answerList;
@@ -633,6 +649,7 @@
                     list[index].playing=true;
                     _this.$set(_this.detail.answerList,index,list[index])
                     xqzs.voice.play();
+                    _this.currPlayIndex=index;
                     _this.timeout(true,CT,index)
                 }else{
                     if(item.playing){    //播放中去做暂停操作
@@ -650,6 +667,7 @@
                             list[index].paused=false;
                             _this.$set(_this.detail.answerList,index,list[index]);
                             _this.playing=true;
+                            _this.currPlayIndex=index;
                             _this.clearTimeOut();
                             _this.timeout(true,T,index)
                         })
@@ -728,6 +746,10 @@
         beforeDestroy:function () {
             xqzs.voice.pause();
         },
+        deactivated:function () {
+            if(this.currPlayIndex!=null)this.pause(this.currPlayIndex);
+        },
+
 
     }
 

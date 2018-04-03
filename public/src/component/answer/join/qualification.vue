@@ -1,7 +1,7 @@
 <template >
     <div style="height: 100%" class="wbg answer_join_quali">
         <v-showLoad v-if="showLoad"></v-showLoad>
-        <div v-title>入驻心理咨询师</div>
+        <div v-title class='hide_title'>入驻心理咨询师</div>
         <div>
         <div class="checks">
             <div class="level_types">
@@ -79,8 +79,23 @@
         },
 
 
-        mounted: function () {
-
+        activated: function () {
+            this.otherType = false;
+            this.certificateNo = '';
+            this.showLoad = false;
+            this.canGoNext = false;
+            this.certificateFile1 = '';
+            this.certificateFile2 = '';
+            this.alioss = null;
+            this.uploadpicinfo = null;
+            this.level = [
+                {name: '国家二级咨询师'},
+                {name: '国家三级咨询师'},
+                {name: '注册系统咨询师'},
+                {name: '注册系统督导师'},
+                {name: '其它'}
+            ];
+            this.jobTitle = '';
 
             this.initOss();
             let _this=this;

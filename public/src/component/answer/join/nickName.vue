@@ -29,7 +29,7 @@
                 type:Object
             }
         },
-        mounted: function () {
+        activated: function () {
             this.edit= this.$route.query.edit;
             console.log()
             if(this.edit==1){

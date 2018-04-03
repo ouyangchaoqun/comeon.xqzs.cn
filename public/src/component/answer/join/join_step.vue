@@ -2,7 +2,7 @@
     <div class="join_stepBox" >
         <v-mobile class="mobile_box" style="display: none"></v-mobile>
         <v-showLoad v-if="showLoad"></v-showLoad>
-        <div v-title>完善专业资料</div>
+        <div v-title class='hide_title'>完善专业资料</div>
         <header @click="changeHeadpic()" v-if="btnFlag">
             <img v-if="isModify==0&&faceUrl==''" :src="user.faceUrl" alt="">
             <img v-if="isModify==0" :src="faceUrl" alt="">
@@ -386,7 +386,7 @@
             }
         },
 
-        mounted: function () {
+        activated: function () {
             if(!xqzs.user.isUserLogin()){
                 return ;
             }

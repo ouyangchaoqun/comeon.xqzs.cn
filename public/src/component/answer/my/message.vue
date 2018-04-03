@@ -1,7 +1,7 @@
 <template >
     <div style="height: 100%" class="answer_join_voice wbg message_box">
 
-        <div v-title>访者语音寄语</div>
+        <div v-title class='hide_title'>访者语音寄语</div>
         <div class="tipc">此至少10秒的语音寄语，将展示给来访者，请录制您对来访者的寄语！</div>
 
 
@@ -302,7 +302,7 @@
 
 
         },
-        mounted: function () {
+        activated: function () {
             let _this=this ;
             let expertId= cookie.get("expertId")
             this.$http.get(web.API_PATH + 'come/expert/query/detail/for/edit/'+expertId + "/_userId_" ).then(function (data) {//es5写法

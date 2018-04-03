@@ -1,6 +1,6 @@
 <template >
     <div style="height: 100%" class="answer_detail_box">
-        <div v-title>专家详情</div>
+        <div v-title class='hide_title'>专家详情</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <v-recharge :rechargeMoney="rechargeMoney" v-show="rechargeFlag" v-on:childMessage="getFlagVal"></v-recharge>
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
@@ -189,6 +189,9 @@
                 <div class="pay_ask" @click="ask()"><span class="ask_dianCoinbg"></span>￥{{detail.price}} 提问</div>
 
         </div>
+        <!--<div class="click_me" @click="sub" v-if="isShare">-->
+            <!--戳我-->
+        <!--</div>-->
     </div>
 </template>
 
@@ -236,7 +239,8 @@
                 rechargeFlag :false,
                 couponNum:0,
                 couponList:[],
-                isMe:""
+                isMe:"",
+                isShare:false
             }
         },
         props:{
@@ -249,7 +253,7 @@
             'v-scroll': scroll,
             'v-recharge':Recharge,
         },
-        mounted: function () {
+        activated: function () {
             this.isMe=this.$route.query.isMe;
             this.id = this.$route.query.id;
             this.getDetail();
@@ -257,6 +261,7 @@
             this.getCoupon();
             this.getComment();
             this.getAnswer();
+            this.isShare=  this.$route.query.is_share
 
         },
         updated:function () {
@@ -692,8 +697,8 @@
                             var config = {
                                 imgUrl: _this.detail.faceUrl,
                                 title:  xqzs.string.removeHtml(_this.detail.introduction) ,
-                                desc: '好一点平台特邀心理咨询师'+_this.detail.nickName+'，欢迎提问',
-                                link: weshare.getShareUrl("asker/expert/detail/?id=" + id,true),
+                                desc: '好一点平台特邀心理咨询师'+_this.detail.nickName+'，欢迎提问，我将竭力为你排忧解难！',
+                                link: weshare.getShareUrl("asker/expert/detail/?id=" + id+"&is_share=1",true),
                             };
                             weshare.init(wx, config)
                         });
@@ -712,6 +717,14 @@
     }
 </script>
 <style>
+    .answer_detail_box .click_me { background: #00b9e8; color:#fff; font-size: 0.3rem;  line-height: 2;  padding: 0 0.3rem; position: fixed; top:1rem; right:0.3rem;}
+    .answer_detail_box .click_me:after{ content: '' ; display: block; position: absolute; right:-0.3rem; top:0;
+        width: 0;
+        height: 0;
+        border-top:0.3rem solid transparent;
+        border-left: 0.3rem solid #00b9e8;
+        border-bottom: 0.3rem solid transparent;
+    }
     .weui-dialog .weui-dialog__bd .colorStyle{
         color:rgba(251,100,10,1);
     }

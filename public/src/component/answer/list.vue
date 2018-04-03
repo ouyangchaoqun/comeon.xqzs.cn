@@ -1,7 +1,7 @@
 <template  >
     <div style="height: 100% " class="answer_list_box" :class="{wbg:list.length==0}">
 
-        <div v-title>找专家</div>
+        <div v-title class='hide_title'>找专家</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="main_title" v-if="list.length==0">{{name}}</div>
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd" :bottomHeight="0"
@@ -78,7 +78,11 @@
             'v-scroll': scroll
         },
 
-        mounted: function () {
+        activated: function () {
+            this.page=1;
+            this.isPageEnd=false;
+            this.isShowMoreText=false;
+            this.list=[];
             this.name= this.$route.query.name;
             this.getList();
             xqzs.wx.setConfig(this,function () {

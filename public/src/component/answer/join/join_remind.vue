@@ -1,6 +1,6 @@
 <template >
     <div class="remind_box">
-        <div v-title>入驻心理咨询师</div>
+        <div v-title class='hide_title'>入驻心理咨询师</div>
         <header>
             欢迎申请入驻“好一点”心理咨询服务平台
         </header>

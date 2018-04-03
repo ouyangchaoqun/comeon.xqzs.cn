@@ -2,7 +2,7 @@
 
     <div class="rob_problem">
         <v-showLoad v-if="showLoad"></v-showLoad>
-        <div v-title>问题详情</div>
+        <div v-title class='hide_title'>问题详情</div>
         <div class="my_problem_detail">
             <div class="problem_detail_header">
                 <!--问题类型:  <div class="race_titleColor">{{detail.title}}</div>-->
@@ -172,13 +172,22 @@
                 type:Object
             }
         },
-        mounted: function () {
+        components: {
+            'v-showLoad': showLoad,
+         },
+        activated: function () {
             if(!xqzs.user.isUserLogin()){
                 return ;
             }
             this.id= parseInt(this.$route.query.id);
             this.getDetail();
             xqzs.wx.setConfig(this, function () {weshare.init(wx)});
+        },
+        deactivated: function () {
+            if(this.timeInterval!=null){
+                clearInterval(this.timeInterval);
+            }
+            this.clearTimeOut();
         },
         methods: {
             timeIntervalFun:function () {
@@ -373,7 +382,9 @@
             },
             getDetail:function () {
                 let _this= this;
+                _this.showLoad=true;
                 xqzs.api.get(_this,'come/user/query/question/_userId_/'+_this.id ,function (data) {
+                    _this.showLoad=false;
                     if (data.body.status == 1) {
                         console.log(data.body.data.data)
                         _this.detail= data.body.data.data;

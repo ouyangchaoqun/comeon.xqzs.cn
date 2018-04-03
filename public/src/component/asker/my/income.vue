@@ -1,6 +1,6 @@
 <template >
     <div style="height: 100%" class="asker_my_income_box wbg">
-        <div v-title>我的余额</div>
+        <div v-title class='hide_title'>我的余额</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <!--<div class="my_income">-->
             <!--<div class="img"></div>-->
@@ -61,7 +61,7 @@
                 user:''
             }
         },
-        mounted: function () {
+        activated: function () {
             if(!xqzs.user.isUserLogin()){
                 return ;
             }

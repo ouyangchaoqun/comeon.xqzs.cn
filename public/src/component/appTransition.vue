@@ -1,7 +1,15 @@
 <template>
     <div style="height: 100%" class="transitionBox">
         <transition :name="transitionName">
-            <router-view class="child-view" :user=user :isGoIndex="isGoIndex" :expert="expert"></router-view>
+
+            <keep-alive   >
+                <router-view    class="child-view" :user=user :isGoIndex="isGoIndex"
+                             :isKeepAlive="isKeepAlive" :expert="expert"></router-view>
+                <!-- 这里是会被缓存的视图组件 -->
+                </router-view>
+            </keep-alive>
+
+
         </transition>
     </div>
 </template>
@@ -19,7 +27,8 @@
                 friendMoodsSpe: [],
                 friendMoods: [],
                 myLastMood: null,
-                isGoIndex: false
+                isGoIndex: false,
+                isKeepAlive:false
             }
         },
         created: function () {
@@ -98,11 +107,24 @@
         },
 
         beforeRouteUpdate(to, from, next) {
+
+             console.log('position');
+           if($('.yo-scroll')){
+               console.log($('.yo-scroll').scrollTop());
+               xqzs.localdb.set("st_"+from.path,$('.yo-scroll').scrollTop())
+
+           }
+
+//            this.$store.commit('SAVE_POSITION', position) //离开路由时把位置存起来
+
+
+
             this.clearPlugs();
             this.clearAllVoice();
              //是否底部tab切换
             if (this.isTabChange(from, to)) {
                 this.transitionName = '';
+                this.isKeepAlive=true;
             } else {
                 let isBack = false;
                 //左右滑动判断存储
@@ -123,13 +145,25 @@
                 } else {
                     this.transitionName = 'page-xqzs-left'
                 }
+                this.isKeepAlive=isBack;
+                console.log( this.isKeepAlive)
             }
+            if(this.isKeepAlive){
+                from.meta.isKeepAlive =  true;
+                to.meta.isKeepAlive =  false;
+            }else{
+                from.meta.isKeepAlive =  false;
+                to.meta.isKeepAlive =  true;
+
+            }
+
             this.$nextTick(function () {
                 setTimeout(function () {
                     next()
                 }, 1)
             })
-        }
+        },
+
     }
 </script>
 

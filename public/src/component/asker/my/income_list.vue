@@ -1,7 +1,7 @@
 <template >
     <div style="height: 100%" class="ask_my_income_list wbg">
 
-        <div v-title>余额明细</div>
+        <div v-title class='hide_title'>余额明细</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :bottomHeight="0"
@@ -46,10 +46,14 @@
             'v-showLoad': showLoad,
             'v-scroll': scroll
         },
-        mounted: function () {
+        activated: function () {
             if(!xqzs.user.isUserLogin()){
                 return ;
             }
+            this.isPageEnd=false;
+            this.page=1;
+            this.list=[];
+            this.isShowMoreText=false;
             this.getList();
             xqzs.wx.setConfig(this, function () {weshare.init(wx)});
         },

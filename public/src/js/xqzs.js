@@ -1659,6 +1659,7 @@ document.addEventListener("visibilitychange", function () {
             console.log('初始化')
             this.currentnum = 0;
             this.maxnum = 360;
+            $('.record_voice_box .tip').html('点击录音(至少录制45秒)')
             clearInterval (this.timer)
             $('.right').css('transform', "rotate(0)");
             $('.move').css('transform', "rotate(0)");

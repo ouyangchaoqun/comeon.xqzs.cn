@@ -1,7 +1,7 @@
 <template >
     <div style="height: 100%" class="answer_answer_box wbg">
 
-        <div v-title>回答</div>
+        <div v-title class='hide_title'>回答</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <!--问题详情-->
         <div class="answer" >
@@ -192,8 +192,22 @@
                 MIN_VOICE_LENGTH:45
             }
         },
-        mounted: function () {
-            let _this=this;
+        activated: function () {
+            let _this = this;
+            this.showLoad = false;
+            this.isAnswered = false;
+            this.answering = false;
+            this.outTime = false;
+            this.playing = false;
+            this.answerTime = "00";
+            this.timeOut = null;
+            this.questionId = null;
+            this.detail = {};
+            this.str = null;
+            this.localId = null;
+            this.serviceId = null;
+            this.voiceLength = 0;
+            this.isOver = false;
             myVideo.initStart();
             this.questionId = this.$route.query.askId;
             let expertId = cookie.get("expertId");
@@ -248,6 +262,14 @@
 
 
         },
+        deactivated:function () {
+            if(this.timeInterval!=null){
+                clearInterval(this.timeInterval);
+            }
+            this.clearTimeOut();
+            this.stop();
+        },
+
         methods: {
             timeIntervalFun:function () {
                 let _this=this;

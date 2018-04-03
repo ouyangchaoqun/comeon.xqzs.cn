@@ -1,7 +1,7 @@
 <template >
     <div style="height: 100%" class="answer_my_coment_list wbg">
 
-        <div v-title>我的评价</div>
+        <div v-title class='hide_title'>我的评价</div>
         <div class="nothing comment" v-show="list.length==0&&!showLoad" >
             <div>
                 <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
@@ -94,10 +94,13 @@
             'v-showLoad': showLoad,
             'v-scroll': scroll
         },
-        mounted: function () {
+        activated: function () {
+            this.page=1;
+            this.isPageEnd=false;
+            this.isShowMoreText=false;
+            this.list=[];
             this.getList();
             xqzs.wx.setConfig(this);
-
         },
         methods:{
 
@@ -271,6 +274,11 @@
                 this.getList(done);
 
             },
+        },
+        deactivated:function () {
+            if(this.timeOut!=null){
+                this.clearTimeOut();
+            }
         }
 
 

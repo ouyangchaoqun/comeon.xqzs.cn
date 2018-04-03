@@ -1,7 +1,7 @@
 <template >
     <div class="join_box">
 
-        <div v-title>平台介绍</div>
+        <div v-title class='hide_title'>平台介绍</div>
         <div class="top"></div>
         <div class="detail">
             <div class="detail_block">

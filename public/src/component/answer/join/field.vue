@@ -1,7 +1,7 @@
 <template >
     <div style="height: 100%" class="answer_join_field_box wbg">
 
-        <div v-title>入驻心理咨询师</div>
+        <div v-title class='hide_title'>入驻心理咨询师</div>
         <div class="stepStyle">3/10</div>
         <div class="joinStep_title">擅长领域</div>
         <v-answer-top-step step="3"  preUrl="./identity" nextUrl="./qualification" title="擅长领域" errorWord="请选择擅长领域" :canGoNext="canGoNext"></v-answer-top-step>
@@ -91,7 +91,7 @@
             }
         },
 
-        mounted: function () {
+        activated: function () {
             this.getClassList();
             xqzs.wx.setConfig(this);
 

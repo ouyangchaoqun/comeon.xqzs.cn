@@ -2,7 +2,7 @@
     <div class="personal_box regcom_Style_back">
         <v-showLoad v-show="showLoad"></v-showLoad>
         <div class="joinstep_background">
-            <div v-title>入驻心理咨询师</div>
+            <div v-title class='hide_title'>入驻心理咨询师</div>
 
             <div class="joinSet_top">
                 <div class="joinSet_cancel" @click="backStep()">取消</div>
@@ -40,7 +40,8 @@
             }
         },
 
-        mounted: function () {
+        activated: function () {
+            this.placeFlag=true;
             this.edit= this.$route.query.edit;
             if(this.edit==1){
                 this.getExpertInfo();

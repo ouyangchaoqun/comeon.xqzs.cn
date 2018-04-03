@@ -1,7 +1,7 @@
 <template >
     <div style="height: 100%" class="answer_join_voice wbg">
 
-        <div v-title>入驻心理咨询师</div>
+        <div v-title class='hide_title'>入驻心理咨询师</div>
         <div class="tipc">此至少10秒的语音寄语，将展示给来访者，请录制您对来访者的寄语！</div>
 
 
@@ -289,6 +289,22 @@
             xqzs.wx.setConfig(this);
             let _this= this;
             myVideo.config({obj:$('.circle')}).init(_this.start,_this.stop,_this.play,_this.play);
+        },
+        activated:function () {
+            this.answering2 = false;
+            this.preAnswer = false;
+            this.playing = false;
+            this.answerTime = "00";
+            this.timeOut = null;
+            this.finish = false;
+
+            this.vPlaying = false;
+            this.vPaused = false;
+            this.localId = null;
+            this.serviceId = null;
+            this.voiceLength = 0;
+            this.MIN_VOICE_LENGTH = 10;
+            this.clearTimeOut()
         },
         components: {
             "v-answer-top-step": answerTopStep

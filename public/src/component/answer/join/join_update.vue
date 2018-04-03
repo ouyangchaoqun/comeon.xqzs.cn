@@ -1,6 +1,6 @@
 <template >
     <div class="remind_box">
-        <div v-title>更新资质</div>
+        <div v-title class='hide_title'>更新资质</div>
         <header>
             请按照以下流程更新您的资质信息
         </header>

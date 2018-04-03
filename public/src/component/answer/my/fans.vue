@@ -1,6 +1,6 @@
 <template id="fans">
     <div class="fansBox">
-        <div v-title>我的粉丝</div>
+        <div v-title class='hide_title'>我的粉丝</div>
         <div v-if="count!=0">
             <v-showLoad v-if="showLoad"></v-showLoad>
             <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
@@ -55,7 +55,11 @@
         },
 
 
-        mounted: function () {
+        activated: function () {
+            this.page=1;
+            this.isPageEnd=false;
+            this.isShowMoreText=false;
+            this.list=[];
             this.getList()
             xqzs.wx.setConfig(this);
         },
