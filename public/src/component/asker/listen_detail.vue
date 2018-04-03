@@ -88,7 +88,7 @@
                 <h3>用户留言</h3>
                 <div class="title_border"></div>
                 <ul>
-                    <li v-for="(item,index) in evaluates" @click.stop="commentOrDel(item.userId,item.id,item.questionId,item.nickName,index,item.replies)">
+                    <li v-for="(item,index) in evaluates" @click.stop="commentOrDel(item.userId,item.id,item.questionId,item.nickName,index,null,evaluates)">
                         <img v-if="item.isAnonymous==0" :src="item.faceUrl" alt="">
                         <img v-if="item.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
                         <div class="eva_main">
@@ -213,13 +213,13 @@
                 $('.comment_box').attr({'minHeight':_this.height})
             },
             //留言或删除
-            commentOrDel:function (userId,msgId,questionId,name,index,item) {
+            commentOrDel:function (userId,msgId,questionId,name,index,item,bigItem) {
                 let vm = this;
                 console.log(userId,msgId,questionId,name,index,item);
                 if(!xqzs.user.isUserLogin())return
                 if(userId==vm.user.id){
                     console.log('删除自己的留言评论')
-                    vm.delItem(userId,msgId,index,item)
+                    vm.delItem(userId,msgId,index,item,bigItem)
 
                 }else{
                     console.log('对别人的评论进行评论')
@@ -227,7 +227,7 @@
                 }
             },
             //删除留言、删除回复
-            delItem:function (userId,messageId,index,item) {
+            delItem:function (userId,messageId,index,item,bigItem) {
                 console.log(index,item)
                 let _this = this;
                 xqzs.weui.dialog("", "确定删除吗？","" ,function(){
@@ -237,12 +237,14 @@
                     xqzs.api.post(_this, "come/user/evaluate/remove",{userId:userId,id:messageId},function (bt) {
                         if (bt.data && bt.data.status == 1) {
                             console.log('删除成功')
-                            item.splice(index,1)
-                            console.log(item)
-//                            if(_this.evaluates.length==0){
-//                                _this.page = 1;
-//                                _this.getCommentList()
-//                            }
+                            if(item)
+                                item.splice(index,1)
+                            if(bigItem)
+                                bigItem.splice(index,1)
+                            if(bigItem.length==0){
+                                _this.page = 1;
+                                _this.getCommentList()
+                            }
                         }
                     })
                 })
