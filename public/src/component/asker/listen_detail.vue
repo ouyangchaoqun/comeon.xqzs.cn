@@ -959,11 +959,10 @@
         display: -webkit-box;
         color: #999;
         font-size: 0.24rem;
-        line-height: 1.3;
+        line-height: 1.6;
         position: relative;
     }
 
-    .steal_detail_top .base_info{ padding-top: 0.1rem;}
 
 
     .steal_detail_top .steal_detail_top_price{
