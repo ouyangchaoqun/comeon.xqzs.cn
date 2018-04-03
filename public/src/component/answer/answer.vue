@@ -43,11 +43,11 @@
 
         <!--播放状态-->
         <div>
-            <div class="record_voice_box" style="position: relative" v-if="!isAnswered&&!outTime">
+            <div class="record_voice_box" v-if="!isAnswered&&!outTime">
                 <div class="time_in" style="position: static;margin-bottom: 1rem;">
                     <div>{{answerTime}}"</div>
                 </div>
-                <div class="circle" style="margin:0 auto;left: auto;bottom:auto;margin-bottom: 1rem;">
+                <div class="circle">
                     <div class="pie_left_play">
                         <div class="left_play"></div>
                     </div>
@@ -66,7 +66,7 @@
                     </div>
                     <div class="mask"><i class="start"></i></div>
                 </div>
-                <div class="tip" style="position: static">点击录音(至少录制45秒)</div>
+                <div class="tip">点击录音(至少录制45秒)</div>
                 <div class="addPlayBox" >
                     <!--操作按钮-->
                     <div class="action_btn" v-if="!isAnswered"> <!---->
