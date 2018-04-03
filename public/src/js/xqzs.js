@@ -1729,7 +1729,7 @@ document.addEventListener("visibilitychange", function () {
             }
 
 
-            that.bth.html('试听');
+            that.bth.html('请多次试听');
             that.maski.attr("class","playing")
             that.obj.unbind('click').bind('click',function(){that.play(that.callbackPlay)})
             that.clearTimer();

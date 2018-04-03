@@ -66,7 +66,7 @@
                     </div>
                     <div class="mask"><i class="start"></i></div>
                 </div>
-                <div class="tip">点击录音(至少录制45秒)</div>
+                <div class="tip" :class="{tryListenColor:isTry}">点击录音(至少录制45秒)</div>
                 <div class="addPlayBox" >
                     <!--操作按钮-->
                     <div class="action_btn" v-if="!isAnswered"> <!---->
@@ -182,7 +182,8 @@
                 serviceId:null,
                 voiceLength:0,
                 isOver:false,
-                MIN_VOICE_LENGTH:45
+                MIN_VOICE_LENGTH:45,
+                isTry:false
             }
         },
         activated: function () {
@@ -328,6 +329,7 @@
             },
             reStart:function () {
                 let _this=this;
+                _this.tryListenColor = false
                 xqzs.weui.dialog("重新录制将会删除此条录音","确定要重新录制嘛","",function () {
                     
                 },function () {
@@ -419,6 +421,7 @@
             },
             play:function () {//试听
                 let _this = this;
+                _this.tryListenColor = false;
                 if(this.playing){  //在播放中则暂停
                     if(_this.localId!=null) {
                         _this.clearTimeOut();
@@ -426,7 +429,7 @@
                         this.paused = true;
                         xqzs.wx.voice.pausePlay(_this.localId);
                         xqzs.wx.voice.playing=_this.playing;
-                        console.log("pausePlay")
+                        console.log("pausePlaypausePlaypausePlaypausePlay")
 
                     }
                 }else{
@@ -455,11 +458,12 @@
                 }
             },
             stop:function () { //停止录制
-
+                console.log('stopstopstopstopstopstop')
                 let _this = this;
 
                 xqzs.wx.voice.stopRecord(function (localId) {
                     console.log("stopstopstopstopstop"+localId)
+                    _this.tryListenColoe = true;
                     if(localId){
                         _this.localId = localId;
                         xqzs.localdb.set("voice_localId", localId);
@@ -473,6 +477,7 @@
 
             },
             _recordStop:function () {
+                console.log('_recordStop_recordStop_recordStop')
                 let _this = this;
                 _this.isOver = true;
                 _this.clearTimeOut();
@@ -494,6 +499,9 @@
 </script>
 <style>
 
+    .record_voice_box .tryListenColor{
+        color:rgba(254,115,1,1)
+    }
     .tipxuzhi{ margin-top:0.30rem; margin-right:0.30rem; text-align: right; font-size: 0.24rem; color:#999;
         background: url(http://oss.xqzs.cn/resources/psy/asker/tip.png) no-repeat;
         background-size: 0.28rem;
