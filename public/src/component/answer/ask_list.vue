@@ -1,20 +1,59 @@
 <template >
     <div style="height: 100%" class="answer_ask_list_box"  :class="{wbg:list.length==0&&!showLoad}">
         <v-showLoad v-if="showLoad"></v-showLoad>
-        <div class="nothing comment" v-if="list.length==0">
-            <div>
-                <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
-                <div class="nothing_bottom">
-                    <p>暂无待答问题</p>
+        <div id="tip" style="display: none">
+            <div class="dialog_select_type dialog_select_Height">
+                <div class="select_title">解答须知</div>
+                <div class="tip_content">
+                    <h3>一、专家解答注意事项</h3>
+                    <p>
+                        1、回答问题时请保持清晰的思路，并找一个安静的地方进行录制。
+                    </p>
+                    <p>
+                        2、60秒语音录制完成后，请试听一遍，确认表达无误后再点击发送。
+                    </p>
+                    <p>
+                        3、请专家针对用户的提问给予专业、有针对性的回答。
+                    </p>
+                    <p>
+                        4、不允许为用户推荐任何心理咨询机构及联系方式。
+                    </p>
+                    <p>
+                        5、不可开处方（包括指导用户具体用药剂量）、推荐处方及各种符合处方范畴内的药物。
+                    </p>
+                    <div>
+                        <h3>
+                            二、一对一问题回复须知
+                        </h3>
+                        <p>
+                            1、一对一问题回答后，将获得100%提问酬金，且问题将被推荐到首页
+                        </p>
+                        <p>
+                            2、您的回答被其他用户偷听时，将获得30%偷听费
+                        </p>
+                        <p>
+                            3、用户向您提问后，你可在48小时内进行回答，若未回答，提问酬金将返还给用户
+                        </p>
+                    </div>
                 </div>
+                <div class="yes know " >知道了</div>
             </div>
-
         </div>
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :bottomHeight="48"
                   :isShowMoreText="isShowMoreText">
             <div v-title class='hide_title'>待答</div>
-            <div class="list  ">
+            <div class="nothing comment" v-if="list.length==0&&!showLoad">
+                <div>
+                    <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
+                    <div class="nothing_bottom">
+                        <p>暂无待答问题</p>
+                        <div @click="tip()">解答须知</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="list">
                 <div class="item" v-for="item in list" @click="answer(item.id)">
                     <div class="img">
                         <img v-if="item.isAnonymous==0" :src="item.faceUrl">
@@ -86,6 +125,16 @@
             }
         },
         methods: {
+            closeDialog:function () {
+                xqzs.weui.dialogClose()
+            },
+            tip: function () {
+                let _this= this;
+                xqzs.weui.dialogCustom($("#tip").html());
+                $(".know").click(function () {
+                    _this.closeDialog()
+                })
+            },
             initAll:function () {
                 this.page=1;
                 this.isPageEnd=false;
@@ -209,4 +258,17 @@
     .answer_ask_list_box  .list .info .content{ font-size: 0.30rem; color:rgba(36,37,61,1);margin-bottom: 0.28rem ;width:98%;}
     .answer_ask_list_box  .list .info .last_time{line-height:1;font-size: 0.26rem;color:rgba(36,37,61,0.5);margin-bottom: 0.18rem;}
     .answer_ask_list_box  .list .info .price{ float:right;font-size: 0.24rem;color:#56C4FE; text-align: right; width: 2.38rem;}
+
+    .dialog_select_Height{ height:10.04rem; margin-top: -5rem;width: 86% ;margin-left:-43%}
+    .dialog_select_type  .yes{ width:60%;height:0.70rem;line-height: 0.71rem;background: RGBA(86, 196, 245,1);border-radius: 0.45rem;color:RGBA(255, 255, 255, 1);text-align: center;font-size: 0.30rem;margin:0.25rem auto;}
+    .dialog_select_type  .yes:active{background: #eee}
+    .dialog_select_type .tip_content{ padding: 0 0.2rem;
+        margin: 0 0.2rem;
+        line-height: 1.8;
+        font-size: 0.28rem;
+        color: #666;
+        height: 7.78rem;
+        overflow: auto;
+        background: RGBA(69, 75, 84, 0.05);}
+    .dialog_select_type .tip_content p{margin-top: 0.1rem ;margin-bottom: 0.10rem;}
 </style>
