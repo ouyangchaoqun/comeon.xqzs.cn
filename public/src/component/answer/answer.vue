@@ -429,11 +429,8 @@
                         this.paused = true;
                         xqzs.wx.voice.pausePlay(_this.localId);
                         xqzs.wx.voice.playing=_this.playing;
-                        console.log("pausePlaypausePlaypausePlaypausePlay")
-
                     }
                 }else{
-                    console.log("PlayPlayPlayPlay")
                     console.log("_this.localId:"+_this.localId)
                     if(_this.localId!=null){
                         this.clearTimeOut();
@@ -458,7 +455,6 @@
                 }
             },
             stop:function () { //停止录制
-                console.log('stopstopstopstopstopstop')
                 let _this = this;
                 _this.isTry = true;
                 xqzs.wx.voice.stopRecord(function (localId) {
@@ -477,7 +473,6 @@
 
             },
             _recordStop:function () {
-                console.log('_recordStop_recordStop_recordStop')
                 let _this = this;
                 _this.isOver = true;
                 _this.clearTimeOut();
