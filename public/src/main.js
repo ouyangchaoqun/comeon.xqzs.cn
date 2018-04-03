@@ -104,18 +104,14 @@ new Vue({
 });
 
 Vue.directive('title', {
-    inserted: function (el, binding) {
+    bind: function (el, binding) {
         // console.log(el);
         document.title = el.innerText;
-
-
-
-
         el.remove()
     },
     update: function (el, binding) {
+        if(document.title!= el.innerText)
         document.title = el.innerText;
-
         el.remove()
     }
 })

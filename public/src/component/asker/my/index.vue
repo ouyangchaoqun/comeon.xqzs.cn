@@ -1,6 +1,6 @@
 <template>
     <div style="height: 100%;width: 100%"  class="asker_my_index_box">
-        <div v-title>我的</div>
+        <div v-title class='hide_title'>我的</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="weui-tab__panel main">
             <div class="main">
@@ -33,6 +33,7 @@
                 <router-link to="../my/comment/list" class="comment"><i></i>我的评价</router-link>
             </div>
             <div class="join" @click="join()">入驻咨询师</div>
+            <div class="join mt" @click="busniess()"  >商务合作</div>
         </div>
         <v-asker-bottom tabOnIndex="4"></v-asker-bottom>
     </div>
@@ -189,6 +190,7 @@
     .asker_my_index_box .join:active{
         background: #eee;
     }
+    .join.mt{  margin-top: 0.2rem;}
     .asker_my_index_box .main a {
         position: relative;
         height: 1.18rem;

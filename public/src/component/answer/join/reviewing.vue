@@ -1,7 +1,7 @@
 <template >
     <div style="height: 100%" class="wbg answer_join_reviewing_box">
 
-        <div v-title>入驻心理咨询师</div>
+        <div v-title class='hide_title'>入驻心理咨询师</div>
 
         <div class="reviewing">
 

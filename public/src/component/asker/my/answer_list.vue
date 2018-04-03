@@ -1,7 +1,7 @@
 <template>
     <div style="height: 100%" class="asker_my_answer_list_box wbg">
 
-        <div v-title>我的关注</div>
+        <div v-title class='hide_title'>我的关注</div>
         <div class="nothing answer" v-if="list.length==0&&!showLoad" >
             <div>
                 <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
@@ -73,20 +73,38 @@
             'v-showLoad': showLoad,
             'v-scroll': scroll
         },
-
-
-        activated: function () {
+        mounted:function () {
             if(!xqzs.user.isUserLogin()){
                 return ;
             }
-            this.isPageEnd=false;
-            this.page=1;
-            this.list=[];
-            this.isShowMoreText=false;
-            this.getList();
+            this.initAll();
             xqzs.wx.setConfig(this, function () {weshare.init(wx)});
         },
+        props:
+            ['isKeepAlive']
+        ,
+        activated: function () {
+            console.log(this.isKeepAlive);
+            if(!this.isKeepAlive){
+                this.initAll();
+            }else{
+                let st = xqzs.localdb.get("st_"+this.$route.path);
+                console.log(st);
+                if(st){
+                    $('.yo-scroll').scrollTop(st);
+                }
+            }
+
+
+        },
         methods:{
+            initAll:function () {
+                this.isPageEnd=false;
+                this.page=1;
+                this.list=[];
+                this.isShowMoreText=false;
+                this.getList();
+            },
             goAnswerIndex:function () {
                 this.$router.push("/asker/expert")
             },

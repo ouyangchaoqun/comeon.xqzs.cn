@@ -1,7 +1,7 @@
 <template>
     <div class="coupon_box">
         <v-showLoad v-if="showLoad"></v-showLoad>
-        <div v-title>优惠券</div>
+        <div v-title class='hide_title'>优惠券</div>
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :bottomHeight="0"
                   :isShowMoreText="isShowMoreText">

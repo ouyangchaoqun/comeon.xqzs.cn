@@ -1,6 +1,6 @@
 <template >
     <div style="height: 100%" class="asker_my_coment_list wbg">
-        <div v-title>我的评价</div>
+        <div v-title class='hide_title'>我的评价</div>
         <div class="nothing comment" v-if="list.length==0&&!showLoad">
             <div>
                 <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
@@ -47,7 +47,7 @@
                                     <template v-if="!item.playing&&!item.paused">点击播放</template>
                                     <template v-if="item.playing">正在播放..</template>
                                     <template v-if="item.paused">播放暂停</template>
-                                    <div class="second">{{item.length}}”</div>
+                                    <div class="second">{{(item.ct && item.ct!='00')?item.ct:item.length}}”</div>
                                 </div>
 
                                 <div class="clear"></div>
@@ -84,6 +84,9 @@
             'v-scroll': scroll
         },
 
+        deactivated: function () {
+            this.clearTimeOut();
+        },
         activated: function () {
             this.page=1;
             this.isPageEnd=false;
@@ -96,12 +99,40 @@
             xqzs.wx.setConfig(this, function () {weshare.init(wx)});
         },
         methods:{
+            timeout:function (play,time,index) {
+                let _this=this;
+                _this.timeOut = setTimeout(function () {
+                    if(play==true){  //试听
+                        if(time>0){
+                            time = time -1 ;
+                            if(time<10)time="0"+time
+                            _this.timeout(play,time,index);
+                        }else{
+                            _this.playing=false;
+                        }
+                    }
+
+                },1000);
+                _this.list[index].ct =time;
+                console.log(time)
+                _this.$set(_this.list,index,_this.list[index])
+            },
+
+            clearTimeOut:function () {
+                let _this=this;
+                if(_this.timeOut!==null){
+                    clearTimeout(_this.timeOut);
+                }
+            },
             play:function (index) {
                 let _this=this;
                 let list = _this.list;
+                let CT= list[index].ct? list[index].ct: list[index].length;
+                let T = list[index].length;
                 xqzs.voice.onEnded=function () {
                     list[index].paused=false;
                     list[index].playing=false;
+                    if(_this.playing)_this.clearTimeOut();
                     _this.$set(_this.list,index,list[index])
                 };
                 //重置其他列表内容
@@ -116,7 +147,8 @@
                 if(item.paused){  //暂停中也就是已经获取到且为当前音频
                     list[index].paused=false;
                     list[index].playing=true;
-                    _this.$set(_this.list,index,list[index])
+                    _this.$set(_this.list,index,list[index]);
+                    _this.timeout(true,CT,index)
                     xqzs.voice.play();
                 }else{
                     if(item.playing){    //播放中去做暂停操作
@@ -124,13 +156,15 @@
                         list[index].playing=false;
                         _this.$set(_this.list,index,list[index])
                         xqzs.voice.pause();
+                        _this.clearTimeOut();
                     }else{     //重新打开播放
                         let answerId= item.answerId;
                         xqzs.voice.getAnswerVoice(answerId,function (url) {
                             xqzs.voice.play(url);
                             list[index].playing=true;
-                            list[index].paused=false;
-                            _this.$set(_this.list,index,list[index])
+                            list[index].paused=false;_this.clearTimeOut();
+                            _this.$set(_this.list,index,list[index]);
+                            _this.timeout(true,T,index)
                         })
                     }
 

@@ -1,7 +1,7 @@
 <template>
     <div style="background: #fff;">
         <div class="joinmobile_box">
-            <div v-title>入驻心理咨询师</div>
+            <div v-title class='hide_title'>入驻心理咨询师</div>
             <div class="joinSet_top">
                 <div class="joinSet_cancel" @click="backStep()">取消</div>
                 <div class="joinSet_sure sure_nor" v-if="!isAllInput">确定</div>

@@ -1,7 +1,7 @@
 <template >
     <div style="height: 100%" class="answer_join_voice wbg">
 
-        <div v-title>入驻心理咨询师</div>
+        <div v-title class='hide_title'>入驻心理咨询师</div>
         <div class="tipc">此至少10秒的语音寄语，将展示给来访者，请录制您对来访者的寄语！</div>
 
 

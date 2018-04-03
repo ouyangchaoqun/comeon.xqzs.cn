@@ -1,6 +1,6 @@
 <template >
     <div style="height: 100%" class="answer_race_list" :class="{wbg:list.length==0&&!showLoad}">
-        <div v-title>抢答</div>
+        <div v-title class='hide_title'>抢答</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="nothing comment" v-if="list.length==0&&!showLoad">
             <div>
@@ -56,52 +56,75 @@
                 list:[],
             }
         },
+        props:
+            ['isKeepAlive']
+        ,
+        deactivated: function () {
+            if(this.timeInterval!=null){
+                clearInterval(this.timeInterval);
+            }
+        },
+        mounted: function () {
+            this.initAll()
+        },
         activated: function () {
-            this.page=1;
-            this.isPageEnd=false;
-            this.isShowMoreText=false;
-            this.list=[];
-            let expertId;
-            let _this=this;
-            if(!xqzs.user.isUserLogin()){
-                return ;
-            }
-            if(cookie.get('expertId')==null){
-                this.$http.get(web.API_PATH + 'come/expert/query/detail/by/userId/_userId_' ).then(function (data) {//es5写法
-                    if (data.body.status == 1) {
-                        expertId = data.data.data.id;
-                        cookie.set('expertId',expertId,300);
-                        _this.expertId = expertId;
-                        _this.getList()
-                    }
-                }, function (error) {
-                });
-            }else {
-                this.expertId = cookie.get('expertId')
-                this.getList()
-            }
-            xqzs.wx.setConfig(_this,function () {
-                let localId = xqzs.localdb.get("voice_localId");
-                console.log("voice_localId："+localId);
-                if (localId && localId != "") {
-                    wx.stopVoice(localId);
-                    console.log(localId)
+            if(!this.isKeepAlive){
+                this.initAll();
+            }else{
+                let st = xqzs.localdb.get("st_"+this.$route.path);
+                console.log(st);
+                if(st){
+                    $('.yo-scroll').scrollTop(st);
                 }
-
-
-                var config = {
-                    imgUrl:"http://oss.xqzs.cn/resources/psy/logo.jpg",
-                    title:  "‘好一点’心理咨询平台诚邀您入驻" ,
-                    desc: '‘好一点’心理咨询师的兼职平台，诚邀您入驻，一次回答，收益不断！',
-                    link: "http://wx.xqzs.cn/comeon/guest#/join",
-                };
-                weshare.init(wx, config)
-
-
-            });
-            _this.getExpert();
+                this.timeIntervalFun()
+            }
         },
         methods: {
+            initAll:function () {
+                this.page = 1;
+                this.isPageEnd = false;
+                this.isShowMoreText = false;
+                this.list = [];
+                let expertId;
+                let _this = this;
+                if (!xqzs.user.isUserLogin()) {
+                    return;
+                }
+                if (cookie.get('expertId') == null) {
+                    this.$http.get(web.API_PATH + 'come/expert/query/detail/by/userId/_userId_').then(function (data) {//es5写法
+                        if (data.body.status == 1) {
+                            expertId = data.data.data.id;
+                            cookie.set('expertId', expertId, 300);
+                            _this.expertId = expertId;
+                            _this.getList()
+                        }
+                    }, function (error) {
+                    });
+                } else {
+                    this.expertId = cookie.get('expertId')
+                    this.getList()
+                }
+                xqzs.wx.setConfig(_this, function () {
+                    let localId = xqzs.localdb.get("voice_localId");
+                    console.log("voice_localId：" + localId);
+                    if (localId && localId != "") {
+                        wx.stopVoice(localId);
+                        console.log(localId)
+                    }
+
+
+                    var config = {
+                        imgUrl: "http://oss.xqzs.cn/resources/psy/logo.jpg",
+                        title: "‘好一点’心理咨询平台诚邀您入驻",
+                        desc: '‘好一点’心理咨询师的兼职平台，诚邀您入驻，一次回答，收益不断！',
+                        link: "http://wx.xqzs.cn/comeon/guest#/join",
+                    };
+                    weshare.init(wx, config)
+
+
+                });
+                _this.getExpert();
+            },
             timeIntervalFun:function () {
                 let _this=this;
                 if(_this.timeInterval!=null){

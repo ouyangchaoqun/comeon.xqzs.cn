@@ -1,6 +1,6 @@
 <template >
     <div style="height: 100%" class="answer_my_index_box">
-        <div v-title>我的</div>
+        <div v-title class='hide_title'>我的</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="weui-tab__panel main">
             <div class="main">

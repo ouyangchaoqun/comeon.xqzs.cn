@@ -1,6 +1,6 @@
 <template>
     <div class="asker_listen_box listenList_box">
-        <div v-title>{{titleVal}}</div>
+        <div v-title class='hide_title'>{{titleVal}}</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="weui-tab__panel main">
             <div class="down_list">
@@ -585,7 +585,7 @@
             xqzs.voice.pause();
         },
         deactivated:function () {
-            if(this.currPlayIndex)this.pause(this.currPlayIndex);
+            if(this.currPlayIndex!=null)this.pause(this.currPlayIndex);
         },
         activated:function () {
             console.log("this.isKeepAlive"+this.isKeepAlive)

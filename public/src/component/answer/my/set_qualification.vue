@@ -1,7 +1,7 @@
 <template >
     <div class="setQualification_box">
         <v-showLoad v-if="showLoad"></v-showLoad>
-        <div v-title>入驻资质</div>
+        <div v-title class='hide_title'>入驻资质</div>
         <header>
             <div class="header_top">
                 一句话签名

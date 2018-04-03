@@ -1,6 +1,6 @@
 <template xmlns="http://www.w3.org/1999/html">
     <div style="height: 100%" class="asker_ask_box">
-        <div v-title>提问</div>
+        <div v-title class='hide_title'>提问</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <v-recharge :rechargeMoney="rechargeMoney" v-show="rechargeFlag" v-on:childMessage="getFlagVal"></v-recharge>
         <div class="change_height">

@@ -1,6 +1,6 @@
 <template >
     <div style="height: 100%" class="expert_list">
-        <div v-title>{{titleVal}}</div>
+        <div v-title class='hide_title'>{{titleVal}}</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
 
         <div class="filter_box">

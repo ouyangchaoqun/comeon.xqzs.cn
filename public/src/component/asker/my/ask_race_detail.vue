@@ -2,7 +2,7 @@
 
     <div class="rob_problem">
         <v-showLoad v-if="showLoad"></v-showLoad>
-        <div v-title>问题详情</div>
+        <div v-title class='hide_title'>问题详情</div>
         <div class="my_problem_detail">
             <div class="problem_detail_header">
                 <!--问题类型:  <div class="race_titleColor">{{detail.title}}</div>-->
@@ -182,6 +182,12 @@
             this.id= parseInt(this.$route.query.id);
             this.getDetail();
             xqzs.wx.setConfig(this, function () {weshare.init(wx)});
+        },
+        deactivated: function () {
+            if(this.timeInterval!=null){
+                clearInterval(this.timeInterval);
+            }
+            this.clearTimeOut();
         },
         methods: {
             timeIntervalFun:function () {

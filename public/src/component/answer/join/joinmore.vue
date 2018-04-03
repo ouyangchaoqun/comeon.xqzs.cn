@@ -19,7 +19,7 @@
                 <div class="myask_class_true" @click="hide_myask_mask()">知道了</div>
             </div>
         </div>
-        <div v-title>入驻心理咨询师</div>
+        <div v-title class='hide_title'>入驻心理咨询师</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <header>
             <div class="headerImg_box">

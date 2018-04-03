@@ -1,7 +1,7 @@
 <template>
     <div :class="{wbg:list.length==0&&!showLoad}">
         <v-showLoad v-if="showLoad"></v-showLoad>
-        <div v-title>我问</div>
+        <div v-title class='hide_title'>我问</div>
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :bottomHeight="48"
                   :isShowMoreText="isShowMoreText">
@@ -99,6 +99,11 @@
             this.isShowMoreText=false;
             this.getList();
             xqzs.wx.setConfig(this, function () {weshare.init(wx)});
+        },
+        deactivated: function () {
+            if(this.timeInterval!=null){
+                clearInterval(this.timeInterval);
+            }
         },
         methods: {
             initAll:function () {

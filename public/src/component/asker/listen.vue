@@ -1,7 +1,7 @@
 <template id="stealListen_index">
     <div class="asker_listen_box" :class="{wbg:list.length==0 }">
         <!--头部导航栏-->
-        <div v-title>心理咨询</div>
+        <div v-title class='hide_title'>心理咨询</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <!--<div @click.stop="go_expert()" class="expert_entry" v-if="isRegExpert"></div>-->
         <div class="weui-tab__panel main">
@@ -629,8 +629,7 @@
             console.log("activated")
         },
         deactivated:function () {
-            if(this.currPlayIndex)
-            this.pause(this.currPlayIndex);
+            if(this.currPlayIndex!=null)this.pause(this.currPlayIndex);
         }
     }
 

@@ -1,6 +1,6 @@
 <template id="my_problem_detail">
     <div class="ask_detailBox">
-        <div v-title>问题详情</div>
+        <div v-title class='hide_title'>问题详情</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="my_problem_detail">
             <!--<div class="problem_detail_header">-->
@@ -137,6 +137,12 @@
 //            this.getTags();
             xqzs.wx.setConfig(this, function () {weshare.init(wx)});
             console.log(this.user)
+        },
+        deactivated: function () {
+            if(this.timeInterval!=null){
+                clearInterval(this.timeInterval);
+            }
+            this.clearTimeOut();
         },
         methods: {
             timeIntervalFun:function () {

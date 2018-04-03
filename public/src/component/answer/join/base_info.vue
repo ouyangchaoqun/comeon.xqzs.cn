@@ -1,7 +1,7 @@
 <template >
     <div style="height: 100%" class="wbg answer_join_base_info_box">
 
-        <div v-title>入驻心理咨询师</div>
+        <div v-title class='hide_title'>入驻心理咨询师</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="stepStyle">1/10</div>
         <div class="joinStep_title">填写基本信息</div>

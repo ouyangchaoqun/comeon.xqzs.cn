@@ -1,7 +1,7 @@
 <template >
     <div style="height: 100%" class="answer_answer_box wbg">
 
-        <div v-title>回答</div>
+        <div v-title class='hide_title'>回答</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <!--问题详情-->
         <div class="answer" >
@@ -262,6 +262,14 @@
 
 
         },
+        deactivated:function () {
+            if(this.timeInterval!=null){
+                clearInterval(this.timeInterval);
+            }
+            this.clearTimeOut();
+            this.stop();
+        },
+
         methods: {
             timeIntervalFun:function () {
                 let _this=this;

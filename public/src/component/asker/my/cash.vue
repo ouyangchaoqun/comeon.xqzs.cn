@@ -1,6 +1,6 @@
 <template>
     <div class="dotcoin_box">
-        <div v-title>我的现金</div>
+        <div v-title class='hide_title'>我的现金</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div class="banner banner_cash_bg">
             <div class="title">我的余额（元）</div>

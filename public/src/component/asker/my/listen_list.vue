@@ -1,6 +1,6 @@
 <template>
     <div style="height: 100%" class="asker_my_listen_list_box wbg">
-        <div v-title>我的偷听</div>
+        <div v-title class='hide_title'>我的偷听</div>
         <div class="nothing listen" v-if="list.length==0&&!showLoad">
             <div>
                 <img src="http://oss.xqzs.cn/resources/psy/asker/newNoContent.png" alt="">
@@ -83,6 +83,9 @@
                 playing:false,
             }
         },
+        props:
+            ['isKeepAlive']
+        ,
         components: {
             'v-showLoad': showLoad,
             'v-scroll': scroll
@@ -90,20 +93,33 @@
         deactivated:function () {
             this.clearTimeOut();
         },
+        mounted: function () {
+            this.initAll()
+        },
         activated: function () {
-            this.isPageEnd=false;
-            this.page=1;
-            this.list=[];
-            this.isShowMoreText=false;
-
-            if(!xqzs.user.isUserLogin()){
-                return ;
+            if(!this.isKeepAlive){
+                this.initAll();
+            }else{
+                let st = xqzs.localdb.get("st_"+this.$route.path);
+                console.log(st);
+                if(st){
+                    $('.yo-scroll').scrollTop(st);
+                }
             }
-            this.getList();
-            xqzs.wx.setConfig(this, function () {weshare.init(wx)});
-
         },
         methods:{
+            initAll:function () {
+                this.isPageEnd=false;
+                this.page=1;
+                this.list=[];
+                this.isShowMoreText=false;
+
+                if(!xqzs.user.isUserLogin()){
+                    return ;
+                }
+                this.getList();
+                xqzs.wx.setConfig(this, function () {weshare.init(wx)});
+            },
             getLittleFace:function (url) {
                 return url.replace("/0",'/132')
             },

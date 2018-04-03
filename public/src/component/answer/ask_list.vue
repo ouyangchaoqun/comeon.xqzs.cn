@@ -13,7 +13,7 @@
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :bottomHeight="48"
                   :isShowMoreText="isShowMoreText">
-            <div v-title>待答</div>
+            <div v-title class='hide_title'>待答</div>
             <div class="list  ">
                 <div class="item" v-for="item in list" @click="answer(item.id)">
                     <div class="img">
@@ -60,28 +60,48 @@
                 timeInterval:null
             }
         },
-
-
-
-
+        props:
+            ['isKeepAlive']
+        ,
+        mounted: function () {
+            this.initAll()
+        },
         activated: function () {
-            this.page=1;
-            this.isPageEnd=false;
-            this.isShowMoreText=false;
-            this.list=[];
-            this.getList();
-            xqzs.wx.setConfig(this, function () {
-                var config = {
-                    imgUrl: 'http://oss.xqzs.cn/resources/psy/join_share_img3.jpg',
-                    title:  '‘好一点’心理咨询平台诚邀您入驻' ,
-                    desc: '‘好一点’心理咨询师的兼职平台，诚邀您入驻，一次回答，收益不断！',
-                    link: "http://wx.xqzs.cn/comeon/guest#/join",
-                };
-                weshare.init(wx, config)
-            });
+            if(!this.isKeepAlive){
+                this.initAll();
+            }else{
+                let st = xqzs.localdb.get("st_"+this.$route.path);
+                console.log(st);
+                if(st){
+                    $('.yo-scroll').scrollTop(st);
+                }
+                this.timeIntervalFun()
+            }
+        },
 
+
+        deactivated: function () {
+            if(this.timeInterval!=null){
+                clearInterval(this.timeInterval);
+            }
         },
         methods: {
+            initAll:function () {
+                this.page=1;
+                this.isPageEnd=false;
+                this.isShowMoreText=false;
+                this.list=[];
+                this.getList();
+                xqzs.wx.setConfig(this, function () {
+                    var config = {
+                        imgUrl: 'http://oss.xqzs.cn/resources/psy/join_share_img3.jpg',
+                        title:  '‘好一点’心理咨询平台诚邀您入驻' ,
+                        desc: '‘好一点’心理咨询师的兼职平台，诚邀您入驻，一次回答，收益不断！',
+                        link: "http://wx.xqzs.cn/comeon/guest#/join",
+                    };
+                    weshare.init(wx, config)
+                });
+            },
             timeIntervalFun:function () {
                 let _this=this;
                 if(_this.timeInterval!=null){
