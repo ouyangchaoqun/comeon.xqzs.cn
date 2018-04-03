@@ -18,7 +18,7 @@ var xqzs = {
 
 
         getShareTip:function () {
-            let subHtml='<div class="subscribe_box">' +
+            var subHtml='<div class="subscribe_box">' +
                 '<div class="top">心理专家语音回答，为您排忧解难</div>' +
                 '<div class="img"><img src="http://oss.xqzs.cn/resources/psy/subscripe_ewm.png" /></div>' +
                 '<div class="tip">长按识别关注“好一点”</div>' +
