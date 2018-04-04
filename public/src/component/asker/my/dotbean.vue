@@ -27,13 +27,16 @@
     export default {
         data() {
             return {
-                user:{},
+
                 showLoad:false,
                 rechargeMoney:0,
                 rechargeFlag :false,
                 addMoneyVal:0
             }
         },
+        props:[
+         "user"
+        ],
         activated: function () {
             if(!xqzs.user.isUserLogin()){
                 return ;

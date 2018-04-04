@@ -10,7 +10,7 @@
                 <div class="gift" v-if="item.couponCount!=0">赠送{{item.couponCount}}张偷听卡</div>
             </div>
         </div>
-        <div class="cash">现金余额可使用<span style="color: #FB640A"> {{balance||0.00}} </span>元
+        <div class="cash">现金余额可使用<span style="color: #FB640A"> {{user.balance||0.00}} </span>元
             <div class="cash_right" :class={no:!isUseIncome} @click="useIncome()"></div>
         </div>
         <div class="rechar_btn" @click="doPay()">立即支付（{{pay}} 元）</div>
@@ -22,7 +22,7 @@
         <div class="tips" v-if="isTips">
             <div class="close" @click="closeTips"></div>
             <div class="tip_title">充值须知</div>
-            <div class="content">
+            <div class="content">11
                 <p>1、免费偷听问答不扣点豆，已支付问题可重复免费听；</p>
                 <p>2、点豆仅限平台内偷听问答，充值后不可提现；</p>
                 <!--<p>3.请在有效期内使用偷听卡；</p>-->
@@ -48,7 +48,6 @@
                 isUseIncome: false,
                 backUrl:'',
                 havedianCoin:0,
-                balance:0,
 
             }
 
@@ -70,7 +69,7 @@
                 let _this=this;
                 if(_this.user){
                     if( _this.user!=''|| _this.user!=undefined){
-                        _this.balance = _this.user.balance
+
                         _this.havedianCoin = _this.user.dianCoin;
                     }
                 }else{
@@ -79,8 +78,7 @@
                     xqzs.user.getUserInfo(function (user) {
                         _this.user =user;
                         if(_this.user&& _this.user!=''|| _this.user!=undefined){
-                            _this.balance = _this.user.balance;
-                            _this.havedianCoin = _this.user.dianCoin;
+                             _this.havedianCoin = _this.user.dianCoin;
                         }
 
                     })
@@ -96,10 +94,10 @@
                 item.c = 1;
                 this.$set(this.items, index, item)
                 if (this.isUseIncome) {
-                    if (Number(this.balance) >= Number(item.money)) {
+                    if (Number(this.user.balance) >= Number(item.money)) {
                         this.pay = 0;
                     } else {
-                        this.pay = (Number(item.money) - Number(this.balance)).toFixed(2)
+                        this.pay = (Number(item.money) - Number(this.user.balance)).toFixed(2)
                     }
                 }
                 else {
@@ -127,8 +125,12 @@
                 this.isTips = false;
             },
             useIncome: function () {
-                this.isUseIncome = !this.isUseIncome;
-                this.select(this.checkIndex)
+                if(this.user.balance>0){
+                    this.isUseIncome = !this.isUseIncome;
+                    this.select(this.checkIndex)
+                }else{
+                    this.isUseIncome=false;
+                }
             },
             getRechargeConfig: function () {
                 let _this = this;
