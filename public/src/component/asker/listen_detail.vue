@@ -98,7 +98,7 @@
                 <h3>用户留言</h3>
                 <div class="title_border"></div>
                 <ul>
-                    <li v-for="(item,index) in evaluates" @click.stop="commentOrDel(item.userId,item.id,item.questionId,item.nickName,index,item.replies,evaluates)">
+                    <li v-for="(item,index) in evaluates" @click.stop="commentOrDel(item.userId,item.id,item.questionId,item.nickName,index,item.replies,evaluates,item.userExpertNickName)">
 
                        <block v-if="item.userExpertId&&item.userId!=1658&&item.userId!=424">
                            <img :src="item.userExpertFaceUrl" alt="" @click.stop="goExpert(item.userExpertId)">
@@ -122,7 +122,7 @@
                                 {{getFormatDate(item.addTime)}}
                             </div>
                             <div class="eva_commont_box" v-if="item.replies&&item.replies.length>0">
-                                <div class="friend_commont"  v-for="(reply,replyIndex) in item.replies" :key="replyIndex" @click.stop="commentOrDel(reply.userId,reply.id,item.questionId,reply.nickName,replyIndex,item.replies,null)">
+                                <div class="friend_commont"  v-for="(reply,replyIndex) in item.replies" :key="replyIndex" @click.stop="commentOrDel(reply.userId,reply.id,item.questionId,reply.nickName,replyIndex,item.replies,null,null)">
                                 <span class="name" v-if="reply.toEvaluateId==0||reply.toEvaluateId==null">
                                     <template >{{reply.nickName | shortName(7)}}</template>：</span>
                                     <template v-if="reply.toEvaluateId!=0&&reply.toEvaluateId!=null"><span class="name">
@@ -256,7 +256,7 @@
                 $('.comment_box').attr({'minHeight':_this.height})
             },
             //留言或删除
-            commentOrDel:function (userId,msgId,questionId,name,index,item,bigItem) {
+            commentOrDel:function (userId,msgId,questionId,name,index,item,bigItem,expertName) {
                 let vm = this;
                 console.log(userId,msgId,questionId,name,index,item);
                 if(!xqzs.user.isUserLogin())return
@@ -266,7 +266,7 @@
 
                 }else{
                     console.log('对别人的评论进行评论')
-                    vm.replyItem(msgId,questionId,name,item)
+                    vm.replyItem(msgId,questionId,name,item,expertName)
                 }
             },
             //删除留言、删除回复
@@ -323,9 +323,14 @@
             },
 
             //对留言进行回复、对别人的回复进行回复
-            replyItem:function (id,questionId,nickName,item) {
+            replyItem:function (id,questionId,nickName,item,expertName) {
                 let vm = this;
-                console.log(id,questionId,nickName,item)
+                let showName;
+                if(expertName){
+                    showName=expertName
+                }else{
+                    showName = nickName
+                }
                 vm.actionSheetEdit("发送", function (v) {
                     xqzs.api.put(vm,'come/user/evaluate/question', {
                         "id": id,
@@ -343,6 +348,7 @@
                             let  stuckMessage = {
                                 content:v,
                                 nickName: vm.user.nickName,
+                                userExpertNickName:expertName,
                                 toNickName:nickName,
                                 id:msg.id,
                                 questionId:questionId,
@@ -358,7 +364,7 @@
                 }, function (v) {
                     console.log(v)
                     //取消
-                }, "回复" + xqzs.shortname(nickName,7))
+                }, "回复" + xqzs.shortname(showName,7))
             },
             actionSheetEdit: function ( sendText, doFun, cancelFun, placeholder,maxLength,noHide,isAuto) {
                 let _this = this;
