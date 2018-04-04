@@ -61,7 +61,7 @@
 
                 if(!this.user||(this.user.issubscribe!=1&&isShare==1)){
                     //戳我
-                    let clickMeHtml  = '<div class="click_me" ><span>心情解忧</span></div>';
+                    let clickMeHtml  = '<div class="click_me" ><span>心理咨询</span></div>';
                     $('body').append(clickMeHtml);
                     $(".click_me").click(function () {
                         xqzs.user.getShareTip();
