@@ -96,8 +96,7 @@
                                 <div class="star"><span class="on" v-for="i in item.point"></span><span   v-for="i in 5-item.point"></span>
                                     <div class="time timeRight">{{formatTime(item.addTime)}}</div>
                                 </div>
-                                <div class="word" >{{item.content}}
-                                </div>
+                                <div class="word">{{item.content}}</div>
                                 <div class="class_s">
                                     <span v-for="tag in item.tag">{{tag.title}}</span>
                                     <div class="clear"></div>
@@ -131,9 +130,7 @@
                                 <img v-if="item.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png">
                             </div>
                             <div class="info" >
-                                <div class="word" v-html="overContent(item.content)" v-if="item.isContentOut" @click="getMoreContent(index)">
-                                </div>
-                                <div class="word" v-if="!item.isContentOut">
+                                <div class="word" @click="getMore(index)" :class="{word_openStyle:item.isContentClick}">
                                     {{item.content}}
                                 </div>
                             </div>
@@ -248,8 +245,7 @@
                 couponNum:0,
                 couponList:[],
                 isMe:"",
-                isShare:false,
-                isContentOut:false
+                isShare:false
             }
         },
         props:{
@@ -304,16 +300,8 @@
             })
         },
         methods:{
-            overContent:function (str) {
-                console.log(str.length)
-                if(str.length>63){
-                    return str.substring(0,63) + '<span style="color:rgba(86, 196, 245,1)"> ... 更多</span>'
-                }else {
-                    return str
-                }
-            },
-            getMoreContent:function (index) {
-                this.answerList[index].isContentOut = false;
+            getMore:function (index) {
+                this.answerList[index].isContentClick = true;
                 this.$set(this.answerList,index,this.answerList[index]);
             },
             getFlagVal:function (val) {
@@ -724,12 +712,7 @@
                         let arr = data.body.data;
 //
                         for(let i = 0;i<arr.length;i++){
-                            arr[i].isContentOut = false;
-                            if(arr[i].content.length>63){
-                                arr[i].isContentOut = true
-                            }else {
-                                arr[i].isContentOut = false
-                            }
+                            arr[i].isContentClick = false;
                         }
                         if (arr.length < _this.row) {
                             _this.isPageEnd = true;
@@ -807,7 +790,7 @@
         color: rgba(36,37,61,0.5);
         font-size: 0.24rem;
     }
-    .answer_detail_box .content_mt{ margin-top: 0.15rem;    display: inline-block;}
+    .answer_detail_box .content_mt{ margin-top: 0.3rem;    display: inline-block;}
     .answer_detail_box .answer_info{
         width: 100%;
         box-shadow: 0 0.10rem 0 #f5f5f5;
@@ -983,7 +966,8 @@
     .answer_detail_box  .list .info{ float:left; margin-left:0.30rem;  width: 84%;line-height: 0.68rem;}
     .answer_detail_box  .list .info .name{ font-size: 0.24rem; color:rgba(36,37,61,0.5); margin-bottom: 0.07rem; width: 4.80rem;line-height: 1}
     .answer_detail_box  .list .info .star{line-height: 1;margin-bottom: 0.12rem}
-    .answer_detail_box  .list .word{ font-size:0.28rem;  color:rgba(36,37,61,1); margin-bottom: 0.14rem; overflow: hidden;word-wrap:break-word; line-height: 0.48rem;}
+    .answer_detail_box  .list .word{ font-size:0.28rem;  color:rgba(36,37,61,1); margin-bottom: 0.14rem; overflow: hidden;word-wrap:break-word; line-height: 0.48rem;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;}
+    .answer_detail_box  .list .word_openStyle{display: block}
     .answer_detail_box  .list .time{ font-size:0.24rem; color:rgba(36,37,61,0.5);}
     .answer_detail_box .timeRight{float: right}
     .answer_detail_box  .list .info .class_s { clear: both; padding-top: 0.10rem;}
@@ -1054,7 +1038,7 @@
     /*margin-right: 0.17rem;*/
     /*}*/
     .friestP{overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 4;line-height:0.40rem;-webkit-box-orient: vertical;}
-    .addopen{margin-top:0.150rem;height:auto;}
+    .addopen{margin-top:0.3rem;height:auto;}
     .addstop{margin-top:0;height:0;overflow: hidden;}
     .item .others{ color:rgba(36,37,61,0.5); position: relative; font-size: 0.24rem; padding-left: 0.98rem;}
     .item .others .listen_count{ float: left;margin-right: 0.20rem}
