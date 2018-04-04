@@ -105,18 +105,18 @@ new Vue({
 });
 
 
-
+let updateTitle=function () {
+   if( $(".hide_title"))document.title =  $(".hide_title").html();
+}
 router.afterEach((to,from)=>{
-    console.log('afterEach update Title');
     setTimeout(function () {
-        document.title =  $(".hide_title").html();
+        updateTitle();
         setTimeout(function () {
-            document.title =  $(".hide_title").html();
+            updateTitle();
             setTimeout(function () {
-                document.title =  $(".hide_title").html();
+                updateTitle();
                 setTimeout(function () {
-                    document.title =  $(".hide_title").html();
-
+                    updateTitle();
                 },800)
             },400)
         },100)
