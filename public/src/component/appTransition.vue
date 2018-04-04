@@ -59,7 +59,7 @@
                 let  isShare = this.$route.query.share;
 
 
-                if(!this.user||(this.user.issubscribe!=1&&isShare==1)||true){
+                if(!this.user||(this.user.issubscribe!=1&&isShare==1)){
                     //戳我
                     let clickMeHtml  = '<div class="click_me" ><span>心情解忧</span></div>';
                     $('body').append(clickMeHtml);
