@@ -10,7 +10,7 @@
         var reUrl=  "http://wx.xqzs.cn/comeon/?#/";
 
 
-        console.log(vueUrl)
+
         if(isBack){
             reUrl +=  "asker/listen?share=1&reurl=" + encodeURIComponent(vueUrl)
         }else{
@@ -21,6 +21,7 @@
             }
             reUrl= reUrl+ vueUrl;
         }
+        console.log(reUrl)
         return  reUrl;
     },
     init: function (wx,config, success, cancel,type) {
