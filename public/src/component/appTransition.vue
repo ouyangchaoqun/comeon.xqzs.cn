@@ -58,11 +58,10 @@
             subscribe:function () {
                 let  isShare = this.$route.query.share;
 
-                console.log("isShare")
-                console.log(isShare)
-                if(!this.user||(this.user.issubscribe!=1&&isShare==1)){
+
+                if(!this.user||(this.user.issubscribe!=1&&isShare==1)||true){
                     //戳我
-                    let clickMeHtml  = '<div class="click_me" >戳我</div>';
+                    let clickMeHtml  = '<div class="click_me" ><span>心情解忧</span></div>';
                     $('body').append(clickMeHtml);
                     $(".click_me").click(function () {
                         xqzs.user.getShareTip();
@@ -193,14 +192,32 @@
     .subscribe_box img{ width: 4rem;
         height:4rem; }
     .subscribe_box .top{ line-height: 1rem;}
-     .click_me { background: #00b9e8; color:#fff; font-size: 0.3rem; z-index: 1000;  line-height: 2;  padding: 0 0.3rem; position: fixed; top:4rem; right:0.3rem;}
-      .click_me:after{ content: '' ; display: block; position: absolute; right:-0.3rem; top:0;
-        width: 0;
-        height: 0;
-        border-top:0.3rem solid transparent;
-        border-left: 0.3rem solid #00b9e8;
-        border-bottom: 0.3rem solid transparent;
+     .click_me {   color:#fff;   z-index: 1000;      position: fixed; top:4rem; right:0rem;
+
+         height: 1.10rem;
+         width: 1.44rem;
+         background: url(http://oss.xqzs.cn/resources/psy/logo.png) no-repeat #fff;
+         background-size: 0.50rem;
+         background-position: 0.54rem 0.07rem;
+         border-radius: 0.55rem;
+         box-shadow: -0.08rem 0.04rem 0.12rem #ddd;
+
+         border-bottom-right-radius: 0;
+         border-top-right-radius: 0;
+     }
+    .click_me span{
+
+        margin-top: 0.61rem;
+        margin-left: 0.07rem;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        color: rgba(69,75,84,1);
+        font-size: 0.24rem;
     }
+
+
+
     .audio .audio_btn:before {
         width: 0.23rem;
         position: absolute;
