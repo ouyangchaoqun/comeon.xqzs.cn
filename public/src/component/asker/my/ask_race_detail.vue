@@ -599,6 +599,7 @@
     .rob_answer_bottom{
         padding: 0;
         padding-left: 0.88rem;
+        margin-bottom: 0.24rem;
     }
     .best_answer{
         height: 0.36rem;
