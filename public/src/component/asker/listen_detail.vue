@@ -270,12 +270,37 @@
                 }
             },
             //删除留言、删除回复
+//            delItem:function (userId,messageId,index,item,bigItem) {
+//                console.log(index,item)
+//                let _this = this;
+//                xqzs.weui.dialog("", "确定删除吗？","" ,function(){
+//                    console.log('取消')
+//                }, function(){
+//                    console.log('删除')
+//                    xqzs.api.post(_this, "come/user/evaluate/remove",{userId:userId,id:messageId},function (bt) {
+//                        if (bt.data && bt.data.status == 1) {
+//                            console.log('删除成功')
+//                            if(bigItem){
+//                                bigItem.splice(index,1);
+//                                if(bigItem.length==0){
+//                                    _this.page = 1;
+//                                    _this.getCommentList()
+//                                }
+//                            }else if(item){
+//                                item.splice(index,1)
+//                            }
+//
+//
+//                        }
+//                    })
+//                })
+//            },
+
             delItem:function (userId,messageId,index,item,bigItem) {
-                console.log(index,item)
+
                 let _this = this;
-                xqzs.weui.dialog("", "确定删除吗？","" ,function(){
-                    console.log('取消')
-                }, function(){
+                xqzs.weui.actionSheet("删除我的评论?","删除",function () {
+                    ///删除操作
                     console.log('删除')
                     xqzs.api.post(_this, "come/user/evaluate/remove",{userId:userId,id:messageId},function (bt) {
                         if (bt.data && bt.data.status == 1) {
@@ -289,12 +314,14 @@
                             }else if(item){
                                 item.splice(index,1)
                             }
-
-
                         }
                     })
+                },function () {
+                    //取消
+                    console.log('取消')
                 })
             },
+
             //对留言进行回复、对别人的回复进行回复
             replyItem:function (id,questionId,nickName,item) {
                 let vm = this;
