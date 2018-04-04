@@ -124,7 +124,7 @@ input,textarea{-webkit-appearance:none;outline: 0;resize: none;color:rgba(69, 75
     background: #ffffff;
     max-height: 60px;
     overflow-y: auto;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 20px;
     width: 100%;
 
@@ -424,8 +424,7 @@ a{
     padding-top: 0.16rem;
 }
 .followed_box{
-    height:0.51rem;
-    line-height: 0.51rem;
+    padding:0.06rem 0;
     border:1px solid #56C4FE  ;
     display: inline-block;
     width:1.02rem;
@@ -493,6 +492,13 @@ a{
 .problem_answer_zan{
     float: right;
 }
+ .care_icon{
+    margin-right: 0 !important;
+    display: inline-block;
+    width: 0.32rem;
+     float: right;
+}
+
 .problem_answer_zan div{
     float: left;
     margin-left: 0.40rem;
@@ -506,7 +512,7 @@ a{
 .problem_answer_zan span{
     float: left;
     padding-top:0.03rem;
-    margin-left: 0.03rem;
+    margin-right: 0.05rem;
 }
 /* 弹出框 解答须知*/
 .myask_know_box{

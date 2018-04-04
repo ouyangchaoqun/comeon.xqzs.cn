@@ -69,7 +69,7 @@
                                             </div>
                                         </span>
 
-                                        <div class="index_li_count">听过 {{item.listenTimes}}</div>
+                                        <div class="index_li_count">{{item.listenTimes}} 人听过</div>
                                     </div>
                                 </div>
                             </li>
@@ -141,7 +141,7 @@
                                             </div>
                                         </span>
 
-                                        <div class="index_li_count">听过 {{item.listenTimes}}</div>
+                                        <div class="index_li_count">{{item.listenTimes}} 人听过</div>
                                     </div>
                                 </div>
                             </li>
@@ -535,6 +535,7 @@
                 let vm = this;
                 xqzs.api.get(vm, 'come/listen/listen/list/_userId_/0/1/3'+'?hottestOrNewest='+3,function (response) {
                     vm.list = response.data.data;
+                    vm.list = vm.randContentNum(vm.list);
                     for (let i = 0;i<vm.list.length;i++){
                         vm.list[i].isSel = true;
                     }
@@ -765,6 +766,7 @@
         -webkit-line-clamp: 4;
         -webkit-box-orient: vertical;
         margin-bottom: 0.30rem;
+        word-wrap:break-word;
     }
 
     .index_li_bottom {

@@ -78,7 +78,7 @@
                             </div>
                         </span>
 
-                                        <div class="index_li_count">听过 {{item.listenTimes}}</div>
+                                        <div class="index_li_count">{{item.listenTimes}} 人听过</div>
                                     </div>
                             </li>
 

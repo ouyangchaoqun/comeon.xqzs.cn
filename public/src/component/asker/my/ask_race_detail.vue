@@ -91,8 +91,12 @@
                     <div class="problem_answer_bottom rob_answer_bottom">
                         <div class="problem_answer_time">{{formatDateText(item.addTime)}}</div>
                         <div class="problem_answer_zan">
-                            <div><span>听过</span> <span>{{item.ListenTimes}}</span></div>
-                            <div @click="like(index)" class="good_care" :class="{good_cared:item.isLiked}"><span> {{item.likeTimes}}</span></div>
+                            <div><span>{{item.ListenTimes}} 人听过</span></div>
+                            <div @click="like(index)">
+                                <span> {{item.likeTimes}}</span>
+                                <img v-if="!item.isLiked" src="http://oss.xqzs.cn/resources/psy/asker/zan_nor.png" class="care_icon"/>
+                                <img v-if="item.isLiked" src="http://oss.xqzs.cn/resources/psy/asker/zan_por1.png" class="care_icon"/>
+                            </div>
                         </div>
                     </div>
                 </li>
@@ -595,6 +599,7 @@
     .rob_answer_bottom{
         padding: 0;
         padding-left: 0.88rem;
+        margin-bottom: 0.24rem;
     }
     .best_answer{
         height: 0.36rem;

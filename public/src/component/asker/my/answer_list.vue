@@ -19,7 +19,7 @@
                   :bottomHeight="0"
                   :isShowMoreText="isShowMoreText"  v-if="list.length>0">
 
-            <div class="top_tip">共{{total}}位咨询师</div>
+            <!--<div class="top_tip">共{{total}}位咨询师</div>-->
             <div class="answer_list">
                 <div class="item" v-for="(item,index) in list"  v-if="item.expertId!=52">
                     <div @click="goDetail(item.expertId)">

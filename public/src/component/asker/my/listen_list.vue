@@ -17,7 +17,7 @@
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :bottomHeight="0"
                   :isShowMoreText="isShowMoreText"  v-if="list.length>0">
-            <header class="questCount">共{{count}}个问题</header>
+            <!--<header class="questCount">共{{count}}个问题</header>-->
             <div class="list">
                 <div class="item" v-for="(item,index) in list">
                     <a @click="goDetail(item.questionId)">
@@ -48,9 +48,11 @@
                         <div class="others">
                             <div class="time">{{formatTime(item.answerTime)}}</div>
                             <div class="others_right">
-                                <div class="listen_count">听过 {{item.listenTimes}}</div>
-                                <div class="good_care" :class="{good_cared:item.isCared}" @click.stop="like(index)">
-                                    <span>{{item.likeTimes}}</span>
+                                <div class="listen_count">{{item.listenTimes}} 人听过</div>
+                                <div @click.stop="like(index)">
+                                    <span style="margin-right: 0.05rem;">{{item.likeTimes}}</span>
+                                    <img v-if="!item.isCared" src="http://oss.xqzs.cn/resources/psy/asker/zan_nor.png" class="care_icon"/>
+                                    <img v-if="item.isCared" src="http://oss.xqzs.cn/resources/psy/asker/zan_por1.png" class="care_icon"/>
                                 </div>
                             </div>
 
@@ -325,6 +327,6 @@
 
     .asker_my_listen_list_box .others{ color:rgba(36,37,61,0.5); position: relative; font-size: 0.24rem; padding: 0 0.30rem; margin-top: 0.37rem;}
     .asker_my_listen_list_box .others .listen_count{ float:left;    margin-right: 0.20rem;}
-    .asker_my_listen_list_box .others .others_right{position: absolute;right:0.27rem;top:0}
+    .asker_my_listen_list_box .others .others_right{position: absolute;right:0.27rem;top:0;display: flex}
 
 </style>
