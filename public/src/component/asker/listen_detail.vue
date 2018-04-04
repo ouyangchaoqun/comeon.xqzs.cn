@@ -177,6 +177,9 @@
                 lengthLock:false
             }
         },
+        deactivated:function () {
+           this.rechargeFlag=false;
+        },
         activated: function () {
             this.initAll();
         },
