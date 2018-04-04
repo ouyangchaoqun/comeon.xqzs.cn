@@ -146,6 +146,8 @@
             },
             loadMoreText: function () {
 
+                console.log('this.isShowMoreText'+this.isShowMoreText)
+                console.log('this.isPageEnd'+this.isPageEnd)
                 if (!this.isShowMoreText) {
                     $(".load-more").hide();
                     $(".load-finish").hide();
@@ -159,17 +161,15 @@
                     }
                 }
 
-
             },
             infinite() {
-//                console.log("Loading")
+                console.log("Loading")
                 this.infiniteLoading = true
                 this.onInfinite(this.infiniteDone);
             },
 
             infiniteDone() {
-
-//                console.log("done")
+                console.log("done")
                 this.infiniteLoading = false
             },
 
@@ -188,6 +188,12 @@
 
                 if (bottom < infiniteHeight) this.infinite()
             }
+        },
+        activated:function () {
+//            this.isPageEnd = false;
+//            this.isShowMoreText= true;
+//            console.log("activatactivatedactivatedactivatedactivatedactivatedactivateded")
+//            this.loadMoreText();
         }
     }
 </script>

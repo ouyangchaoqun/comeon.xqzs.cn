@@ -548,6 +548,9 @@
                 let url =  'come/listen/listen/list/_userId_/' + vm.type + '/' + vm.page + '/' + vm.row+'?hottestOrNewest=2';
                 vm.rankUrl = url ;
                 if (vm.isLoading || vm.isPageEnd) {
+                    if (done && typeof(done) === 'function') {
+                        done()
+                    }
                     return;
                 }
                 if (vm.page == 1) {

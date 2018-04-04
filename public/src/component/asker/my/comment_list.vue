@@ -189,6 +189,9 @@
                     this.rankUrl = this.rankUrl + "guest=true"
                 }
                 if (vm.isLoading || vm.isPageEnd) {
+                    if (done && typeof(done) === 'function') {
+                        done()
+                    }
                     return;
                 }
 

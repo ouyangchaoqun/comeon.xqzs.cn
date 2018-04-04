@@ -404,6 +404,9 @@
                     this.rankUrl = this.rankUrl + ""
                 }
                 if (vm.isLoading || vm.isPageEnd) {
+                    if (done && typeof(done) === 'function') {
+                        done()
+                    }
                     return;
                 }
                 if (vm.page == 1) {

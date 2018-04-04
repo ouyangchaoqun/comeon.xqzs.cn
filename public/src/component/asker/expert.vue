@@ -267,6 +267,9 @@
                     this.rankUrl = this.rankUrl + "guest=true"
                 }
                 if (vm.isLoading || vm.isPageEnd) {
+                    if (done && typeof(done) === 'function') {
+                        done()
+                    }
                     return;
                 }
                 if (vm.page == 1) {
@@ -350,6 +353,7 @@
                 console.log(st);
                 if(st){
                     $('.yo-scroll').scrollTop(st);
+//                    Bus.$emit("scrollDone");
                 }
             }
         }

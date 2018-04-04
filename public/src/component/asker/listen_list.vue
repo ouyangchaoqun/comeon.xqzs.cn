@@ -523,6 +523,9 @@
                 let vm = this;
                 this.rankUrl = 'come/listen/listen/list/_userId_/' + vm.type + '/' + vm.page + '/' + vm.row+'?hottestOrNewest='+vm.qType;;
                 if (vm.isLoading || vm.isPageEnd) {
+                    if (done && typeof(done) === 'function') {
+                        done()
+                    }
                     return;
                 }
 
