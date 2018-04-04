@@ -618,6 +618,8 @@
         },
 
         activated:function () {
+            this.rechargeMoney=0;
+            this.rechargeFlag=false;
             if(!this.isKeepAlive){
                 this.initAll();
             }else{
@@ -630,6 +632,7 @@
             console.log("activated")
         },
         deactivated:function () {
+            this.rechargeFlag=false;
             if(this.currPlayIndex!=null)this.pause(this.currPlayIndex);
         }
     }

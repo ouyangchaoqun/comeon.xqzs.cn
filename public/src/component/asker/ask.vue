@@ -142,6 +142,12 @@
             "v-asker-bottom": askerBottom,
             'v-recharge':Recharge,
         },
+        activated:function () {
+            this.rechargeFlag=false;
+        },
+        deactivated:function () {
+            this.rechargeFlag=false;
+        },
         mounted: function () {
             this.expertId=this.$route.query.expertId;
             this.getUserInfo();

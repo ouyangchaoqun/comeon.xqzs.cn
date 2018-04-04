@@ -586,8 +586,11 @@
         },
         deactivated:function () {
             if(this.currPlayIndex!=null)this.pause(this.currPlayIndex);
+            this.rechargeFlag=false;
         },
         activated:function () {
+             this.rechargeMoney=0;
+            this.rechargeFlag=false;
             console.log("this.isKeepAlive"+this.isKeepAlive)
             if(!this.isKeepAlive){
                 this.nowSort="最新问题";

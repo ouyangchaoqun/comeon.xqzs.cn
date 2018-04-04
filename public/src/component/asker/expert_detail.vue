@@ -253,6 +253,7 @@
         },
         deactivated: function () {
             console.log(this.currPlayIndex)
+            this.rechargeFlag=false;
             if(this.currPlayIndex!=null)this.pause(this.currPlayIndex);
         },
         activated: function () {
@@ -262,6 +263,8 @@
             this.answerList=[];
             this.isPageEnd=false;
             this.isShowMoreText=true;
+            this.rechargeFlag=false;
+            this.rechargeMoney=0;
 
             this.isMe=this.$route.query.isMe;
             this.id = this.$route.query.id;
