@@ -79,6 +79,7 @@ let router = new VueRouter({
     routes: routers
 });
 
+
 router.beforeEach((to, from, next) => {
     // console.log('路由全局勾子：beforeEach');
 
@@ -103,15 +104,24 @@ new Vue({
     render: h => h(App)
 });
 
-Vue.directive('title', {
-    bind: function (el, binding) {
-        // console.log(el);
-        document.title = el.innerText;
-        el.remove()
-    },
-    update: function (el, binding) {
-        if(document.title!= el.innerText)
-        document.title = el.innerText;
-        el.remove()
-    }
+
+
+router.afterEach((to,from)=>{
+    console.log('afterEach update Title');
+    setTimeout(function () {
+        document.title =  $(".hide_title").html();
+        setTimeout(function () {
+            document.title =  $(".hide_title").html();
+            setTimeout(function () {
+                document.title =  $(".hide_title").html();
+                setTimeout(function () {
+                    document.title =  $(".hide_title").html();
+                    setTimeout(function () {
+                        document.title =  $(".hide_title").html();
+                    },100)
+                },100)
+            },100)
+        },100)
+    },100)
 })
+
