@@ -9,16 +9,16 @@
     getShareUrl:function (vueUrl,isBack) {
         var reUrl=  "http://wx.xqzs.cn/comeon/?#/";
 
-
+        if(vueUrl.indexOf("?")>=0){
+            vueUrl +="&share=1"
+        }else{
+            vueUrl +="?share=1"
+        }
 
         if(isBack){
             reUrl +=  "asker/listen?share=1&reurl=" + encodeURIComponent(vueUrl)
         }else{
-            if(vueUrl.indexOf("?")>=0){
-                vueUrl +="&share=1"
-            }else{
-                vueUrl +="?share=1"
-            }
+
             reUrl= reUrl+ vueUrl;
         }
         console.log(reUrl)
