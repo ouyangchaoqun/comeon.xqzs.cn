@@ -67,6 +67,7 @@
         },
         data() {
             return {
+                autoHeight:100, //提高拉取高度
                 top: 0,
                 state: 0,
                 startY: 0,
@@ -182,7 +183,7 @@
                 let innerHeight = this.$el.querySelector('.inner').clientHeight
                 let scrollTop = this.$el.scrollTop
                 let ptrHeight = this.onRefresh ? this.$el.querySelector('.pull-refresh').clientHeight : 0
-                let infiniteHeight = this.$el.querySelector('.load-more').clientHeight
+                let infiniteHeight = this.$el.querySelector('.load-more').clientHeight + this.autoHeight
                 let bottom = innerHeight - outerHeight - scrollTop - ptrHeight
 
                 if (bottom < infiniteHeight) this.infinite()
