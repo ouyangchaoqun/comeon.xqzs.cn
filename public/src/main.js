@@ -116,11 +116,9 @@ router.afterEach((to,from)=>{
                 document.title =  $(".hide_title").html();
                 setTimeout(function () {
                     document.title =  $(".hide_title").html();
-                    setTimeout(function () {
-                        document.title =  $(".hide_title").html();
-                    },100)
-                },100)
-            },100)
+
+                },800)
+            },400)
         },100)
     },100)
 })
