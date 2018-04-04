@@ -177,9 +177,15 @@
                 lengthLock:false
             }
         },
-        deactivated:function () {
-           this.rechargeFlag=false;
+        beforeRouteLeave (to, from, next) {
+            if(this.rechargeFlag){
+                this.rechargeFlag=false;
+                next(false)
+            }else{
+                next()
+            }
         },
+
         activated: function () {
             this.initAll();
         },

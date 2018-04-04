@@ -37,14 +37,18 @@
         props:[
          "user"
         ],
-        deactivated:function () {
-            this.rechargeFlag=false;
+        beforeRouteLeave (to, from, next) {
+            if(this.rechargeFlag){
+                this.rechargeFlag=false;
+                next(false)
+            }else{
+                next()
+            }
         },
         activated: function () {
             this.addMoneyVal=0;
             this.rechargeMoney=0;
-            this.rechargeFlag=false;
-            if(!xqzs.user.isUserLogin()){
+             if(!xqzs.user.isUserLogin()){
                 return ;
             }
             this.getUserInfo();

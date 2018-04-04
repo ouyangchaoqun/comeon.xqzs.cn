@@ -616,11 +616,17 @@
         beforeCreate:function () {
             console.log("beforeCreate")
         },
-
+        beforeRouteLeave (to, from, next) {
+            if(this.rechargeFlag){
+                this.rechargeFlag=false;
+                next(false)
+            }else{
+                next()
+            }
+        },
         activated:function () {
             this.rechargeMoney=0;
-            this.rechargeFlag=false;
-            if(!this.isKeepAlive){
+             if(!this.isKeepAlive){
                 this.initAll();
             }else{
                 let st = xqzs.localdb.get("st_"+this.$route.path);
@@ -632,7 +638,6 @@
             console.log("activated")
         },
         deactivated:function () {
-            this.rechargeFlag=false;
             if(this.currPlayIndex!=null)this.pause(this.currPlayIndex);
         }
     }
