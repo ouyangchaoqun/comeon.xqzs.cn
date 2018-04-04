@@ -790,7 +790,7 @@
         color: rgba(36,37,61,0.5);
         font-size: 0.24rem;
     }
-    .answer_detail_box .content_mt{ margin-top: 0.15rem;    display: inline-block;}
+    .answer_detail_box .content_mt{ margin-top: 0.3rem;    display: inline-block;}
     .answer_detail_box .answer_info{
         width: 100%;
         box-shadow: 0 0.10rem 0 #f5f5f5;
@@ -1038,7 +1038,7 @@
     /*margin-right: 0.17rem;*/
     /*}*/
     .friestP{overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 4;line-height:0.40rem;-webkit-box-orient: vertical;}
-    .addopen{margin-top:0.150rem;height:auto;}
+    .addopen{margin-top:0.3rem;height:auto;}
     .addstop{margin-top:0;height:0;overflow: hidden;}
     .item .others{ color:rgba(36,37,61,0.5); position: relative; font-size: 0.24rem; padding-left: 0.98rem;}
     .item .others .listen_count{ float: left;margin-right: 0.20rem}
