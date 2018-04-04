@@ -59,10 +59,13 @@
                         </div>
                         <!--回答后底部显示详情-->
                         <div class="problem_answer_bottom">
-                            <div class="problem_answer_time"><span>{{formatDateText(item.answerTime)}}</span><span>听过 {{item.listenTimes}}</span></div>
+                            <div class="problem_answer_time"><span>{{formatDateText(item.answerTime)}}</span><span>{{item.listenTimes}} 人听过</span></div>
                             <div class="problem_answer_zan">
                                 <div  v-if="item.inCome!=0"><span>偷听分成 </span><span>￥{{formatPrice(item.inCome)}}</span></div>
-                                <div class="good_care"><span>{{item.likeTimes}}</span></div>
+                                <div>
+                                    <span>{{item.likeTimes}}</span>
+                                    <img src="http://oss.xqzs.cn/resources/psy/asker/zan_nor.png" class="care_icon"/>
+                                </div>
                             </div>
                         </div>
                     </li>
@@ -98,10 +101,13 @@
                         </div>
                         <!--回答后底部显示详情-->
                         <div class="problem_answer_bottom">
-                            <div class="problem_answer_time"><span>{{formatDateText(item.answerTime)}}</span><span>听过 {{item.listenTimes}}</span></div>
+                            <div class="problem_answer_time"><span>{{formatDateText(item.answerTime)}}</span><span>{{item.listenTimes}}</span> 人听过</div>
                             <div class="problem_answer_zan">
                                 <div><span>偷听分成 </span><span style="color:#FF9900">￥{{formatPrice(item.inCome)}}</span></div>
-                                <div class="good_care"><span>{{item.likeTimes}}</span></div>
+                                <div>
+                                    <span>{{item.likeTimes}}</span>
+                                    <img src="http://oss.xqzs.cn/resources/psy/asker/zan_nor.png" class="care_icon"/>
+                                </div>
                             </div>
                         </div>
                     </li>

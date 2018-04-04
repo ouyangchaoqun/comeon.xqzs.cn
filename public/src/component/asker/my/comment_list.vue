@@ -16,7 +16,7 @@
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :bottomHeight="0"
                   :isShowMoreText="isShowMoreText"  v-if="list.length>0">
-            <div class="top_tip">共{{list.length}}条评价</div>
+            <!--<div class="top_tip">共{{list.length}}条评价</div>-->
             <div class="list">
                 <div class="item" v-for="(item,index) in list">
                     <div class="comment">

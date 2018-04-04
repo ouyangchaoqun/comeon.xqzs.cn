@@ -80,10 +80,13 @@
                         <div class="problem_answer_time">{{formatDateText(item.addTime)}}</div>
                         <div class="problem_answer_zan">
                             <div>
-                                <span>听过</span>
-                                <span> {{item.listenTimes}}</span>
+                                <span>{{item.listenTimes}} 人听过</span>
                             </div>
-                            <div @click="like(index)" class="good_care" :class="{good_cared:item.isCared}"><span>{{item.likeTimes}}</span></div>
+                            <div @click="like(index)" >
+                                <span>{{item.likeTimes}}</span>
+                                <img v-if="!item.isCared" src="http://oss.xqzs.cn/resources/psy/asker/zan_nor.png" class="care_icon"/>
+                                <img v-if="item.isCared" src="http://oss.xqzs.cn/resources/psy/asker/zan_por1.png" class="care_icon"/>
+                            </div>
                         </div>
 
                     </div>
@@ -99,7 +102,7 @@
 
                        <block v-if="item.userExpertId&&item.userId!=1658&&item.userId!=424">
                            <img :src="item.userExpertFaceUrl" alt="" @click.stop="goExpert(item.userExpertId)">
-                           <img src="http://oss.xqzs.cn/resources/psy/asker/expert_v.png" class="expert_v">
+                           <img src="http://oss.xqzs.cn/resources/psy/asker/header_img_v.png" class="expert_v">
                        </block>
                         <block v-else>
                             <img v-if="item.isAnonymous==0" :src="item.faceUrl" alt="">
@@ -108,7 +111,7 @@
 
                         <div class="eva_main">
                             <block v-if="item.userExpertId&&item.userId!=1658&&item.userId!=424">
-                                <div class="eva_name" @click.stop="goExpert(item.userExpertId)">{{item.userExpertNickName}} <span class="expert_line"></span> <span> {{item.userExpertJobTitle}}</span></div>
+                                <div class="eva_name" @click.stop="goExpert(item.userExpertId)">{{nameSub(item.userExpertNickName)}} <span class="expert_line"></span> <span> {{item.userExpertJobTitle}}</span></div>
                             </block>
                             <block v-else>
                             <div class="eva_name" v-if="item.isAnonymous==0">{{item.nickName}}</div>
@@ -117,8 +120,6 @@
                             <div class="eva_content">{{item.content}}</div>
                             <div class="eva_time">
                                 {{getFormatDate(item.addTime)}}
-                                <!--<span v-if="item.userId == user.id" @click="delItem(item.userId,item.id,index,evaluates)">删除</span>-->
-                                <!--<span v-if="item.userId !=user.id" @click="replyItem(item.id,item.questionId,item.nickName,evaluates)">回复</span>-->
                             </div>
                             <div class="eva_commont_box" v-if="item.replies&&item.replies.length>0">
                                 <div class="friend_commont"  v-for="(reply,replyIndex) in item.replies" :key="replyIndex" @click.stop="commentOrDel(reply.userId,reply.id,item.questionId,reply.nickName,replyIndex,item.replies,null)">
@@ -126,7 +127,7 @@
                                     <template >{{reply.nickName | shortName(7)}}</template>：</span>
                                     <template v-if="reply.toEvaluateId!=0&&reply.toEvaluateId!=null"><span class="name">
                                         <template >{{reply.nickName | shortName(7)}}</template>
-                                    </span>回复
+                                    </span> 回复
                                         <span class="name">
                                         <template>{{reply.toNickName | shortName(7)}}</template>：
                                         </span>
@@ -204,6 +205,14 @@
             }
         },
         methods:{
+            nameSub:function (str) {
+                if(str.length>6){
+                    return str.substring(0,6) + '...'
+                }else{
+                    return str
+                }
+
+            },
             goExpert: function (id) {
                 this.$router.push("/asker/expert/detail?id=" + id);
             },
@@ -881,11 +890,11 @@
     .pageEndStyle{text-align: center;font-size: 0.28rem;color:RGBA(69, 75, 84, 0.5);line-height: 0.4rem;padding: 0.2rem;}
     /**新增评价样式**/
     .evaluate_box{
-        padding-top: 0.3rem;
+        padding: 0.3rem 0;
     }
     .evaluate_box h3{
         color:#2EB1FF;
-        font-size: 0.36rem;
+        font-size: 0.30rem;
         line-height: 0.5rem;
         text-align: center;
         font-weight: normal;
@@ -899,10 +908,11 @@
         margin: 0 auto;
     }
     .evaluate_box li{
-        margin-left: 0.4rem;
+        margin-left: 0.3rem;
         border-bottom: 0.02rem solid #eee;
         position: relative;
         padding-top: 0.3rem;
+        margin-right: 0.3rem;
     }
     .evaluate_box li img{
         width:0.8rem;
@@ -914,14 +924,13 @@
     .evaluate_box li .expert_line{ height: 0.28rem; width: 0.02rem; background: #00b9e8;display: inline-block; position: relative; vertical-align: middle; margin-left: 0.12rem; margin-right: 0.06rem;}
     .evaluate_box li .expert_line:before{ content: ''; display: inline-block; position: absolute; height: 0.04rem; width: 0.04rem; border-radius: 50%;left:-0.02rem; top:0.12rem; background:#00b9e8;}
     .evaluate_box li .expert_v{
-        width:0.3rem;
-        height:0.3rem;
+        width:0.28rem;
+        height:0.28rem;
         border-radius: inherit;
-        top:0.2rem; left:0.55rem;
+        top:0.84rem; left:0.52rem;
     }
     .evaluate_box li .eva_main{
         padding-left: 1rem;
-        padding-right: 0.3rem;
         color:#333;
         font-size: 0.28rem;
      }
@@ -1009,7 +1018,7 @@
         display: -webkit-flex;
         display: -webkit-box;
         color: #999;
-        font-size: 0.24rem;
+        font-size: 0.28rem;
         line-height: 1.6;
         position: relative;
     }
@@ -1052,7 +1061,7 @@
         font-size: 0.28rem;
         padding-bottom: 0.40rem;
         margin-left: 1.3rem;
-        margin-right: 0.60rem;
+        margin-right: 0.30rem;
         margin-bottom: 0.20rem;
         border-bottom: 0.02rem solid #eee;
     }
@@ -1081,7 +1090,7 @@
         height:0.32rem;
         line-height: 0.32rem;
         padding-bottom:0.20rem;
-        padding-right: 0.60rem;
+        padding-right: 0.30rem;
         padding-left: 1.3rem;
         border-bottom: 0.20rem solid #f4f4f7;
     }

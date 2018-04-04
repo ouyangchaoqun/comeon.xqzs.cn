@@ -61,7 +61,7 @@
             <!--</div>-->
             <div class="answer_detail">
                 <div class="answer_title">详细介绍</div>
-                <div class="content">
+                <div class="content" @click="btn_sq()">
                     <p :class={friestP:Hflag} v-html="detail.introduction"></p>
                     <div :class={addopen:!Hflag,addstop:Hflag}>
                         <b>专业培训经历：</b>
@@ -70,7 +70,12 @@
                         <p v-html="detail.goodat"></p>
                     </div>
                 </div>
-                <div class="btn_sq" @click="btn_sq()"><span v-if="!Hflag">收起</span><span v-if="Hflag">展开全部</span></div>
+                <div class="btn_sq" @click="btn_sq()">
+                    <div v-if="!Hflag">收起</div>
+                    <div v-if="Hflag">展开</div>
+                    <img v-if="Hflag" src="http://oss.xqzs.cn/resources/psy/join_down.png" alt="">
+                    <img class="rotate_img" v-if="!Hflag" src="http://oss.xqzs.cn/resources/psy/join_down.png" alt="">
+                </div>
             </div>
             <div class="answer_comments">
                 <div class="answer_title">最新评价({{detail.evaluateCount}})
@@ -125,11 +130,12 @@
                                 <img v-if="item.isAnonymous==0" :src="item.faceUrl">
                                 <img v-if="item.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png">
                             </div>
-                            <div class="info">
-                                <div class="word">
+                            <div class="info" >
+                                <div class="word" v-html="overContent(item.content)" v-if="item.isContentOut" @click="getMoreContent(index)">
+                                </div>
+                                <div class="word" v-if="!item.isContentOut">
                                     {{item.content}}
                                 </div>
-                                <!--<div class="price">￥{{item.price}}</div>-->
                             </div>
                             <div class="clear"></div>
                         </div>
@@ -162,8 +168,12 @@
                         <div class="others">
                             <div class="time">{{formatTime(item.queAddTime)}}</div>
                             <div class="others_right">
-                                <div class="listen_count">听过 {{item.listenTimes}}</div>
-                                <div class="good_care" :class="{good_cared:item.isCared}" @click.stop="like(index)" ><span>{{item.likeTimes}}</span></div>
+                                <div class="listen_count">{{item.listenTimes}} 人听过</div>
+                                <div @click.stop="like(index)" >
+                                    <span style="margin-right: 0.05rem;">{{item.likeTimes}}</span>
+                                    <img v-if="!item.isCared" src="http://oss.xqzs.cn/resources/psy/asker/zan_nor.png" class="care_icon"/>
+                                    <img v-if="item.isCared" src="http://oss.xqzs.cn/resources/psy/asker/zan_por1.png" class="care_icon"/>
+                                </div>
                             </div>
 
                         </div>
@@ -238,7 +248,8 @@
                 couponNum:0,
                 couponList:[],
                 isMe:"",
-                isShare:false
+                isShare:false,
+                isContentOut:false
             }
         },
         props:{
@@ -293,6 +304,18 @@
             })
         },
         methods:{
+            overContent:function (str) {
+                console.log(str.length)
+                if(str.length>63){
+                    return str.substring(0,63) + '<span style="color:rgba(86, 196, 245,1)"> ... 更多</span>'
+                }else {
+                    return str
+                }
+            },
+            getMoreContent:function (index) {
+                this.answerList[index].isContentOut = false;
+                this.$set(this.answerList,index,this.answerList[index]);
+            },
             getFlagVal:function (val) {
                 this.rechargeFlag  = val.rechargeFlag;
                 this.getUser();
@@ -672,6 +695,7 @@
                     if (data.body.status == 1) {
                         _this.commentList= data.body.data
                         console.log(data.body.data)
+
                     }
                 })
             },
@@ -699,6 +723,14 @@
                         }
                         let arr = data.body.data;
 //
+                        for(let i = 0;i<arr.length;i++){
+                            arr[i].isContentOut = false;
+                            if(arr[i].content.length>63){
+                                arr[i].isContentOut = true
+                            }else {
+                                arr[i].isContentOut = false
+                            }
+                        }
                         if (arr.length < _this.row) {
                             _this.isPageEnd = true;
                             _this.isShowMoreText = false
@@ -775,7 +807,7 @@
         color: rgba(36,37,61,0.5);
         font-size: 0.24rem;
     }
-    .answer_detail_box .content_mt{ margin-top: 0.3rem;    display: inline-block;}
+    .answer_detail_box .content_mt{ margin-top: 0.15rem;    display: inline-block;}
     .answer_detail_box .answer_info{
         width: 100%;
         box-shadow: 0 0.10rem 0 #f5f5f5;
@@ -909,27 +941,31 @@
         padding-right: 0.30rem;
     }
     .answer_detail_box .content{
-        font-size: 0.30rem;
+        font-size: 0.28rem;
         padding:0.30rem ;
         line-height: 0.4rem;
-        color:rgba(36,37,61,0.7)
+        color:rgb(63, 63, 63);
+        padding-bottom: 0.2rem;
 
     }
-    .answer_detail_box .content b{
-        color:rgba(36,37,61,1);
-        font-weight: normal;
-    }
+    /*.answer_detail_box .content b{*/
+        /*color:rgba(36,37,61,1);*/
+        /*font-weight: normal;*/
+    /*}*/
     .answer_detail_box .btn_sq{
-        width:1.80rem;
         height:0.45rem;
-        line-height: 0.45rem;
-        border-radius: 0.10rem ;
-        border: 0.02rem solid RGBA(86, 196, 245,1);
+        line-height: 1;
         margin:0 auto;
-        margin-top: 0.20rem;
         text-align: center;
-        color: RGBA(86, 196, 245,1);
+        color: rgba(36,37,61,0.5);
         font-size: 0.24rem;
+    }
+    .answer_detail_box .btn_sq img{
+        width:0.3rem;
+        margin-top: 0.15rem;
+    }
+    .answer_detail_box .btn_sq .rotate_img{
+        transform:rotate(180deg)
     }
     .answer_detail_box .answer_comments{
         background: white;
@@ -944,7 +980,7 @@
 
     .answer_detail_box  .list .item .img{ width: 0.68rem;height: 0.68rem; float:left; }
     .answer_detail_box  .list .item .img img{ width: 100%; height: 100%; border-radius: 50%;}
-    .answer_detail_box  .list .info{ float:left; margin-left:0.30rem;  width: 83%;line-height: 0.68rem;}
+    .answer_detail_box  .list .info{ float:left; margin-left:0.30rem;  width: 84%;line-height: 0.68rem;}
     .answer_detail_box  .list .info .name{ font-size: 0.24rem; color:rgba(36,37,61,0.5); margin-bottom: 0.07rem; width: 4.80rem;line-height: 1}
     .answer_detail_box  .list .info .star{line-height: 1;margin-bottom: 0.12rem}
     .answer_detail_box  .list .word{ font-size:0.28rem;  color:rgba(36,37,61,1); margin-bottom: 0.14rem; overflow: hidden;word-wrap:break-word; line-height: 0.48rem;}
@@ -1018,11 +1054,11 @@
     /*margin-right: 0.17rem;*/
     /*}*/
     .friestP{overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 4;line-height:0.40rem;-webkit-box-orient: vertical;}
-    .addopen{margin-top:0.30rem;height:auto;}
+    .addopen{margin-top:0.150rem;height:auto;}
     .addstop{margin-top:0;height:0;overflow: hidden;}
     .item .others{ color:rgba(36,37,61,0.5); position: relative; font-size: 0.24rem; padding-left: 0.98rem;}
     .item .others .listen_count{ float: left;margin-right: 0.20rem}
-    .item .others_right{position: absolute;right:0;top:0}
+    .item .others_right{position: absolute;right:0;top:0;display: flex;}
     .ask_answer .new ul{
         position: absolute;
         width: 1.19rem;
