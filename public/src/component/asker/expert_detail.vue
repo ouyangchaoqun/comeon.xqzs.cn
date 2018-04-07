@@ -2,7 +2,7 @@
     <div style="height: 100%" class="answer_detail_box">
         <div v-title class='hide_title'>专家详情</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
-        <v-recharge :rechargeMoney="rechargeMoney" v-show="rechargeFlag" v-on:childMessage="getFlagVal"></v-recharge>
+        <v-recharge :rechargeMoney="rechargeMoney" v-show="rechargeFlag" :user="user" v-on:childMessage="getFlagVal"></v-recharge>
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :bottomHeight="0"
                   :isShowMoreText="isShowMoreText" >
