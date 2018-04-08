@@ -723,7 +723,7 @@
 
     .index_box li {
         background: #fff;
-        padding: 0.30rem 0.30rem 0.36rem 0;
+        padding: 0.30rem 0.30rem 0.30rem 0;
         border-bottom: 0.02rem solid #eee;
         position: relative;
         padding-left: 1.3rem;
