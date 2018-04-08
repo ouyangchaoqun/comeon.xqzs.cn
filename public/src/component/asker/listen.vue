@@ -854,7 +854,6 @@
         overflow: hidden;
     }
     .new_question{
-        height: 1rem;
         width: 100%;
         border-bottom: 0.02rem solid #eee;
         overflow: hidden;
