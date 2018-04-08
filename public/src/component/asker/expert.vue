@@ -445,10 +445,11 @@
         border-bottom: 0.02rem solid #eee;
     }
     .answer_index .hot_head{
+        height:1rem;
         color: #454B54;
         font-size: 0.30rem;
         position: relative;
-        line-height: 1rem;
+        line-height: 1.1rem;
         padding: 0 0.3rem;
         border-bottom: 0.02rem solid #eee;
         font-weight: bold;
