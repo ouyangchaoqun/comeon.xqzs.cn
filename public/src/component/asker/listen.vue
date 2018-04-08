@@ -744,8 +744,9 @@
         font-size: 0.24rem;
         color: RGBA(69, 75, 84, 0.6);
         line-height: 0.34rem;
-        margin-bottom: 0.18rem;
+        margin-bottom: 0.05rem;
         position: relative;
+        padding:0.1rem 0;
     }
 
     .index_li_header .header_className {

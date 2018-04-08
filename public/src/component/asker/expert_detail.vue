@@ -82,7 +82,7 @@
                 </div>
             </div>
             <div class="answer_comments">
-                <div class="answer_title">最新评价({{detail.evaluateCount}})
+                <div class="answer_title">最新评价（{{detail.evaluateCount}}）
                     <i @click="moreComment()">查看更多
 
                     </i>
@@ -120,7 +120,7 @@
 
             </div>
             <div class="ask_answer">
-                <div class="answer_title">问答({{detail.answerCount}})
+                <div class="answer_title">问答（{{detail.answerCount}}）
                     <div class="new" style="position: relative" @click="showPicker()">{{answerTypeTxt}}<span class="sj" :class="{bj:showPic}"></span>
                         <ul v-if="showPic">
                             <li v-for="item in answerTypes" :val="item.value">{{item.label}}</li>
@@ -986,9 +986,9 @@
     .answer_detail_box .list .star span{ background: url(http://oss.xqzs.cn/resources/psy/star_no.png); width: 0.26rem; height: 0.26rem;  background-size: 0.26rem; display: inline-block; margin-right: 0.10rem; }
     .answer_detail_box  .list .star span.on{background: url(http://oss.xqzs.cn/resources/psy/star.png);background-size: 0.26rem; }
 
-    .answer_detail_box  .list .item .img{ width: 0.68rem;height: 0.68rem; float:left; }
+    .answer_detail_box  .list .item .img{ width: 0.8rem;height: 0.8rem; float:left; }
     .answer_detail_box  .list .item .img img{ width: 100%; height: 100%; border-radius: 50%;}
-    .answer_detail_box  .list .info{ float:left; margin-left:0.30rem;  width: 84%;line-height: 0.68rem;}
+    .answer_detail_box  .list .info{ float:left; margin-left:0.20rem;  width: 84%;line-height: 0.68rem;}
     .answer_detail_box  .list .info .name{ font-size: 0.24rem; color:rgba(36,37,61,0.5); margin-bottom: 0.07rem; width: 4.80rem;line-height: 1}
     .answer_detail_box  .list .info .star{line-height: 1;margin-bottom: 0.12rem}
     .answer_detail_box  .list .word{ font-size:0.28rem;  color:rgba(36,37,61,1); margin-bottom: 0.14rem; overflow: hidden;word-wrap:break-word; line-height: 0.48rem;}

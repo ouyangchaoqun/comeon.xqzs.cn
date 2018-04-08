@@ -509,7 +509,7 @@
 
 
     .list0:nth-child(2) {
-        margin-top: 0.2rem;
+        margin-bottom: 0.2rem;
     }
 
     .list0 .line {
