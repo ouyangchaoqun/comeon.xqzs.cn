@@ -467,13 +467,13 @@
     }
     .hot_hidden{
         position: absolute;
-        right: 0.30rem;
+        right: 0.20rem;
         top:0;
         font-size: 0.24rem;
         color:RGBA(69, 75, 84, 0.5);
         background: url("http://oss.xqzs.cn/resources/psy/arrow.png") no-repeat center right;
-        background-size: 0.24rem 0.20rem;
-        padding-right: 0.30rem;
+        background-size: 0.24rem 0.22rem;
+        padding-right: 0.320rem;
         font-weight: normal;
     }
     .answer_index  .hot_head img{
