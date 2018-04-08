@@ -22,7 +22,7 @@
                     <span class="loadFont" v-show="infiniteLoading">数据加载中..</span>
                 </slot>
             </footer>
-            <footer class="load-finish" v-show="isPageEnd"  >
+            <footer class="load-finish" v-show="isPageEnd&&isShowMoreText"  >
                 <slot name="load-finish">
                     <span class="loadFont">我是有底线的</span>
                 </slot>

@@ -525,7 +525,6 @@
                         if(arr.length<_this.row){
                             _this.isPageEnd = true;
                             _this.isShowMoreText = false;
-                            Bus.$emit("scrollMoreTextInit", _this.isShowMoreText);
                         }
                         _this.evaluates = _this.evaluates.concat(arr);
 
@@ -774,7 +773,7 @@
                         _this.evaluates = _this.detail.evaluates; //获取评论列表
                         if(_this.evaluates.length>=_this.row){
                             _this.isShowMoreText = true;
-                            Bus.$emit("scrollMoreTextInit", _this.isShowMoreText);
+
                         }
                         xqzs.wx.setConfig(_this, function () {
                             var config = {

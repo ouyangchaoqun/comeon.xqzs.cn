@@ -718,7 +718,7 @@
                             _this.isPageEnd = true;
                             _this.isShowMoreText = false
                         }
-                        Bus.$emit("scrollMoreTextInit", _this.isShowMoreText);
+
 
 
                         if (_this.page == 1) {
