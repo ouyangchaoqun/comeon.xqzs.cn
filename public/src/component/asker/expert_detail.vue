@@ -944,6 +944,7 @@
         background: url("http://oss.xqzs.cn/resources/psy/arrow.png") no-repeat center right;
         background-size: 0.24rem 0.2rem;
         margin-right: 0.2rem;
+        font-weight: normal;
     }
     .answer_detail_box .content{
         font-size: 0.28rem;
@@ -1013,7 +1014,7 @@
         margin-left: 0.10rem;
     }
     .answer_detail_box .bj{ border-bottom: 0.12rem solid rgba(36,37,61,0.5) ;border-top:0}
-    .answer_detail_box .new{float: right;margin-right: 0.20rem; position: relative; padding-right: 0.46rem; color: rgba(69, 75, 84, 0.5);font-size: 0.24rem;}
+    .answer_detail_box .new{float: right;margin-right: 0.20rem; position: relative; padding-right: 0.46rem; color: rgba(69, 75, 84, 0.5);font-size: 0.24rem;font-weight: normal}
     .answer_detail_box .price{font-size: 0.25rem;color:#56C4FE}
     .answer_detail_box .reply{height: 1.00rem;}
     .answer_detail_box .status{color: rgba(36,37,61,0.5); font-size:0.24rem;margin-top: 0.30rem }
