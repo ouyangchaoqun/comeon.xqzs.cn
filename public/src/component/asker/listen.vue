@@ -83,7 +83,7 @@
 
                 <div class="index_box" v-show="!showLoad">
                     <div class="new_question">
-                        <div class="kuan"></div>
+                        <div class="kuan" style="border-top: 0.4rem solid rgb(86, 196, 254);"></div>
                         <div class="top_left">最新 • 问题</div>
                         <div class="top_right" @click="goListenList(2,'最新问题')">
                             更多
@@ -854,15 +854,15 @@
         overflow: hidden;
     }
     .new_question{
-        height: 1.10rem;
+        height: 1rem;
         width: 100%;
         border-bottom: 0.02rem solid #eee;
         overflow: hidden;
         position: relative;
+        line-height:1rem;
     }
     .top_left{
         float: left;
-        line-height: 1.10rem ;
         font-size: 0.3rem;
         margin-left: 0.27rem ;
         font-weight: bold;
@@ -870,12 +870,11 @@
     }
     .top_right{
         float: right;
-        margin-right: 0.4rem;
+        margin-right: 0.22rem;
         font-size: 0.24rem;
         color:RGBA(69, 75, 84,0.5);
-        line-height: 1.1rem;
         background: url(http://oss.xqzs.cn/resources/psy/arrow.png) no-repeat center right;
-        background-size: 0.24rem 0.20rem;
+        background-size: 0.24rem 0.22rem;
         padding-right: 0.30rem;
     }
 
@@ -906,12 +905,12 @@
 
     .asker_listen_box .kuan{
         width: 0.09rem;
-        height: 0.4rem;
         position: absolute;
-        margin: 0.34rem  0;
-        left:0;
+        top: 50%;
+        margin-top: -0.2rem;
+        left: 0;
         border-right: 0.09rem solid transparent;
-        border-top: 0.4rem solid #56C4FE;
+        border-top: 0.4rem solid rgba(251, 100, 10, 1);
     }
     .selected_box {
         border-bottom: 0.16rem solid RGBA(244, 244, 247, 1);

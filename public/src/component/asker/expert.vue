@@ -449,7 +449,6 @@
         color: #454B54;
         font-size: 0.30rem;
         position: relative;
-        margin-bottom: 0.20rem;
         line-height: 1rem;
         padding: 0 0.3rem;
         border-bottom: 0.02rem solid #eee;
@@ -467,13 +466,13 @@
     }
     .hot_hidden{
         position: absolute;
-        right: 0.20rem;
+        right: 0.22rem;
         top:0;
         font-size: 0.24rem;
         color:RGBA(69, 75, 84, 0.5);
         background: url("http://oss.xqzs.cn/resources/psy/arrow.png") no-repeat center right;
         background-size: 0.24rem 0.22rem;
-        padding-right: 0.320rem;
+        padding-right: 0.3rem;
         font-weight: normal;
     }
     .answer_index  .hot_head img{
