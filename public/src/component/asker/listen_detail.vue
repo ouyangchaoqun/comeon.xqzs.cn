@@ -1,5 +1,5 @@
 <template >
-    <div class="listenDetail_box">
+    <div class="listenDetail_box" :class="{listenDetail_box_index:rechargeFlag}">
         <div v-title class='hide_title'>问题详情</div>
         <v-recharge  v-if="rechargeFlag"  :rechargeMoney="rechargeMoney" :user="user" v-on:childMessage="getFlagVal"></v-recharge>
         <v-showLoad v-if="showLoad"></v-showLoad>
@@ -1014,6 +1014,9 @@
     }
     .listenDetail_box{
         background: #fff;
+    }
+    .listenDetail_box_index{
+        z-index: 990 !important;
     }
     .steal_expert_info{
         padding-left: 1.30rem;
