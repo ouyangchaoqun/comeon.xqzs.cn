@@ -920,7 +920,7 @@
 
     .answer_detail_box .answer_detail{
         background: white;
-        padding-bottom: 0.41rem;
+        padding-bottom: 0.15rem;
         color:rgba(36,37,61,1)
     }
     .answer_detail_box .answer_title{
@@ -948,8 +948,6 @@
         padding:0.30rem ;
         line-height: 0.4rem;
         color:rgb(63, 63, 63);
-        padding-bottom: 0.2rem;
-
     }
     /*.answer_detail_box .content b{*/
         /*color:rgba(36,37,61,1);*/

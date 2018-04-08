@@ -22,7 +22,7 @@
         <div class="tips" v-if="isTips">
             <div class="close" @click="closeTips"></div>
             <div class="tip_title">充值须知</div>
-            <div class="content">11
+            <div class="content">
                 <p>1、免费偷听问答不扣点豆，已支付问题可重复免费听；</p>
                 <p>2、点豆仅限平台内偷听问答，充值后不可提现；</p>
                 <!--<p>3.请在有效期内使用偷听卡；</p>-->
