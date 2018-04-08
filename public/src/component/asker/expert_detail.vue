@@ -71,15 +71,21 @@
                     </div>
                 </div>
                 <div class="btn_sq" @click="btn_sq()">
-                    <div v-if="!Hflag">收起</div>
-                    <div v-if="Hflag">展开</div>
-                    <img v-if="Hflag" src="http://oss.xqzs.cn/resources/psy/join_down.png" alt="">
-                    <img class="rotate_img" v-if="!Hflag" src="http://oss.xqzs.cn/resources/psy/join_down.png" alt="">
+                    <div v-if="!Hflag">收起
+                        <img class="rotate_img" src="http://oss.xqzs.cn/resources/psy/arrow.png" alt="">
+                    </div>
+                    <div v-if="Hflag">展开全部
+                        <img src="http://oss.xqzs.cn/resources/psy/arrow.png" alt="">
+                    </div>
+
+
                 </div>
             </div>
             <div class="answer_comments">
                 <div class="answer_title">最新评价({{detail.evaluateCount}})
-                    <i @click="moreComment()">查看更多></i>
+                    <i @click="moreComment()">查看更多
+
+                    </i>
                 </div>
                 <div v-if="detail.evaluateCount>0">
                     <div class="list">
@@ -130,7 +136,10 @@
                                 <img v-if="item.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png">
                             </div>
                             <div class="info" >
-                                <div class="word word_closeStyle" @click="getMore(index)" :class="{word_openStyle:item.isContentClick}">
+                                <div class="word" @click="getMore(index)" v-if="item.isShow">
+                                    {{contentSub(item.content)}}
+                                </div>
+                                <div class="word" v-if="!item.isShow">
                                     {{item.content}}
                                 </div>
                             </div>
@@ -300,9 +309,16 @@
             })
         },
         methods:{
+            contentSub:function (v) {
+                if(v.length>=50){
+                    return v.substring(0,50) + '...'
+                }else{
+                    return v
+                }
+            },
             getMore:function (index) {
-                this.answerList[index].isContentClick = true;
-                this.$set(this.answerList,index,this.answerList[index]);
+                this.answerList[index].isShow = false;
+              this.$set(this.answerList,index,this.answerList[index])
             },
             getFlagVal:function (val) {
                 this.rechargeFlag  = val.rechargeFlag;
@@ -710,9 +726,9 @@
                             return;
                         }
                         let arr = data.body.data;
-//
+
                         for(let i = 0;i<arr.length;i++){
-                            arr[i].isContentClick = false;
+                            arr[i].isShow = true;
                         }
                         if (arr.length < _this.row) {
                             _this.isPageEnd = true;
@@ -910,18 +926,22 @@
     .answer_detail_box .answer_title{
         height: 0.88rem;
         line-height: 0.88rem;
-        font-size: 0.34rem;
+        font-size: 0.3rem;
         padding-left: 0.30rem;
         border-bottom: 0.02rem solid #eee;
         background: white;
         font-family: PingFangSC-Medium;
+        color:#454B54;
     }
     .answer_detail_box .answer_title i{
         font-style: normal;
-        font-size:0.26rem;
+        font-size:0.24rem;
         color:rgba(36,37,61,0.5);
         float: right;
         padding-right: 0.30rem;
+        background: url("http://oss.xqzs.cn/resources/psy/arrow.png") no-repeat center right;
+        background-size: 0.24rem 0.2rem;
+        margin-right: 0.2rem;
     }
     .answer_detail_box .content{
         font-size: 0.28rem;
@@ -944,11 +964,15 @@
         font-size: 0.24rem;
     }
     .answer_detail_box .btn_sq img{
-        width:0.3rem;
-        margin-top: 0.15rem;
+        width:0.26rem;
+        height:0.26rem;
+        display: inline-block;
+        vertical-align: middle;
+        transform:rotate(90deg);
+        margin-top: -0.04rem;
     }
     .answer_detail_box .btn_sq .rotate_img{
-        transform:rotate(180deg)
+        transform:rotate(270deg)
     }
     .answer_detail_box .answer_comments{
         background: white;
@@ -967,8 +991,8 @@
     .answer_detail_box  .list .info .name{ font-size: 0.24rem; color:rgba(36,37,61,0.5); margin-bottom: 0.07rem; width: 4.80rem;line-height: 1}
     .answer_detail_box  .list .info .star{line-height: 1;margin-bottom: 0.12rem}
     .answer_detail_box  .list .word{ font-size:0.28rem;  color:rgba(36,37,61,1); margin-bottom: 0.14rem; overflow: hidden;word-wrap:break-word; line-height: 0.48rem;}
-    .answer_detail_box  .list .word_closeStyle{text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;}
-    .answer_detail_box  .list .word_openStyle{display: block}
+    /*.answer_detail_box  .list .word_closeStyle{text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;}*/
+    /*.answer_detail_box  .list .word_openStyle{display: block}*/
     .answer_detail_box  .list .time{ font-size:0.24rem; color:rgba(36,37,61,0.5);}
     .answer_detail_box .timeRight{float: right}
     .answer_detail_box  .list .info .class_s { clear: both; padding-top: 0.10rem;}
@@ -989,7 +1013,7 @@
         margin-left: 0.10rem;
     }
     .answer_detail_box .bj{ border-bottom: 0.12rem solid rgba(36,37,61,0.5) ;border-top:0}
-    .answer_detail_box .new{float: right;margin-right: 0.20rem; position: relative; padding-right: 0.46rem; color: rgba(36,37,61,0.5);font-size: 0.26rem;}
+    .answer_detail_box .new{float: right;margin-right: 0.20rem; position: relative; padding-right: 0.46rem; color: rgba(36,37,61,0.5);font-size: 0.24rem;}
     .answer_detail_box .price{font-size: 0.25rem;color:#56C4FE}
     .answer_detail_box .reply{height: 1.00rem;}
     .answer_detail_box .status{color: rgba(36,37,61,0.5); font-size:0.24rem;margin-top: 0.30rem }

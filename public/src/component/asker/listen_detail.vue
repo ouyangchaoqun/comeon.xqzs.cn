@@ -29,10 +29,15 @@
 
                     <div class="steal_expert_info">
                         <img :src="item.expertUrl" alt="" @click="goDetail(item.expertId)">
+                        <block v-if="item.userId!=1658&&item.userId!=424">
+                            <img style="left: 0.82rem;" src="http://oss.xqzs.cn/resources/psy/asker/header_img_v.png" class="expert_v">
+                        </block>
+
                         <div>
                             <span class="steal_expert_name" @click="goDetail(item.expertId)">{{item.expertName}}</span><span class="steal_expert_fans">{{item.followCount}} 人关注</span>
                         </div>
-                        <div class="steal_expert_des">{{item.sign}}</div>
+                        <!--<div class="steal_expert_des">{{item.sign}}</div>-->
+                        <div class="steal_expert_jobTitle">{{item.jobTitle}}</div>
                         <div class="followed_box" v-if="item.isFollowed==0" @click="follow(index)"> 关注</div>
                         <div class="followed_box isfollow_style"  v-if="item.isFollowed==1" @click="follow(index)" >已关注</div>
                     </div>
@@ -845,6 +850,13 @@
 </script>
 
 <style>
+    /**jobTitle**/
+    .steal_expert_jobTitle{
+        color:#2EB1FF;
+        font-size: 0.28rem;
+        padding-top: 0.16rem;
+        line-height: 1;
+    }
     /**留言回复**/
     .eva_commont_box{
         background: #f9f9f9;
@@ -955,8 +967,8 @@
     }
 
     .evaluate_box li .expert_line{ height: 0.28rem; width: 0.02rem; background: #00b9e8;display: inline-block; position: relative; vertical-align: middle; margin-left: 0.12rem; margin-right: 0.06rem;}
-    .evaluate_box li .expert_line:before{ content: ''; display: inline-block; position: absolute; height: 0.04rem; width: 0.04rem; border-radius: 50%;left:-0.02rem; top:0.12rem; background:#00b9e8;}
-    .evaluate_box li .expert_v{
+    /*.evaluate_box li .expert_line:before{ content: ''; display: inline-block; position: absolute; height: 0.04rem; width: 0.04rem; border-radius: 50%;left:-0.02rem; top:0.12rem; background:#00b9e8;}*/
+    .listenDetail_box .expert_v{
         width:0.28rem;
         height:0.28rem;
         border-radius: inherit;
