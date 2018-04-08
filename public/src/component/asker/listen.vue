@@ -858,7 +858,7 @@
         border-bottom: 0.02rem solid #eee;
         overflow: hidden;
         position: relative;
-        line-height:1.1rem;
+        line-height:1.05rem;
         height: 1rem;
     }
     .top_left{

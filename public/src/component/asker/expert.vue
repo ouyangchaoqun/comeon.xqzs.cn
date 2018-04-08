@@ -449,7 +449,7 @@
         color: #454B54;
         font-size: 0.30rem;
         position: relative;
-        line-height: 1.1rem;
+        line-height: 1.05rem;
         padding: 0 0.3rem;
         border-bottom: 0.02rem solid #eee;
         font-weight: bold;
@@ -461,7 +461,7 @@
         font-weight: bold;
         position: relative;
         background: #fff;
-        line-height: 1rem;
+        line-height: 1.05rem;
         padding:0 0.3rem;
     }
     .hot_hidden{
