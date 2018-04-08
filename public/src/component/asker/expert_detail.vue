@@ -926,17 +926,19 @@
     .answer_detail_box .answer_title{
         height: 0.88rem;
         line-height: 0.88rem;
-        font-size: 0.3rem;
+        font-size: 0.30rem;
         padding-left: 0.30rem;
         border-bottom: 0.02rem solid #eee;
         background: white;
         font-family: PingFangSC-Medium;
         color:#454B54;
+        font-weight: bold;
+
     }
     .answer_detail_box .answer_title i{
         font-style: normal;
         font-size:0.24rem;
-        color:rgba(36,37,61,0.5);
+        color:rgba(69, 75, 84, 0.5);
         float: right;
         padding-right: 0.30rem;
         background: url("http://oss.xqzs.cn/resources/psy/arrow.png") no-repeat center right;
@@ -1011,7 +1013,7 @@
         margin-left: 0.10rem;
     }
     .answer_detail_box .bj{ border-bottom: 0.12rem solid rgba(36,37,61,0.5) ;border-top:0}
-    .answer_detail_box .new{float: right;margin-right: 0.20rem; position: relative; padding-right: 0.46rem; color: rgba(36,37,61,0.5);font-size: 0.24rem;}
+    .answer_detail_box .new{float: right;margin-right: 0.20rem; position: relative; padding-right: 0.46rem; color: rgba(69, 75, 84, 0.5);font-size: 0.24rem;}
     .answer_detail_box .price{font-size: 0.25rem;color:#56C4FE}
     .answer_detail_box .reply{height: 1.00rem;}
     .answer_detail_box .status{color: rgba(36,37,61,0.5); font-size:0.24rem;margin-top: 0.30rem }
