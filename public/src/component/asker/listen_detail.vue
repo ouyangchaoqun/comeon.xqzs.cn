@@ -15,7 +15,7 @@
                     <img v-if="detail.isAnonymous" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
                     <div class="base_info">
                         <div class="name"><template v-if="!detail.isAnonymous">{{detail.nickName}}</template><template v-if="detail.isAnonymous">匿名用户</template> 咨询</div>
-                        <div class="base_title">{{detail.title}} 问题</div>
+                        <div class="base_title">{{detail.title}}</div>
                     </div>
 
 
@@ -222,6 +222,11 @@
             goExpert: function (id) {
                 this.$router.push("/asker/expert/detail?id=" + id);
             },
+            initTextareaVal:function () {
+                $('.comment_text').val('');
+                $('#textarea').height('');
+                this.height = xqzs.equipment.tabHeight()
+            },
             initAll:function () {
                 this.questionId=this.$route.query.questionId;
                 this.getDetail();
@@ -235,12 +240,17 @@
             levMsg:function (isAuto) {
                 let _this= this;
                 _this.actionSheetEdit( "发布", function (value) {
+                    if(value.length<8){
+                        xqzs.weui.tip('不能少于8个字')
+                        return
+                    }
                     //回复操作
                     xqzs.api.put(_this, "come/user/evaluate/question",{userId:"_userId_",questionId :_this.detail.questionId,content:value,isAnonymous :_this.anonyVal},function (bt) {
 
                         if (bt.data && bt.data.status == 1) {
                             let msg = bt.data.data;
                             xqzs.weui.toast('success','留言成功',function () {
+                                _this.initTextareaVal()
                             });
                             let  stuckMessage = {
                                 faceUrl:_this.user.faceUrl,
@@ -311,6 +321,10 @@
                     showName = nickName
                 }
                 vm.actionSheetEdit("发送", function (v) {
+                    if(v.length<8){
+                        xqzs.weui.tip('不能少于8个字')
+                        return
+                    }
                     xqzs.api.put(vm,'come/user/evaluate/question', {
                         "id": id,
                         "userId":"_userId_",
@@ -321,7 +335,7 @@
                             let msg = response.data.data;
                             console.log(msg)
                             xqzs.weui.toast("success", "回复成功", function () {
-
+                                vm.initTextareaVal()
                                 vm.levMsg()
                             });
                             let  stuckMessage = {
@@ -399,7 +413,7 @@
                 $(".comment_text").keyup(function () {
                     _this.height = $('.comment_box').outerHeight();
                     var val = $(this).val();
-                    if (val.length > 0) {
+                    if (val.length >= 8) {
 
                         $(".action-sheet-edit .release_btn").css({'borderColor': "rgba(86, 196, 254, 1)", "background": "rgba(86, 196, 254, 1)"})
                         $(".comment_p").css('display', 'none')
@@ -429,9 +443,6 @@
                     var v = $(".comment_text").val();
                     if (v !== "") {
                         doFun(v);
-                        $('.comment_text').val('');
-                        $('#textarea').height('');
-                        _this.height = xqzs.equipment.tabHeight()
                     }
                     if(noHide){
 
@@ -896,7 +907,7 @@
     .evaluation_frame .stars{ display: flex;margin-bottom: 0.44rem}
     .evaluation_frame .stars li{ flex:1;}
     .evaluation_frame .stars li .star{ background: url(http://oss.xqzs.cn/resources/psy/asker/ask_rack_comment_star.png) center no-repeat ; background-size:  0.66rem;;height:0.66rem; width: 0.66rem; color:#999; width: 100%; margin-bottom: 0.26rem; }
-    .evaluation_frame .stars li .text{color:RGBA(69, 75, 84, 0.5) ; font-size: 0.28rem; text-align: center;line-height: 0.4rem;}
+    .evaluation_frame .stars li .text{color:#999 ; font-size: 0.28rem; text-align: center;line-height: 0.4rem;}
     .evaluation_frame .stars li.on .star{background: url(http://oss.xqzs.cn/resources/psy/asker/ask_rack_comment_star_on.png) center no-repeat ; background-size:  0.66rem;}
     .evaluation_frame .stars li.on .text{ color:RGBA(245, 166, 35, 1)}
     .frame_textarea{height:2.2rem;border:0.02rem solid RGBA(238, 238, 238, 1);border-radius: 0.12rem;margin-bottom: 0.5rem;padding:0.2rem;position: relative}
@@ -905,7 +916,7 @@
     .frame_btn_active{background: RGBA(86, 196, 254, 1);}
     .evaluation_frame .frame_textarea .anFlag{position: absolute;right:0.2rem;bottom:0.2rem;color:RGBA(69, 75, 84, 0.49);font-size: 0.24rem;background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_no.png")no-repeat left center;background-size: 0.28rem;padding-left: 0.34rem;line-height: 0.34rem;z-index:1000;height:0.32rem;}
     .evaluation_frame .frame_textarea .anFlag_on{background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_on.png") no-repeat left center;background-size: 0.28rem;}
-    .pageEndStyle{text-align: center;font-size: 0.28rem;color:RGBA(69, 75, 84, 0.5);line-height: 0.4rem;padding: 0.2rem;}
+    .pageEndStyle{text-align: center;font-size: 0.28rem;color:#999;line-height: 0.4rem;padding: 0.2rem;}
     /**新增评价样式**/
     .evaluate_box{
         padding: 0.3rem 0;
@@ -949,14 +960,14 @@
     }
     .evaluate_box li .eva_main{
         padding-left: 1rem;
-        color:#333;
+        color:rgba(69, 75, 84, 1);
         font-size: 0.28rem;
      }
     .evaluate_box li .eva_main .eva_name{
         color:#999;
         font-size: 0.28rem;
         line-height: 1;
-        padding-top: .07rem;
+        padding-top: 0.07rem;
         margin-bottom: .12rem;
     }
     .evaluate_box li .eva_main .eva_name span{ color:#2EB1FF}
@@ -1062,7 +1073,7 @@
         color: rgba(36,37,61,1);
     }
     .steal_detail_content{
-        color: rgba(36,37,61,1);
+        color: rgba(69, 75, 84, 1);
         font-size:0.30rem;
         line-height: 0.46rem;
         overflow: hidden;
@@ -1078,7 +1089,7 @@
         display: -webkit-box;
         height:0.96rem;
         line-height: 0.96rem;
-        color: rgba(36,37,61,0.5);
+        color: #999;
         font-size: 0.28rem;
         padding-bottom: 0.40rem;
         margin-left: 1.3rem;
@@ -1106,7 +1117,7 @@
         border-radius: 0;
     }
     .steal_answer_zan{
-        color:rgba(36,37,61,0.5);
+        color:#999;
         font-size: 0.24rem;
         height:0.32rem;
         line-height: 0.32rem;

@@ -36,7 +36,7 @@
             <div class="rob_status_box" v-if="detail.questionStatus==1">
                 <div>已解答 </div>
                 <div v-if="!detail.evaluate_ed">
-                    共有<span> {{detail.answerCount}}&nbsp;</span>位咨询师抢答，{{bestAnswer.expertNickName}}的回答被选为最佳答案，<span class="last_red_color">“去评价”老师的回答，将免费获得<span>1</span>颗点豆！</span>
+                    共有<span> {{detail.answerCount}}&nbsp;</span>位咨询师抢答，{{bestAnswer.expertNickName}}的回答被选为最佳答案。<br/><span class="last_red_color">"去评价"老师的回答，将免费获得<span>1</span>颗点豆！</span>
 
                 </div>
                 <div v-if="detail.evaluate_ed">
@@ -57,6 +57,7 @@
                     </div>
                     <div class="rob_box_top">
                         <img :src="item.expertFaceUrl" alt="" @click="goExpert(item.expertId)">
+                        <img class="expert_v" src="http://oss.xqzs.cn/resources/psy/asker/header_img_v.png" alt="">
                         <div class="expertInfo">
                             <span>{{item.expertNickName}}</span>
                             <div><template v-for="(d,i) in item.domain">{{d.title}}<template v-if="i<item.domain.length-1">、</template></template></div>
@@ -494,8 +495,8 @@
         color: rgba(51,51,51,1);
     }
     .problem_detail_header img {
-        height: 0.58rem;
-        width: 0.58rem;
+        height: 0.8rem;
+        width: 0.8rem;
         display: block;
         border-radius: 50%;
         margin-right: 0.20rem;
@@ -507,7 +508,7 @@
         background: #fff;
     }
     .rob_status_box{
-        color: rgba(36,37,61,0.5);
+        color: #999;
         font-size: 0.24rem;
     }
     .rob_status_box>div:nth-of-type(1){
@@ -518,7 +519,7 @@
     }
     .rob_status_box>div:nth-of-type(2){
         background: rgba(245,245,245,1);
-        padding: 0.10rem 0.56rem;
+        padding: 0.10rem 0.3rem;
         line-height: 0.40rem;
     }
     .rob_status_box span{
@@ -542,6 +543,7 @@
         color: rgba(36,37,61,1);
         line-height: 0.68rem;
         margin-bottom: 0.36rem;
+        position: relative;
     }
     .rob_box_top .expertInfo{
         line-height: 1;
@@ -551,15 +553,23 @@
         display: inline-block;
     }
     .rob_box_top .expertInfo div{
-        color:rgba(36,37,61,0.4);
+        color:#999;
         font-size: 0.24rem;
     }
     .rob_box_top img{
-        width: 0.68rem;
-        height:0.68rem;
+        width: 0.8rem;
+        height:0.8rem;
         display: block;
         border-radius: 50%;
         margin-right:0.20rem;
+    }
+    .rob_box_top .expert_v{
+        width:0.28rem;
+        height:0.28rem;
+        position: absolute;
+        border-radius: inherit;
+        top:0.54rem;
+        left:0.52rem;
     }
     .rob_answer{
         position: relative;

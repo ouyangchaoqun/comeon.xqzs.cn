@@ -446,7 +446,7 @@
     }
     .answer_index .hot_head{
         height:1rem;
-        color: #454B54;
+        color: rgba(69, 75, 84,1);
         font-size: 0.30rem;
         position: relative;
         line-height: 1.05rem;
@@ -456,7 +456,7 @@
     }
     .answer_index .new_head{
         height: 1rem;
-        color: #454B54;
+        color: rgba(69, 75, 84,1);
         font-size: 0.30rem;
         font-weight: bold;
         position: relative;
@@ -512,6 +512,7 @@
         font-weight: bold;
         text-align: center;
         line-height:1;
+        color:rgba(69, 75, 84,1)
     }
     .answer_index ul{
         overflow: hidden;
@@ -536,14 +537,14 @@
 
     .answer_index .hot_evaluate{
         margin-top:0.15rem ;
-        font-size: 0.27rem;
+        font-size: 0.24rem;
         color: RGBA(69, 75, 84, 0.5);
         text-align: center;
         line-height: 1;
     }
     .answer_index .hot_num{
         margin-top:0.15rem ;
-        font-size: 0.27rem;
+        font-size: 0.24rem;
         color: RGBA(69, 75, 84, 0.5);
         text-align: center;
         margin-bottom: 0.14rem;

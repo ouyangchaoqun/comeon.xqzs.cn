@@ -762,7 +762,7 @@
 
     .index_li_content {
         font-size: 0.30rem;
-        color: rgba(36, 37, 61, 1);
+        color: rgba(69, 75, 84, 1);
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
@@ -819,7 +819,7 @@
         position: absolute;
         right: 0;
         font-size: 0.26rem;
-        color: rgba(36, 37, 61, 0.5);
+        color: rgba(69, 75, 84,0.5);
         top: 0;
         line-height: 0.82rem;
     }
@@ -866,13 +866,13 @@
         font-size: 0.3rem;
         margin-left: 0.27rem ;
         font-weight: bold;
-        color:RGBA(86, 196, 254, 1)
+        color:rgba(86, 196, 254, 1)
     }
     .top_right{
         float: right;
         margin-right: 0.22rem;
         font-size: 0.24rem;
-        color:RGBA(69, 75, 84,0.5);
+        color:rgba(69, 75, 84,0.5);
         background: url(http://oss.xqzs.cn/resources/psy/arrow.png) no-repeat center right;
         background-size: 0.24rem 0.22rem;
         padding-right: 0.30rem;

@@ -453,7 +453,7 @@
         background: #f5f5f5;
     }
     .addAnonymous{
-        color:rgba(36,37,61,0.5);
+        color:#999;
         float: left;
         margin-top: 0.27rem;
         margin-left: 0.30rem;
@@ -485,7 +485,7 @@
     .asker_ask_box .ask_type .tab {
         line-height: 0.88rem;
         font-size: 0.30rem;
-        color: rgba(36,37,61,0.5);
+        color: #999;
         margin-right: 0.10rem;
         float: left;
         margin-left: 0.24rem;
@@ -547,7 +547,7 @@
         font-size: 0.24rem;
         margin-right: 0.30rem;
         margin-top: 0.27rem;
-        color:rgba(36,37,61,0.5);
+        color:#999;
     }
     .asker_ask_box .set_price {
         margin-top: 0.68rem;
@@ -593,6 +593,6 @@
     .asker_ask_box .ask_type_new .select_box div{flex:1;color:rgba(36,37,61,0.7);font-size: 0.30rem;background: rgba(245,245,245,1);border-radius: 0.10rem;}
     .asker_ask_box .ask_type_new .select_box div:nth-of-type(2){margin:0 0.30rem;}
     .asker_ask_box .ask_type_new .select_box .on_new{background: RGBA(86, 196, 245,1);color:#fff;}
-    .asker_ask_box  .text_area .content{ font-size: 0.28rem; color:rgba(36,37,61,1); height: 90%; line-height: 0.48rem}
+    .asker_ask_box  .text_area .content{ font-size: 0.28rem; color:rgba(69, 75, 84,1); height: 90%; line-height: 0.48rem}
     /*.asker_ask_box  .text_area  .answer_select{ height: 90%}*/
 </style>
