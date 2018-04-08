@@ -16,15 +16,15 @@
                 </slot>
             </header>
             <slot></slot>
-            <footer class="load-more">
+            <footer class="load-more" v-show="!isPageEnd&&isShowMoreText">
                 <slot name="load-more">
                     <span class="loadFont" v-show="!infiniteLoading">上拉加载更多</span>
                     <span class="loadFont" v-show="infiniteLoading">数据加载中..</span>
                 </slot>
             </footer>
-            <footer class="load-finish" style="display: none">
+            <footer class="load-finish" v-show="isPageEnd"  >
                 <slot name="load-finish">
-                    <span class="loadFont">已经加载完成</span>
+                    <span class="loadFont">我是有底线的</span>
                 </slot>
             </footer>
 
@@ -61,7 +61,7 @@
                 require: false
             },
             isPageEnd: false,
-            isShowMoreText: true,
+            isShowMoreText: false,
             isNotRefresh: true,
             bottomHeight:0
         },
@@ -79,14 +79,6 @@
         mounted: function () {
             let _this=this;
             this.height = "height:" + (document.body.clientHeight - this.bottomHeight) + "px";
-            this.loadMoreText();
-            Bus.$on("scrollMoreTextInit", function (isShowMoreText) {
-//                console.log("scrollMoreTextInit")
-                _this.isShowMoreText=isShowMoreText;
-                _this.loadMoreText();
-            });
-
-//
         },
         methods: {
             touchStart(e) {
@@ -127,7 +119,7 @@
                     this.state = 0
                     this.top = 0
                 }
-                this.loadMoreText();
+
             },
             refresh() {
                 this.state = 2;
@@ -144,24 +136,7 @@
                 this.state = 0
                 this.top = 0
             },
-            loadMoreText: function () {
 
-                console.log('this.isShowMoreText'+this.isShowMoreText)
-                console.log('this.isPageEnd'+this.isPageEnd)
-                if (!this.isShowMoreText) {
-                    $(".load-more").hide();
-                    $(".load-finish").hide();
-                } else {
-                    if (this.isPageEnd) {
-                        $(".load-more").hide();
-                        $(".load-finish").show();
-                    } else {
-                        $(".load-finish").hide();
-                        $(".load-more").show();
-                    }
-                }
-
-            },
             infinite() {
                 console.log("Loading")
                 this.infiniteLoading = true
@@ -188,13 +163,8 @@
 
                 if (bottom < infiniteHeight) this.infinite()
             }
-        },
-        activated:function () {
-//            this.isPageEnd = false;
-//            this.isShowMoreText= true;
-//            console.log("activatactivatedactivatedactivatedactivatedactivatedactivateded")
-//            this.loadMoreText();
         }
+
     }
 </script>
 <style>
@@ -202,6 +172,7 @@
         height: 100%
     }
 
+    .yo-scroll .load-more,.yo-scroll .load-finish{ border-top: 0.02rem solid #eee; color:#999; line-height: 0.88rem;}
     .yo-scroll {
         position: absolute;
         top: 0;
@@ -261,12 +232,12 @@
     }
 
     .yo-scroll .load-finish {
-        height: 0.68rem;
+
         text-align: center;
     }
 
     .loadFont {
-        font-size: 12px;
+        font-size: 0.24rem;
         color: #999;
     }
 </style>

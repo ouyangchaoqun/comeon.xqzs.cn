@@ -242,7 +242,7 @@
                     }else{
                         vm.isShowMoreText =true;
                     }
-                    Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
+
 
 
                     if (vm.page == 1) {

@@ -433,7 +433,7 @@
                         vm.list = [];
                         vm.isPageEnd = true;
                         vm.isShowMoreText = false;
-                        Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
+
                         return;
                     }
 
@@ -446,7 +446,7 @@
                     }else{
                         vm.isShowMoreText =true;
                     }
-                    Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
+
 
 
 

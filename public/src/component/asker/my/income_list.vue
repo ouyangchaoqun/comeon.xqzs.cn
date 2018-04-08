@@ -96,7 +96,7 @@
                         vm.list = [];
                         vm.isPageEnd = true;
                         vm.isShowMoreText = false;
-                        Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
+
                         return;
                     }
                     let arr = response.data.data;
@@ -104,7 +104,7 @@
                         vm.isPageEnd = true;
                         vm.isShowMoreText = false
                     }
-                    Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
+
 
 
 

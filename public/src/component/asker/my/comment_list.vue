@@ -212,7 +212,7 @@
                         vm.list = [];
                         vm.isPageEnd = true;
                         vm.isShowMoreText = false;
-                        Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
+
                         return;
                     }
                     let arr = response.data.data;
@@ -223,7 +223,7 @@
                     }else{
                         vm.isShowMoreText =true;
                     }
-                    Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
+
 
 
 

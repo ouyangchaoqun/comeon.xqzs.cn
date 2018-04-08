@@ -195,7 +195,7 @@
                     }else{
                         vm.isShowMoreText =true;
                     }
-                    Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
+
 
 
 

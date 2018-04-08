@@ -244,7 +244,7 @@
                     if (response.data.status != 1 && vm.page == 1) {
                         vm.isPageEnd = true;
                         vm.isShowMoreText = false;
-                        Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
+
                         vm.list = [];
                         return;
                     }
@@ -256,7 +256,7 @@
                     }else{
                         vm.isShowMoreText = true
                     }
-                    Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
+
 
 
                     if (vm.page == 1) {

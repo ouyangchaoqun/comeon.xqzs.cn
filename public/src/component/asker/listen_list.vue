@@ -548,7 +548,7 @@
                         vm.list = [];
                         vm.isPageEnd = true;
                         vm.isShowMoreText = false;
-                        Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
+
                         return;
                     }
                     let arr = response.data.data;
@@ -560,7 +560,7 @@
 
                         vm.isShowMoreText = true;
                     }
-                    Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
+
 
                     if (vm.page == 1) {
                         vm.list = arr;

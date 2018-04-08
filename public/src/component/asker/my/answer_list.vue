@@ -148,7 +148,7 @@
                         vm.total=0
                         vm.isPageEnd = true;
                         vm.isShowMoreText = false;
-                        Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
+
                         return;
                     }
                     let arr = response.data.data.rows;
@@ -159,7 +159,7 @@
                     }else{
                         vm.isShowMoreText =false
                     }
-                    Bus.$emit("scrollMoreTextInit", vm.isShowMoreText);
+
 
                     vm.total=response.data.data.total
 
