@@ -532,13 +532,14 @@ var xqzs = {
 
             d=   d-d_hours*3600 - d_minutes *60 ;
 
-            if(d_hours<10)d_hours="0"+d_hours;
-            if(d_minutes<10)d_minutes="0"+d_minutes;
-            if(d<10)d="0"+d;
             if(d<0){
                 d="00";
                 d_hours="00";
                 d_minutes="00"
+            }else{
+                if(d_hours<10)d_hours="0"+d_hours;
+                if(d_minutes<10)d_minutes="0"+d_minutes;
+                if(d<10)d="0"+d;
             };
             return  "剩 "+d_hours+ ":" + d_minutes+":"+ d  + "";
 

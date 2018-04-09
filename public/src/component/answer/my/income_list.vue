@@ -42,6 +42,10 @@
 
 
         activated: function () {
+
+            if (!xqzs.user.isUserLogin()) {
+                return;
+            }
             this.page=1;
             this.isPageEnd=false;
             this.isShowMoreText=false;

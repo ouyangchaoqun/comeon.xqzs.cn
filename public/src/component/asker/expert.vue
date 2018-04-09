@@ -437,7 +437,7 @@
         text-align: center;
         line-height: 0.96rem;
         font-size: 0.30rem;
-        color: RGBA(69, 75, 84, 0.5)
+        color: #999;
     }
     .answer_index .title_top {
         background: #fff;
@@ -469,7 +469,7 @@
         right: 0.22rem;
         top:0;
         font-size: 0.24rem;
-        color:RGBA(69, 75, 84, 0.5);
+        color:#999;
         background: url("http://oss.xqzs.cn/resources/psy/arrow.png") no-repeat center right;
         background-size: 0.24rem 0.22rem;
         padding-right: 0.3rem;
@@ -538,14 +538,14 @@
     .answer_index .hot_evaluate{
         margin-top:0.15rem ;
         font-size: 0.24rem;
-        color: RGBA(69, 75, 84, 0.5);
+        color: #999;
         text-align: center;
         line-height: 1;
     }
     .answer_index .hot_num{
         margin-top:0.15rem ;
         font-size: 0.24rem;
-        color: RGBA(69, 75, 84, 0.5);
+        color:#999;
         text-align: center;
         margin-bottom: 0.14rem;
         line-height: 1;

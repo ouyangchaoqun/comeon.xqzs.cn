@@ -426,10 +426,10 @@
         margin-right: 0.17rem;
     }
     .ask_detailBox .my_problem_detail .add_askerInfo span{
-        color:rgba(51,51,51,0.5);
+        color:#999;
     }
     .ask_detailBox .my_problem_detail .add_askerInfo div{
-        color:rgba(51,51,51,0.5);
+        color:#999;
         position: absolute;
         right:0.30rem;
     }
@@ -439,7 +439,7 @@
         border-top:0.20rem solid #f4f4f7;
     }
     .problem_wait_style{
-        color:rgba(36,37,61,0.5);
+        color:#999;
         font-size: 0.24rem;
         line-height: 1;
         padding:0.30rem;

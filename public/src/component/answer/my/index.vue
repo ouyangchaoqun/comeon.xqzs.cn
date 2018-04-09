@@ -68,6 +68,9 @@
         },
 
         activated: function () {
+            if (!xqzs.user.isUserLogin()) {
+                return;
+            }
             this.getUserInfo();
             this.getExpertUpdateInfo();
             var obj =  $(".asker_my_index_box .main a")

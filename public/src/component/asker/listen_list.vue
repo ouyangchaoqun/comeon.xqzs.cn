@@ -651,24 +651,24 @@
         float: right
     }
     .active_color{
-        color:RGBA(46, 177, 255, 1);
+        color:#56C4FE;
     }
     .sanjiao {
         width: 0;
         height: 0;
         display: inline-block;
         vertical-align: middle;
-        border-top: 0.1rem solid RGBA(69, 75, 84, 0.2);
+        border-top: 0.1rem solid #999;
         border-right: 0.1rem solid transparent;
         border-left: 0.1rem solid transparent;
         margin-left: 0.12rem;
     }
     .xsanjiao{
         border-top:0;
-        border-bottom: 0.1rem solid RGBA(86, 196, 254, 1);
+        border-bottom: 0.1rem solid #999;
     }
     .selActive{
-        border-top: 0.1rem solid RGBA(86, 196, 254, 1);
+        border-top: 0.1rem solid #56C4FE;
         border-bottom:0;
     }
 
@@ -715,7 +715,7 @@
         height: 0.56rem;
         text-align: center;
         line-height: 0.60rem;
-        color: RGBA(69, 75, 84, 0.5);
+        color: rgba(69, 75, 84, 0.5);
         background: #fff;
         border-radius: 0.10rem;
         border: 0.02rem solid #eee;
@@ -843,7 +843,7 @@
 
     .index_li_header {
         font-size: 0.24rem;
-        color: RGBA(69, 75, 84, 0.5);
+        color: #999;
         line-height: 0.34rem;
         margin-bottom: 0.18rem;
         position: relative;
@@ -921,7 +921,7 @@
         position: absolute;
         right: 0;
         font-size: 0.26rem;
-        color: rgba(36, 37, 61, 0.5);
+        color: #999;
         top: 0;
         line-height: 0.82rem;
     }

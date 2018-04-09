@@ -7,8 +7,9 @@
             <div class="items" v-for="(item,index) in items" @click="select(index)" :class="{selected:item.c==1}">
                 <div class="price" :class="{nogift:item.couponCount==0}">{{item.dianCoin}} 点豆</div>
                 <div class="dou" :class="{nogift:item.couponCount==0}">{{parseInt(item.money)}} 元</div>
-                <div class="gift" v-if="item.couponCount!=0">赠送{{item.couponCount}}张偷听卡</div>
+                <!--<div class="gift" v-if="item.couponCount!=0">赠送{{item.couponCount}}张偷听卡</div>-->
             </div>
+            <div style="clear: both"></div>
         </div>
         <div class="cash" v-if="user">现金余额可使用<span style="color: #FB640A"> {{user.balance||0.00}} </span>元
             <div class="cash_right" :class={no:!isUseIncome} @click="useIncome()"></div>
@@ -245,7 +246,7 @@
     }
 
     .recharge_box .items_box .items:nth-of-type(2n) {
-        margin-left: 3.8%;
+       float: right;
     }
 
     .recharge_box .items_box .items .price {
@@ -291,12 +292,14 @@
         color: #fff;
         font-size: 0.36rem;
         line-height: 0.88rem;
-        border-radius: 2.12rem;
+        border-radius: 0.1rem;
         margin: 0 auto;
         margin-top: 0.70rem;
         text-align: center;
     }
-
+    .recharge_box .rechar_btn:active{
+        background: #2EB1FF;
+    }
     .recharge_box .question {
         margin-top: 1.19rem;
         font-size: 0.30rem;
