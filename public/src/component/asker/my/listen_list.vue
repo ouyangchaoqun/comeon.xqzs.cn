@@ -24,7 +24,7 @@
                         <div class="question">
                             <!--<img class="img" v-bind:src="item.questionUserFaceUrl" alt="">-->
                             <div class="img" v-if="item.isAnonymous==0" :style="{'background':'url('+getLittleFace(item.questionUserFaceUrl)+')no-repeat','background-size':'100%'}"></div>
-                            <div class="img" v-else="" style='background:url(http://oss.xqzs.cn/resources/psy/isAnonymousImg.png) no-repeat;background-size: 0.68rem'></div>
+                            <div class="img" v-else="" style='background:url(http://oss.xqzs.cn/resources/psy/isAnonymousImg.png) no-repeat;background-size: 0.8rem'></div>
 
                             <div class="title">{{item.question}}
                             </div>
@@ -50,7 +50,7 @@
                             <div class="others_right">
                                 <div class="listen_count">{{item.listenTimes}} 人听过</div>
                                 <div @click.stop="like(index)">
-                                    <span style="margin-right: 0.05rem;">{{item.likeTimes}}</span>
+                                    <span style="margin-right: 0.1rem;">{{item.likeTimes}}</span>
                                     <img v-if="!item.isCared" src="http://oss.xqzs.cn/resources/psy/asker/zan_nor.png" class="care_icon"/>
                                     <img v-if="item.isCared" src="http://oss.xqzs.cn/resources/psy/asker/zan_por1.png" class="care_icon"/>
                                 </div>
@@ -318,12 +318,12 @@
 <style>
     .asker_my_listen_list_box .questCount{height:0.88rem;text-align: center;background: #F4F4F7;font-size: 0.30rem;line-height: 0.88rem;color:rgba(36,37,61,0.5);}
     .asker_my_listen_list_box .item{ border-bottom: 0.02rem solid #eee; padding-bottom: 0.29rem;}
-    .asker_my_listen_list_box .question{ padding: 0.30rem;display: flex;display: -webkit-box;display: -webkit-flex;}
-    .asker_my_listen_list_box .question .img{border-radius: 50%; width:0.68rem;height:0.68rem;display: block; margin-right:0.28rem;}
+    .asker_my_listen_list_box .question{ padding: 0.30rem;padding-left: 1.3rem;position: relative}
+    .asker_my_listen_list_box .question .img{border-radius: 50%; width:0.8rem;height:0.8rem;display: block; position: absolute;left:0.3rem;}
 
-    .asker_my_listen_list_box .question .title{ font-size: 0.30rem; color:rgba(69, 75, 84, 1); width: 82% }
+    .asker_my_listen_list_box .question .title{ font-size: 0.30rem; color:rgba(69, 75, 84, 1);}
 
-    .asker_my_listen_list_box .answer .img{ width: 0.88rem; height: 0.88rem; float:left; margin-left: 0.30rem; margin-right: 0.17rem;}
+    .asker_my_listen_list_box .answer .img{ width: 0.88rem; height: 0.88rem; float:left; margin-left: 0.30rem; margin-right: 0.2rem;}
     .asker_my_listen_list_box .answer .img img{ width: 100%; height: 100%; border-radius: 50%;}
     .asker_my_listen_list_box .answer .audio{ width: 100%; margin-top: 0}
     .asker_my_listen_list_box .answer .audio .audio_btn{ width: 47%}
