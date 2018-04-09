@@ -21,6 +21,7 @@
 
             reUrl= reUrl+ vueUrl;
         }
+        reUrl = encodeURIComponent(reUrl);
         console.log(reUrl)
         return  reUrl;
     },
