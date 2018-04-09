@@ -219,9 +219,6 @@
         methods: {
             initAll:function () {
                 console.log("mounted")
-                if(!xqzs.user.isUserLogin()){
-                    return ;
-                }
                 let expertId = cookie.get("expertId");
                 if(expertId){
                     this.isRegExpert = true
