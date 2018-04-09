@@ -1001,7 +1001,7 @@
     .step_detailBox{margin-bottom: 0.68rem}
     .join_stepBox .step_detailBox li{height: 0.98rem;line-height:1.00rem;color:rgba(69, 75, 84, 1);border-bottom: 0.02rem solid #eee;padding:0 0.30rem;font-size: 0.28rem;position: relative;}
     .join_stepBox .step_detailBox li .li_right{float: right;padding-right:0.51rem;width:55%;color: rgba(69, 75, 84, 1) !important;}
-    .li_right>div{ width:100%;text-align: right;font-size: 0.28rem;color: rgba(69, 75, 84, 0.5); overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+    .li_right>div{ width:100%;text-align: right;font-size: 0.28rem;color: #999; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
     .join_stepBox .li_right i{background: url('http://oss.xqzs.cn/resources/psy/join_right_icon.png') no-repeat center;width: 0.17rem;  height: 0.34rem;  background-size:100%;  position: absolute;  right: 0.30rem;  top: 50%;margin-top: -0.17rem;  }
     .joinStep_bottom{padding:0.60rem 0.30rem;padding-top: 0}
     .join_agre{color:rgba(53, 58, 66, 1);font-size: 0.24rem;line-height: 0.34rem;margin-bottom: 0.61rem;}

@@ -179,7 +179,7 @@
     .answer_my_index_box .top .name{color:rgba(255,255,255,1);padding-top: 0.2rem; margin-bottom:0.2rem;font-weight: bold; font-size: 0.3rem; height: 0.3rem; overflow: hidden}
     .answer_my_index_box .top .perfect{color:rgba(255,255,255,1);font-size: 0.24rem;}
     .main_lists a{ position: relative; height:1.18rem;    line-height:1.18rem;
-        color:rgba(36,37,61,1); font-size: 0.30rem; padding:  0  0.30rem;display: block; overflow: hidden; padding-left: 0.90rem; background: #fff;  }
+        color:rgba(69, 75, 84, 1); font-size: 0.30rem; padding:  0  0.30rem;display: block; overflow: hidden; padding-left: 0.90rem; background: #fff;  }
     .main_lists a:after{ background: url(http://oss.xqzs.cn/resources/psy/arrow.png) ; width: 0.32rem; height: 0.32rem; background-size: 0.32rem; position: absolute;
         right:0.30rem;top:0.42rem ; content: " "}
     .main_lists a:before{ content: " "; height: 0.02rem; background: #eee; display: block; position: absolute; bottom:0;left: 1rem; width: 100%}
@@ -206,7 +206,7 @@
         background: #fff;
         position: static;
         line-height: 1.6;
-        color: rgba(36, 37, 61, 1);
+        color: rgba(69, 75, 84, 1);
         font-size: 0.28rem;
         padding: 0;
         display: block;

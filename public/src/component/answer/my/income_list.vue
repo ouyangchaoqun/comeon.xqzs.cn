@@ -144,7 +144,7 @@
         display: flex;
     }
     .time{
-        color:rgba(153,153,153,1);
+        color:#999;
         font-size: 0.22rem;
         float: left;
     }

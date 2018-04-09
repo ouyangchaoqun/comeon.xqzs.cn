@@ -141,13 +141,13 @@
         display: flex;
     }
     .time{
-        color:rgba(153,153,153,1);
+        color:#999;
         font-size: 0.22rem;
         width:40%;
     }
     .item_right{
         font-size: 0.30rem;
-        color:rgba(255,157,24,1);
+        color:#FE7A03;
         width:40%;
         text-align: right;
         overflow: hidden;
@@ -155,7 +155,7 @@
         white-space: nowrap;
     }
     .moneyOut_color{
-        color:rgba(36,37,61,0.5);
+        color:#999;
     }
     .item_right span{
         font-size: 0.26rem;
@@ -167,7 +167,7 @@
     .item_type{
         margin: 0 auto;
         text-align: center;
-        color:rgba(36,37,61,0.5);
+        color:#999;
         font-size: 0.26rem;
         width:20%;
         overflow: hidden;

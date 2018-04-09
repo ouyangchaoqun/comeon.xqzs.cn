@@ -179,7 +179,7 @@
         padding-top: 0.34rem;
     }
     .fansItem li .right>div:nth-of-type(1){
-        color: #333;
+        color: RGBA(69, 75, 84, 1);
         font-size: 0.30rem;
         margin-bottom: 0.15rem;
     }

@@ -290,7 +290,7 @@
 </script>
 <style>
     .my_problem_tabs{
-        color: rgba(36,37,61,1);
+        color: rgba(69, 75, 84, 1);
         font-size: 0.30rem;
         text-align: center;
         display: -webkit-box;
@@ -320,7 +320,7 @@
         margin-top:-0.19rem;
     }
     .my_problem_active{
-        border-bottom: 0.04rem solid rgba(86,196,245,1);
+        border-bottom: 0.04rem solid #56C4FE;
     }
     .my_problem_box{
         position: relative;
@@ -342,18 +342,18 @@
     .problem_item .li_border{
         border-bottom: 0.20rem solid #f4f4f7;
     }
-    .problem_item_top{display: -webkit-box;display: -webkit-flex;display: flex;font-size: 0.24rem;line-height: 0.68rem;color:#999;position: relative}
-    .problem_item_top span{color:rgba(36,37,61,0.7);margin-right: 0.20rem;}
-    .problem_item_top i{font-style: normal;color:rgba(254,115,1,1);margin-left: 0.10rem}
+    .problem_item_top{display: -webkit-box;display: -webkit-flex;display: flex;font-size: 0.24rem;line-height: 0.8rem;color:#999;position: relative;margin-bottom: 0.1rem;}
+    .problem_item_top span{color:#999;margin-right: 0.20rem;}
+    .problem_item_top i{font-style: normal;color:#FE7A03;margin-left: 0.10rem}
     .problem_item_top img{
-        width:0.68rem;
-        height:0.68rem;
+        width:0.8rem;
+        height:0.8rem;
         display: block;
         border-radius: 50%;
         margin-right: 0.20rem;
     }
     .problem_item_right{position: absolute;right:0}
-    .problem_item_del{color:rgba(36,37,61,1);font-size: 0.30rem;line-height: 0.40rem;padding-left:0.88rem;margin-bottom: 0.40rem}
+    .problem_item_del{color:rgba(69, 75, 84, 1);font-size: 0.30rem;line-height: 0.40rem;padding-left:1rem;margin-bottom: 0.40rem}
     .problem_answer_info{
         display: -webkit-box;
         display: -webkit-flex;
@@ -401,7 +401,7 @@
         margin-top:-0.20rem;
     }
     .problem_bestAns{
-        color: rgba(36,37,61,1);
+        color: rgba(69, 75, 84, 1);
         font-size: 0.24rem;
         position: absolute;
         right:-1.90rem;
