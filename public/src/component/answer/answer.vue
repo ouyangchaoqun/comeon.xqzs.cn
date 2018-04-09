@@ -187,6 +187,9 @@
             }
         },
         activated: function () {
+            if (!xqzs.user.isUserLogin()) {
+                return;
+            }
             let _this = this;
             this.showLoad = false;
             this.isAnswered = false;
