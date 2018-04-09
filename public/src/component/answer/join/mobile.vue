@@ -74,12 +74,7 @@
             this.codeError = false;
 
             let _this = this;
-            $('.answer_join_mobile_box').click(function () {
-                $('.answer_join_mobile_box').hide()
-            })
-            $('.mobile__box').click(function (e) {
-                e.stopPropagation();
-            });
+
             $('.input_phone').keyup(function () {
                 var length = _this.mobile.length;
                 if (length == 11) {
