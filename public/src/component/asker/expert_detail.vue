@@ -442,6 +442,9 @@
                         item.likeTimes=parseInt(item.likeTimes)+1;
                         _this.$set(_this.answerList,index,item);
                     }
+                    if(bt.data.status==800003){
+                        xqzs.weui.tip("偷听后才能点赞哦");
+                    }
                 })
 
             },
