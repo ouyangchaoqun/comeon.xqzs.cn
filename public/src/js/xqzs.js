@@ -36,6 +36,9 @@ var xqzs = {
 
         goPub:function () {
             var url = window.location.href.replace('#','vue_pound');
+            console.log("goPuburlurlurlurlurlurlurlurl")
+            console.log(url)
+            console.log(window.location.href);
             window.location.href= web.BASE_PATH.replace("comeon/","") +   "wx/pub?reurl=" + encodeURI(url);
 
 

@@ -773,7 +773,7 @@
                                 imgUrl: _this.detail.faceUrl,
                                 title:  xqzs.string.removeHtml(_this.detail.introduction) ,
                                 desc: '好一点平台特邀心理咨询师'+_this.detail.nickName+'，欢迎提问，我将竭力为你排忧解难！',
-                                link: weshare.getShareUrl("asker/expert/detail/?id=" + id+"&is_share=1",true),
+                                link: weshare.getShareUrl("asker/expert/detail/?id=" + id,true),
                             };
                             weshare.init(wx, config)
                         });
