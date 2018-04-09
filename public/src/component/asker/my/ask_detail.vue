@@ -415,7 +415,7 @@
         margin-right:0;
     }
     .ask_detailBox .my_problem_detail .add_askerInfo{
-        line-height: 0.58rem;
+        line-height: 0.8rem;
         display: flex;
         font-size: 0.26rem;
         padding:0 0.30rem;
@@ -424,8 +424,8 @@
         padding-top: 0.30rem;
     }
     .ask_detailBox .my_problem_detail .add_askerInfo img{
-        width:0.58rem;
-        height:0.58rem;
+        width:0.8rem;
+        height:0.8rem;
         border-radius: 50%;
         margin-right: 0.17rem;
     }
@@ -453,15 +453,15 @@
         margin-right: 0.30rem; line-height: 0.40rem
     }
     .ask_detailBox .answerInfo_border{border-bottom:0.02rem solid #eee;}
-    .ask_detailBox .yy_bottomBorder{height:0;width:80%;margin: 0 auto;border-bottom: 0.02rem solid #eee;margin-bottom: 0.36rem;padding-top:0.51rem;}
-    .ask_detailBox .problem_answer_bottom{padding:0;margin:0 auto;width:80%;margin-bottom: 0.28rem;}
+    .ask_detailBox .yy_bottomBorder{height:0;margin: 0 0.3rem;border-bottom: 0.02rem solid #eee;margin-bottom: 0.2rem;padding-top:0.51rem;}
+    .ask_detailBox .problem_answer_bottom{padding:0 0.3rem;margin:0 auto;margin-bottom: 0.28rem;}
     .problem_assess_btn .weui-btn{border-radius: 1rem;}
     .problem_assess .star>div{display: inline-block;line-height: 1;color:#999;font-size: 0.22rem;margin-bottom: 0.63rem}
     .problem_assess .star span{ position:relative;display: inline-block;  height:0.56rem; width: 0.59rem; background: url(http://oss.xqzs.cn/resources/psy/starNew_no.png) no-repeat; background-size: 0.59rem; margin: 0.40rem  0.24rem 0.23rem 0.24rem;  }
     .problem_assess .star span.on{ background: url(http://oss.xqzs.cn/resources/psy/starNew.png) no-repeat; background-size: 0.59rem;}
     .problem_assess .star>div .color_on{color:rgba(253,198,10,1)}
     .ask_detailBox .problem_answer_info{
-        padding:0 0.30rem;
+        padding-left:1.42rem;
         display: -webkit-box;
         display: -webkit-flex;
         display: flex;
@@ -513,7 +513,7 @@
         margin: 0 auto;
         position: relative;
         height:2.38rem;
-        background: #EBEBEC;
+        background: #f4f4f7;
         border-radius: 0.1rem;
         overflow: hidden;
         margin-bottom: 0.64rem;
@@ -521,13 +521,14 @@
     }
     .problem_assess_input .comment_anonymous{
         position: absolute;
-        bottom:0.10rem;
-        right:3%;
+        bottom:0;
+        right:0.24rem;
         color:#999;
         font-size: 0.24rem;
         line-height: 0.34rem;
         background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_no.png") no-repeat left center;
         background-size: 0.28rem;
+        padding: 0.24rem 0;
         padding-left: 0.34rem;
         height:0.32rem;
         z-index: 1000;
@@ -538,7 +539,7 @@
     }
     .problem_assess_item textarea{
         height:1.43rem;
-        background: #EBEBEC;
+        background: #F4F4F7;
         resize: none;
         border:0;
         outline: none;
@@ -563,7 +564,6 @@
     .problem_box_background{
         background: #F4F4F7;
     }
-    .problem_answer_info .problem_answer_yy{margin:0 auto;}
     .problem_assess_input .addIsOverHtml{text-align: left;background: #EBEBEC;border-radius: 0.10rem;padding:0.10rem 0.30rem;}
     .ask_detailBox .addContentStyle{margin-bottom: 0}
 </style>
