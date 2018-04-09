@@ -268,11 +268,11 @@ a{
 .answer_list .item:last-child{border-bottom: 0}
 .answer_list .itemHeader>div:first-child{ font-weight: bold}
 .answer_list .itemHeader{height:0.50rem;line-height: 0.50rem;color:RGBA(69, 75, 84, 1);font-size: 0.3rem;position: relative;margin-bottom: 0.1rem;}
-.answer_list .itemHeader span{color:rgba(69, 75, 84,0.5);font-size: 0.26rem;font-weight: normal;margin-left: 0.14rem;}
+.answer_list .itemHeader span{color:#999;font-size: 0.26rem;font-weight: normal;margin-left: 0.14rem;}
 /*.answer_list .itemDetail{display: flex}*/
 .answer_list .itemDetail_right{width:82%;color:RGBA(69, 75, 84, 1);float: right}
 .answer_list .itemDetail_right .title{font-size: 0.28rem;margin-bottom: 0.2rem;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;}
-.answer_list .class_s{color:rgba(69, 75, 84,0.5);font-size: 0.24rem;line-height: 1.4;margin-bottom: 0.26rem;}
+.answer_list .class_s{color:#999;font-size: 0.24rem;line-height: 1.4;margin-bottom: 0.26rem;}
 
 .answer_list .itemDetail_class_s .tab_i_i {    color: #FE7A03;
     background: RGBA(254, 122, 3, 0.1);
@@ -292,7 +292,7 @@ a{
     color:#FE7A03;
 }
  .answer_list .class_s .price b {
-    color: rgba(36, 37, 61, 0.5);
+    color: #999;
     font-style: normal;
     font-weight: normal;
     text-align: left
@@ -409,13 +409,13 @@ a{
     float: left;
 }
 .steal_expert_fans{
-    color: rgba(69, 75, 84, 0.5);
+    color: #999;
     font-size: 0.26rem;
     float: left;
 }
 .steal_expert_des{
     width:75%;
-    color: rgba(36,37,61,0.8);
+    color: rgba(69, 75, 84, 1);
     font-size: 0.28rem;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -471,7 +471,7 @@ a{
 }
 .problem_detail_content{
     padding:0 0.30rem;
-    color: rgba(36,37,61,1);
+    color: rgba(69, 75, 84, 1);
     font-size: 0.28rem;
 }
 /*底部 信息展示 听过 点赞*/
@@ -840,7 +840,7 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
 /**专家头部筛选样式**/
 .filter_box .filter_list{
     height:0.96rem;
-    color:RGBA(43, 53, 68, 0.5);
+    color:#999;
     font-size: 0.3rem;
     text-align: center;
     display: flex;
@@ -857,18 +857,18 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
     width: 0;
     height: 0;
     display: inline-block;
-    border-top: 0.12rem solid RGBA(69, 75, 84, 0.2);
-    border-right: 0.12rem solid transparent;
-    border-left: 0.12rem solid transparent;
+    border-top: 0.1rem solid #999;
+    border-right: 0.1rem solid transparent;
+    border-left: 0.1rem solid transparent;
     margin-left: 0.08rem;
     vertical-align: middle;
 }
 .filter_box .activeSanjiao {
-    border-top: 0.12rem solid RGBA(3, 207, 254, 1);
+    border-top: 0.1rem solid #56C4FE;
 }
 .filter_box .xsanjiao{
     border-top: 0;
-    border-bottom: 0.12rem solid RGBA(3, 207, 254, 1);
+    border-bottom: 0.1rem solid #56C4FE;
 }
 .filter_box .filter_icon{
     width:0.28rem;
@@ -933,7 +933,7 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
     line-height: 0.96rem;
     font-size: 0.28rem;
     border-bottom: 0.02rem solid RGBA(238, 238, 238, 1);
-    color:RGBA(69, 75, 84, 0.5);
+    color:#999;
     position: relative;
 }
 .filter_box .city_box li{
@@ -941,12 +941,12 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
 }
 .filter_box .cityStyle .city_left{
     background:#fff;
-    color:RGBA(43, 53, 68, 0.5)
+    color:#999;
 }
 .filter_box .city_left{
     width:30%;
     text-align: center;
-    color:RGBA(43, 53, 68, 0.6);
+    color:#999;
     background: RGBA(244, 244, 247, 1);
     height:100%;
     overflow: hidden;
@@ -957,7 +957,7 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
     position: absolute;
     right:0;
     width:70%;
-    color:RGBA(43, 53, 68, 0.5);
+    color:#999;
     z-index:55;
     top:0;
     line-height: 0.9rem;
@@ -999,7 +999,7 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
     height: 0.56rem;
     text-align: center;
     line-height: 0.60rem;
-    color: RGBA(69, 75, 84, 0.5);
+    color: #999;
     background: #fff;
     border-radius: 0.10rem;
     border: 0.02rem solid RGBA(69, 75, 84, 0.08);

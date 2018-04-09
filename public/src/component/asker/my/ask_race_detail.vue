@@ -483,10 +483,10 @@
 
 
     .rob_problem .rob_lists li{ position: relative}
-    .rob_problem  .rob_lists li .comment_btn{ position: absolute; right:0.30rem; top:0.30rem; color:#FD7502; border: 0.02rem solid #FD7502; line-height:0.48rem; height: 0.48rem; padding: 0 0.27rem; border-radius: 0.07rem; font-size: 0.24rem;  }
+    .rob_problem  .rob_lists li .comment_btn{ position: absolute; right:0.30rem; top:0.30rem; color:#FE7A03; border: 0.02rem solid #FE7A03; line-height:0.48rem; height: 0.48rem; padding: 0 0.27rem; border-radius: 0.07rem; font-size: 0.24rem;  }
     .rob_problem  .rob_lists li .comment_btn:active{ color:#e36b02; border: 0.02rem solid #e36b02; }
     .rob_problem .addBest_text{
-        color:rgba(153,153,153,1);
+        color:#999;
         font-size: 0.24rem;
         line-height: 1;
         padding-top: 0.34rem;
@@ -543,7 +543,7 @@
         display: -webkit-box;
         display: -webkit-flex;
         font-size: 0.26rem;
-        color: rgba(36,37,61,1);
+        color: rgba(69, 75, 84, 1);
         line-height: 0.68rem;
         margin-bottom: 0.36rem;
         position: relative;

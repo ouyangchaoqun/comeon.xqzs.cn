@@ -806,7 +806,7 @@
         margin: 0 auto;
         margin-top: 0.30rem;
         text-align: center;
-        color: rgba(36,37,61,0.5);
+        color: #999;
         font-size: 0.24rem;
     }
     .answer_detail_box .content_mt{ margin-top: 0.3rem;    display: inline-block;}
@@ -883,12 +883,12 @@
     .answer_detail_box .counts{
         font-size:0.32rem;
         line-height: 1;
-        color:rgba(36,37,61,0.8);
+        color:rgba(69, 75, 84, 1);
         margin-bottom: 0.17rem;
     }
     .answer_detail_box .nr{
         font-size:0.24rem;
-        color:rgba(36,37,61,0.5);
+        color:#999;
         line-height: 1;
     }
     .answer_detail_box .line_1{
@@ -911,12 +911,12 @@
     }
     .answer_detail_box .hello{
         padding-left: 0.30rem;
-        color:rgba(36,37,61,0.5); font-size: 0.30rem;
+        color:#999; font-size: 0.30rem;
         float: left;
         margin-top: 0.30rem;
         margin-right: 0.20rem;
     }
-    .answer_detail_box .minute{ color:rgba(36,37,61,0.5); font-size: 0.26rem; margin-left: 0.27rem; float:left; line-height: 0.82rem;}
+    .answer_detail_box .minute{ color:#999; font-size: 0.26rem; margin-left: 0.27rem; float:left; line-height: 0.82rem;}
 
 
 
@@ -953,7 +953,7 @@
         font-size: 0.28rem;
         padding:0.30rem ;
         line-height: 0.4rem;
-        color:rgb(63, 63, 63);
+        color:rgba(69, 75, 84, 1);
     }
     /*.answer_detail_box .content b{*/
         /*color:rgba(36,37,61,1);*/
@@ -964,7 +964,7 @@
         line-height: 1;
         margin:0 auto;
         text-align: center;
-        color: rgba(36,37,61,0.5);
+        color: #999;
         font-size: 0.24rem;
     }
     .answer_detail_box .btn_sq img{
@@ -992,15 +992,15 @@
     .answer_detail_box  .list .item .img{ width: 0.8rem;height: 0.8rem; float:left; }
     .answer_detail_box  .list .item .img img{ width: 100%; height: 100%; border-radius: 50%;}
     .answer_detail_box  .list .info{ float:left; margin-left:0.20rem;  width: 84%;line-height: 0.68rem;}
-    .answer_detail_box  .list .info .name{ font-size: 0.24rem; color:rgba(36,37,61,0.5); margin-bottom: 0.07rem; width: 4.80rem;line-height: 1}
+    .answer_detail_box  .list .info .name{ font-size: 0.24rem; color:#999; margin-bottom: 0.07rem; width: 4.80rem;line-height: 1}
     .answer_detail_box  .list .info .star{line-height: 1;margin-bottom: 0.12rem}
     .answer_detail_box  .list .word{ font-size:0.28rem;  color:rgba(36,37,61,1); margin-bottom: 0.14rem; overflow: hidden;word-wrap:break-word; line-height: 0.48rem;}
     /*.answer_detail_box  .list .word_closeStyle{text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;}*/
     /*.answer_detail_box  .list .word_openStyle{display: block}*/
-    .answer_detail_box  .list .time{ font-size:0.24rem; color:rgba(36,37,61,0.5);}
+    .answer_detail_box  .list .time{ font-size:0.24rem; color:#999;}
     .answer_detail_box .timeRight{float: right}
     .answer_detail_box  .list .info .class_s { clear: both; padding-top: 0.10rem;}
-    .answer_detail_box  .list .info .class_s span{ display: block; float:left; text-align: center; border-radius:0.10rem;  height: 0.42rem; line-height: 0.42rem;  border: 0.02rem solid #E0E0E1 ; color:rgba(36,37,61,0.5) ; font-size: 0.24rem; padding: 0 0.24rem; margin-right:0.19rem;margin-bottom: 0.20rem}
+    .answer_detail_box  .list .info .class_s span{ display: block; float:left; text-align: center; border-radius:0.10rem;  height: 0.42rem; line-height: 0.42rem;  border: 0.02rem solid #E0E0E1 ; color:#999 ; font-size: 0.24rem; padding: 0 0.24rem; margin-right:0.19rem;margin-bottom: 0.20rem}
     .answer_detail_box .ask_answer{
         margin-top: 0.2rem;
         background: white;
@@ -1009,18 +1009,18 @@
     .answer_detail_box .sj{
         width: 0;
         height: 0;
-        border-top: 0.12rem solid rgba(36,37,61,0.5) ;
+        border-top: 0.12rem solid #999 ;
         border-right: 0.10rem solid transparent;
         border-left: 0.10rem solid transparent;
         position: absolute;
         top:0.40rem;
         margin-left: 0.10rem;
     }
-    .answer_detail_box .bj{ border-bottom: 0.12rem solid rgba(36,37,61,0.5) ;border-top:0}
+    .answer_detail_box .bj{ border-bottom: 0.12rem solid #999 ;border-top:0}
     .answer_detail_box .new{float: right;margin-right: 0.20rem; position: relative; padding-right: 0.46rem; color: rgba(69, 75, 84, 0.5);font-size: 0.24rem;font-weight: normal}
     .answer_detail_box .price{font-size: 0.25rem;color:#56C4FE}
     .answer_detail_box .reply{height: 1.00rem;}
-    .answer_detail_box .status{color: rgba(36,37,61,0.5); font-size:0.24rem;margin-top: 0.30rem }
+    .answer_detail_box .status{color: #999; font-size:0.24rem;margin-top: 0.30rem }
     .answer_detail_box .ask_time{float: left;}
     .answer_detail_box .answer{margin-top: 0.30rem}
     .answer_detail_box .ask_status{float: right;position: absolute;right:0.10rem;}
@@ -1045,7 +1045,7 @@
         text-align: center;
     }
     .listen img{display: inline-block;width:0.18rem;margin-right: 0.10rem;}
-    .answer_detail_box .listen span{color: rgba(36,37,61,0.5);font-size: 0.28rem;display: block;height:100%;line-height: 0.88rem;}
+    .answer_detail_box .listen span{color: #999;font-size: 0.28rem;display: block;height:100%;line-height: 0.88rem;}
     .answer_detail_box .icon1{
         margin-top: 0.20rem;
         background: url("http://oss.xqzs.cn/resources/psy/asker/listenin1.png") no-repeat;
@@ -1069,7 +1069,7 @@
     .friestP{overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 4;line-height:0.40rem;-webkit-box-orient: vertical;}
     .addopen{margin-top:0.3rem;height:auto;}
     .addstop{margin-top:0;height:0;overflow: hidden;}
-    .item .others{ color:rgba(36,37,61,0.5); position: relative; font-size: 0.24rem; padding-left: 0.98rem;}
+    .item .others{ color:#999; position: relative; font-size: 0.24rem; padding-left: 0.98rem;}
     .item .others .listen_count{ float: left;margin-right: 0.20rem}
     .item .others_right{position: absolute;right:0;top:0;display: flex;}
     .ask_answer .new ul{

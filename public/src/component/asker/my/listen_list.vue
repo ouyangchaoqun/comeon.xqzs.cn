@@ -321,14 +321,14 @@
     .asker_my_listen_list_box .question{ padding: 0.30rem;display: flex;display: -webkit-box;display: -webkit-flex;}
     .asker_my_listen_list_box .question .img{border-radius: 50%; width:0.68rem;height:0.68rem;display: block; margin-right:0.28rem;}
 
-    .asker_my_listen_list_box .question .title{ font-size: 0.30rem; color:rgba(36,37,61,1); width: 82% }
+    .asker_my_listen_list_box .question .title{ font-size: 0.30rem; color:rgba(69, 75, 84, 1); width: 82% }
 
     .asker_my_listen_list_box .answer .img{ width: 0.88rem; height: 0.88rem; float:left; margin-left: 0.30rem; margin-right: 0.17rem;}
     .asker_my_listen_list_box .answer .img img{ width: 100%; height: 100%; border-radius: 50%;}
     .asker_my_listen_list_box .answer .audio{ width: 100%; margin-top: 0}
     .asker_my_listen_list_box .answer .audio .audio_btn{ width: 47%}
 
-    .asker_my_listen_list_box .others{ color:rgba(36,37,61,0.5); position: relative; font-size: 0.24rem; padding: 0 0.30rem; margin-top: 0.37rem;}
+    .asker_my_listen_list_box .others{ color:#999; position: relative; font-size: 0.24rem; padding: 0 0.30rem; margin-top: 0.37rem;}
     .asker_my_listen_list_box .others .listen_count{ float:left;    margin-right: 0.20rem;}
     .asker_my_listen_list_box .others .others_right{position: absolute;right:0.27rem;top:0;display: flex}
 

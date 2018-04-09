@@ -305,7 +305,7 @@
         display: -webkit-flex;
         display: flex;
         position: relative;
-        color: rgba(36,37,61,0.5);
+        color: #999;
         font-size: 0.24rem;
         margin-bottom: 0.20rem;
         line-height:  0.58rem ;
@@ -324,7 +324,7 @@
     }
 
     .my_problem_content {
-        color: rgba(36,37,61,1);
+        color: rgba(69, 75, 84, 1);
         font-size: 0.30rem;
         line-height: 0.48rem;
         overflow: hidden;
@@ -336,7 +336,7 @@
     }
 
     .my_problem_bottom {
-        color: rgba(36,37,61,0.5);
+        color: #999;
         font-size: 0.24rem;
         line-height: 1;
         overflow: hidden;

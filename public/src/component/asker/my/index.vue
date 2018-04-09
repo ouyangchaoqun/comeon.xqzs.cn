@@ -220,9 +220,9 @@
     }
     .asker_my_index_box .join{
         line-height: 1.02rem;
-        background: RGBA(255, 255, 255, 1);
+        background: rgba(255, 255, 255, 1);
         text-align: center;
-        color:RGBA(43, 53, 68, 1);
+        color:rgba(69, 75, 84, 1);
         font-size: 0.3rem;
     }
     .asker_my_index_box .join:active{
@@ -234,7 +234,7 @@
         height: 1.18rem;
         line-height: 1.18rem;
         background: #fff;
-        color: rgba(36, 37, 61, 1);
+        color: rgba(69, 75, 84, 1);
         font-size: 0.30rem;
         padding: 0 0.30rem;
         display: block;
@@ -281,7 +281,7 @@
         background: #fff;
         position: static;
         line-height: 1.6;
-        color: rgba(36, 37, 61, 1);
+        color: rgba(69, 75, 84, 1);
          font-size: 0.28rem;
         padding: 0;
         display: block;

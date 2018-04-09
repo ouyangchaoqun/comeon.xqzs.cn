@@ -66,7 +66,7 @@
     .dotcoin_box .banner.banner_cash_bg{ background: url(http://oss.xqzs.cn/resources/psy/asker/user_bg_money.png) bottom right #FE7A03 no-repeat; background-size:2.12rem;background-position-y: 1.02rem;}
     .dotcoin_box .value{font-size: 1.36rem; margin-top: 0.22rem; margin-left: 0.32rem;line-height: 2.00rem; color: #fff; }
     .dotcoin_box .btn{ height: 1.00rem; background: #fff; border-bottom: 0.02rem solid #eee;position: relative}
-    .dotcoin_box .btn .left{ margin-left: 0.30rem;margin-top: 0.32rem; float: left; font-size: 0.30rem; line-height: 0.42rem;color: #4A4A4A;}
+    .dotcoin_box .btn .left{ margin-left: 0.30rem;margin-top: 0.32rem; float: left; font-size: 0.30rem; line-height: 0.42rem;color: rgba(69, 75, 84, 1);}
     .dotcoin_box .btn .rightIcon{background: url(http://oss.xqzs.cn/resources/psy/arrow.png) no-repeat;width: 0.32rem; height: 0.32rem;background-size: 0.32rem;position: absolute;right:0.30rem;top:50%;margin-top:-0.16rem;}
 
 </style>
