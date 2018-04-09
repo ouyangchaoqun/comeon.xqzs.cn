@@ -225,8 +225,6 @@
                     evaluate:0,
                     listenCount:0,
                     followCount:0,
-
-
                 },
                 playing:false,
                 paused:false,
@@ -288,7 +286,6 @@
             this.isPageEnd=false;
             this.isShowMoreText=true;
              this.rechargeMoney=0;
-
             this.isMe=this.$route.query.isMe;
             this.id = this.$route.query.id;
             this.getDetail();
