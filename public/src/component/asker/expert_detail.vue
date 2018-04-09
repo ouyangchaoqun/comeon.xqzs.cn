@@ -176,7 +176,7 @@
                             <div class="others_right">
                                 <div class="listen_count">{{item.listenTimes}} 人听过</div>
                                 <div @click.stop="like(index)" >
-                                    <span style="margin-right: 0.05rem;">{{item.likeTimes}}</span>
+                                    <span style="margin-right: 0.1rem;">{{item.likeTimes}}</span>
                                     <img v-if="!item.isCared" src="http://oss.xqzs.cn/resources/psy/asker/zan_nor.png" class="care_icon"/>
                                     <img v-if="item.isCared" src="http://oss.xqzs.cn/resources/psy/asker/zan_por1.png" class="care_icon"/>
                                 </div>
@@ -938,7 +938,7 @@
     .answer_detail_box .answer_title i{
         font-style: normal;
         font-size:0.24rem;
-        color:rgba(69, 75, 84, 0.5);
+        color:#999;
         float: right;
         padding-right: 0.30rem;
         background: url("http://oss.xqzs.cn/resources/psy/arrow.png") no-repeat center right;
@@ -1006,15 +1006,15 @@
     .answer_detail_box .sj{
         width: 0;
         height: 0;
-        border-top: 0.12rem solid #999 ;
+        border-top: 0.1rem solid #999 ;
         border-right: 0.10rem solid transparent;
         border-left: 0.10rem solid transparent;
         position: absolute;
         top:0.40rem;
         margin-left: 0.10rem;
     }
-    .answer_detail_box .bj{ border-bottom: 0.12rem solid #999 ;border-top:0}
-    .answer_detail_box .new{float: right;margin-right: 0.20rem; position: relative; padding-right: 0.46rem; color: rgba(69, 75, 84, 0.5);font-size: 0.24rem;font-weight: normal}
+    .answer_detail_box .bj{ border-bottom: 0.1rem solid #999 ;border-top:0}
+    .answer_detail_box .new{float: right;margin-right: 0.20rem; position: relative; padding-right: 0.46rem; color: #999;font-size: 0.24rem;font-weight: normal}
     .answer_detail_box .price{font-size: 0.25rem;color:#56C4FE}
     .answer_detail_box .reply{height: 1.00rem;}
     .answer_detail_box .status{color: #999; font-size:0.24rem;margin-top: 0.30rem }
