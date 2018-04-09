@@ -57,8 +57,12 @@
                 <div class="problem_answer_bottom" v-if="detail.answerCount>0">
                     <div class="problem_answer_time">{{formatDateText(item.addTime)}}</div>
                     <div class="problem_answer_zan">
-                        <div><span>听过</span> <span>{{item.ListenTimes}}</span></div>
-                        <div @click="like(index)" class="good_care" :class="{good_cared:item.isLiked}"><span>{{item.likeTimes}}</span></div>
+                        <div><span>{{item.ListenTimes}} 人听过</span></div>
+                        <div @click="like(index)">
+                            <span>{{item.likeTimes}}</span>
+                            <img v-if="!item.isLiked" src="http://oss.xqzs.cn/resources/psy/asker/zan_nor.png" class="care_icon"/>
+                            <img v-if="item.isLiked" src="http://oss.xqzs.cn/resources/psy/asker/zan_por1.png" class="care_icon"/>
+                        </div>
                     </div>
                 </div>
                 <div style="height:0.20rem;background: #f4f4f7"></div>
@@ -452,7 +456,7 @@
     .ask_detailBox .yy_bottomBorder{height:0;width:80%;margin: 0 auto;border-bottom: 0.02rem solid #eee;margin-bottom: 0.36rem;padding-top:0.51rem;}
     .ask_detailBox .problem_answer_bottom{padding:0;margin:0 auto;width:80%;margin-bottom: 0.28rem;}
     .problem_assess_btn .weui-btn{border-radius: 1rem;}
-    .problem_assess .star>div{display: inline-block;line-height: 1;color:rgba(36,37,61,0.5);font-size: 0.22rem;margin-bottom: 0.63rem}
+    .problem_assess .star>div{display: inline-block;line-height: 1;color:#999;font-size: 0.22rem;margin-bottom: 0.63rem}
     .problem_assess .star span{ position:relative;display: inline-block;  height:0.56rem; width: 0.59rem; background: url(http://oss.xqzs.cn/resources/psy/starNew_no.png) no-repeat; background-size: 0.59rem; margin: 0.40rem  0.24rem 0.23rem 0.24rem;  }
     .problem_assess .star span.on{ background: url(http://oss.xqzs.cn/resources/psy/starNew.png) no-repeat; background-size: 0.59rem;}
     .problem_assess .star>div .color_on{color:rgba(253,198,10,1)}
@@ -475,7 +479,7 @@
         padding-bottom: 0.80rem;
     }
     .problem_assess h4{
-        color: rgba(36,37,61,1);
+        color: rgba(69, 75, 84, 1);
         font-size: 0.30rem;
         font-weight: normal;
         line-height: 1;
@@ -519,7 +523,7 @@
         position: absolute;
         bottom:0.10rem;
         right:3%;
-        color:RGBA(69, 75, 84, 0.49);
+        color:#999;
         font-size: 0.24rem;
         line-height: 0.34rem;
         background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_no.png") no-repeat left center;
@@ -540,7 +544,7 @@
         outline: none;
         width:94%;
         font-size: 0.24rem;
-        color: rgba(36,37,61,1);
+        color: rgba(69, 75, 84, 1);
         padding:3% 3%;
         line-height: 1.6;
         letter-spacing: 0.04rem;

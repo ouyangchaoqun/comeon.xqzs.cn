@@ -395,19 +395,13 @@
                 // var bfscrolltop = document.body.scrollTop;//获取软键盘唤起前浏览器滚动部分的高度
                 //
                 $(".comment_text").focus(function () {
-//                    xqzs.weui.textareaHover=true;
-//                    xqzs.weui.actionSheetEditTimeout();
-                    let pannel = document.getElementById('textarea');
-                    pannel.scrollIntoView(true);
-                    pannel.scrollIntoViewIfNeeded();
-                })
-
-
-//                    .blur(function () {
-//                    xqzs.weui.textareaHover=false;
-//                    let h= xqzs.equipment.isIphoneX()?'40px':0
-//                    $(".comment_box").animate({bottom: h}, 150)
-//                });
+                    xqzs.weui.textareaHover=true;
+                    xqzs.weui.actionSheetEditTimeout();
+                }).blur(function () {
+                    xqzs.weui.textareaHover=false;
+                    let h= xqzs.equipment.isIphoneX()?'40px':0
+                    $(".comment_box").animate({bottom: h}, 150)
+                });
                 //.blur(function () {//设定输入框失去焦点时的事件
                 //     clearTimeout(interval);//清除计时器
                 //      document.body.scrollTop = bfscrolltop;//将软键盘唤起前的浏览器滚动部分高度重新赋给改变后的高度
@@ -428,14 +422,11 @@
                         $(".comment_p").css('display', 'block');
                     }
                 });
-//                if(!noHide){
-//                    $(".comment_text").focus();
-//                }
+
 
                 setTimeout(function () {
                     $(".comment_box").removeClass('subactive').addClass("addactive");
                 }, 10);
-
 
                 $(".action-sheet-edit .cancel").click(function () {
                     xqzs.weui.weuiMaskClose();
@@ -461,21 +452,6 @@
 
 
                 })
-//                $('.anonymous_box').click(function () {
-//                    $(".anonymous_box").toggleClass('anonymous_active','');
-//                    let classStr = $(".anonymous_box").attr("class");
-//                    let isActive = classStr.indexOf('anonymous_active');
-//                    if(isActive==-1){
-//                        //不匿名
-//                        _this.anonyVal=0
-//                    }else{
-//                        //匿名
-//                        _this.anonyVal=1
-//                    }
-//                    console.log(_this.anonyVal)
-//                })
-
-
             },
             getUserInfo:function(){
                 let _this=this;
