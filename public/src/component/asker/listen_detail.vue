@@ -397,7 +397,6 @@
                 $(".comment_text").focus(function () {
                     let pannel = document.getElementById('textarea')
                     pannel.scrollIntoView(true);
-                    pannel.scrollIntoViewIfNeeded();
                     //xqzs.weui.textareaHover=true;
                     //xqzs.weui.actionSheetEditTimeout();
                 })
