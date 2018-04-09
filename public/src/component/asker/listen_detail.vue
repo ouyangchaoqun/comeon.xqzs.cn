@@ -395,13 +395,19 @@
                 // var bfscrolltop = document.body.scrollTop;//获取软键盘唤起前浏览器滚动部分的高度
                 //
                 $(".comment_text").focus(function () {
-                    xqzs.weui.textareaHover=true;
-                    xqzs.weui.actionSheetEditTimeout();
-                }).blur(function () {
-                    xqzs.weui.textareaHover=false;
-                    let h= xqzs.equipment.isIphoneX()?'40px':0
-                    $(".comment_box").animate({bottom: h}, 150)
-                });
+//                    xqzs.weui.textareaHover=true;
+//                    xqzs.weui.actionSheetEditTimeout();
+                    let pannel = document.getElementById('textarea');
+                    pannel.scrollIntoView(true);
+                    pannel.scrollIntoViewIfNeeded();
+                })
+
+
+//                    .blur(function () {
+//                    xqzs.weui.textareaHover=false;
+//                    let h= xqzs.equipment.isIphoneX()?'40px':0
+//                    $(".comment_box").animate({bottom: h}, 150)
+//                });
                 //.blur(function () {//设定输入框失去焦点时的事件
                 //     clearTimeout(interval);//清除计时器
                 //      document.body.scrollTop = bfscrolltop;//将软键盘唤起前的浏览器滚动部分高度重新赋给改变后的高度
@@ -538,7 +544,9 @@
                         item.likeTimes=parseInt(item.likeTimes)+1;
                         _this.$set(_this.detail.answerList,index,item);
                     }
-                    if(bt.data.status==)
+                    if(bt.data.status==800003){
+                        xqzs.weui.tip("偷听后才能点赞哦");
+                    }
                 })
 
             },
