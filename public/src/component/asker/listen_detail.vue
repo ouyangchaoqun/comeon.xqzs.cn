@@ -29,7 +29,7 @@
 
                     <div class="steal_expert_info">
                         <img :src="item.expertUrl" alt="" @click="goDetail(item.expertId)">
-                        <block v-if="item.userId!=1658&&item.userId!=424">
+                        <block>
                             <img style="left: 0.82rem;" src="http://oss.xqzs.cn/resources/psy/asker/header_img_v.png" class="expert_v">
                         </block>
 
