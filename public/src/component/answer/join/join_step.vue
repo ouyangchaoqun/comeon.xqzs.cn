@@ -1,6 +1,5 @@
 <template >
     <div class="join_stepBox" >
-        <v-mobile class="mobile_box" style="display: none"></v-mobile>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <div v-title class='hide_title'>完善专业资料</div>
         <header @click="changeHeadpic()" v-if="btnFlag">
@@ -331,7 +330,6 @@
 </template>
 
 <script type="es6">
-    import mobile from './mobile.vue';
     import showLoad from '../../include/showLoad.vue';
     export default {
         data() {
@@ -988,7 +986,6 @@
 
         },
         components:{
-            'v-mobile':mobile,
             'v-showLoad': showLoad,
         },
 
