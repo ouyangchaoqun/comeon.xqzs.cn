@@ -395,8 +395,9 @@
                 // var bfscrolltop = document.body.scrollTop;//获取软键盘唤起前浏览器滚动部分的高度
                 //
                 $(".comment_text").focus(function () {
-                    $('.comment_box').scrollIntoView(true);
-                    $('.comment_box').scrollIntoViewIfNeeded();
+                    let pannel = document.getElementById('textarea')
+                    pannel.scrollIntoView(true);
+                    pannel.scrollIntoViewIfNeeded();
                     //xqzs.weui.textareaHover=true;
                     //xqzs.weui.actionSheetEditTimeout();
                 })
