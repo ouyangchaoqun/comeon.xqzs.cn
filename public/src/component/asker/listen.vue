@@ -247,9 +247,9 @@
             },
             initReUrl:function () {
 
-                if( this.$route.query.reurl&& this.$route.query.reurl!=''&&xqzs.localdb.get("isReUrl")=='false'){
+                if( this.$route.query.revueurl&& this.$route.query.revueurl!=''&&xqzs.localdb.get("isReUrl")=='false'){
                     xqzs.localdb.set("isReUrl","true");
-                    this.$router.push("/"+this.$route.query.reurl)
+                    this.$router.push("/"+this.$route.query.revueurl)
                 }
 
             },

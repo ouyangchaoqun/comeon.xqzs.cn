@@ -16,7 +16,7 @@
         }
 
         if(isBack){
-            reUrl +=  "asker/listen?share=1&reurl=" + encodeURIComponent(vueUrl)
+            reUrl +=  "asker/listen?share=1&revueurl=" + encodeURIComponent(vueUrl)
         }else{
 
             reUrl= reUrl+ vueUrl;
