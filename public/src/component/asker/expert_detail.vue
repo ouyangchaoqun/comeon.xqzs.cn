@@ -944,7 +944,7 @@
         background: url("http://oss.xqzs.cn/resources/psy/arrow.png") no-repeat center right;
         background-size: 0.24rem 0.22rem;
         margin-right: 0.22rem;
-        font-weight: normal;
+        font-weight: 100 !important;
     }
     .answer_detail_box .content{
         font-size: 0.28rem;

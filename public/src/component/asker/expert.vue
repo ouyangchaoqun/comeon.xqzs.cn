@@ -473,7 +473,7 @@
         background: url("http://oss.xqzs.cn/resources/psy/arrow.png") no-repeat center right;
         background-size: 0.24rem 0.22rem;
         padding-right: 0.3rem;
-        font-weight: normal;
+        font-weight: 100 !important;
     }
     .answer_index  .hot_head img{
         width: 0.20rem;
