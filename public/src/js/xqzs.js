@@ -529,9 +529,6 @@ var xqzs = {
             var d_minutes, d_hours;
             var timeNow = parseInt(new Date().getTime() / 1000);
             var d;
-            console.log(publishTime);
-            console.log(timeNow);
-
             d = publishTime - timeNow;
             d_hours = parseInt(d / 3600);
             d_minutes = parseInt((d-d_hours*3600) / 60);
