@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="list">
-                <div class="item" v-for="item in list"  @click="answer(item.id)">
+                <div class="item" v-for="(item,index) in list"  @click="answer(item.id,index)">
                     <div class="info">
                         <div class="img">
                             <img v-if="item.isAnonymous==0" :src="item.faceUrl">
@@ -268,8 +268,22 @@
                 this.getList(done);
 
             },
-            answer:function (askId) {
-                this.$router.push("../answer?askId="+askId);
+            answer:function (askId,index) {
+                let _this = this;
+                _this.showLoad = true
+                xqzs.api.put(_this,"come/expert/grab/"+askId,{expertId:_this.expertId,userId:'_userId_'},function (bt) {
+                    console.log(bt.data.status)
+                    _this.showLoad = false
+                    if(bt.data.status==1){
+                        _this.$router.push("../answer?askId="+askId);
+                    }else{
+                        xqzs.weui.tip('慢了一拍，已经被别人抢走了',function () {
+                            _this.list = _this.list.splice(index,1)
+                        })
+                    }
+
+                });
+
             },
             formatDateText:function (time) {
                 return xqzs.dateTime.getTimeFormatLastText(time)
