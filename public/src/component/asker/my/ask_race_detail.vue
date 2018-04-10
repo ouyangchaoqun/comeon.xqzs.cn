@@ -56,7 +56,7 @@
                             去评价
                     </div>
                     <div class="rob_box_top">
-                        <img :src="item.expertFaceUrl" alt="" @click="goExpert(item.expertId)">
+                        <img :src="item.expertFaceUrl" alt="" @click="goExpert(item.expertId,item.expertStatus)">
                         <img class="expert_v" src="http://oss.xqzs.cn/resources/psy/asker/header_img_v.png" alt="">
                         <div class="expertInfo">
                             <span>{{item.expertNickName}}</span>
@@ -379,8 +379,13 @@
 
 
             },
-            goExpert:function (extId) {
-                this.$router.push('../../../../asker/expert/detail/?id='+extId)
+            goExpert:function (extId,status) {
+                if(status==1){
+                    this.$router.push('../../../../asker/expert/detail/?id='+extId)
+                }else{
+                    xqzs.weui.tip('该咨询师非平台入驻咨询师，请向其他咨询师提问')
+                }
+
             },
             formatDateText:function (time) {
                 return xqzs.dateTime.getTimeFormatText(time)

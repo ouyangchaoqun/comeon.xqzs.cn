@@ -28,13 +28,13 @@
                 <li class="steal_detail_answer" v-for="(item,index) in detail.answerList">
 
                     <div class="steal_expert_info">
-                        <img :src="item.expertUrl" alt="" @click="goDetail(item.expertId)">
+                        <img :src="item.expertUrl" alt="" @click="goDetail(item.expertId,item.expertStatus)">
                         <block>
                             <img style="left: 0.82rem;" src="http://oss.xqzs.cn/resources/psy/asker/header_img_v.png" class="expert_v">
                         </block>
 
                         <div>
-                            <span class="steal_expert_name" @click="goDetail(item.expertId)">{{item.expertName}}</span><span class="steal_expert_fans">{{item.followCount}} 人关注</span>
+                            <span class="steal_expert_name" @click="goDetail(item.expertId,item.expertStatus)">{{item.expertName}}</span><span class="steal_expert_fans">{{item.followCount}} 人关注</span>
                         </div>
                         <!--<div class="steal_expert_des">{{item.sign}}</div>-->
                         <div class="steal_expert_jobTitle">{{item.jobTitle}}</div>
@@ -765,8 +765,12 @@
 
 
             },
-            goDetail:function (extId) {
-                this.$router.push('/asker/expert/detail/?id='+extId)
+            goDetail:function (extId,status) {
+                if(status==1){
+                    this.$router.push('/asker/expert/detail/?id='+extId)
+                }else {
+                    xqzs.weui.tip('该咨询师非平台入驻咨询师，请向其他咨询师提问')
+                }
             },
             follow:function (index) {
 

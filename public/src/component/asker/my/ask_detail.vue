@@ -28,9 +28,9 @@
 
 
             <div class="steal_expert_info" :class="{answerInfo_border:detail.answerCount==0}">
-                <img :src="detail.expert.faceUrl" alt="" @click="goDetail(detail.expertId)">
+                <img :src="detail.expert.faceUrl" alt="" @click="goDetail(detail.expertId,detail.expert.status)">
                 <div>
-                    <span class="steal_expert_name" @click="goDetail(detail.expertId)">{{detail.expert.nickName}}</span><span
+                    <span class="steal_expert_name" @click="goDetail(detail.expertId,detail.expert.status)">{{detail.expert.nickName}}</span><span
                         class="steal_expert_fans">{{followCount}} 人关注</span>
                 </div>
                 <div class="steal_expert_des">{{detail.expert.sign}}</div>
@@ -158,8 +158,13 @@
             getAnony:function () {
                this.anonFlag = !this.anonFlag
             },
-            goDetail:function (extId) {
-                this.$router.push('/asker/expert/detail/?id='+extId)
+            goDetail:function (extId,status) {
+                if(status==1){
+                    this.$router.push('/asker/expert/detail/?id='+extId)
+                }else{
+                    xqzs.weui.tip('该咨询师非平台入驻咨询师，请向其他咨询师提问')
+                }
+
             },
             like:function (index) {
                 let  item = this.detail.answers[index];
