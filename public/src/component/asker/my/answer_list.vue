@@ -22,7 +22,7 @@
             <!--<div class="top_tip">共{{total}}位咨询师</div>-->
             <div class="answer_list">
                 <div class="item" v-for="(item,index) in list"  v-if="item.expertId!=52">
-                    <div @click="goDetail(item.expertId)">
+                    <div @click="goDetail(item.expertId,item.expertStatus)">
                         <div class="itemDetail">
                             <div class="img"><img :src="item.faceUrl"></div>
                             <div class="itemDetail_right">
@@ -111,8 +111,13 @@
             formatTime:function (time) {
                 return xqzs.dateTime.formatDateTime(time)
             },
-            goDetail:function (id) {
-                this.$router.push("/asker/expert/detail/?id="+id)
+            goDetail:function (id,status) {
+                if(status==1){
+                    this.$router.push("/asker/expert/detail/?id="+id)
+                }else{
+                    xqzs.weui.tip('该咨询师非平台入驻咨询师，请向其他咨询师提问')
+                }
+
             },
             getList: function (done) {
 
