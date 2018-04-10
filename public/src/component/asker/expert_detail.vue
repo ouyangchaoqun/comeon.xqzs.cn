@@ -711,8 +711,10 @@
                 let _this= this;
                 let id=  this.id;
 
+                if(   _this.isLoading ||_this.isPageEnd  ){return ;}
+
                 if (_this.page == 1) {_this.showLoad=true;}
-                if(   _this.isLoading ){return ;}
+
                 _this.isLoading = true;
                 xqzs.api.get(_this,'come/expert/get/answer/'+id+"/"+_this.answerType+'/'+_this.page+'/'+_this.row+'/_userId_',function (data) {
                     _this.showLoad=false;
@@ -720,9 +722,9 @@
 //                        _this.answerList= data.body.data;
                         _this.isLoading = false;
 //                        console.log(response)
-
                         if( data.body.status!=1&&_this.page==1){
                             _this.list = [];
+                            _this.isPageEnd = true;
                             return;
                         }
                         let arr = data.body.data;
