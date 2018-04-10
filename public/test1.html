@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+
+    var url = window.location.href.replace('#','vue_pound');
+
+    url =   "http://wx.xqzs.cn/wx/pub?reurl=" + encodeURI(url);
+
+    var html = "<iframe src='"+url+"' height='600' width='300' ></iframe>"
+    $("body").append(html)
+
+
+</script>
+
+
+</body>
+</html>

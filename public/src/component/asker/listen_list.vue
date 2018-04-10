@@ -841,12 +841,14 @@
         left:0.3rem;
     }
 
+
     .index_li_header {
         font-size: 0.24rem;
         color: #999;
         line-height: 0.34rem;
         margin-bottom: 0.05rem;
         position: relative;
+        padding:0.1rem 0;
     }
 
     .index_li_header .header_className {
