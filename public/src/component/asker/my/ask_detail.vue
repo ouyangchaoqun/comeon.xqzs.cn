@@ -34,8 +34,8 @@
                     <span class="steal_expert_name" @click="goDetail(detail.expertId,detail.expert.status)">{{detail.expert.nickName}}</span>
 
                 </div>
-                <div class="steal_expert_des steal_expert_jobTitle" v-if="detail.expert.jobTitle">{{detail.expert.jobTitle}}</div>
-                <div class="steal_expert_des" v-else>{{detail.expert.sign}}</div>
+                <div class="steal_expert_des steal_expert_jobTitle">{{detail.expert.jobTitle}}</div>
+                <!--<div class="steal_expert_des" v-else>{{detail.expert.sign}}</div>-->
                 <div class="followed_box" v-if="!detail.expert.isFollow" @click="follow(detail.expertId)">关注</div>
                 <div class="followed_box isfollow_style"  v-if="detail.expert.isFollow" @click="follow(detail.expertId)" >已关注</div>
             </div>
