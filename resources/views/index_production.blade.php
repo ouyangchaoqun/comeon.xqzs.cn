@@ -49,7 +49,7 @@
 <script src="<?=OSS_BUILD_PATH?>/cookie.min.js?v=<?=STATIC_XQZS_VERSION?>"></script>
 <script src="<?=OSS_BUILD_PATH?>/xqzs.min.js?v=<?=STATIC_XQZS_VERSION?>"></script>
 <script src="<?=OSS_BUILD_PATH?>/xqzs.face.min.js?v=<?=STATIC_XQZS_VERSION?>"></script>
-<script src="<?=OSS_BUILD_PATH?>/weshare.min.js"></script>
+<script src="<?=OSS_BUILD_PATH?>/weshare.min.js?v=<?=STATIC_XQZS_VERSION?>"></script>
 <script src="<?=OSS_BUILD_PATH?>/build.js?v=<?=STATIC_XQZS_VERSION?>"></script>
 <script src="<?=OSS_BUILD_PATH?>/calendar.min.js?v=<?=STATIC_XQZS_VERSION?>"></script>
 <script src="https://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
