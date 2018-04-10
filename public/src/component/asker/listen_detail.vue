@@ -65,7 +65,7 @@
                             <!--付费听-->
                             <template  v-if="detail.needPay==1">
                                 <div @click="typeDialog(item.questionId,item.answerId,index)">
-                                    <div class="audio"><div class="audio_btn pay" >偷听</div></div>
+                                    <div class="audio" style="margin-bottom:0 "><div class="audio_btn pay" >偷听</div></div>
                                 </div>
                             </template>
                             <!--限时免费听-->
