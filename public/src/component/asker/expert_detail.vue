@@ -82,7 +82,7 @@
                 </div>
             </div>
             <div class="answer_comments">
-                <div class="answer_title">最新评价[{{detail.evaluateCount}}]
+                <div class="answer_title">最新评价 [ {{detail.evaluateCount}} ]
                     <i @click="moreComment()">查看更多
 
                     </i>
@@ -120,7 +120,7 @@
 
             </div>
             <div class="ask_answer">
-                <div class="answer_title">问答[{{detail.answerCount}}]
+                <div class="answer_title">问答 [ {{detail.answerCount}} ]
                     <div class="new" style="position: relative" @click="showPicker()">{{answerTypeTxt}}<span class="sj" :class="{bj:showPic}"></span>
                         <ul v-if="showPic">
                             <li v-for="item in answerTypes" :val="item.value">{{item.label}}</li>
@@ -1064,7 +1064,7 @@
     /*display: inline-block;*/
     /*margin-right: 0.17rem;*/
     /*}*/
-    .friestP{overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 4;line-height:0.40rem;-webkit-box-orient: vertical;}
+    .friestP{overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 4;line-height:0.44rem;-webkit-box-orient: vertical;}
     .addopen{margin-top:0.3rem;height:auto;}
     .addstop{margin-top:0;height:0;overflow: hidden;}
     .item .others{ color:#999; position: relative; font-size: 0.24rem; padding-left: 0.98rem;}
