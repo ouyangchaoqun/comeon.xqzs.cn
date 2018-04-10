@@ -34,7 +34,8 @@
                         </block>
 
                         <div>
-                            <span class="steal_expert_name" @click="goDetail(item.expertId,item.expertStatus)">{{item.expertName}}</span><span class="steal_expert_fans">{{item.followCount}} 人关注</span>
+                            <span class="steal_expert_name" @click="goDetail(item.expertId,item.expertStatus)">{{item.expertName}}</span>
+                            <!--<span class="steal_expert_fans">{{item.followCount}} 人关注</span>-->
                         </div>
                         <!--<div class="steal_expert_des">{{item.sign}}</div>-->
                         <div class="steal_expert_jobTitle">{{item.jobTitle}}</div>

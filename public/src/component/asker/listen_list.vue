@@ -36,13 +36,15 @@
                                     <div>{{item.expertName}} 回答了</div>
                                     <div>{{item.title}}</div>
                                 </div>
-                                    <div class="index_li_content">{{item.content}}</div>
-                                    <div class="index_li_bottom">
-                                        <!--免费听-->
-                                        <span class="problem_answer_yy" v-if="item.answerType==1">
-                                            <div class="audio_mask" @click.stop="hideMask(index)" :class="{maskState:item.isAdd}"></div>
+                                <div class="index_li_content">{{item.content}}</div>
+                                <div class="index_li_bottom">
+                                    <!--免费听-->
+                                    <span class="problem_answer_yy" v-if="item.answerType==1">
+                                            <div class="audio_mask" @click.stop="hideMask(index)"
+                                                 :class="{maskState:item.isAdd}"></div>
                             <div class="audio" :class="{playing:item.playing,paused:item.paused}">
-                                <div class="audio_btn" @click.stop="play(index)" :class="{widthAnimation_class:item.isAdd}">
+                                <div class="audio_btn" @click.stop="play(index)"
+                                     :class="{widthAnimation_class:item.isAdd}">
                                     <div class="radio"><span></span><i></i></div>
                                     <template v-if="!item.playing&&!item.paused">点击播放</template>
                                     <template v-if="item.playing">正在播放..</template>
@@ -53,22 +55,27 @@
                             </div>
                         </span>
 
-                                        <!--付费听-->
-                                        <div class="problem_answer_yy" v-if="item.answerType==2||item.answerType==4">
-                                            <div class="audio_mask" @click.stop="hideMask(index)" :class="{maskState:item.isAdd}"></div>
-                                            <div class="audio">
-                                                <div class="audio_btn pay" @click.stop="typeDialog(item.questionId,item.answerId,index )" :class="{widthAnimation_class:item.isAdd}">偷听
-                                                    <div class="second">{{(item.ct &&
-                                                        item.ct!='00')?item.ct:item.length}}”
-                                                    </div>
+                                    <!--付费听-->
+                                    <div class="problem_answer_yy" v-if="item.answerType==2||item.answerType==4">
+                                        <div class="audio_mask" @click.stop="hideMask(index)"
+                                             :class="{maskState:item.isAdd}"></div>
+                                        <div class="audio">
+                                            <div class="audio_btn pay"
+                                                 @click.stop="typeDialog(item.questionId,item.answerId,index )"
+                                                 :class="{widthAnimation_class:item.isAdd}">偷听
+                                                <div class="second">{{(item.ct &&
+                                                    item.ct!='00')?item.ct:item.length}}”
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--限时免费听-->
-                                        <span class="problem_answer_yy" v-if="item.answerType==3">
-                                            <div class="audio_mask" @click.stop="hideMask(index)" :class="{maskState:item.isAdd}"></div>
+                                    </div>
+                                    <!--限时免费听-->
+                                    <span class="problem_answer_yy" v-if="item.answerType==3">
+                                            <div class="audio_mask" @click.stop="hideMask(index)"
+                                                 :class="{maskState:item.isAdd}"></div>
                             <div class="audio" :class="{playing:item.playing,paused:item.paused}">
-                                <div class="audio_btn" @click.stop="play(index)" :class="{widthAnimation_class:item.isAdd}">
+                                <div class="audio_btn" @click.stop="play(index)"
+                                     :class="{widthAnimation_class:item.isAdd}">
                                     <template v-if="!item.playing&&!item.paused">限时免费听</template>
                                     <template v-if="item.playing">正在播放..</template>
                                     <template v-if="item.paused">播放暂停</template>
@@ -78,8 +85,8 @@
                             </div>
                         </span>
 
-                                        <div class="index_li_count">{{item.listenTimes}} 人听过</div>
-                                    </div>
+                                    <div class="index_li_count">{{item.listenTimes}} 人听过</div>
+                                </div>
                             </li>
 
                         </ul>
@@ -828,7 +835,7 @@
 
     .asker_listen_list_box li {
         background: #fff;
-        padding: 0.40rem 0.3rem 0.36rem 0rem;
+        padding: 0.30rem 0.30rem 0.30rem 0;
         border-bottom: 0.02rem solid #eee;
         position: relative;
         padding-left: 1.3rem;
