@@ -446,7 +446,7 @@
     }
     .ask_detailBox .steal_expert_info{
         padding-left:1.42rem;
-        padding-bottom: 0.51rem;
+        margin-bottom: 0.21rem;
         border-top:0.20rem solid #f4f4f7;
     }
     .problem_wait_style{

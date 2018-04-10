@@ -1021,7 +1021,7 @@
     }
     .steal_expert_info{
         padding-left: 1.30rem;
-        padding-bottom: 0.51rem;
+        margin-bottom: 0.21rem;
     }
     .position_change_detail{
         color:#fff;

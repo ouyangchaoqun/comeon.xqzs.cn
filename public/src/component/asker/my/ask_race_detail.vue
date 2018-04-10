@@ -541,7 +541,7 @@
     }
     .rob_problem .audio{
         margin:0;
-        padding-bottom: 0.40rem;
+        padding-bottom: 0.51rem;
         border-bottom: 0.02rem solid rgba(238,238,238,1);
     }
     .rob_box_top{
@@ -551,7 +551,7 @@
         font-size: 0.3rem;
         color: rgba(69, 75, 84, 1);
         line-height: 0.68rem;
-        margin-bottom: 0.36rem;
+        margin-bottom: 0.51rem;
         position: relative;
     }
     .rob_box_top .expertInfo{
