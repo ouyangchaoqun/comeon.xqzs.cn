@@ -548,23 +548,23 @@
         display: flex;
         display: -webkit-box;
         display: -webkit-flex;
-        font-size: 0.26rem;
+        font-size: 0.3rem;
         color: rgba(69, 75, 84, 1);
         line-height: 0.68rem;
         margin-bottom: 0.36rem;
         position: relative;
     }
     .rob_box_top .expertInfo{
-        line-height: 1;
-        padding-top: 0.1rem;
+        line-height: 0.4rem ;
     }
     .rob_box_top .expertInfo span{
-        margin-bottom: 0.17rem;
         display: inline-block;
     }
     .rob_box_top .expertInfo div{
         color:#999;
-        font-size: 0.24rem;
+        font-size: 0.28rem;
+        line-height: 1;
+        padding-top: 0.16rem;
     }
     .rob_box_top img{
         width: 0.8rem;
