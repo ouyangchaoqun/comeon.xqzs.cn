@@ -826,7 +826,7 @@
 <style>
     /**jobTitle**/
     .steal_expert_jobTitle{
-        color:#2EB1FF;
+        color:#56C4FE;
         font-size: 0.28rem;
         padding-top: 0.16rem;
         line-height: 1;

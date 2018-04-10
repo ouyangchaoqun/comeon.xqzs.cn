@@ -60,7 +60,8 @@
                         <img class="expert_v" src="http://oss.xqzs.cn/resources/psy/asker/header_img_v.png" alt="">
                         <div class="expertInfo">
                             <span>{{item.expertNickName}}</span>
-                            <div><template v-for="(d,i) in item.domain">{{d.title}}<template v-if="i<item.domain.length-1">、</template></template></div>
+                            <div style="color:#56C4FE" v-if="item.jobTitle">{{item.jobTitle}}</div>
+                            <div v-else><template v-for="(d,i) in item.domain">{{d.title}}<template v-if="i<item.domain.length-1">、</template></template></div>
                         </div>
                     </div>
                     <div class="rob_answer">
@@ -555,6 +556,7 @@
     }
     .rob_box_top .expertInfo{
         line-height: 1;
+        padding-top: 0.1rem;
     }
     .rob_box_top .expertInfo span{
         margin-bottom: 0.17rem;

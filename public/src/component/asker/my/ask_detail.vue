@@ -33,7 +33,8 @@
                     <span class="steal_expert_name" @click="goDetail(detail.expertId,detail.expert.status)">{{detail.expert.nickName}}</span><span
                         class="steal_expert_fans">{{followCount}} 人关注</span>
                 </div>
-                <div class="steal_expert_des">{{detail.expert.sign}}</div>
+                <div class="steal_expert_des steal_expert_jobTitle" v-if="detail.expert.jobTitle">{{detail.expert.jobTitle}}</div>
+                <div class="steal_expert_des" v-else>{{detail.expert.sign}}</div>
                 <div class="followed_box" v-if="!detail.expert.isFollow" @click="follow(detail.expertId)">关注</div>
                 <div class="followed_box isfollow_style"  v-if="detail.expert.isFollow" @click="follow(detail.expertId)" >已关注</div>
             </div>
@@ -571,4 +572,7 @@
     }
     .problem_assess_input .addIsOverHtml{text-align: left;background: #EBEBEC;border-radius: 0.10rem;padding:0.10rem 0.30rem;}
     .ask_detailBox .addContentStyle{margin-bottom: 0}
+    .steal_expert_jobTitle{
+        color:#56C4FE;
+    }
 </style>
