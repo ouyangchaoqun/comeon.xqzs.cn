@@ -91,7 +91,7 @@
                         </div>
                     </div>
                     <div class="problem_answer_bottom rob_answer_bottom">
-                        <div class="problem_answer_time">{{formatDateText(item.endTime)}}</div>
+                        <div class="problem_answer_time">{{formatDateText(item.addTime)}}</div>
                         <div class="problem_answer_zan">
                             <div><span>{{item.ListenTimes}} 人听过</span></div>
                             <div @click="like(index)">
