@@ -151,8 +151,8 @@
                     clearInterval(_this.timeInterval);
                 }
                 _this.timeInterval=   setInterval(function () {
-                    _this.detail.endTime= _this.detail.endTime + 1;
-                    _this.detail.endTime= _this.detail.endTime - 1
+                    _this.detail.endTime=parseInt( _this.detail.endTime) + 1;
+                    _this.detail.endTime= parseInt( _this.detail.endTime) - 1
                 },1000)
             },
             getAnony:function () {
