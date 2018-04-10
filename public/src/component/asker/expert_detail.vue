@@ -82,7 +82,7 @@
                 </div>
             </div>
             <div class="answer_comments">
-                <div class="answer_title">最新评价 [ {{detail.evaluateCount}} ]
+                <div class="answer_title">最新评价 [ <span style="font-weight: normal">{{detail.evaluateCount}}</span> ]
                     <i @click="moreComment()">查看更多
 
                     </i>
@@ -120,7 +120,7 @@
 
             </div>
             <div class="ask_answer">
-                <div class="answer_title">问答 [ {{detail.answerCount}} ]
+                <div class="answer_title">问答 [ <span style="font-weight: normal">{{detail.answerCount}}</span> ]
                     <div class="new" style="position: relative" @click="showPicker()">{{answerTypeTxt}}<span class="sj" :class="{bj:showPic}"></span>
                         <ul v-if="showPic">
                             <li v-for="item in answerTypes" :val="item.value">{{item.label}}</li>
