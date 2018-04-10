@@ -930,7 +930,6 @@
         padding-left: 0.30rem;
         border-bottom: 0.02rem solid #eee;
         background: white;
-        font-family: PingFangSC-Medium;
         color:#454B54;
         font-weight: bold;
 
