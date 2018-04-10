@@ -279,7 +279,10 @@
                         xqzs.weui.tip('慢了一拍，已经被别人抢走了',function () {
                         })
                     }
-                    _this.list.splice(index,1)
+                    setTimeout(function () {
+                        _this.list.splice(index,1)
+                    },100)
+
                 });
 
             },
