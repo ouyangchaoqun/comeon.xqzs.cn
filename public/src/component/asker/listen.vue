@@ -248,6 +248,10 @@
                     xqzs.localdb.set("isReUrl","true");
                     this.$router.push("/"+this.$route.query.revueurl)
                 }
+                if( this.$route.query.reurl&& this.$route.query.reurl!=''&&xqzs.localdb.get("isReUrl")=='false'){
+                    xqzs.localdb.set("isReUrl","true");
+                    this.$router.push("/"+this.$route.query.reurl)
+                }
 
             },
             go_expert:function () {
