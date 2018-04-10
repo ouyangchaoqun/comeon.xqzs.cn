@@ -845,7 +845,7 @@
         font-size: 0.24rem;
         color: #999;
         line-height: 0.34rem;
-        margin-bottom: 0.18rem;
+
         position: relative;
     }
 
