@@ -103,10 +103,10 @@
                                     <div class="time timeRight">{{formatTime(item.addTime)}}</div>
                                 </div>
                                 <div class="word">{{item.content}}</div>
-                                <div class="class_s">
-                                    <span v-for="tag in item.tag">{{tag.title}}</span>
-                                    <div class="clear"></div>
-                                </div>
+                                <!--<div class="class_s">-->
+                                    <!--<span v-for="tag in item.tag">{{tag.title}}</span>-->
+                                    <!--<div class="clear"></div>-->
+                                <!--</div>-->
 
                             </div>
                             <div class="clear"></div>
@@ -950,9 +950,9 @@
     .answer_detail_box .content{
         font-size: 0.28rem;
         padding:0.30rem ;
-        line-height: 0.4rem;
+        line-height: 0.44rem;
         color:rgba(69, 75, 84, 1);
-        text-align: justify;
+        /*text-align: justify;*/
     }
     /*.answer_detail_box .content b{*/
         /*color:rgba(36,37,61,1);*/
@@ -980,9 +980,8 @@
     .answer_detail_box .answer_comments{
         background: white;
         margin-top: 0.2rem;
-        padding-bottom: 0.30rem;
     }
-    .answer_detail_box  .list .item{ background: #fff; padding: 0.30rem 0;margin:0 0.30rem;margin-bottom: 0.14rem;position: relative ; }
+    .answer_detail_box  .list .item{ background: #fff; padding: 0.30rem 0;margin:0 0.30rem;position: relative ; }
 
     .answer_detail_box  .list .addBorder_bottom{border-bottom: 0.02rem solid #eee;}
     .answer_detail_box .list .star span{ background: url(http://oss.xqzs.cn/resources/psy/star_no.png); width: 0.26rem; height: 0.26rem;  background-size: 0.26rem; display: inline-block; margin-right: 0.10rem; }
@@ -993,7 +992,7 @@
     .answer_detail_box  .list .info{ float:left; margin-left:0.20rem;  width:5.9rem;line-height: 0.68rem;}
     .answer_detail_box  .list .info .name{ font-size: 0.24rem; color:#999; margin-bottom: 0.07rem; width: 4.80rem;line-height: 1}
     .answer_detail_box  .list .info .star{line-height: 1;margin-bottom: 0.12rem}
-    .answer_detail_box  .list .word{ font-size:0.28rem;  color:rgba(69, 75, 84, 1); margin-bottom: 0.14rem; overflow: hidden;word-wrap:break-word; line-height: 0.48rem; text-align: justify}
+    .answer_detail_box  .list .word{ font-size:0.28rem;  color:rgba(69, 75, 84, 1);overflow: hidden;word-wrap:break-word; line-height: 0.44rem;}
     /*.answer_detail_box  .list .word_closeStyle{text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;}*/
     /*.answer_detail_box  .list .word_openStyle{display: block}*/
     .answer_detail_box  .list .time{ font-size:0.24rem; color:#999;}
