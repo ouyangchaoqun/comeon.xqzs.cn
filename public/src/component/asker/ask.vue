@@ -2,7 +2,7 @@
     <div style="height: 100%" class="asker_ask_box">
         <div v-title class='hide_title'>提问</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
-        <v-recharge :rechargeMoney="rechargeMoney" v-show="rechargeFlag" v-on:childMessage="getFlagVal"></v-recharge>
+        <v-recharge :rechargeMoney="rechargeMoney" :user="user" v-show="rechargeFlag" v-on:childMessage="getFlagVal"></v-recharge>
         <div class="change_height">
             <div class="ask_type_new" v-if="isSelectAnswer">
                 <div class="tab">问题类型 <span>点击选择</span></div>
@@ -136,7 +136,9 @@
 
             }
         },
-
+        props:[
+            "user"
+        ],
         components: {
             'v-showLoad': showLoad,
             "v-asker-bottom": askerBottom,
