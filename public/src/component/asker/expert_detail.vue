@@ -993,7 +993,7 @@
     .answer_detail_box  .list .info{ float:left; margin-left:0.20rem;  width:5.9rem;line-height: 0.68rem;}
     .answer_detail_box  .list .info .name{ font-size: 0.24rem; color:#999; margin-bottom: 0.07rem; width: 4.80rem;line-height: 1}
     .answer_detail_box  .list .info .star{line-height: 1;margin-bottom: 0.12rem}
-    .answer_detail_box  .list .word{ font-size:0.28rem;  color:rgba(36,37,61,1); margin-bottom: 0.14rem; overflow: hidden;word-wrap:break-word; line-height: 0.48rem; text-align: justify}
+    .answer_detail_box  .list .word{ font-size:0.28rem;  color:rgba(69, 75, 84, 1); margin-bottom: 0.14rem; overflow: hidden;word-wrap:break-word; line-height: 0.40rem; text-align: justify}
     /*.answer_detail_box  .list .word_closeStyle{text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;}*/
     /*.answer_detail_box  .list .word_openStyle{display: block}*/
     .answer_detail_box  .list .time{ font-size:0.24rem; color:#999;}
