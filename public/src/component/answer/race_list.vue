@@ -278,7 +278,7 @@
                         _this.$router.push("../answer?askId="+askId);
                     }else{
                         xqzs.weui.tip('慢了一拍，已经被别人抢走了',function () {
-                            _this.list = _this.list.splice(index,1)
+                            _this.list.splice(index,1)
                         })
                     }
 
