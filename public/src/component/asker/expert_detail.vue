@@ -82,7 +82,7 @@
                 </div>
             </div>
             <div class="answer_comments">
-                <div class="answer_title">最新评价（{{detail.evaluateCount}}）
+                <div class="answer_title">最新评价 [ <span style="font-weight: normal">{{detail.evaluateCount}}</span> ]
                     <i @click="moreComment()">查看更多
 
                     </i>
@@ -103,10 +103,10 @@
                                     <div class="time timeRight">{{formatTime(item.addTime)}}</div>
                                 </div>
                                 <div class="word">{{item.content}}</div>
-                                <div class="class_s">
-                                    <span v-for="tag in item.tag">{{tag.title}}</span>
-                                    <div class="clear"></div>
-                                </div>
+                                <!--<div class="class_s">-->
+                                    <!--<span v-for="tag in item.tag">{{tag.title}}</span>-->
+                                    <!--<div class="clear"></div>-->
+                                <!--</div>-->
 
                             </div>
                             <div class="clear"></div>
@@ -120,7 +120,7 @@
 
             </div>
             <div class="ask_answer">
-                <div class="answer_title">问答（{{detail.answerCount}}）
+                <div class="answer_title">问答 [ <span style="font-weight: normal">{{detail.answerCount}}</span> ]
                     <div class="new" style="position: relative" @click="showPicker()">{{answerTypeTxt}}<span class="sj" :class="{bj:showPic}"></span>
                         <ul v-if="showPic">
                             <li v-for="item in answerTypes" :val="item.value">{{item.label}}</li>
@@ -950,9 +950,9 @@
     .answer_detail_box .content{
         font-size: 0.28rem;
         padding:0.30rem ;
-        line-height: 0.4rem;
+        line-height: 0.44rem;
         color:rgba(69, 75, 84, 1);
-        text-align: justify;
+        /*text-align: justify;*/
     }
     /*.answer_detail_box .content b{*/
         /*color:rgba(36,37,61,1);*/
@@ -980,9 +980,8 @@
     .answer_detail_box .answer_comments{
         background: white;
         margin-top: 0.2rem;
-        padding-bottom: 0.30rem;
     }
-    .answer_detail_box  .list .item{ background: #fff; padding: 0.30rem 0;margin:0 0.30rem;margin-bottom: 0.14rem;position: relative ; }
+    .answer_detail_box  .list .item{ background: #fff; padding: 0.30rem 0;margin:0 0.30rem;position: relative ; }
 
     .answer_detail_box  .list .addBorder_bottom{border-bottom: 0.02rem solid #eee;}
     .answer_detail_box .list .star span{ background: url(http://oss.xqzs.cn/resources/psy/star_no.png); width: 0.26rem; height: 0.26rem;  background-size: 0.26rem; display: inline-block; margin-right: 0.10rem; }
@@ -993,7 +992,7 @@
     .answer_detail_box  .list .info{ float:left; margin-left:0.20rem;  width:5.9rem;line-height: 0.68rem;}
     .answer_detail_box  .list .info .name{ font-size: 0.24rem; color:#999; margin-bottom: 0.07rem; width: 4.80rem;line-height: 1}
     .answer_detail_box  .list .info .star{line-height: 1;margin-bottom: 0.12rem}
-    .answer_detail_box  .list .word{ font-size:0.28rem;  color:rgba(36,37,61,1); margin-bottom: 0.14rem; overflow: hidden;word-wrap:break-word; line-height: 0.48rem; text-align: justify}
+    .answer_detail_box  .list .word{ font-size:0.28rem;  color:rgba(69, 75, 84, 1);overflow: hidden;word-wrap:break-word; line-height: 0.44rem;}
     /*.answer_detail_box  .list .word_closeStyle{text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;}*/
     /*.answer_detail_box  .list .word_openStyle{display: block}*/
     .answer_detail_box  .list .time{ font-size:0.24rem; color:#999;}
@@ -1065,7 +1064,7 @@
     /*display: inline-block;*/
     /*margin-right: 0.17rem;*/
     /*}*/
-    .friestP{overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 4;line-height:0.40rem;-webkit-box-orient: vertical;}
+    .friestP{overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 4;line-height:0.44rem;-webkit-box-orient: vertical;}
     .addopen{margin-top:0.3rem;height:auto;}
     .addstop{margin-top:0;height:0;overflow: hidden;}
     .item .others{ color:#999; position: relative; font-size: 0.24rem; padding-left: 0.98rem;}

@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="list">
-                <div class="item" v-for="item in list"  @click="answer(item.id)">
+                <div class="item" v-for="(item,index) in list"  @click="answer(item.id,index)">
                     <div class="info">
                         <div class="img">
                             <img v-if="item.isAnonymous==0" :src="item.faceUrl">
@@ -184,8 +184,8 @@
                 }
                 _this.timeInterval=   setInterval(function () {
                     for(let i =0;i<_this.list.length;i++){
-                        _this.list[i].endTime= _this.list[i].endTime + 1;
-                        _this.list[i].endTime= _this.list[i].endTime - 1;
+                        _this.list[i].endTime= parseInt(_this.list[i].endTime) + 1;
+                        _this.list[i].endTime= parseInt(_this.list[i].endTime) - 1;
                         _this.$set(_this.list,i, _this.list[i]);
                     }
                 },1000)
@@ -268,8 +268,23 @@
                 this.getList(done);
 
             },
-            answer:function (askId) {
-                this.$router.push("../answer?askId="+askId);
+            answer:function (askId,index) {
+                let _this = this;
+                _this.showLoad = true
+                xqzs.api.put(_this,"come/expert/grab/"+askId,{expertId:_this.expertId,userId:'_userId_'},function (bt) {
+                    _this.showLoad = false
+                    if(bt.data.status==1){
+                        _this.$router.push("../answer?askId="+askId);
+                    }else{
+                        xqzs.weui.tip('慢了一拍，已经被别人抢走了',function () {
+                        })
+                    }
+                    setTimeout(function () {
+                        _this.list.splice(index,1)
+                    },100)
+
+                });
+
             },
             formatDateText:function (time) {
                 return xqzs.dateTime.getTimeFormatLastText(time)

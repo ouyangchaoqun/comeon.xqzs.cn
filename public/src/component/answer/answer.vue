@@ -17,7 +17,7 @@
                 </div>
                 <div class="content">{{detail.content}}</div>
                 <div class="last_time">在哪方面：{{detail.title}}</div>
-                <div class="last_time last_red_color">还{{formatDateText( detail.addTime+172800)}}</div>
+                <div class="last_time last_red_color">还{{formatDateText( detail.endTime)}}</div>
                 <div class="clear"></div>
 
                 <div class="audio" :class="{playing:playing,paused:paused}" v-if="isAnswered&&answerId">
@@ -274,8 +274,8 @@
                     clearInterval(_this.timeInterval);
                 }
                 _this.timeInterval=   setInterval(function () {
-                    _this.detail.addTime= _this.detail.addTime + 1;
-                    _this.detail.addTime= _this.detail.addTime - 1
+                    _this.detail.endTime= parseInt(_this.detail.endTime)  + 1;
+                    _this.detail.endTime= parseInt(_this.detail.endTime)  - 1
                 },1000)
             },
             formatDateText:function (time) {

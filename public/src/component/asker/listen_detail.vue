@@ -65,7 +65,7 @@
                             <!--付费听-->
                             <template  v-if="detail.needPay==1">
                                 <div @click="typeDialog(item.questionId,item.answerId,index)">
-                                    <div class="audio"><div class="audio_btn pay" >偷听</div></div>
+                                    <div class="audio" style="margin-bottom:0 "><div class="audio_btn pay" >偷听</div></div>
                                 </div>
                             </template>
                             <!--限时免费听-->
@@ -826,7 +826,7 @@
 <style>
     /**jobTitle**/
     .steal_expert_jobTitle{
-        color:#2EB1FF;
+        color:#56C4FE;
         font-size: 0.28rem;
         padding-top: 0.16rem;
         line-height: 1;
@@ -1021,7 +1021,7 @@
     }
     .steal_expert_info{
         padding-left: 1.30rem;
-        padding-bottom: 0.51rem;
+        margin-bottom: 0.21rem;
     }
     .position_change_detail{
         color:#fff;

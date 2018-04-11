@@ -29,11 +29,13 @@
 
             <div class="steal_expert_info" :class="{answerInfo_border:detail.answerCount==0}">
                 <img :src="detail.expert.faceUrl" alt="" @click="goDetail(detail.expertId,detail.expert.status)">
+                <img class="expert_v" src="http://oss.xqzs.cn/resources/psy/asker/header_img_v.png" alt="">
                 <div>
-                    <span class="steal_expert_name" @click="goDetail(detail.expertId,detail.expert.status)">{{detail.expert.nickName}}</span><span
-                        class="steal_expert_fans">{{followCount}} 人关注</span>
+                    <span class="steal_expert_name" @click="goDetail(detail.expertId,detail.expert.status)">{{detail.expert.nickName}}</span>
+
                 </div>
-                <div class="steal_expert_des">{{detail.expert.sign}}</div>
+                <div class="steal_expert_des steal_expert_jobTitle">{{detail.expert.jobTitle}}</div>
+                <!--<div class="steal_expert_des" v-else>{{detail.expert.sign}}</div>-->
                 <div class="followed_box" v-if="!detail.expert.isFollow" @click="follow(detail.expertId)">关注</div>
                 <div class="followed_box isfollow_style"  v-if="detail.expert.isFollow" @click="follow(detail.expertId)" >已关注</div>
             </div>
@@ -151,8 +153,8 @@
                     clearInterval(_this.timeInterval);
                 }
                 _this.timeInterval=   setInterval(function () {
-                    _this.detail.endTime= _this.detail.endTime + 1;
-                    _this.detail.endTime= _this.detail.endTime - 1
+                    _this.detail.endTime=parseInt( _this.detail.endTime) + 1;
+                    _this.detail.endTime= parseInt( _this.detail.endTime) - 1
                 },1000)
             },
             getAnony:function () {
@@ -444,7 +446,7 @@
     }
     .ask_detailBox .steal_expert_info{
         padding-left:1.42rem;
-        padding-bottom: 0.51rem;
+        margin-bottom: 0.21rem;
         border-top:0.20rem solid #f4f4f7;
     }
     .problem_wait_style{
@@ -571,4 +573,15 @@
     }
     .problem_assess_input .addIsOverHtml{text-align: left;background: #EBEBEC;border-radius: 0.10rem;padding:0.10rem 0.30rem;}
     .ask_detailBox .addContentStyle{margin-bottom: 0}
+    .steal_expert_jobTitle{
+        color:#56C4FE;
+    }
+    .steal_expert_info .expert_v{
+        width: 0.28rem;
+        height: 0.28rem;
+        position: absolute;
+        border-radius: inherit;
+        top: 0.84rem;
+        left: 0.82rem;
+    }
 </style>

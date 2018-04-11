@@ -52,15 +52,16 @@
 
             <ul class="rob_lists">
                 <li v-for="(item,index) in detail.answers">
-                    <div class="comment_btn"  @click="showCommentBox()"  v-if="detail.bestAnswerId!=0&&detail.questionStatus!=0&&detail.bestAnswerId==item.answerId&&!detail.evaluate_ed">
-                            去评价
-                    </div>
                     <div class="rob_box_top">
+                        <div class="comment_btn"  @click="showCommentBox()"  v-if="detail.bestAnswerId!=0&&detail.questionStatus!=0&&detail.bestAnswerId==item.answerId&&!detail.evaluate_ed">
+                            去评价
+                        </div>
                         <img :src="item.expertFaceUrl" alt="" @click="goExpert(item.expertId,item.expertStatus)">
                         <img class="expert_v" src="http://oss.xqzs.cn/resources/psy/asker/header_img_v.png" alt="">
                         <div class="expertInfo">
                             <span>{{item.expertNickName}}</span>
-                            <div><template v-for="(d,i) in item.domain">{{d.title}}<template v-if="i<item.domain.length-1">、</template></template></div>
+                            <div>{{item.jobTitle}}</div>
+                            <!--<div v-else><template v-for="(d,i) in item.domain">{{d.title}}<template v-if="i<item.domain.length-1">、</template></template></div>-->
                         </div>
                     </div>
                     <div class="rob_answer">
@@ -201,7 +202,7 @@
                     clearInterval(_this.timeInterval);
                 }
                 _this.timeInterval=   setInterval(function () {
-                    _this.detail.endTime= _this.detail.endTime + 1;
+                    _this.detail.endTime= parseInt( _this.detail.endTime) + 1;
                     _this.detail.endTime= _this.detail.endTime - 1
                 },1000)
             },
@@ -488,7 +489,7 @@
 
 
     .rob_problem .rob_lists li{ position: relative}
-    .rob_problem  .rob_lists li .comment_btn{ position: absolute; right:0.30rem; top:0.30rem; color:#FE7A03; border: 0.02rem solid #FE7A03; line-height:0.48rem; height: 0.48rem; padding: 0 0.27rem; border-radius: 0.07rem; font-size: 0.24rem;width:auto  }
+    .rob_problem  .rob_lists li .comment_btn{ position: absolute; right:0; top:50%; color:#FE7A03; border: 0.02rem solid #FE7A03; line-height:0.48rem; height: 0.48rem; padding: 0 0.27rem; border-radius: 0.07rem; font-size: 0.24rem;width:auto;margin-top:-0.24rem;  }
     .rob_problem  .rob_lists li .comment_btn:active{ color:#e36b02; border: 0.02rem solid #e36b02; }
     .rob_problem .addBest_text{
         color:#999;
@@ -540,29 +541,30 @@
     }
     .rob_problem .audio{
         margin:0;
-        padding-bottom: 0.40rem;
+        padding-bottom: 0.51rem;
         border-bottom: 0.02rem solid rgba(238,238,238,1);
     }
     .rob_box_top{
         display: flex;
         display: -webkit-box;
         display: -webkit-flex;
-        font-size: 0.26rem;
+        font-size: 0.3rem;
         color: rgba(69, 75, 84, 1);
         line-height: 0.68rem;
-        margin-bottom: 0.36rem;
+        margin-bottom: 0.51rem;
         position: relative;
     }
     .rob_box_top .expertInfo{
-        line-height: 1;
+        line-height: 0.4rem ;
     }
     .rob_box_top .expertInfo span{
-        margin-bottom: 0.17rem;
         display: inline-block;
     }
     .rob_box_top .expertInfo div{
-        color:#999;
-        font-size: 0.24rem;
+        color:#56C4FE;
+        font-size: 0.28rem;
+        line-height: 1;
+        padding-top: 0.16rem;
     }
     .rob_box_top img{
         width: 0.8rem;
