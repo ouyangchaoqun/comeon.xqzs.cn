@@ -293,7 +293,9 @@
             this.getCoupon();
             this.getComment();
             this.getAnswer();
-
+            if(xqzs.equipment.isIphoneX()){
+              $(".listen").css("margin-bottom","0.8rem")
+            }
 
         },
         updated:function () {
@@ -817,14 +819,14 @@
         margin-bottom: 0.20rem;
     }
     .answer_detail_box .answer_banner{
-        background: url("http://oss.xqzs.cn/resources/psy/answer/banner.jpg") top center  no-repeat;
+        background: url("http://oss.xqzs.cn/resources/psy/answer/banner.png") top center  no-repeat;
         background-size: cover;
-        padding-bottom:0.20rem;
-        padding-top: 0.30rem;
+        padding-bottom:0.40rem;
+        padding-top: 0.80rem;
     }
     .answer_detail_box .answer_face{
-        width: 1.80rem;
-        height: 1.80rem;
+        width: 1.60rem;
+        height: 1.60rem;
         border-radius: 50%;
         margin: 0 auto;
         margin-bottom: 0.30rem;
