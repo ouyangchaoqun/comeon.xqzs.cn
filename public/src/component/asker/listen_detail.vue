@@ -182,7 +182,7 @@
                 isAnonymous:false,
                 anonyVal:0,
                 height:xqzs.equipment.tabHeight(),
-                lengthLock:false
+                lengthLock:false,
             }
         },
         beforeRouteLeave (to, from, next) {
@@ -240,18 +240,25 @@
             //默认留言框
             levMsg:function (isAuto) {
                 let _this= this;
+
                 _this.actionSheetEdit( "发布", function (value) {
                     if(value.length<8){
                         xqzs.weui.tip('不能少于8个字')
                         return
                     }
+                    if(_this.isReplying){
+                        return;
+                    }
                     //回复操作
+                    _this.isReplying = true;
                     xqzs.api.put(_this, "come/user/evaluate/question",{userId:"_userId_",questionId :_this.detail.questionId,content:value,isAnonymous :_this.anonyVal},function (bt) {
 
                         if (bt.data && bt.data.status == 1) {
+                           _this.isReplying = false;
                             let msg = bt.data.data;
                             xqzs.weui.toast('success','留言成功',function () {
                                 _this.initTextareaVal()
+                                $(".action-sheet-edit .release_btn").css({'borderColor': "RGBA(86, 196, 254, 0.1)", "background": "RGBA(86, 196, 254, 0.5)"})
                             });
                             let  stuckMessage = {
                                 faceUrl:_this.user.faceUrl,
@@ -315,6 +322,7 @@
             //对留言进行回复、对别人的回复进行回复
             replyItem:function (id,questionId,nickName,item,expertName) {
                 let vm = this;
+
                 let showName;
                 if(expertName){
                     showName=expertName
@@ -326,17 +334,23 @@
                         xqzs.weui.tip('不能少于8个字')
                         return
                     }
+                    if(vm.isReplying){
+                        return;
+                    }
+                    vm.isReplying = true;
                     xqzs.api.put(vm,'come/user/evaluate/question', {
                         "id": id,
                         "userId":"_userId_",
                         "content": v,
                         "questionId":questionId,
                     },function (response) {
+                        vm.isReplying = false;
                         if (response.data.status === 1) {
                             let msg = response.data.data;
                             console.log(msg)
                             xqzs.weui.toast("success", "回复成功", function () {
-                                vm.initTextareaVal()
+                                vm.initTextareaVal();
+                                $(".action-sheet-edit .release_btn").css({'borderColor': "RGBA(86, 196, 254, 0.1)", "background": "RGBA(86, 196, 254, 0.5)"})
                                 vm.levMsg()
                             });
                             let  stuckMessage = {
