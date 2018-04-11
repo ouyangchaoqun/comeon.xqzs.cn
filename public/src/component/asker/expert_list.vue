@@ -562,9 +562,9 @@
         border-top: none;
         border-bottom: 0.02rem solid #eee;
     }
-    .header_addRightStyle{position: absolute;right:0;top:-0.02rem;display: flex;color:rgba(36,37,61,0.5);font-size: 0.24rem;font-weight:normal}
+    .header_addRightStyle{position: absolute;right:0;top:-0.02rem;display: flex;color:#999;font-size: 0.24rem;font-weight:normal}
 
-    .expert_list .noContent_icon{background: #fff;color:rgba(36,37,61,0.5);font-size: 0.26rem;text-align: center;}
+    .expert_list .noContent_icon{background: #fff;color:#999;font-size: 0.26rem;text-align: center;}
     .expert_list  .noContent_icon div{margin-top: -1.29rem;}
 
     @keyframes  addPlaying {

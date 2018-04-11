@@ -263,7 +263,7 @@
     .asker_my_coment_list .comment .info .content{ color:#454B54; font-size: 0.28rem; margin: 0.07rem  0}
     .asker_my_coment_list .comment .info .tags{}
     .asker_my_coment_list .comment .info .tags span{ display: inline-block;
-        border:0.02rem solid rgba(36,37,61,0.5); color:rgba(36,37,61,0.5); text-align: center; line-height: 0.45rem; border-radius: 0.23rem; padding: 0 0.17rem; font-size:0.24rem; margin-right: 0.10rem;}
+        border:0.02rem solid #999; color:#999; text-align: center; line-height: 0.45rem; border-radius: 0.23rem; padding: 0 0.17rem; font-size:0.24rem; margin-right: 0.10rem;}
     .asker_my_coment_list .comment .info .star span{ display: inline-block; background: url(http://oss.xqzs.cn/resources/psy/starNew_no.png) no-repeat; background-size: 0.29rem;  height: 0.29rem; width: 0.29rem; margin-right: 0.14rem; }
     .asker_my_coment_list .comment .info .star span.on{background: url(http://oss.xqzs.cn/resources/psy/starNew.png) no-repeat;background-size: 0.29rem; }
 

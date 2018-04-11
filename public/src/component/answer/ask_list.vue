@@ -259,10 +259,10 @@
     .answer_ask_list_box .list .item:active{background: #eee}
     .answer_ask_list_box  .list .item .img{ width: 0.58rem; height: 0.58rem; float:left; }
     .answer_ask_list_box  .list .item .img img{ width: 100%; height: 100%; border-radius: 50%}
-    .answer_ask_list_box  .list .info .names{ font-size: 0.24rem;color:rgba(36,37,61,0.5);line-height:0.58rem;margin-bottom: 0.08rem; }
-    .answer_ask_list_box .list .info .names span{ color:rgba(36,37,61,0.5); font-size: 0.26rem; margin-left: 0.20rem}
+    .answer_ask_list_box  .list .info .names{ font-size: 0.24rem;color:#999;line-height:0.58rem;margin-bottom: 0.08rem; }
+    .answer_ask_list_box .list .info .names span{ color:#999; font-size: 0.26rem; margin-left: 0.20rem}
     .answer_ask_list_box  .list .info .content{ font-size: 0.30rem; color:rgba(36,37,61,1);margin-bottom: 0.28rem ;width:98%;}
-    .answer_ask_list_box  .list .info .last_time{line-height:1;font-size: 0.26rem;color:rgba(36,37,61,0.5);margin-bottom: 0.18rem;}
+    .answer_ask_list_box  .list .info .last_time{line-height:1;font-size: 0.26rem;color:#999;margin-bottom: 0.18rem;}
     .answer_ask_list_box  .list .info .price{ float:right;font-size: 0.24rem;color:#56C4FE; text-align: right; width: 2.38rem;}
 
     .dialog_select_Height{ height:10.04rem; margin-top: -5rem;width: 86% ;margin-left:-43%}

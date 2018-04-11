@@ -316,7 +316,7 @@
     }
 </script>
 <style>
-    .asker_my_listen_list_box .questCount{height:0.88rem;text-align: center;background: #F4F4F7;font-size: 0.30rem;line-height: 0.88rem;color:rgba(36,37,61,0.5);}
+    .asker_my_listen_list_box .questCount{height:0.88rem;text-align: center;background: #F4F4F7;font-size: 0.30rem;line-height: 0.88rem;color:#999;}
     .asker_my_listen_list_box .item{ border-bottom: 0.02rem solid #eee; padding-bottom: 0.29rem;}
     .asker_my_listen_list_box .question{ padding: 0.30rem;padding-left: 1.3rem;position: relative}
     .asker_my_listen_list_box .question .img{border-radius: 50%; width:0.8rem;height:0.8rem;display: block; position: absolute;left:0.3rem;}

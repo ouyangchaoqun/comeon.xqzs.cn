@@ -481,7 +481,7 @@
         width: 1.28rem; height: 1.28rem; background: #F4F4F7; color:#fff; font-size: 1.09rem; line-height: 1.09rem ; text-align: center; margin-left: 0.68rem
     }
     .answer_join_base_info_box .head{ margin-top:0.10rem; border-bottom: solid 0.20rem #F4F4F7}
-    .answer_join_base_info_box .tip{ margin-top: 0.07rem; font-size: 0.24rem; padding: 0.20rem 0.30rem; color:rgba(36,37,61,0.5)}
+    .answer_join_base_info_box .tip{ margin-top: 0.07rem; font-size: 0.24rem; padding: 0.20rem 0.30rem; color:#999}
     .answer_join_base_info_box  .weui-label span{ color:red;}
 
     .level_item{height:0.28rem;width:0.28rem;border-radius: 50%;border:0.02rem solid #D2D2D2;display: inline-block;margin-right:0.28rem;position: absolute;top:50%;margin-top:-0.16rem;}
@@ -496,7 +496,7 @@
     .info_right>div{position: relative}
     .info_right>div:nth-of-type(1){margin-right: 0.60rem}
     .info_right .level_itemsex{margin-left: 0.60rem;color:rgba(36,37,61,1);font-size: 0.30rem}
-    .info_right i{display: inline-block;color:rgba(36,37,61,0.5);font-style: normal;width:1.20rem;height:0.42rem;font-size:0.24rem;line-height: 0.42rem;border:0.02rem solid rgba(36,37,61,0.5);border-radius: 0.34rem;margin-right:0.50rem;margin-top:0.20rem;}
+    .info_right i{display: inline-block;color:#999;font-style: normal;width:1.20rem;height:0.42rem;font-size:0.24rem;line-height: 0.42rem;border:0.02rem solid #999;border-radius: 0.34rem;margin-right:0.50rem;margin-top:0.20rem;}
     .info_right .right_active{background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1));border-color:rgba(254,115,1,1);color:#fff}
 
     .lut{ float:left; background: #ececec; color:rgba(36,37,61,1); height: 0.60rem; line-height: 0.60rem;  padding: 0 0.20rem; margin-top: 0.12rem; font-size: 0.28rem;  }

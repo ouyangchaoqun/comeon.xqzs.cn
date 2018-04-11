@@ -442,7 +442,7 @@
         line-height: 1;
     }
     .addAnonymous_content{
-        color:rgba(36,37,61,0.5);
+        color:#999;
         font-size: 0.30rem;
         padding:0.32rem 0;
         border-bottom: 0.02rem solid rgba(224,224,225,1);
@@ -515,7 +515,7 @@
     /*.asker_ask_box .text_area p{*/
     /*font-size: 0.28rem;*/
     /*line-height: 0.48rem;*/
-    /*color:rgba(36,37,61,0.5);*/
+    /*color:#999;*/
     /*margin-bottom: 0.10rem;*/
     /*}*/
     .asker_ask_box .text_area .price{
@@ -533,7 +533,7 @@
         resize: none;
     }
     .asker_ask_box .text_area .last_word_count {
-        color: rgba(36,37,61,0.5);
+        color: #999;
         position: absolute;
         right: 0.20rem;
         bottom: 0.20rem;
@@ -590,7 +590,7 @@
     .dialog_select_type .tip_content p{ margin-bottom: 0.20rem;}
     .asker_ask_box .ask_type_new{padding:0.40rem 0.30rem;padding-bottom: 0.10rem}
     .asker_ask_box .ask_type_new .tab{color:rgba(36,37,61,1);font-size: 0.34rem;line-height: 1;margin-bottom: 0.40rem;}
-    .asker_ask_box .ask_type_new .tab span{color:rgba(36,37,61,0.5);font-size: 0.24rem;}
+    .asker_ask_box .ask_type_new .tab span{color:#999;font-size: 0.24rem;}
     .asker_ask_box .ask_type_new .select_box{display: flex;text-align: center;height:0.72rem;line-height: 0.72rem;}
     .asker_ask_box .ask_type_new .select_box div{flex:1;color:rgba(36,37,61,0.7);font-size: 0.30rem;background: rgba(245,245,245,1);border-radius: 0.10rem;}
     .asker_ask_box .ask_type_new .select_box div:nth-of-type(2){margin:0 0.30rem;}

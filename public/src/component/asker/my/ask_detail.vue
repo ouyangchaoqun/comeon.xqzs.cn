@@ -474,13 +474,13 @@
         display: flex;
         line-height: 0.96rem;
         font-size: 0.28rem;
-        color: rgba(36,37,61,0.5);
+        color: #999;
     }
     .problem_assess{
         background: #fff;
         padding-top:0.40rem;
         font-size: 0.24rem;
-        color: rgba(36,37,61,0.5);
+        color: #999;
         text-align: center;
         border-top: 0.14rem solid #f4f4f8;
         padding-bottom: 0.80rem;
@@ -500,7 +500,7 @@
         padding:0 0.17rem;
         height:0.46rem;
         line-height: 0.46rem;
-        border:0.02rem solid rgba(36,37,61,0.5);
+        border:0.02rem solid #999;
         border-radius: 0.34rem;
         display: inline-block;
         margin-bottom:0.24rem;
@@ -565,7 +565,7 @@
         margin-right: 0.42rem;;
     }
     .problem_wait_style>span:nth-of-type(2){
-        color: rgba(36,37,61,0.5) ;
+        color: #999 ;
         font-size: 0.24rem;
     }
     .problem_box_background{

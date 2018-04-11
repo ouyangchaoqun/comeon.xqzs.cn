@@ -158,7 +158,7 @@
     .asker_my_income_box  .my_income .get_money{color:rgba(255,255,255,1); margin:0 auto;line-height:0.72rem;text-align: center; font-size: 0.36rem; margin-top: 1.00rem;background: rgba(255,157,24,1);border: 0.02rem solid rgba(229,135,6,0);width: 42%;border-radius: 0.36rem;}
     .asker_my_income_box  .my_income .get_money:active{background:rgba(229,135,6,1) ;}
     .asker_my_income_box .my_income .income_list{ position: absolute;bottom:2.04rem; text-align: center;  width: 100%}
-    .asker_my_income_box .my_income .income_list span{border-bottom: 0.02rem solid rgba(36,37,61,0.5); font-size: 0.26rem; color:rgba(36,37,61,0.5); padding-bottom: 0.12rem;border-radius:0.02rem;}
+    .asker_my_income_box .my_income .income_list span{border-bottom: 0.02rem solid #999; font-size: 0.26rem; color:#999; padding-bottom: 0.12rem;border-radius:0.02rem;}
 
     .asker_my_income_box .moneyOut_box{width: 100%;height:100%;background: rgba(239,238,244,1);position: absolute;top:0; bottom:0;}
     .asker_my_income_box .money_dialog{  margin: 0.42rem 0.30rem;margin-bottom: 0;background: rgba(255,255,255,1)}

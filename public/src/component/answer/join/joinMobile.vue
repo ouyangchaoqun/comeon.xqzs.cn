@@ -314,7 +314,7 @@
 
     #message {
         font-size: 0.22rem;
-        color: rgba(36,37,61,0.5);
+        color: #999;
         position: absolute;
         bottom:-1.02rem;
         left: 0.30rem;

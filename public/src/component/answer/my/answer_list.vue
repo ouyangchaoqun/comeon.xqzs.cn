@@ -361,7 +361,7 @@
         line-height: 0.96rem;
         height:0.96rem;
         font-size: 0.28rem;
-        color: rgba(36,37,61,0.5);
+        color: #999;
         margin-bottom: 0.30rem;
     }
     .problem_answer_info img{

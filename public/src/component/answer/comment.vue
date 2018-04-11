@@ -235,11 +235,11 @@
     .answer_comment_box  .list .item .img{ width: 0.80rem; height: 0.80rem; float:left; }
     .answer_comment_box  .list .item .img img{ width: 100%; height: 100%; border-radius: 50%; border: 0.02rem solid #E0E0E1 }
     .answer_comment_box  .list .info{ float:left; margin-left:0.30rem;  width:5.8rem}
-    .answer_comment_box  .list .info .name{ font-size: 0.24rem; color:rgba(36,37,61,0.5); margin-bottom: 0.07rem;}
+    .answer_comment_box  .list .info .name{ font-size: 0.24rem; color:#999; margin-bottom: 0.07rem;}
     .answer_comment_box  .list .word{ font-size:0.28rem;    color:#333; text-align: justify}
     .answer_comment_box  .list .reply{ font-size: 0.26rem;  color:rgba(36,37,61,1);background: rgba(245,245,245,1);border-radius: 0.10rem;padding:0.12rem 0.20rem;position: relative;margin-top: 0.30rem;}
     .answer_comment_box  .list .reply:after{content: '';width:0.30rem;height:0.30rem;background:rgba(245,245,245,1);position: absolute;top:-0.16rem;left:0.60rem ;transform:rotate(45deg);}
-    .answer_comment_box  .list .time{ font-size:0.24rem; color:rgba(36,37,61,0.5); float: right}
+    .answer_comment_box  .list .time{ font-size:0.24rem; color:#999; float: right}
     .answer_comment_box  .list .info .class_s { clear: both; margin-top: 0.10rem;}
     .answer_comment_box  .list .info .class_s span{ display: block; float:left; text-align: center; border-radius:0.21rem;  height: 0.42rem; line-height: 0.42rem;  border: 0.02rem solid #C1C1C1 ; color:#C1C1C1 ; font-size: 0.24rem; padding: 0 0.24rem; margin-right:0.19rem;}
     .answer_comment_box  .list .reply span{color:#999}

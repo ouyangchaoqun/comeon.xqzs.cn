@@ -471,7 +471,7 @@
     .evaluation_frame .frame_textarea .anFlag{position: absolute;right:0.2rem;bottom:0.2rem;color:RGBA(69, 75, 84, 0.49);font-size: 0.24rem;background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_no.png")no-repeat left center;background-size: 0.28rem;padding-left: 0.34rem;line-height: 0.34rem;z-index:1000;height:0.32rem;}
     .evaluation_frame .frame_textarea .anFlag_on{background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_on.png") no-repeat left center;background-size: 0.28rem;}
 
-    .rob_status_box .race_detail_inCome{float: right;margin-right: 0.30rem;color:rgba(36,37,61,0.5);}
+    .rob_status_box .race_detail_inCome{float: right;margin-right: 0.30rem;color:#999;}
     .rob_status_box span {
         padding:  0 0.04rem;
     }
@@ -612,7 +612,7 @@
         position: absolute;
         left:3.70rem;
         top:0.16rem;
-        color: rgba(36,37,61,0.5);
+        color: #999;
         font-size: 0.28rem;
     }
 

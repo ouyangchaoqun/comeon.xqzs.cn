@@ -469,7 +469,7 @@
     .list0.perfect_header .header_right{
         float: right;
         font-size: 0.28rem;
-        color:rgba(36,37,61,0.5);
+        color:#999;
         padding-right: 0.51rem;
     }
     .list0.perfect_header .header_right i{
@@ -551,14 +551,14 @@
     .list0 .mobile {
         float: right;
         font-size: 0.30rem;
-        color: rgba(36,37,61,0.5);
+        color: #999;
         margin-right: 0.40rem
     }
 
     .list0 input,.list0 .input {
         float: right;
         font-size: 0.28rem;
-        color: rgba(36,37,61,0.5);
+        color: #999;
         height: 0.88rem;
         text-align: right;
         border: 0;
@@ -566,19 +566,19 @@
     }
 
     .list0 input::-webkit-input-placeholder {
-        color: rgba(36,37,61,0.5);
+        color: #999;
     }
 
     .list0 input:-moz-placeholder {
-        color: rgba(36,37,61,0.5);
+        color: #999;
     }
 
     .list0 input::-moz-placeholder {
-        color: rgba(36,37,61,0.5);
+        color: #999;
     }
 
     .list0 input:-ms-input-placeholder {
-        color: rgba(36,37,61,0.5);
+        color: #999;
     }
 
     .list0 img {
@@ -591,7 +591,7 @@
 
     .showdL {
         float: right;
-        color: rgba(36,37,61,0.5);
+        color: #999;
         font-size: 0.30rem;
         width: 3.00rem;
         text-align: right;
@@ -600,7 +600,7 @@
     .showdL span {
         margin-left: 0.10rem;
         float: none;
-        color: rgba(36,37,61,0.5);
+        color: #999;
     }
 
     .list03 {

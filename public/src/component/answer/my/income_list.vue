@@ -159,12 +159,12 @@
         margin-right: 0.25rem;
     }
     .moneyOut_color{
-        color:rgba(36,37,61,0.5);
+        color:#999;
     }
     .item_type{
         margin: 0 auto;
         text-align: center;
-        color:rgba(36,37,61,0.5);
+        color:#999;
         font-size: 0.26rem;
     }
 </style>

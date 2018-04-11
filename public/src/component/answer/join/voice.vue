@@ -318,7 +318,7 @@
 </script>
 <style>
     .answer_join_voice{ width: 100%; overflow: hidden}
-    .answer_join_voice .tipc{  margin:0.60rem    0.40rem; font-size: 0.26rem; line-height: 1.5; color:rgba(36,37,61,0.5)}
+    .answer_join_voice .tipc{  margin:0.60rem    0.40rem; font-size: 0.26rem; line-height: 1.5; color:#999}
     .answer_join_voice .audio{ margin-left:  15%  !important ; margin-top: 2.72rem;}
     .pt3{ padding-top: 3.06rem !important}
 
