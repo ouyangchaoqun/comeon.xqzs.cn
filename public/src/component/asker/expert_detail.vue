@@ -393,6 +393,7 @@
 
                                     });
                                 }
+                                Bus.$emit('onUpdateUserInfo');
                                 _this.getUser();
                                 _this.showLoad=false;
                             });

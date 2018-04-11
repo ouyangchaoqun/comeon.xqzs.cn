@@ -38,6 +38,7 @@
     </div>
 </template>
 <script type="">
+    import Bus from '../../bus.js';
     export default {
         data() {
             return {
@@ -168,6 +169,7 @@
                                     }
                                 )
                             });
+                            Bus.$emit('onUpdateUserInfo');
 
                         }else{
                             xqzs.wx.pay.pay(result, function () {
@@ -181,6 +183,7 @@
                                         }
                                     )
                                 });
+                                Bus.$emit('onUpdateUserInfo');
                             }, function () {//error
 
                             })

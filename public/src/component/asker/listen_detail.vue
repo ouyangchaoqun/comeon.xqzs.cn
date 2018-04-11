@@ -607,6 +607,7 @@
                                     });
                                 }
                                 _this.getUserInfo();
+                                Bus.$emit('onUpdateUserInfo');
                                 _this.showLoad=false;
                             })
 

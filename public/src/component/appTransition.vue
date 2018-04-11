@@ -42,6 +42,10 @@
                 _this.user =user;
                 _this.subscribe();//没有关注的逻辑
             });
+
+            Bus.$on("onUpdateUserInfo", function () {
+                _this.updateUserInfo();
+            });
 //
         },
         mounted: function () {
@@ -55,6 +59,12 @@
 
         },
         methods: {
+            updateUserInfo:function () {
+                let _this= this;
+                xqzs.user.getUserInfo(function (user) {
+                    _this.user =user;
+                });
+            },
             subscribe:function () {
                 let  isShare = this.$route.query.share;
 
