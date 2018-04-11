@@ -764,7 +764,7 @@
 
     .index_li_content {
         font-size: 0.30rem;
-        color: rgba(69, 75, 84, 1);
+        color: #454B54;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;

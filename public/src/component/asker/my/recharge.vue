@@ -253,6 +253,7 @@
         margin-top: 0.10rem;
         font-size: 0.40rem;
         line-height: 0.56rem;
+        color:#454B54;
     }
 
     .recharge_box .items_box .items .price.nogift {
@@ -263,7 +264,7 @@
         line-height: 0.40rem;
         font-size: 0.28rem;
         margin-top: 0.04rem;
-        color:#9B9B9B
+        color:#999;
     }
 
     .recharge_box .items_box .items .gift {
@@ -283,6 +284,7 @@
         line-height: 1.00rem;
         font-size: 0.30rem;
         padding-left: 0.30rem;
+        color:#454B54;
     }
 
     .recharge_box .rechar_btn {
@@ -332,7 +334,8 @@
         top: 24%;
         left: 50%;
         margin-left: -2.72rem;
-        border-radius: 0.20rem
+        border-radius: 0.20rem;
+        color:#454B54;
     }
 
     .recharge_box .items_box .items.selected {

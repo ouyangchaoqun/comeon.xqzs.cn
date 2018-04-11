@@ -321,7 +321,7 @@
     .asker_my_listen_list_box .question{ padding: 0.30rem;padding-left: 1.3rem;position: relative}
     .asker_my_listen_list_box .question .img{border-radius: 50%; width:0.8rem;height:0.8rem;display: block; position: absolute;left:0.3rem;}
 
-    .asker_my_listen_list_box .question .title{ font-size: 0.30rem; color:rgba(69, 75, 84, 1);}
+    .asker_my_listen_list_box .question .title{ font-size: 0.30rem; color:#454B54;}
 
     .asker_my_listen_list_box .answer .img{ width: 0.8rem; height: 0.8rem; float:left; margin-left: 0.30rem; margin-right: 0.2rem;}
     .asker_my_listen_list_box .answer .img img{ width: 100%; height: 100%; border-radius: 50%;}

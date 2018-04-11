@@ -139,12 +139,12 @@
     .ask_my_income_list .moneyOut_item{
         height:0.98rem;
         line-height: 0.98rem;
-        border-bottom: 0.02rem solid rgba(238,238,238,1);
+        border-bottom: 0.02rem solid #eee;
         padding:0 0.30rem;
         display: flex;
     }
     .time{
-        color:rgba(153,153,153,1);
+        color:#999;
         font-size: 0.22rem;
         width:40%;
     }
@@ -166,7 +166,7 @@
         height: 0.34rem;
     }
     .moneyOut_color{
-        color:rgba(36,37,61,0.5);
+        color:#999;
     }
     .item_right span{
         font-size: 0.26rem;
@@ -178,7 +178,7 @@
     .item_type{
         margin: 0 auto;
         text-align: center;
-        color:rgba(36,37,61,0.5);
+        color:#999;
         font-size: 0.26rem;
         width:20%;
         overflow: hidden;

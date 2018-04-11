@@ -685,7 +685,7 @@
         height: 0.96rem;
         line-height: 0.96rem;
         border-bottom: 1px solid #f4f4f7;
-        color:RGBA(69, 75, 84, 1);
+        color:#454B54;
         position: relative;
     }
     .sort_list_item img{
@@ -874,7 +874,7 @@
 
     .index_li_content {
         font-size: 0.30rem;
-        color: RGBA(69, 75, 84, 1);
+        color: #454B54;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;

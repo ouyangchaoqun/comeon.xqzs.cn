@@ -324,7 +324,7 @@
     }
 
     .my_problem_content {
-        color: rgba(69, 75, 84, 1);
+        color: #454B54;
         font-size: 0.30rem;
         line-height: 0.48rem;
         overflow: hidden;

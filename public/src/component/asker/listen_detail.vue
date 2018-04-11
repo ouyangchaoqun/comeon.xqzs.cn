@@ -838,7 +838,7 @@
         margin-bottom: 0.3rem;
         border-radius: 0.1rem;
         font-size: 0.26rem;
-        color:RGBA(69, 75, 84, 1);
+        color:#454B54;
         position: relative;
     }
     .eva_commont_box:before{ content: '';  width: 0; height: 0;border-left:0.2rem solid transparent;
@@ -881,7 +881,7 @@
     }
     .evaluation_frame .frame_title{
         font-size: 0.4rem;
-        color:RGBA(69, 75, 84, 1);
+        color:#454B54;
         line-height: 0.56rem;
         text-align: center;
         margin-bottom: 0.28rem;
@@ -950,7 +950,7 @@
     }
     .evaluate_box li .eva_main{
         padding-left: 1rem;
-        color:rgba(69, 75, 84, 1);
+        color:#454B54;
         font-size: 0.28rem;
      }
     .evaluate_box li .eva_main .eva_name{
@@ -1000,7 +1000,7 @@
         display: block;
     }
     .evaluate_block>div{
-        color:RGBA(69, 75, 84, 1);
+        color:#454B54;
         font-size: 0.3rem;
         border-radius: 0.1rem;
         line-height: 0.68rem;
@@ -1063,7 +1063,7 @@
         color: rgba(36,37,61,1);
     }
     .steal_detail_content{
-        color: rgba(69, 75, 84, 1);
+        color: #454B54;
         font-size:0.30rem;
         line-height: 0.46rem;
         overflow: hidden;

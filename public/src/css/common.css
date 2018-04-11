@@ -117,7 +117,7 @@ input,textarea{-webkit-appearance:none;outline: 0;resize: none;color:rgba(69, 75
 
 }
 .comment_box .comment_text{
-    color:RGBA(69, 75, 84, 1);
+    color:#454B54;
     border-radius: 4px;
     outline: none;
     min-height: 20px;height: 20px;
@@ -267,10 +267,10 @@ a{
 .answer_list .item{padding:0.30rem; border-bottom:0.02rem  solid #eee;position: relative;padding-top: 0.42rem;background: #fff;}
 .answer_list .item:last-child{border-bottom: 0}
 .answer_list .itemHeader>div:first-child{ font-weight: bold}
-.answer_list .itemHeader{height:0.50rem;line-height: 0.50rem;color:RGBA(69, 75, 84, 1);font-size: 0.3rem;position: relative;margin-bottom: 0.1rem;}
-.answer_list .itemHeader span{color:#999;font-size: 0.24rem;font-weight: normal;margin-left: 0.14rem;}
+.answer_list .itemHeader{height:0.50rem;line-height: 0.50rem;color:#454B54;font-size: 0.3rem;position: relative;margin-bottom: 0.1rem;}
+.answer_list .itemHeader span{color:#999;font-size: 0.26rem;font-weight: normal;margin-left: 0.14rem;}
 /*.answer_list .itemDetail{display: flex}*/
-.answer_list .itemDetail_right{width:82%;color:rgba(69, 75, 84, 1);float: right}
+.answer_list .itemDetail_right{width:82%;color:#454B54;float: right}
 .answer_list .itemDetail_right .title{font-size: 0.28rem;margin-bottom: 0.2rem;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;}
 .answer_list .class_s{color:#999;font-size: 0.24rem;line-height: 1.4;margin-bottom: 0.26rem;}
 
@@ -403,7 +403,7 @@ a{
     border-radius: 50%;
 }
 .steal_expert_name{
-    color:rgba(69, 75, 84, 1);
+    color:#454B54;
     font-size: 0.30rem;
     margin-right: 0.24rem;
     float: left;
@@ -415,7 +415,7 @@ a{
 }
 .steal_expert_des{
     width:75%;
-    color: rgba(69, 75, 84, 1);
+    color: #454B54;
     font-size: 0.28rem;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -471,7 +471,7 @@ a{
 }
 .problem_detail_content{
     padding:0 0.30rem;
-    color: rgba(69, 75, 84, 1);
+    color: #454B54;
     font-size: 0.3rem;
 }
 /*底部 信息展示 听过 点赞*/
@@ -832,7 +832,7 @@ body>div[class='']>*:not(.weui-mask):not(.weui-picker){ display: none}
     background: #fff !important;
 }
 .regcom_Style_back .text_area{background: #fff;padding:0.16rem 0.30rem;position: relative;overflow: hidden}
-.regcom_Style_back .text_area textarea{color:rgba(69, 75, 84, 1);border:0;font-size: 0.28rem;line-height: 0.40rem;width:100%;height:100%;}
+.regcom_Style_back .text_area textarea{color:#454B54;border:0;font-size: 0.28rem;line-height: 0.40rem;width:100%;height:100%;}
 .regcom_Style_back .text_area .placeholder{position: absolute;color:RGBA(69, 75, 84, 0.59);font-size: 0.28rem;width:92%;height:100%;z-index: 1001}
 
 .last_red_color{ color:red !important ;}

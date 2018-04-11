@@ -446,7 +446,7 @@
     }
     .answer_index .hot_head{
         height:1rem;
-        color: rgba(69, 75, 84,1);
+        color: #454B54;
         font-size: 0.30rem;
         position: relative;
         line-height: 1.05rem;
@@ -456,7 +456,7 @@
     }
     .answer_index .new_head{
         height: 1rem;
-        color: rgba(69, 75, 84,1);
+        color: #454B54;
         font-size: 0.30rem;
         font-weight: bold;
         position: relative;
@@ -512,7 +512,7 @@
         font-weight: bold;
         text-align: center;
         line-height:1;
-        color:rgba(69, 75, 84,1)
+        color:#454B54
     }
     .answer_index ul{
         overflow: hidden;

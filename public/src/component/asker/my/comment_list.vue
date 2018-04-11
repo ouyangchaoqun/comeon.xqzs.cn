@@ -259,15 +259,15 @@
     .asker_my_coment_list .comment .img img{width: 0.80rem; height:0.80rem; border-radius: 50%;display: block;border:0.01rem solid rgba(238,234,234,1)}
     .asker_my_coment_list .comment .info{     max-width: 5.78rem;float:left;}
     .asker_my_coment_list  .comment .info .times{ color:#999; font-size:0.24rem; }
-    .asker_my_coment_list .comment .info .times span{ font-weight: bold; color:rgba(69, 75, 84, 1);}
-    .asker_my_coment_list .comment .info .content{ color:rgba(69, 75, 84, 1); font-size: 0.28rem; margin: 0.07rem  0}
+    .asker_my_coment_list .comment .info .times span{ font-weight: bold; color:#454B54;}
+    .asker_my_coment_list .comment .info .content{ color:#454B54; font-size: 0.28rem; margin: 0.07rem  0}
     .asker_my_coment_list .comment .info .tags{}
     .asker_my_coment_list .comment .info .tags span{ display: inline-block;
         border:0.02rem solid rgba(36,37,61,0.5); color:rgba(36,37,61,0.5); text-align: center; line-height: 0.45rem; border-radius: 0.23rem; padding: 0 0.17rem; font-size:0.24rem; margin-right: 0.10rem;}
     .asker_my_coment_list .comment .info .star span{ display: inline-block; background: url(http://oss.xqzs.cn/resources/psy/starNew_no.png) no-repeat; background-size: 0.29rem;  height: 0.29rem; width: 0.29rem; margin-right: 0.14rem; }
     .asker_my_coment_list .comment .info .star span.on{background: url(http://oss.xqzs.cn/resources/psy/starNew.png) no-repeat;background-size: 0.29rem; }
 
-    .asker_my_coment_list .reply{ background: #F1F1F5;  font-size:0.24rem; color:rgba(69, 75, 84, 1); padding:0.17rem ; border-radius: 0.10rem; position: relative; margin-top: 0.30rem }
+    .asker_my_coment_list .reply{ background: #F1F1F5;  font-size:0.24rem; color:#454B54; padding:0.17rem ; border-radius: 0.10rem; position: relative; margin-top: 0.30rem }
     .asker_my_coment_list .reply span{color:#999;}
     .asker_my_coment_list .reply:before{ content:" " ; display: block; position: absolute; left:0.27rem; top:-0.20rem;  width: 0;
         height: 0;
@@ -279,7 +279,7 @@
     .asker_my_coment_list .answer .img{ width: 0.68rem; height: 0.68rem; float:left; margin-top: 0.07rem;  margin-right: 0.30rem;}
     .asker_my_coment_list .answer .img img{ width: 100%; height: 100%; border-radius: 50%;}
     .asker_my_coment_list .answer .audio{ width: 100%; margin-top: 0}
-    .asker_my_coment_list .question{ border: 0.05rem solid #F1F1F5; border-radius: 0.14rem; padding: 0.21rem; margin-top:0.20rem; color:rgba(69, 75, 84, 1); font-size: 0.26rem  }
+    .asker_my_coment_list .question{ border: 0.05rem solid #F1F1F5; border-radius: 0.14rem; padding: 0.21rem; margin-top:0.20rem; color:#454B54; font-size: 0.26rem  }
     .asker_my_coment_list .question .content{ margin-bottom: 0.30rem}
 
 </style>
