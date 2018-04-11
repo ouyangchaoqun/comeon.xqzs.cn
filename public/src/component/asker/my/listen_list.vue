@@ -323,7 +323,7 @@
 
     .asker_my_listen_list_box .question .title{ font-size: 0.30rem; color:rgba(69, 75, 84, 1);}
 
-    .asker_my_listen_list_box .answer .img{ width: 0.88rem; height: 0.88rem; float:left; margin-left: 0.30rem; margin-right: 0.2rem;}
+    .asker_my_listen_list_box .answer .img{ width: 0.8rem; height: 0.8rem; float:left; margin-left: 0.30rem; margin-right: 0.2rem;}
     .asker_my_listen_list_box .answer .img img{ width: 100%; height: 100%; border-radius: 50%;}
     .asker_my_listen_list_box .answer .audio{ width: 100%; margin-top: 0}
     .asker_my_listen_list_box .answer .audio .audio_btn{ width: 47%}
