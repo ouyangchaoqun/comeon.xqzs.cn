@@ -465,7 +465,7 @@
     .evaluation_frame .stars li.on .star{background: url(http://oss.xqzs.cn/resources/psy/asker/ask_rack_comment_star_on.png) center no-repeat ; background-size:  0.66rem;}
     .evaluation_frame .stars li.on .text{ color:RGBA(245, 166, 35, 1)}
     .frame_textarea{height:2.2rem;border:0.02rem solid RGBA(238, 238, 238, 1);border-radius: 0.12rem;margin-bottom: 0.5rem;padding:0.2rem;position: relative}
-    .frame_textarea textarea{color:rgba(36,37,61,1);outline: none;border:0;width:100%;font-size: 0.28rem;line-height: 0.4rem;height:1.6rem;}
+    .frame_textarea textarea{color:#454B54;outline: none;border:0;width:100%;font-size: 0.28rem;line-height: 0.4rem;height:1.6rem;}
     .frame_btn{color:RGBA(255, 255, 255, 1);font-size: 0.36rem;width:80%;line-height: 0.88rem;border-radius: 0.1rem;text-align: center;margin: 0 auto;background: RGBA(86, 196, 254, 0.5);}
     .frame_btn_active{background: RGBA(86, 196, 254, 1);}
     .evaluation_frame .frame_textarea .anFlag{position: absolute;right:0.2rem;bottom:0.2rem;color:RGBA(69, 75, 84, 0.49);font-size: 0.24rem;background: url("http://oss.xqzs.cn/resources/psy/asker/user_income_no.png")no-repeat left center;background-size: 0.28rem;padding-left: 0.34rem;line-height: 0.34rem;z-index:1000;height:0.32rem;}
@@ -510,7 +510,7 @@
         border-radius: 50%;
         margin-right: 0.20rem;
     }
-    .submit_best_answer{ background: #fff; height:0.88rem; line-height: 0.88rem;  color:rgba(36,37,61,1); font-size: 0.26rem; position: fixed; bottom:0;left:0; width: 100%;box-shadow: 0.04rem 0 0.2rem rgba(0,0,0,0.3);padding-left:0.17rem;}
+    .submit_best_answer{ background: #fff; height:0.88rem; line-height: 0.88rem;  color:#454B54; font-size: 0.26rem; position: fixed; bottom:0;left:0; width: 100%;box-shadow: 0.04rem 0 0.2rem rgba(0,0,0,0.3);padding-left:0.17rem;}
     .submit_btn { position: absolute;right:0.40rem; top:50%; height: 0.54rem;line-height: 0.54rem; text-align: center; width: 1.60rem;border:0.01rem solid rgba(252,66,42,1);color:rgba(252,66,42,1);border-radius: 0.30rem;margin-top:-0.27rem;}
     .submit_btn:active{ background: #FE7301;color:#fff;}
     .rob_problem{
@@ -654,7 +654,7 @@
         border-bottom: 0.02rem solid #D1D1D3;
     }
     .problem_dialog_bd span{
-        color: rgba(36,37,61,1);
+        color: #454B54;
     }
     .problem_dialog_fd{
         display: flex;
@@ -701,7 +701,7 @@
     }
     .best_dialog_header{
         position: relative;
-        color: rgba(36,37,61,1);
+        color: #454B54;
         font-size: 0.42rem;
         text-align: center;
         margin-bottom: 0.40rem;

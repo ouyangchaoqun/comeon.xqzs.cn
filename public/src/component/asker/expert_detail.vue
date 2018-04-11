@@ -924,7 +924,7 @@
     .answer_detail_box .answer_detail{
         background: white;
         padding-bottom: 0.15rem;
-        color:rgba(36,37,61,1)
+        color:#454B54
     }
     .answer_detail_box .answer_title{
         height: 0.88rem;
@@ -956,7 +956,7 @@
         /*text-align: justify;*/
     }
     /*.answer_detail_box .content b{*/
-        /*color:rgba(36,37,61,1);*/
+        /*color:#454B54;*/
         /*font-weight: normal;*/
     /*}*/
     .answer_detail_box .btn_sq{

@@ -514,7 +514,7 @@
     .answer_answer_box .answer .info .names span{
         margin-left: 0.20rem;
     }
-    .answer_answer_box .answer .info .content{  font-size: 0.30rem; color:rgba(36,37,61,1); line-height:0.40rem; margin-bottom:  0.28rem;width:98%; min-height: 3rem;    word-wrap: break-word;}
+    .answer_answer_box .answer .info .content{  font-size: 0.30rem; color:#454B54; line-height:0.40rem; margin-bottom:  0.28rem;width:98%; min-height: 3rem;    word-wrap: break-word;}
     .answer_answer_box .answer .info .last_time{ line-height:1;font-size: 0.26rem;color:#999;margin-bottom: 0.18rem;
     }
     .answer_answer_box .answer .info .type span{ color:#999;}
@@ -608,12 +608,12 @@
         background: RGBA(69, 75, 84, 0.05);}
     .dialog_select_type .tip_content p{margin-top: 0.1rem ;margin-bottom: 0.10rem;}
     .asker_ask_box .ask_type_new{padding:0.40rem 0.30rem;padding-bottom: 0.10rem}
-    .asker_ask_box .ask_type_new .tab{color:rgba(36,37,61,1);font-size: 0.34rem;line-height: 1;margin-bottom: 0.40rem;}
+    .asker_ask_box .ask_type_new .tab{color:#454B54;font-size: 0.34rem;line-height: 1;margin-bottom: 0.40rem;}
     .asker_ask_box .ask_type_new .tab span{color:#999;font-size: 0.24rem;}
     .asker_ask_box .ask_type_new .select_box{display: flex;text-align: center;height:0.72rem;line-height: 0.72rem;}
     .asker_ask_box .ask_type_new .select_box div{flex:1;color:rgba(36,37,61,0.7);font-size: 0.30rem;background: rgba(245,245,245,1);border-radius: 0.1rem;}
     .asker_ask_box .ask_type_new .select_box div:nth-of-type(2){margin:0 0.30rem;}
     .asker_ask_box .ask_type_new .select_box .on_new{background: rgba(253,114,6,1);color:#fff;}
-    .asker_ask_box  .text_area .content{ font-size: 0.26rem; color:rgba(36,37,61,1); height: 90%; line-height: 0.48rem}
+    .asker_ask_box  .text_area .content{ font-size: 0.26rem; color:#454B54; height: 90%; line-height: 0.48rem}
 
 </style>

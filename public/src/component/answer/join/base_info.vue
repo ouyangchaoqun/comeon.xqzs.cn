@@ -488,22 +488,22 @@
     .checked_item{border-color: rgba(254,115,1,1)}
     .checked_item::after{  content: '';  width:0.24rem;  height: 0.24rem;  background: rgba(254,115,1,1);  border-radius: 50%;  position: absolute;top:50%;margin-top:-0.12rem;left:50%;margin-left:-0.12rem;}
     .infos li{height:0.80rem;line-height: 0.80rem;color:rgba(36,37,61,0.7);font-size: 0.28rem;display: flex;margin-bottom: 0.30rem;position: relative}
-    .infos li input{height:100%;width:70%;background: #F4F4F7;border-radius: 0.10rem;position: absolute;right:0;padding-left: 0.20rem;color:rgba(36,37,61,1);font-size: 0.30rem;}
+    .infos li input{height:100%;width:70%;background: #F4F4F7;border-radius: 0.10rem;position: absolute;right:0;padding-left: 0.20rem;color:#454B54;font-size: 0.30rem;}
     .info_right{height:100%;text-align: center;padding-left: 1.36rem;display: flex}
     .info_left{width:20%;text-align: right;}
     .infos ul{padding:0.30rem}
     .infos li span{color:red}
     .info_right>div{position: relative}
     .info_right>div:nth-of-type(1){margin-right: 0.60rem}
-    .info_right .level_itemsex{margin-left: 0.60rem;color:rgba(36,37,61,1);font-size: 0.30rem}
+    .info_right .level_itemsex{margin-left: 0.60rem;color:#454B54;font-size: 0.30rem}
     .info_right i{display: inline-block;color:#999;font-style: normal;width:1.20rem;height:0.42rem;font-size:0.24rem;line-height: 0.42rem;border:0.02rem solid #999;border-radius: 0.34rem;margin-right:0.50rem;margin-top:0.20rem;}
     .info_right .right_active{background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1));border-color:rgba(254,115,1,1);color:#fff}
 
-    .lut{ float:left; background: #ececec; color:rgba(36,37,61,1); height: 0.60rem; line-height: 0.60rem;  padding: 0 0.20rem; margin-top: 0.12rem; font-size: 0.28rem;  }
+    .lut{ float:left; background: #ececec; color:#454B54; height: 0.60rem; line-height: 0.60rem;  padding: 0 0.20rem; margin-top: 0.12rem; font-size: 0.28rem;  }
     .lut:nth-child(3){ margin-left: 0}
     .lut:nth-child(1){ margin-left:0.40rem;     }
     .lut.on{ float:left; background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1)); color:#fff;}
     .showdL{ float:left; margin-left: 0.34rem;}
-    .showdL span{ color:rgba(36,37,61,1) !important}
+    .showdL span{ color:#454B54 !important}
     .answer_join_base_info_box .btn_box{margin-bottom: 0.50rem}
 </style>

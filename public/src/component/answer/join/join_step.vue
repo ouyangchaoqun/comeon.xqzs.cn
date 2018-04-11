@@ -1015,7 +1015,7 @@
     .agre_btn{width:60%;height:0.70rem;line-height: 0.71rem;background: RGBA(86, 196, 245,1);border-radius: 0.45rem;color:RGBA(255, 255, 255, 1);text-align: center;font-size: 0.30rem;margin:0 auto;margin-bottom: 0.10rem;}
     .join_stepBox .lut_box{position: absolute;top:0;left:1.70rem}
     .addBir_box{position: absolute;top:50%;margin-top:-0.3rem;left:1.2rem}
-    .join_stepBox .lut{float: left;background: #ececec;color: rgba(36,37,61,1);height: 0.60rem;line-height: 0.60rem;padding: 0 0.20rem;font-size: 0.28rem;}
+    .join_stepBox .lut{float: left;background: #ececec;color: #454B54;height: 0.60rem;line-height: 0.60rem;padding: 0 0.20rem;font-size: 0.28rem;}
     .join_stepBox .lut.on{float: left;background: #56c4f5;color: #fff;}
     .imgBox{padding-right: 0.30rem;padding-top:0.80rem;height:2.05rem;margin-bottom: 1.36rem}
     .imgBox img{display: block;width: 3.20rem;float: left;height:2.05rem}

@@ -295,16 +295,16 @@
     .answer_my_coment_list .comment .img img{width: 0.68rem; height: 0.68rem; border-radius: 0.34rem;}
     .answer_my_coment_list .comment .info{ width: 5.78rem; float:left;}
     .answer_my_coment_list  .comment .info .name{ color:rgba(36,37,61,0.7); font-size:0.24rem; }
-    .answer_my_coment_list  .comment .info .name span{ color:rgba(36,37,61,1); margin-right: 0.20rem;}
+    .answer_my_coment_list  .comment .info .name span{ color:#454B54; margin-right: 0.20rem;}
     .answer_my_coment_list .comment .info .times span{ font-weight: bold; color:#444}
-    .answer_my_coment_list .comment .info .content{ color:rgba(36,37,61,1); font-size: 0.28rem; margin: 0.07rem  0}
+    .answer_my_coment_list .comment .info .content{ color:#454B54; font-size: 0.28rem; margin: 0.07rem  0}
     .answer_my_coment_list .comment .info .tags{}
     .answer_my_coment_list .comment .info .tags span{ display: inline-block;
         border:0.02rem solid #D1D1D1; color:#D1D1D1; text-align: center; line-height: 0.45rem; border-radius: 0.23rem; padding: 0 0.17rem; font-size:0.24rem; margin-right: 0.10rem;}
     .answer_my_coment_list .comment .info .star span{ display: inline-block; background: url(http://oss.xqzs.cn/resources/psy/star_no.png) no-repeat; background-size: 0.26rem;  height: 0.26rem; width: 0.26rem; margin-right: 0.14rem; }
     .answer_my_coment_list .comment .info .star span.on{background: url(http://oss.xqzs.cn/resources/psy/star.png) no-repeat;background-size: 0.26rem; }
 
-    .answer_my_coment_list .reply{ background: #F1F1F5;  font-size:0.24rem; color:rgba(36,37,61,1); padding:0.17rem ; border-radius: 0.10rem; position: relative; margin-top: 0.30rem }
+    .answer_my_coment_list .reply{ background: #F1F1F5;  font-size:0.24rem; color:#454B54; padding:0.17rem ; border-radius: 0.10rem; position: relative; margin-top: 0.30rem }
     .answer_my_coment_list .reply span{color:#999;}
     .answer_my_coment_list .reply:before{ content:" " ; display: block; position: absolute; left:0.27rem; top:-0.20rem;  width: 0;
         height: 0;

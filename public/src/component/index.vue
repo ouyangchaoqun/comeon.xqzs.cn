@@ -51,5 +51,5 @@
     }
 </script>
 <style>
-.diididdid a{ width: 100%; display: block; color:rgba(36,37,61,1); line-height: 44px; border-bottom: 1px  solid #eee; text-align: center; background: #fff}
+.diididdid a{ width: 100%; display: block; color:#454B54; line-height: 44px; border-bottom: 1px  solid #eee; text-align: center; background: #fff}
 </style>

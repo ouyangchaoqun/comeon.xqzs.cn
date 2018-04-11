@@ -568,7 +568,7 @@
     .joinmore_box header .headerImg_box{width:1.75rem;height:1.75rem;background: #fff;margin:0 auto;position: relative;top:0.50rem;}
     .joinmore_box header .headerImg{width:1.75rem;height:1.75rem;background: url("http://oss.xqzs.cn/resources/psy/joinHeaderImg.png") no-repeat;background-size: 100% 100%;}
     .joinmore_box header .headerImg_box .smallImg{position: absolute;right:-0.34rem;bottom:-0.17rem;width:0.68rem;height:0.68rem;}
-    .joinmore_box .title{border-bottom:0.02rem solid rgba(224,224,225,1);color:rgba(36,37,61,1);font-size: 0.28rem;line-height: 0.86rem;padding-left:0.62rem;padding-right:0.30rem;position: relative}
+    .joinmore_box .title{border-bottom:0.02rem solid rgba(224,224,225,1);color:#454B54;font-size: 0.28rem;line-height: 0.86rem;padding-left:0.62rem;padding-right:0.30rem;position: relative}
     .joinmore_box .title span{color:rgba(255,0,0,1);font-size: 0.26rem;position: absolute;left:0.30rem;height:0.68rem;top:50%;margin-top:-0.34rem;line-height: 0.75rem;}
     .joinmore_box .title i{font-style: normal;color:#999;font-size: 0.22rem;margin-left: 0.22rem;}
     .joinmore_box .title_bottom{border-bottom: 0.16rem solid rgba(245,245,245,1);padding:0.20rem 0.30rem 0.20rem 0.54rem;position: relative}
@@ -601,7 +601,7 @@
         margin-bottom: 0.20rem;
     }
     .joinmore_box .myask_know_box b{
-        color: rgba(36,37,61,1);
+        color: #454B54;
     }
     .joinmore_box .myask_class{
         width:12.20rem;
@@ -621,7 +621,7 @@
     .joinmore_box .myask_class h3{
         font-size:0.36rem;
         font-family:PingFangSC-Regular;
-        color:rgba(36,37,61,1);
+        color:#454B54;
         line-height:1;
         margin-bottom: 0.42rem;
         width:100%;

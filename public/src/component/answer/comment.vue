@@ -201,9 +201,9 @@
 </script>
 <style>
     .answer_comment_box{background: #fff;}
-    .answer_comment_box .nums{background: #fff; padding:0.30rem;color:rgba(36,37,61,1);font-size: 0.36rem;font-weight: bold;line-height: 1;padding-bottom: 0.37rem;}
+    .answer_comment_box .nums{background: #fff; padding:0.30rem;color:#454B54;font-size: 0.36rem;font-weight: bold;line-height: 1;padding-bottom: 0.37rem;}
     .answer_comment_box .nums .comment{ position: absolute; top:0.34rem; right:0.31rem; font-size:0.48rem;  }
-    .answer_comment_box .title .txt{ font-size: 0.30rem; color:rgba(36,37,61,1); font-weight: bold;line-height: 1;margin-bottom: 0.37rem;}
+    .answer_comment_box .title .txt{ font-size: 0.30rem; color:#454B54; font-weight: bold;line-height: 1;margin-bottom: 0.37rem;}
     .answer_comment_box .title .star span{ background: url(http://oss.xqzs.cn/resources/psy/star_no.png); width: 0.26rem; height: 0.26rem;  background-size: 0.26rem; display: inline-block; margin-right: 0.10rem; }
     .answer_comment_box  .title .star span.on{background: url(http://oss.xqzs.cn/resources/psy/star.png);background-size: 0.26rem; }
 
@@ -237,7 +237,7 @@
     .answer_comment_box  .list .info{ float:left; margin-left:0.30rem;  width:5.8rem}
     .answer_comment_box  .list .info .name{ font-size: 0.24rem; color:#999; margin-bottom: 0.07rem;}
     .answer_comment_box  .list .word{ font-size:0.28rem;    color:#333; text-align: justify}
-    .answer_comment_box  .list .reply{ font-size: 0.26rem;  color:rgba(36,37,61,1);background: rgba(245,245,245,1);border-radius: 0.10rem;padding:0.12rem 0.20rem;position: relative;margin-top: 0.30rem;}
+    .answer_comment_box  .list .reply{ font-size: 0.26rem;  color:#454B54;background: rgba(245,245,245,1);border-radius: 0.10rem;padding:0.12rem 0.20rem;position: relative;margin-top: 0.30rem;}
     .answer_comment_box  .list .reply:after{content: '';width:0.30rem;height:0.30rem;background:rgba(245,245,245,1);position: absolute;top:-0.16rem;left:0.60rem ;transform:rotate(45deg);}
     .answer_comment_box  .list .time{ font-size:0.24rem; color:#999; float: right}
     .answer_comment_box  .list .info .class_s { clear: both; margin-top: 0.10rem;}

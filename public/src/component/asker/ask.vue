@@ -436,7 +436,7 @@
         overflow: hidden;
     }
     .addAnonymous_title{
-        color:rgba(36,37,61,1);
+        color:#454B54;
     }
     .addAnonymous_dialog div{
         line-height: 1;
@@ -498,7 +498,7 @@
         text-align: center;
         line-height: 0.88rem;
         height: 0.88rem;
-        color: rgba(36,37,61,1);
+        color: #454B54;
         font-size: 0.30rem;
     }
     .asker_ask_box .text_area {
@@ -557,7 +557,7 @@
         line-height: 0.68rem;
     }
     .asker_ask_box .set_price .txt {
-        color:rgba(36,37,61,1);
+        color:#454B54;
     }
     .asker_ask_box .set_price div {
         display: inline-block
@@ -589,7 +589,7 @@
     .dialog_select_type .tip_content{ padding:0  0.34rem; line-height: 1.8; font-size: 0.28rem; color:#666; height: 4.42rem; overflow: auto}
     .dialog_select_type .tip_content p{ margin-bottom: 0.20rem;}
     .asker_ask_box .ask_type_new{padding:0.40rem 0.30rem;padding-bottom: 0.10rem}
-    .asker_ask_box .ask_type_new .tab{color:rgba(36,37,61,1);font-size: 0.34rem;line-height: 1;margin-bottom: 0.40rem;}
+    .asker_ask_box .ask_type_new .tab{color:#454B54;font-size: 0.34rem;line-height: 1;margin-bottom: 0.40rem;}
     .asker_ask_box .ask_type_new .tab span{color:#999;font-size: 0.24rem;}
     .asker_ask_box .ask_type_new .select_box{display: flex;text-align: center;height:0.72rem;line-height: 0.72rem;}
     .asker_ask_box .ask_type_new .select_box div{flex:1;color:rgba(36,37,61,0.7);font-size: 0.30rem;background: rgba(245,245,245,1);border-radius: 0.10rem;}

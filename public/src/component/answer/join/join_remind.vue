@@ -63,7 +63,7 @@
         margin-bottom: 0.62rem;
     }
     .remind_box p{
-        color:rgba(36,37,61,1);
+        color:#454B54;
         font-size: 0.28rem;
         line-height: 1;
     }

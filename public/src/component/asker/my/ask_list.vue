@@ -252,7 +252,7 @@
 </script>
 <style>
     .my_problem_tabs {
-        color: rgba(36,37,61,1);
+        color: #454B54;
         font-size: 0.30rem;
         text-align: center;
         display: -webkit-box;

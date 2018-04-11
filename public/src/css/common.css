@@ -78,7 +78,7 @@ input,textarea{-webkit-appearance:none;outline: 0;resize: none;color:rgba(69, 75
 }
 .comment_box .cancel{
     margin-left: 3px;
-    color: rgba(36,37,61,1);
+    color: #454B54;
     float: left;
 }
 .comment_p{
@@ -528,7 +528,7 @@ a{
     margin-bottom: 0.20rem;
 }
 .myask_know_box b{
-    color: rgba(36,37,61,1);
+    color: #454B54;
 }
 .myask_class{
     width:5.60rem;
@@ -547,7 +547,7 @@ a{
 .myask_class h3{
     font-size:0.36rem;
     font-family:PingFangSC-Regular;
-    color:rgba(36,37,61,1);
+    color:#454B54;
     line-height:1;
     margin-bottom: 0.68rem;
 }

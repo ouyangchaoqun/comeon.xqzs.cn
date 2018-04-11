@@ -494,7 +494,7 @@
     .list0.perfect_header .rightImg{top:0.7rem}
 
 
-    .lut{ float:left; background: #ececec; color:rgba(36,37,61,1); height: 0.60rem; line-height: 0.60rem;  padding: 0 0.20rem; margin-top: 0.12rem; font-size: 0.28rem; margin-left: 0.20rem;}
+    .lut{ float:left; background: #ececec; color:#454B54; height: 0.60rem; line-height: 0.60rem;  padding: 0 0.20rem; margin-top: 0.12rem; font-size: 0.28rem; margin-left: 0.20rem;}
     .lut:nth-child(3){ margin-left: 0}
     .lut.on{ float:left; background: #56C4F5!important; color:#fff;}
 
@@ -544,7 +544,7 @@
 
     .list0 span {
         float: left;
-        color: rgba(36,37,61,1);
+        color: #454B54;
         font-size: 0.30rem;
     }
 

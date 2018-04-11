@@ -261,7 +261,7 @@
 
     .joinmobile_box .validate_top h1 {
         font-size: 0.36rem;
-        color: rgba(36,37,61,1); text-align: center;
+        color: #454B54; text-align: center;
         margin-bottom: 0.36rem;
     }
 
@@ -282,7 +282,7 @@
     .joinmobile_box .input_code {
         font-size: 0.30rem;
         width: 100%;
-        color: rgba(36,37,61,1);
+        color: #454B54;
         height:100%;
     }
 

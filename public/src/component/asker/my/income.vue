@@ -152,7 +152,7 @@
     .asker_my_income_box{position: relative}
     .asker_my_income_box .my_income .img{ background: url(http://oss.xqzs.cn/resources/psy/asker/income.png) no-repeat; width: 2.11rem; height: 2.02rem; background-size:100% 100%; margin: 0 auto ; margin-top:1.26rem; }
     .asker_my_income_box .my_income{ line-height: 1}
-    .asker_my_income_box .my_income .my_income_txt{ width: 100%; text-align: center; margin-top: 0.26rem;font-size: 0.30rem; color:rgba(36,37,61,1);}
+    .asker_my_income_box .my_income .my_income_txt{ width: 100%; text-align: center; margin-top: 0.26rem;font-size: 0.30rem; color:#454B54;}
     .asker_my_income_box .my_income .money{ margin-top: 0.24rem; text-align: center; width: 100%; font-size: 0.72rem;line-height: 1;color:#FE7301}
 
     .asker_my_income_box  .my_income .get_money{color:rgba(255,255,255,1); margin:0 auto;line-height:0.72rem;text-align: center; font-size: 0.36rem; margin-top: 1.00rem;background: rgba(255,157,24,1);border: 0.02rem solid rgba(229,135,6,0);width: 42%;border-radius: 0.36rem;}

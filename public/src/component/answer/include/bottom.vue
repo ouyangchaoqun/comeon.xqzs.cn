@@ -21,7 +21,7 @@
         display: -webkit-box;
         display: -webkit-flex;
         display: flex;
-        position: absolute; bottom: 0; left:0; line-height: 1; font-size: 0.31rem ; background: #fff;   color:rgba(36,37,61,1);
+        position: absolute; bottom: 0; left:0; line-height: 1; font-size: 0.31rem ; background: #fff;   color:#454B54;
         width: 100%;
     }
     .answer_bottom_box a:active,.answer_bottom_box a.on{ color:RGBA(86, 196, 245,1)}

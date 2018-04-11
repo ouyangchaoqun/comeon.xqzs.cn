@@ -253,7 +253,7 @@
     }
     .number{line-height:0.80rem }
     .number>div{display: flex;padding-left:0.60rem;position: relative}
-    .number span{color:rgba(36,37,61,1);font-size: 0.28rem;}
+    .number span{color:#454B54;font-size: 0.28rem;}
     .weui-check__label:active{ background: none}
     .answer_join_quali .photo_img{display: flex;display: -webkit-flex;justify-content:space-between;padding-top:0.40rem;}
     .answer_join_quali .photo_img .img{background:#f4f4f7;width:44%;height:2.30rem;position: relative}
