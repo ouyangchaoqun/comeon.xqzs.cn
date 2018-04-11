@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="list">
-                <div class="item" v-for="(item,index) in list"  @click="answer(item.id,index)">
+                <div class="item" v-for="(item,index) in list"  @click="answer(item.id,index,item.isGrabed)">
                     <div class="info">
                         <div class="img">
                             <img v-if="item.isAnonymous==0" :src="item.faceUrl">
@@ -73,7 +73,10 @@
                         <div class="last_time last_red_color">还{{formatDateText(item.endTime)}}</div>
                     </div>
                     <div class="clear"></div>
-                    <div class="btn_race">抢答</div>
+                    <div class="btn_race" :class="{isGrabedStyle:item.isGrabed}">
+                        <template v-if="item.isGrabed==1">去解答</template>
+                        <template v-if="item.isGrabed==0">抢答</template>
+                    </div>
                 </div>
             </div>
         </v-scroll>
@@ -268,22 +271,25 @@
                 this.getList(done);
 
             },
-            answer:function (askId,index) {
+            answer:function (askId,index,isGrabed) {
                 let _this = this;
-                _this.showLoad = true
-                xqzs.api.put(_this,"come/expert/grab/"+askId,{expertId:_this.expertId,userId:'_userId_'},function (bt) {
-                    _this.showLoad = false
-                    if(bt.data.status==1){
-                        _this.$router.push("../answer?askId="+askId);
-                    }else{
-                        xqzs.weui.tip('慢了一拍，已经被别人抢走了',function () {
-                        })
-                    }
-                    setTimeout(function () {
-                        _this.list.splice(index,1)
-                    },100)
-
-                });
+                _this.showLoad = true;
+                if(isGrabed){
+                    _this.$router.push("../answer?askId="+askId+'&&needTip=0');
+                }else{
+                    xqzs.api.put(_this,"come/expert/grab/"+askId,{expertId:_this.expertId,userId:'_userId_'},function (bt) {
+                        if(bt.data.status==1){
+                            _this.$router.push("../answer?askId="+askId+'&&needTip=1');
+                        }else{
+                            xqzs.weui.tip('慢了一拍，已经被别人抢走了',function () {
+                                setTimeout(function () {
+                                    _this.list.splice(index,1)
+                                },100)
+                            })
+                        }
+                    });
+                }
+                _this.showLoad = false
 
             },
             formatDateText:function (time) {
@@ -308,10 +314,8 @@
     .answer_race_list .item .content>div:nth-of-type(1){margin-bottom:0.20rem;}
     .answer_race_list .item .last_time{font-size: 0.24rem;color:#999;line-height: 1}
     .answer_race_list  .list .info .price{ position:absolute;right:0;font-size: 0.24rem;color:rgba(254,115,1,1);text-align: right;width: 2.38rem;}
-    .answer_race_list .list .btn_race:active{
-        background: linear-gradient(to right, rgb(238, 146, 24), rgb(238, 109, 6));
-    }
     .answer_race_list .list .btn_race{ color:#fff; text-align: center; width: 1.80rem; margin: 0 auto; line-height: 0.60rem; border-radius: 0.41rem; background: linear-gradient(to right, rgba(255,158,25,1), rgba(253,114,6,1));font-size: 0.30rem}
+    .answer_race_list .list .isGrabedStyle{background:#56C4FE}
     .dialog_select_Height{ height:10.04rem; margin-top: -5rem;width: 86% ;margin-left:-43%}
     .dialog_select_type  .yes{ width:60%;height:0.70rem;line-height: 0.71rem;background: RGBA(86, 196, 245,1);border-radius: 0.45rem;color:RGBA(255, 255, 255, 1);text-align: center;font-size: 0.30rem;margin:0.25rem auto;}
     .dialog_select_type  .yes:active{background: #eee}

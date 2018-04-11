@@ -131,7 +131,7 @@ var xqzs = {
                     if (typeof(fun) == "function")
                         fun();
                 });
-            },1200);
+            },1500);
         },
         tipClose: function () {
             $("#toast").remove();

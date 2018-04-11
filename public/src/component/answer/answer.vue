@@ -157,12 +157,6 @@
 </template>
 
 <script type="">
-
-
-
-
-
-
     import showLoad from '../include/showLoad.vue';
     export default {
         data() {
@@ -183,12 +177,20 @@
                 voiceLength:0,
                 isOver:false,
                 MIN_VOICE_LENGTH:45,
-                isTry:false
+                isTry:false,
             }
         },
         activated: function () {
             if (!xqzs.user.isUserLogin()) {
                 return;
+            }
+            let needTip = this.$route.query.needTip;
+            if(needTip==1){
+                setTimeout(function () {
+                    xqzs.weui.tip('抢答成功，请在3个小时内解答')
+                },500)
+                console.log(66666666)
+
             }
             let _this = this;
             this.showLoad = false;
@@ -223,11 +225,7 @@
                              this.tip()
                              xqzs.localdb.set("isLookReply","true")
                         }
-
-                    })
-
-
-
+                    });
 
                     if( _this.detail.questionStatus==1){
                         xqzs.weui.tip('问题已经完成',function () {

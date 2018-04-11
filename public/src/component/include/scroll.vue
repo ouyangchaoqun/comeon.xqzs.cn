@@ -138,13 +138,13 @@
             },
 
             infinite() {
-                console.log("Loading")
+               // console.log("Loading")
                 this.infiniteLoading = true
                 this.onInfinite(this.infiniteDone);
             },
 
             infiniteDone() {
-                console.log("done")
+               // console.log("done")
                 this.infiniteLoading = false
             },
 
