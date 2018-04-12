@@ -819,7 +819,7 @@
     .reply{position: relative}
     .reply .audio{overflow: hidden}
     .reply .audio_btn{width:0;}
-    .reply .audio .widthAnimation_class{
+    .reply  .widthAnimation_class{
         animation:widthAnimation .3s linear forwards;
         -webkit-animation:widthAnimation .3s linear forwards;
 
