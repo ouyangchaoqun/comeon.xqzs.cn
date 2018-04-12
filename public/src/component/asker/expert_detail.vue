@@ -150,14 +150,16 @@
                             </div>
                             <div class="info audio">
                                 <div class="reply" v-if="item.needPay" @click.stop="payDialog(item.questionId,item.answerId,index )">
-                                    <div class="audio_btn pay">
+                                    <div class="audio_mask" @click.stop="hideMask(index)" :class="{maskState:item.isAdd}"></div>
+                                    <div class="audio_btn pay" :class="{widthAnimation_class:item.isAdd}">
                                         偷听
-                                        <div class="second">{{item.length}}”</div>
+                                        <div class="second">{{(item.ct && item.ct!='00')?item.ct:item.length}}”</div>
                                     </div>
                                 </div>
                                 <div class="reply" v-if="!item.needPay">
+                                    <div class="audio_mask" @click.stop="hideMask(index)" :class="{maskState:item.isAdd}"></div>
                                     <div class="audio" :class="{playing:item.playing,paused:item.paused}">
-                                        <div class="audio_btn" @click.stop="playAnswer(index)">
+                                        <div class="audio_btn" @click.stop="playAnswer(index)" :class="{widthAnimation_class:item.isAdd}">
                                             <template v-if="!item.playing&&!item.paused">点击播放</template>
                                             <template v-if="item.playing">正在播放..</template>
                                             <template v-if="item.paused">播放暂停</template>
@@ -252,7 +254,8 @@
                 couponNum:0,
                 couponList:[],
                 isMe:"",
-                isShare:false
+                isShare:false,
+                currPlayIndex:null
             }
         },
         props:{
@@ -316,6 +319,26 @@
                 }else{
                     return v
                 }
+            },
+            hideMask:function (index) {
+                let _this = this;
+                let answerList = _this.answerList;
+                for (let i = 0; i < answerList.length; i++) {
+                    answerList[i].isAdd = false;
+                    if (index != i && (answerList[i].playing || answerList[i].paused)) {
+                        answerList[i].paused = false;
+                        answerList[i].playing = false;
+                    }
+                    _this.$set(_this.answerList, i, answerList[i]);
+                }
+
+                if(_this.currPlayIndex!=null)
+                {
+                    _this.pause(_this.currPlayIndex);
+
+                }
+
+                answerList[index].isAdd = true;
             },
             getMore:function (index) {
                 this.answerList[index].isShow = false;
@@ -413,8 +436,6 @@
             },
 
             isInteger: function (obj) {
-                console.log("rrrrrrr"+obj )
-                console.log(obj % 1 === 0);
                 return obj % 1 === 0
             },
             toPercent:function (p) {
@@ -483,6 +504,7 @@
 
             //回答播放
             pause:function (index) {
+                console.log('暂停')
                 console.log(index)
                 let  _this=this;
                 _this.clearTimeOut();
@@ -501,7 +523,8 @@
                     list[index].paused=false;
                     list[index].playing=false;
                     _this.$set(_this.answerList,index,list[index])
-                    if(list[index].playing)_this.clearTimeOut();
+                    if(_this.playing)_this.clearTimeOut();
+                    _this.playing = false;
                 };
                 //重置其他列表内容
                 for(let i = 0;i<list.length;i++){
@@ -509,14 +532,15 @@
                         list[i].paused=false;
                         list[i].playing=false;
                         _this.$set(_this.answerList,i,list[i]);
+                        console.log('重置重置重置')
                     }
                 }
-
-                let item= list[index];
+                let item= _this.answerList[index];
                 let CT= item.ct? item.ct: item.length;
+                let T = item.length;
                 console.log(index)
                 if(item.paused){  //暂停中也就是已经获取到且为当前音频
-                    console.log(1)
+                    console.log('暂停中 去播放')
                     item.paused=false;
                     item.playing=true;
                     _this.$set(_this.answerList,index,item)
@@ -526,24 +550,25 @@
                     _this.timeout(true,CT,index)
                 }else{
                     if(item.playing){    //播放中去做暂停操作
-                        console.log(2)
+                        console.log('播放中 去暂停')
                         item.paused=true;
                         item.playing=false;
                         _this.$set(_this.answerList,index,item);
                         _this.clearTimeOut();
                         xqzs.voice.pause();
+                        _this.playing = false;
                     }else{     //重新打开播放
                         xqzs.voice.getAnswerVoice(item.answerId,function (url) {
-                            console.log(3)
-                            _this.currPlayIndex=index;
+                            console.log('播放')
                             if(url!=null&&url!=undefined&&url!=''){
                                 xqzs.voice.play(url);
                                 item.playing=true;
                                 item.paused=false;
                                 _this.$set(_this.answerList,index,item);
+                                _this.playing = true;
                                 _this.clearTimeOut();
                                 _this.currPlayIndex=index;
-                                _this.timeout(true,CT,index)
+                                _this.timeout(true,T,index)
                             }
 
                         })
@@ -593,46 +618,38 @@
                 _this.Hflag = !this.Hflag
             },
 
-            play:function () {
-                let _this=this;
-                xqzs.voice.onEnded=function () {
-                    _this.paused2=false;
-                    _this.playing2=false;
-                };
-
-                if(_this.paused2){  //暂停中也就是已经获取到且为当前音频
-                    _this.paused2=false;
-                    _this.playing2=true;
-                    xqzs.voice.play();
-                    console.log("1")
-                }else{
-                    if(_this.playing2){    //播放中去做暂停操作
-                        _this.paused2=true;
-                        _this.playing2=false;
-                        xqzs.voice.pause();
-                        console.log( _this.playing2)
-                        console.log("222")
-                    }else{     //重新打开播放
-                        xqzs.voice.getExpertVoice(_this.detail.expertId,function (url) {
-                            xqzs.voice.play(url);
-                            _this.playing2=true;
-                            _this.paused2=false;
-                            console.log("23333")
-                        })
-                    }
-
-                }
-
-            },
-
-
+//            play:function () {
+//                let _this=this;
+//                xqzs.voice.onEnded=function () {
+//                    _this.paused2=false;
+//                    _this.playing2=false;
+//                };
+//
+//                if(_this.paused2){  //暂停中也就是已经获取到且为当前音频
+//                    _this.paused2=false;
+//                    _this.playing2=true;
+//                    xqzs.voice.play();
+//                    console.log("1")
+//                }else{
+//                    if(_this.playing2){    //播放中去做暂停操作
+//                        _this.paused2=true;
+//                        _this.playing2=false;
+//                        xqzs.voice.pause();
+//                        console.log( _this.playing2)
+//                        console.log("222")
+//                    }else{     //重新打开播放
+//                        xqzs.voice.getExpertVoice(_this.detail.expertId,function (url) {
+//                            xqzs.voice.play(url);
+//                            _this.playing2=true;
+//                            _this.paused2=false;
+//                            console.log("23333")
+//                        })
+//                    }
+//
+//                }
+//
+//            },
             follow:function () {
-
-
-
-
-
-
                 let _this=this;
 
                 xqzs.api.put(_this,"come/expert/follow/expert/"+this.id+"/_userId_",{},function (bt) {
@@ -703,7 +720,7 @@
                 xqzs.api.get(_this,'come/expert/get/evaluate/'+id+"/"+_this.viewType+'/1/1',function (data) {
                     if (data.body.status == 1) {
                         _this.commentList= data.body.data
-                        console.log(data.body.data)
+                        //console.log(data.body.data)
 
                     }
                 })
@@ -750,7 +767,7 @@
                             _this.answerList = _this.answerList.concat(arr);
                         }
                         if (arr.length == 0) return;
-                        console.log(_this.answerList)
+                        //console.log(_this.answerList)
                         _this.page = _this.page + 1;
                     }
                 },function (error) {
@@ -769,12 +786,12 @@
                         _this.detail.introduction= xqzs.string.transferContentBr(_this.detail.introduction);
                         _this.detail.experience= xqzs.string.transferContentBr(_this.detail.experience);
                         _this.detail.goodat= xqzs.string.transferContentBr(_this.detail.goodat);
-                        console.log( _this.detail)
+                        //console.log( _this.detail)
                         if(_this.user&&_this.detail.expertUserId!=_this.user.id&&_this.detail.expertUserId!=null&&_this.user.id!=null){
                             _this.scrollHeightBottom=50;
                         }
 
-                        console.log(weshare.getShareUrl("asker/expert/detail/?id=" + id,true))
+                        //console.log(weshare.getShareUrl("asker/expert/detail/?id=" + id,true))
                         xqzs.wx.setConfig(_this, function () {
                             var config = {
                                 imgUrl: _this.detail.faceUrl,
@@ -799,7 +816,32 @@
     }
 </script>
 <style>
+    .reply{position: relative}
+    .reply .audio .audio_btn{width:0;}
+    .reply .audio .widthAnimation_class{
+        animation:widthAnimation .3s linear forwards;
+        -webkit-animation:widthAnimation .3s linear forwards;
 
+    }
+    @keyframes widthAnimation {
+        0%{width:0;opacity: 0}
+        100%{width:3.52rem;opacity: 1}
+    }
+    @-webkit-keyframes widthAnimation {
+        0%{width:0;opacity: 0}
+        100%{width:3.52rem;opacity: 1}
+    }
+    .audio_mask{
+        position: absolute;
+        top: -0.02rem;
+        left: 0rem;
+        height: 100%;
+        width: 0.97rem;
+        z-index: 100;
+    }
+    .maskState{
+        display: none;
+    }
     .weui-dialog .weui-dialog__bd .colorStyle{
         color:rgba(251,100,10,1);
     }
@@ -1022,7 +1064,6 @@
     .answer_detail_box .bj{ border-bottom: 0.1rem solid #999 ;border-top:0}
     .answer_detail_box .new{float: right;margin-right: 0.20rem; position: relative; padding-right: 0.46rem; color: #999;font-size: 0.24rem;font-weight: normal}
     .answer_detail_box .price{font-size: 0.25rem;color:#56C4FE}
-    .answer_detail_box .reply{height: 1.00rem;}
     .answer_detail_box .status{color: #999; font-size:0.24rem;margin-top: 0.30rem }
     .answer_detail_box .ask_time{float: left;}
     .answer_detail_box .answer{margin-top: 0.30rem}

@@ -203,7 +203,6 @@
             'v-typeHeader': typeHeader,
         },
         updated:function () {
-            console.log("updated")
             this.initReUrl();
 
         },
@@ -450,6 +449,7 @@
             },
 
             pause:function (index) {
+                console.log('暂停')
                 console.log(index)
                 let  _this=this;
                 _this.clearTimeOut();
@@ -479,11 +479,13 @@
                         list[i].paused = false;
                         list[i].playing = false;
                         _this.$set(_this.list, i, list[i]);
+                        console.log('重置重置')
                     }
                 }
                 let item = _this.list[index];
 
                 if (item.paused) {  //暂停中也就是已经获取到且为当前音频
+                    console.log('暂停继续播放')
                     list[index].paused = false;
                     list[index].playing = true;
                     _this.$set(_this.list, index, list[index])
@@ -492,6 +494,7 @@
                     _this.timeout(true, CT, index)
                 } else {
                     if (item.playing) {    //播放中去做暂停操作
+                        console.log('播放中暂停')
                         list[index].paused = true;
                         list[index].playing = false;
                         _this.$set(_this.list, index, list[index])
@@ -501,6 +504,7 @@
                     } else {     //重新打开播放
                         let answerId = item.answerId;
                         xqzs.voice.getAnswerVoice(answerId, function (url) {
+                            console.log('播放')
                             xqzs.voice.play(url);
                             list[index].playing = true;
                             list[index].paused = false;
