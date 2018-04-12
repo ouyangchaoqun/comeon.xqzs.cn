@@ -17,7 +17,7 @@
 
                     <div class="swiper-container hotSwiper">
                         <div class="swiper-wrapper" style="margin-left: 0.15rem">
-                            <div class="swiper-slide" v-for="item in manList" v-if="item.expertId!=expertId"  @click="goDetail(item.expertId)">
+                            <div class="swiper-slide" v-for="item in manList"  @click="goDetail(item.expertId)">
                                 <div class="hot_item">
                                     <div class="hot_face ">
                                         <img :src="item.faceUrl" alt=""></div>
@@ -47,7 +47,7 @@
                 </div>
 
                 <div>
-                    <div class="item" v-for="(item,index) in list" v-if="item.expertId!=expertId">
+                    <div class="item" v-for="(item,index) in list">
                         <div @click="goDetail(item.expertId)">
                             <div class="itemDetail">
                                 <div class="img"><img :src="item.faceUrl"></div>
@@ -233,7 +233,7 @@
                 _this.getList()
             },
             getMore:function () {
-                this.$router.push('expert/list?classId=0&title=推荐咨询师&orderType=hot')
+                this.$router.push('expert/list?classId=0&title=推荐咨询师&orderType=hot&noFilter=1')
             },
             getNewMore:function () {
                 this.$router.push('expert/list?classId=0&orderType=new&title=最新登录')

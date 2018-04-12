@@ -318,8 +318,8 @@
         },
         methods:{
             contentSub:function (v) {
-                if(v.length>=50){
-                    return v.substring(0,50) + '...'
+                if(v.length>=74){
+                    return v.substring(0,74) + '...'
                 }else{
                     return v
                 }
