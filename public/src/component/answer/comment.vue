@@ -1,6 +1,6 @@
 <template >
     <div style="height: 100%" class="answer_comment_box"> 
-        <div v-title class='hide_title'>专家点评</div>
+        <div v-title class='hide_title'>用户点评</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :bottomHeight="0"

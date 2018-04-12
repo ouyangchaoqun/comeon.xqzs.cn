@@ -1,6 +1,6 @@
 <template>
     <div style="height: 100%" class="answer_index">
-        <div v-title class='hide_title'>咨询师</div>
+        <div v-title class='hide_title'>优秀咨询师</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :isShowMoreText="isShowMoreText" :bottomHeight="48">
