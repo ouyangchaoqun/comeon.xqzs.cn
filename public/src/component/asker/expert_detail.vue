@@ -199,7 +199,7 @@
 
         </v-scroll>
         <!--{{detail.expertUserId}}-->
-        <div class="ask_bottom" v-if="isMe!=1">
+        <div class="ask_bottom" v-if="isMe!=1" :style="'height:'+tabHeight+'px'">
 
                 <div class="listen"  @click="follow()">
 
@@ -301,9 +301,9 @@
             this.getComment();
             this.getAnswer();
             if(xqzs.equipment.isIphoneX()){
-              $(".answer_detail_box").children(".ask_bottom").css("bottom","0.70rem")
-                var html='<div style=" height: 0.70rem;    background: #f5f5f5;width: 100%;position: absolute;bottom: -0.70rem;text-align: center;font-size: 12px;color: #ddd; line-height: 30px"></div>';
-                $(".ask_bottom").append(html)
+                this.tabHeight= xqzs.equipment.tabHeight()
+
+
             }
 
         },
@@ -1084,6 +1084,7 @@
         left: 0;
         width: 100%;
         box-shadow: 0 0 0.20rem rgba(0,0,0,0.2);
+        background: #fff;
     }
     .answer_detail_box .listen{
         float: left;
