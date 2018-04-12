@@ -295,7 +295,7 @@
             this.getAnswer();
             if(xqzs.equipment.isIphoneX()){
               $(".answer_detail_box").children(".ask_bottom").css("bottom","0.70rem")
-                var html='<div style=" height: 0.70rem;    background: #f5f5f5;width: 100%;position: absolute;bottom: -0.70rem;text-align: center;font-size: 12px;color: #ddd; line-height: 30px">一切都好一点</div>';
+                var html='<div style=" height: 0.70rem;    background: #f5f5f5;width: 100%;position: absolute;bottom: -0.70rem;text-align: center;font-size: 12px;color: #ddd; line-height: 30px"></div>';
                 $(".ask_bottom").append(html)
             }
 
