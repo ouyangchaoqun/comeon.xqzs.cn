@@ -1,6 +1,6 @@
 <template>
     <div style="height: 100%" class="answer_index">
-        <div v-title class='hide_title'>找专家</div>
+        <div v-title class='hide_title'>咨询师</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :isShowMoreText="isShowMoreText" :bottomHeight="48">
@@ -39,7 +39,7 @@
                 <div class="title_top">
                     <div class="new_head">
                         <div class="kuan" style=" border-top: 0.4rem solid #56C4FE;"></div>
-                        最新 • 入驻
+                        最新 • 登录
                         <div class="hot_hidden" @click="getNewMore()">
                             更多
                         </div>
@@ -233,10 +233,10 @@
                 _this.getList()
             },
             getMore:function () {
-                this.$router.push('expert/list?classId=0&title=推荐专家&orderType=hot')
+                this.$router.push('expert/list?classId=0&title=推荐咨询师&orderType=hot')
             },
             getNewMore:function () {
-                this.$router.push('expert/list?classId=0&orderType=new&title=最新入驻')
+                this.$router.push('expert/list?classId=0&orderType=new&title=最新登录')
             },
             getHotList:function () {
               let _this=this;

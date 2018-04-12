@@ -576,8 +576,9 @@
     ::-webkit-input-placeholder {
         color: #ff9900;}
     .asker_ask_box .submit {
-        border-radius: 1.00rem;
+        border-radius: 0.1rem;
         margin: 1.02rem 0.30rem 1.70rem;
+        line-height: 0.88rem;
     }
 
     .asker_ask_box .submit:active {

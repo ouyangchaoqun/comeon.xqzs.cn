@@ -66,7 +66,7 @@
                 }
                 if(this.urlType==2){
                     //专家类型
-                    this.$router.push('expert/list?classId='+classId+'&&title='+title)
+                    this.$router.push('expert/list?orderType=new&&classId='+classId+'&&title='+title)
                 }
 
             },

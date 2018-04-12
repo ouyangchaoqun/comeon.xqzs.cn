@@ -3,7 +3,7 @@
         <div v-title class='hide_title'>{{titleVal}}</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
 
-        <div class="filter_box">
+        <div class="filter_box" v-if="false">
             <div class="filter_list">
                 <div v-for="(item,index) in filter_tabs" @click="showSelect(index)" :class="{activeColor:index==filter_num||item.active}">
                     <span>{{cityStr(item.name)}}</span>
@@ -555,9 +555,9 @@
     .banScroll{
         overflow: hidden !important;
     }
-    .expert_list .yo-scroll .inner{
-        top:0.48rem;
-    }
+    /*.expert_list .yo-scroll .inner{*/
+        /*top:0.48rem;*/
+    /*}*/
     .expert_list .answer_list .item{
         border-top: none;
         border-bottom: 0.02rem solid #eee;

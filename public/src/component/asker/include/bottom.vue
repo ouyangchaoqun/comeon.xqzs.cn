@@ -5,7 +5,7 @@
             <span class="icon listen"></span>首页
         </router-link>
         <router-link to='/asker/expert' replace :class="{on:tabOnIndex==1}" >
-            <span class="icon answer"></span>找专家
+            <span class="icon answer"></span>咨询师
         </router-link>
         <router-link to='/asker/ask/' replace class="middle"  :class="{on:tabOnIndex==2}">
             <!--<div class="big_btn" :class="{on:tabOnIndex==2}">问</div>-->
