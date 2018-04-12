@@ -150,11 +150,15 @@
                             </div>
                             <div class="info audio">
                                 <div class="reply" v-if="item.needPay" @click.stop="payDialog(item.questionId,item.answerId,index )">
-                                    <div class="audio_mask" @click.stop="hideMask(index)" :class="{maskState:item.isAdd}"></div>
-                                    <div class="audio_btn pay" :class="{widthAnimation_class:item.isAdd}">
-                                        偷听
-                                        <div class="second">{{(item.ct && item.ct!='00')?item.ct:item.length}}”</div>
+                                    <div class="audio">
+                                        <div class="audio_mask" @click.stop="hideMask(index)" :class="{maskState:item.isAdd}"></div>
+                                        <div class="audio_btn pay" :class="{widthAnimation_class:item.isAdd}">
+                                            偷听
+                                            <div class="second">{{(item.ct && item.ct!='00')?item.ct:item.length}}”</div>
+                                        </div>
+                                        <div class="clear"></div>
                                     </div>
+
                                 </div>
                                 <div class="reply" v-if="!item.needPay">
                                     <div class="audio_mask" @click.stop="hideMask(index)" :class="{maskState:item.isAdd}"></div>
@@ -818,8 +822,8 @@
 <style>
     .reply{position: relative}
     .reply .audio{overflow: hidden}
-    .reply .audio_btn{width:0;}
-    .reply  .widthAnimation_class{
+    .reply .audio .audio_btn{width:0;}
+    .reply .audio .widthAnimation_class{
         animation:widthAnimation .3s linear forwards;
         -webkit-animation:widthAnimation .3s linear forwards;
 
