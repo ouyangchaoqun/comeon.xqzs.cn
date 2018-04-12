@@ -923,7 +923,7 @@
         border-bottom: 0.16rem solid RGBA(244, 244, 247, 1);
     }
     .selected_box .kuan{
-        border-top: 0.4rem solid RGBA(254, 122, 3, 1);
+        border-top: 0.4rem solid #FE7A03;
     }
     .selected_box .top_left{
         color:rgba(254, 122, 3, 1);
