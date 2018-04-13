@@ -129,7 +129,6 @@
                 })
             },
             goJoin:function () {
-                this.showLoad = true;
                 this.$router.push("/join");
             },
             getCoupon:function () {
