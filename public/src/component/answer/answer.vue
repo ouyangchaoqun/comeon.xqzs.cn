@@ -1,10 +1,10 @@
 <template >
-    <div style="height: 100%" class="answer_answer_box wbg">
+    <div style="height: 100%" class="answer_answer_box wbg" >
 
         <div v-title class='hide_title'>回答</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <!--问题详情-->
-        <div class="answer" >
+        <div  class="answer">
             <div class="img">
                 <img v-if="detail.isAnonymous==0" :src="detail.faceUrl">
                 <img v-if="detail.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
@@ -161,7 +161,7 @@
     export default {
         data() {
             return {
-                showLoad:false,
+                showLoad:true,
                 isAnswered:false,
                 answering:false,
                 outTime:false,
@@ -189,11 +189,9 @@
                 setTimeout(function () {
                     xqzs.weui.tip('抢答成功，请在3个小时内解答')
                 },500)
-                console.log(66666666)
-
             }
             let _this = this;
-            this.showLoad = false;
+            this.showLoad = true;
             this.isAnswered = false;
             this.answering = false;
             this.outTime = false;
@@ -212,11 +210,9 @@
             let expertId = cookie.get("expertId");
             this.$http.get(web.API_PATH + 'come/expert/question/detail/'+this.questionId,{params:{expertId:expertId}}).then(function (data) {//es5写法
                 if (data.body.status == 1) {
-
                     _this.timeIntervalFun();
-                    console.log(data)
                     _this.detail = data.data.data;
-
+                    _this.showLoad = false;
                     _this.$nextTick(function () {
                         var isLookReply=xqzs.localdb.get("isLookReply");
                         console.log(isLookReply)
@@ -496,7 +492,7 @@
 <style>
 
     .record_voice_box .tryListenColor{
-        color:rgba(254,115,1,1)
+        color:rgba(254,115,1,1) !important;
     }
     .tipxuzhi{ margin-top:0.30rem; margin-right:0.30rem; text-align: right; font-size: 0.24rem; color:#999;
         background: url(http://oss.xqzs.cn/resources/psy/asker/tip.png) no-repeat;

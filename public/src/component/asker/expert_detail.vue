@@ -136,6 +136,8 @@
                                 <img v-if="item.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png">
                             </div>
                             <div class="info" >
+                                <div class="name">{{item.questionClassTitle}}</div>
+                                <div class="star"></div>
                                 <div class="word" @click="getMore(index)" v-if="item.isShow">
                                     {{contentSub(item.content)}}
                                 </div>
