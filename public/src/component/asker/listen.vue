@@ -540,7 +540,7 @@
             },
             getHotList:function (done) {
                 let vm = this;
-                xqzs.api.get(vm, 'come/listen/listen/list/_userId_/0/1/3'+'?hottestOrNewest='+3,function (response) {
+                xqzs.api.get(vm, 'come/listen/listen/list/_userId_/0/1/5'+'?hottestOrNewest='+3,function (response) {
                     vm.list = response.data.data;
                     vm.list = vm.randContentNum(vm.list);
                     for (let i = 0;i<vm.list.length;i++){
