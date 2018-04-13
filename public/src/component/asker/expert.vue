@@ -20,7 +20,7 @@
                             <div class="swiper-slide" v-for="item in manList"  @click="goDetail(item.expertId)">
                                 <div class="hot_item">
                                     <div class="hot_face ">
-                                        <img :src="item.faceUrl" alt=""></div>
+                                        <img :src="resizeImg(item.faceUrl)" alt=""></div>
                                     <div class="hot_name">{{item.nickName}}</div>
 
                                     <div class="hot_evaluate">已帮助<span class="hot_text">{{item.answerCount}}</span>人
@@ -50,7 +50,7 @@
                     <div class="item" v-for="(item,index) in list">
                         <div @click="goDetail(item.expertId)">
                             <div class="itemDetail">
-                                <div class="img"><img :src="item.faceUrl"></div>
+                                <div class="img"><img :src="resizeImg(item.faceUrl)"></div>
                                 <div class="itemDetail_right">
                                     <div class="itemHeader">
                                         <div >{{item.nickName}}<span>{{item.city}}</span></div>
@@ -170,6 +170,7 @@
                     event.stopPropagation();
                 })
             },
+
 
             play: function (index) {
 

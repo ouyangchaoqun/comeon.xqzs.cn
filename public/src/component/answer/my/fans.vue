@@ -10,7 +10,7 @@
                     <header>共{{count}}位粉丝</header>
                     <ul class="fansItem">
                         <li v-for="item in list">
-                            <img :src="item.faceUrl" alt="">
+                            <img :src="resizeImg(item.faceUrl)" alt="">
                             <div class="right">
                                 <div>{{item.nickName}}</div>
                                 <div class="bottom">

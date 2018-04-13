@@ -506,13 +506,13 @@
         padding-left: 0.34rem; display: inline-block; float:right;}
     .answer_answer_box{ width: 100%; overflow: hidden}
     .answer_answer_box .answer{ background: #fff; padding:0.40rem 0.30rem 0.16rem 0.30rem;  position: relative; border-bottom: 0.20rem solid #F4F4F7 }
-    .answer_answer_box .answer .img{ width: 0.58rem; height: 0.58rem; float:left; }
+    .answer_answer_box .answer .img{ width: 0.8rem; height: 0.8rem; float:left; }
     .answer_answer_box .answer .img img{ width: 100%; height: 100%; border-radius: 50%}
-    .answer_answer_box .answer .info .names{ font-size: 0.24rem;  color:#999; margin-bottom: 0.16rem; line-height: 0.58rem}
+    .answer_answer_box .answer .info .names{ font-size: 0.24rem;  color:#999; margin-bottom: 0.16rem; line-height: 0.8rem}
     .answer_answer_box .answer .info .names span{
         margin-left: 0.20rem;
     }
-    .answer_answer_box .answer .info .content{  font-size: 0.30rem; color:#454B54; line-height:0.40rem; margin-bottom:  0.28rem;width:98%; min-height: 3rem;    word-wrap: break-word;}
+    .answer_answer_box .answer .info .content{  font-size: 0.30rem; color:#454B54; margin-bottom:  0.2rem;min-height: 3rem;    word-wrap: break-word;}
     .answer_answer_box .answer .info .last_time{ line-height:1;font-size: 0.26rem;color:#999;margin-bottom: 0.18rem;
     }
     .answer_answer_box .answer .info .type span{ color:#999;}

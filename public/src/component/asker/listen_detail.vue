@@ -28,7 +28,7 @@
                 <li class="steal_detail_answer" v-for="(item,index) in detail.answerList">
 
                     <div class="steal_expert_info">
-                        <img :src="item.expertUrl" alt="" @click="goDetail(item.expertId,item.expertStatus)">
+                        <img :src="resizeImg(item.expertUrl)" alt="" @click="goDetail(item.expertId,item.expertStatus)">
                         <block>
                             <img style="left: 0.82rem;" src="http://oss.xqzs.cn/resources/psy/asker/header_img_v.png" class="expert_v">
                         </block>
@@ -107,11 +107,11 @@
                     <li v-for="(item,index) in evaluates" @click.stop="commentOrDel(item.userId,item.id,item.questionId,item.nickName,index,item.replies,evaluates,item.userExpertNickName)">
 
                        <block v-if="item.userExpertId&&item.userId!=1658&&item.userId!=424">
-                           <img :src="item.userExpertFaceUrl" alt="" @click.stop="goExpert(item.userExpertId)">
+                           <img :src="resizeImg(item.userExpertFaceUrl)" alt="" @click.stop="goExpert(item.userExpertId)">
                            <img src="http://oss.xqzs.cn/resources/psy/asker/header_img_v.png" class="expert_v">
                        </block>
                         <block v-else>
-                            <img v-if="item.isAnonymous==0" :src="item.faceUrl" alt="">
+                            <img v-if="item.isAnonymous==0" :src="resizeImg(item.faceUrl)" alt="">
                             <img v-if="item.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
                         </block>
 

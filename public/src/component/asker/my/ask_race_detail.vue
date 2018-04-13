@@ -56,7 +56,7 @@
                         <div class="comment_btn"  @click="showCommentBox()"  v-if="detail.bestAnswerId!=0&&detail.questionStatus!=0&&detail.bestAnswerId==item.answerId&&!detail.evaluate_ed">
                             去评价
                         </div>
-                        <img :src="item.expertFaceUrl" alt="" @click="goExpert(item.expertId,item.expertStatus)">
+                        <img :src="resizeImg(item.expertFaceUrl)" alt="" @click="goExpert(item.expertId,item.expertStatus)">
                         <img class="expert_v" src="http://oss.xqzs.cn/resources/psy/asker/header_img_v.png" alt="">
                         <div class="expertInfo">
                             <span>{{item.expertNickName}}</span>

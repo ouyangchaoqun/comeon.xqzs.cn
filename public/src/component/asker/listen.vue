@@ -20,7 +20,7 @@
                     <div v-show="list.length>0" class="index_content_active">
                         <ul>
                             <li v-for="(item,index) in list" v-show="item.isSel">
-                                <img :src=item.expertFaceUrl alt="" class="expert_headerImg" @click="goAnswer(item.expertId)">
+                                <img :src="resizeImg(item.expertFaceUrl)" alt="" class="expert_headerImg" @click="goAnswer(item.expertId)">
                                 <div @click="goDetail(item.questionId)">
                                     <div class="index_li_header">
                                         <div>{{item.expertName}} 回答了</div>
@@ -92,7 +92,7 @@
                     <div v-show="list.length>0" class="index_content_active">
                         <ul>
                             <li v-for="(item,index) in list" v-show="!item.isSel">
-                                <img :src=item.expertFaceUrl alt="" class="expert_headerImg" @click="goAnswer(item.expertId)">
+                                <img :src="resizeImg(item.expertFaceUrl)" alt="" class="expert_headerImg" @click="goAnswer(item.expertId)">
                                 <div @click="goDetail(item.questionId)">
                                     <div class="index_li_header">
                                         <div>{{item.expertName}} 回答了</div>
@@ -216,6 +216,7 @@
             'expert','user','isKeepAlive'
         ],
         methods: {
+
             initAll:function () {
                 console.log("mounted")
                 let expertId = cookie.get("expertId");
