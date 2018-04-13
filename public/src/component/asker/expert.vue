@@ -240,6 +240,7 @@
                 this.$router.push('expert/list?classId=0&orderType=new&title=最新登录')
             },
             getHotList:function () {
+                console.log('getHotListgetHotListgetHotList ')
               let _this=this;
                 xqzs.api.get(_this,"come/expert/get/by/class/0/1/10?complexOrNew=3",function (data) {
                     if(data.body.status == 1){
@@ -348,7 +349,7 @@
         },
         activated:function () {
             if(!this.isKeepAlive){
-                this.initAll();
+                //this.initAll();
             }else{
                 let st = xqzs.localdb.get("st_"+this.$route.path);
                 console.log(st);

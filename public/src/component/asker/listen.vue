@@ -208,7 +208,7 @@
         },
 
         mounted: function () {
-
+            console.log('mountedmountedmountedmountedmountedmounted............')
             this.initAll();
 
         },
@@ -218,7 +218,6 @@
         methods: {
 
             initAll:function () {
-                console.log("mounted")
                 let expertId = cookie.get("expertId");
                 if(expertId){
                     this.isRegExpert = true
@@ -638,7 +637,7 @@
         activated:function () {
             this.rechargeMoney=0;
              if(!this.isKeepAlive){
-                this.initAll();
+                //this.initAll();
             }else{
                 let st = xqzs.localdb.get("st_"+this.$route.path);
                 console.log(st);
