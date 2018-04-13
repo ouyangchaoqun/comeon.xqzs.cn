@@ -59,14 +59,14 @@
                 });
             },
             goClass:function (classId,title) {
-                console.log(classId)
+                //console.log(classId)
                 //偷听类型
                 if(this.urlType==1){
                     this.$router.push('listen/list?classId='+classId+'&&rightTitle='+title)
                 }
                 if(this.urlType==2){
                     //专家类型
-                    this.$router.push('expert/list?classId='+classId+'&&title='+title)
+                    this.$router.push('expert/list?orderType=new&&classId='+classId+'&&title='+title)
                 }
 
             },

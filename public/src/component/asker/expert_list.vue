@@ -3,7 +3,7 @@
         <div v-title class='hide_title'>{{titleVal}}</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
 
-        <div class="filter_box">
+        <div class="filter_box" v-if="noFilter">
             <div class="filter_list">
                 <div v-for="(item,index) in filter_tabs" @click="showSelect(index)" :class="{activeColor:index==filter_num||item.active}">
                     <span>{{cityStr(item.name)}}</span>
@@ -131,6 +131,7 @@
     import Bus from '../bus.js';
     import askerBottom from "./include/bottom.vue";
     let defaultData={
+        noFilter:true,
         classList:[],
         list:[],
         page: 1,
@@ -153,9 +154,8 @@
         provinceId:'',
         cityId:'',
         sortList:[
+            {name:'最新登录',value:'login'},
             {name:'综合排序',value:'complex'},
-            {name:'最新入驻',value:'new'},
-            {name:'活跃度从高到低',value:'login'},
             {name:'回答次数从高到低',value:'answer'},
         ],
         order:'',
@@ -190,10 +190,19 @@
             initAll:function () {
                 this.classId = this.$route.query.classId;
                 this.titleVal = this.$route.query.title;
+                let noFilter = this.$route.query.noFilter;
+                if(noFilter){
+                    this.noFilter = false;
+                    $('.expert_list .yo-scroll .inner').css({'top':'-0.68rem'})
+                }else{
+                    this.noFilter = true;
+                    $('.expert_list .yo-scroll .inner').css({'top':'0.48rem'})
+                }
                 if(this.$route.query.orderType){
                     this.order = this.$route.query.orderType;
+                    console.log(this.order)
                     if(this.order == 'new'){
-                        this.fliter_sortIndex = 1;
+                        this.fliter_sortIndex = 0;
                     }else {
                         this.fliter_sortIndex = -1;
                     }
@@ -494,10 +503,9 @@
                 this.provinceId = '';
                 this.cityId = '';
                 this.sortList = [
-                    {name: '综合排序', value: 'complex'},
-                    {name: '最新入驻', value: 'new'},
-                    {name: '活跃度从高到低', value: 'login'},
-                    {name: '回答次数从高到低', value: 'answer'},
+                    {name:'最新登录',value:'login'},
+                    {name:'综合排序',value:'complex'},
+                    {name:'回答次数从高到低',value:'answer'},
                 ];
                 this.order = '';
                 this.age = '';
@@ -554,9 +562,6 @@
 <style>
     .banScroll{
         overflow: hidden !important;
-    }
-    .expert_list .yo-scroll .inner{
-        top:0.48rem;
     }
     .expert_list .answer_list .item{
         border-top: none;

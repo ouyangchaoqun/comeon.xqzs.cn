@@ -1,6 +1,6 @@
 <template>
     <div style="height: 100%" class="answer_index">
-        <div v-title class='hide_title'>找专家</div>
+        <div v-title class='hide_title'>优秀咨询师</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <v-scroll :on-refresh="onRefresh" :isNotRefresh="true" :on-infinite="onInfinite" :isPageEnd="isPageEnd"
                   :isShowMoreText="isShowMoreText" :bottomHeight="48">
@@ -17,7 +17,7 @@
 
                     <div class="swiper-container hotSwiper">
                         <div class="swiper-wrapper" style="margin-left: 0.15rem">
-                            <div class="swiper-slide" v-for="item in manList" v-if="item.expertId!=expertId"  @click="goDetail(item.expertId)">
+                            <div class="swiper-slide" v-for="item in manList"  @click="goDetail(item.expertId)">
                                 <div class="hot_item">
                                     <div class="hot_face ">
                                         <img :src="item.faceUrl" alt=""></div>
@@ -39,7 +39,7 @@
                 <div class="title_top">
                     <div class="new_head">
                         <div class="kuan" style=" border-top: 0.4rem solid #56C4FE;"></div>
-                        最新 • 入驻
+                        最新 • 登录
                         <div class="hot_hidden" @click="getNewMore()">
                             更多
                         </div>
@@ -47,7 +47,7 @@
                 </div>
 
                 <div>
-                    <div class="item" v-for="(item,index) in list" v-if="item.expertId!=expertId">
+                    <div class="item" v-for="(item,index) in list">
                         <div @click="goDetail(item.expertId)">
                             <div class="itemDetail">
                                 <div class="img"><img :src="item.faceUrl"></div>
@@ -233,10 +233,10 @@
                 _this.getList()
             },
             getMore:function () {
-                this.$router.push('expert/list?classId=0&title=推荐专家&orderType=hot')
+                this.$router.push('expert/list?classId=0&title=推荐咨询师&orderType=hot&noFilter=1')
             },
             getNewMore:function () {
-                this.$router.push('expert/list?classId=0&orderType=new&title=最新入驻')
+                this.$router.push('expert/list?classId=0&orderType=new&title=最新登录')
             },
             getHotList:function () {
               let _this=this;
@@ -446,7 +446,7 @@
     }
     .answer_index .hot_head{
         height:1rem;
-        color: #454B54;
+        color: #FE7A03;
         font-size: 0.30rem;
         position: relative;
         line-height: 1.05rem;
@@ -456,7 +456,7 @@
     }
     .answer_index .new_head{
         height: 1rem;
-        color: #454B54;
+        color: #56C4FE;
         font-size: 0.30rem;
         font-weight: bold;
         position: relative;
@@ -558,6 +558,6 @@
         margin-top: -0.2rem;
         left: 0;
         border-right: 0.09rem solid transparent;
-        border-top: 0.4rem solid rgba(251, 100, 10, 1);
+        border-top: 0.4rem solid #FE7A03;
     }
 </style>
