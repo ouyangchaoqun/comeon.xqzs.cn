@@ -176,7 +176,7 @@
                 serviceId:null,
                 voiceLength:0,
                 isOver:false,
-                MIN_VOICE_LENGTH:45,
+                MIN_VOICE_LENGTH:35,
                 isTry:false,
             }
         },
