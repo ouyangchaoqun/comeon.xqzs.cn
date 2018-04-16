@@ -494,8 +494,8 @@
     }
 
     .answer_index .hot_face{
-        width: 1.12rem;
-        height: 1.12rem;
+        width: 1.20rem;
+        height: 1.20rem;
         border-radius: 50%;
         margin: 0 auto;
         padding-top: 0.24rem;
