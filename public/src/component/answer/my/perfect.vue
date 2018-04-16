@@ -24,7 +24,8 @@
         </div>
         <div class="list0 list02" @click="changeSex()">
             <span>性别</span>
-            <div class="input sex">{{sexs[sex-1].label}}</div>
+            <div class="input sex" v-if="sex">{{sexs[sex-1].label}}</div>
+            <div class="input sex" v-if="!sex">请选择</div>
         </div>
 
 
@@ -40,7 +41,7 @@
             <!--<input type="text" class="idcard" @focus="scrollTop('.idcard')" :value="user.idcard" placeholder="填写身份证号">-->
             <!--<div class="line"></div>-->
         <!--</div>-->
-        <div class="list0 list02 " @click="showDate()">
+        <div class="list0 list02 " @click="showDate()"  >
             <span>生日</span>
             <div class="lut" :class="{on:!isLunar}" @click.stop="lutSelect(0)">阳历</div>
             <div class="lut" :class="{on:isLunar}"  @click.stop="lutSelect(1)">阴历</div>
@@ -67,9 +68,9 @@
             <span>所在地区</span>
             <div class="showdL area">
                 <span>中国</span>
-                <span v-if="provinceName">{{provinceName}}</span>
-                <span v-if="cityName">{{cityName}}</span>
-                <span v-if="areaName">{{areaName}}</span>
+                <span v-if="user.provinceName">{{user.provinceName}}</span>
+                <span v-if="user.cityName">{{user.cityName}}</span>
+                <span v-if="user.areaName">{{user.areaName}}</span>
 
             </div>
             <div style="clear: both"></div>
@@ -151,7 +152,7 @@
                     }
                     _this.provinceName = _this.user.provinceName;
                     _this.cityName = _this.user.cityName;
-                    _this.areaName = _this.user.areaName;
+                     _this.areaName = _this.user.areaName;
                     _this.provinceId = _this.user.provinceId;
                     _this.cityId = _this.user.cityId;
                     _this.areaId = _this.user.areaId;
