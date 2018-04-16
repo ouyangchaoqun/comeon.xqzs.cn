@@ -306,11 +306,11 @@
 </script>
 <style>
     .answer_race_list .list .item{ background: #fff; padding:0.30rem; margin-bottom:0.20rem; }
-    .answer_race_list  .list .item .img{ width: 0.58rem; height: 0.58rem;margin-right: 0.20rem }
+    .answer_race_list  .list .item .img{ width: 0.8rem; height: 0.8rem;margin-right: 0.20rem }
     .answer_race_list  .list .item .img img{ width: 100%; height: 100%; border-radius: 50%}
-    .answer_race_list  .list .info{line-height: 0.58rem;display: flex;display:-webkit-flex;position: relative;margin-bottom: 0.04rem;}
+    .answer_race_list  .list .info{line-height: 0.8rem;display: flex;display:-webkit-flex;position: relative;margin-bottom: 0.2rem;}
     .answer_race_list  .list .info .type{ font-size: 0.26rem;   color:#999;}
-    .answer_race_list .item .content{ font-size: 0.30rem;color:#454B54;margin-bottom: 0.40rem;padding-left: 0.77rem}
+    .answer_race_list .item .content{ font-size: 0.30rem;color:#454B54;margin-bottom: 0.40rem;word-wrap: break-word;}
     .answer_race_list .item .content>div:nth-of-type(1){margin-bottom:0.20rem;}
     .answer_race_list .item .last_time{font-size: 0.24rem;color:#999;line-height: 1}
     .answer_race_list  .list .info .price{ position:absolute;right:0;font-size: 0.24rem;color:rgba(254,115,1,1);text-align: right;width: 2.38rem;}

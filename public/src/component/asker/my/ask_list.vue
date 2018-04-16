@@ -47,7 +47,7 @@
                                 <div class="my_problem_bottom">
                                     <div v-if="item.expertFaces.length>0">
                                         <span>已回答咨询师</span>
-                                        <img v-for="imgSrc in item.expertFaces" :src="imgSrc" alt="">
+                                        <img v-for="imgSrc in item.expertFaces" :src="resizeImg(imgSrc)" alt="">
                                     </div>
                                 </div>
                             </a>

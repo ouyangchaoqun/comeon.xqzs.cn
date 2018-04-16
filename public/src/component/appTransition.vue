@@ -142,7 +142,7 @@
 
 
            if($('.yo-scroll')){
-               console.log($('.yo-scroll').scrollTop());
+               //console.log($('.yo-scroll').scrollTop());
                xqzs.localdb.set("st_"+from.path,$('.yo-scroll').scrollTop())
 
            }

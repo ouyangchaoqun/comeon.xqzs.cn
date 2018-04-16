@@ -8,7 +8,7 @@
                   :isShowMoreText="isShowMoreText" >
             <div class="answer_info">
                 <div class="answer_banner">
-                    <div class="answer_face"><img :src="detail.faceUrl"></div>
+                    <div class="answer_face"><img :src="resizeImg(detail.faceUrl)"></div>
                     <div class="answer_name">{{detail.nickName}}</div>
                     <div class="answer_cs">
                         <div class="answer_ability">
@@ -136,6 +136,8 @@
                                 <img v-if="item.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png">
                             </div>
                             <div class="info" >
+                                <div class="name">{{item.questionClassTitle}}</div>
+                                <div class="star"></div>
                                 <div class="word" @click="getMore(index)" v-if="item.isShow">
                                     {{contentSub(item.content)}}
                                 </div>
@@ -146,7 +148,7 @@
                             <div class="clear"></div>
                         </div>
                         <div class="answer">
-                            <div class="img"><img :src="item.expertUrl">
+                            <div class="img"><img :src="resizeImg(item.expertUrl)">
                             </div>
                             <div class="info audio">
                                 <div class="reply" v-if="item.needPay" @click.stop="payDialog(item.questionId,item.answerId,index )">
@@ -324,6 +326,7 @@
                     return v
                 }
             },
+
             hideMask:function (index) {
                 let _this = this;
                 let answerList = _this.answerList;

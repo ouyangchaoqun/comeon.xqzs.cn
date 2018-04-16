@@ -28,7 +28,7 @@
 
 
             <div class="steal_expert_info" :class="{answerInfo_border:detail.answerCount==0}">
-                <img :src="detail.expert.faceUrl" alt="" @click="goDetail(detail.expertId,detail.expert.status)">
+                <img :src="resizeImg(detail.expert.faceUrl)" alt="" @click="goDetail(detail.expertId,detail.expert.status)">
                 <img class="expert_v" src="http://oss.xqzs.cn/resources/psy/asker/header_img_v.png" alt="">
                 <div>
                     <span class="steal_expert_name" @click="goDetail(detail.expertId,detail.expert.status)">{{detail.expert.nickName}}</span>

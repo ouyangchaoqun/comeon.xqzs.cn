@@ -1,10 +1,10 @@
 <template >
-    <div style="height: 100%" class="answer_answer_box wbg">
+    <div style="height: 100%" class="answer_answer_box wbg" >
 
         <div v-title class='hide_title'>回答</div>
         <v-showLoad v-if="showLoad"></v-showLoad>
         <!--问题详情-->
-        <div class="answer" >
+        <div  class="answer">
             <div class="img">
                 <img v-if="detail.isAnonymous==0" :src="detail.faceUrl">
                 <img v-if="detail.isAnonymous==1" src="http://oss.xqzs.cn/resources/psy/isAnonymousImg.png" alt="">
@@ -161,7 +161,7 @@
     export default {
         data() {
             return {
-                showLoad:false,
+                showLoad:true,
                 isAnswered:false,
                 answering:false,
                 outTime:false,
@@ -176,7 +176,7 @@
                 serviceId:null,
                 voiceLength:0,
                 isOver:false,
-                MIN_VOICE_LENGTH:45,
+                MIN_VOICE_LENGTH:35,
                 isTry:false,
             }
         },
@@ -189,11 +189,9 @@
                 setTimeout(function () {
                     xqzs.weui.tip('抢答成功，请在3个小时内解答')
                 },500)
-                console.log(66666666)
-
             }
             let _this = this;
-            this.showLoad = false;
+            this.showLoad = true;
             this.isAnswered = false;
             this.answering = false;
             this.outTime = false;
@@ -212,11 +210,9 @@
             let expertId = cookie.get("expertId");
             this.$http.get(web.API_PATH + 'come/expert/question/detail/'+this.questionId,{params:{expertId:expertId}}).then(function (data) {//es5写法
                 if (data.body.status == 1) {
-
                     _this.timeIntervalFun();
-                    console.log(data)
                     _this.detail = data.data.data;
-
+                    _this.showLoad = false;
                     _this.$nextTick(function () {
                         var isLookReply=xqzs.localdb.get("isLookReply");
                         console.log(isLookReply)
@@ -496,7 +492,7 @@
 <style>
 
     .record_voice_box .tryListenColor{
-        color:rgba(254,115,1,1)
+        color:rgba(254,115,1,1) !important;
     }
     .tipxuzhi{ margin-top:0.30rem; margin-right:0.30rem; text-align: right; font-size: 0.24rem; color:#999;
         background: url(http://oss.xqzs.cn/resources/psy/asker/tip.png) no-repeat;
@@ -506,13 +502,13 @@
         padding-left: 0.34rem; display: inline-block; float:right;}
     .answer_answer_box{ width: 100%; overflow: hidden}
     .answer_answer_box .answer{ background: #fff; padding:0.40rem 0.30rem 0.16rem 0.30rem;  position: relative; border-bottom: 0.20rem solid #F4F4F7 }
-    .answer_answer_box .answer .img{ width: 0.58rem; height: 0.58rem; float:left; }
+    .answer_answer_box .answer .img{ width: 0.8rem; height: 0.8rem; float:left; }
     .answer_answer_box .answer .img img{ width: 100%; height: 100%; border-radius: 50%}
-    .answer_answer_box .answer .info .names{ font-size: 0.24rem;  color:#999; margin-bottom: 0.16rem; line-height: 0.58rem}
+    .answer_answer_box .answer .info .names{ font-size: 0.24rem;  color:#999; margin-bottom: 0.16rem; line-height: 0.8rem}
     .answer_answer_box .answer .info .names span{
         margin-left: 0.20rem;
     }
-    .answer_answer_box .answer .info .content{  font-size: 0.30rem; color:#454B54; line-height:0.40rem; margin-bottom:  0.28rem;width:98%; min-height: 3rem;    word-wrap: break-word;}
+    .answer_answer_box .answer .info .content{  font-size: 0.30rem; color:#454B54; margin-bottom:  0.2rem;min-height: 3rem;    word-wrap: break-word;}
     .answer_answer_box .answer .info .last_time{ line-height:1;font-size: 0.26rem;color:#999;margin-bottom: 0.18rem;
     }
     .answer_answer_box .answer .info .type span{ color:#999;}

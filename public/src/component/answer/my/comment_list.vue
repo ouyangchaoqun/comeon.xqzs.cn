@@ -48,8 +48,8 @@
                             <div class="content">{{item.questionContent}}
                             </div>
                             <div class="answer">
-                                <div class="img"><img
-                                        :src="item.expertFaceUrl">
+                                <div class="img">
+                                    <img :src="resizeImg(item.expertFaceUrl)">
                                 </div>
                                 <div class="audio"  :class="{playing:item.playing,paused:item.paused}">
                                     <div class="audio_btn"   @click.stop="play(index)">

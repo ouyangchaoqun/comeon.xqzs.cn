@@ -2,6 +2,9 @@ import App from './App.vue';
 import appTransition from "./component/appTransition.vue"
 Vue.use(VueRouter);
 Vue.use(VueResource);
+Vue.prototype.resizeImg = function (v){ //全局注册处理图片
+    return   xqzs.oss.resizeImg(v,100,100)
+}
 let routers =
     [
         {

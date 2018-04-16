@@ -20,7 +20,7 @@
                     <div v-show="list.length>0" class="index_content_active">
                         <ul>
                             <li v-for="(item,index) in list" v-show="item.isSel">
-                                <img :src=item.expertFaceUrl alt="" class="expert_headerImg" @click="goAnswer(item.expertId)">
+                                <img :src="resizeImg(item.expertFaceUrl)" alt="" class="expert_headerImg" @click="goAnswer(item.expertId)">
                                 <div @click="goDetail(item.questionId)">
                                     <div class="index_li_header">
                                         <div>{{item.expertName}} 回答了</div>
@@ -92,7 +92,7 @@
                     <div v-show="list.length>0" class="index_content_active">
                         <ul>
                             <li v-for="(item,index) in list" v-show="!item.isSel">
-                                <img :src=item.expertFaceUrl alt="" class="expert_headerImg" @click="goAnswer(item.expertId)">
+                                <img :src="resizeImg(item.expertFaceUrl)" alt="" class="expert_headerImg" @click="goAnswer(item.expertId)">
                                 <div @click="goDetail(item.questionId)">
                                     <div class="index_li_header">
                                         <div>{{item.expertName}} 回答了</div>
@@ -208,7 +208,7 @@
         },
 
         mounted: function () {
-
+            console.log('mountedmountedmountedmountedmountedmounted............')
             this.initAll();
 
         },
@@ -216,8 +216,8 @@
             'expert','user','isKeepAlive'
         ],
         methods: {
+
             initAll:function () {
-                console.log("mounted")
                 let expertId = cookie.get("expertId");
                 if(expertId){
                     this.isRegExpert = true
@@ -539,7 +539,7 @@
             },
             getHotList:function (done) {
                 let vm = this;
-                xqzs.api.get(vm, 'come/listen/listen/list/_userId_/0/1/3'+'?hottestOrNewest='+3,function (response) {
+                xqzs.api.get(vm, 'come/listen/listen/list/_userId_/0/1/5'+'?hottestOrNewest='+3,function (response) {
                     vm.list = response.data.data;
                     vm.list = vm.randContentNum(vm.list);
                     for (let i = 0;i<vm.list.length;i++){
@@ -637,7 +637,7 @@
         activated:function () {
             this.rechargeMoney=0;
              if(!this.isKeepAlive){
-                this.initAll();
+                //this.initAll();
             }else{
                 let st = xqzs.localdb.get("st_"+this.$route.path);
                 console.log(st);

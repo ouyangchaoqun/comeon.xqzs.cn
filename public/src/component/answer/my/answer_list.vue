@@ -40,7 +40,7 @@
                         </div>
                         <div class="problem_item_del">{{item.questionContent}}</div>
                         <div class="problem_answer_info">
-                            <img :src="item.expertUserFaceUrl" alt="">
+                            <img :src="resizeImg(item.expertUserFaceUrl)" alt="">
                             <!--回答，专家语音-->
                             <div class="problem_answer_yy" v-if="true">
                                 <div class="audio" :class="{playing:item.playing,paused:item.paused}">
@@ -84,7 +84,7 @@
                         </div>
                         <div class="problem_item_del">{{item.questionContent}}</div>
                         <div class="problem_answer_info">
-                            <img :src="item.expertUserFaceUrl" alt="">
+                            <img :src="resizeImg(item.expertUserFaceUrl)" alt="">
                             <!--回答，专家语音-->
                             <div class="problem_answer_yy" v-if="true">
                                 <div class="audio" :class="{playing:item.playing,paused:item.paused}">

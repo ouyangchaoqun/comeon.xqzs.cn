@@ -257,11 +257,11 @@
 <style>
     .answer_ask_list_box .list .item{ background: #fff; padding:0.40rem 0.30rem 0.16rem 0.30rem; margin-bottom:0.14rem; }
     .answer_ask_list_box .list .item:active{background: #eee}
-    .answer_ask_list_box  .list .item .img{ width: 0.58rem; height: 0.58rem; float:left; }
+    .answer_ask_list_box  .list .item .img{ width: 0.8rem; height: 0.8rem; float:left; }
     .answer_ask_list_box  .list .item .img img{ width: 100%; height: 100%; border-radius: 50%}
-    .answer_ask_list_box  .list .info .names{ font-size: 0.24rem;color:#999;line-height:0.58rem;margin-bottom: 0.08rem; }
+    .answer_ask_list_box  .list .info .names{ font-size: 0.24rem;color:#999;line-height:0.8rem;margin-bottom: 0.2rem; }
     .answer_ask_list_box .list .info .names span{ color:#999; font-size: 0.26rem; margin-left: 0.20rem}
-    .answer_ask_list_box  .list .info .content{ font-size: 0.30rem; color:#454B54;margin-bottom: 0.28rem ;width:98%;}
+    .answer_ask_list_box  .list .info .content{ font-size: 0.30rem; color:#454B54;margin-bottom: 0.2rem ; word-wrap: break-word;}
     .answer_ask_list_box  .list .info .last_time{line-height:1;font-size: 0.26rem;color:#999;margin-bottom: 0.18rem;}
     .answer_ask_list_box  .list .info .price{ float:right;font-size: 0.24rem;color:#56C4FE; text-align: right; width: 2.38rem;}
 

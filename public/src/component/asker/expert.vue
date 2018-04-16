@@ -20,7 +20,7 @@
                             <div class="swiper-slide" v-for="item in manList"  @click="goDetail(item.expertId)">
                                 <div class="hot_item">
                                     <div class="hot_face ">
-                                        <img :src="item.faceUrl" alt=""></div>
+                                        <img :src="resizeImg(item.faceUrl)" alt=""></div>
                                     <div class="hot_name">{{item.nickName}}</div>
 
                                     <div class="hot_evaluate">已帮助<span class="hot_text">{{item.answerCount}}</span>人
@@ -50,7 +50,7 @@
                     <div class="item" v-for="(item,index) in list">
                         <div @click="goDetail(item.expertId)">
                             <div class="itemDetail">
-                                <div class="img"><img :src="item.faceUrl"></div>
+                                <div class="img"><img :src="resizeImg(item.faceUrl)"></div>
                                 <div class="itemDetail_right">
                                     <div class="itemHeader">
                                         <div >{{item.nickName}}<span>{{item.city}}</span></div>
@@ -171,6 +171,7 @@
                 })
             },
 
+
             play: function (index) {
 
                 let _this = this;
@@ -239,6 +240,7 @@
                 this.$router.push('expert/list?classId=0&orderType=new&title=最新登录')
             },
             getHotList:function () {
+                console.log('getHotListgetHotListgetHotList ')
               let _this=this;
                 xqzs.api.get(_this,"come/expert/get/by/class/0/1/10?complexOrNew=3",function (data) {
                     if(data.body.status == 1){
@@ -347,7 +349,7 @@
         },
         activated:function () {
             if(!this.isKeepAlive){
-                this.initAll();
+                //this.initAll();
             }else{
                 let st = xqzs.localdb.get("st_"+this.$route.path);
                 console.log(st);

@@ -68,7 +68,7 @@
                 <div class="item" v-for="(item,index) in list">
                     <div @click="goDetail(item.expertId)">
                         <div class="itemDetail">
-                            <div class="img"><img :src="item.faceUrl"></div>
+                            <div class="img"><img :src="resizeImg(item.faceUrl)"></div>
                             <div class="itemDetail_right">
                                 <div class="itemHeader">
                                     <div>{{item.nickName}}<span>{{item.city}}</span></div>

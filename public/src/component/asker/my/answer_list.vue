@@ -24,7 +24,7 @@
                 <div class="item" v-for="(item,index) in list"  v-if="item.expertId!=52">
                     <div @click="goDetail(item.expertId,item.expertStatus)">
                         <div class="itemDetail">
-                            <div class="img"><img :src="item.faceUrl"></div>
+                            <div class="img"><img :src="resizeImg(item.faceUrl)"></div>
                             <div class="itemDetail_right">
                                 <div class="itemHeader">
                                     <div>{{item.nickName}}<span>{{item.cityName}}</span></div>
