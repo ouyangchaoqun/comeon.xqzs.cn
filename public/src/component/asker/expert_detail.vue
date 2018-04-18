@@ -8,7 +8,12 @@
                   :isShowMoreText="isShowMoreText" >
             <div class="answer_info">
                 <div class="answer_banner">
-                    <div class="answer_face"><img :src="resizeImg(detail.faceUrl)"></div>
+                    <div class="answer_face">
+                        <img class="expert_faceImg" :src="resizeImg(detail.faceUrl)">
+                        <div class="expert_top_voice">
+                            <div :class="{expert_top_voice_play:true}"></div>
+                        </div>
+                    </div>
                     <div class="answer_name">{{detail.nickName}}</div>
                     <div class="answer_cs">
                         <div class="answer_ability">
@@ -883,8 +888,35 @@
         margin: 0 auto;
         margin-bottom: 0.30rem;
         border:0.10rem solid rgba(255,255,255,0.5);
+        position: relative;
     }
-    .answer_detail_box  .answer_face img{
+    .answer_detail_box .answer_face .expert_top_voice{
+        position: absolute;
+        top: -0.02rem;
+        left:auto;
+        right: -1.1rem;
+        height: 0.91rem;
+        background: url(http://oss.xqzs.cn/resources/psy/audio_blue_left.png) no-repeat;
+        width: 0.97rem;
+        background-size: 0.97rem;
+    }
+    .answer_detail_box .answer_face .expert_top_voice>div{
+        width: 0.23rem;
+        position: absolute;
+        content: " ";
+        display: block;
+        height: 0.33rem;
+        background: url(http://oss.xqzs.cn/resources/psy/sond_blue.png) no-repeat;
+        background-size: 0.23rem;
+        left:0.4rem;
+        top:30%;
+
+    }
+    .expert_top_voice_play{
+        animation: sond_playing 1.5s infinite;
+        -webkit-animation: sond_playing 1.5s infinite;
+    }
+    .answer_detail_box  .answer_face .expert_faceImg{
         width: 100%;
         border-radius: 50%;
         display: block;

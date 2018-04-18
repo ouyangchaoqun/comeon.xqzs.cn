@@ -68,7 +68,10 @@
                 <div class="item" v-for="(item,index) in list">
                     <div @click="goDetail(item.expertId)">
                         <div class="itemDetail">
-                            <div class="img"><img :src="resizeImg(item.faceUrl)"></div>
+                            <div class="img">
+                                <img :src="resizeImg(item.faceUrl)">
+                                <div class="expert_voice expert_voice_play" @click.stop></div>
+                            </div>
                             <div class="itemDetail_right">
                                 <div class="itemHeader">
                                     <div>{{item.nickName}}<span>{{item.city}}</span></div>
@@ -560,6 +563,34 @@
     }
 </script>
 <style>
+    .expert_voice{
+        width:0.5rem;
+        height:0.5rem;
+        background: #fff;
+        border-radius: 50%;
+        position: absolute;
+        left:50%;
+        margin-left: -0.25rem;
+        bottom:-0.25rem;
+        border:0.02rem solid #eee;
+    }
+    .expert_voice:before{
+        width: 0.22rem;
+        position: absolute;
+        content: " ";
+        display: block;
+        height: 0.26rem;
+        background: url(http://oss.xqzs.cn/resources/psy/sond_blue.png) no-repeat;
+        background-size: 0.22rem 0.26rem;
+        z-index: 2;
+        left:0.15rem;
+        top:50%;
+        margin-top: -0.13rem;
+    }
+    .expert_voice_play:before{
+        animation: sond_playing 1.5s infinite;
+        -webkit-animation: sond_playing 1.5s infinite;
+    }
     .banScroll{
         overflow: hidden !important;
     }
