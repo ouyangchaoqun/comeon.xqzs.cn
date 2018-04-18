@@ -264,9 +264,10 @@
 
         methods: {
             ttt:function () {
+                let _this = this;
                 console.log('播放背景音乐')
                 xqzs.voice.play('http://pic.ibaotu.com/00/28/42/59e888piCkf2.mp3')
-                myVideo.config({obj:$('.circle')}).init(_this.start,_this.stop,_this.play,_this.play);
+                _this.play()
             },
             timeIntervalFun:function () {
                 let _this=this;
@@ -423,6 +424,7 @@
 
             },
             play:function () {//试听
+                console.log('playplayplay')
                 let _this = this;
                 _this.isTry = false;
                 if(this.playing){  //在播放中则暂停
