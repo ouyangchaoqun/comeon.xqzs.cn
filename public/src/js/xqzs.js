@@ -703,6 +703,7 @@ var xqzs = {
                 xqzs.voice.audio=document.createElement("audio");
             }
             if(xqzs.voice.audio!=null){
+                console.log('xqzs-voice-play')
                 if (url && url != '') {
                     xqzs.voice.audio.autobuffer = true;
                     xqzs.voice.audio.src = url;//路径
@@ -721,11 +722,13 @@ var xqzs = {
             }
         },
         pause: function () {
+            console.log('xqzs-voice-pause')
             if (xqzs.voice.audio && xqzs.voice.audio != null) {
                 xqzs.voice.audio.pause()
             }
         },
         getAnswerVoice:function (answerId,callFun) {
+            console.log('xqzs-voice-getAnswerVoice')
             $.ajax({
                 url: web.API_PATH + "come/listen/get/voice/_userId_/"+answerId,
                 data:{},
@@ -743,6 +746,7 @@ var xqzs = {
             });
         },
         getExpertVoice:function (expertId,callFun) {
+            console.log('xqzs-voice-getExpertVoice')
             //
             $.ajax({
                 url: web.API_PATH + "come/expert/voice/message/"+expertId,
@@ -814,6 +818,7 @@ var xqzs = {
             //开始录音
             startRecord: function () {
                 var recordTimer = setTimeout(function () {
+                        console.log('开始录音startRecordstartRecordstartRecord')
                         wx.startRecord({
                                 success: function () {
                                     console.log("recordsuccess")
@@ -828,6 +833,7 @@ var xqzs = {
             },
             // 停止录音
             stopRecord: function (fun) {
+                console.log('停止录音stopRecordstopRecordstopRecord')
                 var recordTimer = setTimeout(function () {
                 wx.stopRecord({
                     success: function (res) {
@@ -839,6 +845,7 @@ var xqzs = {
             },
             // 监听自动停止录音
             onRecordEnd: function (fun) {
+                console.log('监听自动停止录音onRecordEndonRecordEndonRecordEnd')
                 wx.onVoiceRecordEnd({
                     // 录音时间超过一分钟没有停止的时候会执行 complete 回调
                     complete: function (res) {
@@ -848,26 +855,30 @@ var xqzs = {
                     }
                 });
             },
-            // 开始播放
+            //
             startPlay: function (localId) {
+                console.log('开始播放startPlaystartPlaystartPlay')
                 wx.playVoice({
                     localId: localId // 需要播放的音频的本地ID，由stopRecord接口获得
                 });
             },
             // 暂停播放
             pausePlay: function (localId) {
+                console.log('暂停播放pausePlaypausePlaypausePlay')
                 wx.pauseVoice({
                     localId: localId // 需要暂停的音频的本地ID，由stopRecord接口获得
                 });
             },
             // 停止播放
             stopPlay: function (localId) {
+                console.log('停止播放stopPlaystopPlaystopPlay')
                 wx.stopVoice({
                     localId: localId // 需要停止的音频的本地ID，由stopRecord接口获得
                 });
             },
             // 监听自动停止播放
             onPlayEnd: function (fun) {
+                console.log('监听自动停止播放onPlayEndonPlayEndonPlayEnd')
                 wx.onVoicePlayEnd({
                     success: function (res) {
                         var localId = res.localId; // 返回音频的本地ID
@@ -878,6 +889,7 @@ var xqzs = {
             },
             // 上传录音
             upload: function (localId, fun) {
+                console.log('upload上传录音上传录音上传录音')
                 wx.uploadVoice({
                     localId: localId, // 需要上传的音频的本地ID，由stopRecord接口获得
                     isShowProgressTips: 1, // 默认为1，显示进度提示
