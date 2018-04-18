@@ -130,6 +130,13 @@
                         <i></i>
                     </div>
                 </li>
+                <li @click="setImgs()">
+                    上传图片
+                    <div class="li_right" >
+
+                        <i></i>
+                    </div>
+                </li>
                 <li @click="setVoice()">
                     专家语音
                     <div class="li_right" >
@@ -335,7 +342,7 @@
     </div>
 </template>
 
-<script type="es6">
+<script type="">
     import showLoad from '../../include/showLoad.vue';
     export default {
         data() {
@@ -708,6 +715,9 @@
             },
             setPerson:function () {
                 this.$router.push('./personal?edit='+this.isModify)
+            },
+            setImgs:function () {
+                this.$router.push('./imgs?edit='+this.isModify)
             },
             setVoice:function () {
                 this.$router.push('./voice?edit='+this.isModify)
