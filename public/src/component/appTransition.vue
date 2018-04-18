@@ -39,6 +39,7 @@
             }
             let _this=this;
             xqzs.user.getUserInfo(function (user) {
+                console.log('app---------created')
                 _this.user =user;
                 _this.subscribe();//没有关注的逻辑
             });
@@ -61,6 +62,7 @@
         methods: {
             updateUserInfo:function () {
                 let _this= this;
+                console.log('app---updateUserInfo')
                 xqzs.user.getUserInfo(function (user) {
                     _this.user =user;
                 });

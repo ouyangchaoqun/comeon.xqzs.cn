@@ -84,13 +84,13 @@
                 });
 
             },
-            getUserInfo:function(){
-                let _this=this;
-                xqzs.user.getUserInfo(function (user) {
-                    _this.user =user;
-                })
-
-            },
+//            getUserInfo:function(){
+//                let _this=this;
+//                xqzs.user.getUserInfo(function (user) {
+//                    _this.user =user;
+//                })
+//
+//            },
             formatPrice:function (v) {
               return xqzs.string.formatPrice(v)
             },
@@ -148,7 +148,7 @@
             $(".weui-tab__panel").height($(window).height() - 50);
             var obj = $(".asker_my_index_box .main a ,.join")
             xqzs.weui.active(obj);
-            this.getUserInfo();
+            //this.getUserInfo();
             this.getCoupon();
             xqzs.wx.setConfig(this, function () {weshare.init(wx)});
         }
