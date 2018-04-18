@@ -130,7 +130,13 @@
                         <i></i>
                     </div>
                 </li>
+                <li @click="setVoice()">
+                    专家语音
+                    <div class="li_right" >
 
+                        <i></i>
+                    </div>
+                </li>
                 <li @click="setGoodat()">
                     擅长领域
                     <div class="li_right" >
@@ -702,6 +708,9 @@
             },
             setPerson:function () {
                 this.$router.push('./personal?edit='+this.isModify)
+            },
+            setVoice:function () {
+                this.$router.push('./voice?edit='+this.isModify)
             },
             setGoodat:function () {
                 this.$router.push('./good/at?edit='+this.isModify)

@@ -2,6 +2,7 @@
     <div style="height: 100%" class="answer_join_voice wbg">
 
         <div v-title class='hide_title'>入驻心理咨询师</div>
+        <header></header>
         <div class="tipc">此至少10秒的语音寄语，将展示给来访者，请录制您对来访者的寄语！</div>
 
 
@@ -318,6 +319,9 @@
 </script>
 <style>
     .answer_join_voice{ width: 100%; overflow: hidden}
+    .answer_join_voice header{
+
+    }
     .answer_join_voice .tipc{  margin:0.60rem    0.40rem; font-size: 0.26rem; line-height: 1.5; color:#999}
     .answer_join_voice .audio{ margin-left:  15%  !important ; margin-top: 2.72rem;}
     .pt3{ padding-top: 3.06rem !important}
