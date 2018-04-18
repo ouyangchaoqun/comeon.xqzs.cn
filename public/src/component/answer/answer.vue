@@ -44,6 +44,7 @@
         <!--播放状态-->
         <div>
             <div class="record_voice_box" v-if="!isAnswered&&!outTime">
+                <div style="width:100px;height:100px;background: pink" @click="ttt()"></div>
                 <div class="time_in" style="position: static;margin-bottom:0.6rem;padding-top: 0.3rem;">
                     <div>{{answerTime}}"</div>
                 </div>
@@ -262,6 +263,10 @@
         },
 
         methods: {
+            ttt:function () {
+                console.log('播放背景音乐')
+                xqzs.voice.play('http://pic.ibaotu.com/00/28/42/59e888piCkf2.mp3')
+            },
             timeIntervalFun:function () {
                 let _this=this;
                 if(_this.timeInterval!=null){

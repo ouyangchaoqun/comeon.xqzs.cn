@@ -746,7 +746,7 @@ var xqzs = {
             });
         },
         getExpertVoice:function (expertId,callFun) {
-            console.log('xqzs-voice-getExpertVoice')
+            console.log('xqzs-voice-getAnswerVoice')
             //
             $.ajax({
                 url: web.API_PATH + "come/expert/voice/message/"+expertId,
