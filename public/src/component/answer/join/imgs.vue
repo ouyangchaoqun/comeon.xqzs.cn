@@ -160,7 +160,9 @@
             });
             this.pictures=[];
             console.log(this.expert)
-
+            if(this.expert){
+                this.pictures=this.expert.pictures;
+            }
             //加载咨询师图片
 
         },
