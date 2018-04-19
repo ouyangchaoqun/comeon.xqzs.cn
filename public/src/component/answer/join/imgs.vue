@@ -183,13 +183,19 @@
     }
 
     .upload-images {
-        float: left
+        float: left;
+        position: relative;
     }
 
     .upload-images .item-image img, .upload-images .item, .item-up-btn {
         width: 1.96rem;
         height: 1.96rem;
+
     }
+    .upload-images .item{
+        border: 0.02rem solid #2ca02c;
+    }
+
 
     .upload-images .item, .item-up-btn {
         float: left
@@ -204,7 +210,11 @@
     .weui-loading {
         width: 0.60rem;
         height: 0.60rem;
-        margin: 0.24rem 0 0 0.24rem;
+        left: 50%;
+        margin-left: -0.3rem;
+        top: 50%;
+        margin-top: -0.3rem;
+        position: absolute;
     }
 
     .upload-images .item-image {
