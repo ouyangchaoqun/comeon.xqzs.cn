@@ -68,9 +68,6 @@
             },
             showAction:function () {
                 this.uploadImage(['camera','album']);
-                return;
-                this.maskFlag = true
-                this.activeFlag = true
             },
             //小图格式
             smallPic:function (src) {
@@ -89,6 +86,7 @@
             },
             //图片占位
             _showloadingpic:function (id) {
+
                 id = 'up_loading_'+id;
                 this.pictures.push({isloading:true,id:id});
             },
@@ -120,12 +118,14 @@
                 var id = 'uf_'+new Date().getTime();
                 //
                 xqzs.wx.takePhotos(sourceType,that.maxPhotoCount -  this.pictures.length,that.uploadpicinfo,that.alioss,function (filecount) {
-
+                    console.log(" xqzs.wx.takePhotos")
                     for(var i=0;i<filecount;i++){
+                        console.log("xuanhuan"+i)
                         that._showloadingpic(id+i);
                     }
-                    that.hideAction();
                 },function (json,ix) {
+                    console.log("_fillloadingpic")
+                    console.log(ix)
                     that._fillloadingpic(id+ix,json.data);
                 },function (e) {
                     console.info(e);
