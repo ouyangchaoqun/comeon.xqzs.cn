@@ -8,7 +8,7 @@
         </div>
             <div class="tips">工作照,会议照,证书照,学习照……（最多可上传5张）</div>
 
-        <div  class="swiper-container edit_lists" style="height:280px; padding: 0 0.3rem">
+        <div  class="swiper-container edit_lists" style="height:280px; padding: 0 0rem 0.1rem 0.3rem">
             <div class="swiper-wrapper">
                 <div class="swiper-slidetrue" ><!--optionFrist-->
                     <div class="optionFrist_box">
@@ -158,10 +158,11 @@
 </script>
 <style>
     .imgs_box  .tips {
+
         font-size: 0.28rem;
         color: #999;
         text-align: center;
-        padding: 0 0.3rem;
+        padding: 0.3rem;
     }
     .swiper-container, .swiper-container .swiper-wrapper {
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
