@@ -89,6 +89,7 @@
 
                 id = 'up_loading_'+id;
                 this.pictures.push({isloading:true,id:id});
+                console.log(this.pictures);
             },
             //删除图片
             deletePic:function (i,tp) {
