@@ -146,6 +146,7 @@
         },
 
         activated: function () {
+            let _this=this;
             this.uploadpicinfo = {
                 token: xqzs.string.guid(),
                 smallpic: xqzs.constant.PIC_SMALL,
@@ -159,10 +160,10 @@
                 token: this.uploadpicinfo.token
             });
             this.pictures=[];
-            console.log(this.expert)
-            if(this.expert){
-                this.pictures=this.expert.pictures;
-            }
+            var expert_id=cookie.get("expertId");
+            xqzs.api.get(this,"come/expert/query/detail/for/edit/"+expert_id+"/_userId_",function (res) {
+                _this.pictures=res.body.data.pictures;
+            })
             //加载咨询师图片
 
         },
