@@ -154,37 +154,37 @@
                 console.log(_this.localId)
                 //发送合成音音频到微信服务器并获取serverId
                 xqzs.wx.voice.upload(_this.localId,function (serverId) {
-                    console.log(serverId)
                     _this.serviceId = serverId;
+                    console.log(_this.serviceId+'*************')
+                    cookie.set('voiceLength',_this.voiceLength,1)
+                    cookie.set('serverId',_this.serverId,1)
+                    if(_this.edit==1){
+                        //修改
+                        let url =  'come/expert/modify/voice';
+                        let data={
+                            userId:"_userId_",
+                            expertId:cookie.get("expertId"),
+                            mediaId:_this.serviceId,
+                            voiceLength:_this.voiceLength,
+                            voiceBgmId:_this.voiceBgmId
+                        };
+                        xqzs.api.post(_this, url,data,function (bt) {
+                            //成功
+                            console.log(bt)
+                            console.log(data)
+
+
+                        },function () {
+                            //失败
+                            console.log('上传失败')
+                        })
+                    }else{
+                        //注册
+                        console.log('首次注册')
+                        //_this.$router.go(-1)
+                    }
                 });
-                console.log(_this.serviceId+'*************')
-                cookie.set('voiceLength',_this.voiceLength,1)
-                cookie.set('serverId',_this.serverId,1)
-                if(_this.edit==1){
-                    //修改
-                    let url =  'come/expert/modify/voice';
-                    let data={
-                        userId:"_userId_",
-                        expertId:cookie.get("expertId"),
-                        mediaId:_this.serviceId,
-                        voiceLength:_this.voiceLength,
-                        voiceBgmId:_this.voiceBgmId
-                    };
-                    xqzs.api.post(_this, url,data,function (bt) {
-                        //成功
-                        console.log(bt)
-                        console.log(data)
 
-
-                    },function () {
-                        //失败
-                        console.log('上传失败')
-                    })
-                }else{
-                    //注册
-                   console.log('首次注册')
-                    //_this.$router.go(-1)
-                }
 
 
             },
