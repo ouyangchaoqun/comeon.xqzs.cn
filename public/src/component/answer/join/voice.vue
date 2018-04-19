@@ -79,7 +79,7 @@
             <div class="voice_bg_box" v-if="showBgm">
                 <h3>选择背景音乐</h3>
                 <ul>
-                    <li v-for="item in bgmList" @click="composeBgm(item.id)">
+                    <li v-for="item in bgmList" @click="composeBgm(item.path)">
                         <img :src="item.pic" alt="">{{item.title}}
                     </li>
 
@@ -133,10 +133,12 @@
                //error
               })
             },
-            composeBgm:function (bgmId) {
+            composeBgm:function (bgmUrl) {
                 let _this = this;
-                console.log(_this.localId)
-                console.log(bgmId)
+                console.log(_this.localId);
+                console.log(bgmUrl);
+                xqzs.voice.play(_this.localId)
+                xqzs.voice.play(bgmUrl)
                 let data = {
                     bgmId:bgmId,
                     localId:_this.localId
