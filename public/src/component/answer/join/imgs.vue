@@ -27,7 +27,7 @@
                             </div>
                             <div class="item item-image" v-else>
                                 <div class="del-img" @click="deletePic(index,pic.pictype)"></div>
-                                <!--<img v-bind:src="smallPic(pic.image.path)" @click="viewBigPics(pic.image.path)"/>-->
+                                <img v-bind:src="smallPic(pic.image.path)" @click="viewBigPics(pic.image.path)"/>
                             </div>
                         </div>
                         <div v-if="pictures.length<5" class="item item-up-btn">
@@ -94,13 +94,10 @@
             },
             //删除图片
             deletePic:function (i,tp) {
-                if(tp == 'funny'){
-                    this.funnypictures = this.funnypictures.slice(0, i).concat(this.funnypictures.slice(i + 1, this.funnypictures.length));
-                }else{
                     this.pictures = this.pictures.slice(0, i).concat(this.pictures.slice(i + 1, this.pictures.length));
                     //
                     console.info('删除图片');
-                }
+
             },
             //关闭蒙层
             hideAction:function () {
