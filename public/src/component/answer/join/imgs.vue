@@ -124,12 +124,13 @@
             },
             setImgs: function () {
                 let _this=this;
+                console.log(_this.pictures)
                 xqzs.api.put(this,"come/expert/picture/add",{"userId":_this.user.id,"pictures":_this.pictures},function (response) {
                     if(response.data.status==1){
                         xqzs.weui.toast("success","提交成功")
                         _this.$router.go(-1);
                     }else{
-                        xqzs.weui.toast("fail","提交成功")
+                        xqzs.weui.toast("fail","失败")
                     }
                 },)
             }
