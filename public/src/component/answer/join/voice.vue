@@ -170,18 +170,19 @@
                         };
                         xqzs.api.post(_this, url,data,function (bt) {
                             //成功
-                            console.log(bt)
-                            console.log(data)
-
+                            if(bt.body.status==1){
+                                _this.$router.go(-1)
+                            }
 
                         },function () {
                             //失败
                             console.log('上传失败')
+                            xqzs.weui.tip('上传失败，请重新录制')
                         })
                     }else{
                         //注册
                         console.log('首次注册')
-                        //_this.$router.go(-1)
+                        _this.$router.go(-1)
                     }
                 });
 
