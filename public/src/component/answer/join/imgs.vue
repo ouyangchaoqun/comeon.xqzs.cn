@@ -124,6 +124,8 @@
                 },function (json,ix) {
                     console.log("_fillloadingpic")
                     console.log(ix)
+                    console.log(json)
+
                     that._fillloadingpic(id+ix,json.data);
                 },function (e) {
                     console.info(e);

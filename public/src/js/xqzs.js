@@ -933,7 +933,9 @@ var xqzs = {
                                         localData = "data:image/jpeg;base64," + localData;
                                     }
                                     console.log("finish")
-                                    xqzs.oss.uploadPicture($uploadpicinfo, $alioss, {base64: localData}, finishUploadFun, errorFun, i);
+                                    xqzs.oss.uploadPicture($uploadpicinfo, $alioss, {base64: localData}, function (json) {
+                                        finishUploadFun(json,i)
+                                    }, errorFun, i);
                                 }
                             });
 
