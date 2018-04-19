@@ -44,6 +44,11 @@
                 },
             }
         },
+        props: {
+            user:{
+                type:Object
+            }
+        },
 
         methods: {
             showPositionList: function (t) {
@@ -118,7 +123,15 @@
                 this.$router.go(-1);
             },
             setImgs: function () {
-
+                let _this=this;
+                xqzs.api.put(this,"come/expert/picture/add",{"userId":_this.user.id,"pictures":_this.pictures},function (response) {
+                    if(response.data.status==1){
+                        xqzs.weui.toast("success","提交成功")
+                        _this.$router.go(-1);
+                    }else{
+                        xqzs.weui.toast("fail","提交成功")
+                    }
+                },)
             }
 
         },
