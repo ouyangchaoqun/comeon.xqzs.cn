@@ -151,10 +151,13 @@
             //上传合成音频
             subComposeBgm:function () {
                 let _this = this;
+                console.log(_this.localId)
                 //发送合成音音频到微信服务器并获取serverId
                 xqzs.wx.voice.upload(_this.localId,function (serverId) {
+                    console.log(serverId)
                     _this.serviceId = serverId;
                 });
+                console.log(_this.serviceId)
                 cookie.set('voiceLength',_this.voiceLength,1)
                 cookie.set('serverId',_this.serverId,1)
                 if(_this.edit==1){
