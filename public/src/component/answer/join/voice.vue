@@ -79,12 +79,13 @@
             <div class="voice_bg_box" v-if="showBgm">
                 <h3>选择背景音乐</h3>
                 <ul>
-                    <li v-for="item in bgmList" @click="composeBgm(item.path)">
-                        <img :src="item.pic" alt="">{{item.title}}
+                    <li v-for="(item,index) in bgmList" @click="composeBgm(item.path,index,item.id)">
+                        <img class="bgmImg" :src="item.pic" alt="">{{item.title}}
+                        <img v-show="item.is_checked" class="checkedImg" src="http://oss.xqzs.cn/resources/psy/asker/filter_sure_icon.png" alt="">
                     </li>
 
                 </ul>
-                <div class="compose_btn">确定</div>
+                <div class="compose_btn" @click="subComposeBgm()">确定</div>
             </div>
         </div>
 
@@ -115,7 +116,8 @@
                 voiceLength:0,
                 MIN_VOICE_LENGTH:10,
                 edit:'',
-                bgmList:[]
+                bgmList:[],
+                voiceBgmId:''
             }
         },
 
@@ -128,30 +130,23 @@
                   console.log(res)
                   if(res.data.status==1){
                       _this.bgmList = res.data.data;
+
                   }
               },function () {
                //error
               })
             },
-            composeBgm:function (bgmUrl) {
+            composeBgm:function (bgmUrl,index,bgmId) {
                 let _this = this;
-                console.log(_this.localId);
-                console.log(bgmUrl);
-
-                _this.play()
+                console.log(bgmId)
+                _this.voiceBgmId = bgmId;
+                cookie.get('voiceBgmId',bgmId,1)
+                for(let i=0;i<_this.bgmList.length;i++){
+                    _this.bgmList[i].is_checked = false
+                }
+                _this.bgmList[index].is_checked = true;
+                _this.$set(_this.bgmList,index,_this.bgmList[index])
                xqzs.voice.play(bgmUrl)
-//                let data = {
-//                    bgmId:bgmId,
-//                    localId:_this.localId
-//                }
-//                xqzs.api.post(_this, 'come/expert/voice/compose',data,function (bt) {
-//                    //成功
-//                    console.log('上传  去 合成')
-//                    //获取合成的音频路径  composeBgmId
-//                },function () {
-//                    //失败
-//                    console.log('上传失败')
-//                })
             },
             //上传合成音频
             subComposeBgm:function () {
@@ -160,33 +155,36 @@
                 xqzs.wx.voice.upload(_this.localId,function (serverId) {
                     _this.serviceId = serverId;
                 });
+                cookie.set('voiceLength',_this.voiceLength,1)
+                cookie.set('serverId',_this.serverId,1)
+                if(_this.edit==1){
+                    //修改
+                    let url =  'come/expert/modify/voice';
+                    let data={
+                        userId:"_userId_",
+                        expertId:cookie.get("expertId"),
+                        mediaId:_this.serviceId,
+                        voiceLength:_this.voiceLength,
+                        voiceBgmId:_this.voiceBgmId
+                    };
+                    xqzs.api.post(_this, url,data,function (bt) {
+                        //成功
+                        console.log(bt)
+                        if(bt.data.status==1){
+                            console.log('上传成功')
+                        }
+                        _this.$router.go(-1)
 
-            },
-            //come/expert/register
-            goJoinmore:function () {
-                let _this=this;
-                let data={
-                    userId:"_userId_",
-                    expertId:cookie.get("expertId"),
-                    mediaId:_this.serviceId,
-                    voiceLength:_this.voiceLength,
-                    //合成音频
-                };
-                let url;
-                if(_this.edit){
-                    url=  'come/expert/modify/voice'
+                    },function () {
+                        //失败
+                        console.log('上传失败')
+                    })
                 }else{
-                    url = 'come/expert/register'
+                    //注册
+                    _this.$router.go(-1)
                 }
 
-                xqzs.api.post(_this, url,data,function (bt) {
-                   //成功
-                    console.log('上传成功')
-                    console.log(bt)
-                },function () {
-                    //失败
-                    console.log('上传失败')
-                })
+
             },
             timeout:function (play) {
                 let _this=this;
@@ -384,8 +382,9 @@
     .answer_join_voice .voice_bg_box{border-top: 0.2rem solid #F4F4F7;padding-top: 0.3rem;padding-left: 0.3rem;color:#454B54;}
     .voice_bg_box h3{font-size: 0.3rem;line-height: 0.42rem;margin-bottom: 0.06rem;}
     .voice_bg_box ul{padding-left: 0.1rem;}
-    .voice_bg_box li{line-height: 1.08rem;border-bottom: 0.02rem solid #eee;font-size: 0.28rem;}
-    .voice_bg_box img{width:0.6rem;height:0.6rem;margin-right: 0.24rem;display: inline-block;vertical-align: middle}
+    .voice_bg_box li{line-height: 1.08rem;border-bottom: 0.02rem solid #eee;font-size: 0.28rem;position: relative}
+    .voice_bg_box .bgmImg{width:0.6rem;height:0.6rem;margin-right: 0.24rem;display: inline-block;vertical-align: middle}
+    .voice_bg_box .checkedImg{width:0.46rem;height:0.3rem;position: absolute;right:0.6rem;top:50%;margin-top: -0.23rem;}
     .voice_bg_box .compose_btn{line-height: 0.88rem;text-align: center;color:#fff;font-size: 0.36rem;background: #56C4FE;border-radius: 0.1rem;margin:0.6rem 0.3rem 0.3rem 0}
     .answer_join_voice{ width: 100%; overflow-x: hidden}
     .answer_join_voice .voice_placeholder{
