@@ -168,8 +168,10 @@
                             voiceLength:_this.voiceLength,
                             voiceBgmId:_this.voiceBgmId
                         };
+                        console.log(data)
                         xqzs.api.post(_this, url,data,function (bt) {
                             //成功
+
                             if(bt.body.status==1){
                                 _this.$router.go(-1)
                             }
