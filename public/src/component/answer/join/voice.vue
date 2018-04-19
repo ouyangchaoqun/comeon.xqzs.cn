@@ -170,10 +170,8 @@
                     xqzs.api.post(_this, url,data,function (bt) {
                         //成功
                         console.log(bt)
-                        if(bt.data.status==1){
-                            console.log('上传成功')
-                        }
-                        _this.$router.go(-1)
+                        console.log(data)
+
 
                     },function () {
                         //失败
@@ -181,7 +179,8 @@
                     })
                 }else{
                     //注册
-                    _this.$router.go(-1)
+                   console.log('首次注册')
+                    //_this.$router.go(-1)
                 }
 
 
