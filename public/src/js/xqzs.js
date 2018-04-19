@@ -700,6 +700,7 @@ var xqzs = {
 
         },
         play: function (url,url_bg) {
+            console.log('xqzs-voice-play')
             if(xqzs.voice.audio==null){
                 xqzs.voice.audio=document.createElement("audio");
             }
@@ -727,7 +728,7 @@ var xqzs = {
             if(xqzs.voice.audio_bg!=null){
                 if (url_bg && url_bg != '') {
                     xqzs.voice.audio_bg.autobuffer = true;
-                    xqzs.voice.audio_bg.src = url;//路径
+                    xqzs.voice.audio_bg.src = url_bg;//路径
                     xqzs.voice.audio_bg.preload="auto";
                     xqzs.voice.audio_bg.load();
                     xqzs.voice.audio_bg.play();
