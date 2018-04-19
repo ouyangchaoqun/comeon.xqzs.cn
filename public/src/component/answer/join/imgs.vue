@@ -99,11 +99,7 @@
                     console.info('删除图片');
 
             },
-            //关闭蒙层
-            hideAction:function () {
-                this.activeFlag = false
-                this.maskFlag = false
-            },
+
             //判断加载中
             _fillloadingpic:function (id,data) {
                 id = 'up_loading_'+id;
