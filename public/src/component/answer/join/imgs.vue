@@ -126,7 +126,7 @@
                 let _this=this;
                 var List=[]
                 for(var i=0;i<_this.pictures.length;i++){
-                    List[i].id=_this.pictures[i].image.id;
+                    List.push(_this.pictures[i].image.id)
                 }
 
                 console.log(List)
