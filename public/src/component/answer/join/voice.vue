@@ -24,7 +24,7 @@
 
 
 
-        <div class="addPlayBox" v-if="preAnswer&&!finish&&!showBgm">  <!-- -->
+        <div class="addPlayBox" v-if="!finish&&!showBgm">  <!--preAnswer&& -->
 
             <!--操作按钮-->
 
@@ -79,7 +79,7 @@
             <div class="voice_bg_box" v-if="showBgm">
                 <h3>选择背景音乐</h3>
                 <ul>
-                    <li v-for="item in bgmList" @click="composeBgm(item.id)">
+                    <li v-for="item in bgmList" @click="composeBgm(item.path)">
                         <img :src="item.pic" alt="">{{item.title}}
                     </li>
 
@@ -133,22 +133,24 @@
                //error
               })
             },
-            composeBgm:function (bgmId) {
+            composeBgm:function (bgmUrl) {
                 let _this = this;
-                console.log(_this.localId)
-                console.log(bgmId)
-                let data = {
-                    bgmId:bgmId,
-                    localId:_this.localId
-                }
-                xqzs.api.post(_this, 'come/expert/voice/compose',data,function (bt) {
-                    //成功
-                    console.log('上传  去 合成')
-                    //获取合成的音频路径  composeBgmId
-                },function () {
-                    //失败
-                    console.log('上传失败')
-                })
+                console.log(_this.localId);
+                console.log(bgmUrl);
+                xqzs.voice.play(_this.localId)
+                xqzs.voice.play(bgmUrl)
+//                let data = {
+//                    bgmId:bgmId,
+//                    localId:_this.localId
+//                }
+//                xqzs.api.post(_this, 'come/expert/voice/compose',data,function (bt) {
+//                    //成功
+//                    console.log('上传  去 合成')
+//                    //获取合成的音频路径  composeBgmId
+//                },function () {
+//                    //失败
+//                    console.log('上传失败')
+//                })
             },
             //上传合成音频
             subComposeBgm:function () {
@@ -489,14 +491,14 @@
     .answer_join_voice   .audio_send:before{ background:url(http://oss.xqzs.cn/resources/psy/audio_btn_send.png)  no-repeat; background-size:  0.46rem; width:0.50rem;; height:0.48rem;  margin-left: -0.25rem; margin-top: -0.24rem;   }
     .answer_join_voice   .audio_cant_begin:before{ background:url(http://oss.xqzs.cn/resources/psy/audio_btn_cant_begin.png)  no-repeat; background-size:  0.46rem; width:0.46rem;; height: 0.64rem;  margin-left: -0.23rem; margin-top: -0.32rem;  }
     .answer_join_voice .addPlayBox{position: absolute;bottom:0.5rem;width:100%;z-index: 10}
-    .answer_join_voice  .record_voice_box{top:58%;position: absolute;width:100%;margin:0;background: #fff;padding-bottom: 0.4rem;height: auto}
+    .answer_join_voice  .record_voice_box{top:55%;position: absolute;width:100%;margin:0;background: #fff;padding-bottom: 0.4rem;height: auto}
     .answer_join_voice .voice_needMusic{padding-bottom:0;animation: heightChange 1s ease forwards}
     .answer_join_voice .record_voice_box .circle{margin-bottom: 0.4rem;}
     .answer_join_voice .record_voice_box .tip{margin-bottom: 0.4rem;}
     .answer_join_voice .record_voice_box .circle{z-index: 1000}
 
     @keyframes heightChange{
-        from{top:58%;}
+        from{top:55%;}
         to{top:0;}
     }
 </style>
