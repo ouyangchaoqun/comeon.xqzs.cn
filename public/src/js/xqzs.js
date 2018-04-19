@@ -903,7 +903,7 @@ var xqzs = {
 
         },
         takePhotos: function (sourceType, maxCount, $uploadpicinfo, $alioss, beforeUploadFun, finishUploadFun, errorFun) { //拍照
-            let _this=this;
+            var _this=this;
             if (typeof(sourceType) === "string") {
                 sourceType = [sourceType];
             }
