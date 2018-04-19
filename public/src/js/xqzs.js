@@ -690,6 +690,7 @@ var xqzs = {
 
     voice: {
         audio:null,
+        audio_bg:null,
         listenEnded:function () {
             xqzs.voice.audio.addEventListener('ended', function () {
                 xqzs.voice.onEnded()
@@ -698,9 +699,12 @@ var xqzs = {
         onEnded:function () {
 
         },
-        play: function (url) {
+        play: function (url,url_bg) {
             if(xqzs.voice.audio==null){
                 xqzs.voice.audio=document.createElement("audio");
+            }
+            if(xqzs.voice.audio_bg==null){
+                xqzs.voice.audio_bg=document.createElement("audio");
             }
             if(xqzs.voice.audio!=null){
                 console.log('xqzs-voice-play')
@@ -720,11 +724,31 @@ var xqzs = {
                 }
                 xqzs.voice.listenEnded()
             }
+            if(xqzs.voice.audio_bg!=null){
+                if (url_bg && url_bg != '') {
+                    xqzs.voice.audio_bg.autobuffer = true;
+                    xqzs.voice.audio_bg.src = url;//路径
+                    xqzs.voice.audio_bg.preload="auto";
+                    xqzs.voice.audio_bg.load();
+                    xqzs.voice.audio_bg.play();
+                    document.addEventListener("WeixinJSBridgeReady", function () {
+                        xqzs.voice.audio_bg.play();
+                    }, false);
+
+                } else {
+                    if (xqzs.voice.audio_bg && xqzs.voice.audio_bg.paused)
+                        xqzs.voice.audio_bg.play()
+                }
+                xqzs.voice.listenEnded()
+            }
         },
         pause: function () {
             console.log('xqzs-voice-pause')
             if (xqzs.voice.audio && xqzs.voice.audio != null) {
                 xqzs.voice.audio.pause()
+            }
+            if (xqzs.voice.audio_bg && xqzs.voice.audio_bg != null) {
+                xqzs.voice.audio_bg.pause()
             }
         },
         getAnswerVoice:function (answerId,callFun) {
