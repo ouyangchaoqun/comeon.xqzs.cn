@@ -699,13 +699,17 @@ var xqzs = {
         onEnded:function () {
 
         },
-        play: function (url) {
-            console.log('xqzs-voice-play')
+        play: function (url,url_bg) {
+
             if(xqzs.voice.audio==null){
                 xqzs.voice.audio=document.createElement("audio");
             }
+            if(xqzs.voice.audio_bg==null){
+                xqzs.voice.audio_bg=document.createElement("audio");
+            }
             if(xqzs.voice.audio!=null){
-                if (url && url != '') {
+                if (url && url != ''&&url!=null) {
+                    console.log('播放')
                     xqzs.voice.audio.autobuffer = true;
                     xqzs.voice.audio.src = url;//路径
                     xqzs.voice.audio.preload="auto";
@@ -716,16 +720,51 @@ var xqzs = {
                     }, false);
 
                 } else {
-                    if (xqzs.voice.audio && xqzs.voice.audio.paused)
-                        xqzs.voice.audio.play()
+                    console.log('audio暂停中播放')
+                    if (xqzs.voice.audio && xqzs.voice.audio.pauseding==true){
+
+                        xqzs.voice.audio.play();
+
+                        xqzs.voice.audio.pauseding = false;
+                    }
+                }
+                xqzs.voice.listenEnded()
+            }
+
+            if(xqzs.voice.audio_bg!=null){
+                if (url_bg && url_bg != '') {
+                    xqzs.voice.audio_bg.autobuffer = true;
+                    xqzs.voice.audio_bg.src = url_bg;//路径
+                    xqzs.voice.audio_bg.preload="auto";
+                    xqzs.voice.audio_bg.load();
+                    xqzs.voice.audio_bg.play();
+                    xqzs.voice.audio_bg.volume=0.2;
+                    document.addEventListener("WeixinJSBridgeReady", function () {
+                        xqzs.voice.audio_bg.play();
+                    }, false);
+
+                    } else {
+                        console.log('audio_bg暂停中播放')
+                        if (xqzs.voice.audio_bg && xqzs.voice.audio_bg.pauseding){
+                            xqzs.voice.audio_bg.play();
+                            xqzs.voice.audio_bg.pauseding = false;
+                        }
                 }
                 xqzs.voice.listenEnded()
             }
         },
         pause: function () {
-            console.log('xqzs-voice-pause')
+            console.log('暂停')
             if (xqzs.voice.audio && xqzs.voice.audio != null) {
+                xqzs.voice.audio.pauseding = true;
                 xqzs.voice.audio.pause()
+
+
+            }
+            if (xqzs.voice.audio_bg && xqzs.voice.audio_bg != null ) {
+                xqzs.voice.audio_bg.pauseding  = true;
+                xqzs.voice.audio_bg.pause()
+
             }
         },
         getAnswerVoice:function (answerId,callFun) {

@@ -10,8 +10,8 @@
                 <div class="answer_banner">
                     <div class="answer_face">
                         <img class="expert_faceImg" :src="resizeImg(detail.faceUrl)">
-                        <div class="expert_top_voice">
-                            <div :class="{expert_top_voice_play:true}"></div>
+                        <div class="expert_top_voice" @click="playVoice()">
+                            <div :class="{expert_top_voice_play:voice_isPlay}"></div>
                         </div>
                     </div>
                     <div class="answer_name">{{detail.nickName}}</div>
@@ -266,7 +266,9 @@
                 couponList:[],
                 isMe:"",
                 isShare:false,
-                currPlayIndex:null
+                currPlayIndex:null,
+                voice_isPlay:false,
+                isFirst_play:true
             }
         },
         props:{
@@ -331,7 +333,35 @@
                     return v
                 }
             },
+            playVoice:function () {
+               // detail.voicePath,null
+                if(this.isFirst_play&&!this.voice_isPlay){
+                    console.log('第一次播.....')
+                    xqzs.voice.play(this.detail.voicePath,this.detail.voiceBgmPath)
+                    this.isFirst_play = false
+                }else{
+                    if(!this.isFirst_play&&this.voice_isPlay){
+                        console.log('第一次播///----暂停')
+                        xqzs.voice.pause()
+                    }else{
+                        xqzs.voice.play()
+                        console.log('///----继续播放')
+                    }
+                }
 
+
+//                if(this.voice_isPlay){
+//                    xqzs.voice.pause()
+//                }else{
+//                    xqzs.voice.play(url,url_bg)
+//                    console.log("urlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurl")
+//                    console.log(url)
+//                    console.log(url_bg)
+//                }
+                this.voice_isPlay = !this.voice_isPlay;
+
+
+            },
             hideMask:function (index) {
                 let _this = this;
                 let answerList = _this.answerList;
@@ -516,8 +546,7 @@
 
             //回答播放
             pause:function (index) {
-                console.log('暂停')
-                console.log(index)
+
                 let  _this=this;
                 _this.clearTimeOut();
                 let list = _this.answerList;
@@ -815,13 +844,12 @@
                         });
                     }
                 })
-            },
-            beforeDestroy:function () {
-                xqzs.voice.pause();
-            },
+            }
         },
         beforeDestroy:function () {
             xqzs.voice.pause();
+
+
         }
 
 

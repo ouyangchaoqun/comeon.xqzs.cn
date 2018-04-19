@@ -117,7 +117,7 @@
                 MIN_VOICE_LENGTH:10,
                 edit:'',
                 bgmList:[],
-                voiceBgmId:''
+                voiceBgmId:0
             }
         },
 
