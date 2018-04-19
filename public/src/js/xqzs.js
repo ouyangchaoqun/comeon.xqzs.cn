@@ -940,10 +940,7 @@ var xqzs = {
                     var localIds = res.localIds;
                     // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
                     beforeUploadFun(localIds.length);
-                    console.log("localIds.length");
-                    console.log(localIds.length);
                     for (var i = 0; i < localIds.length; i++) {
-                        console.log("localIds:" + i)
                         _this.getLocalImgData(localIds,i,$uploadpicinfo, $alioss, finishUploadFun, errorFun)
 
                     }
@@ -955,17 +952,13 @@ var xqzs = {
             wx.getLocalImgData({  // 拿到本地图片
                 localId: currLocalId, // 图片的localID
                 success: function (res) {
-                    console.log("success")
-                    console.log(res)
                     var localData = res.localData; // localData是图片的base64数据，可以用img标签显示
                     if (localData.indexOf(";base64,") > 0) {
                         localData.replace('jgp', 'jpeg');
                     } else {
                         localData = "data:image/jpeg;base64," + localData;
                     }
-                    console.log("finish")
                     xqzs.oss.uploadPicture($uploadpicinfo, $alioss, {base64: localData}, function (json,ix) {
-                        console.log(ix)
                         finishUploadFun(json,ix)
                     }, errorFun, i);
                 }

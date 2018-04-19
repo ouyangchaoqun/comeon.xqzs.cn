@@ -31,10 +31,7 @@
     export default {
         data() {
             return {
-                pictures: [{isloading: true, id: 1},
-                    {isloading: true, id: 2},
-                    {isloading: true, id: 3}, {isloading: true, id: 4},
-                ],
+                pictures: [],
                 maxPhotoCount: 5,
                 alioss: null,//optionFrist end
                 uploadpicinfo: {
@@ -139,7 +136,7 @@
                 url: this.uploadpicinfo.aliossgeturl,
                 token: this.uploadpicinfo.token
             });
-//            this.pictures=[];
+            this.pictures=[];
 
 
             //加载咨询师图片
