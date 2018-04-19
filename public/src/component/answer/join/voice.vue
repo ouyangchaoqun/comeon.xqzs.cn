@@ -139,7 +139,7 @@
                 console.log(bgmUrl);
 
                 _this.play()
-               xqzs.voice.play('',bgmUrl)
+               xqzs.voice.play(bgmUrl)
 //                let data = {
 //                    bgmId:bgmId,
 //                    localId:_this.localId
