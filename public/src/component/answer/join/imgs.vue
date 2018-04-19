@@ -47,6 +47,9 @@
         props: {
             user:{
                 type:Object
+            },
+            expert:{
+                type:Object
             }
         },
 
@@ -156,7 +159,7 @@
                 token: this.uploadpicinfo.token
             });
             this.pictures=[];
-
+            console.log(this.expert)
 
             //加载咨询师图片
 
@@ -224,7 +227,7 @@
     }
 
     /*.item-up-btn{text-align: center;padding-top: 0.26rem;height: 1.34rem}*/
-    .weui-loading {
+    .imgs_box  .item .weui-loading {
         width: 0.60rem;
         height: 0.60rem;
         left: 50%;
