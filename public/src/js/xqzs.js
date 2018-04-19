@@ -913,9 +913,10 @@ var xqzs = {
                 sourceType: sourceType, // 可以指定来源是相册还是相机，默认二者都有
                 success: function (res) {
                     var localIds = res.localIds;
-                    console.log(res.localIds);
                     // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
                     beforeUploadFun(localIds.length);
+                    console.log("localIds.length");
+                    console.log(localIds.length);
                     for (var i = 0; i < localIds.length; i++) {
                         console.log("localIds:"+i)
                         (function (ix, mylocalIds) {
