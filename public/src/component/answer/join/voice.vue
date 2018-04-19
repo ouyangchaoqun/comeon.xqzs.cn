@@ -24,7 +24,7 @@
 
 
 
-        <div class="addPlayBox" v-if="preAnswer&&!finish&&!showBgm">  <!-- -->
+        <div class="addPlayBox" v-if="!finish&&!showBgm">  <!--preAnswer&& -->
 
             <!--操作按钮-->
 
@@ -139,18 +139,18 @@
                 console.log(bgmUrl);
                 xqzs.voice.play(_this.localId)
                 xqzs.voice.play(bgmUrl)
-                let data = {
-                    bgmId:bgmId,
-                    localId:_this.localId
-                }
-                xqzs.api.post(_this, 'come/expert/voice/compose',data,function (bt) {
-                    //成功
-                    console.log('上传  去 合成')
-                    //获取合成的音频路径  composeBgmId
-                },function () {
-                    //失败
-                    console.log('上传失败')
-                })
+//                let data = {
+//                    bgmId:bgmId,
+//                    localId:_this.localId
+//                }
+//                xqzs.api.post(_this, 'come/expert/voice/compose',data,function (bt) {
+//                    //成功
+//                    console.log('上传  去 合成')
+//                    //获取合成的音频路径  composeBgmId
+//                },function () {
+//                    //失败
+//                    console.log('上传失败')
+//                })
             },
             //上传合成音频
             subComposeBgm:function () {
