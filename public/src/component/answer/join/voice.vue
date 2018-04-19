@@ -24,7 +24,7 @@
 
 
 
-        <div class="addPlayBox" v-if="!finish&&!showBgm">  <!--preAnswer&& -->
+        <div class="addPlayBox" v-if="preAnswer&&!finish&&!showBgm">  <!-- -->
 
             <!--操作按钮-->
 
