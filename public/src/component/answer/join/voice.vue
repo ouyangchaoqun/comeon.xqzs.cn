@@ -137,7 +137,9 @@
                 let _this = this;
                 console.log(_this.localId);
                 console.log(bgmUrl);
-               xqzs.voice.play(_this.localId,bgmUrl)
+
+                _this.play()
+               xqzs.voice.play('',bgmUrl)
 //                let data = {
 //                    bgmId:bgmId,
 //                    localId:_this.localId
