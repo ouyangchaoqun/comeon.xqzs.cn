@@ -934,6 +934,7 @@ var xqzs = {
                                 }
                                 console.log("finish")
                                 xqzs.oss.uploadPicture($uploadpicinfo, $alioss, {base64: localData}, function (json,ix) {
+                                    console.log(ix)
                                     finishUploadFun(json,ix)
                                 }, errorFun, i);
                             }
@@ -1041,7 +1042,7 @@ var xqzs = {
         /**
          * 上传base64编码
          */
-        _uploadBase64: function ($uploadpicinfo, rst, callback, error) {
+        _uploadBase64: function ($uploadpicinfo, rst, callback, error,ix) {
 
             error();
             return;
@@ -1053,11 +1054,11 @@ var xqzs = {
                 dataType: 'json',
                 error: function (data, status, e) {
                     if (typeof error == 'function') {
-                        error(e);
+                        error(e,ix);
                     }
                 },
                 success: function (json) {
-                    callback(json);
+                    callback(json,ix);
                 }
             })
         },
@@ -1082,10 +1083,13 @@ var xqzs = {
                     contentType: false,
                     dataType: 'JSON',
                     success: function (json) {
+                        console.log("直传OSS直传OSS直传OSS直传OSS直传OSS")
+                        console.log(ix)
                         callback(json, ix);
                     },
                     error: function (data, status, e) {
                         if (typeof error == 'function') {
+
                             error(e, ix);
                         }
                     }
