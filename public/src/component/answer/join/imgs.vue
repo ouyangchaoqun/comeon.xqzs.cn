@@ -4,11 +4,11 @@
         <div class="joinSet_top">
             <div class="joinSet_cancel" @click="backStep()">取消</div>
             <div class="joinSet_sure sure_nor" v-if="checkedIndex<0">确定</div>
-            <div class="joinSet_sure" @click="setFreeTime()">确定</div>
+            <div class="joinSet_sure" @click="setImgs()">确定</div>
         </div>
-            <div class="tips">传五张照片</div>
+            <div class="tips">工作照,会议照,证书照,学习照……（最多可上传5张）</div>
 
-        <div  class="swiper-container edit_lists" style="height:280px;">
+        <div  class="swiper-container edit_lists" style="height:280px; padding: 0 0.3rem">
             <div class="swiper-wrapper">
                 <div class="swiper-slidetrue" ><!--optionFrist-->
                     <div class="optionFrist_box">
@@ -120,6 +120,12 @@
                     console.info(e);
                 })
             },
+            backStep:function () {
+                this.$router.go(-1);
+            },
+            setImgs:function () {
+
+            }
 
         },
 
@@ -137,7 +143,7 @@
                 token:this.uploadpicinfo.token
             });
             this.pictures=[];
-
+            
 
             //加载咨询师图片
 
@@ -189,7 +195,7 @@
     }
 
     .upload-images .item {
-        margin-top: 0;
+        margin-top: 0.2rem;
         margin-right: 0.30rem;
     }
 
