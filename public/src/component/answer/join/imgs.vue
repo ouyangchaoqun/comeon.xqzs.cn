@@ -190,7 +190,6 @@
 
     .optionFrist_box {
         position: relative;
-        padding-top: 0.40rem;
         padding-left: 0.46rem;
     }
 
