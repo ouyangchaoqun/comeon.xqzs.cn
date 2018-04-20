@@ -335,6 +335,7 @@
             },
             playVoice:function () {
                // detail.voicePath,null
+
                 if(this.isFirst_play&&!this.voice_isPlay){
                     console.log('第一次播.....')
                     xqzs.voice.play(this.detail.voicePath,this.detail.voiceBgmPath)
@@ -349,18 +350,13 @@
                     }
                 }
 
-
-//                if(this.voice_isPlay){
-//                    xqzs.voice.pause()
-//                }else{
-//                    xqzs.voice.play(url,url_bg)
-//                    console.log("urlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurlurl")
-//                    console.log(url)
-//                    console.log(url_bg)
-//                }
                 this.voice_isPlay = !this.voice_isPlay;
-
-
+                let _this = this;
+                xqzs.voice.onEnded=function () {
+                    xqzs.voice.pause();
+                    _this.voice_isPlay = false;
+                    console.log('播放完毕'+_this.voice_isPlay)
+                }
             },
             hideMask:function (index) {
                 let _this = this;

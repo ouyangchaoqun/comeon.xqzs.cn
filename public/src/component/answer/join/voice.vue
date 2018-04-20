@@ -145,7 +145,8 @@
                     _this.bgmList[i].is_checked = false
                 }
                 _this.bgmList[index].is_checked = true;
-                _this.$set(_this.bgmList,index,_this.bgmList[index])
+                _this.$set(_this.bgmList,index,_this.bgmList[index]);
+                xqzs.wx.voice.pausePlay(_this.localId);
                xqzs.voice.play(bgmUrl)
             },
             //上传合成音频
@@ -155,7 +156,6 @@
                 //发送合成音音频到微信服务器并获取serverId
                 xqzs.wx.voice.upload(_this.localId,function (serverId) {
                     _this.serviceId = serverId;
-                    console.log(_this.serviceId+'*************')
                     cookie.set('voiceLength',_this.voiceLength,1)
                     cookie.set('serverId',_this.serverId,1)
                     if(_this.edit==1){
