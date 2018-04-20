@@ -241,6 +241,7 @@
             start:function () {
 
 //                开始录制
+                console.log('开始录制start')
                 let _this=this;
                 _this.vPaused=true;
                 _this.vPlaying=false;
@@ -259,6 +260,7 @@
             },
             play:function () {//试听
                 let _this = this;
+                console.log('试听or暂停')
                 if(this.playing){  //在播放中则暂停
                     if(_this.localId!=null) {
                         _this.clearTimeOut();
@@ -288,8 +290,7 @@
             },
             stop:function () { //停止录制
                 let _this = this;
-
-
+                console.log('停止录制stop')
                 xqzs.wx.voice.stopRecord(function (localId) {
                     if (localId){
                         _this.localId = localId;
