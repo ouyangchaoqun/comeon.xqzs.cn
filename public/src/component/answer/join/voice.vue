@@ -121,6 +121,7 @@
             },
             composeBgm:function (bgmUrl,index,bgmId) {
                 let _this = this;
+                myVideo.obj.click();
                 _this.voiceBgmId = bgmId;
                 cookie.get('voiceBgmId',bgmId,1)
                 for(let i=0;i<_this.bgmList.length;i++){
@@ -130,8 +131,7 @@
                 _this.$set(_this.bgmList,index,_this.bgmList[index]);
 
                xqzs.voice.play(bgmUrl);
-                myVideo.obj.click();
-                _this.play();
+
             },
             //上传合成音频
             subComposeBgm:function () {
