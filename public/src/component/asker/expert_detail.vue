@@ -280,6 +280,7 @@
         activated: function () {
 
             this.page=1;
+            this.voice_isPlay=false;
             this.commentList=[];
             this.answerList=[];
             this.isPageEnd=false;
@@ -818,7 +819,7 @@
         },
         beforeDestroy:function () {
             xqzs.voice.pause();
-            this.voice_isPlay=false;
+
         }
 
 
