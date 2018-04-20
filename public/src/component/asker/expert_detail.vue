@@ -818,8 +818,7 @@
         },
         beforeDestroy:function () {
             xqzs.voice.pause();
-
-
+            this.voice_isPlay=false;
         }
 
 
