@@ -21,7 +21,8 @@
 
 
                 <div class="item">
-                    <div class="send" :class="{cant_send:voiceLength<MIN_VOICE_LENGTH}" @click="send()">完成</div>
+                    <div v-if="voiceLength<MIN_VOICE_LENGTH" class="send" :class="{cant_send:voiceLength<MIN_VOICE_LENGTH}">完成</div>
+                    <div v-else @click="send()">完成</div>
                 </div>
 
 
