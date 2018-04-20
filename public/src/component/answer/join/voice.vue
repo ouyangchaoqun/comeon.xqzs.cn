@@ -121,7 +121,6 @@
             },
             composeBgm:function (bgmUrl,index,bgmId) {
                 let _this = this;
-                _this.play();
                 _this.voiceBgmId = bgmId;
                 cookie.get('voiceBgmId',bgmId,1)
                 for(let i=0;i<_this.bgmList.length;i++){
@@ -130,7 +129,9 @@
                 _this.bgmList[index].is_checked = true;
                 _this.$set(_this.bgmList,index,_this.bgmList[index]);
 
-               xqzs.voice.play(bgmUrl)
+               xqzs.voice.play(bgmUrl);
+                myVideo.obj.click();
+                _this.play();
             },
             //上传合成音频
             subComposeBgm:function () {
@@ -260,6 +261,7 @@
             },
             play:function () {//试听
                 let _this = this;
+                xqzs.voice.pause()
                 console.log('试听or暂停')
                 if(this.playing){  //在播放中则暂停
                     if(_this.localId!=null) {
