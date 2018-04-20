@@ -7,23 +7,6 @@
             <div>例子1： 我是好一点心理咨询师：xxx,是国家二级咨询师，从事 心理咨询行业十五年，帮助过上千人走出困境。我个人 比较擅长：个人成长、情感困惑、婚姻家庭这三方面的 辅导，（额外可加自身的成就或者自己的一段座右铭… …）</div>
             <div>例子2： 人生，也许就是一场繁芜，一世轮回，一怀禅意。有的 人只能擦肩而过，有的人却可以蓦然回首。 其实，生命就是一次探寻的旅程，只有先读懂自己，才 会明了自己想要的人生。让我和你一起去探索吧！我是 好一点咨询咨询师：XX。 </div>
         </div>
-
-
-
-        <!--<div class="audio" :class="{playing:vPlaying,paused:vPaused}" v-if="finish" >-->
-            <!--<div class="audio_btn" @click.stop="playV()" >-->
-                <!--<template v-if="!vPlaying&&!vPaused">点击播放</template>-->
-                <!--<template v-if="vPlaying">正在播放..</template>-->
-                <!--<template v-if="vPaused">播放暂停</template>-->
-                <!--<div class="second">{{voiceLength}}”</div>-->
-            <!--</div>-->
-
-            <!--<div class="clear"></div>-->
-        <!--</div>-->
-
-
-
-
         <div class="addPlayBox" v-if="preAnswer&&!finish&&!showBgm">  <!-- -->
 
             <!--操作按钮-->
@@ -44,7 +27,7 @@
 
             </div>
         </div>
-        <div class="record_voice_box" :class="{voice_needMusic:showBgm}"> <!--v-if="!finish"-->
+        <div class="record_voice_box" :class="{voice_needMusic:showBgm}">
             <div class="time_in">
                 <div>{{answerTime}}"</div>
 
@@ -148,6 +131,7 @@
                 _this.$set(_this.bgmList,index,_this.bgmList[index]);
                 _this.clearTimeOut();
                 xqzs.wx.voice.pausePlay(_this.localId);
+                myVideo.config({obj:$('.circle')}).init(_this.start,_this.stop,_this.play,_this.play);
                xqzs.voice.play(bgmUrl)
             },
             //上传合成音频
@@ -357,23 +341,23 @@
             _this.getBgmList()
             myVideo.config({obj:$('.circle')}).init(_this.start,_this.stop,_this.play,_this.play);
         },
-        activated:function () {
-            this.answering2 = false;
-            this.preAnswer = false;
-            this.playing = false;
-            this.answerTime = "00";
-            this.timeOut = null;
-            this.finish = false;
-            this.edit= this.$route.query.edit;
-            this.vPlaying = false;
-            this.vPaused = false;
-            this.localId = null;
-            this.serviceId = null;
-            this.voiceLength = 0;
-            this.MIN_VOICE_LENGTH = 10;
-            this.clearTimeOut();
-
-        },
+//        activated:function () {
+//            this.answering2 = false;
+//            this.preAnswer = false;
+//            this.playing = false;
+//            this.answerTime = "00";
+//            this.timeOut = null;
+//            this.finish = false;
+//            this.edit= this.$route.query.edit;
+//            this.vPlaying = false;
+//            this.vPaused = false;
+//            this.localId = null;
+//            this.serviceId = null;
+//            this.voiceLength = 0;
+//            this.MIN_VOICE_LENGTH = 10;
+//            this.clearTimeOut();
+//
+//        },
         components: {
             "v-answer-top-step": answerTopStep
         },
