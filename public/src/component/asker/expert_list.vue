@@ -341,13 +341,15 @@
                     xqzs.voice.play();
                 }else{
                     if(item.playing){    //播放中去做暂停操作
-                        console.log(2)
+                        console.log('play---暂停')
                         item.paused=true;
                         item.playing=false;
                         _this.$set(_this.list,index,item)
                         xqzs.voice.pause();
                     }else{     //重新打开播放
                         if(item.voicePath!=null){
+                            console.log(item.voicePath);
+                            console.log(item.voiceBgmPath)
                             xqzs.voice.play(item.voicePath,item.voiceBgmPath);
                             item.playing=true;
                             item.paused=false;

@@ -704,12 +704,12 @@ var xqzs = {
             if(xqzs.voice.audio==null){
                 xqzs.voice.audio=document.createElement("audio");
             }
-            if(xqzs.voice.audio_bg==null){
+            if(xqzs.voice.audio_bg==null&&url_bg!=null){
                 xqzs.voice.audio_bg=document.createElement("audio");
             }
             if(xqzs.voice.audio!=null){
                 if (url && url != ''&&url!=null) {
-                    console.log('播放')
+                    console.log('audio----play')
                     xqzs.voice.audio.autobuffer = true;
                     xqzs.voice.audio.src = url;//路径
                     xqzs.voice.audio.preload="auto";
@@ -731,8 +731,9 @@ var xqzs = {
                 xqzs.voice.listenEnded()
             }
 
-            if(xqzs.voice.audio_bg!=null){
+            if(xqzs.voice.audio_bg!=null&&url_bg!=null){
                 if (url_bg && url_bg != '') {
+                    console.log('audio_bg----play')
                     xqzs.voice.audio_bg.autobuffer = true;
                     xqzs.voice.audio_bg.src = url_bg;//路径
                     xqzs.voice.audio_bg.preload="auto";
@@ -754,14 +755,14 @@ var xqzs = {
             }
         },
         pause: function () {
-            console.log('暂停')
-            if (xqzs.voice.audio && xqzs.voice.audio != null) {
+            console.log('xqzs---暂停')
+            if (xqzs.voice.pause && xqzs.voice.audio != null) {
+                console.log('pause--audio***')
                 xqzs.voice.audio.pauseding = true;
                 xqzs.voice.audio.pause()
-
-
             }
             if (xqzs.voice.audio_bg && xqzs.voice.audio_bg != null ) {
+                console.log('pause--audio_bg***')
                 xqzs.voice.audio_bg.pauseding  = true;
                 xqzs.voice.audio_bg.pause()
 
