@@ -14,7 +14,7 @@
             <div class="action_btn" >
 
                 <div class="item" >
-                    <div class="re_start" @click="reStart()">重录</div>
+                    <div class="re_start" :class="{re_start_per:voiceLength<MIN_VOICE_LENGTH}" @click="reStart()">重录</div>
                 </div>
                 <div class="item" style="flex: 2" >
                 </div>
@@ -121,9 +121,12 @@
             },
             composeBgm:function (bgmUrl,index,bgmId) {
                 let _this = this;
+                if(_this.playing){
+                    myVideo.pause();
+                    _this.play();
+                }
                 //myVideo.obj.click();
-                myVideo.pause();
-                _this.play();
+
                 _this.voiceBgmId = bgmId;
                 cookie.get('voiceBgmId',bgmId,1)
                 for(let i=0;i<_this.bgmList.length;i++){
@@ -131,9 +134,7 @@
                 }
                 _this.bgmList[index].is_checked = true;
                 _this.$set(_this.bgmList,index,_this.bgmList[index]);
-
                xqzs.voice.play(bgmUrl);
-
             },
             //上传合成音频
             subComposeBgm:function () {
