@@ -213,7 +213,7 @@
     }
 
     .item-up-btn {
-        margin-top: 0.2rem;
+        margin-top: 0.3rem;
         margin-right: 0.3rem;
     }
 
@@ -224,7 +224,7 @@
     }
 
     .upload-images .item {
-        border: 0.02rem solid #2ca02c;
+        border: 0.02rem solid #eee;
     }
 
     .upload-images .item, .item-up-btn {
