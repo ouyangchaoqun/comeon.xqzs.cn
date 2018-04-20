@@ -123,6 +123,7 @@
                 let _this = this;
                 //myVideo.obj.click();
                 myVideo.pause();
+                _this.play();
                 _this.voiceBgmId = bgmId;
                 cookie.get('voiceBgmId',bgmId,1)
                 for(let i=0;i<_this.bgmList.length;i++){
