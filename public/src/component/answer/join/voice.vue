@@ -129,9 +129,7 @@
                 }
                 _this.bgmList[index].is_checked = true;
                 _this.$set(_this.bgmList,index,_this.bgmList[index]);
-                _this.clearTimeOut();
-                xqzs.wx.voice.pausePlay(_this.localId);
-                myVideo.config({obj:$('.circle')}).init(_this.start,_this.stop,_this.play,_this.play);
+                _this.play();
                xqzs.voice.play(bgmUrl)
             },
             //上传合成音频
