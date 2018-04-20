@@ -125,9 +125,10 @@
             backStep: function () {
                 this.$router.go(-1);
             },
+
             setImgs: function () {
                 let _this=this;
-                var List=[]
+                var List=[];
                 for(var i=0;i<_this.pictures.length;i++){
                     List.push(_this.pictures[i].image.id)
                 }
@@ -159,10 +160,10 @@
                 url: this.uploadpicinfo.aliossgeturl,
                 token: this.uploadpicinfo.token
             });
-            this.pictures=[];
-            var expert_id=cookie.get("expertId");
-            xqzs.api.get(this,"come/expert/query/detail/for/edit/"+expert_id+"/_userId_",function (res) {
+            let expert_id=cookie.get("expertId");
+                xqzs.api.get(this,"come/expert/query/detail/for/edit/"+expert_id+"/_userId_",function (res) {
                 _this.pictures=res.body.data.pictures;
+                console.log(_this.pictures+'************')
             })
             //加载咨询师图片
 
