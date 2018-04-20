@@ -161,6 +161,7 @@
                 token: this.uploadpicinfo.token
             });
             let expert_id=cookie.get("expertId");
+            console.log(expert_id)
                 xqzs.api.get(this,"come/expert/query/detail/for/edit/"+expert_id+"/_userId_",function (res) {
                 _this.pictures=res.body.data.pictures;
                 console.log(_this.pictures+'************')
