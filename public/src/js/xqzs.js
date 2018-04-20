@@ -702,9 +702,11 @@ var xqzs = {
         play: function (url,url_bg) {
 
             if(xqzs.voice.audio==null){
+                console.log('创建audio')
                 xqzs.voice.audio=document.createElement("audio");
             }
             if(xqzs.voice.audio_bg==null&&url_bg!=null){
+                console.log('创建audio_bg')
                 xqzs.voice.audio_bg=document.createElement("audio");
             }
             if(xqzs.voice.audio!=null){
@@ -752,14 +754,14 @@ var xqzs = {
             }
         },
         pause: function () {
-            console.log('暂停')
+
             if (xqzs.voice.pause && xqzs.voice.audio != null) {
-                console.log('audio暂停')
+                console.log('audio暂停pausepause')
                 xqzs.voice.audio.pauseding = true;
                 xqzs.voice.audio.pause()
             }
             if (xqzs.voice.audio_bg && xqzs.voice.audio_bg != null ) {
-                console.log('audio_bg 暂停')
+
                 xqzs.voice.audio_bg.pauseding  = true;
                 xqzs.voice.audio_bg.pause()
 

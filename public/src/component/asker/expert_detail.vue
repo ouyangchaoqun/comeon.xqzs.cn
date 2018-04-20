@@ -337,7 +337,7 @@
 
                     console.log("首次播放")
                 }else{ //暂停中播放
-                    xqzs.voice.play();
+                    xqzs.voice.play(url,url_bg);
                     this.voice_isPlay=true;
                     console.log("暂停中播放")
                 }
