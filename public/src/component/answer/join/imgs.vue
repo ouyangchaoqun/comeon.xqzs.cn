@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div v-if="pictures.length<5" class="item item-up-btn">
-                <img class="optionAdd" src="//oss.xqzs.cn/resources/mood/tjzp.gif" alt="" @click="showAction()">
+                <div class="optionAdd" @click="showAction()"></div>
             </div>
             <div class="clear"></div>
         </div>
@@ -200,6 +200,9 @@
     .optionAdd {
         height: 1.96rem;
         width: 1.96rem;
+        background: url("http://oss.xqzs.cn/resources/runmini/camon.png") no-repeat center;
+        background-size: 40%;
+        background-color: #EEEEEE;
     }
 
     .upload-images {

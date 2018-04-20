@@ -466,14 +466,14 @@
     .record_voice_box .time_in{ color:#56C4FE ; font-size:0.54rem; text-align: center ; position: absolute  ; top:-2.55rem; width: 100%; padding-left: 0.17rem;}
     .record_voice_box .time_in_tip{ color:#999;font-size: 0.28rem;text-align: center;position: absolute  ; top:-2.38rem;width: 100%;}
     .addPlayBox  .re_start:before{content: ' '; display: block; width: 0.6rem; height: 0.6rem; background: url('http://oss.xqzs.cn/resources/psy/answer/voice_restart_nor.png') no-repeat; background-size: 0.6rem; margin: 0 auto; margin-top: 0.27rem; margin-bottom: 0.17rem;color:#999}
-    .addPlayBox .re_start{ text-align: center;color:#999}
-    .addPlayBox .re_start.re_start_per{color:#56C4FE;}
+    .addPlayBox .re_start{ text-align: center;color:#56C4FE}
+    .addPlayBox .re_start.re_start_per{color:#999;}
     .addPlayBox .re_start.re_start_per:before{ content: ' '; display: block; width: 0.6rem; height: 0.6rem; background: url('http://oss.xqzs.cn/resources/psy/answer/voice_restart_per.png') no-repeat; background-size: 0.6rem; margin: 0 auto; margin-top: 0.27rem; margin-bottom: 0.17rem;}
 
     .addPlayBox .send.cant_send:before{ content: ' '; display: block; width: 0.6rem; height: 0.6rem; background: url('http://oss.xqzs.cn/resources/psy/answer/voice_sub_per.png') no-repeat; background-size: 0.6rem; margin: 0 auto; margin-top: 0.27rem; margin-bottom: 0.17rem;}
     .addPlayBox .send:before{ content: ' '; display: block; width: 0.6rem; height: 0.6rem; background: url('http://oss.xqzs.cn/resources/psy/answer/voice_sub_nor.png') no-repeat; background-size: 0.6rem; margin: 0 auto; margin-top: 0.27rem; margin-bottom: 0.17rem;}
-    .addPlayBox .send.cant_send{ color:#56C4FE}
-    .addPlayBox  .send{  color:#999 }
+    .addPlayBox .send.cant_send{ color:#999}
+    .addPlayBox  .send{  color:#56C4FE }
 
 
 </style>
