@@ -10,7 +10,7 @@
                 <div class="answer_banner">
                     <div class="answer_face">
                         <img class="expert_faceImg" :src="resizeImg(detail.faceUrl)">
-                        <div class="expert_top_voice" @click="playVoice()">
+                        <div class="expert_top_voice" @click="playVoice(detail.voicePath,detail.voiceBgmPath)">
                             <div :class="{expert_top_voice_play:voice_isPlay}"></div>
                         </div>
                     </div>
@@ -268,7 +268,8 @@
                 isShare:false,
                 currPlayIndex:null,
                 voice_isPlay:false,
-                isFirst_play:true
+                isFirst_play:true,
+                AnswerVoice:null
             }
         },
         props:{
@@ -333,29 +334,36 @@
                     return v
                 }
             },
-            playVoice:function () {
+            playVoice:function (url,url_bg) {
                // detail.voicePath,null
 
-                if(this.isFirst_play&&!this.voice_isPlay){
-                    console.log('第一次播.....')
-                    xqzs.voice.play(this.detail.voicePath,this.detail.voiceBgmPath)
-                    this.isFirst_play = false
-                }else{
-                    if(!this.isFirst_play&&this.voice_isPlay){
-                        console.log('第一次播///----暂停')
-                        xqzs.voice.pause()
-                    }else{
-                        xqzs.voice.play()
-                        console.log('///----继续播放')
-                    }
+
+                //处理回答音频
+                if(this.currPlayIndex!=null){
+                    this.stop(this.currPlayIndex);
                 }
 
-                this.voice_isPlay = !this.voice_isPlay;
+                if(this.voice_isPlay){ //播放中暂停
+                    xqzs.voice.pause();
+                    this.voice_isPlay=false;
+                    console.log("播放中暂停")
+                }else if(this.isFirst_play){ //首次播放
+                    xqzs.voice.play(url,url_bg);
+                    this.isFirst_play=false;
+                    this.voice_isPlay=true;
+
+                    console.log("首次播放")
+                }else{ //暂停中播放
+                    xqzs.voice.play();
+                    this.voice_isPlay=true;
+                    console.log("暂停中播放")
+                }
+
+
                 let _this = this;
                 xqzs.voice.onEnded=function () {
                     xqzs.voice.pause();
                     _this.voice_isPlay = false;
-                    console.log('播放完毕'+_this.voice_isPlay)
                 }
             },
             hideMask:function (index) {
@@ -540,23 +548,43 @@
                 this.$set(this.answerList,index,item);
             },
 
+
+
+            //停止回答音乐
+            stop:function (index) {
+                console.log('stopstopstopstop')
+                let list = this.answerList;
+                this.clearTimeOut();
+                list[index].paused = false;
+                list[index].playing = false;
+                this.$set(this.answerList, index, list[index])
+                xqzs.voice.pause();
+            },
+
+
             //回答播放
             pause:function (index) {
-
                 let  _this=this;
                 _this.clearTimeOut();
                 let list = _this.answerList;
                 list[index].paused = true;
                 list[index].playing = false;
-                _this.currPlayIndex = null;
                 _this.$set(_this.answerList, index, list[index])
                 xqzs.voice.pause();
             },
             playAnswer:function (index) {
+                //处理 暂停中已经播放中 咨询师语音
+                if(this.voice_isPlay){
+                    xqzs.voice.pause();
+                }
+                this.isFirst_play=true;
+                this.voice_isPlay=false;
                 let _this=this;
                 let list = _this.answerList;
-
+                xqzs.voice.pause()
+                _this.voice_isPlay = false;
                 xqzs.voice.onEnded=function () {
+                    xqzs.voice.pause();
                     list[index].paused=false;
                     list[index].playing=false;
                     _this.$set(_this.answerList,index,list[index])
@@ -566,16 +594,16 @@
                 //重置其他列表内容
                 for(let i = 0;i<list.length;i++){
                     if(index!=i&&(list[i].playing||list[i].paused)){
+                        xqzs.voice.pause();
                         list[i].paused=false;
                         list[i].playing=false;
                         _this.$set(_this.answerList,i,list[i]);
-                        console.log('重置重置重置')
                     }
                 }
                 let item= _this.answerList[index];
                 let CT= item.ct? item.ct: item.length;
                 let T = item.length;
-                console.log(index)
+                console.log(item.paused)
                 if(item.paused){  //暂停中也就是已经获取到且为当前音频
                     console.log('暂停中 去播放')
                     item.paused=false;
@@ -587,7 +615,6 @@
                     _this.timeout(true,CT,index)
                 }else{
                     if(item.playing){    //播放中去做暂停操作
-                        console.log('播放中 去暂停')
                         item.paused=true;
                         item.playing=false;
                         _this.$set(_this.answerList,index,item);
@@ -595,20 +622,16 @@
                         xqzs.voice.pause();
                         _this.playing = false;
                     }else{     //重新打开播放
-                        xqzs.voice.getAnswerVoice(item.answerId,function (url) {
-                            console.log('播放')
-                            if(url!=null&&url!=undefined&&url!=''){
-                                xqzs.voice.play(url);
-                                item.playing=true;
-                                item.paused=false;
-                                _this.$set(_this.answerList,index,item);
-                                _this.playing = true;
-                                _this.clearTimeOut();
-                                _this.currPlayIndex=index;
-                                _this.timeout(true,T,index)
-                            }
-
-                        })
+                        if(item.voicePath!=null){
+                            xqzs.voice.play(item.voicePath);
+                            _this.currPlayIndex=index;
+                            item.playing=true;
+                            item.paused=false;
+                            _this.$set(_this.answerList,index,item);
+                            _this.clearTimeOut();
+                            _this.timeout(true,T,index)
+                        }
+//
                     }
 
                 }
