@@ -140,6 +140,7 @@
             subComposeBgm:function () {
                 let _this = this;
                 console.log(_this.localId)
+                console.log(_this.edit)
                 //发送合成音音频到微信服务器并获取serverId
                 xqzs.wx.voice.upload(_this.localId,function (serverId) {
                     _this.serviceId = serverId;
@@ -158,7 +159,7 @@
                         console.log(data)
                         xqzs.api.post(_this, url,data,function (bt) {
                             //成功
-
+                            console.log('')
                             if(bt.body.status==1){
                                 _this.$router.go(-1)
                             }
@@ -345,23 +346,23 @@
             _this.getBgmList()
             myVideo.config({obj:$('.circle')}).init(_this.start,_this.stop,_this.play,_this.play);
         },
-//        activated:function () {
-//            this.answering2 = false;
-//            this.preAnswer = false;
-//            this.playing = false;
-//            this.answerTime = "00";
-//            this.timeOut = null;
-//            this.finish = false;
-//            this.edit= this.$route.query.edit;
-//            this.vPlaying = false;
-//            this.vPaused = false;
-//            this.localId = null;
-//            this.serviceId = null;
-//            this.voiceLength = 0;
-//            this.MIN_VOICE_LENGTH = 10;
-//            this.clearTimeOut();
-//
-//        },
+        activated:function () {
+            this.answering2 = false;
+            this.preAnswer = false;
+            this.playing = false;
+            this.answerTime = "00";
+            this.timeOut = null;
+            this.finish = false;
+            this.edit= this.$route.query.edit;
+            this.vPlaying = false;
+            this.vPaused = false;
+            this.localId = null;
+            this.serviceId = null;
+            this.voiceLength = 0;
+            this.MIN_VOICE_LENGTH = 10;
+            this.clearTimeOut();
+
+        },
         components: {
             "v-answer-top-step": answerTopStep
         },
