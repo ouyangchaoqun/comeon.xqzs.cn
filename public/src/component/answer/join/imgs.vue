@@ -177,7 +177,7 @@
 </script>
 <style>
     .imgs_box .tips {
-
+        background: #fff;
         font-size: 0.28rem;
         color: #999;
         text-align: center;
@@ -191,6 +191,8 @@
     .optionFrist_box {
         position: relative;
         padding-left: 0.46rem;
+        background: #fff;
+        padding-bottom: 0.3rem;
     }
 
     .optionFrist_box .optionjt {

@@ -113,7 +113,10 @@
                   console.log(res)
                   if(res.data.status==1){
                       _this.bgmList = res.data.data;
-
+                      let firstBgm_no = {
+                          id:0,title:'无'
+                      }
+                      _this.bgmList.splice(0,0,firstBgm_no);
                   }
               },function () {
                //error
@@ -121,20 +124,22 @@
             },
             composeBgm:function (bgmUrl,index,bgmId) {
                 let _this = this;
+
                 if(_this.playing){
                     myVideo.pause();
                     _this.play();
                 }
-                //myVideo.obj.click();
-
                 _this.voiceBgmId = bgmId;
-                cookie.get('voiceBgmId',bgmId,1)
+                cookie.set('voiceBgmId',bgmId,1)
                 for(let i=0;i<_this.bgmList.length;i++){
                     _this.bgmList[i].is_checked = false
                 }
                 _this.bgmList[index].is_checked = true;
                 _this.$set(_this.bgmList,index,_this.bgmList[index]);
                xqzs.voice.play(bgmUrl);
+                if(index==0){
+                    xqzs.voice.pause();
+                }
             },
             //上传合成音频
             subComposeBgm:function () {

@@ -46,24 +46,6 @@
 
                 </div>
             </div>
-            <!--<div class="answer_voice">-->
-            <!--<div class="ts">{{detail.sign}}</div>-->
-            <!--<div class="voice">-->
-            <!--<span class="hello">您好：</span>-->
-            <!--<div class="problem_answer_yy">-->
-            <!--<div class="audio" :class="{playing:playing2,paused:paused2}">-->
-            <!--<div class="audio_btn" @click.stop="play()">-->
-            <!--<span v-if="!playing2&&!paused2">点击播放</span>-->
-            <!--<span v-if="playing2">正在播放..</span>-->
-            <!--<span v-if="paused2">播放暂停</span>-->
-            <!--<div class="second">{{detail.length}}”</div>-->
-            <!--</div>-->
-            <!--<div class="clear"></div>-->
-            <!--</div>-->
-
-            <!--</div>-->
-            <!--</div>-->
-            <!--</div>-->
             <div class="answer_detail">
                 <div class="answer_title">详细介绍</div>
                 <div class="content" @click="btn_sq()">
@@ -552,7 +534,6 @@
 
             //停止回答音乐
             stop:function (index) {
-                console.log('stopstopstopstop')
                 let list = this.answerList;
                 this.clearTimeOut();
                 list[index].paused = false;
@@ -622,16 +603,18 @@
                         xqzs.voice.pause();
                         _this.playing = false;
                     }else{     //重新打开播放
-                        if(item.voicePath!=null){
-                            xqzs.voice.play(item.voicePath);
-                            _this.currPlayIndex=index;
-                            item.playing=true;
-                            item.paused=false;
-                            _this.$set(_this.answerList,index,item);
-                            _this.clearTimeOut();
-                            _this.timeout(true,T,index)
-                        }
-//
+                        xqzs.voice.getAnswerVoice(item.answerId,function (url) {
+                            if(url!=null&&url!=undefined&&url!=''){
+                                xqzs.voice.play(url);
+                                item.playing=true;
+                                item.paused=false;
+                                _this.$set(_this.answerList,index,item);
+                                _this.clearTimeOut();
+                                _this.currPlayIndex=index;
+                                _this.timeout(true,T,index)
+                            }
+
+                        })
                     }
 
                 }
@@ -677,38 +660,6 @@
                 let _this=this;
                 _this.Hflag = !this.Hflag
             },
-
-//            play:function () {
-//                let _this=this;
-//                xqzs.voice.onEnded=function () {
-//                    _this.paused2=false;
-//                    _this.playing2=false;
-//                };
-//
-//                if(_this.paused2){  //暂停中也就是已经获取到且为当前音频
-//                    _this.paused2=false;
-//                    _this.playing2=true;
-//                    xqzs.voice.play();
-//                    console.log("1")
-//                }else{
-//                    if(_this.playing2){    //播放中去做暂停操作
-//                        _this.paused2=true;
-//                        _this.playing2=false;
-//                        xqzs.voice.pause();
-//                        console.log( _this.playing2)
-//                        console.log("222")
-//                    }else{     //重新打开播放
-//                        xqzs.voice.getExpertVoice(_this.detail.expertId,function (url) {
-//                            xqzs.voice.play(url);
-//                            _this.playing2=true;
-//                            _this.paused2=false;
-//                            console.log("23333")
-//                        })
-//                    }
-//
-//                }
-//
-//            },
             follow:function () {
                 let _this=this;
 
