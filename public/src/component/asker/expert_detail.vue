@@ -1032,11 +1032,10 @@
         padding-left: 0.3rem;
     }
     .answer_detail_box .hot_content{
-        padding-top: 0.05rem;
+        padding-top: 0.06rem;
     }
     .answer_detail_box .imgs_item{
         margin-top: 0.2rem;
-        margin-bottom: 0.2rem;
     }
     .answer_detail_box .answer_count{
         display: flex;
