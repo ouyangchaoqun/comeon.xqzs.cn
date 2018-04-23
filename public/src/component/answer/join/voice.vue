@@ -304,7 +304,7 @@
                     if (localId){
                         _this.localId = localId;
                         xqzs.localdb.set("voice_localId", localId);
-                        xqzs.localdb.set("voice_voiceLength", _this.voiceLength);
+                        xqzs.localdb.set("voice_answerTime", _this.answerTime);
                         console.log(_this.voiceLength+'****************')
                         _this._recordStop();
                     }
@@ -355,7 +355,7 @@
             this.answering2 = false;
             this.preAnswer = false;
             this.playing = false;
-            this.answerTime = xqzs.localdb.get('voice_voiceLength')?xqzs.localdb.get('voice_voiceLength'):"00";
+            this.answerTime = xqzs.localdb.get('voice_answerTime')?xqzs.localdb.get('voice_answerTime'):"00";
             this.timeOut = null;
             this.finish = false;
             this.edit= this.$route.query.edit;
