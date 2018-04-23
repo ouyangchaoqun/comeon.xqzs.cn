@@ -852,7 +852,7 @@
                         _this.imgList=List;
                         _this.$nextTick(function () {
                             _this.imgSwiper = new Swiper('.imgSwiper',{
-                                slidesPerView :2.55,
+                                slidesPerView :2.7,
                                 slidesPerGroup : 1,
                                 speed:500,
                                 observer:true,
