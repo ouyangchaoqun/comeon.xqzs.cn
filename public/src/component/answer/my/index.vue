@@ -32,10 +32,9 @@
                 <div class="main_lists">
                     <router-link to = "/answer/my/fans" class="fans" ><i></i>我的粉丝</router-link>
                     <router-link to = "/answer/my/comment/list" class="comment_list" ><i></i>收到的评价</router-link>
-                    <!--<router-link to = "/answer/my/message" class="message" ><i></i>60”语音寄语</router-link>-->
-
                     <router-link to = "/answer/join/joinstep" class="prefffff" ><i></i>完善专业资料</router-link>
-                    <!--<router-link to = "/answer/join/level?edit=1" class="qualification" ><i></i>更新证书</router-link>-->
+                    <router-link to = "/answer/join/imgs?edit=1" class="message" ><i></i>图片上传</router-link>
+                    <router-link to = "/answer/join/voice?edit=1" class="voice_icon" ><i></i>60”语音寄语</router-link>
                 </div>
             </div>
         </div>
@@ -185,13 +184,15 @@
     .main_lists a:before{ content: " "; height: 0.02rem; background: #eee; display: block; position: absolute; bottom:0;left: 1rem; width: 100%}
     .main_lists .income .price{position: absolute; right:0.75rem;top:0.00rem;color:#56C4FE}
     .main_lists a i{ display: block;width:0.40rem; height:0.40rem;  position: absolute; left: 0.26rem; top:50% ; margin-top: -0.20rem;}
+    .main_lists .voice_icon i{width:0.46rem; height:0.46rem;margin-top: -0.23rem;}
     .main_lists a.income i{background: url("http://oss.xqzs.cn/resources/psy/answer/sy_icon.png") no-repeat;background-size: 100% 100%;}
     .main_lists a.level i{ background-position: 0 -0.58rem; }
     .main_lists a.setanswer i{}
     .main_lists a.answer_list i{ background: url("http://oss.xqzs.cn/resources/psy/answer/hd_icon.png") no-repeat;background-size: 100% 100%;}
     .main_lists a.fans i{ background: url("http://oss.xqzs.cn/resources/psy/answer/ex_fans.png") no-repeat;background-size: 100% ;}
     .main_lists a.comment_list i{ background: url("http://oss.xqzs.cn/resources/psy/answer/ex_comment.png") no-repeat;background-size: 100% 100%;}
-    .main_lists a.message i{ background-position: 0 -3.48rem; }
+    .main_lists a.message i{ background-position: 0 -3.48rem;background: url("http://oss.xqzs.cn/resources/psy/answer/expert_index_pic_icon.png") no-repeat; background-size: 100% 100%;}
+    .main_lists a.voice_icon i{ background-position: 0 -3.48rem;background: url("http://oss.xqzs.cn/resources/psy/answer/expert_index_voice_icon.png") no-repeat; background-size: 100% 100%;}
     .main_lists a.qualification i{background: url("http://oss.xqzs.cn/resources/psy/answer/ex_update.png") no-repeat center; background-size: 0.40rem}
     .main_lists a.prefffff i{background: url("http://oss.xqzs.cn/resources/psy/answer/ex_prefffff.png") no-repeat center; background-size: 0.40rem}
 
