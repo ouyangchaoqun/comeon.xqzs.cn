@@ -56,7 +56,7 @@
                         <div class="swiper-wrapper">
                             <div class="swiper-slide" v-for="item in imgList"  @click="goDetail(item.expertId)">
                                 <div class="imgs_item">
-                                   <div class="show_img"><img src="http://thirdwx.qlogo.cn/mmopen/KydxAIB52xlNchzHibso1U7iaHm4JZE4CV0nC7xYInmfA1mah77sRMPMcewSSJFibCCcyTcZ3cwFljicR3vib7CAicvQVbcYuSHCOq/132"/></div>
+                                   <div class="show_img"><img :src="item.path"/></div>
                                 </div>
 
 
@@ -258,7 +258,7 @@
                 scrollHeightBottom:0,
                 showPic:false,
                 timeOut:null,
-                imgList:[1,2,3,4],
+                imgList:[],
                 rechargeMoney:0,
                 rechargeFlag :false,
                 couponNum:0,
@@ -368,26 +368,26 @@
                     _this.voice_isPlay = false;
                 }
             },
-            getImgList:function () {
-                console.log('getHotListgetHotListgetHotList ')
-                let _this=this;
-                xqzs.api.get(_this,"come/expert/get/by/class/0/1/10?complexOrNew=3",function (data) {
-                    if(data.body.status == 1){
-                        var List=data.body.data;
-                        _this.imgList=List;
-                        _this.$nextTick(function () {
-                            _this.imgSwiper = new Swiper('.imgSwiper',{
-                                slidesPerView :2.5,
-                                slidesPerGroup : 1,
-                                speed:500,
-                                observer:true,
-                                observeParents:true
-                            })
-                        })
-                    }
-                });
-
-            },
+//            getImgList:function () {
+//                console.log('getHotListgetHotListgetHotList ')
+//                let _this=this;
+//                xqzs.api.get(_this,"come/expert/get/by/class/0/1/10?complexOrNew=3",function (data) {
+//                    if(data.body.status == 1){
+//                        var List=data.body.data;
+//                        _this.imgList=List;
+//                        _this.$nextTick(function () {
+//                            _this.imgSwiper = new Swiper('.imgSwiper',{
+//                                slidesPerView :2.5,
+//                                slidesPerGroup : 1,
+//                                speed:500,
+//                                observer:true,
+//                                observeParents:true
+//                            })
+//                        })
+//                    }
+//                });
+//
+//            },
             hideMask:function (index) {
                 let _this = this;
                 let answerList = _this.answerList;
@@ -852,6 +852,17 @@
                             };
                             weshare.init(wx, config)
                         });
+                        var List=data.body.data.pictures;
+                        _this.imgList=List;
+                        _this.$nextTick(function () {
+                            _this.imgSwiper = new Swiper('.imgSwiper',{
+                                slidesPerView :2.5,
+                                slidesPerGroup : 1,
+                                speed:500,
+                                observer:true,
+                                observeParents:true
+                            })
+                        })
                     }
                 })
             }
