@@ -852,7 +852,7 @@
                         _this.imgList=List;
                         _this.$nextTick(function () {
                             _this.imgSwiper = new Swiper('.imgSwiper',{
-                                slidesPerView :2.5,
+                                slidesPerView :2.55,
                                 slidesPerGroup : 1,
                                 speed:500,
                                 observer:true,
@@ -1032,8 +1032,7 @@
         padding-left: 0.3rem;
     }
     .answer_detail_box .hot_content{
-        border-top: 0.2rem solid #f4f4f7;
-        border-bottom: 0.2rem solid #f4f4f7;
+        padding-top: 0.05rem;
     }
     .answer_detail_box .imgs_item{
         margin-top: 0.2rem;

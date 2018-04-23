@@ -738,7 +738,7 @@ var xqzs = {
                     xqzs.voice.audio_bg.preload="auto";
                     xqzs.voice.audio_bg.load();
                     xqzs.voice.audio_bg.play();
-                    xqzs.voice.audio_bg.volume=0.1;
+                    xqzs.voice.audio_bg.volume=0.2;
                     document.addEventListener("WeixinJSBridgeReady", function () {
                         xqzs.voice.audio_bg.play();
                     }, false);

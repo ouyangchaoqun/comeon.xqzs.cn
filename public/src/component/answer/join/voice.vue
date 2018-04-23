@@ -109,7 +109,6 @@
             getBgmList:function () {
                 let _this = this;
               xqzs.api.get(_this,'come/expert/voice/bgm',function (res) {
-                  console.log(res)
                   if(res.data.status==1){
                       _this.bgmList = res.data.data;
                       let firstBgm_no = {
@@ -143,8 +142,6 @@
             //上传合成音频
             subComposeBgm:function () {
                 let _this = this;
-                console.log(_this.localId)
-                console.log(_this.edit)
                 //发送合成音音频到微信服务器并获取serverId
                 xqzs.wx.voice.upload(_this.localId,function (serverId) {
                     _this.serviceId = serverId;
@@ -160,10 +157,8 @@
                             voiceLength:_this.voiceLength,
                             voiceBgmId:_this.voiceBgmId
                         };
-                        console.log(data)
                         xqzs.api.post(_this, url,data,function (bt) {
                             //成功
-                            console.log('')
                             if(bt.body.status==1){
                                 _this.$router.go(-1)
                             }
@@ -209,7 +204,6 @@
                     }
 
                 },1000);
-                console.log( _this.answerTime);
 
             },
 
@@ -234,8 +228,6 @@
                 myVideo.obj.click();
             },
             send:function () {
-                console.log('send')
-                console.log(this.edit)
                 let _this=this;
                 _this.finish=true;
                 _this.showBgm = true;
@@ -256,11 +248,9 @@
                 this.clearTimeOut();
                 this.answering2=true;
                 this.timeout()
-                console.log("startRecordtimeout")
                 xqzs.wx.voice.startRecord();
                 xqzs.wx.voice.onRecordEnd(function (localId) {
                     _this.localId=localId
-                    console.log('录制保存'+localId)
                     xqzs.localdb.set("voice_localId",localId);
                     _this._recordStop();
                 });
@@ -269,7 +259,7 @@
             play:function () {//试听
                 let _this = this;
                 xqzs.voice.pause()
-                console.log('试听or暂停')
+                console.log('play---'+_this.localId)
                 if(this.playing){  //在播放中则暂停
                     if(_this.localId!=null) {
                         _this.clearTimeOut();
@@ -304,8 +294,9 @@
                     if (localId){
                         _this.localId = localId;
                         xqzs.localdb.set("voice_localId", localId);
+                        console.log(localId+'----localIdlocalIdlocalId')
                         xqzs.localdb.set("voice_answerTime", _this.answerTime);
-                        console.log(_this.voiceLength+'****************')
+                        console.log(_this.answerTime+'----answerTimeanswerTimeanswerTime')
                         _this._recordStop();
                     }
                 });
@@ -367,8 +358,8 @@
             this.MIN_VOICE_LENGTH = 10;
             this.clearTimeOut();
             this.showBgm = false;
-            console.log(this.localId+'localIdlocalIdlocalIdlocalId')
-            console.log(this.answerTime+'answerTimeanswerTimeanswerTime')
+            console.log(this.localId+'activated---localIdlocalIdlocalIdlocalId')
+            console.log(this.answerTime+'activated---answerTimeanswerTimeanswerTime')
 
         },
         components: {
