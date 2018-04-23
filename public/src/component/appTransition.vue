@@ -234,13 +234,13 @@
 
 
     .audio .audio_btn:before {
-        width: 0.23rem;
+        width: 0.26rem;
         position: absolute;
         content: " ";
         display: block;
         height: 0.33rem;
-        background: url(http://oss.xqzs.cn/resources/psy/sond_blue.png) no-repeat;
-        background-size: 0.23rem;
+        background: url('http://oss.xqzs.cn/resources/psy/asker/voice_play3.png') no-repeat;
+        background-size: 0.26rem 0.33rem;
         top: 30%;
         left: 0.20rem;
         z-index: 2;

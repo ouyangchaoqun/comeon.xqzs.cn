@@ -50,9 +50,9 @@
                 <div class="answer_title">详细介绍</div>
 
 
-                <div class="hot_content">
+                <div class="hot_content" v-if="imgList.length!=0">
 
-                    <div class="swiper-container imgSwiper" v-if="imgList.length!=0">
+                    <div class="swiper-container imgSwiper" >
                         <div class="swiper-wrapper">
                             <div class="swiper-slide" v-for="item in imgList">
                                 <div class="imgs_item">

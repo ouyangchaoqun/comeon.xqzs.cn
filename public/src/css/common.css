@@ -337,33 +337,95 @@ a{
 .audio .audio_btn .second{ color:#fff; font-size: 0.31rem; position: absolute; right:0.20rem;top:0}
 
 .audio.playing .audio_btn:before{
-    animation: sond_playing 1.5s infinite;
-    -webkit-animation: sond_playing 1.5s infinite;
+    animation: sond_playing 1.5s ease-in-out infinite;
+    -webkit-animation: sond_playing 1.5s ease-in-out infinite;
 }
 
-@keyframes  sond_playing {
+@keyframes sond_playing{
     0%{
-        width:0.07rem;
-    }
-    25%{
-        width:0.07rem;
-    }
-    49%{
-        width:0.07rem;
+        background: url('http://oss.xqzs.cn/resources/psy/asker/voice_play1.png') no-repeat;
+        background-size: 0.26rem 0.33rem;
     }
     50%{
-        width:0.14rem;
-    }
-    74%{
-        width:0.14rem;
-    }
-    75%{
-        width:0.23rem;
+        background: url('http://oss.xqzs.cn/resources/psy/asker/voice_play2.png') no-repeat;
+        background-size: 0.26rem 0.33rem;
     }
     100%{
-        width:0.23rem;
+        background: url('http://oss.xqzs.cn/resources/psy/asker/voice_play3.png') no-repeat;
+        background-size: 0.26rem 0.33rem;
     }
 }
+
+@-webkit-keyframes sond_playing /* Safari 与 Chrome */
+{
+    0%{
+        background: url('http://oss.xqzs.cn/resources/psy/asker/voice_play1.png') no-repeat;
+        background-size: 0.26rem 0.33rem;
+    }
+    50%{
+        background: url('http://oss.xqzs.cn/resources/psy/asker/voice_play2.png') no-repeat;
+        background-size: 0.26rem 0.33rem;
+    }
+    100%{
+        background: url('http://oss.xqzs.cn/resources/psy/asker/voice_play3.png') no-repeat;
+        background-size: 0.26rem 0.33rem;
+    }
+}
+
+/*expert voice gif*/
+@keyframes expert_voice_playing{
+    0%{
+        background: url('http://oss.xqzs.cn/resources/psy/asker/voice_play1.png') no-repeat;
+        background-size: 0.22rem 0.26rem;
+    }
+    50%{
+        background: url('http://oss.xqzs.cn/resources/psy/asker/voice_play2.png') no-repeat;
+        background-size: 0.22rem 0.26rem;
+    }
+    100%{
+        background: url('http://oss.xqzs.cn/resources/psy/asker/voice_play3.png') no-repeat;
+        background-size: 0.22rem 0.26rem;
+    }
+}
+@-webkit-keyframes expert_voice_playing /* Safari 与 Chrome */
+{
+    0%{
+        background: url('http://oss.xqzs.cn/resources/psy/asker/voice_play1.png') no-repeat;
+        background-size: 0.22rem 0.26rem;
+    }
+    50%{
+        background: url('http://oss.xqzs.cn/resources/psy/asker/voice_play2.png') no-repeat;
+        background-size: 0.22rem 0.26rem;
+    }
+    100%{
+        background: url('http://oss.xqzs.cn/resources/psy/asker/voice_play3.png') no-repeat;
+        background-size: 0.22rem 0.26rem;
+    }
+}
+
+/*@keyframes  sond_playing {*/
+    /*0%{*/
+        /*width:0.07rem;*/
+    /*}*/
+    /*25%{*/
+        /*width:0.07rem;*/
+    /*}*/
+    /*49%{*/
+        /*width:0.07rem;*/
+    /*}*/
+    /*50%{*/
+        /*width:0.14rem;*/
+    /*}*/
+    /*74%{*/
+        /*width:0.14rem;*/
+    /*}*/
+    /*75%{*/
+        /*width:0.23rem;*/
+    /*}*/
+    /*100%{*/
+        /*width:0.23rem;*/
+    /*}*/
+/*}*/
 
 
 .nothing{text-align: center; width: 100%; height:100%;background: #fff; }
