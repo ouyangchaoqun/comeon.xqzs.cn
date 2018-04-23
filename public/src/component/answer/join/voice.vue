@@ -366,8 +366,8 @@
             this.MIN_VOICE_LENGTH = 10;
             this.clearTimeOut();
             this.showBgm = false;
-            console.log(this.localId)
-            console.log(this.answerTime)
+            console.log(this.localId+'localIdlocalIdlocalIdlocalId')
+            console.log(this.answerTime+'answerTimeanswerTimeanswerTime')
 
         },
         components: {
