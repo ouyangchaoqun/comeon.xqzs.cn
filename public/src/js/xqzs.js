@@ -690,6 +690,7 @@ var xqzs = {
 
     voice: {
         audio:null,
+        audio_bg:null,
         listenEnded:function () {
             xqzs.voice.audio.addEventListener('ended', function () {
                 xqzs.voice.onEnded()
@@ -698,13 +699,19 @@ var xqzs = {
         onEnded:function () {
 
         },
-        play: function (url) {
+        play: function (url,url_bg) {
+
             if(xqzs.voice.audio==null){
+                console.log('创建audio')
                 xqzs.voice.audio=document.createElement("audio");
             }
+            if(xqzs.voice.audio_bg==null&&url_bg!=null){
+                console.log('创建audio_bg')
+                xqzs.voice.audio_bg=document.createElement("audio");
+            }
             if(xqzs.voice.audio!=null){
-                if (url && url != '') {
-                    xqzs.voice.audio.autobuffer = true;
+                if (url && url != ''&&url!=null) {
+                     xqzs.voice.audio.autobuffer = true;
                     xqzs.voice.audio.src = url;//路径
                     xqzs.voice.audio.preload="auto";
                     xqzs.voice.audio.load();
@@ -714,18 +721,54 @@ var xqzs = {
                     }, false);
 
                 } else {
-                    if (xqzs.voice.audio && xqzs.voice.audio.paused)
-                        xqzs.voice.audio.play()
+                     if (xqzs.voice.audio && xqzs.voice.audio.pauseding==true){
+
+                        xqzs.voice.audio.play();
+
+                        xqzs.voice.audio.pauseding = false;
+                    }
+                }
+                xqzs.voice.listenEnded()
+            }
+
+            if(xqzs.voice.audio_bg!=null&&url_bg!=null){
+                if (url_bg && url_bg != '') {
+                    xqzs.voice.audio_bg.autobuffer = true;
+                    xqzs.voice.audio_bg.src = url_bg;//路径
+                    xqzs.voice.audio_bg.preload="auto";
+                    xqzs.voice.audio_bg.load();
+                    xqzs.voice.audio_bg.play();
+                    xqzs.voice.audio_bg.volume=0.2;
+                    document.addEventListener("WeixinJSBridgeReady", function () {
+                        xqzs.voice.audio_bg.play();
+                    }, false);
+
+                    } else {
+                        console.log('audio_bg暂停中播放')
+                        if (xqzs.voice.audio_bg && xqzs.voice.audio_bg.pauseding){
+                            xqzs.voice.audio_bg.play();
+                            xqzs.voice.audio_bg.pauseding = false;
+                        }
                 }
                 xqzs.voice.listenEnded()
             }
         },
         pause: function () {
-            if (xqzs.voice.audio && xqzs.voice.audio != null) {
+
+            if (xqzs.voice.pause && xqzs.voice.audio != null) {
+                console.log('audio暂停pausepause')
+                xqzs.voice.audio.pauseding = true;
                 xqzs.voice.audio.pause()
+            }
+            if (xqzs.voice.audio_bg && xqzs.voice.audio_bg != null ) {
+
+                xqzs.voice.audio_bg.pauseding  = true;
+                xqzs.voice.audio_bg.pause()
+
             }
         },
         getAnswerVoice:function (answerId,callFun) {
+            console.log('xqzs-voice-getAnswerVoice')
             $.ajax({
                 url: web.API_PATH + "come/listen/get/voice/_userId_/"+answerId,
                 data:{},
@@ -743,6 +786,7 @@ var xqzs = {
             });
         },
         getExpertVoice:function (expertId,callFun) {
+            console.log('xqzs-voice-getAnswerVoice')
             //
             $.ajax({
                 url: web.API_PATH + "come/expert/voice/message/"+expertId,
@@ -814,6 +858,7 @@ var xqzs = {
             //开始录音
             startRecord: function () {
                 var recordTimer = setTimeout(function () {
+                        console.log('开始录音startRecordstartRecordstartRecord')
                         wx.startRecord({
                                 success: function () {
                                     console.log("recordsuccess")
@@ -828,6 +873,7 @@ var xqzs = {
             },
             // 停止录音
             stopRecord: function (fun) {
+                console.log('停止录音stopRecordstopRecordstopRecord')
                 var recordTimer = setTimeout(function () {
                 wx.stopRecord({
                     success: function (res) {
@@ -839,6 +885,7 @@ var xqzs = {
             },
             // 监听自动停止录音
             onRecordEnd: function (fun) {
+                console.log('监听自动停止录音onRecordEndonRecordEndonRecordEnd')
                 wx.onVoiceRecordEnd({
                     // 录音时间超过一分钟没有停止的时候会执行 complete 回调
                     complete: function (res) {
@@ -848,26 +895,30 @@ var xqzs = {
                     }
                 });
             },
-            // 开始播放
+            //
             startPlay: function (localId) {
+                console.log('开始播放startPlaystartPlaystartPlay')
                 wx.playVoice({
                     localId: localId // 需要播放的音频的本地ID，由stopRecord接口获得
                 });
             },
             // 暂停播放
             pausePlay: function (localId) {
+                console.log('暂停播放pausePlaypausePlaypausePlay')
                 wx.pauseVoice({
                     localId: localId // 需要暂停的音频的本地ID，由stopRecord接口获得
                 });
             },
             // 停止播放
             stopPlay: function (localId) {
+                console.log('停止播放stopPlaystopPlaystopPlay')
                 wx.stopVoice({
                     localId: localId // 需要停止的音频的本地ID，由stopRecord接口获得
                 });
             },
             // 监听自动停止播放
             onPlayEnd: function (fun) {
+                console.log('监听自动停止播放onPlayEndonPlayEndonPlayEnd')
                 wx.onVoicePlayEnd({
                     success: function (res) {
                         var localId = res.localId; // 返回音频的本地ID
@@ -878,10 +929,12 @@ var xqzs = {
             },
             // 上传录音
             upload: function (localId, fun) {
+                console.log('upload上传录音上传录音上传录音')
                 wx.uploadVoice({
                     localId: localId, // 需要上传的音频的本地ID，由stopRecord接口获得
                     isShowProgressTips: 1, // 默认为1，显示进度提示
                     success: function (res) {
+                        console.log(res)
                         var serverId = res.serverId; // 返回音频的服务器端ID
                         if (typeof fun == 'function')
                             fun(serverId)
@@ -891,7 +944,7 @@ var xqzs = {
 
         },
         takePhotos: function (sourceType, maxCount, $uploadpicinfo, $alioss, beforeUploadFun, finishUploadFun, errorFun) { //拍照
-
+            var _this=this;
             if (typeof(sourceType) === "string") {
                 sourceType = [sourceType];
             }
@@ -900,25 +953,30 @@ var xqzs = {
                 sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
                 sourceType: sourceType, // 可以指定来源是相册还是相机，默认二者都有
                 success: function (res) {
-                    var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                    var localIds = res.localIds;
+                    // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
                     beforeUploadFun(localIds.length);
                     for (var i = 0; i < localIds.length; i++) {
-                        (function (ix, mylocalIds) {
-                            var currLocalId = mylocalIds[ix];
-                            wx.getLocalImgData({  // 拿到本地图片
-                                localId: currLocalId, // 图片的localID
-                                success: function (res) {
-                                    var localData = res.localData; // localData是图片的base64数据，可以用img标签显示
-                                    if (localData.indexOf(";base64,") > 0) {
-                                        localData.replace('jgp', 'jpeg');
-                                    } else {
-                                        localData = "data:image/jpeg;base64," + localData;
-                                    }
-                                    xqzs.oss.uploadPicture($uploadpicinfo, $alioss, {base64: localData}, finishUploadFun, errorFun, ix);
-                                }
-                            });
-                        }(i, localIds))
+                        _this.getLocalImgData(localIds,i,$uploadpicinfo, $alioss, finishUploadFun, errorFun)
+
                     }
+                }
+            });
+        },
+        getLocalImgData:function (localIds,i,$uploadpicinfo, $alioss, finishUploadFun, errorFun) {
+            var currLocalId = localIds[i];
+            wx.getLocalImgData({  // 拿到本地图片
+                localId: currLocalId, // 图片的localID
+                success: function (res) {
+                    var localData = res.localData; // localData是图片的base64数据，可以用img标签显示
+                    if (localData.indexOf(";base64,") > 0) {
+                        localData.replace('jgp', 'jpeg');
+                    } else {
+                        localData = "data:image/jpeg;base64," + localData;
+                    }
+                    xqzs.oss.uploadPicture($uploadpicinfo, $alioss, {base64: localData}, function (json,ix) {
+                        finishUploadFun(json,ix)
+                    }, errorFun, i);
                 }
             });
         },
@@ -1020,7 +1078,7 @@ var xqzs = {
         /**
          * 上传base64编码
          */
-        _uploadBase64: function ($uploadpicinfo, rst, callback, error) {
+        _uploadBase64: function ($uploadpicinfo, rst, callback, error,ix) {
 
             error();
             return;
@@ -1032,11 +1090,11 @@ var xqzs = {
                 dataType: 'json',
                 error: function (data, status, e) {
                     if (typeof error == 'function') {
-                        error(e);
+                        error(e,ix);
                     }
                 },
                 success: function (json) {
-                    callback(json);
+                    callback(json,ix);
                 }
             })
         },
@@ -1061,10 +1119,13 @@ var xqzs = {
                     contentType: false,
                     dataType: 'JSON',
                     success: function (json) {
+                        console.log("直传OSS直传OSS直传OSS直传OSS直传OSS")
+                        console.log(ix)
                         callback(json, ix);
                     },
                     error: function (data, status, e) {
                         if (typeof error == 'function') {
+
                             error(e, ix);
                         }
                     }

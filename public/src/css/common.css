@@ -317,8 +317,8 @@ a{
 .answer_list .item .img{ width: 1.02rem;
     height: 1.02rem;
     display: inline-block;
-    overflow: hidden;
-
+    border-radius: 50%;
+    position: relative;
     float: left;
 }
 .answer_list .item .img img{ width: 1rem; height: 1rem;

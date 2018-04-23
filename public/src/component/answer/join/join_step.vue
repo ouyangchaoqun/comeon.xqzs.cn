@@ -130,7 +130,20 @@
                         <i></i>
                     </div>
                 </li>
+                <li @click="setImgs()">
+                    上传图片
+                    <div class="li_right" >
 
+                        <i></i>
+                    </div>
+                </li>
+                <li @click="setVoice()">
+                    专家语音
+                    <div class="li_right" >
+
+                        <i></i>
+                    </div>
+                </li>
                 <li @click="setGoodat()">
                     擅长领域
                     <div class="li_right" >
@@ -329,7 +342,7 @@
     </div>
 </template>
 
-<script type="es6">
+<script type="">
     import showLoad from '../../include/showLoad.vue';
     export default {
         data() {
@@ -703,6 +716,12 @@
             setPerson:function () {
                 this.$router.push('./personal?edit='+this.isModify)
             },
+            setImgs:function () {
+                this.$router.push('./imgs?edit='+this.isModify)
+            },
+            setVoice:function () {
+                this.$router.push('./voice?edit='+this.isModify)
+            },
             setGoodat:function () {
                 this.$router.push('./good/at?edit='+this.isModify)
             },
@@ -844,7 +863,7 @@
             msgSubmit: function () {
                 let _this = this;
                 console.log('提交')
-                let url, price ,freeTime,jobTitle,introduction,experience,goodat,faceUrl,nickName,sign,provinceId,sex,questionClassId,certificateNo,certificateFile1,cityId,areaId,mobile;
+                let url, price ,freeTime,jobTitle,introduction,experience,goodat,faceUrl,nickName,sign,provinceId,sex,questionClassId,certificateNo,certificateFile1,cityId,areaId,mobile,mediaId,voiceLength,voiceBgmId;
                 let reg_questionClassId;
                 if(cookie.get("questionClassId")){
                     reg_questionClassId = cookie.get("questionClassId").split(",");
@@ -854,11 +873,13 @@
                 let reg_certificateNo = cookie.get('reg_certificateNo')?cookie.get('reg_certificateNo'):'';
                 let reg_certificateFile1 = cookie.get('reg_certificateFile1')?cookie.get('reg_certificateFile1'):'';
                 let classId=[];
+                voiceBgmId = cookie.get('voiceBgmId')?cookie.get('voiceBgmId'):0;
                 if(_this.isModify==1){
                     for(let i=0;i<_this.isShowInfo.domains.length;i++){
                         classId.push(_this.isShowInfo.domains[i].classId)
                     }
                 }
+                //专家语音
                 if(_this.isModify==0){
                     url = "come/expert/register";
                     price = 10;
@@ -877,7 +898,9 @@
                     certificateFile1 = reg_certificateFile1;
                     cityId = _this.cityId;
                     areaId=_this.areaId;
-                    mobile = _this.reg_mobile
+                    mobile = _this.reg_mobile;
+                    mediaId = cookie.get('serverId')?cookie.get('serverId'):'';
+                    voiceLength = cookie.get('voiceLength')?cookie.get('voiceLength'):'';
                 }
 
                 if(_this.isModify==1){
@@ -965,8 +988,17 @@
                     goodat:goodat,
                     faceUrl:faceUrl,
                     nickName:nickName,
-                    finish:1
+                    finish:1,
+                    voiceBgmId:voiceBgmId
                 };
+                if(_this.isModify==0){
+                    if(mediaId!=''){
+                        msg.mediaId = mediaId;
+                    }
+                    if(voiceLength!=''){
+                        msg.voiceLength = voiceLength;
+                    }
+                }
                 if(_this.isModify==1){
                     msg.expertId = cookie.get('expertId')
                 }

@@ -2,32 +2,19 @@
     <div style="height: 100%" class="answer_join_voice wbg">
 
         <div v-title class='hide_title'>入驻心理咨询师</div>
-        <div class="tipc">此至少10秒的语音寄语，将展示给来访者，请录制您对来访者的寄语！</div>
-
-
-
-        <div class="audio" :class="{playing:vPlaying,paused:vPaused}" v-if="finish" >
-            <div class="audio_btn" @click.stop="playV()" >
-                <template v-if="!vPlaying&&!vPaused">点击播放</template>
-                <template v-if="vPlaying">正在播放..</template>
-                <template v-if="vPaused">播放暂停</template>
-                <div class="second">{{voiceLength}}”</div>
-            </div>
-
-            <div class="clear"></div>
+        <div class="voice_placeholder" v-if="!showBgm">
+            <header>咨询师一分钟语音介绍</header>
+            <div>例子1： 我是好一点心理咨询师：xxx,是国家二级咨询师，从事 心理咨询行业十五年，帮助过上千人走出困境。我个人 比较擅长：个人成长、情感困惑、婚姻家庭这三方面的 辅导，（额外可加自身的成就或者自己的一段座右铭… …）</div>
+            <div>例子2： 人生，也许就是一场繁芜，一世轮回，一怀禅意。有的 人只能擦肩而过，有的人却可以蓦然回首。 其实，生命就是一次探寻的旅程，只有先读懂自己，才 会明了自己想要的人生。让我和你一起去探索吧！我是 好一点咨询咨询师：XX。 </div>
         </div>
-
-
-
-
-        <div class="addPlayBox" v-if="preAnswer&&!finish" >
+        <div class="addPlayBox" v-if="preAnswer&&!finish&&!showBgm">  <!-- -->
 
             <!--操作按钮-->
 
             <div class="action_btn" >
 
                 <div class="item" >
-                    <div class="re_start" @click="reStart()">重录</div>
+                    <div class="re_start" :class="{re_start_per:voiceLength<MIN_VOICE_LENGTH}" @click="reStart()">重录</div>
                 </div>
                 <div class="item" style="flex: 2" >
                 </div>
@@ -40,7 +27,7 @@
 
             </div>
         </div>
-        <div class="record_voice_box" v-if="!finish">
+        <div class="record_voice_box" :class="{voice_needMusic:showBgm}">
             <div class="time_in">
                 <div>{{answerTime}}"</div>
 
@@ -70,7 +57,19 @@
                 <div class="mask"><i class="start"></i></div>
 
             </div>
-            <div class="tip">录制(至少录制10秒)</div>
+            <div class="tip">点击开始录制</div>
+
+            <div class="voice_bg_box" v-if="showBgm">
+                <h3>选择背景音乐</h3>
+                <ul>
+                    <li v-for="(item,index) in bgmList" @click="composeBgm(item.path,index,item.id)">
+                        <img class="bgmImg" :src="item.pic" alt="">{{item.title}}
+                        <img v-show="item.is_checked" class="checkedImg" src="http://oss.xqzs.cn/resources/psy/asker/filter_sure_icon.png" alt="">
+                    </li>
+
+                </ul>
+                <div class="compose_btn" @click="subComposeBgm()">确定</div>
+            </div>
         </div>
 
 
@@ -92,33 +91,93 @@
                 answerTime:"00",
                 timeOut:null,
                 finish:false,
-
+                showBgm:false,
                 vPlaying:false,
                 vPaused:false,
                 localId:null,
                 serviceId:null,
                 voiceLength:0,
-                MIN_VOICE_LENGTH:10
+                MIN_VOICE_LENGTH:10,
+                edit:'',
+                bgmList:[],
+                voiceBgmId:0
             }
         },
 
         methods: {
-            goJoinmore:function () {
-                let _this=this;
-                let data={
-                    userId:"_userId_",
-                    expertId:cookie.get("expertId"),
-                    mediaId:_this.serviceId,
-                    voiceLength:_this.voiceLength
-                };
-                console.log("bearb ear")
-                console.log(data);
-                _this.$http.post(web.API_PATH + 'come/expert/modify/voice', data)
-                    .then(
-                        (response) => {
-                            _this.$router.go(-1)
-                        }
-                    );
+            //获取背景音乐
+            getBgmList:function () {
+                let _this = this;
+              xqzs.api.get(_this,'come/expert/voice/bgm',function (res) {
+                  console.log(res)
+                  if(res.data.status==1){
+                      _this.bgmList = res.data.data;
+                      let firstBgm_no = {
+                          id:0,title:'无'
+                      }
+                      _this.bgmList.splice(0,0,firstBgm_no);
+                  }
+              },function () {
+               //error
+              })
+            },
+            composeBgm:function (bgmUrl,index,bgmId) {
+                let _this = this;
+
+                if(_this.playing){
+                    myVideo.pause();
+                    _this.play();
+                }
+                _this.voiceBgmId = bgmId;
+                cookie.set('voiceBgmId',bgmId,1)
+                for(let i=0;i<_this.bgmList.length;i++){
+                    _this.bgmList[i].is_checked = false
+                }
+                _this.bgmList[index].is_checked = true;
+                _this.$set(_this.bgmList,index,_this.bgmList[index]);
+               xqzs.voice.play(bgmUrl);
+                if(index==0){
+                    xqzs.voice.pause();
+                }
+            },
+            //上传合成音频
+            subComposeBgm:function () {
+                let _this = this;
+                console.log(_this.localId)
+                console.log(_this.edit)
+                //发送合成音音频到微信服务器并获取serverId
+                xqzs.wx.voice.upload(_this.localId,function (serverId) {
+                    _this.serviceId = serverId;
+                    cookie.set('voiceLength',_this.voiceLength,1)
+                    cookie.set('serverId',_this.serverId,1)
+                    if(_this.edit==1){
+                        //修改
+                        let url =  'come/expert/modify/voice';
+                        let data={
+                            userId:"_userId_",
+                            expertId:cookie.get("expertId"),
+                            mediaId:_this.serviceId,
+                            voiceLength:_this.voiceLength,
+                            voiceBgmId:_this.voiceBgmId
+                        };
+                        console.log(data)
+                        xqzs.api.post(_this, url,data,function (bt) {
+                            //成功
+                            console.log('')
+                            if(bt.body.status==1){
+                                _this.$router.go(-1)
+                            }
+
+                        },function () {
+                            //失败
+
+                        })
+                    }else{
+                        //注册
+                        _this.$router.go(-1)
+                    }
+                });
+
 
 
             },
@@ -175,24 +234,21 @@
                 myVideo.obj.click();
             },
             send:function () {
+                console.log('send')
+                console.log(this.edit)
                 let _this=this;
+                _this.finish=true;
+                _this.showBgm = true;
                 if(_this.voiceLength<_this.MIN_VOICE_LENGTH){
                     return ;
                 }
-                //发送到微信服务器并获取serverId
-                xqzs.wx.voice.upload(_this.localId,function (serverId) {
-                     _this.finish=true;
-                     _this.serviceId = serverId;
-                     _this.goJoinmore();
-
-                });
-
                 this.clearTimeOut();
 
             },
             start:function () {
 
 //                开始录制
+                console.log('开始录制start')
                 let _this=this;
                 _this.vPaused=true;
                 _this.vPlaying=false;
@@ -211,6 +267,8 @@
             },
             play:function () {//试听
                 let _this = this;
+                xqzs.voice.pause()
+                console.log('试听or暂停')
                 if(this.playing){  //在播放中则暂停
                     if(_this.localId!=null) {
                         _this.clearTimeOut();
@@ -240,8 +298,7 @@
             },
             stop:function () { //停止录制
                 let _this = this;
-
-
+                console.log('停止录制stop')
                 xqzs.wx.voice.stopRecord(function (localId) {
                     if (localId){
                         _this.localId = localId;
@@ -288,6 +345,7 @@
 
             xqzs.wx.setConfig(this);
             let _this= this;
+            _this.getBgmList()
             myVideo.config({obj:$('.circle')}).init(_this.start,_this.stop,_this.play,_this.play);
         },
         activated:function () {
@@ -297,14 +355,15 @@
             this.answerTime = "00";
             this.timeOut = null;
             this.finish = false;
-
+            this.edit= this.$route.query.edit;
             this.vPlaying = false;
             this.vPaused = false;
             this.localId = null;
             this.serviceId = null;
             this.voiceLength = 0;
             this.MIN_VOICE_LENGTH = 10;
-            this.clearTimeOut()
+            this.clearTimeOut();
+
         },
         components: {
             "v-answer-top-step": answerTopStep
@@ -317,7 +376,24 @@
     }
 </script>
 <style>
-    .answer_join_voice{ width: 100%; overflow: hidden}
+    .answer_join_voice .voice_bg_box{border-top: 0.2rem solid #F4F4F7;padding-top: 0.3rem;padding-left: 0.3rem;color:#454B54;}
+    .voice_bg_box h3{font-size: 0.3rem;line-height: 0.42rem;margin-bottom: 0.06rem;}
+    .voice_bg_box ul{padding-left: 0.1rem;}
+    .voice_bg_box li{line-height: 1.08rem;border-bottom: 0.02rem solid #eee;font-size: 0.28rem;position: relative}
+    .voice_bg_box .bgmImg{width:0.6rem;height:0.6rem;margin-right: 0.24rem;display: inline-block;vertical-align: middle}
+    .voice_bg_box .checkedImg{width:0.46rem;height:0.3rem;position: absolute;right:0.6rem;top:50%;margin-top: -0.23rem;}
+    .voice_bg_box .compose_btn{line-height: 0.88rem;text-align: center;color:#fff;font-size: 0.36rem;background: #56C4FE;border-radius: 0.1rem;margin:0.6rem 0.3rem 0.3rem 0}
+    .answer_join_voice{ width: 100%; overflow-x: hidden}
+    .answer_join_voice .voice_placeholder{
+        padding:0.4rem 0.3rem 0rem 0.3rem;
+        padding-top: 0.4rem;
+        font-size: 0.28rem;
+        color:#999;
+        line-height: 0.4rem;
+    }
+    .voice_placeholder div{padding-top: 0.4rem;}
+    .voice_placeholder header{color:#454B54}
+    .answer_join_voice .record_voice_box .time_in{position: static;margin-bottom: 0.5rem;padding-top: 0.4rem;}
     .answer_join_voice .tipc{  margin:0.60rem    0.40rem; font-size: 0.26rem; line-height: 1.5; color:#999}
     .answer_join_voice .audio{ margin-left:  15%  !important ; margin-top: 2.72rem;}
     .pt3{ padding-top: 3.06rem !important}
@@ -411,6 +487,15 @@
     .answer_join_voice   .audio_play:before{ background:url(http://oss.xqzs.cn/resources/psy/audio_btn_play.png)  no-repeat; background-size: 0.45rem; width:0.45rem;; height: 0.52rem;  margin-left: -0.18rem; margin-top: -0.26rem;  }
     .answer_join_voice   .audio_send:before{ background:url(http://oss.xqzs.cn/resources/psy/audio_btn_send.png)  no-repeat; background-size:  0.46rem; width:0.50rem;; height:0.48rem;  margin-left: -0.25rem; margin-top: -0.24rem;   }
     .answer_join_voice   .audio_cant_begin:before{ background:url(http://oss.xqzs.cn/resources/psy/audio_btn_cant_begin.png)  no-repeat; background-size:  0.46rem; width:0.46rem;; height: 0.64rem;  margin-left: -0.23rem; margin-top: -0.32rem;  }
-    .answer_join_voice .addPlayBox{position: absolute;bottom:1.36rem;width:100%;}
-    .answer_join_voice  .record_voice_box{ bottom:0.85rem;}
+    .answer_join_voice .addPlayBox{position: absolute;bottom:0.5rem;width:100%;z-index: 10}
+    .answer_join_voice  .record_voice_box{top:55%;position: absolute;width:100%;margin:0;background: #fff;padding-bottom: 0.4rem;height: auto}
+    .answer_join_voice .voice_needMusic{padding-bottom:0;animation: heightChange 1s ease forwards}
+    .answer_join_voice .record_voice_box .circle{margin-bottom: 0.4rem;}
+    .answer_join_voice .record_voice_box .tip{margin-bottom: 0.4rem;}
+    .answer_join_voice .record_voice_box .circle{z-index: 1000}
+
+    @keyframes heightChange{
+        from{top:55%;}
+        to{top:0;}
+    }
 </style>

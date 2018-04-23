@@ -68,7 +68,10 @@
                 <div class="item" v-for="(item,index) in list">
                     <div @click="goDetail(item.expertId)">
                         <div class="itemDetail">
-                            <div class="img"><img :src="resizeImg(item.faceUrl)"></div>
+                            <div class="img">
+                                <img :src="resizeImg(item.faceUrl)">
+                                <div class="expert_voice" :class="{expert_voice_play:item.playing}" @click.stop="play(index)"></div>
+                            </div>
                             <div class="itemDetail_right">
                                 <div class="itemHeader">
                                     <div>{{item.nickName}}<span>{{item.city}}</span></div>
@@ -94,25 +97,6 @@
                             </div>
                             <div style="clear: both"></div>
                         </div>
-                    </div>
-                </div>
-                <div class="item" v-for="(item,index) in list" v-if="false">
-                    <div @click="goDetail(item.expertId)">
-                        <div class="info">
-                            <div class="problem_answer_yy">
-                                <div class="audio" :class="{playing:item.playing,paused:item.paused}">
-                                    <div class="audio_btn" @click.stop="play(index)">
-                                        <template v-if="!item.playing&&!item.paused">点击播放</template>
-                                        <template v-if="item.playing">正在播放..</template>
-                                        <template v-if="item.paused">播放暂停</template>
-                                        <div class="second">{{item.length}}”</div>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="clear"></div>
                     </div>
                 </div>
                 <div class="noContent_icon" v-if="noContent">
@@ -334,6 +318,7 @@
                 let _this=this;
                 let list = _this.list;
                 xqzs.voice.onEnded=function () {
+                    xqzs.voice.pause();
                     list[index].paused=false;
                     list[index].playing=false;
                     _this.$set(_this.list,index,list[index])
@@ -341,6 +326,7 @@
                 //重置其他列表内容
                 for(let i = 0;i<list.length;i++){
                     if(index!=i&&(list[i].playing||list[i].paused)){
+                        xqzs.voice.pause();
                         list[i].paused=false;
                         list[i].playing=false;
                         _this.$set(_this.list,i,list[i]);
@@ -355,23 +341,21 @@
                     xqzs.voice.play();
                 }else{
                     if(item.playing){    //播放中去做暂停操作
-                        console.log(2)
+                        console.log('play---暂停')
                         item.paused=true;
                         item.playing=false;
                         _this.$set(_this.list,index,item)
                         xqzs.voice.pause();
                     }else{     //重新打开播放
-                        xqzs.voice.getExpertVoice(item.expertId,function (url) {
-                            console.log(3)
+                        if(item.voicePath!=null){
+                            console.log(item.voicePath);
+                            console.log(item.voiceBgmPath)
+                            xqzs.voice.play(item.voicePath,item.voiceBgmPath);
+                            item.playing=true;
+                            item.paused=false;
+                            _this.$set(_this.list,index,item)
+                        }
 
-                            if(url!=null&&url!=undefined&&url!=''){
-                                xqzs.voice.play(url);
-                                item.playing=true;
-                                item.paused=false;
-                                _this.$set(_this.list,index,item)
-                            }
-
-                        })
                     }
 
                 }
@@ -560,6 +544,34 @@
     }
 </script>
 <style>
+    .expert_voice{
+        width:0.5rem;
+        height:0.5rem;
+        background: #fff;
+        border-radius: 50%;
+        position: absolute;
+        left:50%;
+        margin-left: -0.25rem;
+        bottom:-0.25rem;
+        border:0.02rem solid #eee;
+    }
+    .expert_voice:before{
+        width: 0.22rem;
+        position: absolute;
+        content: " ";
+        display: block;
+        height: 0.26rem;
+        background: url(http://oss.xqzs.cn/resources/psy/sond_blue.png) no-repeat;
+        background-size: 0.22rem 0.26rem;
+        z-index: 2;
+        left:0.15rem;
+        top:50%;
+        margin-top: -0.13rem;
+    }
+    .expert_voice_play:before{
+        animation: sond_playing 1.5s infinite;
+        -webkit-animation: sond_playing 1.5s infinite;
+    }
     .banScroll{
         overflow: hidden !important;
     }

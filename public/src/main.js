@@ -67,6 +67,7 @@ let routers =
                 require('./routes/answer/join/goodatDetail'),
                 require('./routes/answer/join/experience'),
                 require('./routes/answer/join/sign'),
+                require('./routes/answer/join/imgs'),
                 require('./routes/answer/join/voice'),
                 require('./routes/answer/join/price'),
                 require('./routes/answer/join/freeTime'),
@@ -87,6 +88,8 @@ router.beforeEach((to, from, next) => {
     // console.log('路由全局勾子：beforeEach');
 
     xqzs.voice.pause();
+
+
     wx.stopRecord();
     let localId = xqzs.localdb.get("voice_localId");
     if (localId && localId != "") {

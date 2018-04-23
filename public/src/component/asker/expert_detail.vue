@@ -8,7 +8,12 @@
                   :isShowMoreText="isShowMoreText" >
             <div class="answer_info">
                 <div class="answer_banner">
-                    <div class="answer_face"><img :src="resizeImg(detail.faceUrl)"></div>
+                    <div class="answer_face">
+                        <img class="expert_faceImg" :src="resizeImg(detail.faceUrl)">
+                        <div class="expert_top_voice" @click="playVoice(detail.voicePath,detail.voiceBgmPath)">
+                            <div :class="{expert_top_voice_play:voice_isPlay}"></div>
+                        </div>
+                    </div>
                     <div class="answer_name">{{detail.nickName}}</div>
                     <div class="answer_cs">
                         <div class="answer_ability">
@@ -41,24 +46,6 @@
 
                 </div>
             </div>
-            <!--<div class="answer_voice">-->
-            <!--<div class="ts">{{detail.sign}}</div>-->
-            <!--<div class="voice">-->
-            <!--<span class="hello">您好：</span>-->
-            <!--<div class="problem_answer_yy">-->
-            <!--<div class="audio" :class="{playing:playing2,paused:paused2}">-->
-            <!--<div class="audio_btn" @click.stop="play()">-->
-            <!--<span v-if="!playing2&&!paused2">点击播放</span>-->
-            <!--<span v-if="playing2">正在播放..</span>-->
-            <!--<span v-if="paused2">播放暂停</span>-->
-            <!--<div class="second">{{detail.length}}”</div>-->
-            <!--</div>-->
-            <!--<div class="clear"></div>-->
-            <!--</div>-->
-
-            <!--</div>-->
-            <!--</div>-->
-            <!--</div>-->
             <div class="answer_detail">
                 <div class="answer_title">详细介绍</div>
 
@@ -279,6 +266,9 @@
                 isMe:"",
                 isShare:false,
                 currPlayIndex:null,
+                voice_isPlay:false,
+                isFirst_play:true,
+                AnswerVoice:null,
                 imgSwiper:null,
             }
         },
@@ -308,6 +298,7 @@
         activated: function () {
 
             this.page=1;
+            this.voice_isPlay=false;
             this.commentList=[];
             this.answerList=[];
             this.isPageEnd=false;
@@ -345,7 +336,38 @@
                     return v
                 }
             },
+            playVoice:function (url,url_bg) {
+               // detail.voicePath,null
 
+
+                //处理回答音频
+                if(this.currPlayIndex!=null){
+                    this.stop(this.currPlayIndex);
+                }
+
+                if(this.voice_isPlay){ //播放中暂停
+                    xqzs.voice.pause();
+                    this.voice_isPlay=false;
+                    console.log("播放中暂停")
+                }else if(this.isFirst_play){ //首次播放
+                    xqzs.voice.play(url,url_bg);
+                    this.isFirst_play=false;
+                    this.voice_isPlay=true;
+
+                    console.log("首次播放")
+                }else{ //暂停中播放
+                    xqzs.voice.play(url,url_bg);
+                    this.voice_isPlay=true;
+                    console.log("暂停中播放")
+                }
+
+
+                let _this = this;
+                xqzs.voice.onEnded=function () {
+                    xqzs.voice.pause();
+                    _this.voice_isPlay = false;
+                }
+            },
             getImgList:function () {
                 console.log('getHotListgetHotListgetHotList ')
                 let _this=this;
@@ -548,24 +570,42 @@
                 this.$set(this.answerList,index,item);
             },
 
+
+
+            //停止回答音乐
+            stop:function (index) {
+                let list = this.answerList;
+                this.clearTimeOut();
+                list[index].paused = false;
+                list[index].playing = false;
+                this.$set(this.answerList, index, list[index])
+                xqzs.voice.pause();
+            },
+
+
             //回答播放
             pause:function (index) {
-                console.log('暂停')
-                console.log(index)
                 let  _this=this;
                 _this.clearTimeOut();
                 let list = _this.answerList;
                 list[index].paused = true;
                 list[index].playing = false;
-                _this.currPlayIndex = null;
                 _this.$set(_this.answerList, index, list[index])
                 xqzs.voice.pause();
             },
             playAnswer:function (index) {
+                //处理 暂停中已经播放中 咨询师语音
+                if(this.voice_isPlay){
+                    xqzs.voice.pause();
+                }
+                this.isFirst_play=true;
+                this.voice_isPlay=false;
                 let _this=this;
                 let list = _this.answerList;
-
+                xqzs.voice.pause()
+                _this.voice_isPlay = false;
                 xqzs.voice.onEnded=function () {
+                    xqzs.voice.pause();
                     list[index].paused=false;
                     list[index].playing=false;
                     _this.$set(_this.answerList,index,list[index])
@@ -575,16 +615,16 @@
                 //重置其他列表内容
                 for(let i = 0;i<list.length;i++){
                     if(index!=i&&(list[i].playing||list[i].paused)){
+                        xqzs.voice.pause();
                         list[i].paused=false;
                         list[i].playing=false;
                         _this.$set(_this.answerList,i,list[i]);
-                        console.log('重置重置重置')
                     }
                 }
                 let item= _this.answerList[index];
                 let CT= item.ct? item.ct: item.length;
                 let T = item.length;
-                console.log(index)
+                console.log(item.paused)
                 if(item.paused){  //暂停中也就是已经获取到且为当前音频
                     console.log('暂停中 去播放')
                     item.paused=false;
@@ -596,7 +636,6 @@
                     _this.timeout(true,CT,index)
                 }else{
                     if(item.playing){    //播放中去做暂停操作
-                        console.log('播放中 去暂停')
                         item.paused=true;
                         item.playing=false;
                         _this.$set(_this.answerList,index,item);
@@ -605,13 +644,11 @@
                         _this.playing = false;
                     }else{     //重新打开播放
                         xqzs.voice.getAnswerVoice(item.answerId,function (url) {
-                            console.log('播放')
                             if(url!=null&&url!=undefined&&url!=''){
                                 xqzs.voice.play(url);
                                 item.playing=true;
                                 item.paused=false;
                                 _this.$set(_this.answerList,index,item);
-                                _this.playing = true;
                                 _this.clearTimeOut();
                                 _this.currPlayIndex=index;
                                 _this.timeout(true,T,index)
@@ -663,38 +700,6 @@
                 let _this=this;
                 _this.Hflag = !this.Hflag
             },
-
-//            play:function () {
-//                let _this=this;
-//                xqzs.voice.onEnded=function () {
-//                    _this.paused2=false;
-//                    _this.playing2=false;
-//                };
-//
-//                if(_this.paused2){  //暂停中也就是已经获取到且为当前音频
-//                    _this.paused2=false;
-//                    _this.playing2=true;
-//                    xqzs.voice.play();
-//                    console.log("1")
-//                }else{
-//                    if(_this.playing2){    //播放中去做暂停操作
-//                        _this.paused2=true;
-//                        _this.playing2=false;
-//                        xqzs.voice.pause();
-//                        console.log( _this.playing2)
-//                        console.log("222")
-//                    }else{     //重新打开播放
-//                        xqzs.voice.getExpertVoice(_this.detail.expertId,function (url) {
-//                            xqzs.voice.play(url);
-//                            _this.playing2=true;
-//                            _this.paused2=false;
-//                            console.log("23333")
-//                        })
-//                    }
-//
-//                }
-//
-//            },
             follow:function () {
                 let _this=this;
 
@@ -849,13 +854,11 @@
                         });
                     }
                 })
-            },
-            beforeDestroy:function () {
-                xqzs.voice.pause();
-            },
+            }
         },
         beforeDestroy:function () {
             xqzs.voice.pause();
+
         }
 
 
@@ -922,8 +925,35 @@
         margin: 0 auto;
         margin-bottom: 0.30rem;
         border:0.10rem solid rgba(255,255,255,0.5);
+        position: relative;
     }
-    .answer_detail_box  .answer_face img{
+    .answer_detail_box .answer_face .expert_top_voice{
+        position: absolute;
+        top: -0.02rem;
+        left:auto;
+        right: -1.1rem;
+        height: 0.91rem;
+        background: url(http://oss.xqzs.cn/resources/psy/audio_blue_left.png) no-repeat;
+        width: 0.97rem;
+        background-size: 0.97rem;
+    }
+    .answer_detail_box .answer_face .expert_top_voice>div{
+        width: 0.23rem;
+        position: absolute;
+        content: " ";
+        display: block;
+        height: 0.33rem;
+        background: url(http://oss.xqzs.cn/resources/psy/sond_blue.png) no-repeat;
+        background-size: 0.23rem;
+        left:0.4rem;
+        top:30%;
+
+    }
+    .expert_top_voice_play{
+        animation: sond_playing 1.5s infinite;
+        -webkit-animation: sond_playing 1.5s infinite;
+    }
+    .answer_detail_box  .answer_face .expert_faceImg{
         width: 100%;
         border-radius: 50%;
         display: block;
