@@ -555,7 +555,7 @@
         content: " ";
         display: block;
         height: 0.26rem;
-        background: url(http://oss.xqzs.cn/resources/psy/sond_blue.png) no-repeat;
+        background: url('http://oss.xqzs.cn/resources/psy/asker/voice_play3.png') no-repeat;
         background-size: 0.22rem 0.26rem;
         z-index: 2;
         left:0.15rem;
@@ -563,8 +563,8 @@
         margin-top: -0.13rem;
     }
     .expert_voice_play:before{
-        animation: sond_playing 1.5s infinite;
-        -webkit-animation: sond_playing 1.5s infinite;
+        animation: voice_playing 1.2s linear infinite;
+        -webkit-animation: voice_playing 1.2s linear infinite;
     }
     .banScroll{
         overflow: hidden !important;

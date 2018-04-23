@@ -945,20 +945,34 @@
         background-size: 0.97rem;
     }
     .answer_detail_box .answer_face .expert_top_voice>div{
-        width: 0.23rem;
+        width: 0.26rem;
         position: absolute;
         content: " ";
         display: block;
         height: 0.33rem;
-        background: url(http://oss.xqzs.cn/resources/psy/sond_blue.png) no-repeat;
-        background-size: 0.23rem;
+        background: url('http://oss.xqzs.cn/resources/psy/asker/voice_play3.png') no-repeat;
+        background-size: 0.24rem 0.33rem;
         left:0.4rem;
         top:30%;
 
     }
     .expert_top_voice_play{
-        animation: sond_playing 1.5s infinite;
-        -webkit-animation: sond_playing 1.5s infinite;
+        animation: voice_playing_expert 1.2s linear infinite;
+        -webkit-animation: voice_playing_expert 1.2s linear infinite;
+    }
+    @keyframes voice_playing_expert  {
+        0%{
+            background: url('http://oss.xqzs.cn/resources/psy/asker/voice_play1.png') no-repeat;
+            background-size: 0.26rem 0.33rem;
+        }
+        50%{
+            background: url('http://oss.xqzs.cn/resources/psy/asker/voice_play2.png') no-repeat;
+            background-size: 0.26rem 0.33rem;
+        }
+        100%{
+            background: url('http://oss.xqzs.cn/resources/psy/asker/voice_play3.png') no-repeat;
+            background-size: 0.26rem 0.33rem;
+        }
     }
     .answer_detail_box  .answer_face .expert_faceImg{
         width: 100%;
