@@ -132,7 +132,7 @@
                 for(var i=0;i<_this.pictures.length;i++){
                     List.push(_this.pictures[i].image.id)
                 }
-                console.log(list)
+                console.log(List)
                 xqzs.api.put(this,"come/expert/picture/add",{"userId":_this.user.id,"pictures":List},function (response) {
                     if(response.data.status==1){
                         xqzs.weui.toast("success","提交成功")
