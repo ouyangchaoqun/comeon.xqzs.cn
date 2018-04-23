@@ -56,9 +56,10 @@
                         <div class="swiper-wrapper">
                             <div class="swiper-slide" v-for="item in imgList">
                                 <div class="imgs_item">
-                                   <div class="show_img"><img :src="item.path" @click="viewBigPics(item.path)"/></div>
+                                   <div class="show_img">
+                                       <img :src="smallPic(item.path)" @click="viewBigPics(item.path)"/>
+                                   </div>
                                 </div>
-
 
                             </div>
                         </div>
@@ -368,13 +369,17 @@
                     _this.voice_isPlay = false;
                 }
             },
+            //小图格式
+            smallPic: function (src) {
+                return src + xqzs.oss.Size.fill(150, 150);
+            },
             //展示大图
             viewBigPics: function (src) {
                 var pics = [];
                 src = src + xqzs.oss.Size.resize(750, 750)
                 for (var i = 0, l = this.imgList.length; i < l; i++) {
-                    if (this.imgList[i].image) {
-                        pics.push(this.imgList[i].image.path + xqzs.oss.Size.resize(750, 750));
+                    if (this.imgList[i]) {
+                        pics.push(this.imgList[i].path + xqzs.oss.Size.resize(750, 750));
                     }
                 }
                 xqzs.wx.previewImage(src, pics)
