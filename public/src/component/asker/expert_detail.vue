@@ -54,9 +54,9 @@
 
                     <div class="swiper-container imgSwiper">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide" v-for="item in imgList"  @click="goDetail(item.expertId)">
+                            <div class="swiper-slide" v-for="item in imgList">
                                 <div class="imgs_item">
-                                   <div class="show_img"><img :src="item.path"/></div>
+                                   <div class="show_img"><img :src="item.path" @click="viewBigPics(item.path)"/></div>
                                 </div>
 
 
@@ -316,7 +316,7 @@
 
 
             }
-            this.getImgList();
+
 
         },
         updated:function () {
@@ -368,26 +368,17 @@
                     _this.voice_isPlay = false;
                 }
             },
-//            getImgList:function () {
-//                console.log('getHotListgetHotListgetHotList ')
-//                let _this=this;
-//                xqzs.api.get(_this,"come/expert/get/by/class/0/1/10?complexOrNew=3",function (data) {
-//                    if(data.body.status == 1){
-//                        var List=data.body.data;
-//                        _this.imgList=List;
-//                        _this.$nextTick(function () {
-//                            _this.imgSwiper = new Swiper('.imgSwiper',{
-//                                slidesPerView :2.5,
-//                                slidesPerGroup : 1,
-//                                speed:500,
-//                                observer:true,
-//                                observeParents:true
-//                            })
-//                        })
-//                    }
-//                });
-//
-//            },
+            //展示大图
+            viewBigPics: function (src) {
+                var pics = [];
+                src = src + xqzs.oss.Size.resize(750, 750)
+                for (var i = 0, l = this.imgList.length; i < l; i++) {
+                    if (this.imgList[i].image) {
+                        pics.push(this.imgList[i].image.path + xqzs.oss.Size.resize(750, 750));
+                    }
+                }
+                xqzs.wx.previewImage(src, pics)
+            },
             hideMask:function (index) {
                 let _this = this;
                 let answerList = _this.answerList;
