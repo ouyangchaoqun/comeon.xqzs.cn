@@ -957,8 +957,8 @@
 
     }
     .expert_top_voice_play{
-        animation: voice_playing_expert 1.2s linear infinite;
-        -webkit-animation: voice_playing_expert 1.2s linear infinite;
+        animation: voice_playing_expert 1.2s ease-in-out infinite;
+        -webkit-animation: voice_playing_expert 1.2s  ease-in-out infinite;
     }
     @keyframes voice_playing_expert  {
         0%{

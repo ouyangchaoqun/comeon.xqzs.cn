@@ -362,8 +362,8 @@
         margin-top: -0.13rem;
     }
     .expert_voice_play:before{
-        animation: voice_playing 1.2s linear infinite;
-        -webkit-animation: voice_playing 1.2s linear infinite;
+        animation: voice_playing 1.2s ease-in-out infinite;
+        -webkit-animation: voice_playing 1.2s ease-in-out infinite;
     }
     .header_addRightStyle {
         position: absolute;
