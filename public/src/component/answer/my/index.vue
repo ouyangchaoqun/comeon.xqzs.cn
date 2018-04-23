@@ -33,7 +33,7 @@
                     <router-link to = "/answer/my/fans" class="fans" ><i></i>我的粉丝</router-link>
                     <router-link to = "/answer/my/comment/list" class="comment_list" ><i></i>收到的评价</router-link>
                     <router-link to = "/answer/join/joinstep" class="prefffff" ><i></i>完善专业资料</router-link>
-                    <router-link to = "/answer/join/imgs?edit=1" class="message" ><i></i>图片上传</router-link>
+                    <router-link to = "/answer/join/imgs?edit=1" class="message" ><i></i>上传图片</router-link>
                     <router-link to = "/answer/join/voice?edit=1" class="voice_icon" ><i></i>语音介绍</router-link>
                 </div>
             </div>

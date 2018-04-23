@@ -1,7 +1,7 @@
 <template >
     <div style="height: 100%" class="answer_join_voice wbg">
 
-        <div v-title class='hide_title'>入驻心理咨询师</div>
+        <div v-title class='hide_title'>语音介绍</div>
         <div class="voice_placeholder" v-if="!showBgm">
             <header>咨询师一分钟语音介绍</header>
             <div>例子1： 我是好一点心理咨询师：xxx,是国家二级咨询师，从事 心理咨询行业十五年，帮助过上千人走出困境。我个人 比较擅长：个人成长、情感困惑、婚姻家庭这三方面的 辅导，（额外可加自身的成就或者自己的一段座右铭… …）</div>
