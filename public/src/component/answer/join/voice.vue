@@ -341,24 +341,26 @@
             let _this= this;
             _this.getBgmList();
             myVideo.config({obj:$('.circle')}).init(_this.start,_this.stop,_this.play,_this.play);
+
         },
-//        activated:function () {
-//            this.answering2 = false;
-//            this.preAnswer = false;
-//            this.playing = false;
-//            this.answerTime = xqzs.localdb.get('voice_answerTime')?xqzs.localdb.get('voice_answerTime'):"00";
-//            this.timeOut = null;
-//            this.finish = false;
-//            this.edit= this.$route.query.edit;
-//            this.vPlaying = false;
-//            this.vPaused = false;
-//            this.localId = xqzs.localdb.get('voice_localId')?xqzs.localdb.get('voice_localId'):null;
-//            this.serviceId = null;
-//            this.voiceLength = 0;
-//            this.MIN_VOICE_LENGTH = 10;
-//            this.clearTimeOut();
-//            this.showBgm = false;
-//        },
+        activated:function () {
+            this.answering2 = false;
+            this.preAnswer = false;
+            this.playing = false;
+            this.answerTime = "00";
+            this.timeOut = null;
+            this.finish = false;
+            this.edit= this.$route.query.edit;
+            this.vPlaying = false;
+            this.vPaused = false;
+            this.localId = null;
+            this.serviceId = null;
+            this.voiceLength = 0;
+            this.MIN_VOICE_LENGTH = 10;
+            this.clearTimeOut();
+            this.showBgm = false;
+            myVideo.config({obj:$('.circle')}).init(_this.start,_this.stop,_this.play,_this.play);
+        },
         components: {
             "v-answer-top-step": answerTopStep
         },
