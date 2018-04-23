@@ -260,6 +260,7 @@
                 xqzs.wx.voice.startRecord();
                 xqzs.wx.voice.onRecordEnd(function (localId) {
                     _this.localId=localId
+                    console.log('录制保存'+localId)
                     xqzs.localdb.set("voice_localId",localId);
                     _this._recordStop();
                 });
@@ -354,13 +355,13 @@
             this.answering2 = false;
             this.preAnswer = false;
             this.playing = false;
-            this.answerTime = xqzs.localdb.get('voice_localId')?xqzs.localdb.get('voice_localId'):"00";
+            this.answerTime = xqzs.localdb.get('voice_voiceLength')?xqzs.localdb.get('voice_voiceLength'):"00";
             this.timeOut = null;
             this.finish = false;
             this.edit= this.$route.query.edit;
             this.vPlaying = false;
             this.vPaused = false;
-            this.localId = xqzs.localdb.get('voice_voiceLength')?xqzs.localdb.get('voice_voiceLength'):null;
+            this.localId = xqzs.localdb.get('voice_localId')?xqzs.localdb.get('voice_localId'):null;
             this.serviceId = null;
             this.voiceLength = 0;
             this.MIN_VOICE_LENGTH = 10;
