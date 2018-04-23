@@ -310,16 +310,6 @@
         },
         beforeDestroy: function () {
             xqzs.voice.pause();
-            let _this = this;
-            let list = _this.list;
-            for (let i = 0; i < list.length; i++) {
-                if (index != i && (list[i].playing || list[i].paused)) {
-                    xqzs.voice.pause();
-                    list[i].paused = false;
-                    list[i].playing = false;
-                    _this.$set(_this.list, i, list[i]);
-                }
-            }
         },
         updated: function () {
             this.initActive()
@@ -340,6 +330,15 @@
                 if(st){
                     $('.yo-scroll').scrollTop(st);
 //                    Bus.$emit("scrollDone");
+                }
+            }
+            let list = this.list;
+            for(let i = 0;i<list.length;i++){
+                if(index!=i&&(list[i].playing||list[i].paused)){
+                    xqzs.voice.pause();
+                    list[i].paused=false;
+                    list[i].playing=false;
+                    this.$set(this.list,i,list[i]);
                 }
             }
         }
