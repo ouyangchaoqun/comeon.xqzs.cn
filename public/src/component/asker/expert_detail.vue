@@ -957,10 +957,25 @@
 
     }
     .expert_top_voice_play{
-        animation: voice_playing_expert 1.2s ease-in-out infinite;
-        -webkit-animation: voice_playing_expert 1.2s  ease-in-out infinite;
+        animation: voice_playing_expert 1.5s ease-in-out infinite;
+        -webkit-animation: voice_playing_expert 1.5s  ease-in-out infinite;
     }
     @keyframes voice_playing_expert  {
+        0%{
+            background: url('http://oss.xqzs.cn/resources/psy/asker/voice_play1.png') no-repeat;
+            background-size: 0.26rem 0.33rem;
+        }
+        50%{
+            background: url('http://oss.xqzs.cn/resources/psy/asker/voice_play2.png') no-repeat;
+            background-size: 0.26rem 0.33rem;
+        }
+        100%{
+            background: url('http://oss.xqzs.cn/resources/psy/asker/voice_play3.png') no-repeat;
+            background-size: 0.26rem 0.33rem;
+        }
+    }
+    @-webkit-keyframes voice_playing_expert /* Safari 与 Chrome */
+    {
         0%{
             background: url('http://oss.xqzs.cn/resources/psy/asker/voice_play1.png') no-repeat;
             background-size: 0.26rem 0.33rem;
