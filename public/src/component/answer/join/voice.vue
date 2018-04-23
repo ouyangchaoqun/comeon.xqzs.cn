@@ -107,7 +107,6 @@
         methods: {
             //获取背景音乐
             getBgmList:function () {
-                console.log('获取背景音乐')
                 let _this = this;
               xqzs.api.get(_this,'come/expert/voice/bgm',function (res) {
                   console.log(res)
@@ -171,12 +170,10 @@
 
                         },function () {
                             //失败
-                            console.log('上传失败')
-                            xqzs.weui.tip('上传失败，请重新录制')
+
                         })
                     }else{
                         //注册
-                        console.log('首次注册')
                         _this.$router.go(-1)
                     }
                 });
