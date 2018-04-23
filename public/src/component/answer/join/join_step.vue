@@ -133,14 +133,18 @@
                 <li @click="setImgs()">
                     上传图片
                     <div class="li_right" >
-
+                        <div v-if="expert_pic.length>0">
+                            已上传
+                        </div>
                         <i></i>
                     </div>
                 </li>
                 <li @click="setVoice()">
-                    专家语音
+                    语音介绍
                     <div class="li_right" >
-
+                        <div v-if="serverId!=''">
+                           已录音
+                        </div>
                         <i></i>
                     </div>
                 </li>
@@ -352,7 +356,7 @@
                 preIning:true,
                 sexIndex:1,
                 defaultCity: '[330000, 330100, 330102]',
-
+                expert_pic:[],
                 reg_mobile :cookie.get('reg_mobile')?cookie.get('reg_mobile'):'',
                 reg_sign:cookie.get('reg_sign')?unescape(cookie.get('reg_sign')):'',
                 reg_introduction:cookie.get('reg_introduction')?unescape(cookie.get('reg_introduction')):'',
@@ -370,6 +374,7 @@
                 provinceId: cookie.get('reg_provinceId')?cookie.get('reg_provinceId'):'',
                 cityId: cookie.get('reg_cityId')?cookie.get('reg_cityId'):'',
                 areaId:cookie.get('reg_areaId')?cookie.get('reg_areaId'):'',
+                serverId:cookie.get('serverId')?cookie.get('serverId'):'',
                 alioss:null,
                 uploadpicinfo:null,
                 identityFile1:'',
@@ -422,6 +427,7 @@
             this.provinceId= cookie.get('reg_provinceId')?cookie.get('reg_provinceId'):'';
             this.cityId= cookie.get('reg_cityId')?cookie.get('reg_cityId'):'';
             this.areaId=cookie.get('reg_areaId')?cookie.get('reg_areaId'):'';
+            this.serverId=cookie.get('serverId')?cookie.get('serverId'):'';
             this.alioss=null;
             this.uploadpicinfo=null;
             this.identityFile1='';
@@ -442,7 +448,7 @@
             this.lunarDateData=[];
             this.solarDateDate=[];
             this.isLeapMonth=false;
-
+            this.expert_pic = [];
 
             if(!xqzs.user.isUserLogin()){
                 return ;
@@ -451,6 +457,7 @@
             this.initOss();
             this.getUserInfo();
             this.getClassList();
+            this.getExpertPic();
             this.lunarDateData=xqzs.dateTime.getLunarData(1949,2017);
             this.solarDateDate= xqzs.dateTime.getSolarData(1949,2017);
         },
@@ -719,6 +726,14 @@
             setImgs:function () {
                 this.$router.push('./imgs?edit='+this.isModify)
             },
+            //获取imgs
+            getExpertPic:function () {
+                let _this = this;
+                xqzs.api.get(this,"come/expert/picture/_userId_/1/10",function (res) {
+                    _this.expert_pic=res.body.data;
+                    console.log(_this.expert_pic)
+                })
+            },
             setVoice:function () {
                 this.$router.push('./voice?edit='+this.isModify)
             },
@@ -899,7 +914,7 @@
                     cityId = _this.cityId;
                     areaId=_this.areaId;
                     mobile = _this.reg_mobile;
-                    mediaId = cookie.get('serverId')?cookie.get('serverId'):'';
+                    mediaId = _this.serverId;
                     voiceLength = cookie.get('voiceLength')?cookie.get('voiceLength'):'';
                 }
 

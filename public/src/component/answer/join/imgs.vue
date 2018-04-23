@@ -6,7 +6,7 @@
             <div class="joinSet_sure sure_nor" v-if="checkedIndex<0">确定</div>
             <div class="joinSet_sure" @click="setImgs()">确定</div>
         </div>
-        <div class="tips">工作照,会议照,证书照,学习照……（最多可上传5张）</div>
+        <div class="tips">工作照、会议照、证书照、学习照 ...（建议上传3-5张，最多可上传5张）</div>
         <div class="optionFrist_box">
             <div v-for="(pic,index) in pictures" v-bind:key="index" class="upload-images">
                 <div v-if="pic.isloading" class="item">
@@ -14,7 +14,7 @@
                 </div>
                 <div class="item item-image" v-else>
                     <div class="del-img" @click="deletePic(index,pic.pictype)"></div>
-                    <img v-bind:src="smallPic(pic.image.path)" @click="viewBigPics(pic.image.path)"/>
+                    <img v-bind:src="smallPic(pic.path)" @click="viewBigPics(pic.path)"/>
                 </div>
             </div>
             <div v-if="pictures.length<5" class="item item-up-btn">
@@ -42,6 +42,7 @@
                     uploadbase64url: web.BASE_PATH + 'api/upfilebase64',
                     aliossgeturl: web.BASE_PATH + 'aliyunapi/oss_getsetting'
                 },
+                edit:''
             }
         },
         props: {
@@ -70,8 +71,8 @@
                 var pics = [];
                 src = src + xqzs.oss.Size.resize(750, 750)
                 for (var i = 0, l = this.pictures.length; i < l; i++) {
-                    if (this.pictures[i].image) {
-                        pics.push(this.pictures[i].image.path + xqzs.oss.Size.resize(750, 750));
+                    if (this.pictures[i]) {
+                        pics.push(this.pictures[i].path + xqzs.oss.Size.resize(750, 750));
                     }
                 }
                 xqzs.wx.previewImage(src, pics)
@@ -98,7 +99,7 @@
                     if (id == this.pictures[i].id) {
                         this.pictures[i].isloading = false;
                         this.pictures[i]['pictype'] = '';
-                        this.pictures[i].image = data;
+                        this.pictures[i] = data;
                     }
                 }
             },
@@ -130,7 +131,7 @@
                 let _this=this;
                 var List=[];
                 for(var i=0;i<_this.pictures.length;i++){
-                    List.push(_this.pictures[i].image.id)
+                    List.push(_this.pictures[i].id)
                 }
                 console.log(List)
                 xqzs.api.put(this,"come/expert/picture/add",{"userId":_this.user.id,"pictures":List},function (response) {
@@ -147,6 +148,8 @@
 
         activated: function () {
             let _this=this;
+            _this.edit = '';
+            _this.edit= this.$route.query.edit;
             this.uploadpicinfo = {
                 token: xqzs.string.guid(),
                 smallpic: xqzs.constant.PIC_SMALL,
@@ -159,14 +162,10 @@
                 url: this.uploadpicinfo.aliossgeturl,
                 token: this.uploadpicinfo.token
             });
-            let expert_id=cookie.get("expertId");
-            console.log('expert_idexpert_idexpert_id'+expert_id)
-                xqzs.api.get(this,"come/expert/query/detail/for/edit/"+expert_id+"/_userId_",function (res) {
-                _this.pictures=res.body.data.pictures;
-                console.log(_this.pictures+'************')
+            xqzs.api.get(this,"come/expert/picture/_userId_/1/10",function (res) {
+                _this.pictures=res.body.data;
+                console.log(_this.pictures)
             })
-            //加载咨询师图片
-
         },
 
         beforeDestroy: function () {
@@ -181,7 +180,6 @@
         background: #fff;
         font-size: 0.28rem;
         color: #999;
-        text-align: center;
         padding: 0.3rem;
     }
 
