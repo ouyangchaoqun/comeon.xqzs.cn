@@ -345,7 +345,9 @@
 
             xqzs.wx.setConfig(this);
             let _this= this;
-            _this.getBgmList()
+            _this.getBgmList();
+            _this.edit= _this.$route.query.edit;
+            _this.clearTimeOut();
             myVideo.config({obj:$('.circle')}).init(_this.start,_this.stop,_this.play,_this.play);
         },
 //        activated:function () {
