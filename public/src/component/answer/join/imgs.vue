@@ -128,13 +128,12 @@
 
             setImgs: function () {
                 let _this=this;
-                var List=[];
-                for(var i=0;i<_this.pictures.length;i++){
-                    List.push(_this.pictures[i].image.id)
-                }
 
-                console.log(List)
-                xqzs.api.put(this,"come/expert/picture/add",{"userId":_this.user.id,"pictures":List},function (response) {
+                for(var i=0;i<_this.pictures.length;i++){
+                    _this.pictures.push(_this.pictures[i].image.id)
+                }
+                console.log(_this.pictures);
+                xqzs.api.put(this,"come/expert/picture/add",{"userId":_this.user.id,"pictures":_this.pictures},function (response) {
                     if(response.data.status==1){
                         xqzs.weui.toast("success","提交成功")
                         _this.$router.go(-1);
