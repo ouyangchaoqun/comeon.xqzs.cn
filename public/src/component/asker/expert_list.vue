@@ -70,17 +70,11 @@
                         <div class="itemDetail">
                             <div class="img">
                                 <img :src="resizeImg(item.faceUrl)">
-                                <div class="expert_voice" :class="{expert_voice_play:item.playing}" @click.stop="play(index)"></div>
+                                <div v-if="item.voicePath!=null" class="expert_voice" :class="{expert_voice_play:item.playing}" @click.stop="play(index)"></div>
                             </div>
                             <div class="itemDetail_right">
                                 <div class="itemHeader">
                                     <div>{{item.nickName}}<span>{{item.city}}</span></div>
-                                    <div class="header_addRightStyle" v-if="false">
-                                        <div class="headerImg" @click.stop="play(index)">
-                                            <div :class="{addPlaying:item.playing,addPaused:item.paused}"></div>
-                                        </div>
-                                        {{item.length}}''
-                                    </div>
                                 </div>
                                 <div class="title">{{item.sign}}</div>
                                 <div class="itemDetail_class_s">

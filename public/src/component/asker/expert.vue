@@ -52,17 +52,11 @@
                             <div class="itemDetail">
                                 <div class="img">
                                     <img :src="resizeImg(item.faceUrl)">
-                                    <div class="expert_voice" :class="{expert_voice_play:item.playing}" @click.stop="play(index)"></div>
+                                    <div v-if="item.voicePath!=null" class="expert_voice" :class="{expert_voice_play:item.playing}" @click.stop="play(index)"></div>
                                 </div>
                                 <div class="itemDetail_right">
                                     <div class="itemHeader">
                                         <div >{{item.nickName}}<span>{{item.city}}</span></div>
-                                        <div class="header_addRightStyle" v-if="false ">
-                                            <div class="headerImg" @click.stop="play(index)">
-                                                <div :class="{addPlaying:item.playing,addPaused:item.paused}"></div>
-                                            </div>
-                                            {{item.length}}''
-                                        </div>
                                     </div>
                                     <div class="title">{{item.sign}}</div>
                                     <div class="itemDetail_class_s">
@@ -80,26 +74,6 @@
                                 <div style="clear: both"></div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="item" v-for="(item,index) in list" v-if="false">
-                    <div @click="goDetail(item.expertId)">
-                        <div class="info">
-                            <div class="problem_answer_yy">
-                                <div class="audio" :class="{playing:item.playing,paused:item.paused}">
-                                    <div class="audio_btn" @click.stop="play(index)">
-                                        <template v-if="!item.playing&&!item.paused">点击播放</template>
-                                        <template v-if="item.playing">正在播放..</template>
-                                        <template v-if="item.paused">播放暂停</template>
-                                        <div class="second">{{item.length}}”</div>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="clear"></div>
                     </div>
                 </div>
                 <div class="noContent_icon" v-if="noContent">

@@ -10,7 +10,7 @@
                 <div class="answer_banner">
                     <div class="answer_face">
                         <img class="expert_faceImg" :src="resizeImg(detail.faceUrl)">
-                        <div class="expert_top_voice" @click="playVoice(detail.voicePath,detail.voiceBgmPath)">
+                        <div v-if="detail.voicePath!=null" class="expert_top_voice" @click="playVoice(detail.voicePath,detail.voiceBgmPath)">
                             <div :class="{expert_top_voice_play:voice_isPlay}"></div>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
 
                 <div class="hot_content">
 
-                    <div class="swiper-container imgSwiper">
+                    <div class="swiper-container imgSwiper" v-if="imgList.length!=0">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide" v-for="item in imgList">
                                 <div class="imgs_item">
