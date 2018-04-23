@@ -334,12 +334,9 @@
             }
             let list = this.list;
             for(let i = 0;i<list.length;i++){
-                if(index!=i&&(list[i].playing||list[i].paused)){
-                    xqzs.voice.pause();
-                    list[i].paused=false;
-                    list[i].playing=false;
-                    this.$set(this.list,i,list[i]);
-                }
+                list[i].paused=false;
+                list[i].playing=false;
+                this.$set(this.list,i,list[i]);
             }
         }
 
