@@ -130,7 +130,7 @@
                         <i></i>
                     </div>
                 </li>
-                <li @click="setImgs()">
+                <li @click="setImgs()" v-if="isModify==0">
                     上传图片
                     <div class="li_right" >
                         <div v-if="expert_pic.length>0">
@@ -139,7 +139,7 @@
                         <i></i>
                     </div>
                 </li>
-                <li @click="setVoice()">
+                <li @click="setVoice()" v-if="isModify==0">
                     语音介绍
                     <div class="li_right" >
                         <div v-if="serverId!=''">

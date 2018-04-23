@@ -359,7 +359,7 @@
             this.MIN_VOICE_LENGTH = 10;
             this.clearTimeOut();
             this.showBgm = false;
-            myVideo.config({obj:$('.circle')}).init(_this.start,_this.stop,_this.play,_this.play);
+            myVideo.config({obj:$('.circle')}).init(this.start,this.stop,this.play,this.play);
         },
         components: {
             "v-answer-top-step": answerTopStep
