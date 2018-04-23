@@ -363,6 +363,7 @@
             this.voiceLength = 0;
             this.MIN_VOICE_LENGTH = 10;
             this.clearTimeOut();
+            this.showBgm = false;
 
         },
         components: {
