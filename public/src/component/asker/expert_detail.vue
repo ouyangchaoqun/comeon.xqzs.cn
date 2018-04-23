@@ -371,7 +371,7 @@
             },
             //小图格式
             smallPic: function (src) {
-                return src + xqzs.oss.Size.fill(125, 90);
+                return src + xqzs.oss.Size.fill(90, 125);
             },
             //展示大图
             viewBigPics: function (src) {
