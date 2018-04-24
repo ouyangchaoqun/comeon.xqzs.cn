@@ -10,7 +10,7 @@
                 <div class="answer_banner">
                     <div class="answer_face">
                         <img class="expert_faceImg" :src="resizeImg(detail.faceUrl)">
-                        <div v-if="detail.voicePath!=null" class="expert_top_voice" @click="playVoice(detail.voicePath,detail.voiceBgmPath)">
+                        <div v-if="detail.voicePath!=null&&detail.voicePath!=''" class="expert_top_voice" @click="playVoice(detail.voicePath,detail.voiceBgmPath)">
                             <div :class="{expert_top_voice_play:voice_isPlay}"></div>
                         </div>
                     </div>

@@ -70,7 +70,7 @@
                         <div class="itemDetail">
                             <div class="img">
                                 <img :src="resizeImg(item.faceUrl)">
-                                <div v-if="item.voicePath!=null" class="expert_voice" :class="{expert_voice_play:item.playing}" @click.stop="play(index)"></div>
+                                <div v-if="item.voicePath!=null&&item.voicePath!=''" class="expert_voice" :class="{expert_voice_play:item.playing}" @click.stop="play(index)"></div>
                             </div>
                             <div class="itemDetail_right">
                                 <div class="itemHeader">
